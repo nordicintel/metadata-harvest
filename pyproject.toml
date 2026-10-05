@@ -3,21 +3,21 @@ requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
 
 [project]
-name = "nordicintel-python-template"
+name = "metadata-harvest"
 version = "0.1.0"
-description = "A shared Python foundation for NordicIntel projects."
+description = "Scheduled GitHub Actions to harvest table and dataset metadata from Swedish APIs and databases"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/nordicintel/python-template"
+Repository = "https://github.com/nordicintel/metadata-harvest"
 
 [dependency-groups]
 dev = ["pytest>=8,<10", "ruff>=0.13,<1"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/template_package"]
+packages = ["src/metadata_harvest"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
