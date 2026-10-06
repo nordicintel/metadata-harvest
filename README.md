@@ -1,33 +1,99 @@
-> **Python project skeleton — no application code implemented yet.**
-> This repository was created from the
-> [NordicIntel Python template](https://github.com/nordicintel/python-template).
-> It contains project scaffolding and a setup smoke test, not a working implementation.
-> **Remove this notice after the first commit implementing real project functionality;
-> repository setup and preparation commits do not count.**
-
 # metadata-harvest
 
-Scheduled GitHub Actions to harvest table and dataset metadata from Swedish APIs and databases
+Web-authoritative PXWeb table discovery and metadata listings for Python 3.13+.
 
-## Development
+```python
+from metadata_harvest import get_pxweb_tables
 
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then:
+records = await get_pxweb_tables(
+    "https://example.org/PXWeb/pxweb/",
+    languages=["sv", "en"],
+    database_ids=["Statistics"],
+)
+```
 
-```sh
+`languages=None` tries English and Swedish. A language in the URL overrides that
+list. A database in the URL is combined with supplied database IDs. Without a URL
+database, `database_ids=None` discovers databases separately for each language;
+`database_ids=[]` selects none. Folder and table inputs harvest their entire database.
+API-form inputs are converted to web URLs before navigation.
+
+The function returns dictionaries with `id`, `path`, `category_path`, `title`,
+`score` (always `1.0`), `published`, `api_url`, `web_url`, `language`, and
+`database_id`. It preserves actual table links, meaningful category numbering,
+and date precision. Website listing dates are retained. Missing dates or titles
+use one flat API search per language/database, joined by full path and table ID.
+For dates still missing, only the corresponding API parent folders are requested,
+with a cached result per folder. API-only tables are never added and API subfolders are never crawled.
+Tables still undated are omitted with diagnostics containing their IDs and paths.
+Linköping may use category IDs as labels where the website supplies none.
+Root-level paths are `/`.
+
+One Chromium instance is used per invocation, with isolated contexts. Browser API
+traffic is blocked before navigation using context routing and Chromium network
+blocking (including redirects), with service workers disabled. Only the explicit
+metadata enrichment requests above use Playwright's request client. Unsolicited
+popups and embedded frames are blocked. The library does not visit individual
+table pages, write output files, or expose a CLI.
+
+Unsupported combinations require explicit website evidence and produce logging
+diagnostics. Other incomplete combinations produce an `ExceptionGroup` after the
+remaining combinations are attempted; partial lists are never returned as complete.
+Transient web failures are retried at most four times, respecting `Retry-After`.
+Flat API enrichment is attempted once. Parent-folder lookups are cached and
+retry transient failures up to four times, respecting `Retry-After`. Exhausted
+request failures remain errors rather than being treated as absent dates.
+Failed stateful expansion restarts from a fresh navigation. Certificate failures
+retry in a new context using `ignore_https_errors=True`, with a warning.
+
+## Development and validation
+
+```powershell
 uv sync --locked
-uv run ruff format .
+uv run playwright install chromium
+uv run ruff format --check .
 uv run ruff check .
 uv run pytest
 ```
 
-Code lives in `src/metadata_harvest/`, tests in `tests/`, and utilities in `scripts/`.
-Python 3.13 is used locally and in Ubuntu CI. Commit `uv.lock` when dependencies
-change. CI checks formatting with `uv run ruff format --check .`.
+On Linux, install browser system dependencies with
+`uv run playwright install --with-deps chromium`. CI runs only deterministic
+local browser tests, including a test-only self-signed HTTPS fixture and server-side
+counters proving that unsolicited direct and redirected browser API requests never
+reach the server, while explicitly authorized enrichment requests are counted.
+The fixture key is public test data and must never be used for a real service.
 
-## Releases
+The supplied provider configuration is preserved in `tests/fixtures/providers.json`:
+20 providers, 45 databases, 55 language/database combinations. Run live acceptance
+explicitly (it can take several minutes):
 
-PyPI publishing is not configured. To build local distributions, run `uv build`.
+```powershell
+uv run python scripts/check_pxweb_live.py
+# Optional focused rerun:
+uv run python scripts/check_pxweb_live.py --provider linkoping --output output/linkoping.json
+# Resume an interrupted run without discarding successful checks:
+uv run python scripts/check_pxweb_live.py --resume
+```
 
-## License
+The runner writes per-combination counts, errors, exact API/web input comparisons,
+discovery differences, timestamps, and successful records to `output/compatibility.json`.
+The runner preserves actual URLs and reports UUID-valued `rxid` session differences
+separately from semantic equivalence. It also checks one rendered table page per
+successful combination and records its title, categories, route, and metadata date.
+It runs at most three providers concurrently; each provider navigates sequentially.
+Use `--timeout` to change the default 900-second limit per invocation.
+The command exits nonzero if compatibility acceptance fails.
+Live service failures and source metadata gaps are not passing acceptance results.
+See [the dated compatibility report](docs/pxweb-compatibility.md) for configured
+harvest results and the separately reported discovery limitations.
 
-No license has been selected. Add one when appropriate.
+## Scheduled integration boundary
+
+The future daily GitHub Actions wrapper should call this function, compare
+`published` with the last successfully processed value for each
+`(language, database_id, path, id)`, and rebuild metadata for new or changed tables.
+Advance state only after rebuilding succeeds. Treat extraction exceptions as failed
+jobs, never as empty catalogs. Provider jobs may run independently in parallel.
+Scheduling, persistent state, and metadata rebuilding are outside this module.
+
+No PyPI publication or license has been configured.
