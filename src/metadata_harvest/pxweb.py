@@ -411,6 +411,14 @@ def _identity(raw: dict, language: str, database: str, folder_names: dict):
             raise ValueError(f"Category ancestry mismatch: {raw['href']}")
         categories = tokens[-len(ancestors) :]
         names = [x["name"] for x in ancestors]
+        # Some trees include their database root as an ancestor as well as in
+        # the flattened routing prefix. It is not an API category segment.
+        if (
+            "__" in route.tail[0]
+            and len(categories) == len(tokens)
+            and categories[0] in {database, "START"}
+        ):
+            categories, names = categories[1:], names[1:]
     else:
         categories = tokens
         if categories == ("-",):

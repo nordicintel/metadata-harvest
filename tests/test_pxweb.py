@@ -18,8 +18,34 @@ from metadata_harvest.pxweb import (
     _languages,
     _new_page,
     _parse_url,
+    _record,
     _retry_after,
 )
+
+
+@pytest.mark.parametrize(
+    "database", ["Statistikdatabas", "Tillväxtanalys statistikdatabas"]
+)
+def test_synthetic_database_ancestor_is_not_an_api_folder(database):
+    from urllib.parse import quote
+
+    encoded = quote(database, safe="")
+    root = _parse_url(f"https://example.test/Prefix/pxweb/sv/{encoded}/")
+    raw = {
+        "href": root.web() + encoded + "__01/T.px/",
+        "title": "Title",
+        "date": "2026-01-01",
+        "ancestors": [
+            {"name": database, "href": root.web()},
+            {"name": "01. Category", "href": ""},
+        ],
+    }
+    result = _record(raw, root, "sv", database, {})
+    assert result["path"] == "/01"
+    assert result["category_path"] == [{"id": "01", "name": "01. Category"}]
+    assert (
+        result["api_url"] == f"https://example.test/Prefix/api/v1/sv/{encoded}/01/T.px"
+    )
 
 
 @pytest.fixture

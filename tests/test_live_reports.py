@@ -43,3 +43,25 @@ def test_hidden_discovery_database_does_not_hide_record_mismatches():
     report["discovery"][0]["visible_records_equal"] = False
     assert not accepted(report)
     assert not accepted({"combinations": [], "discovery": []})
+
+
+def test_metadata_summary_rejects_partial_duplicate_and_failed_coverage():
+    summarize = runpy.run_path("scripts/summarize_metadata_live.py")["summarize"]
+    providers = [{"code": "p", "languages": ["sv"], "database_ids": ["db"]}]
+    combo = {
+        "language": "sv",
+        "database_id": "db",
+        "status": "success",
+        "web_count": 1,
+        "tables": [{"status": "success", "requests": 4}],
+    }
+    report = {"provider": "p", "accepted": True, "combinations": [combo]}
+    assert summarize(providers, [report])["accepted"]
+    assert not summarize(providers, [])["accepted"]
+    assert not summarize(providers, [report, report])["accepted"]
+    assert not summarize(providers, [{**report, "accepted": False}])["accepted"]
+    combo["web_count"] = 2
+    assert not summarize(providers, [report])["accepted"]
+    combo["web_count"] = 1
+    combo["tables"][0]["status"] = "failed"
+    assert not summarize(providers, [report])["accepted"]

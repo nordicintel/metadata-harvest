@@ -49,6 +49,38 @@ request failures remain errors rather than being treated as absent dates.
 Failed stateful expansion restarts from a fresh navigation. Certificate failures
 retry in a new context using `ignore_https_errors=True`, with a warning.
 
+## Complete table metadata
+
+```python
+from metadata_harvest import get_pxweb_metadata
+
+dataset = await get_pxweb_metadata(records[0], provider_code="provider-code")
+```
+
+This operation uses the record's complete API URL for GET metadata and JSON-stat2
+POST slices. It recovers missing category lists, then covers every category with
+bounded slices (at most 10,000 cells, or the provider's lower advertised limit).
+It returns full dimensions with `value=[]`. No browser, files or persistent state
+are involved. Requests are sequential and paced by provider configuration; callers
+must also coordinate concurrent operations against the same provider.
+
+Metadata precedence is table record, GET, then POST. Table identity and original
+fields live under `extension.metadata_harvest`; GET-only fields without standard
+equivalents live under its `pxweb` member at dataset or dimension level. Unknown
+fields, units, notes, links and extensions survive. Losing conflicting values are
+discarded. Observation values are discarded; status metadata retains its slice
+coordinates under `sample_status`. Synthetic eliminated dimensions and their roles
+are preserved under `auxiliary_dimensions` and `auxiliary_roles`. Category coverage
+does not mean all combinations of observations were downloaded.
+
+Run **Live PXWeb metadata** manually in GitHub Actions for every web-listed table
+across all 55 configured combinations. It uploads per-table request counts, category
+coverage, timestamps, hashes and failures. Local smoke checks can use
+`uv run python scripts/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
+limited runs deliberately never count as full acceptance. A failed GET, POST,
+recovery or completeness check raises an error rather than returning a partial
+dataset. Store/rebuild successfully before advancing the processed `published` value.
+
 ## Development and validation
 
 Run **Live PXWeb compatibility** from GitHub Actions (`workflow_dispatch`) to
