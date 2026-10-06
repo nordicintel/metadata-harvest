@@ -1,0 +1,419 @@
+{
+  "class": "dataset",
+  "version": "2.0",
+  "label": "Omställningsstudiestöd efter Stödform, Skolform, Studietakt, Kalenderhalvår, Kön och Antal personer, Utbetalt belopp",
+  "updated": "2026-01-12T18:23:00",
+  "value": [],
+  "id": [
+    "Stödform",
+    "Skolform",
+    "Studietakt",
+    "Kalenderhalvår",
+    "Kön",
+    "Antal personer, Utbetalt belopp"
+  ],
+  "size": [
+    3,
+    9,
+    7,
+    6,
+    3,
+    2
+  ],
+  "dimension": {
+    "Stödform": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "Bidrag",
+          "2": "Lån"
+        },
+        "note": {
+          "0": [
+            "Vid val av stödform ’Totalt’ visas en nettototal av antalet studerande med både 'Bidrag' och 'Lån', vilket innebär att varje person bara räknas en gång. Filtrera på stödformen ’Bidrag’ om antalsuppgifterna ska redovisas på samma sätt andra antalsuppgifter som CSN redovisar.",
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell."
+          ],
+          "1": [
+            "Bidrag till studerande med omställningsstudiestöd. Beroende på kollektivavtal kan vissa omställningsorganisationer även erbjuda ett kompletterande bidrag för studerande med omställningsstudiestöd. Uppgifter om  kompletterande bidrag ingår inte i den officiella statistiken. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell."
+          ]
+        }
+      },
+      "label": "Stödform",
+      "note": [
+        "En studerande kan få stöd med bidrag och lån. För mer information, se csn.se. Beroende på kollektivavtal kan vissa omställningsorganisationer även erbjuda ett kompletterande bidrag för studerande med omställningsstudiestöd. Uppgifter om  kompletterande bidrag ingår inte i den officiella statistiken."
+      ],
+      "extension": {
+        "elimination": false,
+        "categoryNoteMandatory": {
+          "0": {
+            "0": true
+          }
+        },
+        "show": "value"
+      }
+    },
+    "Skolform": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "Eftergymnasial skola",
+          "2": "Folkhögskola",
+          "3": "Komvux",
+          "4": "Konst- och kulturutbildningar",
+          "5": "Nationell yrkesutbildning",
+          "6": "Universitet och högskolor",
+          "7": "Yrkeshögskola",
+          "8": "Saknas"
+        },
+        "note": {
+          "0": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ],
+          "1": [
+            "Viss eftergymnasial utbildning som finns förtecknade i bilagan till studiestödsförordningen. Det handlar bland annat om vissa säkerhetsutbildningar, teologiska utbildningar, naprapatutbildningar, kiropraktorutbildningar och trafikflygarutbildningar."
+          ],
+          "3": [
+            "Kommunal vuxenutbildning."
+          ],
+          "4": [
+            "Förordningen för Konst- och kulturutbildningar och vissa andra utbildningar (2013:871) började gälla den 25 december 2013. Tidigare kallades skolformen 'Kompletterande utbildningar' (förordning 2000:521)."
+          ],
+          "5": [
+            "Nationell yrkesutbildning för vuxna på gymnasial nivå. Utbildning anordnas från och med andra halvåret 2024 enligt förordningen (2024:107) om stöd för en nationell yrkesutbildning."
+          ],
+          "8": [
+            "Uppgifter där skolformen inte är känd för CSN."
+          ]
+        }
+      },
+      "label": "Skolform",
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "note": [
+        "En studerande kan studera inom olika skolformer. Exempel på skolformer är komvux, folkhögskola och universitet och högskolor. Det utbetalade beloppet viktas utifrån utbildningsnivå, skolform och studietakt. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut."
+      ]
+    },
+    "Studietakt": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "20 %",
+          "2": "40 %",
+          "3": "50 %",
+          "4": "60 %",
+          "5": "75 %",
+          "6": "100 %"
+        },
+        "note": {
+          "0": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ]
+        }
+      },
+      "label": "Studietakt",
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "note": [
+        "Visar den studietakt som studiestöd lämnats för, uttryckt i procent. För kalenderhalvåren 2023 och 2024 redovisas alla studietakter som finns i ansökan, oavsett om en eller flera studietakter avser en period som ligger utanför det aktuella kalenderåret. Från och med kalenderåren 2025 redovisas endast den studietakt/de studietakterna som avser det aktuella kalenderåret, och om det finns flera studietakter för samma vecka inkluderas endast den högsta takten. Dessa förändringar innebär att antalet bruttoregistreringar minskar vid en fördelning på studietakt. Med brutto menas att en person kan förekomma flera gånger i tabellen. Vid återkrav i efterhand inkluderas endast den ursprungliga studietakten. Det utbetalade beloppet viktas utifrån utbildningsnivå, skolform och studietakt. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut."
+      ]
+    },
+    "Kalenderhalvår": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5
+        },
+        "label": {
+          "0": "2023 halvår 1",
+          "1": "2023 halvår 2",
+          "2": "2024 halvår 1",
+          "3": "2024 halvår 2",
+          "4": "2025 halvår 1",
+          "5": "2025 halvår 2"
+        },
+        "note": {
+          "0": [
+            "På grund av tekniska skäl har ett fåtal personer som fått omställningsstudiestöd utbetalt inte inkluderats i statistiken."
+          ],
+          "2": [
+            "På grund av tekniska skäl har ett fåtal personer som fått omställningsstudiestöd utbetalt inte inkluderats i statistiken."
+          ],
+          "3": [
+            "På grund av tekniska skäl har ett fåtal personer som fått omställningsstudiestöd utbetalt inte inkluderats i statistiken."
+          ]
+        }
+      },
+      "label": "Kalenderhalvår",
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    },
+    "Kön": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "label": {
+          "0": "Kvinnor",
+          "1": "Män",
+          "2": "Totalt"
+        },
+        "note": {
+          "2": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ]
+        }
+      },
+      "label": "Kön",
+      "extension": {
+        "elimination": true,
+        "show": "value",
+        "eliminationValueCode": "2"
+      },
+      "note": [
+        "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+      ]
+    },
+    "Antal personer, Utbetalt belopp": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1
+        },
+        "label": {
+          "0": "Antal personer",
+          "1": "Utbetalt belopp (MSEK)"
+        },
+        "note": {
+          "0": [
+            "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+          ],
+          "1": [
+            "Det belopp som betalats ut, anges i miljoner kronor. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell. Det utbetalade beloppet viktas utifrån utbildningsnivå, skolform och studietakt. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut. Vid summeringen av delbeloppen kan det också uppstå avrundningseffekter som gör att beloppet kan skilja sig något från det belopp som verkligen har betalats ut. I databasen är det möjligt att välja 1-6 decimaler. Notera att det val av decimaler som görs följer med vid export till andra program, vilket innebär att underliggande decimaler inte redovisas. På grund av avrundningar kan det uppstå differenser mellan totalsumman och delsummorna vid en sammanräkning."
+          ]
+        }
+      },
+      "label": "Antal personer, Utbetalt belopp",
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    }
+  },
+  "extension": {
+    "metadata_harvest": {
+      "id": "SUOSSVA02.px",
+      "path": "/SU/A/OS",
+      "category_path": [
+        {
+          "id": "SU",
+          "name": "Utbetalning av studiestöd"
+        },
+        {
+          "id": "A",
+          "name": "Kalenderhalvår för utbetalning"
+        },
+        {
+          "id": "OS",
+          "name": "Omställningsstudiestöd"
+        }
+      ],
+      "title": "Omställningsstudiestöd efter Stödform, Skolform, Studietakt, Kalenderhalvår, Kön och Antal personer, Utbetalt belopp",
+      "score": 1.0,
+      "published": "2026-01-12T18:23:00",
+      "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/SU/A/OS/SUOSSVA02.px",
+      "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__SU__A__OS/SUOSSVA02.px/",
+      "language": "sv",
+      "database_id": "CSNstat",
+      "provider_code": "csn",
+      "dataset_code": "SUOSSVA02.px",
+      "paths": [
+        {
+          "path": "/SU/A/OS",
+          "category_path": [
+            {
+              "id": "SU",
+              "name": "Utbetalning av studiestöd"
+            },
+            {
+              "id": "A",
+              "name": "Kalenderhalvår för utbetalning"
+            },
+            {
+              "id": "OS",
+              "name": "Omställningsstudiestöd"
+            }
+          ],
+          "title": "Omställningsstudiestöd efter Stödform, Skolform, Studietakt, Kalenderhalvår, Kön och Antal personer, Utbetalt belopp",
+          "score": 1.0,
+          "published": "2026-01-12T18:23:00",
+          "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/SU/A/OS/SUOSSVA02.px",
+          "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__SU__A__OS/SUOSSVA02.px/",
+          "database_id": "CSNstat"
+        }
+      ],
+      "sample_status": [
+        {
+          "id": [
+            "Stödform",
+            "Skolform",
+            "Studietakt",
+            "Kalenderhalvår",
+            "Kön",
+            "Antal personer, Utbetalt belopp"
+          ],
+          "categories": {
+            "Stödform": [
+              "0",
+              "1"
+            ],
+            "Skolform": [
+              "0",
+              "1"
+            ],
+            "Studietakt": [
+              "0",
+              "1"
+            ],
+            "Kalenderhalvår": [
+              "0",
+              "1"
+            ],
+            "Kön": [
+              "0",
+              "1"
+            ],
+            "Antal personer, Utbetalt belopp": [
+              "0",
+              "1"
+            ]
+          },
+          "status": {
+            "16": "..",
+            "48": ".."
+          }
+        },
+        {
+          "id": [
+            "Stödform",
+            "Skolform",
+            "Studietakt",
+            "Kalenderhalvår",
+            "Kön",
+            "Antal personer, Utbetalt belopp"
+          ],
+          "categories": {
+            "Stödform": [
+              "0"
+            ],
+            "Skolform": [
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "Studietakt": [
+              "0"
+            ],
+            "Kalenderhalvår": [
+              "0"
+            ],
+            "Kön": [
+              "0"
+            ],
+            "Antal personer, Utbetalt belopp": [
+              "0"
+            ]
+          },
+          "status": {
+            "2": ".."
+          }
+        }
+      ],
+      "auxiliary_dimensions": {
+        "ContentsCode": {
+          "label": "EliminatedContents",
+          "category": {
+            "index": {
+              "EliminatedValue": 0
+            },
+            "label": {
+              "EliminatedValue": "Omställningsstudiestöd"
+            },
+            "unit": {
+              "EliminatedValue": {
+                "base": "Antal personer, Miljoner SEK",
+                "decimals": 6
+              }
+            }
+          },
+          "extension": {
+            "elimination": true
+          }
+        }
+      }
+    },
+    "noteMandatory": {
+      "0": true
+    },
+    "px": {
+      "decimals": 0,
+      "official-statistics": true,
+      "aggregallowed": true,
+      "language": "sv",
+      "matrix": "SUOSSVA02",
+      "subject-code": "Studiestöd"
+    },
+    "contact": [
+      {
+        "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+      }
+    ]
+  },
+  "source": "Centrala studiestödsnämnden, CSN.",
+  "note": [
+    "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+    "Omställningsstudiestödet infördes 2023 och riktar sig till personer som har varit yrkesverksamma under en längre tid. För mer information se csn.se. Tabellen inkluderar uppgifter om personer som har fått en utbetalning av stödet under den valda tidsperioden. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell. För kalenderhalvår under 2023 och 2024 ingick så kallade uppläggningsavgifter för lån i stödformen lån (41 § förordningen (2022:857) om omställningsstudiestöd). Från och med första kalenderhalvåret 2025 ingår uppläggningsavgifter inte i stödformen lån. Anledningen till att dessa avgifter exkluderats är för att redovisa på motsvarande sätt som inom officiell statistik om studiemedel."
+  ]
+}

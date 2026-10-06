@@ -1,0 +1,329 @@
+{
+  "class": "dataset",
+  "version": "2.0",
+  "label": "Studiestartsstöd efter Stödform, Utbildningsnivå, Studietakt, Kalenderår, Kön och Antal personer, Utbetalt belopp",
+  "updated": "2026-01-30T16:30:00",
+  "value": [],
+  "id": [
+    "Stödform",
+    "Utbildningsnivå",
+    "Studietakt",
+    "Kalenderår",
+    "Kön",
+    "Antal personer, Utbetalt belopp"
+  ],
+  "size": [
+    3,
+    3,
+    4,
+    9,
+    3,
+    2
+  ],
+  "dimension": {
+    "Stödform": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "Studiestartsstöd",
+          "2": "Tilläggsbidrag"
+        },
+        "note": {
+          "0": [
+            "Vid val av stödform ’Totalt’ visas en nettototal av antalet studerande med både 'studiestartsstöd' och 'tilläggsbidrag', vilket innebär att varje person bara räknas en gång. Filtrera på stödformen ’studiestartsstöd’ om antalsuppgifterna ska redovisas på samma sätt som andra antalsuppgifter som CSN redovisar.",
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ],
+          "1": [
+            "Bidrag i form av studiestartsstöd"
+          ],
+          "2": [
+            "Bidrag till studerande med studiestartsstöd som har vårdnaden om barn."
+          ]
+        }
+      },
+      "label": "Stödform",
+      "note": [
+        "En studerande kan få stöd med studiestartsstöd och tilläggsbidrag. För mer information, se csn.se."
+      ],
+      "extension": {
+        "elimination": false,
+        "categoryNoteMandatory": {
+          "0": {
+            "0": true
+          }
+        },
+        "show": "value"
+      }
+    },
+    "Utbildningsnivå": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "Grundskolenivå",
+          "2": "Gymnasienivå"
+        },
+        "note": {
+          "0": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ],
+          "1": [
+            "Studier som bedrivs på grundskolenivå, antingen på folkhögskolor eller komvux."
+          ],
+          "2": [
+            "Studier som bedrivs på gymnasienivå, antingen på folkhögskola eller komvux."
+          ]
+        }
+      },
+      "label": "Utbildningsnivå",
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "note": [
+        "Visar den utbildningsnivå som den studerande har fått stöd utbetalt för. Studerande som saknar en utbildningsnivå när statistiken tas ut ingår inte vid en fördelning på utbildningsnivå. Det kan därför förekomma mindre differenser jämfört med totalen vid en summering av studerande på olika utbildningsnivåer. Det utbetalade beloppet viktas utifrån utbildningsnivå och skolform. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut."
+      ]
+    },
+    "Studietakt": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "50 %",
+          "2": "75 %",
+          "3": "100 %"
+        },
+        "note": {
+          "0": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ]
+        }
+      },
+      "label": "Studietakt",
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "note": [
+        "Visar den studietakt som studiestöd lämnats för, uttryckt i procent."
+      ]
+    },
+    "Kalenderår": {
+      "category": {
+        "index": {
+          "2017": 0,
+          "2018": 1,
+          "2019": 2,
+          "2020": 3,
+          "2021": 4,
+          "2022": 5,
+          "2023": 6,
+          "2024": 7,
+          "2025": 8
+        },
+        "label": {
+          "2017": "2017",
+          "2018": "2018",
+          "2019": "2019",
+          "2020": "2020",
+          "2021": "2021",
+          "2022": "2022",
+          "2023": "2023",
+          "2024": "2024",
+          "2025": "2025"
+        },
+        "note": {
+          "2017": [
+            "Studiestartsstöd infördes den 2 juli 2017 och inte innehåller några studerande från det första halvåret 2017."
+          ]
+        }
+      },
+      "label": "Kalenderår",
+      "extension": {
+        "metadata_harvest": {
+          "pxweb": {
+            "time": true
+          }
+        },
+        "elimination": false,
+        "categoryNoteMandatory": {
+          "2017": {
+            "0": true
+          }
+        },
+        "show": "value"
+      }
+    },
+    "Kön": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "label": {
+          "0": "Kvinnor",
+          "1": "Män",
+          "2": "Totalt"
+        },
+        "note": {
+          "2": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ]
+        }
+      },
+      "label": "Kön",
+      "extension": {
+        "elimination": true,
+        "show": "value",
+        "eliminationValueCode": "2"
+      },
+      "note": [
+        "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+      ]
+    },
+    "Antal personer, Utbetalt belopp": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1
+        },
+        "label": {
+          "0": "Antal personer",
+          "1": "Utbetalt belopp (MSEK)"
+        },
+        "note": {
+          "0": [
+            "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+          ],
+          "1": [
+            "Det belopp som betalats ut, anges i miljoner kronor. Det utbetalade beloppet viktas utifrån utbildningsnivå och skolform. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut. I databasen är det möjligt att välja 1-6 decimaler. Notera att det val av decimaler som görs följer med vid export till andra program, vilket innebär att underliggande decimaler inte redovisas. På grund av avrundningar kan det uppstå differenser mellan totalsumman och delsummorna vid en sammanräkning."
+          ]
+        }
+      },
+      "label": "Antal personer, Utbetalt belopp",
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    }
+  },
+  "extension": {
+    "metadata_harvest": {
+      "id": "SUSSSVE12.px",
+      "path": "/SU/E/SS",
+      "category_path": [
+        {
+          "id": "SU",
+          "name": "Utbetalning av studiestöd"
+        },
+        {
+          "id": "E",
+          "name": "Kalenderår för utbetalning"
+        },
+        {
+          "id": "SS",
+          "name": "Studiestartsstöd"
+        }
+      ],
+      "title": "Studiestartsstöd efter Stödform, Utbildningsnivå, Studietakt, Kalenderår, Kön och Antal personer, Utbetalt belopp",
+      "score": 1.0,
+      "published": "2026-01-30T16:30:00",
+      "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/SU/E/SS/SUSSSVE12.px",
+      "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__SU__E__SS/SUSSSVE12.px/",
+      "language": "sv",
+      "database_id": "CSNstat",
+      "provider_code": "csn",
+      "dataset_code": "SUSSSVE12.px",
+      "paths": [
+        {
+          "path": "/SU/E/SS",
+          "category_path": [
+            {
+              "id": "SU",
+              "name": "Utbetalning av studiestöd"
+            },
+            {
+              "id": "E",
+              "name": "Kalenderår för utbetalning"
+            },
+            {
+              "id": "SS",
+              "name": "Studiestartsstöd"
+            }
+          ],
+          "title": "Studiestartsstöd efter Stödform, Utbildningsnivå, Studietakt, Kalenderår, Kön och Antal personer, Utbetalt belopp",
+          "score": 1.0,
+          "published": "2026-01-30T16:30:00",
+          "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/SU/E/SS/SUSSSVE12.px",
+          "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__SU__E__SS/SUSSSVE12.px/",
+          "database_id": "CSNstat"
+        }
+      ],
+      "auxiliary_dimensions": {
+        "ContentsCode": {
+          "label": "EliminatedContents",
+          "category": {
+            "index": {
+              "EliminatedValue": 0
+            },
+            "label": {
+              "EliminatedValue": "Studiestartsstöd"
+            },
+            "unit": {
+              "EliminatedValue": {
+                "base": "Antal personer, Miljoner SEK",
+                "decimals": 6
+              }
+            }
+          },
+          "extension": {
+            "elimination": true
+          }
+        }
+      }
+    },
+    "noteMandatory": {
+      "0": true
+    },
+    "px": {
+      "decimals": 0,
+      "official-statistics": true,
+      "aggregallowed": true,
+      "language": "sv",
+      "matrix": "SUSSSVE12",
+      "subject-code": "Studiestöd"
+    },
+    "contact": [
+      {
+        "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+      }
+    ]
+  },
+  "role": {
+    "time": [
+      "Kalenderår"
+    ]
+  },
+  "source": "Centrala studiestödsnämnden, CSN.",
+  "note": [
+    "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+    "Studiestartsstöd infördes den 2 juli 2017 och är ett bidrag som riktar sig till vissa arbetslösa för att kunna läsa in en gymnasieutbildning. För mer information, se csn.se. Tabellen inkluderar uppgifter om personer som har fått en utbetalning av studiestartsstöd under den valda tidsperioden."
+  ]
+}

@@ -1,0 +1,394 @@
+{
+  "class": "dataset",
+  "version": "2.0",
+  "label": "Studiemedel i Sverige efter Stödform, Utbildningsnivå, Ålder, Läsår, Kön och Antal personer, Utbetalt belopp",
+  "updated": "2026-03-09T09:07:00",
+  "value": [],
+  "id": [
+    "Stödform",
+    "Utbildningsnivå",
+    "Ålder",
+    "Läsår",
+    "Kön",
+    "Antal personer, Utbetalt belopp"
+  ],
+  "size": [
+    6,
+    4,
+    11,
+    25,
+    3,
+    2
+  ],
+  "dimension": {
+    "Stödform": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "Grundbidrag",
+          "2": "Grundlån",
+          "3": "Merkostnadslån",
+          "4": "Tilläggsbidrag",
+          "5": "Tilläggslån"
+        },
+        "note": {
+          "0": [
+            "Vid val av stödform ’Totalt’ visas en nettototal av antalet studerande med olika typer av studiemedel, vilket innebär att varje person bara räknas en gång. Filtrera på stödformen ’grundbidrag’ om antalsuppgifterna ska redovisas på samma sätt som andra antalsuppgifter som CSN redovisar.",
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell."
+          ],
+          "1": [
+            "Bidragsdelen av studiemedlet. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell."
+          ],
+          "2": [
+            "Lånedelen av studiemedlet."
+          ],
+          "3": [
+            "Lån utöver grundlånet för att täcka merkostnader vid studier, exempelvis för musikinstrument, försäkringar, resor, undervisningsavgifter och utlandsstudier."
+          ],
+          "4": [
+            "Bidrag från och med den 1 januari 2006 till studerande med studiemedel som har vårdnaden om barn."
+          ],
+          "5": [
+            "Tillägg till studiemedlen för studerande som är minst 25 år under året som hen söker tilläggslån för. För att få tilläggslån krävs att den studerande har haft en viss inkomst under kalenderåret före studierna har påbörjats."
+          ]
+        }
+      },
+      "label": "Stödform",
+      "note": [
+        "En studerande kan få stöd med grundbidrag, grundlån, merkostnadslån, tilläggsbidrag och tilläggslån. För mer information, se csn.se."
+      ],
+      "extension": {
+        "elimination": false,
+        "categoryNoteMandatory": {
+          "0": {
+            "0": true
+          }
+        },
+        "show": "value"
+      }
+    },
+    "Utbildningsnivå": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "Grundskolenivå",
+          "2": "Gymnasienivå",
+          "3": "Eftergymnasial nivå"
+        },
+        "note": {
+          "0": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ],
+          "1": [
+            "Studier som bedrivs på grundskolenivå, vanligtvis på folkhögskolor och komvux."
+          ],
+          "2": [
+            "Studier som bedrivs på gymnasienivå, vanligtvis på gymnasieskola, folkhögskola och komvux."
+          ],
+          "3": [
+            "Studier som beskrivs på eftergymnasial nivå, vanligtvis på universitet, högskola, yrkeshögskola, konst- och kulturutbildning och folkhögskola."
+          ]
+        }
+      },
+      "label": "Utbildningsnivå",
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "note": [
+        "Visar den utbildningsnivå som den studerande har fått stöd utbetalt för. Studerande som saknar en utbildningsnivå när statistiken tas ut ingår inte vid en fördelning på utbildningsnivå. Det kan därför förekomma mindre differenser jämfört med totalen vid en summering av studerande på olika utbildningsnivåer. Det utbetalade beloppet viktas utifrån utbildningsnivå och skolform. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut."
+      ]
+    },
+    "Ålder": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8,
+          "9": 9,
+          "10": 10
+        },
+        "label": {
+          "0": "Totalt",
+          "1": "19 år eller yngre",
+          "2": "20-24 år",
+          "3": "25-29 år",
+          "4": "30-34 år",
+          "5": "35-39 år",
+          "6": "40-44 år",
+          "7": "45-49 år",
+          "8": "50-54 år",
+          "9": "55-59 år",
+          "10": "60 år"
+        },
+        "note": {
+          "0": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ]
+        }
+      },
+      "label": "Ålder",
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "note": [
+        "Ålder vid hösterminens slut respektive läsår. Av tekniska skäl kan det i vissa fall förekomma att en person förekommer under flera åldrar och åldersintervall."
+      ]
+    },
+    "Läsår": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7,
+          "8": 8,
+          "9": 9,
+          "10": 10,
+          "11": 11,
+          "12": 12,
+          "13": 13,
+          "14": 14,
+          "15": 15,
+          "16": 16,
+          "17": 17,
+          "18": 18,
+          "19": 19,
+          "20": 20,
+          "21": 21,
+          "22": 22,
+          "23": 23,
+          "24": 24
+        },
+        "label": {
+          "0": "2001/2002",
+          "1": "2002/2003",
+          "2": "2003/2004",
+          "3": "2004/2005",
+          "4": "2005/2006",
+          "5": "2006/2007",
+          "6": "2007/2008",
+          "7": "2008/2009",
+          "8": "2009/2010",
+          "9": "2010/2011",
+          "10": "2011/2012",
+          "11": "2012/2013",
+          "12": "2013/2014",
+          "13": "2014/2015",
+          "14": "2015/2016",
+          "15": "2016/2017",
+          "16": "2017/2018",
+          "17": "2018/2019",
+          "18": "2019/2020",
+          "19": "2020/2021",
+          "20": "2021/2022",
+          "21": "2022/2023",
+          "22": "2023/2024",
+          "23": "2024/2025",
+          "24": "2025/2026"
+        },
+        "note": {
+          "6": [
+            "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+          ],
+          "7": [
+            "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+          ]
+        }
+      },
+      "label": "Läsår",
+      "note": [
+        "Den tidsram som ingår i begreppet läsår är den 1 juli år 1 till och med den 30 juni år 2. Visar antalet studerande och/eller utbetalt belopp för studier under läsåret."
+      ],
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    },
+    "Kön": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1,
+          "2": 2
+        },
+        "label": {
+          "0": "Kvinnor",
+          "1": "Män",
+          "2": "Totalt"
+        },
+        "note": {
+          "2": [
+            "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+          ]
+        }
+      },
+      "label": "Kön",
+      "extension": {
+        "elimination": true,
+        "show": "value",
+        "eliminationValueCode": "2"
+      },
+      "note": [
+        "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+      ]
+    },
+    "Antal personer, Utbetalt belopp": {
+      "category": {
+        "index": {
+          "0": 0,
+          "1": 1
+        },
+        "label": {
+          "0": "Antal personer",
+          "1": "Utbetalt belopp (MSEK)"
+        },
+        "note": {
+          "0": [
+            "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+          ],
+          "1": [
+            "Det belopp som betalats ut, anges i miljoner kronor. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell. Det utbetalade beloppet viktas utifrån utbildningsnivå och skolform. Vid en fördelning på de variabler som viktas kan det utbetalade beloppet, för dessa variabler, skilja sig något jämfört med det belopp som verkligen har betalats ut. I databasen är det möjligt att välja 1-6 decimaler. Notera att det val av decimaler som görs följer med vid export till andra program, vilket innebär att underliggande decimaler inte redovisas. På grund av avrundningar kan det uppstå differenser mellan totalsumman och delsummorna vid en sammanräkning."
+          ]
+        }
+      },
+      "label": "Antal personer, Utbetalt belopp",
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    }
+  },
+  "extension": {
+    "metadata_harvest": {
+      "id": "SUSMSVL14.px",
+      "path": "/SU/L/SM/SV",
+      "category_path": [
+        {
+          "id": "SU",
+          "name": "Utbetalning av studiestöd"
+        },
+        {
+          "id": "L",
+          "name": "Läsår (när studierna har skett)"
+        },
+        {
+          "id": "SM",
+          "name": "Studiemedel"
+        },
+        {
+          "id": "SV",
+          "name": "Studiemedel för studier i Sverige"
+        }
+      ],
+      "title": "Studiemedel i Sverige efter Stödform, Utbildningsnivå, Ålder, Läsår, Kön och Antal personer, Utbetalt belopp",
+      "score": 1.0,
+      "published": "2026-03-09T09:07:00",
+      "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/SU/L/SM/SV/SUSMSVL14.px",
+      "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__SU__L__SM__SV/SUSMSVL14.px/",
+      "language": "sv",
+      "database_id": "CSNstat",
+      "provider_code": "csn",
+      "dataset_code": "SUSMSVL14.px",
+      "paths": [
+        {
+          "path": "/SU/L/SM/SV",
+          "category_path": [
+            {
+              "id": "SU",
+              "name": "Utbetalning av studiestöd"
+            },
+            {
+              "id": "L",
+              "name": "Läsår (när studierna har skett)"
+            },
+            {
+              "id": "SM",
+              "name": "Studiemedel"
+            },
+            {
+              "id": "SV",
+              "name": "Studiemedel för studier i Sverige"
+            }
+          ],
+          "title": "Studiemedel i Sverige efter Stödform, Utbildningsnivå, Ålder, Läsår, Kön och Antal personer, Utbetalt belopp",
+          "score": 1.0,
+          "published": "2026-03-09T09:07:00",
+          "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/SU/L/SM/SV/SUSMSVL14.px",
+          "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__SU__L__SM__SV/SUSMSVL14.px/",
+          "database_id": "CSNstat"
+        }
+      ],
+      "auxiliary_dimensions": {
+        "ContentsCode": {
+          "label": "EliminatedContents",
+          "category": {
+            "index": {
+              "EliminatedValue": 0
+            },
+            "label": {
+              "EliminatedValue": "Studiemedel i Sverige"
+            },
+            "unit": {
+              "EliminatedValue": {
+                "base": "Antal personer, Miljoner SEK",
+                "decimals": 6
+              }
+            }
+          },
+          "extension": {
+            "elimination": true
+          }
+        }
+      }
+    },
+    "noteMandatory": {
+      "0": true
+    },
+    "px": {
+      "decimals": 0,
+      "official-statistics": true,
+      "aggregallowed": true,
+      "language": "sv",
+      "matrix": "SUSMSVL14",
+      "subject-code": "Studiestöd"
+    },
+    "contact": [
+      {
+        "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+      }
+    ]
+  },
+  "source": "Centrala studiestödsnämnden, CSN.",
+  "note": [
+    "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+    "Studiemedel innehåller olika stöd till studerande på grundskole-, gymnasienivå och eftergymnasial nivå. För mer information, se csn.se. Tabellen visar vilken tidsperiod studierna med studiemedel avser. Belopp som avsatts i preliminär statlig ålderspensionsavgift ingår inte i de utbetalade beloppen i denna tabell. Uppläggningsavgifter för grundlån ingår inte heller i de utbetalade beloppen i denna tabell."
+  ]
+}
