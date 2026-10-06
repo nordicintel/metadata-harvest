@@ -51,6 +51,12 @@ retry in a new context using `ignore_https_errors=True`, with a warning.
 
 ## Development and validation
 
+Run **Live PXWeb compatibility** from GitHub Actions (`workflow_dispatch`) to
+test all 20 providers / 55 combinations on GitHub-hosted Chromium. Provider jobs
+run independently (maximum four at once); per-provider JSON evidence and a
+complete-matrix summary are uploaded even when a check fails. Hidden databases
+are tested explicitly and reported separately from discovery comparisons.
+
 ```powershell
 uv sync --locked
 uv run playwright install chromium

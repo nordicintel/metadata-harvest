@@ -164,6 +164,10 @@ def errors(error):
 
 
 def accepted(report):
+    if not report["combinations"] or len(report["combinations"]) != report.get(
+        "expected_combinations", len(report["combinations"])
+    ):
+        return False
     for item in report["combinations"]:
         if not item.get("equivalent") or any(
             item[form]["status"] != "success" for form in ("web", "api")
@@ -178,8 +182,7 @@ def accepted(report):
             return False
     return all(
         item["status"] == "success"
-        and not item.get("missing")
-        and item.get("configured_records_equal")
+        and item.get("visible_records_equal", item.get("configured_records_equal"))
         for item in report["discovery"]
     )
 
@@ -200,7 +203,15 @@ async def main():
     args = parser.parse_args()
     install_audit()
     providers = json.loads(Path(args.providers).read_text(encoding="utf-8"))
+    selected = [p for p in providers if not args.provider or p["code"] in args.provider]
+    if not selected or (
+        args.provider and set(args.provider) - {p["code"] for p in providers}
+    ):
+        parser.error("Unknown provider selection")
     report = {
+        "expected_combinations": sum(
+            len(p["languages"]) * len(p["database_ids"]) for p in selected
+        ),
         "started_at": datetime.now(UTC).isoformat(),
         "implementation_sha256": hashlib.sha256(
             Path(implementation.__file__).read_bytes()
@@ -359,6 +370,14 @@ async def main():
                         [x for x in rows if x["database_id"] in configured]
                     )
                     == comparable(explicit),
+                    # Hidden databases remain tested explicitly and reported as
+                    # missing from discovery, without failing visible results.
+                    visible_records_equal=comparable(
+                        [x for x in rows if x["database_id"] in configured]
+                    )
+                    == comparable(
+                        [x for x in explicit if x["database_id"] in discovered]
+                    ),
                     api_response_count=len(audit["api_responses"]),
                 )
             except Exception as error:
