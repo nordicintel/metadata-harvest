@@ -140,6 +140,22 @@ def test_completed_metadata_without_listing_record_still_reconciles(tmp_path):
     assert (tmp_path / "metadata/inactive" / filename(row)).exists()
 
 
+def test_reappearing_dataset_keeps_inactive_paths_when_scope_fails(tmp_path):
+    old = seed(tmp_path, record(path="/new", date="2026-10-01"))
+    collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
+    state = collect_refresh(
+        tmp_path,
+        [PROVIDER],
+        [scope([record(path="/archive", date="2020-01-01")], complete=False)],
+        "run",
+    )
+    assert state["counts"]["reactivated"] == 1
+    saved = read(tmp_path / "metadata/active" / filename(old))
+    assert saved["updated"] == old["published"]
+    assert len(saved["extension"]["metadata_harvest"]["paths"]) == 2
+    assert not state["tasks"]
+
+
 @pytest.mark.parametrize(
     "result",
     [None, scope([], complete=False), scope([], invalid=["t.px"], observed=["t.px"])],

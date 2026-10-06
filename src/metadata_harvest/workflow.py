@@ -158,7 +158,14 @@ def collect_refresh(data, providers, results, run_id):
     # Completed metadata is also an authoritative source of saved identity when
     # importing an existing corpus or restoring a missing table-record file.
     previous_names = {filename(row) for row in previous.values()}
-    for path in (data / "metadata/active").glob("*.json"):
+    known_files = list((data / "metadata/active").glob("*.json"))
+    returning_names = {filename(row) for row in grouped.values()}
+    known_files.extend(
+        path
+        for path in (data / "metadata/inactive").glob("*.json")
+        if path.name in returning_names
+    )
+    for path in known_files:
         if path.name not in previous_names:
             saved = read(path).get("extension", {}).get("metadata_harvest", {})
             if filename(saved) != path.name:
@@ -197,6 +204,10 @@ def collect_refresh(data, providers, results, run_id):
             else:
                 counts["deferred"] += 1
             continue
+        if inactive.exists():
+            active.parent.mkdir(parents=True, exist_ok=True)
+            inactive.replace(active)
+            counts["reactivated"] += 1
         if old:
             # Keep locations from failed scopes, but don't claim them as fresh.
             retained = [
@@ -213,6 +224,12 @@ def collect_refresh(data, providers, results, run_id):
                 if timestamp(new["published"]) <= timestamp(old["published"]):
                     new = {**old, "paths": new["paths"]}
                     write(data / "table-records" / name, new)
+                    if active.exists():
+                        completed = read(active)
+                        if completed.get("updated") == new["published"]:
+                            completed = refresh_identity(completed, new)
+                            validate_dataset(completed, new)
+                            write(active, completed)
                     continue
         write(data / "table-records" / name, new)
         verified.append(
@@ -223,10 +240,6 @@ def collect_refresh(data, providers, results, run_id):
                 "updated": new["published"],
             }
         )
-        if inactive.exists():
-            active.parent.mkdir(parents=True, exist_ok=True)
-            inactive.replace(active)
-            counts["reactivated"] += 1
         existing = None
         if active.exists():
             try:
