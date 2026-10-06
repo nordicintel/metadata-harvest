@@ -316,6 +316,36 @@ def test_partial_browser_extraction_preserves_good_rows_and_observed_bad_ids(
         asyncio.run(get_pxweb_tables(base + "/pxweb/sv/db/"))
 
 
+def test_visible_rows_survive_incomplete_expansion(website, monkeypatch):
+    base, routes, _ = website
+    routes["/pxweb/sv/db/"] = (
+        200,
+        '<ul><li><a href="/pxweb/sv/db/-/good.px/">Good</a><time datetime="2026-01-01"></time></li><li role="tree"><button aria-expanded="false">Folder</button></li></ul>',
+        {},
+    )
+
+    async def stalled(*args):
+        raise RuntimeError("Incomplete expansion")
+
+    monkeypatch.setattr("metadata_harvest.pxweb._activate", stalled)
+
+    async def collect():
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            try:
+                return await _collect_database(
+                    browser, base + "/pxweb/sv/db/", "sv", "db"
+                )
+            finally:
+                await browser.close()
+
+    result = asyncio.run(collect())
+    assert not result["complete"]
+    assert result["observed_ids"] == ["good.px"]
+    assert [row["id"] for row in result["records"]] == ["good.px"]
+    assert "Incomplete expansion" in result["errors"][0]["message"]
+
+
 def test_publish_rebases_unrelated_main_push_without_force(tmp_path, monkeypatch):
     def git(folder, *args):
         return subprocess.run(

@@ -727,7 +727,17 @@ async def _collect_database(browser, url, language, database):
         page.context._pxweb_api = api_state
         page.context._pxweb_collection = collection
         root = await _entry(page, _parse_url(url))
-        return await _complete_harvest(page, root, language, database)
+        try:
+            return await _complete_harvest(page, root, language, database)
+        except Exception:
+            # Expansion can fail before the normal extraction pass. Keep rows
+            # already visible, while the outer handler marks the scope incomplete.
+            try:
+                visible = await page.evaluate(_DOM)
+                collection.setdefault("raw_tables", []).extend(visible)
+            except Exception:
+                logger.debug("Could not read remaining visible rows at %s", page.url)
+            raise
 
     try:
         async with asyncio.timeout(1800):
