@@ -508,6 +508,9 @@ async def _harvest(
     records = {}
     folder_names = {}
     all_tables = []
+    collection = getattr(page.context, "_pxweb_collection", None)
+    if collection is not None:
+        collection.update(raw_tables=all_tables, folder_names=folder_names, root=root)
     while pending:
         url = pending.pop(0)
         if url in visited:
@@ -517,6 +520,8 @@ async def _harvest(
         await _goto(page, url)
         actual = await _check_language(page, language, database)
         root = _Route(actual.root)
+        if collection is not None:
+            collection["root"] = root
         visited.add(url)
         if (
             await page.locator(_COLLAPSED).count()
@@ -548,6 +553,9 @@ async def _harvest(
         pagination_states = set()
         while True:
             current = await page.evaluate(_DOM)
+            if collection is not None:
+                # Capture visible rows before a later page/expansion can fail.
+                all_tables.extend(current)
             signature = tuple((row["href"], row["date"]) for row in current)
             if signature in pagination_states:
                 raise RuntimeError(f"Pagination stopped making progress: {page.url}")
@@ -617,8 +625,19 @@ async def _harvest(
                 raise _UnusableDatabase(f"No usable database listing: {page.url}")
         for raw in raw_tables:
             raw["date_format"] = date_format
-        all_tables.extend(raw_tables)
-    await _enrich_missing(page, root, language, database, all_tables, folder_names)
+        if collection is None:
+            all_tables.extend(raw_tables)
+    if collection is not None:
+        collection["complete"] = True
+    try:
+        await _enrich_missing(page, root, language, database, all_tables, folder_names)
+    except Exception as error:
+        if collection is None:
+            raise
+        collection["complete"] = False
+        collection["errors"].append({"stage": "enrichment", "message": str(error)})
+    if collection is not None:
+        return _partial_records(collection, language, database)
     for raw in all_tables:
         if not raw["date"]:
             table_id, categories, names = _identity(
@@ -655,6 +674,79 @@ async def _harvest(
             record["web_url"] = min(existing["web_url"], record["web_url"])
         records[key] = record
     return list(records.values())
+
+
+def _partial_records(collection, language, database):
+    """Extract independent rows while preserving observed-but-invalid identities."""
+    records = {}
+    for raw in collection.get("raw_tables", []):
+        table_id = None
+        try:
+            route = _parse_url(raw["href"])
+            if route.language == language and route.database == database and route.tail:
+                table_id = route.tail[-1]
+                collection["observed_ids"].add(table_id)
+            record = _record(
+                raw, collection["root"], language, database, collection["folder_names"]
+            )
+            key = (record["path"], record["id"])
+            if key in records and any(
+                records[key][field] != record[field]
+                for field in record
+                if field != "web_url"
+            ):
+                raise ValueError(f"Conflicting table listing: {table_id}")
+            records[key] = record
+        except Exception as error:
+            if table_id:
+                collection["invalid_ids"].add(table_id)
+            else:
+                collection["complete"] = False
+            issue = {
+                "stage": "extraction",
+                "id": table_id,
+                "url": raw.get("href"),
+                "message": str(error),
+            }
+            if issue not in collection["errors"]:
+                collection["errors"].append(issue)
+    return sorted(records.values(), key=lambda record: (record["path"], record["id"]))
+
+
+async def _collect_database(browser, url, language, database):
+    """Workflow-only collection; public get_pxweb_tables stays strict."""
+    collection = {
+        "complete": False,
+        "observed_ids": set(),
+        "invalid_ids": set(),
+        "errors": [],
+    }
+    api_state = {}
+
+    async def harvest(page):
+        page.context._pxweb_api = api_state
+        page.context._pxweb_collection = collection
+        root = await _entry(page, _parse_url(url))
+        return await _complete_harvest(page, root, language, database)
+
+    try:
+        async with asyncio.timeout(1800):
+            records = await _in_context(browser, harvest)
+    except Exception as error:
+        collection["complete"] = False
+        collection["errors"].append(
+            {"stage": "navigation", "message": f"{type(error).__name__}: {error}"}
+        )
+        records = _partial_records(collection, language, database)
+    return {
+        "language": language,
+        "database_id": database,
+        "complete": collection["complete"],
+        "observed_ids": sorted(collection["observed_ids"]),
+        "invalid_ids": sorted(collection["invalid_ids"]),
+        "errors": collection["errors"],
+        "records": records,
+    }
 
 
 async def _api_listing(

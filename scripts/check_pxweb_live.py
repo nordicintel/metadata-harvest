@@ -189,7 +189,7 @@ def accepted(report):
 
 async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--providers", default="tests/fixtures/providers.json")
+    parser.add_argument("--providers", default="providers.json")
     parser.add_argument("--output", default="output/compatibility.json")
     parser.add_argument("--provider", action="append")
     parser.add_argument(

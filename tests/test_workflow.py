@@ -1,0 +1,346 @@
+import asyncio
+import subprocess
+from copy import deepcopy
+
+import pytest
+from playwright.async_api import async_playwright
+
+from metadata_harvest import get_pxweb_tables
+from metadata_harvest.pxweb import _collect_database
+from metadata_harvest.runner import publish
+from metadata_harvest.storage import filename, group_records, read, write
+from metadata_harvest.workflow import (
+    build_provider,
+    collect_metadata,
+    collect_refresh,
+    prepare,
+)
+from tests.test_pxweb import website as website
+
+PROVIDER = {"code": "p", "languages": ["sv"], "database_ids": ["db"], "rate_limit": 0}
+
+
+def record(code="t.px", path="/", date="2026-10-01", database="db"):
+    return {
+        "provider_code": "p",
+        "dataset_code": code,
+        "id": code,
+        "language": "sv",
+        "database_id": database,
+        "path": path,
+        "category_path": [],
+        "published": date,
+        "title": "Table",
+        "api_url": f"https://example.test/api/v1/sv/{database}{path}/{code}",
+        "web_url": "https://example.test/table",
+    }
+
+
+def scope(rows, *, complete=True, observed=None, invalid=None):
+    return {
+        "provider_code": "p",
+        "run_id": "run",
+        "phase": "refresh",
+        "scopes": [
+            {
+                "language": "sv",
+                "database_id": "db",
+                "complete": complete,
+                "records": rows,
+                "observed_ids": observed
+                if observed is not None
+                else [row["id"] for row in rows],
+                "invalid_ids": invalid or [],
+                "errors": []
+                if complete
+                else [{"stage": "navigation", "message": "timeout"}],
+            }
+        ],
+    }
+
+
+def dataset(row):
+    return {
+        "version": "2.0",
+        "class": "dataset",
+        "label": row["title"],
+        "updated": row["published"],
+        "id": ["Year"],
+        "size": [1],
+        "dimension": {
+            "Year": {"category": {"index": ["2026"], "label": {"2026": "2026"}}}
+        },
+        "value": [],
+        "extension": {"metadata_harvest": deepcopy(row)},
+    }
+
+
+def seed(data, row, *, inactive=False):
+    grouped = group_records([row])[0]
+    write(data / "table-records" / filename(grouped), grouped)
+    write(
+        data / "metadata" / ("inactive" if inactive else "active") / filename(grouped),
+        dataset(grouped),
+    )
+    return grouped
+
+
+def test_group_paths_one_identity_and_filesystem_safe_filename():
+    a = record("Å/TEST:code.px", "/Forecast", "2026-10-01")
+    b = record("Å/TEST:code.px", "/Archive", "2020-01-01")
+    row = group_records([b, a, b])[0]
+    assert len(row["paths"]) == 2 and row["api_url"] == a["api_url"]
+    assert filename(row) == filename(b)
+    assert not any(c in filename(row) for c in '/\\:<>"|?*')
+    assert filename(record("A.px")).lower() != filename(record("a.px")).lower()
+
+
+def test_refresh_queues_missing_and_changed_and_reuses_unchanged(tmp_path):
+    old = seed(tmp_path, record("old"))
+    changed = seed(tmp_path, record("changed"))
+    changed["published"] = "2026-09-01"  # Provider correction backwards also rebuilds.
+    state = collect_refresh(
+        tmp_path, [PROVIDER], [scope([old, changed, record("new")])], "run"
+    )
+    assert state["counts"]["reused"] == 1
+    assert {task["kind"] for task in state["tasks"]} == {"created", "updated"}
+    assert (
+        read(tmp_path / "metadata/active" / filename(changed))["updated"]
+        == "2026-10-01"
+    )
+    report = read(tmp_path / "reports/refresh/run_3.json")
+    assert set(report["records"][0]) == {
+        "provider_code",
+        "dataset_code",
+        "language",
+        "updated",
+    }
+
+
+def test_confirmed_absence_retires_and_reappearance_restores(tmp_path):
+    row = seed(tmp_path, record())
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
+    assert state["counts"]["retired"] == 1
+    assert not (tmp_path / "metadata/active" / filename(row)).exists()
+    assert (tmp_path / "metadata/inactive" / filename(row)).exists()
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
+    assert state["counts"]["reactivated"] == 1
+    assert state["counts"]["reused"] == 1
+    assert not state["tasks"]
+    assert not (tmp_path / "metadata/inactive" / filename(row)).exists()
+
+
+def test_completed_metadata_without_listing_record_still_reconciles(tmp_path):
+    row = seed(tmp_path, record())
+    (tmp_path / "table-records" / filename(row)).unlink()
+    state = collect_refresh(tmp_path, [PROVIDER], [], "run")
+    assert state["counts"]["retired"] == 0
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
+    assert state["counts"]["retired"] == 1
+    assert (tmp_path / "metadata/inactive" / filename(row)).exists()
+
+
+@pytest.mark.parametrize(
+    "result",
+    [None, scope([], complete=False), scope([], invalid=["t.px"], observed=["t.px"])],
+)
+def test_missing_job_failed_scope_or_invalid_observed_table_cannot_retire(
+    tmp_path, result
+):
+    row = seed(tmp_path, record())
+    original = (tmp_path / "metadata/active" / filename(row)).read_bytes()
+    state = collect_refresh(
+        tmp_path, [PROVIDER], [] if result is None else [result], "run"
+    )
+    assert state["counts"]["retired"] == 0
+    assert (tmp_path / "metadata/active" / filename(row)).read_bytes() == original
+
+
+def test_successful_row_from_incomplete_scope_is_saved(tmp_path):
+    state = collect_refresh(
+        tmp_path, [PROVIDER], [scope([record()], complete=False)], "run"
+    )
+    assert len(state["tasks"]) == 1
+    assert read(tmp_path / "reports/refresh/run_1.json")["error_count"] == 1
+
+
+def test_failed_canonical_scope_keeps_newer_primary_and_all_paths(tmp_path):
+    old = seed(tmp_path, record(path="/new", date="2026-10-01"))
+    state = collect_refresh(
+        tmp_path,
+        [PROVIDER],
+        [scope([record(path="/archive", date="2020-01-01")], complete=False)],
+        "run",
+    )
+    saved = read(tmp_path / "table-records" / filename(old))
+    assert len(saved["paths"]) == 2
+    assert saved["published"] == old["published"]
+    assert not state["tasks"]
+
+
+def test_partial_scope_does_not_hide_successfully_refreshed_canonical_record(tmp_path):
+    row = seed(tmp_path, record())
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([row], complete=False)], "run")
+    assert state["counts"]["reused"] == 1
+
+
+def test_provider_failures_are_isolated_and_old_metadata_survives(
+    tmp_path, monkeypatch
+):
+    old = seed(tmp_path, record("bad"))
+    updated = {**old, "published": "2026-10-02"}
+    collect_refresh(tmp_path, [PROVIDER], [scope([updated, record("good")])], "run")
+
+    async def fetch(row, **kwargs):
+        if row["id"] == "bad":
+            raise RuntimeError("provider failed")
+        return dataset(row)
+
+    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", fetch)
+    result = asyncio.run(
+        build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "artifact")
+    )
+    assert [r["status"] for r in result["outcomes"]] == ["failed", "success"]
+    final = collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
+    assert final["status"] == "completed_with_errors"
+    assert final["counts"]["created"] == 1 and final["counts"]["failed"] == 1
+    assert read(tmp_path / "metadata/active" / filename(old))["updated"] == "2026-10-01"
+    next_state = collect_refresh(
+        tmp_path, [PROVIDER], [scope([updated, record("good")])], "run"
+    )
+    assert len(next_state["tasks"]) == 1
+    assert next_state["counts"]["reused"] == 1
+
+
+def test_deadline_checkpoints_remaining_work_and_resume_skips_refresh(
+    tmp_path, monkeypatch
+):
+    collect_refresh(tmp_path, [PROVIDER], [scope([record()])], "run")
+    result = asyncio.run(
+        build_provider(
+            tmp_path, PROVIDER, "run", 1, tmp_path / "artifact", budget_seconds=0
+        )
+    )
+    assert result["outcomes"] == []
+    final = collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
+    assert final["continue"] and final["counts"]["unfinished"] == 1
+    assert prepare(tmp_path, [PROVIDER]) == {
+        "run_id": "run",
+        "phase": "metadata",
+        "wave": 2,
+        "providers": ["p"],
+    }
+
+
+def test_no_progress_cannot_create_infinite_continuations(tmp_path):
+    collect_refresh(tmp_path, [PROVIDER], [scope([record()])], "run")
+    for wave in range(1, 4):
+        final = collect_metadata(tmp_path, [], "run", wave)
+    assert final["status"] == "interrupted" and not final["continue"]
+    assert prepare(tmp_path, [PROVIDER])["phase"] == "metadata"
+
+
+def test_no_work_still_saves_final_report(tmp_path):
+    row = seed(tmp_path, record())
+    collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
+    final = collect_metadata(tmp_path, [], "run", 1)
+    assert final["status"] == "success"
+    assert read(tmp_path / "reports/harvest/run.json")["counts"]["reused"] == 1
+
+
+def test_stale_or_duplicate_results_rejected(tmp_path):
+    with pytest.raises(ValueError, match="stale"):
+        collect_refresh(tmp_path, [PROVIDER], [scope([record()])], "other")
+    with pytest.raises(ValueError, match="Duplicate"):
+        collect_refresh(tmp_path, [PROVIDER], [scope([]), scope([])], "run")
+    collect_refresh(tmp_path, [PROVIDER], [scope([record()])], "run")
+    with pytest.raises(ValueError, match="Stale"):
+        collect_metadata(tmp_path, [], "run", 99)
+
+
+def test_atomic_write_preserves_previous_file_on_serialization_failure(tmp_path):
+    path = tmp_path / "record.json"
+    write(path, {"good": 1})
+    with pytest.raises(ValueError):
+        write(path, {"bad": float("nan")})
+    assert read(path) == {"good": 1}
+    assert list(tmp_path.glob("*.tmp")) == []
+
+
+def test_partial_browser_extraction_preserves_good_rows_and_observed_bad_ids(
+    website, monkeypatch
+):
+    base, routes, _ = website
+    routes["/pxweb/sv/db/"] = (
+        200,
+        '<ul><li><a href="/pxweb/sv/db/-/good.px/">Good</a><time datetime="2026-01-01"></time></li><li><a href="/pxweb/sv/db/-/bad.px/"></a><time datetime="2026-01-01"></time></li></ul>',
+        {},
+    )
+
+    async def no_enrichment(*args):
+        pass
+
+    monkeypatch.setattr("metadata_harvest.pxweb._enrich_missing", no_enrichment)
+
+    async def collect():
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            try:
+                return await _collect_database(
+                    browser, base + "/pxweb/sv/db/", "sv", "db"
+                )
+            finally:
+                await browser.close()
+
+    result = asyncio.run(collect())
+    assert [row["id"] for row in result["records"]] == ["good.px"]
+    assert result["observed_ids"] == ["bad.px", "good.px"]
+    assert result["invalid_ids"] == ["bad.px"]
+    with pytest.raises(ExceptionGroup):
+        asyncio.run(get_pxweb_tables(base + "/pxweb/sv/db/"))
+
+
+def test_publish_rebases_unrelated_main_push_without_force(tmp_path, monkeypatch):
+    def git(folder, *args):
+        return subprocess.run(
+            ["git", "-C", str(folder), *args],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    remote, first, second = [tmp_path / name for name in ("remote", "first", "second")]
+    subprocess.run(
+        ["git", "init", "--bare", str(remote)], check=True, capture_output=True
+    )
+    subprocess.run(
+        ["git", "clone", str(remote), str(first)], check=True, capture_output=True
+    )
+    git(first, "checkout", "-b", "main")
+    for folder in [first]:
+        git(folder, "config", "user.name", "Test")
+        git(folder, "config", "user.email", "test@example.invalid")
+    (first / "README.md").write_text("initial")
+    git(first, "add", ".")
+    git(first, "commit", "-m", "initial")
+    git(first, "push", "origin", "main")
+    subprocess.run(
+        ["git", "clone", "--branch", "main", str(remote), str(second)],
+        check=True,
+        capture_output=True,
+    )
+    git(second, "config", "user.name", "Test")
+    git(second, "config", "user.email", "test@example.invalid")
+    (second / "README.md").write_text("unrelated update")
+    git(second, "add", ".")
+    git(second, "commit", "-m", "unrelated")
+    git(second, "push", "origin", "main")
+    write(first / "data/result.json", {"saved": True})
+    monkeypatch.chdir(first)
+    publish("harvest")
+    assert (first / "README.md").read_text() == "unrelated update"
+    assert read(first / "data/result.json") == {"saved": True}
+    (first / "README.md").write_text("unrelated staged edit")
+    git(first, "add", "README.md")
+    with pytest.raises(RuntimeError, match="unrelated staged"):
+        publish("must not commit")

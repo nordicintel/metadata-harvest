@@ -161,9 +161,7 @@ if __name__ == "__main__":
         "--limit", type=int, help="Smoke test only; never counts as full acceptance"
     )
     args = parser.parse_args()
-    providers = json.loads(
-        Path("tests/fixtures/providers.json").read_text(encoding="utf-8")
-    )
+    providers = json.loads(Path("providers.json").read_text(encoding="utf-8"))
     provider = next((p for p in providers if p["code"] == args.provider), None)
     if provider is None or (args.limit is not None and args.limit < 1):
         parser.error("Unknown provider or invalid limit")

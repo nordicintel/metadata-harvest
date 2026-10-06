@@ -104,7 +104,7 @@ counters proving that unsolicited direct and redirected browser API requests nev
 reach the server, while explicitly authorized enrichment requests are counted.
 The fixture key is public test data and must never be used for a real service.
 
-The active provider configuration is in `tests/fixtures/providers.json`:
+The active provider configuration is in `providers.json`:
 19 providers, 37 databases, 47 language/database combinations. Run live acceptance
 explicitly (it can take several minutes):
 
@@ -128,14 +128,21 @@ Live service failures and source metadata gaps are not passing acceptance result
 See [the dated compatibility report](docs/pxweb-compatibility.md) for configured
 harvest results and the separately reported discovery limitations.
 
-## Scheduled integration boundary
+## Scheduled harvesting
 
-The future daily GitHub Actions wrapper should call this function, compare
-`published` with the last successfully processed value for each
-`(language, database_id, path, id)`, and rebuild metadata for new or changed tables.
-Advance state only after rebuilding succeeds. Treat extraction exceptions as failed
-jobs, never as empty catalogs. Provider jobs may run independently in parallel.
-Scheduling, persistent state, and metadata rebuilding are outside this module.
+**Scheduled harvest** runs daily at **04:15 Europe/Stockholm**, with one job per
+provider. Start it manually from GitHub Actions. Set `HARVEST_ENABLED=false` in
+repository Actions variables to pause automatic runs; `HARVEST_PARALLEL_PROVIDERS`
+controls parallelism (default 19).
+
+The workflow commits grouped table records, active/inactive metadata, permanent
+refresh and harvest reports, and its resumable work list under `data/` on `main`.
+Dataset identity is provider + dataset code + language; `paths` retains every
+location. Failed tables do not interrupt other work. Retirement requires confirmed
+absence, and completed metadata is replaced only after a successful rebuild.
+
+See [harvesting.md](docs/harvesting.md) for file layout, report fields, scheduling,
+manual runs, continuation and recovery.
 
 No PyPI publication or license has been configured.
 

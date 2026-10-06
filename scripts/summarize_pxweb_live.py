@@ -37,9 +37,7 @@ def summarize(providers, reports):
 
 
 if __name__ == "__main__":
-    providers = json.loads(
-        Path("tests/fixtures/providers.json").read_text(encoding="utf-8")
-    )
+    providers = json.loads(Path("providers.json").read_text(encoding="utf-8"))
     reports = [
         json.loads(p.read_text(encoding="utf-8"))
         for p in Path("output/live").glob("*.json")
