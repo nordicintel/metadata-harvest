@@ -2,7 +2,11 @@
 
 Run date: 2026-10-06 (timestamps in raw evidence are UTC).
 
-- Required matrix: 20 providers, 45 databases, 55 language/database combinations.
+Historical results below predate the exclusion of Västerås. The active matrix is now
+19 providers, 37 databases and 47 combinations. Its configuration and exclusion
+reason are preserved in [excluded-providers.json](excluded-providers.json).
+
+- Historical matrix: 20 providers, 45 databases, 55 language/database combinations.
 - API-form versus web-form harvests: **55/55 matched**, **7,167 records**, **0 omissions**.
 - Per web-form invocation: **42** combinations needed no API enrichment; **13** used a flat search; **3** also needed parent-folder lookups.
 - Browser-originated API responses: zero in every successful invocation. Explicit Playwright request-client enrichment is audited separately.

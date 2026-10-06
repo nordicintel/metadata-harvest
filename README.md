@@ -74,7 +74,7 @@ are preserved under `auxiliary_dimensions` and `auxiliary_roles`. Category cover
 does not mean all combinations of observations were downloaded.
 
 Run **Live PXWeb metadata** manually in GitHub Actions for every web-listed table
-across all 55 configured combinations. It uploads per-table request counts, category
+across all 47 configured combinations. It uploads per-table request counts, category
 coverage, timestamps, hashes and failures. Local smoke checks can use
 `uv run python scripts/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
 limited runs deliberately never count as full acceptance. A failed GET, POST,
@@ -84,7 +84,7 @@ dataset. Store/rebuild successfully before advancing the processed `published` v
 ## Development and validation
 
 Run **Live PXWeb compatibility** from GitHub Actions (`workflow_dispatch`) to
-test all 20 providers / 55 combinations on GitHub-hosted Chromium. Provider jobs
+test all 19 providers / 47 combinations on GitHub-hosted Chromium. Provider jobs
 run independently (maximum four at once); per-provider JSON evidence and a
 complete-matrix summary are uploaded even when a check fails. Hidden databases
 are tested explicitly and reported separately from discovery comparisons.
@@ -104,8 +104,8 @@ counters proving that unsolicited direct and redirected browser API requests nev
 reach the server, while explicitly authorized enrichment requests are counted.
 The fixture key is public test data and must never be used for a real service.
 
-The supplied provider configuration is preserved in `tests/fixtures/providers.json`:
-20 providers, 45 databases, 55 language/database combinations. Run live acceptance
+The active provider configuration is in `tests/fixtures/providers.json`:
+19 providers, 37 databases, 47 language/database combinations. Run live acceptance
 explicitly (it can take several minutes):
 
 ```powershell
@@ -138,3 +138,6 @@ jobs, never as empty catalogs. Provider jobs may run independently in parallel.
 Scheduling, persistent state, and metadata rebuilding are outside this module.
 
 No PyPI publication or license has been configured.
+
+Excluded provider configurations and reasons are tracked in
+[docs/excluded-providers.json](docs/excluded-providers.json). They are not harvested.

@@ -104,9 +104,23 @@ def test_matrix():
     providers = json.loads(
         Path("tests/fixtures/providers.json").read_text(encoding="utf-8")
     )
-    assert len(providers) == 20
-    assert sum(len(p["database_ids"]) for p in providers) == 45
-    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 55
+    assert len(providers) == 19
+    assert sum(len(p["database_ids"]) for p in providers) == 37
+    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 47
+    excluded = json.loads(
+        Path("docs/excluded-providers.json").read_text(encoding="utf-8")
+    )
+    assert {item["provider"]["code"] for item in excluded}.isdisjoint(
+        provider["code"] for provider in providers
+    )
+    assert any(item["provider"]["code"] == "vasteras" for item in excluded)
+    for name in ("live-pxweb.yml", "live-metadata.yml"):
+        workflow = (Path(".github/workflows") / name).read_text(encoding="utf-8")
+        matrix = next(line for line in workflow.splitlines() if "provider: [" in line)
+        codes = {
+            code.strip() for code in matrix.split("[", 1)[1].split("]", 1)[0].split(",")
+        }
+        assert codes == {provider["code"] for provider in providers}
 
 
 @pytest.mark.parametrize(
