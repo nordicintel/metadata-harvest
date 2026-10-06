@@ -24,6 +24,10 @@ class _Unsupported(ValueError):
     """An explicit website message confirms an unavailable combination."""
 
 
+class _UnusableDatabase(ValueError):
+    """A candidate has no usable listing or lacks required descriptive metadata."""
+
+
 class _ExpansionFailure(RuntimeError):
     def __init__(self, message: str, retry_after: str | None = None):
         super().__init__(message)
@@ -432,7 +436,7 @@ def _record(
 ) -> dict:
     table_id, categories, names = _identity(raw, language, database, folder_names)
     if not raw["title"] or any(not name for name in names):
-        raise ValueError(f"Missing title/category name: {raw['href']}")
+        raise _UnusableDatabase(f"Missing title/category name: {raw['href']}")
     api_root = root.root.rsplit("/", 1)[0] + "/api/v1"
     return {
         "id": table_id,
@@ -602,7 +606,7 @@ async def _harvest(
                 body,
                 re.I,
             ):
-                raise RuntimeError(f"Unrecognized or incomplete database: {page.url}")
+                raise _UnusableDatabase(f"No usable database listing: {page.url}")
         for raw in raw_tables:
             raw["date_format"] = date_format
         all_tables.extend(raw_tables)
@@ -613,7 +617,7 @@ async def _harvest(
                 raw, language, database, folder_names
             )
             if not raw["title"] or any(not name for name in names):
-                raise ValueError(f"Missing title/category name: {raw['href']}")
+                raise _UnusableDatabase(f"Missing title/category name: {raw['href']}")
             omission = dict(
                 language=language,
                 database_id=database,
@@ -856,8 +860,9 @@ async def get_pxweb_tables(
 
     URL languages override the language list. URL databases are combined with
     supplied IDs; only None without a URL database requests website discovery.
-    Confirmed unsupported combinations are logged and skipped. All other failures
-    raise ExceptionGroup after remaining combinations have been attempted.
+    Discovery skips candidates with no usable listing or missing titles/category
+    labels, with diagnostics. Explicit selections remain strict. Unsupported
+    combinations are logged and skipped; other failures raise ExceptionGroup.
     Website listings determine membership, paths, titles and available dates.
     At most one flat API listing per language/database fills missing fields,
     matching both table ID and full path. API-only entries are never added.
@@ -909,6 +914,23 @@ async def get_pxweb_tables(
                         results.extend(await _in_context(browser, harvest))
                     except _Unsupported as error:
                         logger.warning("%s", error)
+                    except _UnusableDatabase as error:
+                        if selected_databases is None:
+                            logger.warning(
+                                "Skipping unusable discovered database %s/%s: %s",
+                                language,
+                                database,
+                                error,
+                                extra={
+                                    "skipped_database": {
+                                        "language": language,
+                                        "database_id": database,
+                                        "reason": str(error),
+                                    }
+                                },
+                            )
+                        else:
+                            failures.append(_failure(f"{language}/{database}", error))
                     except Exception as error:
                         failures.append(_failure(f"{language}/{database}", error))
         finally:

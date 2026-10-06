@@ -767,3 +767,56 @@ def test_discovery_excludes_language_selector(website):
     assert len(rows) == 1
     assert rows[0]["database_id"] == "db"
     assert "/pxweb/sv/sv/" not in requests
+
+
+@pytest.mark.parametrize("defect", ["empty", "title", "category"])
+def test_discovery_skips_unusable_candidates_but_explicit_selection_fails(
+    website, caplog, defect
+):
+    host, routes, _ = website
+    routes["/pxweb/sv/"] = (
+        200,
+        '<a href="/pxweb/sv/bad/">Extra database</a>'
+        '<a href="/pxweb/sv/db/">Usable database</a>',
+        {},
+    )
+    invalid = {
+        "empty": '<div class="AspNet-TreeView"></div>',
+        "title": table(title="", route="/pxweb/sv/bad/-/bad.px/"),
+        "category": table(route="/pxweb/sv/bad/unknown/bad.px/"),
+    }[defect]
+    # Even valid rows from an unusable candidate must not leak into the result.
+    routes["/pxweb/sv/bad/"] = (
+        200,
+        invalid
+        if defect == "empty"
+        else table(route="/pxweb/sv/bad/-/good.px/") + invalid,
+        {},
+    )
+    routes["/api/v1/sv/bad?filter=*&query=*"] = (200, "[]", {})
+    routes["/pxweb/sv/db/"] = (200, table(), {})
+    rows = asyncio.run(get_pxweb_tables(host + "/pxweb/sv/"))
+    assert [(row["database_id"], row["id"]) for row in rows] == [("db", "t.px")]
+    assert "Skipping unusable discovered database sv/bad" in caplog.text
+    with pytest.raises(ExceptionGroup):
+        asyncio.run(get_pxweb_tables(host + "/pxweb/sv/bad/"))
+    with pytest.raises(ExceptionGroup):
+        asyncio.run(get_pxweb_tables(host + "/pxweb/sv/", database_ids=["bad"]))
+
+
+def test_discovery_server_errors_are_not_skipped(website, monkeypatch):
+    import metadata_harvest.pxweb as implementation
+
+    host, routes, requests = website
+    monkeypatch.setattr(implementation, "_ATTEMPTS", 1)
+    routes["/pxweb/sv/"] = (
+        200,
+        '<a href="/pxweb/sv/bad/">Unavailable</a><a href="/pxweb/sv/db/">Usable</a>',
+        {},
+    )
+    routes["/pxweb/sv/bad/"] = (503, "Temporarily unavailable", {})
+    routes["/pxweb/sv/db/"] = (200, table(), {})
+    with pytest.raises(ExceptionGroup) as caught:
+        asyncio.run(get_pxweb_tables(host + "/pxweb/sv/"))
+    assert "HTTP 503" in str(caught.value.exceptions[0])
+    assert "/pxweb/sv/db/" in requests

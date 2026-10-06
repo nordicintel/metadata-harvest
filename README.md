@@ -37,8 +37,11 @@ popups and embedded frames are blocked. The library does not visit individual
 table pages, write output files, or expose a CLI.
 
 Unsupported combinations require explicit website evidence and produce logging
-diagnostics. Other incomplete combinations produce an `ExceptionGroup` after the
-remaining combinations are attempted; partial lists are never returned as complete.
+diagnostics. Automatic discovery skips candidates with no usable listing or missing
+titles/category labels, logging the database and reason. Explicitly requested
+databases still fail on those defects. Timeouts, server errors and incomplete
+traversal remain failures in both modes, aggregated into an `ExceptionGroup` after
+the remaining combinations are attempted.
 Transient web failures are retried at most four times, respecting `Retry-After`.
 Flat API enrichment is attempted once. Parent-folder lookups are cached and
 retry transient failures up to four times, respecting `Retry-After`. Exhausted

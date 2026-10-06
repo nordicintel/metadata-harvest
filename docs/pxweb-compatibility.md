@@ -7,9 +7,11 @@ Run date: 2026-10-06 (timestamps in raw evidence are UTC).
 - Per web-form invocation: **42** combinations needed no API enrichment; **13** used a flat search; **3** also needed parent-folder lookups.
 - Browser-originated API responses: zero in every successful invocation. Explicit Playwright request-client enrichment is audited separately.
 - Local validation: 66 pytest tests; Ruff lint and formatting checks. Live acceptance is separately invoked.
-- Full acceptance flag: **False**. Discovery differences below remain visible; successful configured harvests do not conceal those differences.
+- Initial full acceptance flag: **False**. The discovery failures were fixed and the affected cases rerun successfully; Västerås still intentionally omits its hidden database from discovery.
 
 CSN recovered all 20 dates absent from the flat search through five parent folders: 255/255 web-listed tables retained. Skogsstyrelsen retained 270 Swedish tables using four parent folders and 207 English tables using one. No API-only table was added.
+
+Discovery rerun (2026-10-06 03:07 UTC): Skog returns 270 Swedish / 207 English tables; Konj returns 181 English tables. Unusable candidates are skipped with diagnostics. Evidence: `output/discovery-skip-validation.json`.
 
 ## Discovery results
 
@@ -33,10 +35,10 @@ CSN recovered all 20 dates absent from the flat search through five parent folde
 | domstol | sv | success | - | - |
 | domstol | en | success | - | - |
 | kulturanalys | sv | success | - | - |
-| konj | en | failed | - | en/TidigarePrognoser: Missing title/category name: https://prognos.konj.se/PxWeb/pxweb/en/TidigarePrognoser/TidigarePrognoser__20220928__f27_vinster/F2701.px/ |
-| skog | sv | failed | - | sv/ssd: Unrecognized or incomplete database: https://pxweb.skogsstyrelsen.se/pxweb/sv/ssd/ |
+| konj | en | success (rerun) | - | Skipped TidigarePrognoser: Missing title/category name: https://prognos.konj.se/PxWeb/pxweb/en/TidigarePrognoser/TidigarePrognoser__20220928__f27_vinster/F2701.px/ |
+| skog | sv | success (rerun) | - | Skipped ssd: No usable database listing: https://pxweb.skogsstyrelsen.se/pxweb/sv/ssd/ |
 | ehm | sv | success | - | Fritidskortet; Sålda mängder läkemedelssubstanser med möjlig miljöpåverkan |
-| skog | en | failed | - | en/ssd: Unrecognized or incomplete database: https://pxweb.skogsstyrelsen.se/pxweb/en/ssd/ |
+| skog | en | success (rerun) | - | Skipped ssd: No usable database listing: https://pxweb.skogsstyrelsen.se/pxweb/en/ssd/ |
 | tillvaxtanalys | sv | success | - | - |
 | vgregion | sv | success | - | - |
 | skolverket | sv | success | - | - |
@@ -111,5 +113,5 @@ CSN recovered all 20 dates absent from the flat search through five parent folde
 - The independent audit visits one table per combination; it is not an all-table visual audit. Kulturanalys has different listing/table-page wording; the emitted title was separately confirmed on its rendered folder listing.
 - Actual session-bearing web URLs are preserved. Only UUID-valued `rxid` differences are ignored for identity comparison.
 - Website listing dates remain authoritative when parseable. Missing dates use the flat API result, then API parent folders. Listing and About-panel dates can differ; both are retained in sample evidence, while the library does not visit table pages.
-- Discovery cannot manufacture missing labels or infer that an unexplained empty interface is a valid empty database. It raises an aggregate failure for those cases. Hidden databases absent from discovery can still be harvested explicitly.
+- Discovery skips candidates with no usable listing or missing titles/category labels. Explicit database requests remain strict. Timeouts, server errors and incomplete traversal still fail. Hidden databases absent from discovery can be harvested explicitly.
 - Scheduling, metadata rebuilding and persistent processing state remain subsequent work. Advance state only after rebuilding succeeds.
