@@ -195,6 +195,32 @@ def test_failed_codelist_does_not_block_changed_table_metadata(tmp_path):
     }
 
 
+def test_metadata_failure_still_retries_missing_dependency_of_retained_table(tmp_path):
+    source, root = Source(), tmp_path / "data"
+    source.fail_codes.add("sv")
+    harvest(source, root, tmp_path / "first")
+    source.fail_metadata.add("T1")
+    result = harvest(source, root, tmp_path / "second", full=True)
+    assert result["counts"]["failed"] == 1
+    assert result["counts"]["codelists_failed"] == 1
+    assert len(JsonlStore(root / "metadata").records) == 2
+    source.fail_codes.clear()
+    result = harvest(source, root, tmp_path / "third", full=True)
+    assert result["counts"]["failed"] == 1
+    assert result["counts"]["codelists_failed"] == 0
+
+
+def test_incomplete_discovery_keeps_unresolved_dependency_visible(tmp_path):
+    source, root = Source(), tmp_path / "data"
+    source.fail_codes.add("sv")
+    harvest(source, root, tmp_path / "first")
+    source.fail_languages.add("sv")
+    result = harvest(source, root, tmp_path / "second")
+    assert result["status"] == "completed_with_errors"
+    assert result["counts"]["codelists_failed"] == 1
+    assert len(JsonlStore(root / "metadata").records) == 2
+
+
 @pytest.mark.parametrize("resource", ["metadata", "codelist"])
 def test_nonfinite_source_json_cannot_poison_other_tables(tmp_path, resource):
     source, root = Source(), tmp_path / "data"

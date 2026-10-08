@@ -102,6 +102,10 @@ def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
     code_errors = {
         key: error for key, error in state["code_errors"].items() if key in referenced
     }
+    for key in referenced - set(codes.records):
+        code_errors.setdefault(
+            key, "Referenced codelist is unavailable; retrieval has not completed"
+        )
     counts["codelists_failed"] = len(code_errors)
     errors.extend(
         {"codelist_key": key, "stage": "codelist", "error": error}
@@ -319,6 +323,28 @@ async def run(
             metadata.records[name] = document
             listings.records[name] = deepcopy(document["extension"]["metadata_harvest"])
             task["status"] = "success"
+        except Exception as error:
+            # A 404 during a catalogue race is confirmed against the table endpoint.
+            if (
+                isinstance(error, httpx.HTTPStatusError)
+                and error.response.status_code in {404, 410}
+                and "/tables/" in str(error.request.url)
+            ):
+                try:
+                    await client.get(
+                        f"tables/{quote(row['dataset_code'], safe='')}", lang=language
+                    )
+                except httpx.HTTPStatusError as confirmation:
+                    if confirmation.response.status_code in {404, 410}:
+                        if metadata.records.pop(name, None) is not None:
+                            state["counts"]["removed"] += 1
+                        listings.records.pop(name, None)
+                        state["removed_tables"].append(name)
+                except Exception:
+                    pass
+            task.update(status="failed", error=f"{type(error).__name__}: {error}")
+        document = metadata.records.get(name)
+        if document is not None:
             for code in sorted(codelist_ids(document)):
                 key = code_key(code, language)
                 if key in state["code_errors"]:
@@ -351,26 +377,6 @@ async def run(
                     }
                     state["refreshed_codes"].append(key)
                     state["counts"]["codelists_fetched"] += 1
-        except Exception as error:
-            # A 404 during a catalogue race is confirmed against the table endpoint.
-            if (
-                isinstance(error, httpx.HTTPStatusError)
-                and error.response.status_code in {404, 410}
-                and "/tables/" in str(error.request.url)
-            ):
-                try:
-                    await client.get(
-                        f"tables/{quote(row['dataset_code'], safe='')}", lang=language
-                    )
-                except httpx.HTTPStatusError as confirmation:
-                    if confirmation.response.status_code in {404, 410}:
-                        if metadata.records.pop(name, None) is not None:
-                            state["counts"]["removed"] += 1
-                        listings.records.pop(name, None)
-                        state["removed_tables"].append(name)
-                except Exception:
-                    pass
-            task.update(status="failed", error=f"{type(error).__name__}: {error}")
         completed += 1
         if completed % 100 == 0 or time.monotonic() - last_save >= 60:
             _snapshot(output, metadata, codes, listings, state, base)
