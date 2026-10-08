@@ -1,9 +1,37 @@
 """Grouped publication must retain identities, contents and failed replacements."""
 
+import gzip
+import json
+
 import pytest
 
 from metadata_harvest.storage import filename, read, write
 from tests.test_workflow import dataset, record
+
+
+def test_compressed_collections_preserve_content_and_exact_bytes(tmp_path):
+    from metadata_harvest.storage import JsonlStore
+
+    row = {
+        "provider_code": "scb",
+        "dataset_code": "A",
+        "language": "sv",
+        "label": "Åäö",
+    }
+    store = JsonlStore(tmp_path, compressed=True)
+    store.records[filename(row)] = row
+    store.save()
+    path = next(tmp_path.glob("*.jsonl.gz"))
+    before, modified = path.read_bytes(), path.stat().st_mtime_ns
+    assert json.loads(gzip.decompress(before)) == row
+    assert JsonlStore(tmp_path).records == store.records
+    store.save()
+    assert path.read_bytes() == before
+    assert path.stat().st_mtime_ns == modified
+    row["label"] = float("nan")
+    with pytest.raises(ValueError):
+        store.save()
+    assert path.read_bytes() == before
 
 
 def test_jsonl_store_accepts_explicit_codelist_identity(tmp_path):

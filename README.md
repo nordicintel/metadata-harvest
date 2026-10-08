@@ -4,7 +4,8 @@ API metadata harvesting for Python 3.13+, with PXWeb v1 and an API-only
 [SCB PXWeb v2 adapter (sv/en)](docs/pxweb-v2.md).
 See the [source inventory and migration plan](docs/consolidation.md),
 [output contract](docs/output-contract.md) and [PXWeb v2 assessment](docs/pxweb-v2-migration.md).
-Published metadata uses one JSONL collection per provider and language.
+Published metadata uses one JSONL collection per provider and language; v2 uses
+lossless gzip (`.jsonl.gz`) to keep complete collections within GitHub limits.
 
 ```python
 from metadata_harvest import get_pxweb_tables

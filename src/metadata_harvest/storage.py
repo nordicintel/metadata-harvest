@@ -1,8 +1,10 @@
 """Atomic JSON files and stable dataset identities for the harvesting workflow."""
 
+import gzip
 import hashlib
 import json
 import os
+import shutil
 from copy import deepcopy
 from datetime import UTC, datetime
 from pathlib import Path
@@ -154,17 +156,25 @@ class JsonlStore:
     Git commit; filesystem atomicity is per group, not across the collection.
     """
 
-    def __init__(self, directory: str | Path, *, identify=document_identity):
+    def __init__(
+        self, directory: str | Path, *, identify=document_identity, compressed=False
+    ):
         self.directory = Path(directory)
         self.identify = identify
+        self.compressed = compressed
         self.records: dict[str, dict] = {}
         self._legacy: dict[Path, dict] = {}
-        for path in sorted(self.directory.glob("*.jsonl")):
-            with path.open(encoding="utf-8") as stream:
+        for path in sorted(
+            [*self.directory.glob("*.jsonl"), *self.directory.glob("*.jsonl.gz")]
+        ):
+            opener = gzip.open if path.suffix == ".gz" else open
+            with opener(path, "rt", encoding="utf-8") as stream:
                 for number, line in enumerate(stream, 1):
                     document = json.loads(line)
                     name = filename(self.identify(document))
-                    if collection_filename(self.identify(document)) != path.name:
+                    if collection_filename(
+                        self.identify(document)
+                    ) != path.name.removesuffix(".gz"):
                         raise ValueError(f"Wrong provider/language in {path}:{number}")
                     if name in self.records:
                         raise ValueError(f"Duplicate dataset in {path}:{number}")
@@ -185,9 +195,11 @@ class JsonlStore:
         for name, document in sorted(self.records.items()):
             if filename(self.identify(document)) != name:
                 raise ValueError(f"Dataset key does not match identity: {name}")
-            groups.setdefault(collection_filename(self.identify(document)), []).append(
-                document
-            )
+            groups.setdefault(
+                collection_filename(self.identify(document))
+                + (".gz" if self.compressed else ""),
+                [],
+            ).append(document)
         self.directory.mkdir(parents=True, exist_ok=True)
         staged: dict[Path, Path] = {}
         try:
@@ -209,7 +221,24 @@ class JsonlStore:
                         )
                     stream.flush()
                     os.fsync(stream.fileno())
-                with temporary.open(encoding="utf-8") as stream:
+                if self.compressed:
+                    compressed_path = temporary.with_suffix(".gz.tmp")
+                    try:
+                        with (
+                            temporary.open("rb") as source,
+                            compressed_path.open("wb") as target,
+                        ):
+                            with gzip.GzipFile(
+                                filename="", mode="wb", fileobj=target, mtime=0
+                            ) as archive:
+                                shutil.copyfileobj(source, archive)
+                            target.flush()
+                            os.fsync(target.fileno())
+                        compressed_path.replace(temporary)
+                    finally:
+                        compressed_path.unlink(missing_ok=True)
+                opener = gzip.open if self.compressed else open
+                with opener(temporary, "rt", encoding="utf-8") as stream:
                     if [json.loads(line) for line in stream] != documents:
                         raise ValueError("JSONL serialization changed document content")
             # Detect edits to legacy input before replacing or removing anything.
@@ -220,13 +249,17 @@ class JsonlStore:
                 if not path.exists() or path.read_bytes() != temporary.read_bytes():
                     temporary.replace(path)
             for name, documents in groups.items():
-                with (self.directory / name).open(encoding="utf-8") as stream:
+                opener = gzip.open if self.compressed else open
+                with opener(self.directory / name, "rt", encoding="utf-8") as stream:
                     if [json.loads(line) for line in stream] != documents:
                         raise ValueError("Written JSONL failed content verification")
             for path in self._legacy:
                 path.unlink()
             self._legacy.clear()
-            for path in self.directory.glob("*.jsonl"):
+            for path in [
+                *self.directory.glob("*.jsonl"),
+                *self.directory.glob("*.jsonl.gz"),
+            ]:
                 if path.name not in groups:
                     path.unlink()
         finally:

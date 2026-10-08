@@ -9,7 +9,8 @@ All BRÅ work is excluded. New HTML, spreadsheet and PDF ingestion is excluded.
 The existing PXWeb v1 web discovery remains a legacy exception: replacing it
 with API-only discovery would change coverage and is a separate decision.
 
-Publish **one JSONL per provider and language, separated by adapter**, under
+Publish **one JSONL per provider and language, separated by adapter** (v2 uses
+lossless `.jsonl.gz` compression), under
 `data/<adapter>/metadata/`. Keep only the latest metadata for datasets still
 available at the source. Confirmed source removal deletes metadata and listing
 state. There is no inactive archive, reactivation store or snapshot/version model.
@@ -62,7 +63,7 @@ Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
 | Source | Implementation / coverage | Automation and gaps | Migration status |
 |---|---|---|---|
 | PXWeb v1 | This repository; discovery and full category metadata; 19 providers, 47 configured scopes | Daily/manual Actions; latest run incomplete, details below | First adapter extracted; grouped publication implemented |
-| PXWeb v2 | This repository's `adapters/pxweb_v2`; SCB sv/en only, native full metadata and referenced codelists | Independent daily incremental / Sunday full workflow; scheduling gated on live acceptance | Implemented; bounded live checks passed, full automated acceptance pending |
+| PXWeb v2 | This repository's `adapters/pxweb_v2`; SCB sv/en only, native full metadata and referenced codelists | Independent daily incremental / Sunday full workflow; scheduling gated on live acceptance | Implemented; full automated retrieval completed, compressed publication and dependency-error verification in progress |
 | SDB | `nordicintel/sdb-adapter`; substantial metadata implementation | Replace directory clearing; add independent publication | Next established-source batch |
 | Trafa | `nordicintel/trafa-adapter`; substantial implementation | Resolve API/HTML discovery boundary; replace clearing | After SDB |
 | Kolada | `rubenselander/kolada-data-scraper`; v3 metadata, groups, municipalities and units | Existing exports depend on observations; establish availability/gender metadata and upstream timestamps | Metadata-only execution path required |
