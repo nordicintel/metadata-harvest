@@ -1,6 +1,7 @@
 """One paced HTTP connection pool for a provider, shared across both languages."""
 
 import asyncio
+import json
 import time
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
@@ -91,5 +92,8 @@ class Client:
                 payload = response.json()
                 if not isinstance(payload, dict):
                     raise ValueError(f"Expected a JSON object from {path}")
+                # Python's decoder accepts NaN/Infinity; reject them at the source
+                # boundary so one bad response cannot poison a grouped write.
+                json.dumps(payload, allow_nan=False)
                 return payload
         raise RuntimeError("Request did not produce a result")

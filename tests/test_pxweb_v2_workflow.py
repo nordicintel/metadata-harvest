@@ -1,6 +1,7 @@
 """Real filesystem lifecycle tests with HTTP fixtures at the source boundary."""
 
 import asyncio
+import json
 from copy import deepcopy
 from types import SimpleNamespace
 
@@ -153,6 +154,32 @@ def test_shared_codelist_is_fetched_once_for_multiple_tables(tmp_path):
     result = harvest(source, tmp_path / "data", tmp_path / "output")
     assert result["counts"]["created"] == 3
     assert source.requests.count(("/api/v2/codelists/vs_region", "sv")) == 1
+
+
+@pytest.mark.parametrize("resource", ["metadata", "codelist"])
+def test_nonfinite_source_json_cannot_poison_other_tables(tmp_path, resource):
+    source, root = Source(), tmp_path / "data"
+    harvest(source, root, tmp_path / "first")
+    original = source.handle
+
+    def handler(request):
+        response = original(request)
+        if request.url.params.get("lang") == "sv" and (
+            request.url.path.endswith("/metadata")
+            if resource == "metadata"
+            else "/codelists/" in request.url.path
+        ):
+            payload = response.json()
+            payload["extraSourceField"] = float("nan")
+            return httpx.Response(200, content=json.dumps(payload))
+        return response
+
+    source.handle = handler
+    before = metadata_bytes(root)
+    result = harvest(source, root, tmp_path / "second", full=True)
+    assert result["counts"]["failed"] == 1
+    assert result["counts"]["updated"] == 1
+    assert metadata_bytes(root) == before
 
 
 def test_continuation_retains_full_mode_and_rejects_stale_artifact(tmp_path):
