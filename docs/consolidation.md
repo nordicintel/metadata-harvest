@@ -62,7 +62,7 @@ Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
 
 | Source | Implementation / coverage | Automation and gaps | Migration status |
 |---|---|---|---|
-| PXWeb v1 | This repository; discovery and full category metadata; 19 providers, 47 configured scopes | Daily/manual Actions; latest run incomplete, details below | First adapter extracted; grouped publication implemented |
+| PXWeb v1 | This repository; discovery and full category metadata; 26 providers, 62 configured scopes | Daily/manual Actions; latest run incomplete, details below | First adapter extracted; grouped publication implemented |
 | PXWeb v2 | This repository's `adapters/pxweb_v2`; SCB sv/en only, native full metadata and referenced codelists | Independent daily incremental / Sunday full workflow; scheduling gated on live acceptance | Implemented and published; all 8,620 table metadata records validated, 1,956 codelists accepted, 55 upstream codelist errors reported separately; schedule remains gated |
 | SDB | `nordicintel/sdb-adapter`; substantial metadata implementation | Replace directory clearing; add independent publication | Next established-source batch |
 | Trafa | `nordicintel/trafa-adapter`; substantial implementation | Resolve API/HTML discovery boundary; replace clearing | After SDB |
@@ -73,6 +73,9 @@ Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
 | SIRIS | API documentation component in `rubenselander/scb-publiceringskalender` | Scheduled documentation success unverified; isolate from HTML/files | Documentation track |
 | Catalogue connectors | `swedish-data-api`, `nordicintel/dataportalen`, `nordicintel/nordicintel-leads` | EntryScape, CKAN, Huwise, ArcGIS Hub, DCAT, researchdata.se OAI-PMH; not complete statistical table metadata | Separate catalogue track |
 | DST / Eurostat and further PXWeb providers | Archived implementations / provider candidates | Coverage and current endpoints unverified | Later backlog |
+
+See [registry additions and HVD routing](pxweb-registry-gaps.md) for the seven
+new v1 sources and their live verification evidence.
 
 ## Verified operational baseline
 

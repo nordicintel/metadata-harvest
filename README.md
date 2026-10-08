@@ -6,6 +6,7 @@ See the [source inventory and migration plan](docs/consolidation.md),
 [output contract](docs/output-contract.md) and [PXWeb v2 assessment](docs/pxweb-v2-migration.md).
 Published metadata uses one JSONL collection per provider and language; v2 uses
 lossless gzip (`.jsonl.gz`) to keep complete collections within GitHub limits.
+The v1 configuration includes [26 providers, including SCB HVD-uppdrag](docs/pxweb-registry-gaps.md).
 
 ```python
 from metadata_harvest import get_pxweb_tables

@@ -440,6 +440,17 @@ def _identity(raw: dict, language: str, database: str, folder_names: dict):
     return table_id, categories, names
 
 
+def _api_categories(web_url: str, categories: tuple[str, ...]) -> tuple[str, ...]:
+    """Retain HVD's real routing parent, absent from its displayed category tree."""
+    if urlsplit(web_url).hostname != "hvduppdrag.scb.se":
+        return categories
+    route = _parse_url(web_url)
+    tokens = tuple(x for segment in route.tail[:-1] for x in segment.split("__") if x)
+    if route.database == "uppdrag" and tokens[:1] == ("HV01",):
+        return tokens
+    return categories
+
+
 def _record(
     raw: dict, root: _Route, language: str, database: str, folder_names: dict
 ) -> dict:
@@ -460,7 +471,13 @@ def _record(
         "api_url": api_root
         + "/"
         + "/".join(
-            quote(x, safe="") for x in (language, database, *categories, table_id)
+            quote(x, safe="")
+            for x in (
+                language,
+                database,
+                *_api_categories(raw["href"], categories),
+                table_id,
+            )
         ),
         "web_url": raw["href"],
         "language": language,
@@ -760,6 +777,13 @@ async def _collect_database(browser, url, language, database):
     }
 
 
+async def _pace_enrichment(root: _Route):
+    # Göteborg advertises 10 calls / 10 seconds. Its undated listings need
+    # multiple parent-folder requests; pace these across fresh contexts too.
+    if urlsplit(root.root).hostname == "statistikdatabas.goteborg.se":
+        await asyncio.sleep(1.1)
+
+
 async def _api_listing(
     page: Page, root: _Route, language: str, database: str
 ) -> list[dict]:
@@ -769,6 +793,7 @@ async def _api_listing(
             raise state["error"]
         return state["rows"]
     state["attempted"] = True
+    await _pace_enrichment(root)
     url = (
         root.root.rsplit("/", 1)[0]
         + "/api/v1/"
@@ -824,6 +849,7 @@ async def _api_folder(page, root, language, database, categories):
     try:
         for attempt in range(_ATTEMPTS):
             try:
+                await _pace_enrichment(root)
                 state["folder_request_count"] = state.get("folder_request_count", 0) + 1
                 response = await page.context.request.get(
                     url, timeout=_TIMEOUT, max_redirects=0
@@ -904,6 +930,7 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
         index[key] = entry
     for row in missing:
         table_id, categories, _ = _identity(row, language, database, folder_names)
+        categories = _api_categories(row["href"], categories)
         entry = index.get((categories, table_id))
         entry = entry or {}
         if not row["date"]:

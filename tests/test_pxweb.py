@@ -48,6 +48,23 @@ def test_synthetic_database_ancestor_is_not_an_api_folder(database):
     )
 
 
+@pytest.mark.parametrize("category", ["HV0101", "HV0102"])
+def test_hvd_keeps_hidden_api_parent_without_inventing_category(category):
+    root = _parse_url("https://hvduppdrag.scb.se/pxweb/sv/uppdrag/")
+    raw = {
+        "href": root.web() + f"HV01__{category}/HVDLE0101T01/",
+        "title": "Title",
+        "date": "2026-02-06",
+        "ancestors": [{"name": "Published category", "href": ""}],
+    }
+    result = _record(raw, root, "sv", "uppdrag", {})
+    assert result["api_url"] == (
+        f"https://hvduppdrag.scb.se/api/v1/sv/uppdrag/HV01/{category}/HVDLE0101T01"
+    )
+    assert result["path"] == f"/{category}"
+    assert result["category_path"] == [{"id": category, "name": "Published category"}]
+
+
 @pytest.fixture
 def website(request):
     requests = []
@@ -102,9 +119,9 @@ def table(title="Table", date="2026-10-01", route="/pxweb/sv/db/-/t.px/"):
 
 def test_matrix():
     providers = json.loads(Path("providers.json").read_text(encoding="utf-8"))
-    assert len(providers) == 19
-    assert sum(len(p["database_ids"]) for p in providers) == 37
-    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 47
+    assert len(providers) == 26
+    assert sum(len(p["database_ids"]) for p in providers) == 52
+    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 62
     excluded = json.loads(
         Path("docs/excluded-providers.json").read_text(encoding="utf-8")
     )
@@ -858,3 +875,76 @@ def test_discovery_server_errors_are_not_skipped(website, monkeypatch):
         asyncio.run(get_pxweb_tables(host + "/pxweb/sv/"))
     assert "HTTP 503" in str(caught.value.exceptions[0])
     assert "/pxweb/sv/db/" in requests
+
+
+def test_goteborg_enrichment_requests_are_paced(monkeypatch):
+    from types import SimpleNamespace
+
+    import metadata_harvest.adapters.pxweb_v1.discovery as module
+
+    waits = []
+    requested = []
+
+    async def sleep(delay):
+        waits.append(delay)
+
+    class Response:
+        status = 200
+        ok = True
+
+        async def json(self):
+            return []
+
+        async def dispose(self):
+            pass
+
+    async def get(url, **kwargs):
+        assert len(waits) == len(requested) + 1
+        requested.append(url)
+        return Response()
+
+    monkeypatch.setattr(module.asyncio, "sleep", sleep)
+    page = SimpleNamespace(
+        context=SimpleNamespace(_pxweb_api={}, request=SimpleNamespace(get=get))
+    )
+    root = _parse_url("https://statistikdatabas.goteborg.se/pxweb")
+
+    async def check():
+        await module._api_listing(page, root, "sv", "db")
+        await module._api_folder(page, root, "sv", "db", ("folder",))
+        await module._api_folder(page, root, "sv", "db", ("folder",))
+
+    asyncio.run(check())
+    assert len(requested) == 2
+    assert all(delay >= 1 for delay in waits)
+
+
+@pytest.mark.parametrize("flat", [True, False])
+def test_hvd_enrichment_uses_real_api_parent(monkeypatch, flat):
+    import metadata_harvest.adapters.pxweb_v1.discovery as module
+
+    root = _parse_url("https://hvduppdrag.scb.se/pxweb/sv/uppdrag/")
+    row = {
+        "href": root.web() + "HV01__HV0101/HVDLE0101T01/",
+        "title": "Title",
+        "date": "",
+        "ancestors": [{"name": "Category", "href": ""}],
+    }
+    entry = {
+        "id": "HVDLE0101T01",
+        "type": "t",
+        "path": "HV01/HV0101",
+        "updated": "2026-02-06",
+    }
+
+    async def listing(*args):
+        return [entry] if flat else []
+
+    async def folder(page, root, language, database, categories):
+        assert categories == ("HV01", "HV0101")
+        return [entry]
+
+    monkeypatch.setattr(module, "_api_listing", listing)
+    monkeypatch.setattr(module, "_api_folder", folder)
+    asyncio.run(module._enrich_missing(None, root, "sv", "uppdrag", [row], {}))
+    assert row["date"] == "2026-02-06"

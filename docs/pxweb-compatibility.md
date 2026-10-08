@@ -3,7 +3,8 @@
 Run date: 2026-10-06 (timestamps in raw evidence are UTC).
 
 Historical results below predate the exclusion of Västerås. The active matrix is now
-19 providers, 37 databases and 47 combinations. Its configuration and exclusion
+26 providers, 52 databases and 62 combinations; see the
+[8 October additions](pxweb-registry-gaps.md) for current verification. Its configuration and exclusion
 reason are preserved in [excluded-providers.json](excluded-providers.json).
 
 - Historical matrix: 20 providers, 45 databases, 55 language/database combinations.
