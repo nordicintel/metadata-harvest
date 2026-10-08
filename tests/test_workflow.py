@@ -97,12 +97,12 @@ def dataset(row):
     }
 
 
-def seed(data, row, *, inactive=False):
+def seed(data, row):
     grouped = group_records([row])[0]
     listings = JsonlStore(data / "table-records")
     listings.records[filename(grouped)] = grouped
     listings.save()
-    metadata = JsonlStore(data / "metadata" / ("inactive" if inactive else "active"))
+    metadata = JsonlStore(data / "metadata")
     metadata.records[filename(grouped)] = dataset(grouped)
     metadata.save()
     return grouped
@@ -128,10 +128,10 @@ def test_refresh_queues_missing_and_changed_and_reuses_unchanged(tmp_path):
     assert state["counts"]["reused"] == 1
     assert {task["kind"] for task in state["tasks"]} == {"created", "updated"}
     assert (
-        JsonlStore(tmp_path / "metadata/active").records[filename(changed)]["updated"]
+        JsonlStore(tmp_path / "metadata").records[filename(changed)]["updated"]
         == "2026-10-01"
     )
-    report = read(tmp_path / "reports/refresh/run_3.json")
+    report = read(tmp_path / "reports/refresh.json")
     assert set(report["records"][0]) == {
         "provider_code",
         "dataset_code",
@@ -140,17 +140,16 @@ def test_refresh_queues_missing_and_changed_and_reuses_unchanged(tmp_path):
     }
 
 
-def test_confirmed_absence_retires_and_reappearance_restores(tmp_path):
+def test_confirmed_absence_deletes_without_archive_and_return_requires_fetch(tmp_path):
     row = seed(tmp_path, record())
     state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
-    assert state["counts"]["retired"] == 1
-    assert filename(row) not in JsonlStore(tmp_path / "metadata/active").records
-    assert filename(row) in JsonlStore(tmp_path / "metadata/inactive").records
+    assert state["counts"]["removed"] == 1
+    assert not JsonlStore(tmp_path / "metadata").records
+    assert not JsonlStore(tmp_path / "table-records").records
+    assert not (tmp_path / "metadata/inactive").exists()
     state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
-    assert state["counts"]["reactivated"] == 1
-    assert state["counts"]["reused"] == 1
-    assert not state["tasks"]
-    assert filename(row) not in JsonlStore(tmp_path / "metadata/inactive").records
+    assert state["counts"]["reused"] == 0
+    assert [task["kind"] for task in state["tasks"]] == ["created"]
 
 
 def test_completed_metadata_without_listing_record_still_reconciles(tmp_path):
@@ -159,42 +158,26 @@ def test_completed_metadata_without_listing_record_still_reconciles(tmp_path):
     del listings.records[filename(row)]
     listings.save()
     state = collect_refresh(tmp_path, [PROVIDER], [], "run")
-    assert state["counts"]["retired"] == 0
+    assert state["counts"]["removed"] == 0
     state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
-    assert state["counts"]["retired"] == 1
-    assert filename(row) in JsonlStore(tmp_path / "metadata/inactive").records
-
-
-def test_reappearing_dataset_keeps_inactive_paths_when_scope_fails(tmp_path):
-    old = seed(tmp_path, record(path="/new", date="2026-10-01"))
-    collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
-    state = collect_refresh(
-        tmp_path,
-        [PROVIDER],
-        [scope([record(path="/archive", date="2020-01-01")], complete=False)],
-        "run",
-    )
-    assert state["counts"]["reactivated"] == 1
-    saved = JsonlStore(tmp_path / "metadata/active").records[filename(old)]
-    assert saved["updated"] == old["published"]
-    assert len(saved["extension"]["metadata_harvest"]["paths"]) == 2
-    assert not state["tasks"]
+    assert state["counts"]["removed"] == 1
+    assert filename(row) not in JsonlStore(tmp_path / "metadata").records
 
 
 @pytest.mark.parametrize(
     "result",
     [None, scope([], complete=False), scope([], invalid=["t.px"], observed=["t.px"])],
 )
-def test_missing_job_failed_scope_or_invalid_observed_table_cannot_retire(
+def test_missing_job_failed_scope_or_invalid_observed_table_cannot_confirm_removal(
     tmp_path, result
 ):
     row = seed(tmp_path, record())
-    original = JsonlStore(tmp_path / "metadata/active").records[filename(row)]
+    original = JsonlStore(tmp_path / "metadata").records[filename(row)]
     state = collect_refresh(
         tmp_path, [PROVIDER], [] if result is None else [result], "run"
     )
-    assert state["counts"]["retired"] == 0
-    assert JsonlStore(tmp_path / "metadata/active").records[filename(row)] == original
+    assert state["counts"]["removed"] == 0
+    assert JsonlStore(tmp_path / "metadata").records[filename(row)] == original
 
 
 def test_successful_row_from_incomplete_scope_is_saved(tmp_path):
@@ -202,7 +185,7 @@ def test_successful_row_from_incomplete_scope_is_saved(tmp_path):
         tmp_path, [PROVIDER], [scope([record()], complete=False)], "run"
     )
     assert len(state["tasks"]) == 1
-    assert read(tmp_path / "reports/refresh/run_1.json")["error_count"] == 1
+    assert read(tmp_path / "reports/refresh.json")["error_count"] == 1
 
 
 def test_failed_canonical_scope_keeps_newer_primary_and_all_paths(tmp_path):
@@ -246,7 +229,7 @@ def test_provider_failures_are_isolated_and_old_metadata_survives(
     assert final["status"] == "completed_with_errors"
     assert final["counts"]["created"] == 1 and final["counts"]["failed"] == 1
     assert (
-        JsonlStore(tmp_path / "metadata/active").records[filename(old)]["updated"]
+        JsonlStore(tmp_path / "metadata").records[filename(old)]["updated"]
         == "2026-10-01"
     )
     next_state = collect_refresh(
@@ -295,31 +278,27 @@ def test_legacy_checkpoint_and_artifact_migrate_without_losing_metadata(tmp_path
     )
     result = collect_metadata(tmp_path, [artifact / "result.json"], "run", 1)
     assert result["status"] == "success"
-    assert JsonlStore(tmp_path / "metadata/active").records[filename(row)] == dataset(
-        row
-    )
-    assert len(list((tmp_path / "metadata/active").glob("*.jsonl"))) == 1
-    assert not list((tmp_path / "metadata/active").glob("*.json"))
+    assert JsonlStore(tmp_path / "metadata").records[filename(row)] == dataset(row)
+    assert len(list((tmp_path / "metadata").glob("*.jsonl"))) == 1
+    assert not list((tmp_path / "metadata").glob("*.json"))
     assert not list((tmp_path / "table-records").glob("*.json"))
 
 
 def test_legacy_reused_metadata_migrates_with_updated_listing_title(tmp_path):
     row = group_records([record()])[0]
     write(tmp_path / "table-records" / filename(row), row)
-    write(tmp_path / "metadata/active" / filename(row), dataset(row))
+    write(tmp_path / "metadata" / filename(row), dataset(row))
     current = {**row, "title": "Corrected listing title"}
     result = collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
     assert result["counts"]["reused"] == 1
     assert not result["tasks"]
-    saved = JsonlStore(tmp_path / "metadata/active").records[filename(row)]
+    saved = JsonlStore(tmp_path / "metadata").records[filename(row)]
     assert saved["label"] == "Corrected listing title"
     assert saved["updated"] == row["published"]
-    original = {
-        p.name: p.read_bytes() for p in (tmp_path / "metadata/active").glob("*.jsonl")
-    }
+    original = {p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl")}
     collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
     assert {
-        p.name: p.read_bytes() for p in (tmp_path / "metadata/active").glob("*.jsonl")
+        p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl")
     } == original
 
 
@@ -359,7 +338,7 @@ def test_no_work_still_saves_final_report(tmp_path):
     collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
     final = collect_metadata(tmp_path, [], "run", 1)
     assert final["status"] == "success"
-    assert read(tmp_path / "reports/harvest/run.json")["counts"]["reused"] == 1
+    assert read(tmp_path / "reports/harvest.json")["counts"]["reused"] == 1
 
 
 def test_stale_or_duplicate_results_rejected(tmp_path):
@@ -492,3 +471,30 @@ def test_publish_rebases_unrelated_main_push_without_force(tmp_path, monkeypatch
     git(first, "add", "README.md")
     with pytest.raises(RuntimeError, match="unrelated staged"):
         publish("must not commit")
+
+
+def test_reports_replace_previous_run_and_completed_checkpoint_is_removed(tmp_path):
+    row = seed(tmp_path, record())
+    for run_id in ("first", "second"):
+        result = {**scope([row]), "run_id": run_id}
+        collect_refresh(tmp_path, [PROVIDER], [result], run_id)
+        collect_metadata(tmp_path, [], run_id, 1)
+    assert not (tmp_path / "work/current.json").exists()
+    assert sorted(p.name for p in (tmp_path / "reports").rglob("*.json")) == [
+        "harvest.json",
+        "refresh.json",
+    ]
+    assert read(tmp_path / "reports/harvest.json")["run_id"] == "second"
+
+
+def test_adapter_output_directories_are_independent(tmp_path):
+    v1 = tmp_path / "pxweb_v1"
+    other = tmp_path / "pxweb_v2"
+    row = seed(v1, record())
+    seed(other, record())
+    original = {p.relative_to(other): p.read_bytes() for p in other.rglob("*.jsonl")}
+    collect_refresh(v1, [PROVIDER], [scope([])], "run")
+    assert filename(row) not in JsonlStore(v1 / "metadata").records
+    assert {
+        p.relative_to(other): p.read_bytes() for p in other.rglob("*.jsonl")
+    } == original

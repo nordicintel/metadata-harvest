@@ -116,7 +116,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: refresh-checkpoint-${{ github.run_attempt }}
-          path: data/
+          path: data/pxweb_v1/
           retention-days: 7
 
   build:
@@ -190,7 +190,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: harvest-checkpoint-${{ github.run_attempt }}
-          path: data/
+          path: data/pxweb_v1/
           retention-days: 7
       - name: Continue unfinished work
         if: success() && steps.collect.outputs.continue == 'true'

@@ -7,7 +7,7 @@ acceptance of any v2 provider in this repository.
 |---|---|---|
 | [`rubenselander/PxWebAPI-scraper`](https://github.com/rubenselander/PxWebAPI-scraper/tree/fe8c19a29a5cf58c8ed60f7d1f58d98866e34cfb) | Provider config, multilingual paginated catalogue, update comparison, metadata, referenced codelists, pacing and incremental persistence | `_validate_metadata` only checks for a dict; codelist failures can retain stale lists or omit newly required ones; no Actions workflows |
 | `nordicintel-adapter-pxweb2` local commit `2458eb25fe5ba208566d4906101bacb217e4638b` | Importable `PxWebAdapter`; per-language discovery including discontinued tables; `defaultSelection=false`; metadata and catalogue mapping; source marker includes period range | Coupled to core contracts and HTTP injection; no complete codelist publication path in `fetch_metadata`; pagination silently stops if page metadata absent |
-| `nordicintel-harvest` / `nordicintel-backend` local v2 adapters | Existing catalogue mapping, notes/contact/subject parsing, source URL mapping and tests | Broader runtime dependencies; discovery breaks on failed page retrieval, so copying it without explicit completeness would risk retirement after partial discovery |
+| `nordicintel-harvest` / `nordicintel-backend` local v2 adapters | Existing catalogue mapping, notes/contact/subject parsing, source URL mapping and tests | Broader runtime dependencies; discovery breaks on failed page retrieval, so copying it without explicit completeness would risk deletion after partial discovery |
 
 ## Selection
 
@@ -31,13 +31,13 @@ Add `adapters/pxweb_v2` with importable selected-provider discovery and metadata
 retrieval, a separate provider configuration and fixtures covering `/config`,
 every `/tables` page, `/tables/{id}/metadata` and referenced `/codelists/{id}`.
 Preserve multilingual categories and complete codelist payloads. Use the grouped
-JSONL pattern established by v1: merge validated successes, retain failed prior
+JSONL pattern established by v1 under its own `data/pxweb_v2/` directory: merge validated successes, retain failed prior
 documents, and expose incomplete runs in reports.
 
 Before enabling its own manual/scheduled workflow, verify:
 
 - Duplicate IDs, missing pages or changing pagination totals mark discovery
-  incomplete and cannot retire prior datasets.
+  incomplete and cannot confirm deletion of missing datasets.
 - Failed metadata or required codelists retain the previous complete dataset;
   retained old codelists must not masquerade as a successfully refreshed dataset.
 - `defaultSelection=false`, full categories and discontinued tables are covered.

@@ -9,14 +9,15 @@ All BRÅ work is excluded. New HTML, spreadsheet and PDF ingestion is excluded.
 The existing PXWeb v1 web discovery remains a legacy exception: replacing it
 with API-only discovery would change coverage and is a separate decision.
 
-Keep the latest successful document for each provider/dataset/language. Following
-the 8 October storage decision, publish **one JSONL per provider and language**
-under `data/metadata/active/`. Each line is an unchanged metadata document.
-Listing state uses the same grouping under `data/table-records/`. Confirmed
-inactive metadata is retained in separately grouped `data/metadata/inactive/`
-files, preserving the existing retirement/reappearance behaviour. No per-table
-result files are produced, including in worker artifacts. Reports and checkpoints
-remain compact run-level JSON files; Git provides publication history.
+Publish **one JSONL per provider and language, separated by adapter**, under
+`data/<adapter>/metadata/`. Keep only the latest metadata for datasets still
+available at the source. Confirmed source removal deletes metadata and listing
+state. There is no inactive archive, reactivation store or snapshot/version model.
+Incomplete discovery is an error, not confirmation that missing datasets are gone.
+
+Each adapter owns its current listing state, latest refresh/harvest status and an
+unfinished-work checkpoint under its own directory. Reports overwrite the previous
+status; completed checkpoints are deleted. Nothing accumulates by run date.
 
 ## First change and next steps
 
@@ -39,7 +40,7 @@ successful automated run. Do not archive or delete source repositories.
   `JsonlStore` to merge successful replacements into the last accepted documents.
   Never clear a language directory before fetching replacements.
 - `workflow.py`: checkpoints, reconciliation, partial results and reporting.
-  Retirement requires complete discovery for every known location. A provider
+  Deletion requires complete discovery for every known location. A provider
   failure cannot become an empty successful discovery result.
 - `runner.py`: the existing Actions entry point remains compatible. Its pre-existing
   argparse interface is retained, but new functionality belongs in importable
@@ -76,7 +77,7 @@ Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
 
 Base commit: `6bb4a9e`. [Scheduled run 37753836760](https://github.com/nordicintel/metadata-harvest/actions/runs/37753836760)
 completed with errors on 8 October. Its committed report
-`data/reports/harvest/20261008T090218.223644Z.json` counts 6,229 reused,
+`data/pxweb_v1/reports/harvest.json` (latest status, overwritten by the next run) counts 6,229 reused,
 17 updated, 24 failed, 590 deferred and zero unfinished. Errors include 22 MCF
 ContentsCode mismatches, two Energimyndigheten HTTP 400 responses and one
 Jordbruksverket navigation failure. These remain source investigations, not
@@ -100,8 +101,8 @@ dataset counts is full acceptance.
 ## First-change verification
 
 Local conversion reduced 13,694 per-dataset JSON files to 54 JSONL collections:
-27 active metadata files containing 6,834 documents and 27 listing-state files
-containing 6,860 records. There were no inactive documents. Canonical content
+27 metadata files containing 6,834 documents and 27 listing-state files
+containing 6,860 records. Canonical content
 hashes before/after conversion were identical (UTF-8, sorted object keys and task
 IDs, compact JSON; each task ID precedes its document in the hash input):
 
@@ -111,7 +112,7 @@ IDs, compact JSON; each task ID precedes its document in the hash input):
 | Active metadata | `36579d66df3918af3609276f89903c85b22441cf2b9f3df5866a1a60a1cc92ab` |
 
 All 131 deterministic tests passed, including local HTTP/browser fixtures,
-legacy checkpoint/artifact migration, retirement/reappearance, failed-refresh
+legacy checkpoint/artifact migration, confirmed-removal deletion, failed-refresh
 retention, stable repeated JSONL and failure isolation. Ruff lint and format
 checks passed. A bounded live check for Medlingsinstitutet's Swedish
 `Loner_efter_bransch_arsdata.px` passed category and publication validation with

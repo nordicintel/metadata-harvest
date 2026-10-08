@@ -40,9 +40,13 @@ not a claim of full external JSON Schema or StatDCAT-AP validation.
 
 ## Files and migration
 
-`data/metadata/active/<provider>__<language>__<digest>.jsonl` holds one line per
-latest successful active dataset. Inactive documents use the corresponding
-`metadata/inactive/` collection. Listing records use `table-records/`. A digest
+`data/<adapter>/metadata/<provider>__<language>__<digest>.jsonl` holds one line per
+latest source-available dataset. PXWeb v1 uses `data/pxweb_v1/`. Each adapter owns
+its separate `table-records/`, `reports/refresh.json`, `reports/harvest.json` and
+unfinished `work/current.json`. Confirmed-absent datasets are deleted without an
+archive. Reports are overwritten; the checkpoint is removed on completion.
+A failed request or incomplete listing does not by itself prove source removal.
+A digest
 prevents case-insensitive filename collisions; quoted identifiers prevent path
 traversal. Lines are sorted by stable dataset task ID, object keys are sorted,
 UTF-8 is retained and each line ends in LF. Identical content is not rewritten.
@@ -55,15 +59,15 @@ worker artifacts be consumed during migration. New workers emit grouped JSONL.
 from metadata_harvest.storage import JsonlStore, migrate_storage
 
 # Explicit local migration, no provider traffic. Verifies every document.
-counts = migrate_storage("data")
-documents = JsonlStore("data/metadata/active").records.values()
+counts = migrate_storage("data/pxweb_v1")
+documents = JsonlStore("data/pxweb_v1/metadata").records.values()
 ```
 
 Migration reads legacy JSON, stages and verifies JSONL before removing old files,
 rejects conflicting duplicate identities and verifies round-trip equality.
 Collectors also read the legacy layout and write only grouped output. Empty
-collections are removed after replacement verification. Git history retains the
-previous layout; there is no application snapshot store.
+collections are removed after replacement verification. No metadata versions or
+source-removed records are kept in the current output tree.
 
 Atomicity is per collection file. Only a completed collector's Git commit
 publishes the full state. If a collector crashes during multi-file replacement,

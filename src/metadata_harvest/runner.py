@@ -71,7 +71,7 @@ def main():
             "continue",
         ],
     )
-    parser.add_argument("--data", type=Path, default=Path("data"))
+    parser.add_argument("--data", type=Path, default=Path("data/pxweb_v1"))
     parser.add_argument("--providers", type=Path, default=Path("providers.json"))
     parser.add_argument("--provider")
     parser.add_argument("--run-id")

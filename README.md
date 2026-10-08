@@ -138,11 +138,12 @@ provider. Start it manually from GitHub Actions. Set `HARVEST_ENABLED=false` in
 repository Actions variables to pause automatic runs; `HARVEST_PARALLEL_PROVIDERS`
 controls parallelism (default 19).
 
-The workflow commits grouped table records, active/inactive metadata, permanent
-refresh and harvest reports, and its resumable work list under `data/` on `main`.
-Dataset identity is provider + dataset code + language; `paths` retains every
-location. Failed tables do not interrupt other work. Retirement requires confirmed
-absence, and completed metadata is replaced only after a successful rebuild.
+The workflow publishes one metadata JSONL per provider/language under
+`data/pxweb_v1/metadata/`. Each adapter has its own output directory.
+Confirmed source removals delete metadata and listing state; there is no inactive
+archive or version store. Failed or incomplete discovery is reported and does not
+count as confirmation of removal. Current status reports overwrite their previous
+contents, and unfinished-work checkpoints are deleted once processing completes.
 
 See [harvesting.md](docs/harvesting.md) for file layout, report fields, scheduling,
 manual runs, continuation and recovery.

@@ -136,15 +136,10 @@ def collect_refresh(data, providers, results, run_id):
         )
     grouped = {identity(row): row for row in group_records(fresh)}
     listings = JsonlStore(data / "table-records")
-    active = JsonlStore(data / "metadata/active")
-    inactive = JsonlStore(data / "metadata/inactive")
+    active = JsonlStore(data / "metadata")
     previous = {identity(row): row for row in listings.records.values()}
     previous_names = set(listings.records)
     known = dict(active.records)
-    returning_names = {filename(row) for row in grouped.values()}
-    known.update(
-        {name: doc for name, doc in inactive.records.items() if name in returning_names}
-    )
     for name, document in known.items():
         if name not in previous_names:
             saved = document.get("extension", {}).get("metadata_harvest", {})
@@ -152,7 +147,7 @@ def collect_refresh(data, providers, results, run_id):
                 raise ValueError(f"Saved metadata identity mismatch: {name}")
             previous.setdefault(identity(saved), saved)
     tasks, verified = [], []
-    counts = dict(reused=0, retired=0, reactivated=0, deferred=0)
+    counts = dict(reused=0, removed=0, deferred=0)
 
     def protected(key, place):
         scope = scopes.get((key[0], key[2], place["database_id"]))
@@ -161,8 +156,6 @@ def collect_refresh(data, providers, results, run_id):
     for key in sorted(set(previous) | set(grouped)):
         old, new = previous.get(key), grouped.get(key)
         name = filename(new or old)
-        if name in active.records and name in inactive.records:
-            raise ValueError(f"Dataset exists in both active and inactive: {name}")
         if new is None:
             places = old.get("paths", [old])
             absent = all(
@@ -173,15 +166,12 @@ def collect_refresh(data, providers, results, run_id):
             )
             if absent:
                 if name in active.records:
-                    inactive.records[name] = active.records.pop(name)
-                    counts["retired"] += 1
+                    del active.records[name]
+                    counts["removed"] += 1
                 listings.records.pop(name, None)
             else:
                 counts["deferred"] += 1
             continue
-        if name in inactive.records:
-            active.records[name] = inactive.records.pop(name)
-            counts["reactivated"] += 1
         if old:
             # Keep locations from failed scopes, but don't claim them as fresh.
             retained = [
@@ -267,11 +257,10 @@ def collect_refresh(data, providers, results, run_id):
             for key, value in sorted(scopes.items())
         ],
     }
-    refresh_name = f"{run_id}_{len(verified)}.json"
+    refresh_name = "refresh.json"
     listings.save()
-    inactive.save()
     active.save()
-    write(data / "reports/refresh" / refresh_name, report)
+    write(data / "reports" / refresh_name, report)
     state = {
         "run_id": run_id,
         "stage": "metadata",
@@ -355,7 +344,7 @@ def collect_metadata(data, result_paths, run_id, wave):
     if (state["run_id"], state["wave"]) != (run_id, wave):
         raise ValueError("Stale metadata collector")
     listings = JsonlStore(data / "table-records")
-    active = JsonlStore(data / "metadata/active")
+    active = JsonlStore(data / "metadata")
     tasks = {task["filename"]: task for task in state["tasks"]}
     seen, providers = set(), set()
     progress = 0
@@ -443,8 +432,11 @@ def collect_metadata(data, result_paths, run_id, wave):
     if not pending:
         report["finished_at"] = report["updated_at"]
     active.save()
-    write(data / "reports/harvest" / f"{run_id}.json", report)
-    write(data / "work/current.json", state)
+    write(data / "reports/harvest.json", report)
+    if pending:
+        write(data / "work/current.json", state)
+    else:
+        (data / "work/current.json").unlink(missing_ok=True)
     return {
         "continue": bool(pending) and state["stage"] != "interrupted",
         "status": status,

@@ -234,7 +234,7 @@ class JsonlStore:
 def migrate_storage(data: str | Path) -> dict[str, int]:
     """Losslessly compact existing corpus files without contacting providers."""
     counts = {}
-    for folder in ("table-records", "metadata/active", "metadata/inactive"):
+    for folder in ("table-records", "metadata"):
         store = JsonlStore(Path(data) / folder)
         original = store.records
         store.save()
