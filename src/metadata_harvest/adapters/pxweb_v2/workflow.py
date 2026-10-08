@@ -49,8 +49,8 @@ def manifest(root: Path) -> dict:
 
 def load_stores(root: Path) -> tuple[JsonlStore, JsonlStore, JsonlStore]:
     return (
-        JsonlStore(root / "metadata"),
-        JsonlStore(root / "codelists", identify=code_identity),
+        JsonlStore(root / "metadata", compressed=True),
+        JsonlStore(root / "codelists", identify=code_identity, compressed=True),
         JsonlStore(root / "table-records"),
     )
 
@@ -81,19 +81,6 @@ def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
     destination = output / buffer
     if destination.exists():
         shutil.rmtree(destination)
-    for name, doc in metadata.records.items():
-        language = doc["extension"]["metadata_harvest"]["language"]
-        if any(
-            code_key(code, language) in state["removed_codelists"]
-            for code in codelist_ids(doc)
-        ):
-            if name not in state["tasks"]:
-                state["counts"]["reused"] -= 1
-                state["tasks"][name] = {"kind": "updated"}
-            state["tasks"][name].update(
-                status="failed",
-                error="A referenced codelist is confirmed unavailable at the source",
-            )
     _prune_codes(metadata, codes)
     for store in (metadata, codes, listings):
         store.directory = destination / store.directory.name
@@ -107,6 +94,19 @@ def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
         "unfinished": pending,
     }
     errors = list(state["discovery_errors"])
+    referenced = {
+        code_key(code, doc["extension"]["metadata_harvest"]["language"])
+        for doc in metadata.records.values()
+        for code in codelist_ids(doc)
+    }
+    code_errors = {
+        key: error for key, error in state["code_errors"].items() if key in referenced
+    }
+    counts["codelists_failed"] = len(code_errors)
+    errors.extend(
+        {"codelist_key": key, "stage": "codelist", "error": error}
+        for key, error in sorted(code_errors.items())
+    )
     for name, task in state["tasks"].items():
         if task["status"] == "success":
             counts[task["kind"]] += 1
@@ -217,6 +217,11 @@ async def run(
             if previous_report.exists()
             else set()
         )
+        failed_codes = (
+            {e.get("codelist_key") for e in read(previous_report)["errors"]}
+            if previous_report.exists()
+            else set()
+        )
         state = {
             "run_id": uuid4().hex,
             "wave": 1,
@@ -268,24 +273,33 @@ async def run(
                 listings.records[name] = row
                 saved = metadata.records.get(name)
                 reusable = False
+                needs_codes = False
                 if saved is not None and not full and name not in failed:
                     try:
                         validate_metadata(saved, row)
                         reusable = saved["extension"]["metadata_harvest"] == row
-                        for code in codelist_ids(saved):
-                            validate_codelist(
-                                codes.records[code_key(code, language)]["codelist"],
-                                code,
-                                language,
-                            )
                     except (ValueError, KeyError, TypeError):
                         reusable = False
                 if reusable:
+                    for code in codelist_ids(saved):
+                        key = code_key(code, language)
+                        try:
+                            validate_codelist(
+                                codes.records[key]["codelist"], code, language
+                            )
+                            needs_codes |= key in failed_codes
+                        except (ValueError, KeyError, TypeError):
+                            needs_codes = True
+                if reusable and not needs_codes:
                     state["counts"]["reused"] += 1
                 else:
                     state["tasks"][name] = {
                         "status": "pending",
-                        "kind": "updated" if saved is not None else "created",
+                        "kind": "reused"
+                        if reusable
+                        else "updated"
+                        if saved is not None
+                        else "created",
                     }
     completed = 0
     last_save = time.monotonic()
@@ -297,11 +311,18 @@ async def run(
         row = listings.records[name]
         language = row["language"]
         try:
-            document = await fetch_metadata(row, client=client)
+            document = (
+                metadata.records[name]
+                if task["kind"] == "reused"
+                else await fetch_metadata(row, client=client)
+            )
+            metadata.records[name] = document
+            listings.records[name] = deepcopy(document["extension"]["metadata_harvest"])
+            task["status"] = "success"
             for code in sorted(codelist_ids(document)):
                 key = code_key(code, language)
                 if key in state["code_errors"]:
-                    raise ValueError(state["code_errors"][key])
+                    continue
                 if key not in state["refreshed_codes"] or key not in codes.records:
                     try:
                         payload = await fetch_codelist(code, language, client=client)
@@ -322,7 +343,7 @@ async def run(
                         state["code_errors"][key] = (
                             f"Codelist {code}/{language}: {error}"
                         )
-                        raise
+                        continue
                     codes.records[key] = {
                         "provider_code": "scb",
                         "language": language,
@@ -330,9 +351,6 @@ async def run(
                     }
                     state["refreshed_codes"].append(key)
                     state["counts"]["codelists_fetched"] += 1
-            metadata.records[name] = document
-            listings.records[name] = deepcopy(document["extension"]["metadata_harvest"])
-            task["status"] = "success"
         except Exception as error:
             # A 404 during a catalogue race is confirmed against the table endpoint.
             if (
@@ -456,9 +474,15 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
         for doc in metadata.records.values()
         for code in codelist_ids(doc)
     }
-    if set(codes.records) - referenced or referenced - set(codes.records) - set(
-        result["removed_codelists"]
+    code_errors = {
+        e["codelist_key"] for e in result["errors"] if e["stage"] == "codelist"
+    }
+    if (
+        len(code_errors) != result["counts"]["codelists_failed"]
+        or code_errors - referenced
     ):
+        raise ValueError("Codelist errors do not match referenced identities")
+    if set(codes.records) - referenced or referenced - set(codes.records) - code_errors:
         raise ValueError("Unresolved or unreferenced codelists in candidate")
 
 
@@ -483,7 +507,11 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
         allowed = (
             len(path.parts) == 2
             and path.parts[0] in {"metadata", "codelists", "table-records"}
-            and path.suffix == ".jsonl"
+            and (
+                path.name.endswith(".jsonl.gz")
+                if path.parts[0] != "table-records"
+                else path.suffix == ".jsonl"
+            )
         ) or relative in {
             "reports/refresh.json",
             "reports/harvest.json",
@@ -511,8 +539,11 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
             if previous.records.get(name) != doc:
                 raise ValueError("Metadata does not match accepted listing")
         for code in codelist_ids(doc):
+            key = code_key(code, saved["language"])
+            if key not in codes.records:
+                continue  # Missing references were checked against explicit codelist errors.
             validate_codelist(
-                codes.records[code_key(code, saved["language"])]["codelist"],
+                codes.records[key]["codelist"],
                 code,
                 saved["language"],
             )
@@ -526,7 +557,11 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
             document["codelist"], document["codelist"]["id"], document["language"]
         )
     for incoming in (metadata, codes, listings):
-        target = JsonlStore(data / incoming.directory.name, identify=incoming.identify)
+        target = JsonlStore(
+            data / incoming.directory.name,
+            identify=incoming.identify,
+            compressed=incoming.compressed,
+        )
         target.records = incoming.records
         target.save()
     for relative in (

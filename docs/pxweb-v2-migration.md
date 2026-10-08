@@ -39,8 +39,9 @@ Before enabling its own manual/scheduled workflow, verify:
 
 - Duplicate IDs, missing pages or changing pagination totals mark discovery
   incomplete and cannot confirm deletion of missing datasets.
-- Failed metadata or required codelists retain the previous complete dataset;
-  retained old codelists must not masquerade as a successfully refreshed dataset.
+- Failed metadata retains the previous accepted table. Failed codelists are
+  separate dependency errors and do not block valid new or updated table metadata;
+  unchanged tables are reused while failed dependencies are retried.
 - `defaultSelection=false`, full categories and discontinued tables are covered.
 - Source update markers and retrieval timestamps have distinct meanings.
 - Repeated unchanged runs preserve JSONL bytes; changing only one language cannot
