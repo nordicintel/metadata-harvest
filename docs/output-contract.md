@@ -7,6 +7,11 @@ of globbing `*.json`. Within each line the existing output fields are preserved.
 
 ## Statistical metadata
 
+PXWeb v2 retains native SCB metadata with a source-specific catalogue record;
+its codelist collections and identity fields are described in the
+[v2 output contract](pxweb-v2.md#output-and-ownership). The v1 mapping below
+remains unchanged.
+
 Identity is `(provider_code, dataset_code, language)` inside
 `extension.metadata_harvest`. Documents have `class: "dataset"`, `version: "2.0"`,
 `label`, `updated`, `id`, `size`, `dimension`, `value: []` and `extension`.

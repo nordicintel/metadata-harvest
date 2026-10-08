@@ -154,23 +154,24 @@ class JsonlStore:
     Git commit; filesystem atomicity is per group, not across the collection.
     """
 
-    def __init__(self, directory: str | Path):
+    def __init__(self, directory: str | Path, *, identify=document_identity):
         self.directory = Path(directory)
+        self.identify = identify
         self.records: dict[str, dict] = {}
         self._legacy: dict[Path, dict] = {}
         for path in sorted(self.directory.glob("*.jsonl")):
             with path.open(encoding="utf-8") as stream:
                 for number, line in enumerate(stream, 1):
                     document = json.loads(line)
-                    name = filename(document_identity(document))
-                    if collection_filename(document) != path.name:
+                    name = filename(self.identify(document))
+                    if collection_filename(self.identify(document)) != path.name:
                         raise ValueError(f"Wrong provider/language in {path}:{number}")
                     if name in self.records:
                         raise ValueError(f"Duplicate dataset in {path}:{number}")
                     self.records[name] = document
         for path in sorted(self.directory.glob("*.json")):
             document = read(path)
-            name = filename(document_identity(document))
+            name = filename(self.identify(document))
             if path.name != name:
                 raise ValueError(f"Legacy dataset filename mismatch: {path.name}")
             if name in self.records and self.records[name] != document:
@@ -182,9 +183,11 @@ class JsonlStore:
         """Write deterministic JSONL; unchanged groups retain their exact bytes."""
         groups: dict[str, list[dict]] = {}
         for name, document in sorted(self.records.items()):
-            if filename(document_identity(document)) != name:
+            if filename(self.identify(document)) != name:
                 raise ValueError(f"Dataset key does not match identity: {name}")
-            groups.setdefault(collection_filename(document), []).append(document)
+            groups.setdefault(collection_filename(self.identify(document)), []).append(
+                document
+            )
         self.directory.mkdir(parents=True, exist_ok=True)
         staged: dict[Path, Path] = {}
         try:

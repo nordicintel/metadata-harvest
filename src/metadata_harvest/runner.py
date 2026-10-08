@@ -7,6 +7,7 @@ import os
 import subprocess
 from pathlib import Path
 
+from metadata_harvest.adapters.pxweb_v2 import workflow as v2_workflow
 from metadata_harvest.storage import read
 from metadata_harvest.workflow import (
     build_provider,
@@ -28,18 +29,22 @@ def outputs(values):
             stream.write("\n".join(lines) + "\n")
 
 
-def publish(message):
-    """Commit data only; replay our commit over unrelated pushes without force."""
+def publish(message, *, data=Path("data/pxweb_v1")):
+    """Commit one adapter only; replay over unrelated pushes without force."""
 
     def git(*args, check=True):
         return subprocess.run(
             ["git", *args], check=check, text=True, capture_output=True
         )
 
+    root = Path(git("rev-parse", "--show-toplevel").stdout.strip()).resolve()
+    relative = Path(data).resolve().relative_to(root).as_posix()
+    if relative not in {"data/pxweb_v1", "data/pxweb_v2"}:
+        raise ValueError("Publication requires a configured adapter data directory")
     staged = git("diff", "--cached", "--name-only", "-z").stdout.split("\0")
-    if any(path and not path.startswith("data/") for path in staged):
+    if any(path and not path.startswith(relative + "/") for path in staged):
         raise RuntimeError("Refusing to publish unrelated staged files")
-    git("add", "--", "data")
+    git("add", "--", relative)
     if git("diff", "--cached", "--quiet", check=False).returncode == 0:
         return
     git("commit", "-m", message)
@@ -69,18 +74,66 @@ def main():
             "collect-metadata",
             "publish",
             "continue",
+            "run",
+            "collect",
         ],
     )
-    parser.add_argument("--data", type=Path, default=Path("data/pxweb_v1"))
-    parser.add_argument("--providers", type=Path, default=Path("providers.json"))
+    parser.add_argument(
+        "--adapter", choices=["pxweb_v1", "pxweb_v2"], default="pxweb_v1"
+    )
+    parser.add_argument("--full", action="store_true")
+    parser.add_argument("--data", type=Path)
+    parser.add_argument("--providers", type=Path)
     parser.add_argument("--provider")
     parser.add_argument("--run-id")
     parser.add_argument("--wave", type=int, default=0)
     parser.add_argument("--artifacts", type=Path, default=Path("output/artifacts"))
-    parser.add_argument("--output", type=Path, default=Path("output/provider"))
+    parser.add_argument("--output", type=Path)
     parser.add_argument("--budget-seconds", type=float, default=19_200)
     args = parser.parse_args()
+    is_v2 = args.adapter == "pxweb_v2"
+    args.data = args.data or Path("data") / args.adapter
+    args.providers = args.providers or Path(
+        "providers.pxweb_v2.json" if is_v2 else "providers.json"
+    )
+    args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
     providers = read(args.providers)
+    if is_v2 and args.command not in {"run", "collect", "publish", "continue"}:
+        parser.error("PXWeb v2 uses run, collect, publish and continue")
+    if args.command in {"run", "collect"}:
+        if not is_v2 or len(providers) != 1:
+            parser.error("run/collect require the SCB-only pxweb_v2 configuration")
+        if args.command == "run":
+            expected = os.environ.get("EXPECTED_RUN_ID")
+            checkpoint = args.data / "work/current.json"
+            if expected and (
+                not checkpoint.exists() or read(checkpoint)["run_id"] != expected
+            ):
+                outputs(
+                    {"skip": "true", "reason": "Continuation was already completed"}
+                )
+                return
+            result = asyncio.run(
+                v2_workflow.run(
+                    providers[0],
+                    args.data,
+                    args.output,
+                    full=args.full,
+                    budget_seconds=args.budget_seconds,
+                )
+            )
+        else:
+            artifact = read(args.output / "result.json")
+            result = v2_workflow.collect(
+                args.data,
+                args.output,
+                args.run_id or artifact["run_id"],
+                args.wave or artifact["wave"],
+            )
+        outputs(
+            {k: result[k] for k in ("run_id", "wave", "status", "continue", "counts")}
+        )
+        return
     if args.command == "prepare":
         plan = prepare(args.data, providers)
         if (
@@ -137,7 +190,10 @@ def main():
                     + "\n"
                 )
     elif args.command == "publish":
-        publish(f"Harvest {args.run_id}: persist verified records and outcomes")
+        publish(
+            f"Harvest {args.adapter} {args.run_id}: persist verified records and outcomes",
+            data=args.data,
+        )
     elif args.command == "continue":
         if not args.run_id:
             parser.error("Continuation requires a run ID")
@@ -146,7 +202,7 @@ def main():
                 "gh",
                 "workflow",
                 "run",
-                "harvest.yml",
+                "harvest-pxweb-v2.yml" if is_v2 else "harvest.yml",
                 "--ref",
                 "main",
                 "-f",

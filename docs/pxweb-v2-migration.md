@@ -1,7 +1,8 @@
 # PXWeb v2 migration assessment
 
-Code inspected on 8 October 2026; this is an implementation assessment, not live
-acceptance of any v2 provider in this repository.
+Reference code inspected on 8 October 2026. The SCB sv/en adapter is now
+implemented here; see [execution, output and verification](pxweb-v2.md).
+This reference assessment does not establish complete live acceptance.
 
 | Implementation | Useful capabilities | Constraints / risks |
 |---|---|---|
@@ -25,9 +26,9 @@ upserted incrementally; final `language_refresh` replaces the desired codelists
 and prunes unseen tables. Its summary distinguishes table/language/codelist counts.
 Successful persistence cannot by itself establish complete publication.
 
-## Next implementation step
+## Implementation scope
 
-Add `adapters/pxweb_v2` with importable selected-provider discovery and metadata
+The SCB implementation adds `adapters/pxweb_v2` with importable discovery and metadata
 retrieval, a separate provider configuration and fixtures covering `/config`,
 every `/tables` page, `/tables/{id}/metadata` and referenced `/codelists/{id}`.
 Preserve multilingual categories and complete codelist payloads. Use the grouped
@@ -47,4 +48,5 @@ Before enabling its own manual/scheduled workflow, verify:
 - Worker output, collector validation and persisted checkpoints survive partial
   failures and continuation; bounded live checks precede a full automated run.
 
-No new v2 schedule has been enabled. No superseded schedule has been disabled.
+The new v2 schedule is gated by `PXWEB_V2_ENABLED=true` until acceptance.
+No superseded schedule has been disabled.

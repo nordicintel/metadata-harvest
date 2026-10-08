@@ -6,6 +6,23 @@ from metadata_harvest.storage import filename, read, write
 from tests.test_workflow import dataset, record
 
 
+def test_jsonl_store_accepts_explicit_codelist_identity(tmp_path):
+    from metadata_harvest.storage import JsonlStore
+
+    def identify(doc):
+        return {
+            "provider_code": "scb",
+            "dataset_code": doc["id"],
+            "language": doc["language"],
+        }
+
+    doc = {"id": "vs_Region", "language": "sv", "values": []}
+    store = JsonlStore(tmp_path, identify=identify)
+    store.records[filename(identify(doc))] = doc
+    store.save()
+    assert list(JsonlStore(tmp_path, identify=identify).records.values()) == [doc]
+
+
 def test_jsonl_store_groups_languages_and_is_stable(tmp_path):
     from metadata_harvest.storage import JsonlStore
 
