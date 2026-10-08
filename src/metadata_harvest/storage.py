@@ -4,7 +4,7 @@ import gzip
 import hashlib
 import json
 import os
-import shutil
+from contextlib import nullcontext
 from copy import deepcopy
 from datetime import UTC, datetime
 from pathlib import Path
@@ -207,36 +207,27 @@ class JsonlStore:
                 path = self.directory / name
                 temporary = self.directory / f".{uuid4().hex}.tmp"
                 staged[path] = temporary
-                with temporary.open("w", encoding="utf-8", newline="\n") as stream:
-                    for document in documents:
-                        stream.write(
-                            json.dumps(
-                                document,
-                                ensure_ascii=False,
-                                separators=(",", ":"),
-                                sort_keys=True,
-                                allow_nan=False,
+                with temporary.open("wb") as raw:
+                    with (
+                        gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0)
+                        if self.compressed
+                        else nullcontext(raw)
+                    ) as stream:
+                        for document in documents:
+                            stream.write(
+                                (
+                                    json.dumps(
+                                        document,
+                                        ensure_ascii=False,
+                                        separators=(",", ":"),
+                                        sort_keys=True,
+                                        allow_nan=False,
+                                    )
+                                    + "\n"
+                                ).encode("utf-8")
                             )
-                            + "\n"
-                        )
-                    stream.flush()
-                    os.fsync(stream.fileno())
-                if self.compressed:
-                    compressed_path = temporary.with_suffix(".gz.tmp")
-                    try:
-                        with (
-                            temporary.open("rb") as source,
-                            compressed_path.open("wb") as target,
-                        ):
-                            with gzip.GzipFile(
-                                filename="", mode="wb", fileobj=target, mtime=0
-                            ) as archive:
-                                shutil.copyfileobj(source, archive)
-                            target.flush()
-                            os.fsync(target.fileno())
-                        compressed_path.replace(temporary)
-                    finally:
-                        compressed_path.unlink(missing_ok=True)
+                    raw.flush()
+                    os.fsync(raw.fileno())
                 opener = gzip.open if self.compressed else open
                 with opener(temporary, "rt", encoding="utf-8") as stream:
                     if [json.loads(line) for line in stream] != documents:
