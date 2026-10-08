@@ -102,6 +102,8 @@ The independent `SCB PXWeb v2 metadata` workflow runs at 06:15 Europe/Stockholm:
 incremental Monday–Saturday, full Sunday. Manual runs expose a `full` boolean.
 Scheduling requires `PXWEB_V2_ENABLED=true`, set only after live acceptance.
 Both adapters share production workflow concurrency; collectors alone publish.
+Pending runs use GitHub's `queue: max` so v1 continuations cannot displace a
+queued v2 run (the default concurrency queue retains only one pending run).
 Artifacts expire after seven days. Collection rejects files reaching GitHub's
 100 MiB limit before publication; it never truncates or silently splits output.
 
