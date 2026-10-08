@@ -33,12 +33,12 @@ async def run(provider, output, *, limit=None):
         "started_at": now(),
         "limited": limit is not None,
         "implementation_sha256": hashlib.sha256(
-            Path("src/metadata_harvest/metadata.py").read_bytes()
+            Path("src/metadata_harvest/adapters/pxweb_v1/metadata.py").read_bytes()
         ).hexdigest(),
         "combinations": [],
     }
     audit = RequestAudit()
-    logger = logging.getLogger("metadata_harvest.metadata")
+    logger = logging.getLogger("metadata_harvest.adapters.pxweb_v1.metadata")
     logger.setLevel(logging.INFO)
     logger.addHandler(audit)
 

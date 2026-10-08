@@ -6,9 +6,9 @@ import pytest
 from playwright.async_api import async_playwright
 
 from metadata_harvest import get_pxweb_tables
-from metadata_harvest.pxweb import _collect_database
+from metadata_harvest.adapters.pxweb_v1.discovery import _collect_database
 from metadata_harvest.runner import publish
-from metadata_harvest.storage import filename, group_records, read, write
+from metadata_harvest.storage import JsonlStore, filename, group_records, read, write
 from metadata_harvest.workflow import (
     build_provider,
     collect_metadata,
@@ -18,6 +18,28 @@ from metadata_harvest.workflow import (
 from tests.test_pxweb import website as website
 
 PROVIDER = {"code": "p", "languages": ["sv"], "database_ids": ["db"], "rate_limit": 0}
+
+
+def test_adapter_discovers_selected_provider_scopes(website):
+    from metadata_harvest.adapters.pxweb_v1.discovery import discover_provider
+
+    base, routes, _ = website
+    routes["/pxweb/sv/db/"] = (
+        200,
+        '<a href="/pxweb/sv/db/-/good.px/">Good</a><time datetime="2026-01-01"></time>',
+        {},
+    )
+    provider = {**PROVIDER, "base_web_url": base + "/pxweb/"}
+
+    async def collect():
+        return [scope async for scope in discover_provider(provider)]
+
+    scopes = asyncio.run(collect())
+    assert len(scopes) == 1
+    assert scopes[0]["complete"] is True
+    assert scopes[0]["language"] == "sv"
+    assert scopes[0]["database_id"] == "db"
+    assert [row["id"] for row in scopes[0]["records"]] == ["good.px"]
 
 
 def record(code="t.px", path="/", date="2026-10-01", database="db"):
@@ -77,11 +99,12 @@ def dataset(row):
 
 def seed(data, row, *, inactive=False):
     grouped = group_records([row])[0]
-    write(data / "table-records" / filename(grouped), grouped)
-    write(
-        data / "metadata" / ("inactive" if inactive else "active") / filename(grouped),
-        dataset(grouped),
-    )
+    listings = JsonlStore(data / "table-records")
+    listings.records[filename(grouped)] = grouped
+    listings.save()
+    metadata = JsonlStore(data / "metadata" / ("inactive" if inactive else "active"))
+    metadata.records[filename(grouped)] = dataset(grouped)
+    metadata.save()
     return grouped
 
 
@@ -105,7 +128,7 @@ def test_refresh_queues_missing_and_changed_and_reuses_unchanged(tmp_path):
     assert state["counts"]["reused"] == 1
     assert {task["kind"] for task in state["tasks"]} == {"created", "updated"}
     assert (
-        read(tmp_path / "metadata/active" / filename(changed))["updated"]
+        JsonlStore(tmp_path / "metadata/active").records[filename(changed)]["updated"]
         == "2026-10-01"
     )
     report = read(tmp_path / "reports/refresh/run_3.json")
@@ -121,23 +144,25 @@ def test_confirmed_absence_retires_and_reappearance_restores(tmp_path):
     row = seed(tmp_path, record())
     state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
     assert state["counts"]["retired"] == 1
-    assert not (tmp_path / "metadata/active" / filename(row)).exists()
-    assert (tmp_path / "metadata/inactive" / filename(row)).exists()
+    assert filename(row) not in JsonlStore(tmp_path / "metadata/active").records
+    assert filename(row) in JsonlStore(tmp_path / "metadata/inactive").records
     state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
     assert state["counts"]["reactivated"] == 1
     assert state["counts"]["reused"] == 1
     assert not state["tasks"]
-    assert not (tmp_path / "metadata/inactive" / filename(row)).exists()
+    assert filename(row) not in JsonlStore(tmp_path / "metadata/inactive").records
 
 
 def test_completed_metadata_without_listing_record_still_reconciles(tmp_path):
     row = seed(tmp_path, record())
-    (tmp_path / "table-records" / filename(row)).unlink()
+    listings = JsonlStore(tmp_path / "table-records")
+    del listings.records[filename(row)]
+    listings.save()
     state = collect_refresh(tmp_path, [PROVIDER], [], "run")
     assert state["counts"]["retired"] == 0
     state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
     assert state["counts"]["retired"] == 1
-    assert (tmp_path / "metadata/inactive" / filename(row)).exists()
+    assert filename(row) in JsonlStore(tmp_path / "metadata/inactive").records
 
 
 def test_reappearing_dataset_keeps_inactive_paths_when_scope_fails(tmp_path):
@@ -150,7 +175,7 @@ def test_reappearing_dataset_keeps_inactive_paths_when_scope_fails(tmp_path):
         "run",
     )
     assert state["counts"]["reactivated"] == 1
-    saved = read(tmp_path / "metadata/active" / filename(old))
+    saved = JsonlStore(tmp_path / "metadata/active").records[filename(old)]
     assert saved["updated"] == old["published"]
     assert len(saved["extension"]["metadata_harvest"]["paths"]) == 2
     assert not state["tasks"]
@@ -164,12 +189,12 @@ def test_missing_job_failed_scope_or_invalid_observed_table_cannot_retire(
     tmp_path, result
 ):
     row = seed(tmp_path, record())
-    original = (tmp_path / "metadata/active" / filename(row)).read_bytes()
+    original = JsonlStore(tmp_path / "metadata/active").records[filename(row)]
     state = collect_refresh(
         tmp_path, [PROVIDER], [] if result is None else [result], "run"
     )
     assert state["counts"]["retired"] == 0
-    assert (tmp_path / "metadata/active" / filename(row)).read_bytes() == original
+    assert JsonlStore(tmp_path / "metadata/active").records[filename(row)] == original
 
 
 def test_successful_row_from_incomplete_scope_is_saved(tmp_path):
@@ -188,7 +213,7 @@ def test_failed_canonical_scope_keeps_newer_primary_and_all_paths(tmp_path):
         [scope([record(path="/archive", date="2020-01-01")], complete=False)],
         "run",
     )
-    saved = read(tmp_path / "table-records" / filename(old))
+    saved = JsonlStore(tmp_path / "table-records").records[filename(old)]
     assert len(saved["paths"]) == 2
     assert saved["published"] == old["published"]
     assert not state["tasks"]
@@ -220,7 +245,10 @@ def test_provider_failures_are_isolated_and_old_metadata_survives(
     final = collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
     assert final["status"] == "completed_with_errors"
     assert final["counts"]["created"] == 1 and final["counts"]["failed"] == 1
-    assert read(tmp_path / "metadata/active" / filename(old))["updated"] == "2026-10-01"
+    assert (
+        JsonlStore(tmp_path / "metadata/active").records[filename(old)]["updated"]
+        == "2026-10-01"
+    )
     next_state = collect_refresh(
         tmp_path, [PROVIDER], [scope([updated, record("good")])], "run"
     )
@@ -246,6 +274,76 @@ def test_deadline_checkpoints_remaining_work_and_resume_skips_refresh(
         "wave": 2,
         "providers": ["p"],
     }
+
+
+def test_legacy_checkpoint_and_artifact_migrate_without_losing_metadata(tmp_path):
+    row = group_records([record()])[0]
+    # A worker and work list created before the deployment are still readable.
+    write(tmp_path / "table-records" / filename(row), row)
+    collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
+    artifact = tmp_path / "artifact"
+    write(artifact / "metadata" / filename(row), dataset(row))
+    write(
+        artifact / "result.json",
+        {
+            "provider_code": "p",
+            "run_id": "run",
+            "wave": 1,
+            "phase": "metadata",
+            "outcomes": [{"filename": filename(row), "status": "success"}],
+        },
+    )
+    result = collect_metadata(tmp_path, [artifact / "result.json"], "run", 1)
+    assert result["status"] == "success"
+    assert JsonlStore(tmp_path / "metadata/active").records[filename(row)] == dataset(
+        row
+    )
+    assert len(list((tmp_path / "metadata/active").glob("*.jsonl"))) == 1
+    assert not list((tmp_path / "metadata/active").glob("*.json"))
+    assert not list((tmp_path / "table-records").glob("*.json"))
+
+
+def test_legacy_reused_metadata_migrates_with_updated_listing_title(tmp_path):
+    row = group_records([record()])[0]
+    write(tmp_path / "table-records" / filename(row), row)
+    write(tmp_path / "metadata/active" / filename(row), dataset(row))
+    current = {**row, "title": "Corrected listing title"}
+    result = collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
+    assert result["counts"]["reused"] == 1
+    assert not result["tasks"]
+    saved = JsonlStore(tmp_path / "metadata/active").records[filename(row)]
+    assert saved["label"] == "Corrected listing title"
+    assert saved["updated"] == row["published"]
+    original = {
+        p.name: p.read_bytes() for p in (tmp_path / "metadata/active").glob("*.jsonl")
+    }
+    collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
+    assert {
+        p.name: p.read_bytes() for p in (tmp_path / "metadata/active").glob("*.jsonl")
+    } == original
+
+
+def test_unserializable_dataset_does_not_poison_later_worker_results(
+    tmp_path, monkeypatch
+):
+    collect_refresh(
+        tmp_path, [PROVIDER], [scope([record("bad"), record("good")])], "run"
+    )
+
+    async def fetch(row, **kwargs):
+        result = dataset(row)
+        if row["id"] == "bad":
+            result["extension"]["invalid"] = float("nan")
+        return result
+
+    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", fetch)
+    artifact = tmp_path / "artifact"
+    result = asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, artifact))
+    assert [outcome["status"] for outcome in result["outcomes"]] == [
+        "failed",
+        "success",
+    ]
+    assert list(JsonlStore(artifact / "metadata").records) == [filename(record("good"))]
 
 
 def test_no_progress_cannot_create_infinite_continuations(tmp_path):
@@ -296,7 +394,9 @@ def test_partial_browser_extraction_preserves_good_rows_and_observed_bad_ids(
     async def no_enrichment(*args):
         pass
 
-    monkeypatch.setattr("metadata_harvest.pxweb._enrich_missing", no_enrichment)
+    monkeypatch.setattr(
+        "metadata_harvest.adapters.pxweb_v1.discovery._enrich_missing", no_enrichment
+    )
 
     async def collect():
         async with async_playwright() as p:
@@ -327,7 +427,9 @@ def test_visible_rows_survive_incomplete_expansion(website, monkeypatch):
     async def stalled(*args):
         raise RuntimeError("Incomplete expansion")
 
-    monkeypatch.setattr("metadata_harvest.pxweb._activate", stalled)
+    monkeypatch.setattr(
+        "metadata_harvest.adapters.pxweb_v1.discovery._activate", stalled
+    )
 
     async def collect():
         async with async_playwright() as p:

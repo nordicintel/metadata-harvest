@@ -23,17 +23,18 @@ same providers while production is harvesting.
 
 | Folder | Contents |
 |---|---|
-| `data/table-records/` | Last valid grouped listing record for each dataset |
-| `data/metadata/active/` | Completed, metadata-only JSON-stat2 datasets |
-| `data/metadata/inactive/` | Completed datasets confirmed absent from refreshed listings |
+| `data/table-records/` | Latest listing records, one JSONL per provider/language |
+| `data/metadata/active/` | Completed metadata, one JSONL per provider/language |
+| `data/metadata/inactive/` | Grouped JSONL retaining confirmed inactive metadata |
 | `data/reports/refresh/` | Permanent compact inventories and refresh errors |
 | `data/reports/harvest/` | Per-run statistics, failures and completion status |
 | `data/work/` | Current work list and continuation checkpoint |
 
-Dataset identity is `(provider_code, dataset_code, language)`. Filenames contain
-escaped identifiers plus an identity checksum, preventing collisions on Windows,
-including identifiers differing only in case. Database/category paths never create
-additional dataset files. `paths` retains each location's database, categories,
+Dataset identity is `(provider_code, dataset_code, language)`. Collection filenames
+contain escaped provider/language identifiers and a checksum,
+preventing collisions on Windows, including identifiers differing only in case.
+Every line is one dataset document. Database/category paths never create extra files.
+`paths` retains each location's database, categories,
 title, URLs and provider timestamp. The most recently updated location supplies
 the primary endpoint; ties use ascending API URL. Timestamp precision is preserved.
 
@@ -50,17 +51,18 @@ the primary endpoint; ties use ascending API URL. Timestamp precision is preserv
 2. **Reconcile.** Missing metadata or a different timestamp queues a build,
    including corrected timestamps that moved backwards. Unchanged metadata is
    reused and its listing identity/paths refreshed. Confirmed missing datasets
-   move to inactive; returning datasets move back to active and rebuild if stale.
+   move to the inactive collection; returning datasets move back to active and rebuild if stale.
    Failed or incomplete scopes cannot retire datasets or erase known paths. An
    unrefreshed primary location cannot be replaced by an older archive listing.
 3. **Build.** Jobs process the work list by provider. One failed table does not
    interrupt its neighbors. The collector validates and saves successful datasets,
-   leaves failed replacements untouched, and commits outcomes and the run report.
+   merges successes into grouped JSONL, leaves failed replacements untouched, and commits outcomes and the run report.
 
 The last successfully written dataset's `updated` value is the processing state.
 There is no separate timestamp advanced before a successful build. New failures
 remain missing; failed updates retain their previous completed files. Both are
-eligible on the next full refresh.
+eligible on the next full refresh. See [the output contract](output-contract.md) for
+JSONL reading and lossless migration of existing per-dataset files.
 
 ## Reports and recovery
 
@@ -70,8 +72,9 @@ or updated, so those counts are not a partition. Status is `running`, `success`,
 `completed_with_errors` or `interrupted`. Error entries include the dataset and
 endpoint where available. Scope failures are linked through the refresh report.
 
-Only collectors push; provider jobs exchange temporary Actions artifacts. Files
-are replaced atomically. Publication rebases over unrelated commits with bounded
+Only collectors push; provider jobs exchange temporary Actions artifacts. Each JSONL collection
+is replaced atomically; the completed collector publishes all groups and state in
+one Git commit. A failed collector must not publish a partial working tree. Publication rebases over unrelated commits with bounded
 retries and never force-pushes. A publishing conflict stops the collector and
 keeps its artifact for inspection instead of overwriting someone else's changes.
 

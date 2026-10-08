@@ -3,13 +3,12 @@
 import asyncio
 import time
 from pathlib import Path
-from urllib.parse import quote, unquote
+from urllib.parse import unquote
 
-from playwright.async_api import async_playwright
-
-from metadata_harvest.metadata import get_pxweb_metadata
-from metadata_harvest.pxweb import _collect_database
+from metadata_harvest.adapters.pxweb_v1.discovery import discover_provider
+from metadata_harvest.adapters.pxweb_v1.metadata import get_pxweb_metadata
 from metadata_harvest.storage import (
+    JsonlStore,
     filename,
     group_records,
     identity,
@@ -62,28 +61,13 @@ async def refresh_provider(provider, run_id, output):
         "scopes": [],
     }
     write(Path(output) / "result.json", result)
-    async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(headless=True)
-        try:
-            for language in provider["languages"]:
-                for database in provider["database_ids"]:
-                    database = unquote(database)
-                    url = (
-                        provider["base_web_url"].rstrip("/")
-                        + "/"
-                        + language
-                        + "/"
-                        + quote(database, safe="")
-                        + "/"
-                    )
-                    scope = await _collect_database(browser, url, language, database)
-                    result["scopes"].append(scope)
-                    write(Path(output) / "result.json", result)
-                    await asyncio.sleep(provider.get("rate_limit", 1))
-        finally:
-            await browser.close()
-            result["finished_at"] = now()
+    try:
+        async for scope in discover_provider(provider):
+            result["scopes"].append(scope)
             write(Path(output) / "result.json", result)
+    finally:
+        result["finished_at"] = now()
+        write(Path(output) / "result.json", result)
     return result
 
 
@@ -151,25 +135,21 @@ def collect_refresh(data, providers, results, run_id):
             for row in scope["records"]
         )
     grouped = {identity(row): row for row in group_records(fresh)}
-    previous = {
-        identity(read(path)): read(path)
-        for path in (data / "table-records").glob("*.json")
-    }
-    # Completed metadata is also an authoritative source of saved identity when
-    # importing an existing corpus or restoring a missing table-record file.
-    previous_names = {filename(row) for row in previous.values()}
-    known_files = list((data / "metadata/active").glob("*.json"))
+    listings = JsonlStore(data / "table-records")
+    active = JsonlStore(data / "metadata/active")
+    inactive = JsonlStore(data / "metadata/inactive")
+    previous = {identity(row): row for row in listings.records.values()}
+    previous_names = set(listings.records)
+    known = dict(active.records)
     returning_names = {filename(row) for row in grouped.values()}
-    known_files.extend(
-        path
-        for path in (data / "metadata/inactive").glob("*.json")
-        if path.name in returning_names
+    known.update(
+        {name: doc for name, doc in inactive.records.items() if name in returning_names}
     )
-    for path in known_files:
-        if path.name not in previous_names:
-            saved = read(path).get("extension", {}).get("metadata_harvest", {})
-            if filename(saved) != path.name:
-                raise ValueError(f"Saved metadata filename mismatch: {path.name}")
+    for name, document in known.items():
+        if name not in previous_names:
+            saved = document.get("extension", {}).get("metadata_harvest", {})
+            if filename(saved) != name:
+                raise ValueError(f"Saved metadata identity mismatch: {name}")
             previous.setdefault(identity(saved), saved)
     tasks, verified = [], []
     counts = dict(reused=0, retired=0, reactivated=0, deferred=0)
@@ -181,11 +161,7 @@ def collect_refresh(data, providers, results, run_id):
     for key in sorted(set(previous) | set(grouped)):
         old, new = previous.get(key), grouped.get(key)
         name = filename(new or old)
-        active, inactive = (
-            data / "metadata/active" / name,
-            data / "metadata/inactive" / name,
-        )
-        if active.exists() and inactive.exists():
+        if name in active.records and name in inactive.records:
             raise ValueError(f"Dataset exists in both active and inactive: {name}")
         if new is None:
             places = old.get("paths", [old])
@@ -196,17 +172,15 @@ def collect_refresh(data, providers, results, run_id):
                 for place in places
             )
             if absent:
-                if active.exists():
-                    inactive.parent.mkdir(parents=True, exist_ok=True)
-                    active.replace(inactive)
+                if name in active.records:
+                    inactive.records[name] = active.records.pop(name)
                     counts["retired"] += 1
-                (data / "table-records" / name).unlink(missing_ok=True)
+                listings.records.pop(name, None)
             else:
                 counts["deferred"] += 1
             continue
-        if inactive.exists():
-            active.parent.mkdir(parents=True, exist_ok=True)
-            inactive.replace(active)
+        if name in inactive.records:
+            active.records[name] = inactive.records.pop(name)
             counts["reactivated"] += 1
         if old:
             # Keep locations from failed scopes, but don't claim them as fresh.
@@ -223,15 +197,15 @@ def collect_refresh(data, providers, results, run_id):
                 counts["deferred"] += 1
                 if timestamp(new["published"]) <= timestamp(old["published"]):
                     new = {**old, "paths": new["paths"]}
-                    write(data / "table-records" / name, new)
-                    if active.exists():
-                        completed = read(active)
+                    listings.records[name] = new
+                    if name in active.records:
+                        completed = active.records[name]
                         if completed.get("updated") == new["published"]:
                             completed = refresh_identity(completed, new)
                             validate_dataset(completed, new)
-                            write(active, completed)
+                            active.records[name] = completed
                     continue
-        write(data / "table-records" / name, new)
+        listings.records[name] = new
         verified.append(
             {
                 "provider_code": key[0],
@@ -241,15 +215,15 @@ def collect_refresh(data, providers, results, run_id):
             }
         )
         existing = None
-        if active.exists():
+        if name in active.records:
             try:
-                existing = read(active)
+                existing = active.records[name]
                 if identity(existing["extension"]["metadata_harvest"]) != key:
                     raise ValueError("Saved metadata identity mismatch")
                 if existing.get("updated") == new["published"]:
                     existing = refresh_identity(existing, new)
                     validate_dataset(existing, new)
-                    write(active, existing)
+                    active.records[name] = existing
                     counts["reused"] += 1
                     continue
             except (ValueError, KeyError, TypeError) as error:
@@ -267,7 +241,7 @@ def collect_refresh(data, providers, results, run_id):
                 "filename": name,
                 "provider_code": key[0],
                 "status": "pending",
-                "kind": "updated" if active.exists() else "created",
+                "kind": "updated" if name in active.records else "created",
             }
         )
     started_at = min(
@@ -294,6 +268,9 @@ def collect_refresh(data, providers, results, run_id):
         ],
     }
     refresh_name = f"{run_id}_{len(verified)}.json"
+    listings.save()
+    inactive.save()
+    active.save()
     write(data / "reports/refresh" / refresh_name, report)
     state = {
         "run_id": run_id,
@@ -326,6 +303,8 @@ async def build_provider(
         "outcomes": [],
     }
     write(output / "result.json", result)
+    listings = JsonlStore(data / "table-records")
+    completed = JsonlStore(output / "metadata")
     deadline = time.monotonic() + budget_seconds
     for task in state["tasks"]:
         if task["status"] != "pending" or task["provider_code"] != provider["code"]:
@@ -334,7 +313,7 @@ async def build_provider(
             break
         outcome = {"filename": task["filename"], "started_at": now()}
         try:
-            record = read(data / "table-records" / task["filename"])
+            record = listings.records[task["filename"]]
             if filename(record) != task["filename"]:
                 raise ValueError("Table-record filename does not match its identity")
             outcome.update(
@@ -347,7 +326,16 @@ async def build_provider(
                     record, provider_code=provider["code"]
                 )
             validate_dataset(dataset, record)
-            write(output / "metadata" / task["filename"], dataset)
+            previous = completed.records.get(task["filename"])
+            completed.records[task["filename"]] = dataset
+            try:
+                completed.save()
+            except Exception:
+                if previous is None:
+                    completed.records.pop(task["filename"])
+                else:
+                    completed.records[task["filename"]] = previous
+                raise
             outcome["status"] = "success"
         except Exception as error:
             outcome.update(status="failed", error=f"{type(error).__name__}: {error}")
@@ -366,6 +354,8 @@ def collect_metadata(data, result_paths, run_id, wave):
     state = read(data / "work/current.json")
     if (state["run_id"], state["wave"]) != (run_id, wave):
         raise ValueError("Stale metadata collector")
+    listings = JsonlStore(data / "table-records")
+    active = JsonlStore(data / "metadata/active")
     tasks = {task["filename"]: task for task in state["tasks"]}
     seen, providers = set(), set()
     progress = 0
@@ -379,6 +369,7 @@ def collect_metadata(data, result_paths, run_id, wave):
         ) or result["provider_code"] in providers:
             raise ValueError("Duplicate or stale metadata artifact")
         providers.add(result["provider_code"])
+        completed = JsonlStore(path.parent / "metadata")
         for outcome in result["outcomes"]:
             name = outcome["filename"]
             task = tasks.get(name)
@@ -393,12 +384,12 @@ def collect_metadata(data, result_paths, run_id, wave):
             if outcome["status"] not in {"success", "failed"}:
                 raise ValueError("Invalid task outcome status")
             if outcome["status"] == "success":
-                record = read(data / "table-records" / name)
+                record = listings.records[name]
                 if filename(record) != name:
                     raise ValueError("Unsafe artifact filename")
-                dataset = read(path.parent / "metadata" / name)
+                dataset = completed.records[name]
                 validate_dataset(dataset, record)
-                write(data / "metadata/active" / name, dataset)
+                active.records[name] = dataset
             task.update(outcome)
             progress += 1
     pending = [task for task in tasks.values() if task["status"] == "pending"]
@@ -451,6 +442,7 @@ def collect_metadata(data, result_paths, run_id, wave):
     }
     if not pending:
         report["finished_at"] = report["updated_at"]
+    active.save()
     write(data / "reports/harvest" / f"{run_id}.json", report)
     write(data / "work/current.json", state)
     return {

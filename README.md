@@ -1,6 +1,9 @@
 # metadata-harvest
 
-Web-authoritative PXWeb table discovery and metadata listings for Python 3.13+.
+API metadata harvesting for Python 3.13+, with the existing PXWeb v1 adapter as
+the first implementation. See the [source inventory and migration plan](docs/consolidation.md),
+[output contract](docs/output-contract.md) and [PXWeb v2 assessment](docs/pxweb-v2-migration.md).
+Published metadata uses one JSONL collection per provider and language.
 
 ```python
 from metadata_harvest import get_pxweb_tables

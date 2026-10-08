@@ -3,12 +3,13 @@
 import hashlib
 import json
 import os
+from copy import deepcopy
 from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import quote
 from uuid import uuid4
 
-from metadata_harvest.metadata import _categories
+from metadata_harvest.adapters.pxweb_v1.metadata import _categories
 
 
 def now():
@@ -128,3 +129,116 @@ def refresh_identity(dataset, record):
     saved.update(record)
     saved["published"] = dataset["updated"]
     return dataset
+
+
+def document_identity(document: dict) -> dict:
+    """Return the identity record from a listing or a completed dataset."""
+    if document.get("class") == "dataset":
+        return document["extension"]["metadata_harvest"]
+    return document
+
+
+def collection_filename(document: dict) -> str:
+    """One collision-safe JSONL filename per provider and language."""
+    provider, _, language = identity(document_identity(document))
+    digest = hashlib.sha256(json.dumps([provider, language]).encode()).hexdigest()[:12]
+    return f"{quote(provider, safe='')[:65]}__{quote(language, safe='')[:65]}__{digest}.jsonl"
+
+
+class JsonlStore:
+    """Latest documents grouped by provider/language, keyed by stable task ID.
+
+    Legacy per-dataset JSON is read for migration and unfinished-run recovery.
+    Save stages every group before replacing files, verifies the written content,
+    and only then removes superseded files. Collectors publish all changes in one
+    Git commit; filesystem atomicity is per group, not across the collection.
+    """
+
+    def __init__(self, directory: str | Path):
+        self.directory = Path(directory)
+        self.records: dict[str, dict] = {}
+        self._legacy: dict[Path, dict] = {}
+        for path in sorted(self.directory.glob("*.jsonl")):
+            with path.open(encoding="utf-8") as stream:
+                for number, line in enumerate(stream, 1):
+                    document = json.loads(line)
+                    name = filename(document_identity(document))
+                    if collection_filename(document) != path.name:
+                        raise ValueError(f"Wrong provider/language in {path}:{number}")
+                    if name in self.records:
+                        raise ValueError(f"Duplicate dataset in {path}:{number}")
+                    self.records[name] = document
+        for path in sorted(self.directory.glob("*.json")):
+            document = read(path)
+            name = filename(document_identity(document))
+            if path.name != name:
+                raise ValueError(f"Legacy dataset filename mismatch: {path.name}")
+            if name in self.records and self.records[name] != document:
+                raise ValueError(f"Conflicting legacy and JSONL dataset: {name}")
+            self.records[name] = document
+            self._legacy[path] = deepcopy(document)
+
+    def save(self) -> None:
+        """Write deterministic JSONL; unchanged groups retain their exact bytes."""
+        groups: dict[str, list[dict]] = {}
+        for name, document in sorted(self.records.items()):
+            if filename(document_identity(document)) != name:
+                raise ValueError(f"Dataset key does not match identity: {name}")
+            groups.setdefault(collection_filename(document), []).append(document)
+        self.directory.mkdir(parents=True, exist_ok=True)
+        staged: dict[Path, Path] = {}
+        try:
+            for name, documents in groups.items():
+                path = self.directory / name
+                temporary = self.directory / f".{uuid4().hex}.tmp"
+                staged[path] = temporary
+                with temporary.open("w", encoding="utf-8", newline="\n") as stream:
+                    for document in documents:
+                        stream.write(
+                            json.dumps(
+                                document,
+                                ensure_ascii=False,
+                                separators=(",", ":"),
+                                sort_keys=True,
+                                allow_nan=False,
+                            )
+                            + "\n"
+                        )
+                    stream.flush()
+                    os.fsync(stream.fileno())
+                with temporary.open(encoding="utf-8") as stream:
+                    if [json.loads(line) for line in stream] != documents:
+                        raise ValueError("JSONL serialization changed document content")
+            # Detect edits to legacy input before replacing or removing anything.
+            for path, original in self._legacy.items():
+                if read(path) != original:
+                    raise ValueError(f"Legacy input changed during migration: {path}")
+            for path, temporary in staged.items():
+                if not path.exists() or path.read_bytes() != temporary.read_bytes():
+                    temporary.replace(path)
+            for name, documents in groups.items():
+                with (self.directory / name).open(encoding="utf-8") as stream:
+                    if [json.loads(line) for line in stream] != documents:
+                        raise ValueError("Written JSONL failed content verification")
+            for path in self._legacy:
+                path.unlink()
+            self._legacy.clear()
+            for path in self.directory.glob("*.jsonl"):
+                if path.name not in groups:
+                    path.unlink()
+        finally:
+            for temporary in staged.values():
+                temporary.unlink(missing_ok=True)
+
+
+def migrate_storage(data: str | Path) -> dict[str, int]:
+    """Losslessly compact existing corpus files without contacting providers."""
+    counts = {}
+    for folder in ("table-records", "metadata/active", "metadata/inactive"):
+        store = JsonlStore(Path(data) / folder)
+        original = store.records
+        store.save()
+        if JsonlStore(store.directory).records != original:
+            raise ValueError(f"Migration verification failed: {folder}")
+        counts[folder] = len(original)
+    return counts

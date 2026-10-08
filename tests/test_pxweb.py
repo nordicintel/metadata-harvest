@@ -11,7 +11,7 @@ import pytest
 from playwright.async_api import async_playwright
 
 from metadata_harvest import get_pxweb_tables
-from metadata_harvest.pxweb import (
+from metadata_harvest.adapters.pxweb_v1.discovery import (
     _context,
     _databases,
     _date,
@@ -418,7 +418,7 @@ def test_pagination(website):
 
 
 def test_stalled_expansion_fails(website, monkeypatch):
-    import metadata_harvest.pxweb as module
+    import metadata_harvest.adapters.pxweb_v1.discovery as module
 
     host, routes, requests = website
     monkeypatch.setattr(module, "_TIMEOUT", 200)
@@ -603,7 +603,7 @@ def test_stateful_expansion_retry_reloads_page(website):
 
 
 def test_ineffective_full_control_falls_back_to_branches(website, monkeypatch):
-    import metadata_harvest.pxweb as module
+    import metadata_harvest.adapters.pxweb_v1.discovery as module
 
     monkeypatch.setattr(module, "_TIMEOUT", 1000)
     host, routes, requests = website
@@ -636,7 +636,7 @@ def test_popup_redirect_cannot_reach_api(website):
 
 
 def test_month_precision_and_listing_date_conventions():
-    from metadata_harvest.pxweb import _numeric_date_format
+    from metadata_harvest.adapters.pxweb_v1.discovery import _numeric_date_format
 
     assert _date("September 2022") == "2022-09"
     assert _numeric_date_format(["22/09/2026", "01/02/2026"]) == "%d/%m/%Y"
@@ -731,7 +731,7 @@ def test_folder_enrichment_distinguishes_repeated_ids_and_encodes_paths(website)
 
 @pytest.mark.parametrize("http_date", [False, True])
 def test_folder_retry_after_and_cache(website, monkeypatch, http_date):
-    import metadata_harvest.pxweb as implementation
+    import metadata_harvest.adapters.pxweb_v1.discovery as implementation
 
     host, routes, requests = website
     routes["/pxweb/sv/db/"] = (200, table(date=""), {})
@@ -766,7 +766,7 @@ def test_folder_retry_after_and_cache(website, monkeypatch, http_date):
 
 
 def test_flat_rate_limit_waits_without_second_request(website, monkeypatch):
-    import metadata_harvest.pxweb as implementation
+    import metadata_harvest.adapters.pxweb_v1.discovery as implementation
 
     host, routes, requests = website
     routes["/pxweb/sv/db/"] = (200, table(date=""), {})
@@ -843,7 +843,7 @@ def test_discovery_skips_unusable_candidates_but_explicit_selection_fails(
 
 
 def test_discovery_server_errors_are_not_skipped(website, monkeypatch):
-    import metadata_harvest.pxweb as implementation
+    import metadata_harvest.adapters.pxweb_v1.discovery as implementation
 
     host, routes, requests = website
     monkeypatch.setattr(implementation, "_ATTEMPTS", 1)

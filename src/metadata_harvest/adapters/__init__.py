@@ -1,0 +1,1 @@
+"""Source-specific metadata adapters."""
