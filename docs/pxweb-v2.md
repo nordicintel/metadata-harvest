@@ -121,13 +121,33 @@ language separation, complete categories, codelist validation, shared references
 incremental/full refresh, confirmed deletion, transient failures, continuation,
 crash-safe batches, stale artifacts, scoped Git publication and unchanged bytes.
 
-On 8 October 2026, bounded live discovery validated 5,278 Swedish and 3,342
-English catalogue records. Live metadata for TAB638 validated all six dimensions
-and all 22 referenced codelists in each language. Complete automated harvesting
-completed on main in [run 37815480019](https://github.com/nordicintel/metadata-harvest/actions/runs/37815480019):
-8,620 tables discovered, 8,537 initially accepted and 83 blocked by codelist
-responses (404/500). That coupling was corrected: valid tables now survive
-codelist failures. Plain metadata measured 145.85 MiB (sv) and 116.25 MiB (en),
-so publication stopped before Git staging. The approved format is now `.jsonl.gz`.
-Final compressed publication and incremental verification remain in progress;
-scheduling stays disabled until acceptance.
+On 8 October 2026, full production discovery and the corrected automated
+[harvest](https://github.com/nordicintel/metadata-harvest/actions/runs/37832796927)
+accounted for **5,278 Swedish and 3,342 English tables**, with zero table failures.
+Every accepted record passed native metadata validation with `value: []`.
+All 2,011 referenced language-specific codelists are accounted for: 1,956 accepted
+(1,057 sv, 899 en) and 55 separately reported upstream failures (21 sv, 34 en;
+13 HTTP 404 responses and 42 HTTP 500 responses). No valid table is rejected
+because a referenced codelist fails.
+
+| Collection | Records | Compressed MiB |
+| --- | ---: | ---: |
+| Swedish metadata | 5,278 | 24.63 |
+| English metadata | 3,342 | 21.05 |
+| Swedish codelists | 1,057 | 3.87 |
+| English codelists | 899 | 2.93 |
+
+The [initial full run](https://github.com/nordicintel/metadata-harvest/actions/runs/37815480019)
+correctly stopped publication because plain metadata exceeded GitHub's 100 MiB
+limit. The approved `.jsonl.gz` conversion verified decompressed SHA-256 against
+the original JSONL; complete collections were then validated and published.
+No source fields or records were removed to reduce file sizes.
+
+The [subsequent incremental run](https://github.com/nordicintel/metadata-harvest/actions/runs/37833319611)
+reused all 8,620 tables with no created, updated or failed tables. All four
+compressed collections remained byte-identical (SHA-256 checked); only the latest
+reports changed. Collection and publication succeeded; the workflow reports
+incomplete harvesting because the same 55 upstream codelist errors remain.
+The full suite passes 170 tests; lint, formatting and package build pass.
+Scheduling remains disabled: the original acceptance gate requires zero unresolved
+errors, and SCB's 55 codelist failures remain visible in the latest harvest report.
