@@ -237,6 +237,7 @@ async def run(
             "discovery_errors": [],
             "refreshed_codes": [],
             "code_errors": {},
+            "retry_codes": sorted(key for key in failed_codes if key),
             "removed_tables": [],
             "removed_codelists": [],
             "no_progress_waves": 0,
@@ -349,6 +350,15 @@ async def run(
                 key = code_key(code, language)
                 if key in state["code_errors"]:
                     continue
+                if task["kind"] == "reused" and key not in state.get("retry_codes", []):
+                    try:
+                        validate_codelist(
+                            codes.records[key]["codelist"], code, language
+                        )
+                    except (KeyError, ValueError, TypeError):
+                        pass
+                    else:
+                        continue
                 if key not in state["refreshed_codes"] or key not in codes.records:
                     try:
                         payload = await fetch_codelist(code, language, client=client)

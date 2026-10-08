@@ -195,6 +195,40 @@ def test_failed_codelist_does_not_block_changed_table_metadata(tmp_path):
     }
 
 
+def test_dependency_retry_reuses_other_valid_codelists(tmp_path):
+    source, root = Source(), tmp_path / "data"
+    original = source.handle
+    broken = True
+
+    def handler(request):
+        if request.url.path.endswith("/codelists/zz_missing"):
+            if broken:
+                return httpx.Response(503)
+            payload = codelist(request.url.params["lang"])
+            payload["id"] = "zz_missing"
+            return httpx.Response(200, json=payload)
+        response = original(request)
+        if request.url.path.endswith("/tables/T1/metadata"):
+            payload = response.json()
+            payload["dimension"]["Region"]["extension"]["codelists"].append(
+                {"id": "zz_missing"}
+            )
+            return httpx.Response(200, json=payload)
+        return response
+
+    source.handle = handler
+    harvest(source, root, tmp_path / "first")
+    broken = False
+    source.requests.clear()
+    result = harvest(source, root, tmp_path / "second")
+    assert result["status"] == "success"
+    assert result["counts"]["codelists_fetched"] == 1
+    assert not any(
+        "/codelists/" in path or path.endswith("/metadata")
+        for path, _ in source.requests
+    )
+
+
 def test_metadata_failure_still_retries_missing_dependency_of_retained_table(tmp_path):
     source, root = Source(), tmp_path / "data"
     source.fail_codes.add("sv")
