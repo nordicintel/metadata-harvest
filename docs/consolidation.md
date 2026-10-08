@@ -120,5 +120,6 @@ checks passed. A bounded live check for Medlingsinstitutet's Swedish
 Independent code review found a mutable legacy-input snapshot bug; a failing
 regression test reproduced it and an independent snapshot fixed it. A separate
 regression also proved that an unserializable worker result cannot prevent later
-valid tables from being saved. Production deployment and automated acceptance of
-the branch remain pending; the existing schedule still uses `main` until merge.
+valid tables from being saved. These local checks do not establish a successful
+scheduled run of the migrated implementation. Scheduled execution uses `main`;
+its automated acceptance must be assessed separately from the local verification.
