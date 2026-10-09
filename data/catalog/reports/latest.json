@@ -1,6 +1,6 @@
 {
   "counts": {
-    "copied": 0,
+    "copied": 5,
     "retained": 0,
     "reused": 89
   },
@@ -11,6 +11,72 @@
   },
   "status": "completed_with_errors",
   "upstream": {
+    "dataanalys": {
+      "latest.json": {
+        "areas": [
+          "GONV",
+          "LRHST",
+          "NPS",
+          "NRAA",
+          "NRTV",
+          "OB",
+          "PS"
+        ],
+        "areas_incomplete": {},
+        "areas_unsupported": {
+          "NPS": "semantic.semantic_VAI_NPS_Trender has none of ['Matt_id', 'MBusinessKey']"
+        },
+        "continue": false,
+        "counts": {
+          "failed": 0,
+          "out_of_scope": 10,
+          "rebuilt": 0,
+          "removed": 0,
+          "restored": 0,
+          "unchanged": 94,
+          "withheld": 0
+        },
+        "errors": [],
+        "links_unresolved": [],
+        "out_of_scope": [
+          "sv/LRHST|G014",
+          "sv/LRHST|G016",
+          "sv/LRHST|G022",
+          "sv/LRHST|G054",
+          "sv/LRHST|PS217",
+          "sv/LRHST|PS25",
+          "sv/PS|EUÄ32",
+          "sv/PS|EUÄ32_1",
+          "sv/PS|G013",
+          "sv/PS|G022"
+        ],
+        "published": {
+          "sv": 94
+        },
+        "requests": 139,
+        "run_id": "c966607b6f4c46f79cb8e54ba11a06c7",
+        "selection": {
+          "areas": null,
+          "indicators": null,
+          "languages": [
+            "sv"
+          ]
+        },
+        "status": "success",
+        "unsupported_datasources": [
+          "MART.nka_quick_fix_indikatorer_overview_basdata",
+          "MART.nka_quick_fix_vai_mart",
+          "MART.vai_cancer_forekomst_femar_total",
+          "MART.vai_cancer_mortalitet_incidens",
+          "MART.vai_cancer_prognos_insjuknande_dödlighet",
+          "MART.vai_cancer_relativ_overlevnad",
+          "MART.Översikt_Cancer",
+          "public.Dashboard_monitoring",
+          "semantic.nka_personal_NKAP01234"
+        ],
+        "withheld": []
+      }
+    },
     "entrysoft": {
       "latest.json": {
         "continue": false,
@@ -101,6 +167,124 @@
           "catalogdiggse"
         ],
         "status": "success"
+      }
+    },
+    "forsakringskassan": {
+      "latest.json": {
+        "continue": false,
+        "counts": {
+          "excluded": 28,
+          "failed": 0,
+          "rebuilt": 0,
+          "removed": 0,
+          "restored": 0,
+          "unchanged": 182,
+          "withheld": 0
+        },
+        "errors": [],
+        "published": {
+          "sv": 182
+        },
+        "requests": 99,
+        "run_id": "b6372bb84f4a4cf9863b1c358768e3f6",
+        "selection": {
+          "full": false,
+          "languages": [
+            "sv"
+          ],
+          "subjects": null
+        },
+        "status": "success",
+        "undeclared_dimensions": {
+          "ase-belopp/ASEAntalMottagareBeloppLanKommun": [
+            "kommun_kod"
+          ],
+          "ase-diagnos/ASEDiagAlder": [
+            "diagnos_egen"
+          ],
+          "ase-diagnos/ASEDiagKon": [
+            "diagnos_egen"
+          ],
+          "ase-mottagare-2002/ASEAntalMottagareTimmarLanKommun": [
+            "kommun_kod"
+          ],
+          "bob-mottagare-belopp-ar/bobmottagarebeloppar": [
+            "kommun_kod"
+          ],
+          "bob-utbet-ar/bobmottagarebelopparUTB": [
+            "kommun_kod"
+          ],
+          "fp-antal-mottagare-nettodagar-belopp-manad/FPAntalDagarBeloppManadLan": [
+            "kommun_kod"
+          ],
+          "fp-antal-mottagare-nettodagar-belopp/FPAntalDagarBeloppLanKommun": [
+            "kommun_kod"
+          ],
+          "mek-barn-belopp/MEKAntalBarnBeloppManadDiag": [
+            "diagnoskod3"
+          ],
+          "mek-mottagare-manad/MekVuxAntalMottBelManadDiagnos": [
+            "diagnoskod3"
+          ],
+          "ohm-ohalsotal/SJPohttal": [
+            "kommun_kod"
+          ],
+          "ohm-sjptal-tvanoll/SJPT2": [
+            "kommun_kod"
+          ],
+          "ohm-sjptal/SJPsjptal": [
+            "kommun_kod"
+          ],
+          "omv-barn-manad/OMVAntalBarnBeloppManadDiag": [
+            "diagnoskod3"
+          ],
+          "sa-bestand-anledning/SAManBestAnskanlAkters": [
+            "kommun_kod"
+          ],
+          "sa-bestand-manad/SAbestandmanadkommun": [
+            "kommun_kod"
+          ],
+          "sjp-antal-mottagare-diagnos/SJPAntalmottagarediagnos": [
+            "diagnos_kod",
+            "diagnosavsnitt_kod"
+          ],
+          "sjp-pagaende-sjukfall-1000-alder-langd/SJPPagSjukfall1000Kommun": [
+            "kommun_kod"
+          ],
+          "sjp-pagaende-sjukfall-diagnos-alder-langd/SJPPagSjukfallKommun": [
+            "kommun_kod"
+          ],
+          "sjp-pagaende-sjukfall-diagnos-f43/SJPPagSjukfallDiagnosF43": [
+            "kommun_kod"
+          ],
+          "sjp-startade-detaljerad-diagnos/SJPstartdiagdetalj": [
+            "diagnos_kod",
+            "diagnosavsnitt_kod",
+            "kap_avs_dia"
+          ],
+          "tfp-ans/TfpAnsVecka": [
+            "kommun_kod"
+          ],
+          "tfp-avlidetbarn-antal-mottagare-belopp/tfpAvlidetbarnAntalDagarBeloppLanKommun": [
+            "kommun_kod"
+          ],
+          "tfp-barn/TFPVabBarnLanKommun": [
+            "kommun_kod"
+          ],
+          "tfp-kontaktdagar-antal-mottagare-belopp/tfpKontaktdagarAntalDagarBeloppLanKommun": [
+            "kommun_kod"
+          ],
+          "tfp-tiodagar-antal-mottagare-belopp/tfpTiodagarAntalDagarBeloppLanKommun": [
+            "kommun_kod"
+          ],
+          "tfp-utb-ers/TfpVabErsUtbLanKommun": [
+            "kommun_kod"
+          ],
+          "tfp-vab-antal-mottagare-belopp/tfpVabAntalDagarBeloppLanKommun": [
+            "kommun_kod"
+          ]
+        },
+        "withheld": []
       }
     },
     "kolada": {
@@ -62530,6 +62714,42 @@
         ]
       }
     },
+    "riksbank": {
+      "latest.json": {
+        "apis": {
+          "mpd": "complete",
+          "swea": "complete",
+          "swestr": "complete"
+        },
+        "continue": false,
+        "counts": {
+          "failed": 0,
+          "rebuilt": 0,
+          "removed": 0,
+          "restored": 0,
+          "unchanged": 3,
+          "withheld": 0
+        },
+        "errors": [],
+        "published": {
+          "en": 42
+        },
+        "requests": 7,
+        "run_id": "0cab535386124fbf9a37f7b5504446a1",
+        "selection": {
+          "languages": [
+            "en"
+          ],
+          "subjects": [
+            "mpd_SEQGDPNAYSA",
+            "swea_group_2",
+            "swestr"
+          ]
+        },
+        "status": "success",
+        "withheld": []
+      }
+    },
     "sdb": {
       "latest.json": {
         "continue": false,
@@ -62553,6 +62773,67 @@
             "en"
           ],
           "subjects": null
+        },
+        "status": "success",
+        "withheld": []
+      }
+    },
+    "smhi_emissions": {
+      "latest.json": {
+        "continue": false,
+        "counts": {
+          "failed": 0,
+          "rebuilt": 0,
+          "removed": 0,
+          "restored": 0,
+          "unchanged": 29,
+          "withheld": 0
+        },
+        "errors": [],
+        "published": {
+          "sv": 29
+        },
+        "run_id": "f709129330ef4f4b9dd182aa15cbd180",
+        "selection": {
+          "languages": [
+            "sv"
+          ],
+          "subjects": null
+        },
+        "status": "success",
+        "submissions": [
+          2026
+        ],
+        "tree_complete": true,
+        "withheld": []
+      }
+    },
+    "tillvaxtverket": {
+      "latest.json": {
+        "continue": false,
+        "counts": {
+          "dependency_failed": 0,
+          "failed": 0,
+          "quarantined": 0,
+          "rebuilt": 0,
+          "relabelled": 0,
+          "removed": 0,
+          "restored": 0,
+          "unchanged": 6,
+          "withheld": 0
+        },
+        "errors": [],
+        "published": {
+          "sv": 6
+        },
+        "quarantined": [],
+        "requests": 18,
+        "run_id": "c94ee3d357394585a10d8eeb7e90e79b",
+        "selection": {
+          "languages": [
+            "sv"
+          ],
+          "products": null
         },
         "status": "success",
         "withheld": []
