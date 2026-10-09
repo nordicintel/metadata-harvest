@@ -13,8 +13,9 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
     assert {name for name, spec in ADAPTERS.items() if spec.available} == {
         "pxweb_v1",
         "pxweb_v2",
+        "kolada",
     }
-    for name in ("sdb", "trafa", "kolada", "rowstore", "uka"):
+    for name in ("sdb", "trafa", "rowstore", "uka"):
         with pytest.raises(NotImplementedError):
             get_adapter(name)
         assert get_adapter(name, require_available=False).preparation

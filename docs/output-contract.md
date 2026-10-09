@@ -45,6 +45,14 @@ with their native ID and full payload, and are never represented as datasets.
 
 ## Current state and failure semantics
 
+Kolada publishes `metadata/kolada__sv.jsonl.gz`, with distinct `municipality/{KPI}`
+and `ou/{KPI}` dataset identities. Its compact `state/current.jsonl.gz` holds native
+reference catalogues, coverage, separate check/acceptance markers and pending work.
+References are retained once; documents expose relevant labels and memberships.
+The initial data was trusted and verified only through a bounded sample. Unchanged
+documents are neither revalidated nor recompressed during incremental refreshes.
+There is no seed command or ongoing dependency on a migration source.
+
 `table-records/` stores current listings, `reports/` latest outcomes, and
 `work/current.json` unfinished work only. Confirmed removal deletes current records
 and unreferenced codelists. Incomplete discovery cannot authorize absence-based deletion.

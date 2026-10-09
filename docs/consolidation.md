@@ -2,7 +2,7 @@
 
 This repository adopts the integration responsibilities in the three reviewed
 repositories, including shared schema ownership and independent observation retrieval.
-Only PXWeb v1 and v2 are implemented here. Catalogue services, HTTP APIs, databases,
+PXWeb v1, PXWeb v2 and Kolada are implemented here. Catalogue services, HTTP APIs, databases,
 websites, file scrapers and BRÅ remain outside this implementation.
 
 ## Responsibility migration
@@ -25,11 +25,11 @@ Imported schema licence/provenance is retained [with the schemas](../src/metadat
 | PXWeb v2 | `scb`, sv/en | This repository baseline `060f310`; SCB production API | Metadata and codelists, common Dataset and standalone v2 retrieval | Complete table acceptance enables schedule; dependency errors remain separate |
 | SDB | `socialstyrelsen`, sv/en with asymmetric coverage | [sdb-adapter `344212d`](https://github.com/nordicintel/sdb-adapter/tree/344212d51a28b848288e2beb90b7a5432bfa225e) | Unavailable placeholder here; metadata/retrieval implemented externally | [Preparation](adapters/sdb.md) |
 | Trafikanalys | `trafa`, sv/en coverage requires verification | [trafa-adapter `936b20e`](https://github.com/nordicintel/trafa-adapter/tree/936b20eadd4ba9e748d6fb00c6ca67a7e414a290) | Unavailable here; metadata/retrieval implemented externally | [HTML discovery boundary](adapters/trafa.md) |
-| Kolada | `kolada`, Swedish source | [kolada-data-scraper `a80bb03`](https://github.com/rubenselander/kolada-data-scraper/tree/a80bb03) | Unavailable here; substantive external scraper | [Metadata independent of observations](adapters/kolada.md) |
+| Kolada | `kolada`, sv; municipality/groups and OU | One-time trusted initialization; no runtime repository dependency | Metadata, targeted incremental refresh and standalone retrieval implemented; live acceptance recorded below | [Adapter guide](adapters/kolada.md) |
 | RowStore | Provider identity unresolved; language source-dependent | [rowstore-adapter `27d6991`](https://github.com/nordicintel/rowstore-adapter/tree/27d6991ba649171c64d548a6cf7ef1f40d853bbf) | Unavailable scaffold; reusable external transport | [Semantics and pagination](adapters/rowstore.md) |
 | UKÄ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | **Implemented externally**, unavailable here | [CSV-export scope decision](adapters/uka.md) |
 
-External implementation is not support in this distribution. All five placeholders
+External implementation is not support in this distribution. All four placeholders
 raise `NotImplementedError`, are excluded from production jobs and have no entry points.
 Their future common output target is the shared Dataset/retrieval contract.
 
@@ -149,3 +149,24 @@ checks passed for `B13`, `B22`, `B34` and `B40` in both languages, including ret
 of a non-first contents category: [evidence](verification/mcf-contents-selection.json).
 The full local suite passed 239 tests; lint, formatting and package build passed.
 Existing running workers retain their checked-out code; this fix does not restart them.
+
+## Kolada delivery — 9 October 2026
+
+Kolada is implemented locally with 6,516 current metadata documents in one 35.6 MiB
+compressed collection. Initial data was imported once as trusted input; no seeding
+feature, external repository dependency, data.eu enrichment or observation store ships.
+Full native reference catalogues are retained once in compact current state.
+
+Only nine seeded documents across six representative KPIs were validated. All nine
+bounded live retrievals passed, including municipality groups, gender and OU data;
+initial upstream timeouts passed on targeted retry. Two six-KPI incremental runs
+completed without errors: first eight reused and one metadata-only update, then nine
+reused and zero updates. Their unchanged metadata bytes were verified identical.
+Neither incremental run fetched KPI observations. This is sample-based acceptance,
+not a claim of fresh live verification or schema validation of every imported document.
+
+The complete local suite passed 265 tests. Lint, formatting, schema-reference checks,
+wheel/sdist build and a plain installation loading all 28 provider retrieval entry
+points passed. [Evidence](verification/kolada.json) contains only selections, counts
+and outcomes, never observations. The independent workflow is configured for daily
+incremental runs; its schedule remains gated until the bounded hosted run passes.

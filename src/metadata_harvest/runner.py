@@ -81,6 +81,8 @@ def main():
     )
     parser.add_argument("--adapter", choices=list(ADAPTERS), default="pxweb_v1")
     parser.add_argument("--full", action="store_true")
+    parser.add_argument("--kpi", nargs="+")
+    parser.add_argument("--scope", choices=("municipality", "ou"))
     parser.add_argument("--data", type=Path)
     parser.add_argument("--providers", type=Path)
     parser.add_argument("--provider")
@@ -96,6 +98,42 @@ def main():
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
     args.providers = args.providers or Path(spec.configuration)
+    if args.adapter == "kolada":
+        from metadata_harvest.adapters.kolada import workflow as kolada_workflow
+
+        if args.full:
+            parser.error("Kolada uses targeted incremental refreshes, not --full")
+        if args.command in {"run", "collect"}:
+            args.output = args.output or Path("output/kolada")
+            if args.command == "run":
+                checkpoint = args.data / "work/current.json"
+                expected = os.environ.get("EXPECTED_RUN_ID")
+                if expected and (
+                    not checkpoint.exists() or read(checkpoint)["run_id"] != expected
+                ):
+                    outputs(
+                        {"skip": "true", "reason": "Continuation already completed"}
+                    )
+                    return
+                result = asyncio.run(
+                    kolada_workflow.run(
+                        read(args.providers)[0],
+                        args.data,
+                        args.output,
+                        kpis=args.kpi,
+                        scope=args.scope,
+                        budget_seconds=args.budget_seconds,
+                    )
+                )
+            else:
+                result = kolada_workflow.collect(args.data, args.output)
+            outputs(
+                {
+                    k: result[k]
+                    for k in ("run_id", "wave", "status", "continue", "counts")
+                }
+            )
+            return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
     providers = read(args.providers)
     if is_v2 and args.command not in {"run", "collect", "publish", "continue"}:

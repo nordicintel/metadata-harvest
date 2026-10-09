@@ -36,9 +36,16 @@ ADAPTERS = {
         "harvest-pxweb-v2.yml",
         ("run", "collect", "publish", "continue"),
     ),
+    "kolada": Adapter(
+        "kolada",
+        True,
+        "providers.kolada.json",
+        "harvest-kolada.yml",
+        ("run", "collect", "publish", "continue"),
+    ),
     **{
         name: Adapter(name, False, preparation=f"docs/adapters/{name}.md")
-        for name in ("sdb", "trafa", "kolada", "rowstore", "uka")
+        for name in ("sdb", "trafa", "rowstore", "uka")
     },
 }
 

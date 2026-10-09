@@ -23,6 +23,9 @@ discovery is retained explicitly because replacing it would change coverage.
   checkpoint paths and outcome classification.
 - `workflow.py` retains v1 reconciliation; v2 has its own orchestration, including
   independent codelist retries; `registry.py` explicitly identifies available adapters.
+- `adapters/kolada/` owns native change probes, targeted scope updates and retrieval.
+  It uses its own current files and Kolada API v3. Its initial trusted documents
+  receive sample-based verification, not repeated corpus validation.
 - `runner.py` preserves existing commands and v1 defaults; Actions collectors are
   the only production writers, sharing the `production-publication` collector
   queue. Adapter harvesting queues are independent.

@@ -19,6 +19,39 @@ def now():
     return datetime.now(UTC).isoformat()
 
 
+def write_jsonl(path, documents):
+    """Atomically serialize trusted records; no schema or corpus verification pass."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{uuid4().hex}.tmp")
+    try:
+        with temporary.open("wb") as raw:
+            with (
+                gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0)
+                if path.suffix == ".gz"
+                else nullcontext(raw)
+            ) as stream:
+                for document in documents:
+                    stream.write(
+                        (
+                            json.dumps(
+                                document,
+                                ensure_ascii=False,
+                                sort_keys=True,
+                                separators=(",", ":"),
+                                allow_nan=False,
+                            )
+                            + "\n"
+                        ).encode("utf-8")
+                    )
+            raw.flush()
+            os.fsync(raw.fileno())
+        if not path.exists() or path.read_bytes() != temporary.read_bytes():
+            temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def identity(record):
     values = (
         record["provider_code"],

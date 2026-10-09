@@ -28,7 +28,11 @@ def check(root: Path):
             Path(n).name for n in archive.getnames() if "/schemas/" in n
         }
     providers = set()
-    for config in ("providers.json", "providers.pxweb_v2.json"):
+    for config in (
+        "providers.json",
+        "providers.pxweb_v2.json",
+        "providers.kolada.json",
+    ):
         providers.update(
             p["code"] for p in json.loads((root / config).read_text(encoding="utf-8"))
         )

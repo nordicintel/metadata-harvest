@@ -11,7 +11,8 @@ metadata history or observation warehouse.
 |---|---|---|
 | [PXWeb v1](docs/pxweb-v1.md) | 26 providers; see [providers.json](providers.json) | Website discovery, complete API metadata, standalone retrieval, resumable daily job |
 | [PXWeb v2](docs/pxweb-v2.md) | SCB production API, `sv` and `en` | API discovery, complete metadata, independent codelists, standalone retrieval, daily incremental / Sunday full job |
-| SDB, Trafikanalys, Kolada, RowStore, UKÄ | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
+| [Kolada](docs/adapters/kolada.md) | `kolada`, Swedish; municipality/groups and OU | Current metadata, targeted incremental refresh, standalone retrieval |
+| SDB, Trafikanalys, RowStore, UKÄ | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
 
 Metadata is one deterministic `.jsonl.gz` per adapter/provider/language under
 `data/<adapter>/metadata/`; codelists have separate grouped collections.
@@ -45,10 +46,12 @@ ship in this one distribution.
 V1 runs daily at 04:15 Europe/Stockholm; SCB at 06:15, incremental Monday–Saturday
 and full Sunday. Adapters harvest concurrently; only publication is serialized.
 [Live counts and individual errors](docs/harvesting.md#inspect-a-running-job) are
-available while workers run. Both workflows support
+available while workers run. All workflows support
 manual execution and unfinished-work continuation. V1 uses `HARVEST_ENABLED`
 and SCB uses `PXWEB_V2_ENABLED` as schedule controls. SCB's gate is complete table
 acceptance; separate upstream codelist errors remain visible and retryable.
+Kolada's incremental schedule is 06:30 Europe/Stockholm, gated by `KOLADA_ENABLED`.
+Its initial trusted data requires no external repository at runtime.
 
 Implementation, converted-corpus verification and production acceptance are
 separate evidence. Consult [consolidation status](docs/consolidation.md) and the

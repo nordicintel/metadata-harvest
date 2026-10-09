@@ -11,7 +11,7 @@ Harvesting interfaces are documented in the adapter guides. Its outputs are the
 
 ## Packaging and discovery
 
-Both implemented adapters share the `metadata-harvest` distribution. A plain install, without extras, provides the
+All implemented adapters share the `metadata-harvest` distribution. A plain install, without extras, provides the
 retrieval module. Its runtime dependencies are `aiohttp` with a broad compatible
 range, the standard library, and only what retrieval cannot avoid. Harvesting-only
 dependencies belong under the `harvest` extra. The retrieval module never imports
