@@ -257,3 +257,13 @@ re-publication of SWESTR". Anonymous access is limited per IP address (see
   `api-version=2022-04-01-preview` data API is internal and may change.
 - **Out of scope.** Holdings and Turnover Statistics APIs, SWEA aggregates and
   cross rates.
+
+## Full local acceptance (9 October 2026)
+
+The complete configured metadata harvest accepted **42 datasets** with zero
+unresolved failures. Every accepted document passed the shared metadata schema
+and contains `value: []`; observations were not saved. See the
+[acceptance evidence](../verification/new-adapters-acceptance.json) for coverage,
+repeat-run scope and collection hashes. This supersedes the earlier sample-only
+coverage limits; hosted execution remains unverified because GitHub Actions
+refused to start jobs due to the account billing/spending limit.

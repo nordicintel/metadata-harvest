@@ -268,3 +268,13 @@ The bounded live check passed for CO2 and NOx metadata and one Stockholm
 observation selection (four requests, no observations saved). Regression coverage
 also rejects non-finite source values instead of emitting invalid JSON numbers.
 Full hosted coverage and publication are separate from this bounded check.
+
+## Full local acceptance (9 October 2026)
+
+The complete configured metadata harvest accepted **29 datasets** with zero
+unresolved failures. Every accepted document passed the shared metadata schema
+and contains `value: []`; observations were not saved. See the
+[acceptance evidence](../verification/new-adapters-acceptance.json) for coverage,
+repeat-run scope and collection hashes. This supersedes the earlier sample-only
+coverage limits; hosted execution remains unverified because GitHub Actions
+refused to start jobs due to the account billing/spending limit.

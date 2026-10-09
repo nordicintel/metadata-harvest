@@ -82,7 +82,10 @@ points and job-outcome rules. All 915 deterministic tests passed, together with
 Ruff, schema-reference, schedule-generation, build and plain-install checks
 (85 retrieval entry points). The [bounded live results](verification/new-adapters-live.json)
 verify metadata and observation retrieval for each provider without saving observations.
-Full harvest coverage is recorded separately from these bounded checks.
+Full local harvesting accepted 353 metadata datasets across these five adapters;
+see [coverage and byte-stability evidence](verification/new-adapters-acceptance.json).
+GitHub Actions checks could not start because account payments or spending limits
+blocked execution; local verification is not presented as hosted acceptance.
 
 The pre-consolidation baseline passed 175 deterministic tests. It contained 6,834 v1
 and 8,620 v2 accepted metadata documents; those documents used the legacy identity

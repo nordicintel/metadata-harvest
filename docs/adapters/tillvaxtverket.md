@@ -294,3 +294,14 @@ The adapter sends one request at a time, at most one per second, and honours
   `GuestNights_Capacity_Revenue_Month`, `GuestNights_Country_Month`) were
   live-probed but were rebuilt only from fixtures. Their first hosted run is their
   first full live rebuild.
+
+## Full local acceptance (9 October 2026)
+
+The complete configured metadata harvest accepted **6 datasets** with zero
+unresolved failures. Every accepted document passed the shared metadata schema
+and contains `value: []`; observations were not saved. The daily-capacity dataset
+required a targeted recovery for the source-suppressed county category. See the
+[acceptance evidence](../verification/new-adapters-acceptance.json) for coverage,
+repeat-run scope and collection hashes. This supersedes the earlier sample-only
+coverage limits; hosted execution remains unverified because GitHub Actions
+refused to start jobs due to the account billing/spending limit.

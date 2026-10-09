@@ -260,3 +260,14 @@ requests at 1.2 s spacing); the adapter keeps one request per second.
 - **XLSX** untested; **no English** texts.
 - **Probe inconclusive.** A probe that returns no rows is a metadata failure of
   that table (its previous document is kept).
+
+## Full local acceptance (9 October 2026)
+
+The complete configured metadata harvest accepted **182 datasets** with zero
+unresolved failures. Every accepted document passed the shared metadata schema
+and contains `value: []`; observations were not saved. The source lists 210 tables;
+28 tables with undeclared dimensions remain explicitly excluded. See the
+[acceptance evidence](../verification/new-adapters-acceptance.json) for coverage,
+repeat-run scope and collection hashes. This supersedes the earlier sample-only
+coverage limits; hosted execution remains unverified because GitHub Actions
+refused to start jobs due to the account billing/spending limit.
