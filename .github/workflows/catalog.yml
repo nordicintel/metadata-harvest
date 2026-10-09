@@ -16,6 +16,8 @@ jobs:
   catalog:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -26,9 +28,11 @@ jobs:
           version: '0.12.7'
           python-version: '3.13'
       - run: uv sync --locked --extra harvest
+      - name: Restore the previous accepted release for failure retention
+        run: uv run python -m metadata_harvest.catalog restore
       - name: Build from accepted files only
         run: uv run python -m metadata_harvest.catalog build
-      - name: Publish catalog and coverage report
+      - name: Publish combined release assets and commit coverage state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

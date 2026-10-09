@@ -56,7 +56,9 @@ ship in this one distribution.
 ## Operations
 
 Accepted adapter results live under `data/<adapter>/`; the shared consumer catalog
-lives under `data/catalog/`, grouped by adapter/provider/language. The catalog reads
+is published as `catalog.jsonl.gz` in GitHub Releases, with reference codes in
+`codelists.jsonl.gz` and coverage/state alongside them. Only catalog state and
+reports are committed under `data/catalog/`. The catalog reads
 committed accepted files only. Constructing it never starts a harvest, refreshes a
 source, or resumes unfinished harvesting.
 

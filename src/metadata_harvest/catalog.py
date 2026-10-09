@@ -5,15 +5,60 @@ No harvesting imports, source requests or workflow dispatch are permitted here.
 
 import argparse
 import gzip
+import hashlib
 import json
 import shutil
 import subprocess
-from pathlib import Path
+from contextlib import ExitStack
+from pathlib import Path, PurePosixPath
+from tempfile import TemporaryDirectory
 
 from metadata_harvest.artifacts import check_collection_sizes, manifest
 from metadata_harvest.processing import content_enrichment, semantic_enrichment
 from metadata_harvest.publication import publish as publish_git
 from metadata_harvest.registry import ADAPTERS
+
+ASSETS = ("catalog.jsonl.gz", "codelists.jsonl.gz")
+CATALOG_FILES = {*ASSETS, "state/current.json", "reports/latest.json"}
+
+
+def _digest(path: Path) -> str:
+    with path.open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def _collection_path(root: Path, name: str) -> Path:
+    parts = PurePosixPath(name).parts
+    if (
+        len(parts) < 3
+        or parts[0] not in ADAPTERS
+        or parts[1] not in {"metadata", "codelists"}
+        or ".." in parts
+        or "\\" in name
+        or not name.endswith(".jsonl.gz")
+    ):
+        raise ValueError(f"Unsafe collection path: {name}")
+    target = (root / name).resolve()
+    if not target.is_relative_to(root.resolve()):
+        raise ValueError(f"Unsafe collection path: {name}")
+    return target
+
+
+def _copy_member(path: Path, target, *, offset: int, size: int, digest: str) -> None:
+    """Copy one accepted compressed range, verifying its exact source bytes."""
+    checksum = hashlib.sha256()
+    with path.open("rb") as source:
+        source.seek(offset)
+        remaining = size
+        while remaining:
+            chunk = source.read(min(remaining, 1024 * 1024))
+            if not chunk:
+                raise ValueError(f"Truncated collection: {path}")
+            checksum.update(chunk)
+            target.write(chunk)
+            remaining -= len(chunk)
+    if checksum.hexdigest() != digest:
+        raise ValueError(f"Collection changed while building: {path}")
 
 
 def read(path: Path, default=None):
@@ -46,13 +91,16 @@ def inputs(data: Path, adapters: list[str]) -> dict:
 
 def _check_gzip(path: Path) -> None:
     # Container integrity only: do not parse or schema-validate trusted datasets.
+    last = b""
     with gzip.open(path, "rb") as stream:
-        while stream.read(1024 * 1024):
-            pass
+        while chunk := stream.read(1024 * 1024):
+            last = chunk[-1:]
+    if last not in (b"", b"\n"):
+        raise ValueError("Accepted JSONL collection must end with a newline")
 
 
 def build(data: Path, output: Path, *, adapters=None) -> dict:
-    """Copy current trusted collections; errors retain previous catalog collections."""
+    """Combine accepted gzip members; failed inputs retain their previous members."""
     data, output = Path(data), Path(output)
     catalog = data / "catalog"
     if (
@@ -76,6 +124,12 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
     catalog_baseline = manifest(catalog)
     previous = read(catalog / "state/current.json", {"accepted": {}})
     accepted = dict(previous["accepted"])
+    # A downloaded release must match committed state before supplying fallback data.
+    for name, digest in previous.get("assets", {}).items():
+        if name not in ASSETS:
+            raise ValueError("Unexpected previous catalog asset")
+        if not (catalog / name).exists() or _digest(catalog / name) != digest:
+            raise ValueError(f"Missing or corrupt previous catalog asset: {name}")
     errors, upstream = [], {}
     counts = {"copied": 0, "reused": 0, "retained": 0}
     output.mkdir(parents=True, exist_ok=True)
@@ -86,33 +140,69 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
         if not target.is_relative_to(output.resolve()):
             raise ValueError("Unsafe candidate path")
         target.unlink(missing_ok=True)
+    (output / "result.json").unlink(missing_ok=True)
+    selected = {}
     for name in sorted(set(accepted) | {k for k in baseline if "/reports/" not in k}):
-        source, target, old = data / name, output / name, catalog / name
+        source = _collection_path(data, name)
+        old = _collection_path(catalog, name)
         try:
             if name not in baseline:
                 raise ValueError(
                     "Missing accepted input collection; absence is not confirmed removal"
                 )
-            if (
-                baseline[name] == accepted.get(name)
-                and old.exists()
-                and catalog_baseline.get(name) == baseline[name]
-            ):
+            if baseline[name] == accepted.get(name):
+                if name not in previous.get("members", {}):
+                    _check_gzip(source)  # Check framing once during legacy migration.
                 counts["reused"] += 1
             else:
                 _check_gzip(source)
                 counts["copied"] += 1
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(source, target)
+            selected[name] = (source, 0, source.stat().st_size, baseline[name])
             accepted[name] = baseline[name]
         except Exception as error:
             errors.append(
                 {"collection": name, "error": f"{type(error).__name__}: {error}"}
             )
-            if old.exists():
-                target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(old, target)
+            if member := previous.get("members", {}).get(name):
+                asset = (
+                    "codelists.jsonl.gz"
+                    if "/codelists/" in name
+                    else "catalog.jsonl.gz"
+                )
+                if member["offset"] < 0 or member["size"] <= 0:
+                    raise ValueError(
+                        f"Invalid previous catalog member: {name}"
+                    ) from error
+                selected[name] = (
+                    catalog / asset,
+                    member["offset"],
+                    member["size"],
+                    accepted[name],
+                )
                 counts["retained"] += 1
+            elif old.exists() and _digest(old) == accepted.get(name):
+                _check_gzip(old)
+                selected[name] = (old, 0, old.stat().st_size, accepted[name])
+                counts["retained"] += 1
+            elif name in accepted:
+                raise ValueError(
+                    f"Missing or corrupt previous collection: {name}"
+                ) from error
+    members = {}
+    with ExitStack() as stack:
+        streams = {
+            name: stack.enter_context((output / name).open("wb")) for name in ASSETS
+        }
+        for name, (source, offset, size, digest) in selected.items():
+            asset = (
+                "codelists.jsonl.gz" if "/codelists/" in name else "catalog.jsonl.gz"
+            )
+            target = streams[asset]
+            members[name] = {"offset": target.tell(), "size": size}
+            _copy_member(source, target, offset=offset, size=size, digest=digest)
+        for stream in streams.values():
+            if stream.tell() == 0:
+                stream.write(gzip.compress(b"", mtime=0))
     for adapter in adapters:
         upstream[adapter] = {}
         if not any(k.startswith(f"{adapter}/metadata/") for k in baseline):
@@ -138,7 +228,7 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
     )
     result = {
         "status": "completed_with_errors" if errors or upstream_errors else "success",
-        "counts": counts,
+        "counts": {"collections": len(selected), "retained": counts["retained"]},
         "errors": errors,
         "upstream": upstream,
         "stages": {
@@ -146,9 +236,22 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
             "semantic_enrichment": "not_configured",
         },
     }
-    write(output / "state/current.json", {"accepted": accepted})
+    assets = {name: _digest(output / name) for name in ASSETS}
+    release_digest = hashlib.sha256(
+        json.dumps([assets, accepted, members, result], sort_keys=True).encode()
+    ).hexdigest()
+    write(
+        output / "state/current.json",
+        {
+            "accepted": accepted,
+            "members": members,
+            "assets": assets,
+            "release": f"catalog-{release_digest[:24]}",
+        },
+    )
     write(output / "reports/latest.json", result)
-    check_collection_sizes(output)
+    check_collection_sizes(output / "state")
+    check_collection_sizes(output / "reports")
     write(
         output / "result.json",
         {
@@ -158,11 +261,11 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
             "candidate": manifest(output),
         },
     )
-    return result
+    return {**result, "build_counts": counts}
 
 
-def promote(data: Path, output: Path) -> dict:
-    """Verify candidate and source fingerprints before replacing catalog files."""
+def verify_candidate(data: Path, output: Path) -> dict:
+    """Check all paths and fingerprints before any catalog mutation."""
     data, output = Path(data), Path(output)
     record = read(output / "result.json")
     if (
@@ -172,6 +275,20 @@ def promote(data: Path, output: Path) -> dict:
         raise ValueError("Stale catalog candidate; rebuild from published files")
     if manifest(output) != record["candidate"]:
         raise ValueError("Candidate integrity mismatch")
+    if set(record["candidate"]) != CATALOG_FILES:
+        raise ValueError("Unexpected catalog candidate files")
+    return record
+
+
+def promote(data: Path, output: Path) -> dict:
+    """Promote assets locally and remove only verified legacy catalog collections."""
+    data, output = Path(data), Path(output)
+    record = verify_candidate(data, output)
+    legacy = [
+        _collection_path(data / "catalog", name)
+        for name in record["catalog_baseline"]
+        if name not in CATALOG_FILES
+    ]
     for name in record["candidate"]:
         target = (data / "catalog" / name).resolve()
         if not target.is_relative_to((data / "catalog").resolve()):
@@ -180,7 +297,142 @@ def promote(data: Path, output: Path) -> dict:
         temporary = target.with_suffix(target.suffix + ".tmp")
         shutil.copyfile(output / name, temporary)
         temporary.replace(target)
+    for path in legacy:
+        path.unlink()
     return read(output / "reports/latest.json")
+
+
+def restore_assets(data: Path) -> None:
+    """Restore the release pinned by committed state, checking both assets first."""
+    catalog = Path(data) / "catalog"
+    state = read(catalog / "state/current.json", {})
+    if not state.get("release"):
+        return  # Initial migration uses existing grouped catalog files.
+    expected = state["assets"]
+    if set(expected) != set(ASSETS):
+        raise ValueError("Unexpected catalog release assets")
+    if all(
+        (catalog / name).exists() and _digest(catalog / name) == digest
+        for name, digest in expected.items()
+    ):
+        return
+    with TemporaryDirectory(prefix=".release-", dir=catalog) as temporary:
+        directory = Path(temporary)
+        subprocess.run(
+            [
+                "gh",
+                "release",
+                "download",
+                state["release"],
+                "--pattern",
+                ASSETS[0],
+                "--pattern",
+                ASSETS[1],
+                "--dir",
+                str(directory),
+            ],
+            check=True,
+        )
+        for name, digest in expected.items():
+            if not (directory / name).exists() or _digest(directory / name) != digest:
+                raise ValueError(f"Downloaded catalog asset checksum mismatch: {name}")
+        for name in expected:
+            (directory / name).replace(catalog / name)
+
+
+def _release(tag: str) -> dict | None:
+    result = subprocess.run(
+        [
+            "gh",
+            "api",
+            f"repos/{{owner}}/{{repo}}/releases/tags/{tag}",
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode:
+        if "(HTTP 404)" in result.stderr:
+            return None
+        raise subprocess.CalledProcessError(
+            result.returncode, result.args, output=result.stdout, stderr=result.stderr
+        )
+    return json.loads(result.stdout)
+
+
+def publish_release(data: Path, output: Path) -> str:
+    """Upload and verify a complete draft before making the release downloadable.
+
+    Content-addressed releases allow interrupted uploads to be retried without
+    overwriting assets in an already published release. Git state is promoted only
+    after this succeeds; its pinned tag remains the recovery source on failure.
+    """
+    data, output = Path(data), Path(output)
+    verify_candidate(data, output)
+    state = read(output / "state/current.json")
+    tag = state["release"]
+    files = [output / name for name in ASSETS] + [
+        output / "state/current.json",
+        output / "reports/latest.json",
+    ]
+    expected = {path.name: "sha256:" + _digest(path) for path in files}
+    release = _release(tag)
+    if release is None:
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+        ).stdout.strip()
+        subprocess.run(
+            [
+                "gh",
+                "release",
+                "create",
+                tag,
+                "--draft",
+                "--target",
+                commit,
+                "--title",
+                "Combined metadata catalog",
+                "--notes",
+                "Dataset metadata: catalog.jsonl.gz. Reference codes: "
+                "codelists.jsonl.gz. Coverage and source failures: latest.json. "
+                "Collection hashes and recovery index: current.json. "
+                "Built offline from committed accepted adapter files.",
+            ],
+            check=True,
+        )
+        release = {"draft": True, "assets": []}
+    if release["draft"]:
+        subprocess.run(
+            [
+                "gh",
+                "release",
+                "upload",
+                tag,
+                *(str(path) for path in files),
+                "--clobber",
+            ],
+            check=True,
+        )
+        release = _release(tag)
+    if (
+        release is None
+        or {asset["name"]: asset.get("digest") for asset in release["assets"]}
+        != expected
+    ):
+        raise ValueError("Release assets do not match the verified catalog candidate")
+    verify_candidate(data, output)
+    if release["draft"]:
+        subprocess.run(
+            [
+                "gh",
+                "release",
+                "edit",
+                tag,
+                "--draft=false",
+                "--latest",
+            ],
+            check=True,
+        )
+    return tag
 
 
 def verify_published(data: Path, adapters: list[str]) -> None:
@@ -227,14 +479,18 @@ def verify_published(data: Path, adapters: list[str]) -> None:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["build", "publish"])
+    parser.add_argument("command", choices=["restore", "build", "publish"])
     parser.add_argument("--data", type=Path, default=Path("data"))
     parser.add_argument("--output", type=Path, default=Path("output/catalog"))
     args = parser.parse_args()
     verify_published(args.data, [k for k, v in ADAPTERS.items() if v.available])
+    if args.command == "restore":
+        restore_assets(args.data)
+        return
     if args.command == "build":
         result = build(args.data, args.output)
     else:
+        publish_release(args.data, args.output)
         result = promote(args.data, args.output)
         record = read(args.output / "result.json")
 

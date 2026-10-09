@@ -32,8 +32,12 @@ def publication_directory(root: Path, data: Path) -> str:
     return relative
 
 
-def check_collection_sizes(root: str | Path, *, limit: int = 100 * 1024 * 1024) -> None:
+def check_collection_sizes(
+    root: str | Path, *, limit: int = 100 * 1024 * 1024, excluded: tuple[str, ...] = ()
+) -> None:
     for path in Path(root).rglob("*"):
+        if path.relative_to(root).as_posix() in excluded:
+            continue
         if path.is_file() and path.stat().st_size >= limit:
             raise ValueError(
                 f"Collection exceeds GitHub's file limit: {path} ({path.stat().st_size} bytes)"
