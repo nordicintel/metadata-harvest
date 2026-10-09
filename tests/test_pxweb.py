@@ -438,7 +438,17 @@ def test_stalled_expansion_fails(website, monkeypatch):
     import metadata_harvest.adapters.pxweb_v1.discovery as module
 
     host, routes, requests = website
-    monkeypatch.setattr(module, "_TIMEOUT", 200)
+    activate = module._activate
+
+    async def short_expansion_timeout(page, selector):
+        # Keep navigation independent of this deliberately stalled DOM update.
+        page.set_default_timeout(200)
+        try:
+            return await activate(page, selector)
+        finally:
+            page.set_default_timeout(module._TIMEOUT)
+
+    monkeypatch.setattr(module, "_activate", short_expansion_timeout)
     monkeypatch.setattr(module, "_ATTEMPTS", 2)
     monkeypatch.setattr(module, "_retry_after", lambda *args: 0)
     routes["/pxweb/sv/db/"] = (
