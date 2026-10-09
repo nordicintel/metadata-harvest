@@ -26,7 +26,8 @@ def split_selection(selection: Mapping[str, Sequence[str]], limit: int):
         )
 
 
-def _fragment(response, selection, dimensions):
+def _fragment(response, selection, dimensions, auxiliary=None):
+    auxiliary = auxiliary or {}
     ids = response["id"]
     axes = {key: category_codes(response["dimension"][key]["category"]) for key in ids}
     fragment = {
@@ -54,7 +55,13 @@ def _fragment(response, selection, dimensions):
             if set(axes[key]) != set(selection[key]):
                 raise ValueError(f"Provider returned different categories for {key}")
         elif len(axes[key]) != 1 or not (
-            (key == "ContentsCode" and axes[key] == ["EliminatedValue"])
+            (
+                key in auxiliary
+                and response["dimension"][key].get("extension", {}).get("elimination")
+                is True
+                and auxiliary[key].get("extension", {}).get("elimination") is True
+                and axes[key] == category_codes(auxiliary[key]["category"])
+            )
             or dimensions.get(key, {})
             .get("extension", {})
             .get("nordicintel", {})
@@ -67,8 +74,8 @@ def _fragment(response, selection, dimensions):
     return fragment, axes
 
 
-def _indexed(values, total):
-    if isinstance(values, str):
+def _indexed(values, total, *, scalar=False):
+    if scalar and isinstance(values, str):
         return {i: values for i in range(total)}
     if isinstance(values, list):
         return dict(enumerate(values))
@@ -137,10 +144,15 @@ async def retrieve_selection(
                 raise ValueError(f"Provider rejected selection: HTTP {response.status}")
             response.raise_for_status()
             payload = await response.json(content_type=None)
-        fragment, axes = _fragment(payload, part, dimensions)
+        source = metadata.get(f"/extension/{adapter}", {})
+        auxiliary = source.get("harvest_metadata", {}).get(
+            "auxiliary_dimensions",
+            source.get("source_record", {}).get("auxiliary_dimensions", {}),
+        )
+        fragment, axes = _fragment(payload, part, dimensions, auxiliary)
         total = math.prod(fragment["size"])
         source_values = _indexed(fragment["value"], total)
-        source_flags = _indexed(fragment.get("status", {}), total)
+        source_flags = _indexed(fragment.get("status", {}), total, scalar=True)
         coordinates = list(product(*(axes[key] for key in fragment["id"])))
         for index in source_values.keys() | source_flags.keys():
             point = dict(zip(fragment["id"], coordinates[index], strict=True))

@@ -62,7 +62,7 @@ report = convert_collections(
 Use a new candidate directory, with no unfinished source checkpoint. Conversion
 validates every document, identities, dimensions, category order/counts and source
 records, checks compressed sizes and proves the source manifest unchanged. A failed
-conversion exposes no candidate. Inspect its `reports/conversion.json` before replacing
+conversion exposes no candidate. Inspect the returned conversion report before replacing
 the corresponding published adapter directory; do not retain parallel legacy and
 canonical collections. Conversion requires no provider traffic and proves mapping
 integrity, not renewed source availability.

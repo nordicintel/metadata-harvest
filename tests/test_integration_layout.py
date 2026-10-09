@@ -34,6 +34,9 @@ def test_conversion_is_staged_and_preserves_sources_and_identity(tmp_path):
     before = {p.name: p.read_bytes() for p in (source / "metadata").iterdir()}
     result = convert_collections(source, target, adapter="pxweb_v1")
     assert result["records"] == 1
+    assert not (
+        target / "reports/conversion.json"
+    ).exists()  # Evidence is returned, not added to production state.
     assert {p.name: p.read_bytes() for p in (source / "metadata").iterdir()} == before
     assert len(list((target / "metadata").glob("*.jsonl.gz"))) == 1
     assert not list((target / "metadata").glob("*.jsonl"))
@@ -68,3 +71,29 @@ def test_refresh_listing_does_not_replace_accepted_metadata_title():
     refresh_identity(doc, {**row, "title": "New catalogue title"})
     assert doc["label"] == "Provider metadata title"
     assert source_record(doc)["title"] == "New catalogue title"
+
+
+def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_title():
+    from metadata_harvest.storage import refresh_identity, validate_dataset
+
+    row = record()
+    doc = dataset(row)
+    doc["label"] = "Accepted source title"
+    moved = {
+        **row,
+        "api_url": "https://example.test/new/[table]",
+        "web_url": "https://example.test/new-page",
+        "category_path": [{"id": "N", "name": "New theme"}],
+        "title": "Listing title",
+    }
+    refresh_identity(doc, moved)
+    shared = doc["extension"]["nordicintel"]
+    assert shared["data_url"] == "https://example.test/new/%5Btable%5D"
+    assert shared["metadata_url"] == shared["data_url"]
+    assert shared["source_url"] == moved["web_url"]
+    assert shared["paths"] == [[{"id": "N", "label": "New theme"}]]
+    assert doc["label"] == "Accepted source title"
+    assert doc["updated"] == row["published"]
+    validate_dataset(doc, moved)
+    refresh_identity(doc, {**moved, "category_path": [], "web_url": ""})
+    assert "paths" not in shared and "source_url" not in shared

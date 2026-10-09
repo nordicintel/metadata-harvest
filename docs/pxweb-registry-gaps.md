@@ -49,7 +49,8 @@ the limited `*-smoke.json` checks, and discovery compatibility reports. Götebor
 metadata count is the distinct union of its bounded run and smoke checks. These
 ignored receipts are working evidence, not a new published history store.
 
-The complete deterministic test suite passes **175 tests**. Ruff lint, formatting
+At the registry-addition commit, the deterministic suite passed **175 tests**;
+[current verification](consolidation.md) tracks the subsequent consolidation. Ruff lint, formatting
 checks and wheel/sdist build pass. Regression tests cover HVD's two displayed
 categories, HVD metadata enrichment through both API lookup paths, Göteborg pacing
 and the configured workflow matrices.

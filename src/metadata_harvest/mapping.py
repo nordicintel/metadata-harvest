@@ -131,6 +131,44 @@ def _retain_optional_source_fields(document, adapter):
     raise ValueError("Too many nonconforming optional source fields")
 
 
+def _url(value):
+    url = urlsplit(value)
+    return urlunsplit(
+        (
+            url.scheme,
+            url.netloc,
+            quote(url.path, safe="/%:@!$&'()*+,;="),
+            quote(url.query, safe="%:@!$&'()*+,;=/?"),
+            quote(url.fragment, safe="%/?"),
+        )
+    )
+
+
+def v1_listing_fields(record):
+    """Canonical fields derived from current listing routes and thematic paths."""
+    shared = {}
+    shared.update(metadata_url=record["api_url"], data_url=record["api_url"])
+    if record.get("web_url"):
+        shared["source_url"] = record["web_url"]
+    paths = []
+    for location in record.get("paths", [record]):
+        path = [
+            {
+                "id": node["id"],
+                "label": node.get("name", node.get("label", node["id"])),
+            }
+            for node in location.get("category_path", [])
+        ]
+        if path and path not in paths:
+            paths.append(path)
+    if paths:
+        shared["paths"] = paths
+    for key in ("data_url", "metadata_url", "source_url"):
+        if key in shared:
+            shared[key] = _url(shared[key])
+    return shared
+
+
 def map_metadata(
     native: dict, record: dict, adapter: str, *, max_cells: int | None = None
 ) -> dict:
@@ -166,22 +204,7 @@ def map_metadata(
         if isinstance(px.get(source_key), bool):
             shared[key] = px[source_key]
     if adapter == "pxweb_v1":
-        shared.update(metadata_url=record["api_url"], data_url=record["api_url"])
-        if record.get("web_url"):
-            shared["source_url"] = record["web_url"]
-        paths = []
-        for location in record.get("paths", [record]):
-            path = [
-                {
-                    "id": node["id"],
-                    "label": node.get("name", node.get("label", node["id"])),
-                }
-                for node in location.get("category_path", [])
-            ]
-            if path and path not in paths:
-                paths.append(path)
-        if paths:
-            shared["paths"] = paths
+        shared.update(v1_listing_fields(record))
     else:
         base = (
             record["base_api_url"].rstrip("/")
@@ -224,16 +247,7 @@ def map_metadata(
         source["max_cells"] = max_cells
     for key in ("source_url", "doc_url", "metadata_url", "data_url"):
         if shared.get(key):
-            url = urlsplit(shared[key])
-            shared[key] = urlunsplit(
-                (
-                    url.scheme,
-                    url.netloc,
-                    quote(url.path, safe="/%:@!$&'()*+,;="),
-                    quote(url.query, safe="%:@!$&'()*+,;=/?"),
-                    quote(url.fragment, safe="%/?"),
-                )
-            )
+            shared[key] = _url(shared[key])
     result["extension"] = {"nordicintel": shared, adapter: source}
     for dimension in result["dimension"].values():
         extras = dimension.pop("extension", {})

@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.parse import quote
 from uuid import uuid4
 
-from metadata_harvest.mapping import source_record
+from metadata_harvest.mapping import source_record, v1_listing_fields
 from metadata_harvest.validation import validate_metadata
 
 
@@ -105,6 +105,13 @@ def validate_dataset(dataset, record):
         or saved.get("published") != record["published"]
     ):
         raise ValueError("Metadata identity or accepted source timestamp mismatch")
+    shared = dataset["extension"]["nordicintel"]
+    expected = v1_listing_fields(record)
+    if any(
+        shared.get(k) != expected.get(k)
+        for k in ("data_url", "metadata_url", "source_url", "paths")
+    ):
+        raise ValueError("Canonical routes or paths disagree with source listing")
     if saved.get("paths") != record.get("paths"):
         raise ValueError("Metadata has lost table locations")
 
@@ -117,6 +124,10 @@ def refresh_identity(dataset, record):
     published = saved["published"]
     saved.update(deepcopy(record))
     saved["published"] = published
+    shared = dataset["extension"]["nordicintel"]
+    for key in ("data_url", "metadata_url", "source_url", "paths"):
+        shared.pop(key, None)
+    shared.update(v1_listing_fields(record))
     return dataset
 
 

@@ -77,8 +77,8 @@ and did not conform to the adopted shared schema. Native-source coverage evidenc
 is not canonical-schema acceptance.
 
 The explicit candidate conversion validates all records, identity and complete
-category order/count preservation before publication. Latest conversion evidence
-is recorded in each adapter's `reports/conversion.json` after conversion is published.
+category order/count preservation before publication. Latest conversion evidence is recorded with the documentation in
+[verification/](verification/pxweb_v1-conversion.json), outside collector-owned state.
 New fixture and local HTTP tests cover contracts, protocol splitting/coordinate
 assembly, lifecycle isolation and packaging. Full production acceptance requires
 complete automated runs and subsequent incremental reuse, with every upstream
@@ -101,7 +101,7 @@ dimension/category order/count and source-record preservation checks: 6,834 v1 a
 8,620 v2. V1 metadata occupies 6.35 MiB compressed across 27 collections; v2 occupies
 46.25 MiB across two, largest 24.96 MiB. No collection was split or truncated.
 
-The complete deterministic suite passes **211 tests**; Ruff lint/format, generated
+The complete deterministic suite passes **218 tests**; Ruff lint/format, generated
 reference checks and package build pass. Wheel and sdist include all three schemas
 and licence; an isolated plain wheel install loads all **27 provider entry points**
 with no HTTPX, Playwright or jsonschema installed or imported.
@@ -109,7 +109,7 @@ with no HTTPX, Playwright or jsonschema installed or imported.
 Bounded live metadata-to-retrieval checks pass for all **26 configured v1 providers**
 and SCB **sv/en**, including HVD routing, MCF singleton ContentsCode and Sundsvall's
 anonymous gateway bootstrap. Summaries contain no observations:
-[v1 evidence](../data/pxweb_v1/reports/retrieval.json),
-[v2 evidence](../data/pxweb_v2/reports/retrieval.json).
+[v1 evidence](verification/pxweb_v1-retrieval.json),
+[v2 evidence](verification/pxweb_v2-retrieval.json).
 These checks do not replace the required full automated run and incremental run;
 renewed production acceptance remains pending at this commit.

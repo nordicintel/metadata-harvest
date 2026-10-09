@@ -8,7 +8,7 @@ from metadata_harvest.artifacts import check_collection_sizes, checkpoint_path, 
 from metadata_harvest.mapping import map_metadata, source_record
 from metadata_harvest.registry import get_adapter
 from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import JsonlStore, write
+from metadata_harvest.storage import JsonlStore
 
 
 def convert_collections(
@@ -62,7 +62,6 @@ def convert_collections(
             "contract": "metadata-harvest",
             "status": "validated_conversion",
         }
-        write(staged / "reports/conversion.json", summary)
         check_collection_sizes(staged)
         if before != manifest(source):
             raise ValueError("Source changed during conversion")

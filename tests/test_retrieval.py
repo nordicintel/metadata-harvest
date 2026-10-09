@@ -14,7 +14,8 @@ from aiohttp import web
 
 @pytest.mark.parametrize("adapter", ["pxweb_v1", "pxweb_v2"])
 @pytest.mark.parametrize(
-    "case", ["split", "sparse", "missing", "server", "wrong_codes", "cancel"]
+    "case",
+    ["split", "sparse", "missing", "server", "wrong_codes", "cancel", "scalar_value"],
 )
 def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
     async def run():
@@ -61,7 +62,7 @@ def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
                     "id": ids,
                     "size": [len(codes[k]) for k in ids],
                     "dimension": {k: {"category": {"index": codes[k]}} for k in ids},
-                    "value": values,
+                    "value": "malformed scalar" if case == "scalar_value" else values,
                     "status": flags,
                 }
             )
@@ -97,7 +98,7 @@ def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
                     task.cancel()
                     with pytest.raises(asyncio.CancelledError):
                         await task
-                elif case in {"missing", "server", "wrong_codes"}:
+                elif case in {"missing", "server", "wrong_codes", "scalar_value"}:
                     expected = (
                         LookupError
                         if case == "missing"
@@ -242,3 +243,38 @@ def test_sundsvall_bootstraps_anonymous_gateway_using_the_callers_session():
             await runner.cleanup()
 
     asyncio.run(run())
+
+
+@pytest.mark.parametrize(
+    "evidence", ["absent", "native_only", "harvested_only", "both"]
+)
+def test_synthetic_axis_requires_native_and_harvested_elimination_evidence(evidence):
+    from metadata_harvest.retrieval import _fragment
+
+    auxiliary = {"category": {"index": ["EliminatedValue"]}}
+    if evidence in {"native_only", "both"}:
+        auxiliary["extension"] = {"elimination": True}
+    response = {
+        "id": ["x", "ContentsCode"],
+        "size": [1, 1],
+        "dimension": {"x": {"category": {"index": ["a"]}}, "ContentsCode": auxiliary},
+        "value": [0],
+    }
+    harvested = (
+        {
+            "ContentsCode": {
+                "category": {"index": ["EliminatedValue"]},
+                "extension": {"elimination": True},
+            }
+        }
+        if evidence in {"harvested_only", "both"}
+        else {}
+    )
+    if evidence == "both":
+        fragment, _ = _fragment(
+            response, {"x": ["a"]}, {}, *([harvested] if harvested else [])
+        )
+        assert fragment["value"] == [0]
+    else:
+        with pytest.raises(ValueError):
+            _fragment(response, {"x": ["a"]}, {}, *([harvested] if harvested else []))
