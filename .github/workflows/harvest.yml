@@ -3,7 +3,9 @@ name: Scheduled harvest
 on:
   # BEGIN GENERATED SCHEDULE
   schedule:
-    - cron: '15 4 * * *'
+    - cron: '15 4 * * 1-6'
+      timezone: Europe/Stockholm
+    - cron: '15 4 * * 0'
       timezone: Europe/Stockholm
   # END GENERATED SCHEDULE
   workflow_dispatch:
