@@ -352,7 +352,28 @@ def _release(tag: str) -> dict | None:
     )
     if result.returncode:
         if "(HTTP 404)" in result.stderr:
-            return None
+            # Drafts may have no Git tag yet and are absent from the tag endpoint.
+            listing = subprocess.run(
+                [
+                    "gh",
+                    "api",
+                    "--paginate",
+                    "--slurp",
+                    "repos/{owner}/{repo}/releases?per_page=100",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            return next(
+                (
+                    release
+                    for page in json.loads(listing.stdout)
+                    for release in page
+                    if release["tag_name"] == tag
+                ),
+                None,
+            )
         raise subprocess.CalledProcessError(
             result.returncode, result.args, output=result.stdout, stderr=result.stderr
         )
@@ -401,17 +422,24 @@ def publish_release(data: Path, output: Path) -> str:
         )
         release = {"draft": True, "assets": []}
     if release["draft"]:
-        subprocess.run(
-            [
-                "gh",
-                "release",
-                "upload",
-                tag,
-                *(str(path) for path in files),
-                "--clobber",
-            ],
-            check=True,
-        )
+        uploaded = {asset["name"]: asset.get("digest") for asset in release["assets"]}
+        pending = [
+            str(path)
+            for path in files
+            if uploaded.get(path.name) != expected[path.name]
+        ]
+        if pending:
+            subprocess.run(
+                [
+                    "gh",
+                    "release",
+                    "upload",
+                    tag,
+                    *pending,
+                    "--clobber",
+                ],
+                check=True,
+            )
         release = _release(tag)
     if (
         release is None

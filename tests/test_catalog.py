@@ -277,6 +277,8 @@ def test_release_upload_is_completed_before_publication_and_supports_retry(
         if args[:3] == ["git", "rev-parse", "HEAD"]:
             return subprocess.CompletedProcess(args, 0, "abc123\n", "")
         if args[:2] == ["gh", "api"]:
+            if "--slurp" in args:
+                return subprocess.CompletedProcess(args, 0, "[[]]", "")
             return subprocess.CompletedProcess(
                 args,
                 0 if remote else 1,
@@ -315,6 +317,29 @@ def test_release_upload_is_completed_before_publication_and_supports_retry(
     before = len([c for c in calls if c[:3] == ["gh", "release", "upload"]])
     catalog.publish_release(data, candidate)
     assert len([c for c in calls if c[:3] == ["gh", "release", "upload"]]) == before
+
+
+def test_draft_release_is_found_when_tag_endpoint_returns_404(monkeypatch):
+    import subprocess
+
+    import metadata_harvest.catalog as catalog
+
+    tag = "catalog-draft"
+    expected = {"id": 1, "tag_name": tag, "draft": True, "assets": []}
+
+    def run(args, **kwargs):
+        if args[-1].endswith("/tags/" + tag):
+            return subprocess.CompletedProcess(args, 1, "", "Not Found (HTTP 404)")
+        assert "--paginate" in args and "--slurp" in args
+        return subprocess.CompletedProcess(
+            args,
+            0,
+            json.dumps([[{"tag_name": "unrelated", "draft": True}], [expected]]),
+            "",
+        )
+
+    monkeypatch.setattr(catalog.subprocess, "run", run)
+    assert catalog._release(tag) == expected
 
 
 def test_release_failure_leaves_catalog_untouched(tmp_path, monkeypatch):
