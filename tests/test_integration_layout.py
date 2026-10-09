@@ -15,8 +15,9 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
         "pxweb_v2",
         "kolada",
         "uka",
+        "sdb",
     }
-    for name in ("sdb", "trafa", "rowstore"):
+    for name in ("trafa", "rowstore"):
         with pytest.raises(NotImplementedError):
             get_adapter(name)
         assert get_adapter(name, require_available=False).preparation

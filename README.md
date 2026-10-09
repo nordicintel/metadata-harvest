@@ -13,7 +13,8 @@ metadata history or observation warehouse.
 | [PXWeb v2](docs/pxweb-v2.md) | SCB production API, `sv` and `en` | API discovery, complete metadata, independent codelists, standalone retrieval, daily incremental / Sunday full job |
 | [Kolada](docs/adapters/kolada.md) | `kolada`, Swedish; municipality/groups and OU | Current metadata, targeted incremental refresh, standalone retrieval |
 | [UKÄ](docs/adapters/uka.md) | `uka`, Swedish; 113 indicators | Current metadata, weekly refresh reusing unchanged indicators, standalone retrieval |
-| SDB, Trafikanalys, RowStore | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
+| [SDB](docs/adapters/sdb.md) | `socialstyrelsen`, Swedish (15 subjects) and English (5) | Current metadata, weekly full rebuild, standalone retrieval |
+| Trafikanalys, RowStore | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
 
 Metadata is one deterministic `.jsonl.gz` per adapter/provider/language under
 `data/<adapter>/metadata/`; codelists have separate grouped collections.

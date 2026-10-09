@@ -1,0 +1,612 @@
+{
+  "_comment": "Trimmed SDB API responses recorded 2026-09-25; English category labels are partly synthetic.",
+  "languages": [
+    {
+      "kod": "sv",
+      "text": "svenska"
+    },
+    {
+      "kod": "en",
+      "text": "engelska"
+    }
+  ],
+  "subjects": {
+    "sv": [
+      {
+        "namn": "amning",
+        "text": "Amning, årsuppgifter"
+      },
+      {
+        "namn": "dodsorsaker",
+        "text": "Dödsorsaker, årsuppgifter"
+      },
+      {
+        "namn": "drgstatistikislutenvard",
+        "text": "DRG-statistik i sluten vård, årsuppgifter"
+      }
+    ],
+    "en": [
+      {
+        "namn": "dodsorsaker",
+        "text": "Cause of Death, annual data"
+      }
+    ]
+  },
+  "variables": {
+    "sv": {
+      "amning": [
+        {
+          "namn": "region",
+          "text": "Län",
+          "info": "<p>Avser hemortslän, dvs. där barnet är folkbokfört.</p>"
+        },
+        {
+          "namn": "alder",
+          "text": "Barnets ålder",
+          "info": ""
+        },
+        {
+          "namn": "matt",
+          "text": "Mått",
+          "info": ""
+        },
+        {
+          "namn": "ar",
+          "text": "Barnets födelseår",
+          "info": ""
+        },
+        {
+          "namn": "variabel",
+          "text": "Variabel",
+          "info": ""
+        }
+      ],
+      "dodsorsaker": [
+        {
+          "namn": "region",
+          "text": "Region",
+          "info": ""
+        },
+        {
+          "namn": "alder",
+          "text": "Ålder",
+          "info": ""
+        },
+        {
+          "namn": "kon",
+          "text": "Kön",
+          "info": ""
+        },
+        {
+          "namn": "matt",
+          "text": "Mått",
+          "info": "<h2>Mått</h2><p><b>Antal döda per 100 000 (dödstal)</b><br />Avser antal döda per 100 000 av medelfolkmängden.</p>"
+        },
+        {
+          "namn": "ar",
+          "text": "År",
+          "info": ""
+        },
+        {
+          "namn": "diagnos",
+          "text": "Diagnos",
+          "info": ""
+        }
+      ],
+      "drgstatistikislutenvard": [
+        {
+          "namn": "matt",
+          "text": "Mått",
+          "info": "<h2>Mått</h2><p><b>Vårdtillfälle</b><br />Vårdtillfälle avgränsas av in- och utskrivning.</p>"
+        },
+        {
+          "namn": "ar",
+          "text": "År",
+          "info": ""
+        },
+        {
+          "namn": "kon",
+          "text": "Kön",
+          "info": ""
+        },
+        {
+          "namn": "grupp",
+          "text": "Grupp",
+          "info": "<h2>Grupper</h2><p>Grupperingslogiken i DRG-systemet börjar med huvuddiagnosen.</p>"
+        },
+        {
+          "namn": "region",
+          "text": "Region",
+          "info": ""
+        }
+      ]
+    },
+    "en": {
+      "dodsorsaker": [
+        {
+          "namn": "region",
+          "text": "Region",
+          "info": ""
+        },
+        {
+          "namn": "alder",
+          "text": "Age",
+          "info": ""
+        },
+        {
+          "namn": "kon",
+          "text": "Sex",
+          "info": ""
+        },
+        {
+          "namn": "matt",
+          "text": "Measure",
+          "info": "<h2>Measure</h2><p><b>Number of deaths /100,000 (mortality rate)</b></p>"
+        },
+        {
+          "namn": "ar",
+          "text": "Year",
+          "info": ""
+        },
+        {
+          "namn": "diagnos",
+          "text": "",
+          "info": ""
+        }
+      ]
+    }
+  },
+  "categories": {
+    "sv": {
+      "amning": {
+        "region": [
+          {
+            "id": 0,
+            "kod": "00",
+            "text": "Riket"
+          },
+          {
+            "id": 1,
+            "kod": "01",
+            "text": "Stockholms län"
+          },
+          {
+            "id": 3,
+            "kod": "03",
+            "text": "Uppsala län"
+          }
+        ],
+        "alder": [
+          {
+            "id": 1,
+            "text": "1 vecka"
+          },
+          {
+            "id": 2,
+            "text": "2 månader"
+          },
+          {
+            "id": 4,
+            "text": "4 månader"
+          }
+        ],
+        "matt": [
+          {
+            "id": 1,
+            "text": "Antal"
+          },
+          {
+            "id": 2,
+            "text": "Procent"
+          }
+        ],
+        "ar": [
+          {
+            "id": 2019,
+            "text": "2019"
+          },
+          {
+            "id": 2020,
+            "text": "2020"
+          },
+          {
+            "id": 2021,
+            "text": "2021"
+          }
+        ],
+        "variabel": [
+          {
+            "id": "E",
+            "text": "Enbart ammade barn",
+            "info": "<p>Barn som har fått enbart bröstmjölk samt vitaminer eller läkemedel (t.ex. D-vitamin). Före år 2004 ingick även så kallade smakportioner.</p>"
+          },
+          {
+            "id": "D",
+            "text": "Delvis ammade barn",
+            "info": "<p>Barn som förutom bröstmjölk även har fått bröstmjölksersättning, välling eller annan kost.</p>"
+          },
+          {
+            "id": "T",
+            "text": "Enbart eller delvis ammade barn",
+            "info": "<p>Barn som fått bröstmjölk helt eller delvis.</p>"
+          }
+        ]
+      },
+      "dodsorsaker": {
+        "region": [
+          {
+            "id": 0,
+            "kod": "00",
+            "text": "Riket"
+          },
+          {
+            "id": 1,
+            "kod": "01",
+            "text": "Stockholms län"
+          },
+          {
+            "id": 3,
+            "kod": "03",
+            "text": "Uppsala län"
+          }
+        ],
+        "alder": [
+          {
+            "id": 1,
+            "text": "0-4"
+          },
+          {
+            "id": 2,
+            "text": "5-9"
+          },
+          {
+            "id": 3,
+            "text": "10-14"
+          }
+        ],
+        "kon": [
+          {
+            "id": 1,
+            "text": "Män"
+          },
+          {
+            "id": 2,
+            "text": "Kvinnor"
+          },
+          {
+            "id": 3,
+            "text": "Båda könen"
+          }
+        ],
+        "matt": [
+          {
+            "id": 1,
+            "text": "Antal döda"
+          },
+          {
+            "id": 2,
+            "text": "Antal döda per 100 000"
+          }
+        ],
+        "ar": [
+          {
+            "id": 2023,
+            "text": "2023"
+          },
+          {
+            "id": 2024,
+            "text": "2024"
+          },
+          {
+            "id": 2025,
+            "text": "2025"
+          }
+        ],
+        "diagnos": [
+          {
+            "id": "99",
+            "kod": "",
+            "text": "Samtliga dödsorsaker",
+            "typ": "",
+            "grupp": "00",
+            "info": ""
+          },
+          {
+            "id": "Alk",
+            "kod": "",
+            "text": "Alkoholrelaterad dödlighet",
+            "typ": "",
+            "grupp": "00",
+            "info": "<p><b>\r\nAlkoholrelaterad dödlighet\r\n</b></p><p>\r\nI detta index ingår alla dödsfall med alkoholdiagnos.\r\n<br />\r\nFöljande ICD-10 koder ingår.</p>"
+          },
+          {
+            "id": "U07",
+            "kod": "U07",
+            "text": "Covid-19 (virus påvisat och virus ej påvisat)",
+            "typ": "",
+            "grupp": "283",
+            "info": ""
+          },
+          {
+            "id": "Spec1",
+            "kod": "",
+            "text": "Läkemedels- och narkotikaförgiftningar",
+            "typ": "G",
+            "grupp": "0",
+            "info": ""
+          },
+          {
+            "id": "Spec1_1",
+            "kod": "X40-X44",
+            "text": "Oavsiktliga läkemedels- och narkotikaförgiftningar",
+            "typ": "",
+            "grupp": "Spec1",
+            "info": ""
+          },
+          {
+            "id": "01",
+            "kod": "A00-B99",
+            "text": "Vissa infektionssjukdomar och parasitsjukdomar",
+            "typ": "G",
+            "grupp": "00",
+            "info": ""
+          },
+          {
+            "id": "0101",
+            "kod": "A00-A09",
+            "text": "Infektionssjukdomar utgående från mag-tarmkanalen",
+            "typ": "G",
+            "grupp": "01",
+            "info": ""
+          },
+          {
+            "id": "A00",
+            "kod": "A00",
+            "text": "Kolera",
+            "typ": "",
+            "grupp": "0101",
+            "info": ""
+          },
+          {
+            "id": "A01",
+            "kod": "A01",
+            "text": "Tyfoidfeber och paratyfoidfeber",
+            "typ": "",
+            "grupp": "0101",
+            "info": ""
+          }
+        ]
+      },
+      "drgstatistikislutenvard": {
+        "matt": [
+          {
+            "id": 1,
+            "text": "Antal vårdtillfällen"
+          },
+          {
+            "id": 3,
+            "text": "Medelvårdtid"
+          }
+        ],
+        "ar": [
+          {
+            "id": 2023,
+            "text": "2023"
+          },
+          {
+            "id": 2024,
+            "text": "2024"
+          }
+        ],
+        "kon": [
+          {
+            "id": 1,
+            "text": "Män"
+          },
+          {
+            "id": 2,
+            "text": "Kvinnor"
+          },
+          {
+            "id": 3,
+            "text": "Båda könen"
+          }
+        ],
+        "grupp": [
+          {
+            "id": "1",
+            "mdckod": "--",
+            "drgkod": "",
+            "mdctext": "Samtliga huvudgrupper (Major Diagnostic Categories = MDC)",
+            "drgtext": ""
+          },
+          {
+            "id": "2",
+            "mdckod": "01",
+            "drgkod": "",
+            "mdctext": "Sjukdomar i nervsystemet",
+            "drgtext": ""
+          },
+          {
+            "id": "3",
+            "mdckod": "01",
+            "drgkod": "A03A",
+            "mdctext": "Sjukdomar i nervsystemet",
+            "drgtext": "Intrakraniell kirurgi för tumör, mycket komplicerat"
+          },
+          {
+            "id": "4",
+            "mdckod": "01",
+            "drgkod": "A03E",
+            "mdctext": "Sjukdomar i nervsystemet",
+            "drgtext": "Intrakraniell kirurgi för tumör, ej komplicerat"
+          }
+        ],
+        "region": [
+          {
+            "id": 1,
+            "lantext": "Riket",
+            "sjukhustext": ""
+          },
+          {
+            "id": 1565,
+            "lantext": "Riket",
+            "sjukhustext": "10009"
+          },
+          {
+            "id": 2,
+            "lantext": "Riket",
+            "sjukhustext": "S:t Görans sjukhus"
+          }
+        ]
+      }
+    },
+    "en": {
+      "dodsorsaker": {
+        "region": [
+          {
+            "id": 0,
+            "kod": "00",
+            "text": "Sweden"
+          },
+          {
+            "id": 1,
+            "kod": "01",
+            "text": "Stockholm County"
+          },
+          {
+            "id": 3,
+            "kod": "03",
+            "text": "Uppsala län"
+          }
+        ],
+        "alder": [
+          {
+            "id": 1,
+            "text": "0-4"
+          },
+          {
+            "id": 2,
+            "text": "5-9"
+          },
+          {
+            "id": 3,
+            "text": "10-14"
+          }
+        ],
+        "kon": [
+          {
+            "id": 1,
+            "text": "Men"
+          },
+          {
+            "id": 2,
+            "text": "Women"
+          },
+          {
+            "id": 3,
+            "text": "Both sexes"
+          }
+        ],
+        "matt": [
+          {
+            "id": 1,
+            "text": "Number of deaths"
+          },
+          {
+            "id": 2,
+            "text": "Number of deaths per 100,000"
+          }
+        ],
+        "ar": [
+          {
+            "id": 2023,
+            "text": "2023"
+          },
+          {
+            "id": 2024,
+            "text": "2024"
+          },
+          {
+            "id": 2025,
+            "text": "2025"
+          }
+        ],
+        "diagnos": [
+          {
+            "id": "99",
+            "kod": "",
+            "text": "Samtliga dödsorsaker",
+            "typ": "",
+            "grupp": "00",
+            "info": ""
+          },
+          {
+            "id": "Alk",
+            "kod": "",
+            "text": "Alkoholrelaterad dödlighet",
+            "typ": "",
+            "grupp": "00",
+            "info": ""
+          },
+          {
+            "id": "U07",
+            "kod": "U07",
+            "text": "Covid-19 (virus påvisat och virus ej påvisat)",
+            "typ": "",
+            "grupp": "283",
+            "info": ""
+          },
+          {
+            "id": "Spec1",
+            "kod": "",
+            "text": "Läkemedels- och narkotikaförgiftningar",
+            "typ": "G",
+            "grupp": "0",
+            "info": ""
+          },
+          {
+            "id": "Spec1_1",
+            "kod": "X40-X44",
+            "text": "",
+            "typ": "",
+            "grupp": "Spec1",
+            "info": ""
+          },
+          {
+            "id": "01",
+            "kod": "A00-B99",
+            "text": "Vissa infektionssjukdomar och parasitsjukdomar",
+            "typ": "G",
+            "grupp": "00",
+            "info": ""
+          },
+          {
+            "id": "0101",
+            "kod": "A00-A09",
+            "text": "Infektionssjukdomar utgående från mag-tarmkanalen",
+            "typ": "G",
+            "grupp": "01",
+            "info": ""
+          },
+          {
+            "id": "A00",
+            "kod": "A00",
+            "text": "Kolera",
+            "typ": "",
+            "grupp": "0101",
+            "info": ""
+          },
+          {
+            "id": "A01",
+            "kod": "A01",
+            "text": "Tyfoidfeber och paratyfoidfeber",
+            "typ": "",
+            "grupp": "0101",
+            "info": ""
+          }
+        ]
+      }
+    }
+  }
+}
