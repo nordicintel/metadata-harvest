@@ -247,3 +247,20 @@ Bounded live checks validated rebuilt metadata and the retrieval fragments of:
 Evidence: [UKÄ](verification/uka.json), [SDB](verification/sdb.json),
 [Trafikanalys](verification/trafa.json). The external repositories are archived.
 Trafikanalys is temporary until its API is retired in the merger into Tillväxtanalys.
+
+## EntryScape RowStore delivery — 9 October 2026
+
+The last placeholder was replaced in
+[#7](https://github.com/nordicintel/metadata-harvest/pull/7) by importing the
+proof of concept's harvest as the accepted baseline: 568 tables, 442 datasets in 46
+provider collections, grouping equal to the proof of concept and byte-stable on an
+offline rebuild. No request was made to import it.
+
+One bounded hosted run against `catalogalese` and `catalogdiggse` (budget 40) made
+14 requests: both discoveries complete, all 14 tables unchanged by their catalogue
+markers, no harvest, no HTTP 429, no errors, collections unchanged. Live retrieval
+was verified only by the proof of concept, from a host the instances do not block.
+
+Evidence: [EntryScape RowStore](verification/entrysoft.json). The monthly schedule
+runs on the first of the month with a 1,500-request budget.
+
