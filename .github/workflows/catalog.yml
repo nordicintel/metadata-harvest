@@ -1,0 +1,38 @@
+name: Shared catalog
+
+on:
+  workflow_dispatch:
+
+# The lock is acquired before checkout; adapter workers keep running independently.
+concurrency:
+  group: production-publication
+  queue: max
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: '0.12.7'
+          python-version: '3.13'
+      - run: uv sync --locked --extra harvest
+      - name: Build from accepted files only
+        run: uv run python -m metadata_harvest.catalog build
+      - name: Publish catalog and coverage report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          uv run python -m metadata_harvest.catalog publish
+      - name: Report incomplete coverage
+        run: |
+          uv run python -c "import json; r=json.load(open('data/catalog/reports/latest.json')); print(json.dumps(r['counts'])); raise SystemExit(r['status'] != 'success')"

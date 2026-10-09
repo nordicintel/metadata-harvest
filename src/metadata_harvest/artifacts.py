@@ -23,9 +23,9 @@ def checkpoint_path(root: str | Path) -> Path:
 
 
 def publication_directory(root: Path, data: Path) -> str:
-    """Limit Git publication to one implemented adapter's exact directory."""
+    """Limit Git publication to one implemented adapter or the shared catalog."""
     relative = data.resolve().relative_to(root.resolve()).as_posix()
-    if relative not in {
+    if relative not in {"data/catalog"} | {
         f"data/{name}" for name, spec in ADAPTERS.items() if spec.available
     }:
         raise ValueError("Publication requires a configured adapter data directory")

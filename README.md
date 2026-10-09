@@ -27,12 +27,15 @@ Python 3.13+. Install this checkout with `pip install .` for retrieval, or
 `pip install '.[harvest]'` for harvesting and schema validation.
 The package is not currently published to PyPI.
 
-```python
-from importlib.metadata import entry_points
+```pythonfrom importlib.metadata import entry_points
+
 
 retrieve = entry_points(group="nordicintel.retrieval", name="scb")[0].load()
+
 # Pass your aiohttp session, explicit category selection, and published metadata:
+
 # await retrieve(session, provider_code=..., dataset_code=..., language=...,
+
 #                selection=..., data_url=..., metadata_url=..., metadata=...)
 ```
 
@@ -41,23 +44,26 @@ See the [working retrieval example](docs/retrieval-guide.md) and
 HTTPX or schema-validation dependencies. All implemented provider entry points
 ship in this one distribution.
 
-## Operations and evidence
+## Operations
 
-V1 runs daily at 04:15 Europe/Stockholm; SCB at 06:15, incremental Monday–Saturday
-and full Sunday. Adapters harvest concurrently; only publication is serialized.
-[Live counts and individual errors](docs/harvesting.md#inspect-a-running-job) are
-available while workers run. All workflows support
-manual execution and unfinished-work continuation. V1 uses `HARVEST_ENABLED`
-and SCB uses `PXWEB_V2_ENABLED` as schedule controls. SCB's gate is complete table
-acceptance; separate upstream codelist errors remain visible and retryable.
-Kolada's incremental schedule is 06:30 Europe/Stockholm, gated by `KOLADA_ENABLED`.
-Its initial trusted data requires no external repository at runtime.
+Accepted adapter results live under `data/<adapter>/`; the shared consumer catalog
+lives under `data/catalog/`, grouped by adapter/provider/language. The catalog reads
+committed accepted files only. Constructing it never starts a harvest, refreshes a
+source, or resumes unfinished harvesting.
 
-Implementation, converted-corpus verification and production acceptance are
-separate evidence. Consult [consolidation status](docs/consolidation.md) and the
-current [v1 report](data/pxweb_v1/reports/harvest.json) /
-[v2 report](data/pxweb_v2/reports/harvest.json); a failed run never means an empty
-successful catalogue. Listing failures protect accepted records from deletion.
+Publication triggers catalog construction automatically; a manual catalog workflow
+is also available. Content enrichment runs before semantic enrichment. Both are
+currently **not configured**, so trusted collections pass through byte-for-byte.
+See [catalog processing](docs/catalog.md) for failure and promotion semantics.
+
+[Schedules](schedules.toml) are the single source of automatic harvesting times,
+timezone, modes and enablement. See [jobs and scheduling](docs/harvesting.md) for
+editing them, deliberate manual harvesting, and live counters/individual errors.
+Adapters run independently; publication alone uses a shared queue.
+
+[Consolidation evidence](docs/consolidation.md) separates implemented capabilities
+from verified production coverage. Current adapter errors remain visible in the
+catalog report; building a catalog never turns incomplete coverage into success.
 
 ## Documentation
 
@@ -66,7 +72,8 @@ successful catalogue. Listing failures protect accepted records from deletion.
 - [Dataset mapping contract](docs/DATASET-METADATA.md) and [generated field reference](docs/DATASET-METADATA-REFERENCE.md)
 - [Retrieval contract](docs/RETRIEVAL.md) and [usage](docs/retrieval-guide.md)
 - [Adapter implementation guide](docs/adapter-guide.md)
-- [Jobs and recovery](docs/harvesting.md)
+- [Jobs, schedules and recovery](docs/harvesting.md)
+- [Catalog and enrichment placeholders](docs/catalog.md)
 - [Provider additions and HVD routing](docs/pxweb-registry-gaps.md)
 
 ## Verification

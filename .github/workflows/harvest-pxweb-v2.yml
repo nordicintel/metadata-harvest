@@ -1,11 +1,13 @@
 name: SCB PXWeb v2 metadata
 
 on:
+  # BEGIN GENERATED SCHEDULE
   schedule:
     - cron: '15 6 * * 1-6'
       timezone: Europe/Stockholm
     - cron: '15 6 * * 0'
       timezone: Europe/Stockholm
+  # END GENERATED SCHEDULE
   workflow_dispatch:
     inputs:
       full:
@@ -28,7 +30,9 @@ permissions:
 
 jobs:
   harvest:
-    if: github.event_name == 'workflow_dispatch' || vars.PXWEB_V2_ENABLED == 'true'
+    # BEGIN GENERATED ENABLEMENT
+    if: github.event_name == 'workflow_dispatch' || false
+    # END GENERATED ENABLEMENT
     runs-on: ubuntu-latest
     timeout-minutes: 350
     permissions:
@@ -45,13 +49,17 @@ jobs:
           version: '0.12.7'
           python-version: '3.13'
       - run: uv sync --locked --extra harvest
+      - name: Resolve refresh mode from schedule or manual input
+        env:
+          SCHEDULE_CRON: ${{ github.event.schedule }}
+          MANUAL_FULL: ${{ inputs.full }}
+        run: uv run python -m metadata_harvest.scheduling resolve --adapter pxweb_v2
       - id: run
         name: Discover and harvest SCB sv/en
         timeout-minutes: 330
         env:
           GH_TOKEN: ${{ github.token }}
           EXPECTED_RUN_ID: ${{ inputs.resume_run }}
-          FULL_REFRESH: ${{ inputs.full || github.event.schedule == '15 6 * * 0' }}
         run: |
           args=()
           if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
@@ -110,6 +118,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           uv run --extra harvest python -m metadata_harvest.runner publish --adapter pxweb_v2 --run-id "$RUN_ID"
+      - name: Construct catalog from published results
+        id: catalog
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run catalog.yml --ref main
       - name: Continue unfinished work
         if: steps.collect.outputs.continue == 'true' && needs.harvest.result == 'success'
         env:
@@ -118,4 +132,7 @@ jobs:
         run: uv run --extra harvest python -m metadata_harvest.runner continue --adapter pxweb_v2 --run-id "$RUN_ID"
       - name: Report incomplete harvest
         if: steps.collect.outputs.status == 'completed_with_errors' || steps.collect.outputs.status == 'interrupted'
+        run: exit 1
+      - name: Report catalog dispatch failure
+        if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

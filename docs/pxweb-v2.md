@@ -110,7 +110,7 @@ continuations. Three waves with no progress stop automatic continuation.
 
 The independent `SCB PXWeb v2 metadata` workflow is configured for 06:15 Europe/Stockholm:
 incremental Monday–Saturday, full Sunday. Manual runs expose a `full` boolean.
-Scheduling requires `PXWEB_V2_ENABLED=true`, set only after live acceptance.
+Scheduling requires enablement in [schedules.toml](../schedules.toml), set only after live acceptance.
 Adapters harvest concurrently; only collectors share `production-publication`.
 Each adapter queues its own overlapping runs with `queue: max`. The live
 [progress and error inspector](harvesting.md#inspect-a-running-job) reports actual

@@ -2,6 +2,7 @@
 
 `metadata-harvest` owns API integration code, source selection, provider configuration,
 metadata semantics, shared Dataset/Provider/Retrieval Result schemas, validation,
+shared file-catalog construction and enrichment interfaces,
 independent harvesting jobs, on-demand retrieval and integration documentation.
 
 The catalogue service, website, public HTTP API, production databases, file scrapers
@@ -29,6 +30,13 @@ discovery is retained explicitly because replacing it would change coverage.
 - `runner.py` preserves existing commands and v1 defaults; Actions collectors are
   the only production writers, sharing the `production-publication` collector
   queue. Adapter harvesting queues are independent.
+- `catalog.py` reads committed accepted collections and promotes only catalog output.
+  It has no dependency on adapter discovery or harvesting orchestration.
+- `processing/` defines content-enrichment then semantic-enrichment proposals;
+  no external lookup, inference rule or AI processor is implemented yet.
+- `publication.py` owns scoped Git publication for adapters and catalog.
+- `scheduling.py` validates `schedules.toml` and generates scheduling blocks;
+  existing Actions workflows still execute harvesting and continuations.
 - `progress.py` records current worker counters and individual errors outside
   certified output; `monitor.py` publishes readable Checks API updates during
   execution and provides run/worker/error inspection without waiting for logs.
@@ -46,3 +54,14 @@ from legacy infrastructure. We adopt source knowledge and contracts, retain the
 current grouped/resumable implementation, and supersede older one-repository-per-adapter,
 local-only and paired-Dataset-document directions. No other repository is archived,
 no unrelated job disabled, and no production database moved by this change.
+
+## One-way data flow
+
+Scheduled or deliberate manual harvesting -> accepted adapter publication ->
+content enrichment placeholder -> semantic enrichment placeholder -> shared catalog.
+
+Catalog construction is independently callable. It never makes accepted source
+files fresher, resumes a checkpoint or dispatches a harvester. Identity/categories
+and source evidence are protected by the proposal interface. Current placeholders
+produce no changes; future changed proposals must pass common validation.
+The [catalog guide](catalog.md) defines current outputs, trust and failure handling.

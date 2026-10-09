@@ -1,4 +1,4 @@
-# Published output contract
+# Accepted adapter and shared catalog output
 
 One deterministic `.jsonl.gz` metadata collection per adapter, provider and language
 lives under `data/<adapter>/metadata/`; v2 codelists live under `codelists/` in separate
@@ -86,3 +86,17 @@ integrity, not renewed source availability.
 Schemas were adopted from `nordicintel-schemas` commit `77a7a46`; prepared `2.0.0`
 was not published. Schema identifiers now belong to this repository, bundled in
 both distributions. Schema revision provenance does not introduce dataset versions.
+
+## Shared catalog output
+
+`data/<adapter>/` remains the accepted source layer. `data/catalog/<adapter>/metadata/`
+and `codelists/` preserve its grouped filenames and Dataset/codelist contracts.
+`data/catalog/state/current.json` holds accepted input hashes;
+`data/catalog/reports/latest.json` holds processing status and upstream coverage/errors.
+There are no permanent intermediate enrichment collections.
+
+With both enrichment stages inactive, catalog collections are byte-identical copies
+of accepted input. Gzip integrity and file hashes are checked; no dataset is parsed
+or schema-validated again. A missing collection retains its prior catalog copy with
+an error. Removals within a valid accepted collection propagate when that collection
+is copied. See [catalog operations](catalog.md) for promotion and retry rules.

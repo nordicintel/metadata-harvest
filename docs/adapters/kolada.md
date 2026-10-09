@@ -22,11 +22,11 @@ entire KPI groups. `updated` is a verified native change day, never a harvest/po
 ## Refresh and failures
 
 ```powershell
-uv run python -m metadata_harvest.runner run --adapter kolada
-uv run python -m metadata_harvest.runner collect --adapter kolada
+uv run --extra harvest python -m metadata_harvest.runner run --adapter kolada
+uv run --extra harvest python -m metadata_harvest.runner collect --adapter kolada
 # Restrict per-KPI work; small native reference catalogues still refresh.
-uv run python -m metadata_harvest.runner run --adapter kolada --kpi N78110 U30750
-uv run python -m metadata_harvest.runner run --adapter kolada --kpi U30750 --scope ou
+uv run --extra harvest python -m metadata_harvest.runner run --adapter kolada --kpi N78110 U30750
+uv run --extra harvest python -m metadata_harvest.runner run --adapter kolada --kpi U30750 --scope ou
 ```
 
 Initial current data was imported once from trusted existing results. There is no
@@ -62,8 +62,8 @@ successful replacements. Collectors check artifact hashes and the current baseli
 not every dataset. Unchanged metadata is reused without recompression. Only
 `data/kolada/` is staged; latest reports and individual errors remain inspectable.
 
-The independent workflow runs daily at 06:30 Europe/Stockholm when `KOLADA_ENABLED`
-is true. Only publication shares the other adapters' queue. There is no weekly full run.
+The independent workflow runs daily at 06:30 Europe/Stockholm when enabled in
+[schedules.toml](../../schedules.toml). Only publication shares the other adapters' queue. There is no weekly full run.
 
 ## Importable interfaces
 
@@ -98,8 +98,8 @@ raise `ValueError`, missing endpoints `LookupError`; upstream errors and cancell
 ## Verification
 
 ```powershell
-uv run pytest tests/test_kolada.py tests/test_kolada_workflow.py tests/test_kolada_retrieval.py
-uv run python scripts/check_kolada_live.py
+uv run --extra harvest pytest tests/test_kolada.py tests/test_kolada_workflow.py tests/test_kolada_retrieval.py
+uv run --extra harvest python scripts/check_kolada_live.py
 ```
 
 The opt-in live script checks at most twelve documents across six fixed KPIs and

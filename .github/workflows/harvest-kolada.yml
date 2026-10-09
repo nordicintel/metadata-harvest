@@ -1,9 +1,11 @@
 name: Kolada metadata
 
 on:
+  # BEGIN GENERATED SCHEDULE
   schedule:
     - cron: '30 6 * * *'
       timezone: Europe/Stockholm
+  # END GENERATED SCHEDULE
   workflow_dispatch:
     inputs:
       kpis:
@@ -28,7 +30,9 @@ permissions:
 
 jobs:
   harvest:
-    if: github.event_name == 'workflow_dispatch' || vars.KOLADA_ENABLED == 'true'
+    # BEGIN GENERATED ENABLEMENT
+    if: github.event_name == 'workflow_dispatch' || true
+    # END GENERATED ENABLEMENT
     runs-on: ubuntu-latest
     timeout-minutes: 350
     permissions:
@@ -109,6 +113,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           uv run python -m metadata_harvest.runner publish --adapter kolada --run-id "$RUN_ID"
+      - name: Construct catalog from published results
+        id: catalog
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run catalog.yml --ref main
       - name: Continue unfinished work
         if: steps.collect.outputs.continue == 'true' && needs.harvest.result == 'success'
         env:
@@ -117,4 +127,7 @@ jobs:
         run: uv run python -m metadata_harvest.runner continue --adapter kolada --run-id "$RUN_ID"
       - name: Report incomplete harvest
         if: steps.collect.outputs.status == 'completed_with_errors' || steps.collect.outputs.status == 'interrupted'
+        run: exit 1
+      - name: Report catalog dispatch failure
+        if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

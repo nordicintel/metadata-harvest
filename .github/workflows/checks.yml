@@ -50,6 +50,7 @@ jobs:
       - run: uv run --extra harvest playwright install --with-deps chromium
       - run: uv run --extra harvest ruff format --check .
       - run: uv run --extra harvest ruff check .
+      - run: uv run python -m metadata_harvest.scheduling sync --check
       - run: uv run --extra harvest pytest
       - run: uv run --extra harvest python scripts/generate_schema_reference.py --check
       - run: uv build

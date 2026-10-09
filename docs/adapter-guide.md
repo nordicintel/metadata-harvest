@@ -72,3 +72,17 @@ a complete harvest for an unrelated change. Acceptance must prove live read-back
 of successes and individual failures before the worker exits, loss-of-monitoring
 behavior, cancellation, and unchanged output on an incremental run. See the
 [operational commands and heartbeat semantics](harvesting.md#inspect-a-running-job).
+
+## Scheduling and downstream catalog
+
+Register a completed adapter in the explicit registry and add its automatic
+schedule/enablement to [schedules.toml](../schedules.toml). Generate workflow blocks
+with the scheduling sync command; keep deliberate manual runs and checkpoint
+continuations independent of the schedule. Do not introduce another enablement
+variable or scheduler.
+
+Publish accepted grouped collections and current reports before dispatching the
+shared catalog workflow, even when individual resources failed. Catalog code must
+never call an adapter's discovery/refresh/retrieval operations. Future enrichment
+belongs in the shared stages described in [catalog processing](catalog.md), not in
+provider harvesting or a prerequisite that forces unchanged datasets to be fetched.

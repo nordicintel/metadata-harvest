@@ -1,0 +1,28 @@
+# Authoritative automatic harvesting schedules. Manual runs remain available.
+# Edit this file, run `uv run --extra harvest python -m metadata_harvest.scheduling sync`,
+# and commit this file with the generated workflow changes. CI rejects drift.
+# Cron fields: minute hour day-of-month month day-of-week (0=Sunday).
+# Numeric POSIX cron syntax: *, lists, ranges and steps. Times use this timezone.
+timezone = "Europe/Stockholm"
+
+[adapters.pxweb_v1]
+enabled = true
+[[adapters.pxweb_v1.schedules]]
+cron = "15 4 * * *"
+mode = "incremental"
+
+[adapters.pxweb_v2]
+# Enable only after complete table acceptance. Codelist errors are independent.
+enabled = false
+[[adapters.pxweb_v2.schedules]]
+cron = "15 6 * * 1-6"
+mode = "incremental"
+[[adapters.pxweb_v2.schedules]]
+cron = "15 6 * * 0"
+mode = "full"
+
+[adapters.kolada]
+enabled = true
+[[adapters.kolada.schedules]]
+cron = "30 6 * * *"
+mode = "incremental" # Kolada intentionally has no full refresh mode.

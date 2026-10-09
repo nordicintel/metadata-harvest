@@ -46,7 +46,7 @@ async def first_cell(document):
 ```
 
 Applications should reuse their own session and supply rate limiting, retries,
-timeouts and caching. The adapter never changes or closes it. Both adapters require
+timeouts and caching. The adapter never changes or closes it. Both PXWeb adapters require
 `/dimension` and `/extension/<adapter>`; harvesting supplies the base categories and
 provider cell limit. The fallback split limit is 10,000 cells for migrated metadata
 without an advertised limit. Requests can be split further after a size rejection.

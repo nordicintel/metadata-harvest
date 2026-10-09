@@ -1,20 +1,63 @@
-# Harvest jobs and publication
+# Harvest jobs, scheduling and publication
 
-The two production workflows harvest concurrently. Each adapter has its own run
-queue; only collector jobs share the `production-publication` queue. A collector
-checks out current `main` after acquiring that lock and stages only its adapter's
-data directory. SCB request limits do not block other providers or adapters.
+Three independent adapter workflows own source requests. Collectors share the
+`production-publication` queue, check out current `main` after acquiring it, and
+stage only their adapter directory. The catalog uses the same publication queue
+but never dispatches a harvester or makes source requests.
 
-| Adapter | Workflow | Schedule (Europe/Stockholm) | Enablement |
-|---|---|---|---|
-| `pxweb_v1` | Scheduled harvest | Daily 04:15 | Enabled unless `HARVEST_ENABLED=false` |
-| `pxweb_v2` | SCB PXWeb v2 metadata | Daily 06:15; Sunday full, otherwise incremental | Scheduled runs require `PXWEB_V2_ENABLED=true` |
+## One schedule configuration
 
-Both can run manually with a `full` option. SCB scheduling is enabled after
-complete table acceptance; independent codelist failures remain explicit errors
-and do not block that gate. Check repository variables for current enablement.
-V1 provider parallelism is controlled by `HARVEST_PARALLEL_PROVIDERS` (default 19,
-not the provider count). V2 uses one rate-limited worker for both languages.
+Edit [schedules.toml](../schedules.toml), then run and commit both the config and
+its generated workflow changes:
+
+```powershell
+uv run --extra harvest python -m metadata_harvest.scheduling sync
+uv run --extra harvest python -m metadata_harvest.scheduling sync --check
+```
+
+CI runs the check command. Do not hand-edit the marked schedule/enablement blocks
+in workflow YAML. Only those blocks are generated; worker logic remains adapter-owned.
+The previous adapter enablement repository variables are no longer read.
+
+The top-level `timezone` is an IANA timezone, currently `Europe/Stockholm`.
+Each implemented adapter has `enabled = true` or `false`, and schedule entries
+with a numeric five-field POSIX `cron` and `mode = "incremental"` or `"full"`.
+Fields mean minute, hour, day-of-month, month, day-of-week; Sunday is 0.
+Lists, ranges, wildcards and steps are supported. Use disjoint schedules so two
+entries do not request the same run. GitHub scheduling may be delayed; it is not
+a real-time timer. Timezone-aware schedules follow local daylight-saving changes.
+
+| Adapter | Default local schedule | Mode |
+|---|---|---|
+| PXWeb v1 | Daily 04:15 | Incremental |
+| SCB PXWeb v2 | Monday–Saturday 06:15; Sunday 06:15 | Incremental; Sunday full |
+| Kolada | Daily 06:30 | Incremental only |
+
+The config contains current enablement. SCB stays disabled until complete table
+acceptance; independent codelist failures do not block that acceptance gate.
+Disabling a schedule does not cancel active jobs or disable manual operations.
+`HARVEST_PARALLEL_PROVIDERS` remains a separate operational control (default 19).
+
+## Deliberate manual operations
+
+Use GitHub Actions **Run workflow**, or these explicit commands:
+
+```powershell
+# Fresh incremental source checks; these contact provider APIs/websites.
+gh workflow run harvest.yml --ref main -f full=false
+gh workflow run harvest-pxweb-v2.yml --ref main -f full=false
+gh workflow run harvest-kolada.yml --ref main
+# Deliberate PXWeb reharvest, including unchanged tables.
+gh workflow run harvest-pxweb-v2.yml --ref main -f full=true
+# Catalog only: consumes existing accepted files and never contacts source APIs.
+gh workflow run catalog.yml --ref main
+```
+
+V1 also supports `full=true`; Kolada intentionally has no full option. Leave
+`resume_run` empty for normal manual runs. Internal continuations carry the run ID
+and retain checkpointed mode; they are not a new scheduled/manual refresh.
+Changing a schedule affects future runs only. See [catalog operations](catalog.md)
+for local build/publication commands and partial-coverage reporting.
 
 ## Inspect a running job
 
@@ -93,7 +136,7 @@ Dataset identity is provider + dataset code + language. Collection filenames
 escape identifiers and add a checksum to avoid Windows case collisions. Each
 JSONL line is one dataset document. V1 groups multiple known source locations
 in `paths`, with the newest source timestamp determining the primary endpoint.
-Both map to the shared Dataset contract and retain complete source evidence under
+All implemented adapters map to the shared Dataset contract and retain complete source evidence under
 their adapter namespace. See [output mapping](output-contract.md).
 
 **Confirmed-absent datasets are deleted.** There is no inactive directory,
@@ -179,3 +222,15 @@ A failed forced v1 replacement is retried even when the listing timestamp remain
 unchanged. Its unresolved error survives an intervening incomplete discovery and
 is cleared by a successful replacement or confirmed removal; retained metadata is
 never silently counted as a successful refresh. Reports record the full-refresh mode.
+
+## Kolada and catalog lifecycle
+
+Kolada refreshes native change signals and only rebuilds affected KPI scopes;
+see its [adapter guide](adapters/kolada.md). Its current state is compact and its
+trusted initial data is never subjected to repeated corpus validation.
+
+After a final adapter collector publishes accepted results and errors, it explicitly
+dispatches the catalog workflow before reporting any incomplete-harvest failure.
+The catalog does not trigger itself. Upstream errors remain in its coverage report,
+while unrelated accepted collections can advance. A failed catalog job can be
+retried independently without repeating provider requests.

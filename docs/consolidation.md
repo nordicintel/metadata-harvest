@@ -173,3 +173,28 @@ and outcomes, never observations. The bounded [hosted run](https://github.com/no
 and publication passed with nine reused documents, zero updates and zero errors.
 The independent daily incremental schedule was enabled on 9 October 2026 and runs
 at 06:30 Europe/Stockholm.
+
+## Shared catalog and schedule ownership
+
+Accepted adapter files remain the source layer. The independent shared catalog
+consumes those files, preserving grouping and source errors. Content enrichment and
+semantic enrichment have typed, ordered proposal interfaces but are explicitly
+inactive; no external lookup, automatic assignment or AI implementation is claimed.
+
+The catalog cannot dispatch or perform harvesting. Adapter publication dispatches
+catalog construction in one direction. Manual catalog construction is independent.
+[schedules.toml](../schedules.toml) replaces the old adapter enablement variables and
+scattered schedule decisions; CI checks generated workflow blocks for drift.
+
+The [catalog guide](catalog.md) and [operations guide](harvesting.md) are the current
+operational references. Earlier verification entries are dated evidence,
+not substitutes for the latest reports or current config. Acceptance for this change
+uses already accepted collections without new harvesting or corpus validation.
+
+Local acceptance copied 39 grouped collections, then reused all 39 byte-for-byte;
+the largest compressed file was 37,302,903 bytes. Both stages reported
+`not_configured`; upstream errors remained visible. No new harvest or per-document
+validation was performed. All 287 tests, lint/format, schema-reference checks,
+wheel/sdist build and the plain-installation check passed. An independent
+GPT-6.1 Sol Medium documentation review completed with its findings resolved.
+[Verification evidence](verification/catalog.json) records the acceptance results.

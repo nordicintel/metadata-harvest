@@ -52,7 +52,7 @@ The implemented behavior and regression coverage include:
   failures and continuation; bounded live checks precede a full automated run.
 
 The v2 manual workflow is available and has published complete table metadata.
-Automatic scheduling uses `PXWEB_V2_ENABLED=true`. The agreed gate is now complete
+Automatic scheduling is controlled by [schedules.toml](../schedules.toml). The agreed gate is now complete
 table acceptance, even when independent upstream codelist errors remain; those
 errors continue to be reported and retried. See [current consolidation evidence](consolidation.md).
-No superseded schedule has been disabled.
+Current scheduling instructions are in the [operations guide](harvesting.md).
