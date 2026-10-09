@@ -123,6 +123,70 @@ def test_unreachable_area_is_one_scope_error(data, tmp_path):
     assert state["sv/NRAA|NRAA_1"]["error"]["resource"] == "*/NRAA"
 
 
+@pytest.mark.parametrize("recovered", [False, True])
+def test_error_telemetry_is_visible_before_next_sibling_and_retry_can_recover(
+    data, tmp_path, monkeypatch, recovered
+):
+    import json
+
+    from metadata_harvest.adapters.dataanalys.api import DATA_URL
+
+    progress = tmp_path / "telemetry" / "progress.json"
+    monkeypatch.setenv("HARVEST_PROGRESS", str(progress))
+
+    class ObservedClient(RecordedClient):
+        def __init__(self):
+            super().__init__()
+            self.failed_key = self.cube_key("GONV", "G082")
+            self.next_key = self.cube_key("GONV", "G013")
+            self.attempts = 0
+            self.observed = False
+
+        async def post_json(self, url, body):
+            from tests.dataanalys.conftest import post_key
+
+            key = post_key(url, body)
+            if key == self.failed_key:
+                self.attempts += 1
+                if not recovered or self.attempts == 1:
+                    raise Unreachable("synthetic temporary outage")
+            if key == self.next_key and self.attempts == 1:
+                events = [
+                    json.loads(line)
+                    for line in progress.with_suffix(".errors.jsonl")
+                    .read_text(encoding="utf-8")
+                    .splitlines()
+                ]
+                assert events[-1]["resource"] == "sv/GONV|G082"
+                assert events[-1]["stage"] == "endpoint"
+                assert events[-1]["url"] == DATA_URL
+                assert json.loads(progress.read_text(encoding="utf-8"))["failed"] == 1
+                self.observed = True
+            return await super().post_json(url, body)
+
+    source = ObservedClient()
+    result = execute(source, data, tmp_path / "observed", areas=["GONV"])
+
+    assert source.observed
+    assert result["counts"]["failed"] == (0 if recovered else 1)
+    assert result["status"] == ("success" if recovered else "completed_with_errors")
+    events = [
+        json.loads(line)
+        for line in progress.with_suffix(".errors.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert len(events) == (1 if recovered else 2)  # attempts only; no final duplicate
+    assert json.loads(progress.read_text(encoding="utf-8"))["failed"] == (
+        0 if recovered else 1
+    )
+    if recovered:
+        assert result["errors"] == []
+        assert "sv/GONV|G082" in published(data)
+    else:
+        assert result["errors"][0]["url"] == DATA_URL
+
+
 def test_metadata_failure_keeps_the_document_until_it_is_stale(data, tmp_path):
     source = RecordedClient()
     key = source.cube_key("GONV", "G200")
@@ -159,17 +223,97 @@ def test_malformed_row_does_not_stop_later_rows_and_duplicates_are_quarantined(
     assert published(data) == before  # the duplicate keeps its accepted document
 
 
-def test_whole_listing_failure_raises_and_publishes_nothing(data, tmp_path):
+def test_whole_listing_failure_preserves_documents_and_records_scope_error(
+    data, tmp_path
+):
     source = RecordedClient()
     source.failing = {
         k for k in source.responses if k.startswith("GET ") and "/chart/" in k
     }
     before = (data / collection("sv")).read_bytes()
 
-    with pytest.raises(Unreachable):
-        start(source, data, tmp_path / "out")
+    result = execute(source, data, tmp_path / "out")
 
+    assert result["status"] == "completed_with_errors"
+    assert resources(result) == [("discovery", "charts")]
+    assert any("/dashboard/" in request for request in source.requests)
     assert (data / collection("sv")).read_bytes() == before
+
+
+def test_dashboard_failure_still_rebuilds_independent_indicators(data, tmp_path):
+    from metadata_harvest.adapters.dataanalys.api import (
+        DASHBOARD_COLUMNS,
+        DASHBOARD_LIST_URL,
+        list_query,
+    )
+    from tests.dataanalys.conftest import get_key
+
+    source = RecordedClient()
+    listing = source.listing("dashboard")
+    original = list(listing["result"])
+    listing["result"] = (original * 10)[:100]
+    listing["count"] = 101
+    source.failing.add(
+        get_key(DASHBOARD_LIST_URL, {"q": list_query(DASHBOARD_COLUMNS, 1)})
+    )
+    before = published(data)
+
+    result = execute(source, data, tmp_path / "dashboard-down")
+
+    assert result["status"] == "completed_with_errors"
+    assert ("discovery", "dashboards") in resources(result)
+    assert result["counts"]["rebuilt"] + result["counts"]["unchanged"] > 0
+    assert published(data) == before
+
+
+def test_later_chart_page_failure_retains_first_page_and_processes_dashboards(client):
+    from metadata_harvest.adapters.dataanalys.api import (
+        CHART_COLUMNS,
+        CHART_LIST_URL,
+        list_query,
+    )
+    from metadata_harvest.adapters.dataanalys.workflow import discover
+    from tests.dataanalys.conftest import get_key
+
+    listing = client.listing("chart")
+    original = list(listing["result"])
+    listing["result"] = (original * 4)[:100]
+    listing["count"] = 101
+    failed = get_key(CHART_LIST_URL, {"q": list_query(CHART_COLUMNS, 1)})
+    client.failing.add(failed)
+
+    discovery = asyncio.run(discover(client))
+
+    assert discovery.charts_listed == 100
+    assert not discovery.charts_complete
+    assert discovery.dashboards_complete
+    assert set(discovery.areas) == {"GONV", "LRHST", "NRAA"}
+    assert [(r, type(e)) for r, e in discovery.problems] == [("charts", Unreachable)]
+
+
+@pytest.mark.parametrize("bounded", [False, True])
+def test_incomplete_discovery_and_bounded_runs_never_remove_out_of_scope(
+    data, tmp_path, bounded
+):
+    source = RecordedClient()
+    source.responses[source.cube_key("NRAA", "NRAA_2")]["body"]["result"][0][
+        "data"
+    ] = []
+    source.catalogue_rows("GONV")[:] = [
+        r for r in source.catalogue_rows("GONV") if r["MBusinessKey"] != "G200"
+    ]
+    if not bounded:
+        source.listing("chart")["count"] += 1
+
+    result = execute(
+        source,
+        data,
+        tmp_path / "preserve",
+        **({"areas": ["GONV", "NRAA"]} if bounded else {}),
+    )
+
+    assert result["counts"]["removed"] == 0
+    assert set(published(data)) == BOOTSTRAP
 
 
 def test_removal_only_in_an_unbounded_run_with_a_complete_chart_list(data, tmp_path):

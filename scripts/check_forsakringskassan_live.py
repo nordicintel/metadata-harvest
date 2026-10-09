@@ -100,7 +100,7 @@ async def check() -> dict:
         await client.close()
     return {
         "verification": "bounded sample only",
-        "requests": client.request_count,
+        "harvest_requests": client.request_count,
         "documents": report,
         "observations_saved": False,
     }

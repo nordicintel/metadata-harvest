@@ -1,6 +1,6 @@
 # Harvest jobs, scheduling and publication
 
-Three independent adapter workflows own source requests. Collectors share the
+Independent adapter workflows own source requests. Collectors share the
 `production-publication` queue, check out current `main` after acquiring it, and
 stage only their adapter directory. The catalog uses the same publication queue
 but never dispatches a harvester or makes source requests.
@@ -29,12 +29,21 @@ a real-time timer. Timezone-aware schedules follow local daylight-saving changes
 
 | Adapter | Default local schedule | Mode |
 |---|---|---|
-| PXWeb v1 | Daily 04:15 | Incremental |
-| SCB PXWeb v2 | Monday–Saturday 06:15; Sunday 06:15 | Incremental; Sunday full |
+| PXWeb v1 | Daily 04:15 | Incremental; Sunday full |
+| SCB PXWeb v2 | Daily 06:15 | Incremental; full on the 1st and 15th |
 | Kolada | Daily 06:30 | Incremental only |
+| UKÄ | Monday 05:15 | Incremental |
+| SDB | Monday 05:45 | Full |
+| Trafikanalys | Monday 06:15 | Full |
+| EntryScape RowStore | 1st of each month 06:30 | Incremental |
+| SMHI emissions | 3rd of each month 07:30 | Full |
+| Försäkringskassan | Tuesday 05:15; 1st of each month 04:45 | Incremental; monthly full |
+| Socialstyrelsen analysverktyg | Monday 06:45 | Full |
+| Riksbank | Monday 07:15 | Full |
+| Tillväxtverket | Monday 07:45 | Change-signal refresh |
 
-The config contains current enablement. SCB stays disabled until complete table
-acceptance; independent codelist failures do not block that acceptance gate.
+The config contains current enablement. SCB scheduling is enabled following complete
+table acceptance; independent codelist failures do not block that acceptance gate.
 Disabling a schedule does not cancel active jobs or disable manual operations.
 `HARVEST_PARALLEL_PROVIDERS` remains a separate operational control (default 19).
 
@@ -62,6 +71,10 @@ gh workflow run harvest-trafa.yml --ref main
 # EntryScape: bounded by provider and request budget; the hosts rate-limit us.
 gh workflow run harvest-entrysoft.yml --ref main -f providers="catalogalese" -f max_requests=40
 gh workflow run harvest-smhi-emissions.yml --ref main
+gh workflow run harvest-forsakringskassan.yml --ref main
+gh workflow run harvest-dataanalys.yml --ref main
+gh workflow run harvest-riksbank.yml --ref main
+gh workflow run harvest-tillvaxtverket.yml --ref main
 # Deliberate PXWeb reharvest, including unchanged tables.
 gh workflow run harvest-pxweb-v2.yml --ref main -f full=true
 gh workflow run harvest-uka.yml --ref main -f full=true

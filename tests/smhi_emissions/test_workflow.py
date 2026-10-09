@@ -168,6 +168,100 @@ def test_listing_failure_publishes_nothing(data, tmp_path):
     assert not (tmp_path / "out" / "result.json").exists()
 
 
+@pytest.mark.parametrize("malformed", [False, True])
+def test_discovery_failure_is_reported_live_before_raise(
+    data, tmp_path, monkeypatch, malformed
+):
+    from metadata_harvest.adapters.smhi_emissions import workflow
+
+    events = []
+    monkeypatch.setattr(
+        workflow.Progress,
+        "error",
+        lambda self, stage, resource, language, error, **details: events.append(
+            {"stage": stage, "resource": resource, **details}
+        ),
+    )
+    source = Source()
+    if malformed:
+        source.tree[3]["subsectors"][0]["code"] = "7.1"
+    else:
+        source.failing = {LISTING}
+    with pytest.raises(ValueError if malformed else Unreachable):
+        start(source, data, tmp_path / "out")
+    assert events == [
+        {"stage": "discovery", "resource": "filteroptions", "url": FILTER_OPTIONS_URL}
+    ]
+    assert not (tmp_path / "out" / "result.json").exists()
+
+
+@pytest.mark.parametrize("stage", ["endpoint", "metadata"])
+def test_failed_probe_is_reported_before_valid_sibling(
+    data, tmp_path, monkeypatch, stage
+):
+    from metadata_harvest.adapters.smhi_emissions import workflow
+
+    events, before_sibling = [], []
+    monkeypatch.setattr(
+        workflow.Progress,
+        "error",
+        lambda self, event_stage, resource, language, error, **details: events.append(
+            {"stage": event_stage, "resource": resource, **details}
+        ),
+    )
+
+    class Observed(Source):
+        def _answer(self, url, params):
+            if fixture_key(url, params) == probe_key("NOx"):
+                before_sibling.append(copy.deepcopy(events))
+            return super()._answer(url, params)
+
+    source = Observed()
+    if stage == "endpoint":
+        source.failing = {probe_key("CO2")}
+    else:
+        source.responses[probe_key("CO2")]["data"]["Koldioxid (CO2)"]["Unknown"] = []
+    result = start(source, data, tmp_path / "out", subjects=["CO2", "NOx"])
+    assert before_sibling and before_sibling[0][0]["resource"] == key("CO2")
+    assert before_sibling[0][0]["url"].endswith("sub=CO2")
+    assert result["errors"][0]["stage"] == stage
+    assert len(events) == (2 if stage == "endpoint" else 1)
+    assert events[0]["attempt"] == 1
+    assert events[0]["retrying"] is (stage == "endpoint")
+
+
+def test_recovered_retry_has_live_attempt_but_no_final_error(
+    data, tmp_path, monkeypatch
+):
+    from metadata_harvest.adapters.smhi_emissions import workflow
+
+    events = []
+    monkeypatch.setattr(
+        workflow.Progress,
+        "error",
+        lambda self, stage, resource, language, error, **details: events.append(
+            details
+        ),
+    )
+
+    class Transient(Source):
+        failed = False
+
+        def _answer(self, url, params):
+            if fixture_key(url, params) == probe_key("CO2") and not self.failed:
+                self.failed = True
+                raise Unreachable("temporary outage")
+            return super()._answer(url, params)
+
+    result = start(Transient(), data, tmp_path / "out", subjects=["CO2"])
+    assert result["status"] == "success"
+    assert result["errors"] == []
+    assert result["counts"]["failed"] == 0
+    assert len(events) == 1
+    assert events[0]["attempt"] == 1 and events[0]["retrying"] is True
+    assert events[0]["url"].endswith("sub=CO2")
+
+
 def test_malformed_sector_tree_publishes_nothing(data, tmp_path):
     """Synthetic: a subsector code outside its sector makes the tree unusable."""
     source = Source()

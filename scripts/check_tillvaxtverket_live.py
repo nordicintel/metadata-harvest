@@ -72,6 +72,8 @@ async def check() -> dict:
             )
             validate_retrieval(result, selection=selection)
             values = result["value"]
+            if not values:
+                raise RuntimeError("no values returned for the sample selection")
             item.update(
                 status="passed",
                 metadata_validation="passed",
@@ -94,7 +96,7 @@ async def check() -> dict:
         await client.close()
     return {
         "verification": "bounded sample only",
-        "requests": client.request_count,
+        "harvest_requests": client.request_count,
         "probes": probes,
         "documents": [report],
         "observations_saved": False,

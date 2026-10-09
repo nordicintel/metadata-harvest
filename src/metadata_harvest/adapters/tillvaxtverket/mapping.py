@@ -36,7 +36,7 @@ from metadata_harvest.adapters.tillvaxtverket.source import (
     Spec,
 )
 
-MAPPING_VERSION = 1
+MAPPING_VERSION = 2
 """Increment when a mapping change must rebuild every accepted document."""
 
 SOURCE = "Tillväxtverket"
@@ -55,6 +55,8 @@ _SENTENCE = re.compile(r"(?<=\.)\s+")
 REGION_NOTE = (
     "Regionkoderna bildas av adaptern ur källkolumnerna NIVA_NAMN, LAN_KOD och "
     "KOMMUN_KOD: riket, lan:<länskod> och kommun:<kommunkod>. "
+    "lan:Sekretesskyddad bevarar källans kategori på länsnivå där länskoden "
+    'och länsnamnet är "Sekretesskyddad"; den anger inget identifierat län. '
     "kommun:<länskod>:Sekretesskyddad avser källans kommunrader i länet där "
     'kommunkoden är "Sekretesskyddad". I riksraderna innehåller läns- och '
     'kommunkolumnerna bara utfyllnad ("Sekretesskyddad" eller "Riket"), som inte '

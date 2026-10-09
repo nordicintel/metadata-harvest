@@ -102,6 +102,63 @@ def test_dashboards_without_slug_are_skipped():
     assert {"OMR: NRAA", "Start"} <= result.dashboards[191].tags
 
 
+def test_malformed_chart_filter_does_not_stop_later_rows(client):
+    rows = client.listing("chart")["result"]
+    rows.insert(
+        0,
+        {
+            "id": 99999,
+            "datasource_id": 159,
+            "datasource_name_text": "semantic.semantic_VAI_GONV_Trender",
+            "dashboards": [],
+            "form_data": {"adhoc_filters": 42},
+        },
+    )
+
+    result = discovered(client)
+
+    assert set(result.areas) == {"GONV", "LRHST", "NRAA"}
+    assert ("charts/99999", ValueError) in [(r, type(e)) for r, e in result.problems]
+
+
+def test_discovery_cancellation_propagates():
+    class CancelledClient:
+        async def get_json(self, url, params=None):
+            raise asyncio.CancelledError
+
+    with pytest.raises(asyncio.CancelledError):
+        discovered(CancelledClient())
+
+
+def test_conflicting_dashboard_id_is_quarantined(client):
+    listing = client.listing("dashboard")
+    original = listing["result"][0]
+    listing["result"].append({**original, "slug": "conflicting-replacement"})
+
+    result = discovered(client)
+
+    assert original["id"] not in result.dashboards
+    assert any(
+        resource == f"dashboards/{original['id']}" and "quarantined" in str(error)
+        for resource, error in result.problems
+    )
+
+
+def test_conflicting_chart_id_does_not_choose_a_table(client):
+    discovery = Discovery()
+    original = {
+        "id": 1,
+        "datasource_id": 160,
+        "datasource_name_text": "semantic.semantic_VAI_GONV_Landningssida",
+        "dashboards": [],
+    }
+    add_charts(discovery, [original, {**original, "datasource_id": 999}])
+
+    assert not discovery.areas
+    assert not discovery.incomplete
+    assert [(r, type(e)) for r, e in discovery.problems] == [("charts/1", ValueError)]
+
+
 def test_lists_are_paged_until_the_count(monkeypatch):
     client = RecordedClient()
     charts = client.listing("chart")

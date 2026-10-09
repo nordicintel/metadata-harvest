@@ -306,3 +306,30 @@ def test_date_ranges_cover_selected_dates_only():
         ("2026-01-10", "2026-01-10"),
         ("2026-02-01", "2026-02-01"),
     ]
+
+
+@pytest.mark.parametrize(
+    "vintages", [None, "broken", [None], [{"observations": "broken"}]]
+)
+def test_malformed_forecast_response_never_returns_empty_success(monkeypatch, vintages):
+    async def malformed_get(*args, **kwargs):
+        return {"data": [{"external_id": "SEQGDPNAASA", "vintages": vintages}]}
+
+    monkeypatch.setattr(retrieval, "_get", malformed_get)
+    with pytest.raises(RuntimeError, match="forecast"):
+        asyncio.run(
+            retrieval.retrieve(
+                None,
+                provider_code="riksbank",
+                dataset_code="mpd_SEQGDPNAASA",
+                language="en",
+                selection={
+                    "Series": ["SEQGDPNAASA"],
+                    "PolicyRound": ["2026:3"],
+                    "Time": ["2029-09-30"],
+                },
+                data_url=None,
+                metadata_url=None,
+                metadata={},
+            )
+        )

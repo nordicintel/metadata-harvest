@@ -8,6 +8,7 @@ saved.
 
 import argparse
 import asyncio
+from datetime import UTC, datetime
 from pathlib import Path
 
 from metadata_harvest.adapters.dataanalys.client import DataanalysClient
@@ -38,7 +39,12 @@ def small_selection(document: dict) -> dict:
 
 
 async def check() -> dict:
-    report: dict = {"verification": "bounded sample only", "documents": []}
+    report: dict = {
+        "verification": "bounded sample only",
+        "checked_at": datetime.now(UTC).isoformat(),
+        "documents": [],
+    }
+    retrieval_requests = 0
     client = DataanalysClient()
     try:
         discovery = await discover(client)
@@ -81,6 +87,7 @@ async def check() -> dict:
             try:
                 selection = small_selection(document)
                 await asyncio.sleep(1.0)  # retrieval uses the session unpaced
+                retrieval_requests += 1
                 fragment = await retrieve(
                     client.session,
                     provider_code=shared["provider_code"],
@@ -108,7 +115,7 @@ async def check() -> dict:
             report["documents"].append(item)
     finally:
         await client.close()
-    report["requests"] = client.request_count + len(report["documents"])
+    report["requests"] = client.request_count + retrieval_requests
     report["observations_saved"] = False
     return report
 
@@ -123,5 +130,8 @@ if __name__ == "__main__":
     write(args.report, result)
     raise SystemExit(
         not result["documents"]
+        or not result["discovery"]["charts_complete"]
+        or not result["discovery"]["dashboards_complete"]
+        or bool(result["discovery"]["problems"])
         or any(d["status"] != "passed" for d in result["documents"])
     )

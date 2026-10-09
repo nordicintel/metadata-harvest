@@ -63,7 +63,8 @@ def region_code(level: str, county: str, municipality: str) -> str:
 
     ``riket`` for national rows (whose county/municipality columns only hold a
     filler such as ``Sekretesskyddad`` or ``Riket``), ``lan:<LAN_KOD>`` for county
-    rows, ``kommun:<KOMMUN_KOD>`` for municipality rows and
+    rows (including ``lan:Sekretesskyddad`` for the source's suppressed county
+    category), ``kommun:<KOMMUN_KOD>`` for municipality rows and
     ``kommun:<LAN_KOD>:Sekretesskyddad`` for a county's merged suppressed
     municipalities.
 
@@ -72,7 +73,7 @@ def region_code(level: str, county: str, municipality: str) -> str:
     """
     if level == NATIONAL:
         return "riket"
-    if level == COUNTY and county and county != SUPPRESSED:
+    if level == COUNTY and county:
         return f"lan:{county}"
     if level == MUNICIPALITY and county and county != SUPPRESSED:
         if municipality == SUPPRESSED:
@@ -305,7 +306,7 @@ async def retrieve(
                 values = filters.setdefault(column, [])
                 if value not in values:
                     values.append(value)
-            if value == SUPPRESSED:
+            if level == MUNICIPALITY and value == SUPPRESSED:
                 counties_of_suppressed.add(code.split(":")[1])
         municipal = levels.get(MUNICIPALITY, {}).get(MUNICIPALITY_COLUMN, [])
         if municipal == [SUPPRESSED]:  # only merged rows: narrow to their counties
@@ -346,19 +347,37 @@ async def retrieve(
     for part in parts:
         params = [*fixed, *part.params(columns)]
         offset = 0
+        expected_count = None
         while True:
+            if requests >= MAX_REQUESTS:
+                raise ValueError(f"selection exceeds {MAX_REQUESTS} requests")
             page = [*params, ("limit", str(PAGE_SIZE)), ("offset", str(offset))]
             body = await _get(session, base, page)
             requests += 1
+            count = body.get("rowCount")
+            if type(count) is not int or count < 0:
+                raise RuntimeError(
+                    f"Tillväxtverket returned invalid rowCount {count!r}"
+                )
             if offset == 0:
-                count = int(body.get("rowCount") or 0)
+                expected_count = count
                 planned += max(0, math.ceil(count / PAGE_SIZE) - 1)
                 if planned > MAX_REQUESTS:
                     raise ValueError(
                         f"selection spans {count} rows in one part; more than "
                         f"{MAX_REQUESTS} requests of {PAGE_SIZE} rows"
                     )
+            elif count != expected_count:
+                raise RuntimeError(
+                    f"Tillväxtverket pagination rowCount changed from "
+                    f"{expected_count} to {count}"
+                )
             rows = body["rows"]
+            if offset + len(rows) > count or (not rows and offset < count):
+                raise RuntimeError(
+                    f"Tillväxtverket incomplete pagination: offset {offset}, "
+                    f"{len(rows)} rows, rowCount {count}"
+                )
             for row in rows:
                 coordinates = {}
                 if region_dimension in selection:
@@ -394,7 +413,7 @@ async def retrieve(
                         )
                     cells[index] = (value, status)
             offset += len(rows)
-            if not rows or offset >= int(body.get("rowCount") or 0):
+            if offset == count:
                 break
     logger.debug("%s: %d requests, %d cells", dataset_code, requests, len(cells))
 

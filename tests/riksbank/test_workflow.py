@@ -1,6 +1,7 @@
 """Weekly Riksbank lifecycle against recorded responses."""
 
 import asyncio
+import json
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -263,6 +264,87 @@ def test_unknown_subject_is_reported(data, tmp_path):
     ]
     assert "Unknown" in result["errors"][0]["error"]
     assert result["counts"]["unchanged"] == 0
+
+
+@pytest.mark.parametrize(
+    ("subject", "failed_catalogue", "key"),
+    [
+        ("SECBREPOEFF", GROUPS, "en/swea_group_2"),
+        ("SEQGDPNAYSA", SERIES_IDS, "en/mpd_SEQGDPNAYSA"),
+    ],
+)
+def test_discovery_failure_resolves_previously_accepted_series_alias(
+    data, tmp_path, subject, failed_catalogue, key
+):
+    source = Source()
+    source.failing = {failed_catalogue}
+    before = published(data)[key]
+    result = execute(
+        source, data, tmp_path / "alias-down", subjects=[subject, "swestr"]
+    )
+    assert result["status"] == "completed_with_errors"
+    assert key not in published(data)
+    assert load_state(data)["withheld"][key] == before
+    assert result["counts"]["withheld"] == 1
+
+
+@pytest.mark.parametrize("stage", ["discovery", "endpoint"])
+def test_live_failure_has_url_before_next_sibling(data, tmp_path, monkeypatch, stage):
+    progress_path = tmp_path / "progress.json"
+    monkeypatch.setenv("HARVEST_PROGRESS", str(progress_path))
+    failed = GROUPS if stage == "discovery" else LATEST_2
+    sibling = (
+        SERIES_IDS
+        if stage == "discovery"
+        else fixture_key(f"{API}/swea/v1/Observations/Latest/ByGroup/130")
+    )
+
+    class ObservedSource(Source):
+        async def get_json(self, url, params=None, **kwargs):
+            if fixture_key(url, params) == sibling:
+                entries = [
+                    json.loads(line)
+                    for line in progress_path.with_suffix(".errors.jsonl")
+                    .read_text()
+                    .splitlines()
+                ]
+                assert any(
+                    e["stage"] == stage and e["url"] == failed[4:] for e in entries
+                )
+            return await super().get_json(url, params, **kwargs)
+
+    source = ObservedSource()
+    source.failing = {failed}
+    result = execute(source, data, tmp_path / "live-errors")
+    assert result["status"] == "completed_with_errors"
+    assert len(result["errors"]) == 1
+
+
+@pytest.mark.parametrize("failed", [GROUPS, LATEST_2])
+def test_recovered_failure_stays_in_telemetry_but_not_final_report(
+    data, tmp_path, monkeypatch, failed
+):
+    progress_path = tmp_path / "progress.json"
+    monkeypatch.setenv("HARVEST_PROGRESS", str(progress_path))
+
+    class RecoveringSource(Source):
+        async def get_json(self, url, params=None, **kwargs):
+            if fixture_key(url, params) in self.failing:
+                self.failing.remove(fixture_key(url, params))
+                raise Unreachable("temporary failure")
+            return await super().get_json(url, params, **kwargs)
+
+    source = RecoveringSource()
+    source.failing = {failed}
+    result = execute(source, data, tmp_path / "recovered")
+    assert result["status"] == "success"
+    assert result["errors"] == []
+    assert result["counts"]["failed"] == result["counts"]["withheld"] == 0
+    entries = [
+        json.loads(line)
+        for line in progress_path.with_suffix(".errors.jsonl").read_text().splitlines()
+    ]
+    assert len(entries) == 1 and entries[0]["url"] == failed[4:]
 
 
 def test_stale_artifact_rejected(data, tmp_path):

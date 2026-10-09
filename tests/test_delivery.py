@@ -60,6 +60,10 @@ def test_provider_entry_points_and_placeholders_are_consistent():
         ("trafa", "providers.trafa.json"),
         ("entrysoft", "providers.entrysoft.json"),
         ("smhi_emissions", "providers.smhi_emissions.json"),
+        ("tillvaxtverket", "providers.tillvaxtverket.json"),
+        ("dataanalys", "providers.dataanalys.json"),
+        ("riksbank", "providers.riksbank.json"),
+        ("forsakringskassan", "providers.forsakringskassan.json"),
     ]:
         for provider in json.loads((ROOT / config).read_text(encoding="utf-8")):
             expected[provider["code"]] = (

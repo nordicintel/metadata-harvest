@@ -51,6 +51,10 @@ The server's own API description is `https://oppnadata.tillvaxtverket.se/api.yam
     filler (`Sekretesskyddad` in the revenue and country files, `Riket` in the
     capacity files). The filler is not a category.
   - `lan:<LAN_KOD>` for counties, labelled with `LAN_NAMN`.
+  - `lan:Sekretesskyddad` preserves the daily-capacity source's county-level
+    category whose county code and name are `Sekretesskyddad`. This is an
+    unidentified suppressed category, with no inferred county code or coordinates;
+    retrieval filters `NIVA_NAMN=Län` and `LAN_KOD=Sekretesskyddad` exactly.
   - `kommun:<KOMMUN_KOD>` for municipalities, labelled with `KOMMUN_NAMN`.
   - `kommun:<LAN_KOD>:Sekretesskyddad` for a county's municipality rows whose code
     is `Sekretesskyddad` (merged suppressed municipalities; label
@@ -227,6 +231,9 @@ fragment = await retrieve(
   - `LookupError`: HTTP 404 or DivePort's `File not found`.
   - Other HTTP errors propagate as `aiohttp.ClientResponseError`.
   - Conflicting duplicate rows raise `RuntimeError`.
+  - Missing, invalid or changing `rowCount`, or a page ending before that count,
+    raises `RuntimeError`; retrieval never returns a partial fragment for an
+    incomplete page sequence. The 60-request cap also counts actual short pages.
   - The caller's session is never closed, and nothing is retried.
 
 ## Verification
@@ -240,8 +247,24 @@ uv run --extra harvest python scripts/check_tillvaxtverket_live.py
   under `docs/api/tillvaxtverket/samples/`, this adapter's bounded live probes of
   2026-10-09 (trimmed), and labelled reconstructed or synthetic bodies.
 - **Live script.** It probes the signal of all six datasets, rebuilds and validates
-  `GuestNights_Capacity_Revenue_Year`, and retrieves 16 cells from it: 19 requests
-  on 2026-10-09. It writes `output/tillvaxtverket-live.json` with counts only.
+  `GuestNights_Capacity_Revenue_Year`, and retrieves 16 cells from it: 19 harvest
+  requests and two retrieval requests on 2026-10-09. The report labels the client
+  counter `harvest_requests`, which excludes direct retrieval calls. It writes
+  `output/tillvaxtverket-live.json` with counts only and fails an empty sample.
+
+Fresh bounded verification on 2026-10-09 passed all six signal probes and the
+Revenue Year rebuild/retrieval (16 cells). Fixture regressions additionally cover
+incomplete pagination and short pages exceeding the actual request cap. Full
+production acceptance, hosted monitoring, publication and a subsequent live
+reuse/byte-stability run remain unverified; production data was not changed.
+
+A metadata-only live distinct-region probe on 2026-10-09 additionally found 292
+combinations in `GuestNights_Capacity_Day`, including one suppressed county-level
+combination with all county/municipality code/name fields `Sekretesskyddad`.
+The trimmed source row is recorded in the fixture `suppressed_county.json`;
+regressions validate its metadata mapping and independent county/municipality
+retrieval filters using explicitly synthetic measure values. No observation corpus
+was downloaded. Mapping version 2 ensures this mapping is rebuilt on refresh.
 
 ## Licence and rate limits
 
@@ -271,50 +294,3 @@ The adapter sends one request at a time, at most one per second, and honours
   `GuestNights_Capacity_Revenue_Month`, `GuestNights_Country_Month`) were
   live-probed but were rebuilt only from fixtures. Their first hosted run is their
   first full live rebuild.
-
-## Integration
-
-```json
-{
-  "adapter": "tillvaxtverket",
-  "package": "metadata_harvest.adapters.tillvaxtverket",
-  "providers_file": "providers.tillvaxtverket.json",
-  "provider_codes": ["tillvaxtverket"],
-  "retrieval_target": "metadata_harvest.adapters.tillvaxtverket.retrieval:retrieve",
-  "required_metadata": ["/id", "/extension/tillvaxtverket"],
-  "workflow_file": "harvest-tillvaxtverket.yml",
-  "monitor_name": "tillvaxtverket",
-  "commands": ["run", "collect", "publish"],
-  "report": "reports/latest.json",
-  "output_default": "output/tillvaxtverket",
-  "runner": {
-    "providers_argument": "single",
-    "run_kwargs": {"product": "products", "language": "languages"},
-    "collect_kwargs": {"languages": "provider['languages']"},
-    "full_mode": "rejected"
-  },
-  "outcome": {
-    "discovery_resources": [],
-    "endpoint_prefix": null,
-    "green_examples": [
-      {"stage": "endpoint", "resource": "sv/inkvartering/GuestNights_Country_Year"},
-      {"stage": "metadata", "resource": "sv/inkvartering/GuestNights_Capacity_Day"},
-      {"stage": "dependency", "resource": "sv/inkvartering/GuestNights_Country_Year#data.europa.eu"},
-      {"stage": "discovery", "resource": "Nope"}
-    ],
-    "red_examples": []
-  },
-  "schedule": {"cron": "45 7 * * 1", "mode": "full", "comment": "Weekly Monday 07:45; every run probes every dataset (3 requests each) and rebuilds only those whose LOAD_DATE signal changed"},
-  "workflow_inputs": {"products": "--product"},
-  "readme_row": "| [Tillväxtverket](docs/adapters/tillvaxtverket.md) | `tillvaxtverket`, sv; 6 datasets | Current metadata, weekly change-signal refresh, standalone retrieval |",
-  "consolidation_row": "| Tillväxtverket | `tillvaxtverket`, sv | docs/api/tillvaxtverket research 2026-10-09 | Metadata from DivePort distinct queries + data.europa.eu; filtered, paged retrieval | First hosted run; [adapter guide](adapters/tillvaxtverket.md) |",
-  "harvesting_command": "gh workflow run harvest-tillvaxtverket.yml --ref main",
-  "live_check": "scripts/check_tillvaxtverket_live.py",
-  "tests": "tests/tillvaxtverket",
-  "new_dependencies": []
-}
-```
-
-No `endpoint_prefix` applies: there is no scope wider than a dataset, so the
-outcome rule for this adapter returns no scope failures (like `uka`), and the job
-goes red only when the run raises.

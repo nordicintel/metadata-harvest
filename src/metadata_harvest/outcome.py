@@ -21,6 +21,10 @@ REPORTS = {
     "trafa": "reports/latest.json",
     "entrysoft": "reports/latest.json",
     "smhi_emissions": "reports/latest.json",
+    "forsakringskassan": "reports/latest.json",
+    "riksbank": "reports/latest.json",
+    "dataanalys": "reports/latest.json",
+    "tillvaxtverket": "reports/latest.json",
     "catalog": "reports/latest.json",
 }
 
@@ -79,6 +83,18 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return failures
     if adapter == "smhi_emissions":
         return _scoped(report, discovery_resources=("filteroptions",))
+    if adapter == "forsakringskassan":
+        return _scoped(
+            report, discovery_resources=("reports", "texts"), endpoint_prefix="*/"
+        )
+    if adapter == "riksbank":
+        return _scoped(report, discovery_resources=("swea", "mpd", "swestr"))
+    if adapter == "dataanalys":
+        return _scoped(
+            report, discovery_resources=("charts", "dashboards"), endpoint_prefix="*/"
+        )
+    if adapter == "tillvaxtverket":
+        return []  # Every configured source endpoint is an individual dataset.
     if adapter == "catalog":
         # Catalog-level errors: a missing or unreadable accepted collection.
         return [e["collection"] for e in report.get("errors") or []]

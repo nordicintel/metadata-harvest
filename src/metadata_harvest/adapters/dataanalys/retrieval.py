@@ -95,8 +95,7 @@ def result_rows(body: Any) -> list[dict[str, Any]]:
     """The data rows of a ``/chart/data`` response.
 
     Raises:
-        LookupError: Superset reports the query as failed.
-        RuntimeError: The response does not have Superset's result shape.
+        RuntimeError: Superset reports a query failure or an unexpected result shape.
     """
     results = body.get("result") if isinstance(body, Mapping) else None
     if not isinstance(results, list) or len(results) != 1:
@@ -105,7 +104,7 @@ def result_rows(body: Any) -> list[dict[str, Any]]:
     if not isinstance(result, Mapping):
         raise RuntimeError(f"Unexpected /chart/data result: {str(result)[:200]}")
     if result.get("status") == "failed" or result.get("error"):
-        raise LookupError(f"Superset query failed: {result.get('error')}")
+        raise RuntimeError(f"Superset query failed: {result.get('error')}")
     rows = result.get("data")
     if not isinstance(rows, list) or not all(isinstance(row, dict) for row in rows):
         raise RuntimeError(f"Unexpected /chart/data rows: {str(rows)[:200]}")
@@ -255,8 +254,8 @@ async def retrieve(
     Raises:
         ValueError: The selection misses a dimension, or the Superset dataset no
             longer has a harvested column.
-        LookupError: Superset no longer knows the dataset, or reports the query as
-            failed.
+        LookupError: Superset no longer knows the dataset (HTTP 404).
+        RuntimeError: Superset reports a query failure.
     """
     native = metadata.get("/extension/socialstyrelsen_analys") or {}
     columns = native.get("columns")

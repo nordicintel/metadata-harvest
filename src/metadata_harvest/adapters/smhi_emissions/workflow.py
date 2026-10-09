@@ -152,15 +152,26 @@ async def run(
     counts = dict.fromkeys(COUNTS, 0)
     errors, submissions = [], {}
 
-    def fail(stage, resource, error, url=FILTER_OPTIONS_URL):
+    def fail(
+        stage,
+        resource,
+        error,
+        url=FILTER_OPTIONS_URL,
+        *,
+        record=True,
+        emit=True,
+        **details,
+    ):
         entry = {
             "stage": stage,
             "resource": resource,
             "url": url,
             "error": f"{type(error).__name__}: {error}",
         }
-        errors.append(entry)
-        progress.error(stage, resource, "sv", entry["error"])
+        if record:
+            errors.append(entry)
+        if emit:
+            progress.error(stage, resource, "sv", entry["error"], url=url, **details)
         return entry
 
     def known():
@@ -169,9 +180,15 @@ async def run(
 
     try:
         progress.update(phase="discovery", current="filteroptions")
-        options = parse_filter_options(await connection.get_json(FILTER_OPTIONS_URL))
-        if not options.substances and not options.quarantined:
-            raise ValueError("getfilteroptions lists no substances")
+        try:
+            options = parse_filter_options(
+                await connection.get_json(FILTER_OPTIONS_URL)
+            )
+            if not options.substances and not options.quarantined:
+                raise ValueError("getfilteroptions lists no substances")
+        except Exception as error:
+            fail("discovery", "filteroptions", error, record=False)
+            raise
         for resource, error in options.problems:
             fail("discovery", resource, error)
         selected, unknown = _select(options, subjects)
@@ -199,6 +216,9 @@ async def run(
                 if code in options.quarantined:  # keep the last document until stale
                     working[key] = True
                     failures[key] = ("metadata", ValueError(options.quarantined[code]))
+                    fail(
+                        "metadata", key, failures[key][1], record=False, retrying=False
+                    )
                 else:
                     pending.append((key, options.substances[code]))
 
@@ -208,16 +228,37 @@ async def run(
             for key, substance in pending:
                 progress.update(current=key, operation=f"rebuild (attempt {attempt})")
                 info = state["datasets"][key]
+                url = f"{DATA_URL}?{urlencode(probe_parameters(substance.code))}"
                 try:
                     document, submission = await build_substance(
                         connection, substance, options
                     )
                 except Unreachable as error:
                     working[key], failures[key] = False, ("endpoint", error)
+                    fail(
+                        "endpoint",
+                        key,
+                        error,
+                        url,
+                        record=False,
+                        attempt=attempt,
+                        retrying=attempt == 1,
+                    )
+                    progress.update(failed=len(failures))
                     retry.append((key, substance))
                     continue
                 except Exception as error:  # the probe answered: endpoint works
                     working[key], failures[key] = True, ("metadata", error)
+                    fail(
+                        "metadata",
+                        key,
+                        error,
+                        url,
+                        record=False,
+                        attempt=attempt,
+                        retrying=False,
+                    )
+                    progress.update(failed=len(failures))
                     continue
                 failures.pop(key, None)
                 working[key] = True
@@ -234,6 +275,7 @@ async def run(
                 progress.update(
                     processed=counts["rebuilt"] + counts["unchanged"],
                     succeeded=counts["rebuilt"] + counts["unchanged"],
+                    failed=len(failures),
                 )
             if not retry or attempt == 2:
                 break
@@ -247,7 +289,7 @@ async def run(
                 if code in options.quarantined
                 else f"{DATA_URL}?{urlencode(probe_parameters(code))}"
             )
-            state["datasets"][key]["error"] = fail(stage, key, error, url)
+            state["datasets"][key]["error"] = fail(stage, key, error, url, emit=False)
             counts["failed"] += 1
         progress.update(failed=counts["failed"])
         settle(

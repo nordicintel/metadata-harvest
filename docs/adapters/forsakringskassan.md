@@ -159,7 +159,7 @@ uv run --extra harvest python -m metadata_harvest.runner collect --adapter forsa
   `/reports` listing, and tables a parsed `meta.json` no longer lists.
 - **Errors** carry `stage`, `resource`, `error` and the `url`; they also go to
   `Progress`. The job fails only for discovery errors on `reports` or `texts` and
-  for `*/` endpoint failures (see Integration).
+  for `*/` endpoint failures.
 
 ## Retrieval
 
@@ -226,6 +226,13 @@ duplicate tables). The live script reads `/reports`, the texts and two
 each report's first table (six requests); it writes
 `output/forsakringskassan-live.json` without observations.
 
+Fresh bounded verification on 2026-10-09 passed: the two reports produced three
+validated documents, with 4 and 8 retrieved cells respectively. The report's
+`harvest_requests` counts four metadata requests; the two retrieval requests are
+additional. This verifies sampled compatibility only. Full production acceptance,
+hosted monitoring, publication and a subsequent live reuse/byte-stability run
+remain unverified; production data was not changed.
+
 ## Licence and rate limits
 
 No licence or terms of use are stated by the API, the web page or the texts;
@@ -253,54 +260,3 @@ requests at 1.2 s spacing); the adapter keeps one request per second.
 - **XLSX** untested; **no English** texts.
 - **Probe inconclusive.** A probe that returns no rows is a metadata failure of
   that table (its previous document is kept).
-
-## Integration
-
-```json
-{
-  "adapter": "forsakringskassan",
-  "package": "metadata_harvest.adapters.forsakringskassan",
-  "providers_file": "providers.forsakringskassan.json",
-  "provider_codes": ["forsakringskassan"],
-  "retrieval_target": "metadata_harvest.adapters.forsakringskassan.retrieval:retrieve",
-  "required_metadata": ["/id", "/extension/forsakringskassan"],
-  "workflow_file": "harvest-forsakringskassan.yml",
-  "monitor_name": "forsakringskassan",
-  "commands": ["run", "collect", "publish"],
-  "report": "reports/latest.json",
-  "output_default": "output/forsakringskassan",
-  "runner": {
-    "providers_argument": "single",
-    "run_kwargs": {"subject": "subjects", "full": "full", "language": "languages"},
-    "collect_kwargs": {"languages": "provider['languages']"},
-    "full_mode": "supported"
-  },
-  "outcome": {
-    "discovery_resources": ["reports", "texts"],
-    "endpoint_prefix": "*/",
-    "green_examples": [
-      {"stage": "discovery", "resource": "reports/#0"},
-      {"stage": "discovery", "resource": "nope"},
-      {"stage": "metadata", "resource": "sv/ase-beslut-lan/ASEBeslutLan"},
-      {"stage": "metadata", "resource": "*/ase-beslut-lan"},
-      {"stage": "endpoint", "resource": "sv/sa-bestand-manad/SAbestandmanadkommun"}
-    ],
-    "red_examples": [
-      {"stage": "discovery", "resource": "reports"},
-      {"stage": "discovery", "resource": "texts"},
-      {"stage": "endpoint", "resource": "*/ase-beslut-lan"}
-    ]
-  },
-  "schedule": [
-    {"cron": "15 5 * * 2", "mode": "incremental", "comment": "Weekly: only reports whose meta.json or texts hash changed are rebuilt."},
-    {"cron": "45 4 1 * *", "mode": "full", "comment": "Monthly complete rebuild, including the undeclared-dimension probes."}
-  ],
-  "workflow_inputs": {"subjects": "--subject", "full": "--full"},
-  "readme_row": "| [Försäkringskassan]\u0028docs/adapters/forsakringskassan.md) | `forsakringskassan`, sv; up to 210 datasets (tables with undeclared dimensions excluded) | Current metadata, weekly incremental (meta.json/texts hashes) and monthly full, standalone retrieval |",
-  "consolidation_row": "| Försäkringskassan | `forsakringskassan`, sv | docs/api/forsakringskassan research 2026-10-09 | Catalogue + meta.json + texts; hash-based incremental; filtered JSON retrieval | First hosted run; [adapter guide]\u0028adapters/forsakringskassan.md) |",
-  "harvesting_command": "gh workflow run harvest-forsakringskassan.yml --ref main",
-  "live_check": "scripts/check_forsakringskassan_live.py",
-  "tests": "tests/forsakringskassan",
-  "new_dependencies": []
-}
-```

@@ -189,12 +189,17 @@ uv run --extra harvest python -m metadata_harvest.runner run --adapter dataanaly
 
 - **Listings.**
   - If a chart-list or dashboard-list page fails or is not a Superset list, the
-    run raises and nothing is published.
+    failed discovery scope stops paging and records a structured error. Previously
+    understood pages and the other listing still run; absence cannot remove an
+    accepted dataset. A change in the reported count between pages also makes the
+    scope incomplete.
   - A short or duplicated listing is a `discovery` error for `charts` or
     `dashboards`. The run continues, but removes nothing. These two resources mark
     the whole scope as failed.
   - Malformed chart or dashboard rows are reported individually
     (`charts/{id}`, `dashboards/{id}`) and stop removal.
+  - Conflicting duplicate chart or dashboard ids are quarantined; neither listing
+    row is selected as an authoritative replacement.
 - **Area endpoint.** If an area's catalogue or probe is unreachable, that is an
   `endpoint` error for `*/{AREA}`. It is reported once, the area's documents are
   withheld, and the area is retried once after `retry_cooldown_seconds`. Any
@@ -265,7 +270,8 @@ fragment = await retrieve(
   - `ValueError` for a selection that misses a dimension, or for Superset's HTTP
     400 `Columns missing`.
   - `LookupError` for HTTP 404 (an unknown datasource answers
-    `{"message": "Not found"}`) or a query with `status: failed`.
+    `{"message": "Not found"}`). A query with `status: failed` raises
+    `RuntimeError`: a timed-out query does not prove the dataset disappeared.
   - Everything else propagates, including HTTP 401 or 403 if public access is
     closed.
 
@@ -291,6 +297,25 @@ uv run --extra harvest python scripts/check_dataanalys_live.py
   `output/dataanalys-live.json` without observations.
 - **Other live runs on 2026-10-09.** Bounded live runs also built and validated
   NRAA_1–3, LRHST09, OB11, PS390-A and NRTV T1, and found NPS unsupported.
+
+- **Fresh completion verification, 2026-10-09.** The bounded live script passed
+  again after discovery/retrieval fixes: 492 chart rows and 96 dashboard rows,
+  both complete; GONV G082 and G013 metadata validated and each returned one
+  schema-validated Riket total for 2025. Twelve requests were made, and no
+  observations were saved. The report is `output/dataanalys-live.json` and carries
+  its UTC `checked_at` timestamp. This is a bounded compatibility check, not full
+  corpus acceptance or a hosted publication run.
+- **Regression coverage.** All 69 adapter fixture tests passed; Ruff checks and
+  formatting passed. Fixture tests additionally prove partial-page discovery
+  isolation, retention after incomplete discovery or a bounded out-of-scope
+  result, malformed chart-filter isolation, conflicting listing-id quarantine,
+  cancellation propagation, and the
+  distinction between a failed query and HTTP 404. Full automated acceptance,
+  hosted monitoring/read-back and live whole-corpus byte-stability remain unverified.
+  Failure telemetry is also tested through the real `Progress` transport: an
+  endpoint error with its URL is visible while the next sibling is processed;
+  a successful retry clears the final failure count/report without erasing the
+  attempt event.
 
 ## Licence and rate limits
 
@@ -324,56 +349,7 @@ uv run --extra harvest python scripts/check_dataanalys_live.py
   `Start` dashboard tags.
 - **Unstable list order.** The default list order might shift while paging; the
   count and id checks detect this.
-
-## Integration
-
-```json
-{
-  "adapter": "dataanalys",
-  "package": "metadata_harvest.adapters.dataanalys",
-  "providers_file": "providers.dataanalys.json",
-  "provider_codes": ["socialstyrelsen_analys"],
-  "retrieval_target": "metadata_harvest.adapters.dataanalys.retrieval:retrieve",
-  "required_metadata": ["/id", "/extension/socialstyrelsen_analys"],
-  "workflow_file": "harvest-dataanalys.yml",
-  "monitor_name": "dataanalys",
-  "commands": ["run", "collect", "publish"],
-  "report": "reports/latest.json",
-  "output_default": "output/dataanalys",
-  "runner": {
-    "providers_argument": "single",
-    "run_kwargs": {"subject": "areas", "indicator": "indicators", "language": "languages"},
-    "collect_kwargs": {"languages": "provider['languages']"},
-    "full_mode": "rejected"
-  },
-  "outcome": {
-    "discovery_resources": ["charts", "dashboards"],
-    "endpoint_prefix": "*/",
-    "green_examples": [
-      {"stage": "endpoint", "resource": "sv/GONV|G082"},
-      {"stage": "metadata", "resource": "*/GONV"},
-      {"stage": "metadata", "resource": "sv/GONV|G200"},
-      {"stage": "discovery", "resource": "catalogue/GONV/3"},
-      {"stage": "discovery", "resource": "charts/2541"},
-      {"stage": "discovery", "resource": "xyz"}
-    ],
-    "red_examples": [
-      {"stage": "endpoint", "resource": "*/GONV"},
-      {"stage": "discovery", "resource": "charts"},
-      {"stage": "discovery", "resource": "dashboards"}
-    ]
-  },
-  "schedule": {
-    "cron": "45 6 * * 1",
-    "mode": "full",
-    "comment": "Weekly full rebuild, about 140 requests at 1 request/s; the analysverktyg has no change signal for dimension categories"
-  },
-  "workflow_inputs": {"areas": "--subject", "indicators": "--indicator"},
-  "readme_row": "| [Socialstyrelsen analysverktyg](docs/adapters/dataanalys.md) | `socialstyrelsen_analys`, sv; about 104 indicators in 6 areas | Current metadata, weekly full rebuild, standalone retrieval |",
-  "consolidation_row": "| Socialstyrelsen analysverktyg (Superset) | `socialstyrelsen_analys`, sv | docs/api/socialstyrelsen-superset research 2026-10-09 | Indicator metadata and live retrieval through public Superset custom queries; Riket and Region levels; NPS and MART tables out of scope | First hosted run; [adapter guide](adapters/dataanalys.md) |",
-  "harvesting_command": "gh workflow run harvest-dataanalys.yml --ref main",
-  "live_check": "scripts/check_dataanalys_live.py",
-  "tests": "tests/dataanalys",
-  "new_dependencies": []
-}
-```
+- **Failure telemetry.** Area and indicator attempt errors are emitted immediately
+  with the request URL, before processing their siblings. Permanent report errors
+  are settled after retries; a recovered attempt stays visible in telemetry and
+  does not count as a final failure. Hosted monitor read-back remains unverified.

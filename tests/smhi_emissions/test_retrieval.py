@@ -180,6 +180,13 @@ def test_unknown_sector_label_is_an_adapter_error(fake_smhi, retrieve_from):
         run(retrieve_from, fake_smhi, selection(["00"], ["0"], ["2024"]))
 
 
+@pytest.mark.parametrize("value", [float("nan"), float("inf"), float("-inf")])
+def test_nonfinite_source_value_is_rejected(value):
+    body = {"data": {"CO2": {"Totalt": [{"year": 2024, "value": value}]}}}
+    with pytest.raises(RuntimeError, match="unexpected point"):
+        retrieval.series(body, "national CO2")
+
+
 def test_request_cap_is_a_value_error(fake_smhi, retrieve_from, monkeypatch):
     monkeypatch.setattr(retrieval, "MAX_REQUESTS", 3)
 

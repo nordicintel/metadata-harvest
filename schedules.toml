@@ -59,3 +59,30 @@ enabled = true
 [[adapters.smhi_emissions.schedules]]
 cron = "30 7 3 * *"
 mode = "full" # Monthly: every run rebuilds all 29 substances (30 requests); a new submission arrives each spring.
+
+[adapters.forsakringskassan]
+enabled = true
+[[adapters.forsakringskassan.schedules]]
+cron = "15 5 * * 2"
+mode = "incremental" # Weekly: only reports whose meta.json or texts hash changed are rebuilt.
+[[adapters.forsakringskassan.schedules]]
+cron = "45 4 1 * *"
+mode = "full" # Monthly complete rebuild, including the undeclared-dimension probes.
+
+[adapters.riksbank]
+enabled = true
+[[adapters.riksbank.schedules]]
+cron = "15 7 * * 1"
+mode = "full" # Weekly full rebuild: 46 requests paced at 15 s (about 12 minutes); metadata changes rarely, forecasts 4-5 times a year
+
+[adapters.dataanalys]
+enabled = true
+[[adapters.dataanalys.schedules]]
+cron = "45 6 * * 1"
+mode = "full" # Weekly full rebuild, about 140 requests at 1 request/s; the analysverktyg has no change signal for dimension categories
+
+[adapters.tillvaxtverket]
+enabled = true
+[[adapters.tillvaxtverket.schedules]]
+cron = "45 7 * * 1"
+mode = "full" # Weekly Monday 07:45; every run probes every dataset (3 requests each) and rebuilds only those whose LOAD_DATE signal changed

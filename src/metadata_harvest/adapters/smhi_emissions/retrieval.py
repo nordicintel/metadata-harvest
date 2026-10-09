@@ -81,7 +81,11 @@ def data_parameters(region: str, sector: str, substance: str) -> dict[str, str]:
 
 
 def _number(value: Any) -> bool:
-    return isinstance(value, int | float) and not isinstance(value, bool)
+    return (
+        isinstance(value, int | float)
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+    )
 
 
 def series(body: Any, context: str) -> dict[str, list[tuple[str, float | int]]]:

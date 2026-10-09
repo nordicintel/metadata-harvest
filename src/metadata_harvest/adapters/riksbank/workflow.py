@@ -21,6 +21,7 @@ import asyncio
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from urllib.parse import urlencode
 from uuid import uuid4
 
 from metadata_harvest.adapters.riksbank.api import (
@@ -66,15 +67,36 @@ APIS = ("swea", "mpd", "swestr")
 COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
 
 
+async def _request(client, url, params=None, **kwargs):
+    """Preserve the failed catalogue request's URL for live telemetry."""
+    try:
+        return await client.get_json(url, params, **kwargs)
+    except Exception as error:
+        error.source_url = f"{url}?{urlencode(params)}" if params else url
+        raise
+
+
+def _probe_url(record):
+    if record["api"] == "swea":
+        return latest_by_group_url(record["group"]["groupId"])
+    if record["api"] == "mpd":
+        params = {
+            "series": record["series"]["series_id"],
+            "policy_round_name": record["policy_rounds"][-1],
+        }
+        return f"{MPD_FORECASTS}?{urlencode(params)}"
+    return SWESTR_LATEST_URL
+
+
 async def discover_api(client, api: str) -> Listing:
     """Read one API's catalogue; raises when the whole scope cannot be read."""
     if api == "swea":
-        groups = await client.get_json(GROUPS_URL)
-        return swea_listing(groups, await client.get_json(SERIES_URL))
+        groups = await _request(client, GROUPS_URL)
+        return swea_listing(groups, await _request(client, SERIES_URL))
     if api == "mpd":
-        series = await client.get_json(MPD_SERIES_IDS)
-        return mpd_listing(series, await client.get_json(MPD_POLICY_ROUNDS))
-    return swestr_listing(await client.get_json(SWESTR_LATEST_URL))
+        series = await _request(client, MPD_SERIES_IDS)
+        return mpd_listing(series, await _request(client, MPD_POLICY_ROUNDS))
+    return swestr_listing(await _request(client, SWESTR_LATEST_URL))
 
 
 async def build_record(client, record: dict) -> dict:
@@ -204,15 +226,36 @@ async def run(
     apis = _apis_for(subjects)
     scopes: dict[str, str] = {}
     matched: set[str] = set()
+    failure_urls = {}
 
-    def fail(stage, resource, error):
+    def notify(stage, resource, error, url):
+        failure_urls[(stage, resource)] = url
+        progress.error(
+            stage, resource, LANGUAGES[0], f"{type(error).__name__}: {error}", url=url
+        )
+
+    def fail(stage, resource, error, *, url=None, report_only=False):
+        url = (
+            url
+            or failure_urls.get((stage, resource))
+            or (
+                SERIES_URL
+                if resource.startswith(("swea/series", "en/swea_"))
+                else GROUPS_URL
+                if resource.startswith("swea/")
+                else MPD_SERIES_IDS
+                if resource.startswith(("mpd/", "en/mpd_"))
+                else SWESTR_LATEST_URL
+            )
+        )
         entry = {
             "stage": stage,
             "resource": resource,
             "error": f"{type(error).__name__}: {error}",
         }
         errors.append(entry)
-        progress.error(stage, resource, LANGUAGES[0], entry["error"])
+        if not report_only:
+            notify(stage, resource, error, url)
         return entry
 
     def known(api: str) -> set[str]:
@@ -223,15 +266,23 @@ async def run(
             language, code = key.split("/", 1)
             if language not in selected_languages or api_of(code) != api:
                 continue
-            if wanted is not None and not _known_selected(code):
+            if wanted is not None and not _known_selected(key, code):
                 continue
             found.add(key)
         return found
 
-    def _known_selected(code: str) -> bool:
+    def _known_selected(key: str, code: str) -> bool:
         if code.casefold() in wanted:
             return True
-        return code.startswith("swea_group_") and code[11:] in wanted
+        if code.startswith("swea_group_") and code[11:] in wanted:
+            return True
+        accepted = published.get(key) or withheld.get(key)
+        if accepted is None:
+            return code.startswith("mpd_") and code[4:].casefold() in wanted
+        categories = accepted.get("dimension", {}).get("Series", {}).get("category", {})
+        return any(
+            series.casefold() in wanted for series in categories.get("index", [])
+        )
 
     working: dict[str, bool] = {}
     failures: dict[str, tuple[str, Exception]] = {}
@@ -260,6 +311,7 @@ async def run(
             if outcome is not None:
                 working[key] = outcome[0] == "metadata"
                 failures[key] = outcome
+                notify(outcome[0], key, outcome[1], _probe_url(record))
                 continue
             failures.pop(key, None)
             working[key] = True
@@ -279,6 +331,20 @@ async def run(
         try:
             listing = await discover_api(connection, api)
         except Exception as error:
+            notify(
+                "discovery",
+                api,
+                error,
+                getattr(
+                    error,
+                    "source_url",
+                    {
+                        "swea": SERIES_URL,
+                        "mpd": MPD_SERIES_IDS,
+                        "swestr": SWESTR_LATEST_URL,
+                    }[api],
+                ),
+            )
             unavailable = known(api)
             for key in unavailable:
                 settled.add(key)
@@ -339,7 +405,7 @@ async def run(
                 if name.casefold() not in matched:
                     fail("discovery", name, LookupError("Unknown Riksbank dataset"))
         for key, (stage, error) in sorted(failures.items()):
-            entry = fail(stage, key, error)
+            entry = fail(stage, key, error, report_only=True)
             counts["failed"] += 1
             for affected in known(key) if key in APIS else [key]:
                 if affected in state["datasets"]:

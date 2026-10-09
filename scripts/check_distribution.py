@@ -37,6 +37,10 @@ def check(root: Path):
         "providers.trafa.json",
         "providers.entrysoft.json",
         "providers.smhi_emissions.json",
+        "providers.tillvaxtverket.json",
+        "providers.dataanalys.json",
+        "providers.riksbank.json",
+        "providers.forsakringskassan.json",
     ):
         providers.update(
             p["code"] for p in json.loads((root / config).read_text(encoding="utf-8"))

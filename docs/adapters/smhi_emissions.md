@@ -262,49 +262,9 @@ It writes `output/smhi_emissions-live.json` without observations.
   Kolada's emission KPIs was not checked. The kommun × subsector detail is probably
   unique to this database.
 
-## Integration
+## Integration verification (9 October 2026)
 
-```json
-{
-  "adapter": "smhi_emissions",
-  "package": "metadata_harvest.adapters.smhi_emissions",
-  "providers_file": "providers.smhi_emissions.json",
-  "provider_codes": ["smhi"],
-  "retrieval_target": "metadata_harvest.adapters.smhi_emissions.retrieval:retrieve",
-  "required_metadata": ["/id", "/extension/smhi_emissions"],
-  "workflow_file": "harvest-smhi-emissions.yml",
-  "monitor_name": "smhi_emissions",
-  "commands": ["run", "collect", "publish"],
-  "report": "reports/latest.json",
-  "output_default": "output/smhi_emissions",
-  "runner": {
-    "providers_argument": "single",
-    "run_kwargs": {"subject": "subjects", "language": "languages"},
-    "collect_kwargs": {"languages": "provider['languages']"},
-    "full_mode": "rejected"
-  },
-  "outcome": {
-    "discovery_resources": ["filteroptions"],
-    "endpoint_prefix": null,
-    "green_examples": [
-      {"stage": "endpoint", "resource": "sv/emissionsdatabasen_NOx"},
-      {"stage": "metadata", "resource": "sv/emissionsdatabasen_CO2"},
-      {"stage": "discovery", "resource": "filteroptions/4.1/3"},
-      {"stage": "discovery", "resource": "*/XYZ"}
-    ],
-    "red_examples": [{"stage": "discovery", "resource": "filteroptions"}]
-  },
-  "schedule": {
-    "cron": "30 7 3 * *",
-    "mode": "full",
-    "comment": "Monthly; every run rebuilds all 29 substances (30 requests). A new submission arrives each spring."
-  },
-  "workflow_inputs": {"substances": "--subject"},
-  "readme_row": "| [SMHI emissions](docs/adapters/smhi_emissions.md) | `smhi`, Swedish; 29 datasets (one per substance) | Current metadata, monthly full rebuild, standalone retrieval |",
-  "consolidation_row": "| SMHI Nationella emissionsdatabasen | `smhi`, sv | docs/api/smhi-emissionsdatabasen research 2026-10-09 | Swedish metadata for 29 substances (region × sector × year), monthly full rebuild, standalone retrieval via getdata | First hosted run; [adapter guide](adapters/smhi_emissions.md) |",
-  "harvesting_command": "gh workflow run harvest-smhi-emissions.yml --ref main",
-  "live_check": "scripts/check_smhi_emissions_live.py",
-  "tests": "tests/smhi_emissions",
-  "new_dependencies": []
-}
-```
+The bounded live check passed for CO2 and NOx metadata and one Stockholm
+observation selection (four requests, no observations saved). Regression coverage
+also rejects non-finite source values instead of emitting invalid JSON numbers.
+Full hosted coverage and publication are separate from this bounded check.

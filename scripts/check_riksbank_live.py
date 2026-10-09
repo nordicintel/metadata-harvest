@@ -1,6 +1,6 @@
 """Opt-in live sample of the Riksbank APIs; never a corpus scan.
 
-About eleven requests, paced at the provider's 15 s interval (about three minutes):
+Ten requests, paced at the provider's 15 s interval (about three minutes):
 SWEA ``/Groups`` and ``/Series`` with group 2's latest observations, the forecast
 catalogue and policy rounds with one series' latest vintage, and the latest SWESTR
 fixing. Each of the three documents is built and validated, then one small recent
@@ -9,6 +9,7 @@ selection is retrieved from it. Observations are counted, never saved.
 
 import argparse
 import asyncio
+from datetime import UTC, datetime
 from pathlib import Path
 
 from metadata_harvest.adapters.riksbank.client import RiksbankClient
@@ -19,6 +20,30 @@ from metadata_harvest.storage import read, write
 from metadata_harvest.validation import validate_retrieval
 
 SAMPLES = {"swea": "swea_group_2", "mpd": "mpd_SEQGDPNAYSA", "swestr": "swestr"}
+
+
+class PacedRetrievalSession:
+    """Count and pace every request in the sample's caller-owned session."""
+
+    def __init__(self, client):
+        self.client = client
+
+    def get(self, *args, **kwargs):
+        return PacedRequest(self.client, args, kwargs)
+
+
+class PacedRequest:
+    def __init__(self, client, args, kwargs):
+        self.client, self.args, self.kwargs = client, args, kwargs
+
+    async def __aenter__(self):
+        await self.client.pace()
+        self.client.request_count += 1
+        self.context = self.client.session.get(*self.args, **self.kwargs)
+        return await self.context.__aenter__()
+
+    async def __aexit__(self, *args):
+        return await self.context.__aexit__(*args)
 
 
 def recent_selection(document: dict) -> dict:
@@ -49,9 +74,8 @@ async def check(provider: dict) -> dict:
                 document = await build_record(client, record)
                 selection = recent_selection(document)
                 shared = document["extension"]["nordicintel"]
-                await client.pace()  # retrieval itself never paces
                 result = await retrieve(
-                    client.session,
+                    PacedRetrievalSession(client),
                     provider_code="riksbank",
                     dataset_code=code,
                     language="en",
@@ -82,6 +106,7 @@ async def check(provider: dict) -> dict:
     finally:
         await client.close()
     return {
+        "checked_at": datetime.now(UTC).isoformat(),
         "verification": "bounded sample only",
         "requests": client.request_count,
         "subscription_key": client.keyed,

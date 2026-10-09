@@ -259,6 +259,27 @@ def test_unknown_subject_is_reported(data, tmp_path):
     assert "Unknown" in result["errors"][0]["error"]
 
 
+def test_endpoint_telemetry_contains_the_report_url(data, tmp_path, monkeypatch):
+    from metadata_harvest.adapters.forsakringskassan import workflow
+
+    events = []
+
+    def error(self, stage, resource, language, message, **details):
+        events.append({"stage": stage, "resource": resource, **details})
+
+    monkeypatch.setattr(workflow.Progress, "error", error)
+    source = RecordedClient()
+    source.fail(meta_url("ase-beslut-lan"))
+    start(source, data, tmp_path / "endpoint")
+    assert events == [
+        {
+            "stage": "endpoint",
+            "resource": "*/ase-beslut-lan",
+            "url": meta_url("ase-beslut-lan"),
+        }
+    ]
+
+
 def test_duplicates_are_quarantined(data, tmp_path):
     before = published(data)
     source = RecordedClient()

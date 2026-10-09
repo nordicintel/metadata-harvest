@@ -1,6 +1,8 @@
 """Mapping of recorded Tillväxtverket responses to Dataset documents."""
 
 import asyncio
+import json
+from pathlib import Path
 
 import pytest
 
@@ -88,6 +90,36 @@ def test_capacity_rows_use_riket_as_filler():
     regions = parse_regions(regions_body("GuestNights_Capacity_Year"))
     assert regions[0].code == "riket"
     assert [r.code for r in regions].count("riket") == 1
+
+
+def test_daily_capacity_keeps_recorded_suppressed_county():
+    fixture = json.loads(
+        (Path(__file__).parent / "fixtures/suppressed_county.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    regions = parse_regions(fixture)
+
+    assert [(region.code, region.label, region.parent) for region in regions] == [
+        ("lan:Sekretesskyddad", "Sekretesskyddad", "riket")
+    ]
+    client = RecordedClient()
+    key = distinct_key(
+        "GuestNights_Capacity_Day",
+        "NIVA_NAMN",
+        "LAN_KOD",
+        "LAN_NAMN",
+        "KOMMUN_KOD",
+        "KOMMUN_NAMN",
+    )
+    body = client.responses[key]
+    body["rows"].extend(fixture["rows"])
+    body["rowCount"] = len(body["rows"])
+    document = build("GuestNights_Capacity_Day", client)
+    validate_metadata(document, adapter="tillvaxtverket")
+    category = document["dimension"]["Region"]["category"]
+    assert category["label"]["lan:Sekretesskyddad"] == "Sekretesskyddad"
+    assert "lan:Sekretesskyddad" in category["index"]
 
 
 @pytest.mark.parametrize(

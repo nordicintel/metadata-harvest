@@ -129,7 +129,10 @@ def _form_data(value: Any) -> Mapping[str, Any]:
 
 def _filtered_codes(form_data: Mapping[str, Any]) -> list[str]:
     codes = []
-    for item in form_data.get("adhoc_filters") or []:
+    filters = form_data.get("adhoc_filters") or []
+    if not isinstance(filters, list):
+        raise ValueError("chart adhoc_filters is not a list")
+    for item in filters:
         if (
             isinstance(item, Mapping)
             and item.get("subject") == FILTER_SUBJECT
@@ -140,14 +143,39 @@ def _filtered_codes(form_data: Mapping[str, Any]) -> list[str]:
     return codes
 
 
+def _quarantined_ids(discovery: Discovery, rows: list, resource: str) -> set[int]:
+    """Conflicting duplicate listing identities never choose a replacement."""
+    first = {}
+    conflicts = set()
+    for row in rows:
+        if isinstance(row, Mapping) and type(row.get("id")) is int:
+            identity = row["id"]
+            if identity in first and first[identity] != row:
+                conflicts.add(identity)
+            else:
+                first[identity] = row
+    for identity in sorted(conflicts):
+        discovery.problems.append(
+            (
+                f"{resource}/{identity}",
+                ValueError("conflicting duplicate listing identity; quarantined"),
+            )
+        )
+    return conflicts
+
+
 def add_charts(discovery: Discovery, rows: Iterable[Any]) -> None:
     """Interpret chart list rows: area tables, unsupported datasources, filters."""
+    rows = list(rows)
+    quarantined = _quarantined_ids(discovery, rows, "charts")
     tables: dict[str, dict[str, set[tuple[int, str]]]] = defaultdict(
         lambda: defaultdict(set)
     )
     unsupported = set()
     for position, row in enumerate(rows):
         chart_id = row.get("id") if isinstance(row, Mapping) else None
+        if type(chart_id) is int and chart_id in quarantined:
+            continue
         name = row.get("datasource_name_text") if isinstance(row, Mapping) else None
         datasource = row.get("datasource_id") if isinstance(row, Mapping) else None
         dashboards = row.get("dashboards") if isinstance(row, Mapping) else None
@@ -168,6 +196,11 @@ def add_charts(discovery: Discovery, rows: Iterable[Any]) -> None:
                 )
             )
             continue
+        try:
+            codes = _filtered_codes(_form_data(row.get("form_data")))
+        except ValueError as error:
+            discovery.problems.append((f"charts/{chart_id}", error))
+            continue
         if name:
             match = AREA_TABLE.match(name)
             if match and datasource is not None:
@@ -175,7 +208,7 @@ def add_charts(discovery: Discovery, rows: Iterable[Any]) -> None:
             else:
                 unsupported.add(name)
         dashboard_ids = [d["id"] for d in dashboards or []]
-        for code in _filtered_codes(_form_data(row.get("form_data"))):
+        for code in codes:
             discovery.filters.setdefault(code, set()).update(dashboard_ids)
             for dashboard_id in dashboard_ids:
                 discovery.dashboard_codes.setdefault(dashboard_id, set()).add(code)
@@ -202,8 +235,12 @@ def add_charts(discovery: Discovery, rows: Iterable[Any]) -> None:
 
 def add_dashboards(discovery: Discovery, rows: Iterable[Any]) -> None:
     """Interpret dashboard list rows; rows without a slug are skipped."""
+    rows = list(rows)
+    quarantined = _quarantined_ids(discovery, rows, "dashboards")
     for position, row in enumerate(rows):
         dashboard_id = row.get("id") if isinstance(row, Mapping) else None
+        if type(dashboard_id) is int and dashboard_id in quarantined:
+            continue
         if (
             type(dashboard_id) is not int
             or not isinstance(row.get("published"), bool)

@@ -95,40 +95,55 @@ def indicator_of(key: str) -> str:
     return key.split("/", 1)[1].split("|", 1)[1]
 
 
-async def _list(client, url: str, columns, resource: str) -> tuple[list, int]:
-    """Every row of a Superset list, and the count it reports."""
+async def _list(
+    client, url: str, columns, resource: str
+) -> tuple[list, int, Exception | None]:
+    """Retain understood pages when a later page fails; stop only this scope."""
     rows: list = []
+    count = 0
     for page in range(MAX_PAGES):
-        count, result = check_page(
-            await client.get_json(url, {"q": list_query(columns, page)}), resource
-        )
+        try:
+            page_count, result = check_page(
+                await client.get_json(url, {"q": list_query(columns, page)}), resource
+            )
+            if page and page_count != count:
+                raise ValueError(
+                    f"{resource} listing count changed from {count} to {page_count}"
+                )
+            count = page_count
+        except Exception as error:
+            return rows, count, error
         rows += result
         if len(result) < PAGE_SIZE or len(rows) >= count:
             break
-    return rows, count
+    return rows, count, None
 
 
 async def discover(client) -> Discovery:
     """Read the chart and dashboard lists.
 
-    Raises:
-        Unreachable: A list page did not answer.
-        RequestRejected, ValueError: A list page was refused or not a list.
+    Page failures are recorded independently; cancellation still propagates.
     """
     discovery = Discovery()
-    charts, discovery.charts_count = await _list(
+    charts, discovery.charts_count, error = await _list(
         client, CHART_LIST_URL, CHART_COLUMNS, "chart"
     )
     discovery.charts_listed = len(charts)
-    discovery.charts_complete = listing_complete(charts, discovery.charts_count)
+    discovery.charts_complete = error is None and listing_complete(
+        charts, discovery.charts_count
+    )
+    if error is not None:
+        discovery.problems.append(("charts", error))
     add_charts(discovery, charts)
-    dashboards, discovery.dashboards_count = await _list(
+    dashboards, discovery.dashboards_count, error = await _list(
         client, DASHBOARD_LIST_URL, DASHBOARD_COLUMNS, "dashboard"
     )
     discovery.dashboards_listed = len(dashboards)
-    discovery.dashboards_complete = listing_complete(
+    discovery.dashboards_complete = error is None and listing_complete(
         dashboards, discovery.dashboards_count
     )
+    if error is not None:
+        discovery.problems.append(("dashboards", error))
     add_dashboards(discovery, dashboards)
     return discovery
 
@@ -358,14 +373,23 @@ async def run(
         code = key.split("/", 1)[1]
         return bool({code.casefold(), indicator_of(key).casefold()} & wanted)
 
-    def fail(stage, resource, error, language="sv"):
+    def fail(stage, resource, error, language="sv", *, emit=True, url=None):
         entry = {
             "stage": stage,
             "resource": resource,
             "error": f"{type(error).__name__}: {error}",
         }
+        if url is not None:
+            entry["url"] = url
         errors.append(entry)
-        progress.error(stage, resource, language, entry["error"])
+        if emit:
+            progress.error(
+                stage,
+                resource,
+                language,
+                entry["error"],
+                **({"url": url} if url else {}),
+            )
         return entry
 
     def known(area_code=None):
@@ -394,12 +418,21 @@ async def run(
     out_of_scope: set[str] = set()
     catalogue_problems: dict[str, list[tuple[int, Exception]]] = {}
     unsupported_areas: dict[str, str] = {}
+
+    def record_failure(key: str, stage: str, error: Exception, *, url=DATA_URL):
+        """Publish the attempt immediately; only unresolved attempts enter reports."""
+        failures[key] = (stage, error)
+        progress.error(stage, key, "sv", f"{type(error).__name__}: {error}", url=url)
+        progress.update(failed=len(failures))
+
     try:
         progress.update(phase="discovery", current="charts")
         discovery = await discover(connection)
         for resource, error in discovery.problems:
             fail("discovery", resource, error)
-        if not discovery.charts_complete:
+        if not discovery.charts_complete and not any(
+            r == "charts" for r, _ in discovery.problems
+        ):
             fail(
                 "discovery",
                 "charts",
@@ -408,7 +441,9 @@ async def run(
                     f"{discovery.charts_count} listed"
                 ),
             )
-        if not discovery.dashboards_complete:
+        if not discovery.dashboards_complete and not any(
+            r == "dashboards" for r, _ in discovery.problems
+        ):
             fail(
                 "discovery",
                 "dashboards",
@@ -418,8 +453,13 @@ async def run(
                 ),
             )
         listed_areas = sorted(set(discovery.areas) | set(discovery.incomplete))
-        if not listed_areas:
-            raise ValueError("The chart list names no analysis area tables")
+        if not listed_areas and discovery.charts_complete:
+            fail(
+                "discovery",
+                "charts",
+                ValueError("The chart list names no analysis area tables"),
+            )
+            discovery.charts_complete = False
         report.update(
             areas=sorted(discovery.areas),
             areas_incomplete=dict(sorted(discovery.incomplete.items())),
@@ -444,6 +484,7 @@ async def run(
 
         def accept(key: str, document: dict, resolution: str) -> None:
             failures.pop(key, None)
+            progress.update(failed=len(failures))
             working[key] = True
             out_of_scope.discard(key)
             (unresolved.add if resolution == "unresolved" else unresolved.discard)(key)
@@ -463,9 +504,11 @@ async def run(
             if area_code in discovery.incomplete:
                 for key in previous:
                     working[key] = True
-                failures[f"*/{area_code}"] = (
+                record_failure(
+                    f"*/{area_code}",
                     "metadata",
                     ValueError(discovery.incomplete[area_code]),
+                    url=CHART_LIST_URL,
                 )
                 return False
             area = discovery.areas[area_code]
@@ -478,15 +521,16 @@ async def run(
                     return False
                 for key in previous:
                     working[key] = True
-                failures[f"*/{area_code}"] = ("metadata", error)
+                record_failure(f"*/{area_code}", "metadata", error)
                 return False
             except Exception as error:
                 stage = "endpoint" if isinstance(error, Unreachable) else "metadata"
                 for key in previous:  # reported once, for the area
                     working[key] = stage == "metadata"
-                failures[f"*/{area_code}"] = (stage, error)
+                record_failure(f"*/{area_code}", stage, error)
                 return stage == "endpoint"
             failures.pop(f"*/{area_code}", None)
+            progress.update(failed=len(failures))
             catalogue_problems[area_code] = catalogue.problems
             current = set()
             for code in catalogue.duplicates:
@@ -498,7 +542,8 @@ async def run(
                 settled.add(key)
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
                 working[key] = True
-                failures[key] = (
+                record_failure(
+                    key,
                     "metadata",
                     ValueError("listed more than once in the catalogue; quarantined"),
                 )
@@ -517,22 +562,31 @@ async def run(
                         area, code, row, columns
                     )
                 except Unreachable as error:
-                    working[key], failures[key] = False, ("endpoint", error)
+                    working[key] = False
+                    record_failure(key, "endpoint", error)
                     endpoint_failed = True
                     continue
                 except Exception as error:  # the values query answered
-                    working[key], failures[key] = True, ("metadata", error)
+                    working[key] = True
+                    record_failure(key, "metadata", error)
                     continue
                 if document is None:
                     out_of_scope.add(key)
-                    current.discard(key)
-                    remove(key)
+                    if not bounded and charts_whole and catalogue.complete:
+                        current.discard(key)
+                        remove(key)
+                    else:
+                        working[key] = True
                     continue
                 accept(key, document, resolution)
                 progress.update(succeeded=len(outcomes))
-            if not bounded and catalogue.complete:
+            if not bounded and charts_whole and catalogue.complete:
                 for key in sorted(previous - current):
                     remove(key)
+            else:
+                # An absent row in an incomplete or bounded run was not checked.
+                # Leave its accepted publication/state untouched by currency rules.
+                settled.difference_update(previous - current)
             return endpoint_failed
 
         progress.update(phase="metadata", total=len(selected), processed=0)
@@ -563,7 +617,15 @@ async def run(
             for name in sorted(wanted - matched):
                 fail("discovery", name, LookupError("Unknown indicator"))
         for key, (stage, error) in sorted(failures.items()):
-            entry = fail(stage, key, error)
+            entry = fail(
+                stage,
+                key,
+                error,
+                emit=False,
+                url=CHART_LIST_URL
+                if key.startswith("*/") and key[2:] in discovery.incomplete
+                else DATA_URL,
+            )
             counts["failed"] += 1
             affected = known(key[2:]) if key.startswith("*/") else [key]
             for name in affected:

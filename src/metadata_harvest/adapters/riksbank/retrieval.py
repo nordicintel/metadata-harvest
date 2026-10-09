@@ -179,12 +179,18 @@ def _vintages(body: Any, series_id: str) -> list[Mapping[str, Any]]:
     vintages: list[Mapping[str, Any]] = []
     for entry in body["data"]:
         if not isinstance(entry, Mapping):
-            continue
+            raise RuntimeError("unexpected forecast series row")
         if str(entry.get("external_id") or entry.get("series_id")) != series_id:
             continue
         found = entry.get("vintages")
-        vintages.extend(found if isinstance(found, list) else [found] if found else [])
-    return [v for v in vintages if isinstance(v, Mapping)]
+        if isinstance(found, Mapping):
+            found = [found]
+        if not isinstance(found, list) or not all(
+            isinstance(v, Mapping) for v in found
+        ):
+            raise RuntimeError(f"unexpected forecast vintages for {series_id}")
+        vintages.extend(found)
+    return vintages
 
 
 def _split_url(url: str) -> tuple[str, dict[str, str]]:
@@ -207,10 +213,19 @@ async def _mpd(session, selection, data_url, metadata_url, native) -> dict:
                 continue
             answered.add(series_id)
             for vintage in _vintages(body, series_id):
-                meta = vintage.get("metadata") or {}
+                meta = vintage.get("metadata", {})
+                rows = vintage.get("observations")
+                if not isinstance(meta, Mapping) or not isinstance(rows, list):
+                    raise RuntimeError(f"unexpected forecast vintage for {series_id}")
                 if str(meta.get("policy_round", policy_round)) != policy_round:
                     continue
-                for row in vintage.get("observations") or []:
+                for row in rows:
+                    if not isinstance(row, Mapping) or not isinstance(
+                        row.get("dt"), str
+                    ):
+                        raise RuntimeError(
+                            f"unexpected forecast observation for {series_id}"
+                        )
                     period, value = str(row.get("dt")), row.get("value")
                     if period in wanted and value is not None:
                         cells[(series_id, policy_round, period)] = (value, None)

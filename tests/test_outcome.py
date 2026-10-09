@@ -12,6 +12,38 @@ from metadata_harvest.outcome import REPORTS, scope_failures
 ROOT = Path(__file__).resolve().parents[1]
 
 
+@pytest.mark.parametrize(
+    "adapter,whole_scope,individual",
+    [
+        ("forsakringskassan", ["reports", "texts"], "reports/#0"),
+        ("dataanalys", ["charts", "dashboards"], "charts/2541"),
+        ("riksbank", ["swea", "mpd", "swestr"], "swea/series.0"),
+        ("tillvaxtverket", [], "Nope"),
+    ],
+)
+def test_new_adapter_scope_failures(adapter, whole_scope, individual):
+    assert (
+        scope_failures(
+            adapter, {"errors": [{"stage": "discovery", "resource": individual}]}
+        )
+        == []
+    )
+    for resource in whole_scope:
+        assert scope_failures(
+            adapter, {"errors": [{"stage": "discovery", "resource": resource}]}
+        ) == [resource]
+    assert (
+        scope_failures(
+            adapter, {"errors": [{"stage": "endpoint", "resource": "sv/table"}]}
+        )
+        == []
+    )
+    if adapter in {"forsakringskassan", "dataanalys"}:
+        assert scope_failures(
+            adapter, {"errors": [{"stage": "endpoint", "resource": "*/area"}]}
+        ) == ["*/area"]
+
+
 def test_individual_errors_do_not_fail_any_adapter():
     individual = {
         "pxweb_v1": {

@@ -2,6 +2,7 @@
 
 import argparse
 import asyncio
+import importlib
 import json
 import os
 import subprocess
@@ -53,13 +54,35 @@ SIMPLE_ADAPTERS = {
         lambda a: {"subjects": a.subject, "languages": a.language},
         lambda p: {"languages": p["languages"]},
     ),
+    "forsakringskassan": (
+        "single",
+        lambda a: {"subjects": a.subject, "languages": a.language, "full": a.full},
+        lambda p: {"languages": p["languages"]},
+    ),
+    "riksbank": (
+        "single",
+        lambda a: {"subjects": a.subject, "languages": a.language},
+        lambda p: {"languages": p["languages"]},
+    ),
+    "dataanalys": (
+        "single",
+        lambda a: {
+            "areas": a.subject,
+            "indicators": a.indicator,
+            "languages": a.language,
+        },
+        lambda p: {"languages": p["languages"]},
+    ),
+    "tillvaxtverket": (
+        "single",
+        lambda a: {"products": a.product, "languages": a.language},
+        lambda p: {"languages": p["languages"]},
+    ),
 }
 
 
 def run_simple(args):
     """Run or collect one single-worker adapter and print its outcome."""
-    import importlib
-
     providers_argument, run_options, collect_options = SIMPLE_ADAPTERS[args.adapter]
     workflow = importlib.import_module(
         f"metadata_harvest.adapters.{args.adapter}.workflow"
@@ -127,6 +150,13 @@ def main():
     spec = get_adapter(args.adapter)
     if args.command not in spec.commands:
         parser.error(f"{args.adapter} supports {spec.commands}")
+    if args.full and args.adapter in {
+        "smhi_emissions",
+        "riksbank",
+        "dataanalys",
+        "tillvaxtverket",
+    }:
+        parser.error(f"{args.adapter} does not support --full; use its normal refresh")
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
     args.providers = args.providers or Path(spec.configuration)

@@ -207,9 +207,29 @@ uv run --extra harvest python scripts/check_riksbank_live.py
 The tests use responses recorded from the research samples (see the
 `tests/riksbank/conftest.py` docstring), a stand-in client for the lifecycle and
 an in-process imitation of the three APIs for retrieval. The live script makes
-about eleven paced requests: it builds and validates `swea_group_2`,
+ten paced requests: it builds and validates `swea_group_2`,
 `mpd_SEQGDPNAYSA` and `swestr`, retrieves a recent selection of each, and writes
 `output/riksbank-live.json` without observations.
+
+On 2026-10-09, the anonymous bounded check passed for all three documents:
+17 SWEA groups and 24 forecast series were discovered without listing problems;
+the selected fragments contained 5 SWEA values, 7 forecast values and 10 SWESTR
+values. Metadata and retrieval-fragment validation passed. The report counts
+retrieval requests as well as discovery/probe requests, and the checker paces
+each request, including any lookup needed to distinguish a missing dataset from
+an empty selection. No observation cube or production collection was saved.
+
+The fixture suite passed all 76 tests on 2026-10-09. Coverage includes malformed
+forecast responses raising an upstream
+failure rather than returning successful empty/partial data, and scoped discovery
+failures resolving series aliases from the last accepted document before applying
+withholding. A full live harvest, live incremental byte-stability check, hosted
+monitoring acceptance and subscription-key retrieval remain unverified.
+
+Focused operational fixtures also verify that discovery and dataset failures
+appear in live telemetry with the request URL before the next sibling begins.
+Recovered retry failures remain visible in telemetry while the final report
+contains only unresolved failures.
 
 ## Licence and rate limits
 
@@ -237,59 +257,3 @@ re-publication of SWESTR". Anonymous access is limited per IP address (see
   `api-version=2022-04-01-preview` data API is internal and may change.
 - **Out of scope.** Holdings and Turnover Statistics APIs, SWEA aggregates and
   cross rates.
-
-## Integration
-
-```json
-{
-  "adapter": "riksbank",
-  "package": "metadata_harvest.adapters.riksbank",
-  "providers_file": "providers.riksbank.json",
-  "provider_codes": ["riksbank"],
-  "retrieval_target": "metadata_harvest.adapters.riksbank.retrieval:retrieve",
-  "required_metadata": ["/id", "/extension/riksbank"],
-  "workflow_file": "harvest-riksbank.yml",
-  "monitor_name": "riksbank",
-  "commands": ["run", "collect", "publish"],
-  "report": "reports/latest.json",
-  "output_default": "output/riksbank",
-  "runner": {
-    "providers_argument": "single",
-    "run_kwargs": {"subject": "subjects", "language": "languages"},
-    "collect_kwargs": {"languages": "provider['languages']"},
-    "full_mode": "rejected"
-  },
-  "outcome": {
-    "discovery_resources": ["swea", "mpd", "swestr"],
-    "endpoint_prefix": "*/",
-    "green_examples": [
-      {"stage": "endpoint", "resource": "en/swea_group_2"},
-      {"stage": "metadata", "resource": "en/mpd_SEAWAGNAYCA"},
-      {"stage": "discovery", "resource": "swea/series.0"},
-      {"stage": "discovery", "resource": "en/swea_group_130"},
-      {"stage": "discovery", "resource": "NOSUCH"}
-    ],
-    "red_examples": [
-      {"stage": "discovery", "resource": "swea"},
-      {"stage": "discovery", "resource": "mpd"},
-      {"stage": "discovery", "resource": "swestr"}
-    ]
-  },
-  "schedule": {
-    "cron": "15 7 * * 1",
-    "mode": "full",
-    "comment": "Weekly full rebuild: 46 requests paced at 15 s (about 12 minutes); metadata changes rarely, forecasts 4-5 times a year"
-  },
-  "workflow_inputs": {"subjects": "--subject", "languages": "--language"},
-  "readme_row": "| [Riksbank](docs/adapters/riksbank.md) | `riksbank`, en; 42 datasets | Current metadata, weekly full rebuild, standalone retrieval |",
-  "consolidation_row": "| Riksbank (SWEA, forecasts, SWESTR) | `riksbank`, en | docs/api/riksbank research 2026-10-09 | 17 SWEA groups, 24 forecast series by policy round, SWESTR; hand-mapped SWEA units; paced at 1 request per 15 s | First hosted run; [adapter guide](adapters/riksbank.md) |",
-  "harvesting_command": "gh workflow run harvest-riksbank.yml --ref main",
-  "live_check": "scripts/check_riksbank_live.py",
-  "tests": "tests/riksbank",
-  "new_dependencies": []
-}
-```
-
-The `NOSUCH` example is a misspelled `--subject` (`LookupError: Unknown Riksbank
-dataset`), which `outcome._discovery` already ignores. The adapter emits no `*/`
-resources; `endpoint_prefix` is listed for the shared rule only.

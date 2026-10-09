@@ -269,10 +269,10 @@ def test_gone_datasource_is_a_lookup_error(fake_superset, g082):
         run(fake_superset, document, full_selection(g082))
 
 
-def test_failed_query_is_a_lookup_error(fake_superset, g082):
+def test_failed_query_is_an_upstream_error(fake_superset, g082):
     fake_superset.query_status = "failed"
 
-    with pytest.raises(LookupError, match="failed"):
+    with pytest.raises(RuntimeError, match="Query timed out"):
         run(fake_superset, g082, full_selection(g082))
 
 

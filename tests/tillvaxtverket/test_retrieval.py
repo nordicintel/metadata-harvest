@@ -1,6 +1,8 @@
 """Retrieval against an imitation of DivePort built from recorded rows."""
 
 import asyncio
+import json
+from pathlib import Path
 
 import aiohttp
 import pytest
@@ -78,6 +80,42 @@ def test_exact_request_shape(fake, retrieve_from):
             ("offset", "0"),
         ]
     ]
+
+
+def test_recorded_suppressed_county_and_municipality_filter_independently(
+    fake, retrieve_from, check_fragment
+):
+    """Recorded region identities, with explicitly synthetic measure values."""
+    fixture = json.loads(
+        (Path(__file__).parent / "fixtures/suppressed_county.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    template = {**fake.rows[0], "AR": 2024, "ANLAGGNINGSTYP_NAMN": "Hotell"}
+    county = {**template, **fixture["rows"][0], "ANTAL_GASTNATTER": 17}
+    municipality = {
+        **template,
+        "NIVA_NAMN": "Kommun",
+        "LAN_KOD": "01",
+        "KOMMUN_KOD": "Sekretesskyddad",
+        "ANTAL_GASTNATTER": 23,
+    }
+    fake.rows = [county, municipality]
+    selection = {
+        "Region": ["lan:Sekretesskyddad", "kommun:01:Sekretesskyddad"],
+        "Anlaggningstyp": ["Hotell"],
+        "Tid": ["2024"],
+        "ContentsCode": ["ANTAL_GASTNATTER"],
+    }
+
+    fragment = run(retrieve_from, fake, selection)
+
+    check_fragment(fragment, selection)
+    assert fragment["value"] == [17, 23]
+    requests = {dict(pairs)["filter:NIVA_NAMN"]: pairs for pairs in fake.requests}
+    assert ("filter:LAN_KOD", "Sekretesskyddad") in requests["Län"]
+    assert ("filter:LAN_KOD", "01") in requests["Kommun"]
+    assert ("filter:LAN_KOD", "Sekretesskyddad") not in requests["Kommun"]
 
 
 def test_zero_is_kept(fake, retrieve_from, check_fragment):
@@ -183,6 +221,59 @@ def test_paging_follows_row_count(fake, retrieve_from, monkeypatch):
 
     assert [dict(r)["offset"] for r in fake.requests] == ["0", "2", "4"]
     assert fragment == whole
+
+
+@pytest.mark.parametrize("failure", ["empty", "changed", "missing", "negative"])
+def test_untrustworthy_pagination_raises_instead_of_returning_partial(
+    fake, retrieve_from, monkeypatch, failure
+):
+    selection = {
+        "Region": ["riket"],
+        "Anlaggningstyp": TYPES,
+        "Tid": ["2024"],
+        "ContentsCode": ["ANTAL_GASTNATTER"],
+    }
+    get = retrieval._get
+
+    async def damaged(session, url, params):
+        body = await get(session, url, params)
+        if dict(params)["offset"] != "0":
+            if failure == "empty":
+                body["rows"] = []
+            elif failure == "changed":
+                body["rowCount"] += 1
+            elif failure == "missing":
+                body.pop("rowCount")
+            else:
+                body["rowCount"] = -1
+        return body
+
+    monkeypatch.setattr(retrieval, "PAGE_SIZE", 2)
+    monkeypatch.setattr(retrieval, "_get", damaged)
+    with pytest.raises(RuntimeError, match="pagination|rowCount"):
+        run(retrieve_from, fake, selection)
+
+
+def test_request_cap_covers_short_pages(fake, retrieve_from, monkeypatch):
+    selection = {
+        "Region": ["riket"],
+        "Anlaggningstyp": TYPES,
+        "Tid": ["2024"],
+        "ContentsCode": ["ANTAL_GASTNATTER"],
+    }
+    get = retrieval._get
+
+    async def short_page(session, url, params):
+        body = await get(session, url, params)
+        body["rows"] = body["rows"][:1]
+        return body
+
+    monkeypatch.setattr(retrieval, "PAGE_SIZE", 2)
+    monkeypatch.setattr(retrieval, "MAX_REQUESTS", 3)
+    monkeypatch.setattr(retrieval, "_get", short_page)
+    with pytest.raises(ValueError, match="requests"):
+        run(retrieve_from, fake, selection)
+    assert len(fake.requests) == 3
 
 
 def test_long_selections_are_split(fake, retrieve_from, check_fragment, monkeypatch):

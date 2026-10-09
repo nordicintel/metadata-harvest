@@ -225,7 +225,7 @@ async def run(
         elif resource.startswith("reports"):
             entry["url"] = REPORTS_URL
         errors.append(entry)
-        progress.error(stage, resource, LANGUAGE, entry["error"])
+        progress.error(stage, resource, LANGUAGE, entry["error"], url=entry.get("url"))
         return entry
 
     def known(report=None):
@@ -252,7 +252,9 @@ async def run(
             if not listed:
                 raise ValueError("Försäkringskassan lists no reports")
         except Exception as error:
-            progress.error("discovery", "reports", LANGUAGE, f"{error}")
+            progress.error(
+                "discovery", "reports", LANGUAGE, f"{error}", url=REPORTS_URL
+            )
             raise
         for resource, error in problems:
             fail("discovery", f"reports/{resource}", error)
