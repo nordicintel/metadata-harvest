@@ -17,11 +17,9 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
         "uka",
         "sdb",
         "trafa",
+        "entrysoft",
     }
-    for name in ("entrysoft",):
-        with pytest.raises(NotImplementedError):
-            get_adapter(name)
-        assert get_adapter(name, require_available=False).preparation
+    assert all(spec.available for spec in ADAPTERS.values())
     with pytest.raises(ValueError):
         get_adapter("../outside")
 

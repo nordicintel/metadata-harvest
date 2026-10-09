@@ -64,10 +64,13 @@ ADAPTERS = {
         "harvest-trafa.yml",
         ("run", "collect", "publish"),
     ),
-    **{
-        name: Adapter(name, False, preparation=f"docs/adapters/{name}.md")
-        for name in ("entrysoft",)
-    },
+    "entrysoft": Adapter(
+        "entrysoft",
+        True,
+        "providers.entrysoft.json",
+        "harvest-entrysoft.yml",
+        ("run", "collect", "publish"),
+    ),
 }
 
 

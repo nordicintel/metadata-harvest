@@ -9,7 +9,10 @@ The catalogue service, website, public HTTP API, production databases, file scra
 and all BRÅ work remain external. Consumers may use the shared contract for file-backed
 observations; this repository adds no file ingestion. UKÄ's CSV exports are read
 transiently, only to derive complete metadata, and are never stored. Trafikanalys
-product documentation pages are read for API combinations until that API is retired. Existing PXWeb v1 website
+product documentation pages are read for API combinations until that API is retired.
+EntryScape RowStore tables are discovered through EntryStore search and read, when
+larger than one page, from the CSV files they were built from; only their structure
+is kept. Existing PXWeb v1 website
 discovery is retained explicitly because replacing it would change coverage.
 
 ## Boundaries
