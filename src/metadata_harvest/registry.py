@@ -71,6 +71,13 @@ ADAPTERS = {
         "harvest-entrysoft.yml",
         ("run", "collect", "publish"),
     ),
+    "smhi_emissions": Adapter(
+        "smhi_emissions",
+        True,
+        "providers.smhi_emissions.json",
+        "harvest-smhi-emissions.yml",
+        ("run", "collect", "publish"),
+    ),
 }
 
 

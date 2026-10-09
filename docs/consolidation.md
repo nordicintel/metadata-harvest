@@ -28,6 +28,7 @@ Imported schema licence/provenance is retained [with the schemas](../src/metadat
 | Kolada | `kolada`, sv; municipality/groups and OU | One-time trusted initialization; no runtime repository dependency | Metadata, targeted incremental refresh and standalone retrieval implemented; live acceptance recorded below | [Adapter guide](adapters/kolada.md) |
 | EntryScape RowStore (`entrysoft`) | 49 instance providers, sv | Third-party-APIs proof of concept `f139c99` and its imported harvest | Ported here: automatic table-to-dataset rules, monthly budgeted incremental refresh, standalone retrieval with aggregation | Bounded hosted runs; [adapter guide](adapters/entrysoft.md) |
 | UKÃ„ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | Ported here: metadata from transiently read exports, weekly refresh and standalone retrieval | First hosted full run and [adapter guide](adapters/uka.md) |
+| SMHI Nationella emissionsdatabasen | `smhi`, sv | docs/api/smhi-emissionsdatabasen research 2026-10-09 | Swedish metadata for 29 substances (region × sector × year), monthly full rebuild, standalone retrieval via getdata | First hosted run; [adapter guide](adapters/smhi_emissions.md) |
 
 Every adapter in the registry is now implemented here; no placeholder remains.
 

@@ -53,3 +53,9 @@ enabled = true
 [[adapters.entrysoft.schedules]]
 cron = "30 6 1 * *"
 mode = "incremental" # Only tables whose catalogue markers changed are reharvested.
+
+[adapters.smhi_emissions]
+enabled = true
+[[adapters.smhi_emissions.schedules]]
+cron = "30 7 3 * *"
+mode = "full" # Monthly: every run rebuilds all 29 substances (30 requests); a new submission arrives each spring.

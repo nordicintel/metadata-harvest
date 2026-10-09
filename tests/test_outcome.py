@@ -35,6 +35,14 @@ def test_individual_errors_do_not_fail_any_adapter():
             "errors": [{"stage": "metadata", "resource": "a/1"}],
             "interrupted": "x: request budget of 40 used up",
         },
+        "smhi_emissions": {
+            "errors": [
+                {"stage": "endpoint", "resource": "sv/emissionsdatabasen_NOx"},
+                {"stage": "metadata", "resource": "sv/emissionsdatabasen_CO2"},
+                {"stage": "discovery", "resource": "filteroptions/4.1/3"},
+                {"stage": "discovery", "resource": "*/XYZ"},
+            ]
+        },
         "catalog": {
             "errors": [],
             "upstream": {
@@ -58,6 +66,9 @@ def test_whole_scope_failures_fail():
         "entrysoft": {
             "errors": [{"stage": "discovery", "resource": "catalogalese"}],
             "interrupted": None,
+        },
+        "smhi_emissions": {
+            "errors": [{"stage": "discovery", "resource": "filteroptions"}]
         },
         "catalog": {
             "errors": [

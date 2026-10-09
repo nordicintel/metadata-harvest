@@ -48,6 +48,11 @@ SIMPLE_ADAPTERS = {
         lambda p: {"languages": p["languages"]},
     ),
     "entrysoft": ("all", _entrysoft_options, lambda p: {}),
+    "smhi_emissions": (
+        "single",
+        lambda a: {"subjects": a.subject, "languages": a.language},
+        lambda p: {"languages": p["languages"]},
+    ),
 }
 
 

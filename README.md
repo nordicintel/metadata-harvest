@@ -15,6 +15,7 @@ metadata history or observation warehouse.
 | [UKÄ](docs/adapters/uka.md) | `uka`, Swedish; 113 indicators | Current metadata, weekly refresh reusing unchanged indicators, standalone retrieval |
 | [SDB](docs/adapters/sdb.md) | `socialstyrelsen`, Swedish (15 subjects) and English (5) | Current metadata, weekly full rebuild, standalone retrieval |
 | [Trafikanalys](docs/adapters/trafa.md) | `trafa`, Swedish; 457 datasets (temporary until the 2026 merger into Tillväxtanalys) | Current metadata, weekly full rebuild, standalone retrieval |
+| [SMHI emissions](docs/adapters/smhi_emissions.md) | `smhi`, Swedish; 29 datasets (one per substance) | Current metadata, monthly full rebuild, standalone retrieval |
 | [EntryScape RowStore](docs/adapters/entrysoft.md) | 49 EntryScape instances; see [providers.entrysoft.json](providers.entrysoft.json) | 442 datasets derived automatically from 531 RowStore tables, monthly budgeted refresh of changed tables, standalone retrieval with aggregation |
 
 Metadata is one deterministic `.jsonl.gz` per adapter/provider/language under

@@ -18,6 +18,7 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
         "sdb",
         "trafa",
         "entrysoft",
+        "smhi_emissions",
     }
     assert all(spec.available for spec in ADAPTERS.values())
     with pytest.raises(ValueError):

@@ -20,6 +20,7 @@ REPORTS = {
     "sdb": "reports/latest.json",
     "trafa": "reports/latest.json",
     "entrysoft": "reports/latest.json",
+    "smhi_emissions": "reports/latest.json",
     "catalog": "reports/latest.json",
 }
 
@@ -76,6 +77,8 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         if interrupted and "budget" not in interrupted:
             failures.append(f"run: {interrupted}")
         return failures
+    if adapter == "smhi_emissions":
+        return _scoped(report, discovery_resources=("filteroptions",))
     if adapter == "catalog":
         # Catalog-level errors: a missing or unreadable accepted collection.
         return [e["collection"] for e in report.get("errors") or []]
