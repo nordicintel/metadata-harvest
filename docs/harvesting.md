@@ -113,3 +113,8 @@ Run `uv run --extra harvest ruff check .`, `uv run --extra harvest ruff format -
 Tests cover adapter separation, confirmed removal, incomplete discovery, failed
 replacements, bounded status files, continuation, stable JSONL and safe publication.
 See [the output contract](output-contract.md) and [source inventory](consolidation.md).
+
+A failed forced v1 replacement is retried even when the listing timestamp remains
+unchanged. Its unresolved error survives an intervening incomplete discovery and
+is cleared by a successful replacement or confirmed removal; retained metadata is
+never silently counted as a successful refresh. Reports record the full-refresh mode.

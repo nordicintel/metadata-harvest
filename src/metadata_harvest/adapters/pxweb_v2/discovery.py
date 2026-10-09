@@ -81,14 +81,28 @@ async def discover_provider(
                 if expected is not None and signature != expected:
                     raise ValueError("Catalogue totals changed during pagination")
                 expected = signature
-                for table in rows:
-                    code = table.get("id")
-                    if isinstance(code, str):
+                for position, table in enumerate(rows):
+                    code = table.get("id") if isinstance(table, dict) else None
+                    try:
+                        if not isinstance(code, str) or not code.strip():
+                            raise ValueError("Invalid table ID")
                         scope["observed_ids"].append(code)
-                    if code in seen:
-                        raise ValueError("Duplicate table ID in catalogue")
-                    seen.add(code)
-                    scope["records"].append(table_record(provider, language, table))
+                        if code in seen:
+                            scope["records"] = [
+                                row
+                                for row in scope["records"]
+                                if row["dataset_code"] != code
+                            ]
+                            raise ValueError("Duplicate table ID in catalogue")
+                        seen.add(code)
+                        if table.get("language", language) != language:
+                            raise ValueError("Wrong table language")
+                        scope["records"].append(table_record(provider, language, table))
+                    except Exception as error:
+                        scope["errors"].append(
+                            f"{language} page {number} row {position} table {code!r}: "
+                            f"{type(error).__name__}: {error}"
+                        )
                 if len(rows) != min(size, max(0, total - (number - 1) * size)):
                     raise ValueError("Missing catalogue rows")
                 if number == pages:
@@ -96,7 +110,7 @@ async def discover_provider(
                 number += 1
             if len(seen) != total:
                 raise ValueError("Catalogue count mismatch")
-            scope["complete"] = True
+            scope["complete"] = not scope["errors"]
         except Exception as error:
             scope["errors"].append(f"{type(error).__name__}: {error}")
         yield scope

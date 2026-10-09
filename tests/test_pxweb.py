@@ -948,3 +948,37 @@ def test_hvd_enrichment_uses_real_api_parent(monkeypatch, flat):
     monkeypatch.setattr(module, "_api_folder", folder)
     asyncio.run(module._enrich_missing(None, root, "sv", "uppdrag", [row], {}))
     assert row["date"] == "2026-02-06"
+
+
+@pytest.mark.parametrize("malformed_sibling", [False, True])
+def test_failed_parent_url_does_not_poison_same_basename_in_other_folder(
+    monkeypatch, malformed_sibling
+):
+    from metadata_harvest.adapters.pxweb_v1 import discovery as module
+
+    root = module._parse_url("https://example.test/pxweb/sv/db/")
+    rows = [
+        {
+            "href": root.web() + folder + "/t.px/",
+            "title": "Title",
+            "date": "",
+            "ancestors": [{"name": folder, "href": ""}],
+        }
+        for folder in ("A", "B")
+    ]
+
+    async def listing(*args):
+        return []
+
+    async def folder(page, root, language, database, categories):
+        if categories == ("A",):
+            raise RuntimeError("bad A URL")
+        entries = [{"id": "t.px", "type": "t", "updated": "2026-10-01"}]
+        return [None, *entries] if malformed_sibling else entries
+
+    monkeypatch.setattr(module, "_api_listing", listing)
+    monkeypatch.setattr(module, "_api_folder", folder)
+    with pytest.raises(ExceptionGroup):
+        asyncio.run(module._enrich_missing(None, root, "sv", "db", rows, {}))
+    assert rows[0]["date"] == ""
+    assert rows[1]["date"] == "2026-10-01"

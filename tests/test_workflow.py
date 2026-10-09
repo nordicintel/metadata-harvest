@@ -513,3 +513,38 @@ def test_full_refresh_queues_unchanged_metadata_and_preserves_mode(tmp_path):
     assert state["counts"]["reused"] == 0
     assert len(state["tasks"]) == 1
     assert prepare(tmp_path, [PROVIDER])["full"] is True
+
+
+def test_failed_full_refresh_retries_unchanged_table_after_incomplete_discovery(
+    tmp_path, monkeypatch
+):
+    row = seed(tmp_path, record())
+    collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run", full=True)
+
+    async def failed(*args, **kwargs):
+        raise RuntimeError("temporary provider failure")
+
+    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", failed)
+    asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "artifact"))
+    collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
+    # A later failed listing must not erase unfinished replacement failures.
+    collect_refresh(tmp_path, [PROVIDER], [scope([], complete=False)], "run")
+    deferred = collect_metadata(tmp_path, [], "run", 1)
+    assert (
+        deferred["status"] == "completed_with_errors"
+        and deferred["counts"]["failed"] == 1
+    )
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
+    assert state["counts"]["reused"] == 0
+    assert [task["kind"] for task in state["tasks"]] == ["updated"]
+
+    async def succeeded(row, **kwargs):
+        return dataset(row)
+
+    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", succeeded)
+    asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "retry"))
+    final = collect_metadata(tmp_path, [tmp_path / "retry/result.json"], "run", 1)
+    assert final["status"] == "success" and final["counts"]["failed"] == 0
+    assert read(tmp_path / "reports/harvest.json")["errors"] == []
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
+    assert state["counts"]["reused"] == 1 and not state["tasks"]

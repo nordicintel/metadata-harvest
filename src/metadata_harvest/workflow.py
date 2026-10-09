@@ -134,6 +134,14 @@ def _scopes(providers, results, run_id):
 
 def collect_refresh(data, providers, results, run_id, *, full=False):
     data = Path(data)
+    last_report = data / "reports/harvest.json"
+    previous_failures = {}
+    if last_report.exists():
+        for error in read(last_report).get("errors", []):
+            try:
+                previous_failures[filename(error)] = error
+            except (KeyError, ValueError, TypeError):
+                continue  # Legacy reports may lack a complete dataset identity.
     scopes, errors = _scopes(providers, results, run_id)
     fresh = []
     for (code, _, _), scope in scopes.items():
@@ -222,6 +230,7 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
                     raise ValueError("Saved metadata identity mismatch")
                 if (
                     not full
+                    and name not in previous_failures
                     and source_record(existing).get("published") == new["published"]
                 ):
                     existing = refresh_identity(existing, new)
@@ -278,6 +287,12 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
         "run_id": run_id,
         "stage": "metadata",
         "full": full,
+        "deferred_failures": [
+            error
+            for name, error in previous_failures.items()
+            if name in listings.records
+            and name not in {task["filename"] for task in tasks}
+        ],
         "wave": 1,
         "started_at": started_at,
         "refresh_report": refresh_name,
@@ -405,7 +420,7 @@ def collect_metadata(data, result_paths, run_id, wave):
         **state["counts"],
         "created": 0,
         "updated": 0,
-        "failed": 0,
+        "failed": len(state.get("deferred_failures", [])),
         "unfinished": len(pending),
     }
     for task in tasks.values():
@@ -421,6 +436,7 @@ def collect_metadata(data, result_paths, run_id, wave):
     report = {
         "run_id": run_id,
         "status": status,
+        "full": state.get("full", False),
         "started_at": state["started_at"],
         "wave": wave,
         "updated_at": now(),
@@ -437,7 +453,8 @@ def collect_metadata(data, result_paths, run_id, wave):
             }
             for task in tasks.values()
             if task["status"] == "failed"
-        ],
+        ]
+        + state.get("deferred_failures", []),
     }
     if not pending:
         report["finished_at"] = report["updated_at"]

@@ -456,3 +456,18 @@ def test_interrupted_checkpoint_leaves_previous_certified_candidate_collectable(
     accepted = workflow.collect(root, output, result["run_id"], result["wave"])
     assert accepted["counts"]["created"] == 1
     assert accepted["counts"]["unfinished"] == 1
+
+
+def test_bad_listing_row_preserves_old_table_and_publishes_good_siblings(tmp_path):
+    source, root = Source(), tmp_path / "data"
+    harvest(source, root, tmp_path / "first")
+    source.tables["sv"] = [{"id": "T1"}, table("later")]
+    result = harvest(source, root, tmp_path / "second")
+    assert result["status"] == "completed_with_errors"
+    assert result["counts"]["removed"] == 0
+    documents = JsonlStore(root / "metadata").records.values()
+    assert {d["extension"]["nordicintel"]["dataset_code"] for d in documents} == {
+        "T1",
+        "later",
+        "EN1",
+    }

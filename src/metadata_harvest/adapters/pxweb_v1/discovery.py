@@ -818,9 +818,7 @@ async def _api_listing(
                     f"Single API enrichment request failed: HTTP {response.status}: {url}"
                 )
             rows = await response.json()
-            if not isinstance(rows, list) or not all(
-                isinstance(row, dict) for row in rows
-            ):
+            if not isinstance(rows, list):
                 raise ValueError(f"API search returned no table listing: {url}")
             state["rows"] = rows
             return rows
@@ -878,9 +876,7 @@ async def _api_folder(page, root, language, database, categories):
                         f"API parent-folder request failed: HTTP {response.status}: {url}"
                     )
                 entries = await response.json()
-                if not isinstance(entries, list) or not all(
-                    isinstance(x, dict) for x in entries
-                ):
+                if not isinstance(entries, list):
                     raise ValueError(f"API parent folder returned no listing: {url}")
                 cache[categories] = entries
                 return entries
@@ -914,9 +910,13 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
             missing.append(row)
     if not missing:
         return
+    errors = []
     entries = await _api_listing(page, root, language, database)
-    index = {}
+    index, conflicts = {}, set()
     for entry in entries:
+        if not isinstance(entry, dict):
+            errors.append(ValueError("Malformed API listing row"))
+            continue
         if not isinstance(entry.get("id"), str) or not isinstance(
             entry.get("path"), str
         ):
@@ -925,31 +925,48 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
             tuple(unquote(part) for part in entry["path"].split("/") if part),
             unquote(entry["id"]),
         )
+        if key in conflicts:
+            continue
         if key in index and index[key] != entry:
-            raise ValueError(f"Conflicting API metadata for {key}")
+            errors.append(ValueError(f"Conflicting API metadata for {key}"))
+            conflicts.add(key)
+            del index[key]
+            continue
         index[key] = entry
     for row in missing:
-        table_id, categories, _ = _identity(row, language, database, folder_names)
-        categories = _api_categories(row["href"], categories)
-        entry = index.get((categories, table_id))
-        entry = entry or {}
-        if not row["date"]:
-            _fill_date(row, entry)
-        if not row["title"] and isinstance(entry.get("title"), str):
-            row["title"] = entry["title"].strip()
-        if not row["date"]:
-            entries = await _api_folder(page, root, language, database, categories)
-            matches = [
-                entry
-                for entry in entries
-                if entry.get("type") == "t" and entry.get("id") == table_id
-            ]
-            if len(matches) > 1:
-                raise ValueError(
-                    f"Conflicting API folder metadata for {categories}/{table_id}"
-                )
-            if matches:
-                _fill_date(row, matches[0])
+        try:
+            table_id, categories, _ = _identity(row, language, database, folder_names)
+            categories = _api_categories(row["href"], categories)
+            entry = index.get((categories, table_id))
+            entry = entry or {}
+            if not row["date"]:
+                _fill_date(row, entry)
+            if not row["title"] and isinstance(entry.get("title"), str):
+                row["title"] = entry["title"].strip()
+            if not row["date"]:
+                entries = await _api_folder(page, root, language, database, categories)
+                if any(not isinstance(entry, dict) for entry in entries):
+                    errors.append(ValueError(f"Malformed API folder row: {categories}"))
+                matches = [
+                    entry
+                    for entry in entries
+                    if isinstance(entry, dict)
+                    and entry.get("type") == "t"
+                    and entry.get("id") == table_id
+                ]
+                if len(matches) > 1:
+                    raise ValueError(
+                        f"Conflicting API folder metadata for {categories}/{table_id}"
+                    )
+                if matches:
+                    _fill_date(row, matches[0])
+        except Exception as error:
+            errors.append(_failure(row.get("href", "unknown table"), error))
+    if errors:
+        raise ExceptionGroup(
+            "API enrichment incomplete: " + "; ".join(str(error) for error in errors),
+            errors,
+        )
 
 
 async def _in_context(browser: Browser, operation):

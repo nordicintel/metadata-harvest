@@ -273,3 +273,43 @@ def test_codelist_validation_rejects_duplicate_values_and_wrong_language():
     for value in [codelist("en"), {**codelist(), "values": codelist()["values"] * 2}]:
         with pytest.raises(ValueError):
             validate_codelist(deepcopy(value), "vs_region", "sv")
+
+
+@pytest.mark.parametrize(
+    "bad", [None, {"id": "bad"}, {"id": "good", "label": "duplicate"}]
+)
+def test_bad_catalogue_row_does_not_stop_later_pages(bad):
+    from metadata_harvest.adapters.pxweb_v2.discovery import discover_provider
+
+    def handler(request):
+        if request.url.path.endswith("/config"):
+            return httpx.Response(200, json=CONFIG)
+        number = int(request.url.params["pageNumber"])
+        return httpx.Response(
+            200,
+            json={
+                "language": request.url.params["lang"],
+                "tables": [table("good"), bad] if number == 1 else [table("later")],
+                "page": {
+                    "pageNumber": number,
+                    "pageSize": 2,
+                    "totalElements": 3,
+                    "totalPages": 2,
+                },
+            },
+        )
+
+    async def run():
+        client, _ = client_for(handler)
+        async with client:
+            return [s async for s in discover_provider(PROVIDER, client=client)]
+
+    for scope in asyncio.run(run()):
+        assert not scope["complete"]
+        assert scope["errors"]
+        expected = (
+            ["later"]
+            if isinstance(bad, dict) and bad["id"] == "good"
+            else ["good", "later"]
+        )
+        assert [r["dataset_code"] for r in scope["records"]] == expected

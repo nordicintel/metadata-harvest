@@ -101,7 +101,7 @@ dimension/category order/count and source-record preservation checks: 6,834 v1 a
 8,620 v2. V1 metadata occupies 6.35 MiB compressed across 27 collections; v2 occupies
 46.25 MiB across two, largest 24.96 MiB. No collection was split or truncated.
 
-The complete deterministic suite passes **218 tests**; Ruff lint/format, generated
+The complete deterministic suite passes **225 tests**; Ruff lint/format, generated
 reference checks and package build pass. Wheel and sdist include all three schemas
 and licence; an isolated plain wheel install loads all **27 provider entry points**
 with no HTTPX, Playwright or jsonschema installed or imported.
