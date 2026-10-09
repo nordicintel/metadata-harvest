@@ -113,3 +113,24 @@ anonymous gateway bootstrap. Summaries contain no observations:
 [v2 evidence](verification/pxweb_v2-retrieval.json).
 These checks do not replace the required full automated run and incremental run;
 renewed production acceptance remains pending at this commit.
+
+### Harvest visibility and execution correction (9 October 2026)
+
+The full SCB acceptance run
+[37896314446](https://github.com/nordicintel/metadata-harvest/actions/runs/37896314446)
+was cancelled at the user's request; queued v1 run 37896317776 was cancelled too.
+The saved SCB snapshot at 07:30:35 UTC contains 1,443 accepted refreshed tables,
+zero table failures, 7,177 pending tables and 222 refreshed codelists. Its 55
+unresolved codelist references include only two attempted failures (HTTP 404);
+the remaining 53 had not yet been fetched. This is partial evidence, not complete
+acceptance. The cancelled run's uploaded artifact contains its resumable checkpoint.
+
+Workers now publish live counters and individual errors through the Checks API,
+with preflight read-back, separate stage counts, heartbeat/staleness and measured
+queue estimates. The inspector retrieves every error and reconstructs large
+messages across annotation chunks. CI tests visibility while a short synthetic
+worker is still active; it does not contact providers or restart the full harvest.
+Adapters use independent harvest queues and a shared collector publication lock.
+SCB pacing follows `/config` without the former 0.5-second minimum. Incremental
+reuse, checkpoint continuation, resource isolation and adapter-scoped publication
+remain required and covered by regression tests. See [operations](harvesting.md).

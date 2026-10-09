@@ -77,6 +77,45 @@ def metadata_bytes(root):
     return {p.name: p.read_bytes() for p in (root / "metadata").glob("*.jsonl.gz")}
 
 
+def test_live_progress_exposes_individual_errors_before_harvest_finishes(
+    tmp_path, monkeypatch
+):
+    source = Source()
+    source.fail_codes.add("sv")
+    source.fail_metadata.add("EN1")
+    path = tmp_path / "telemetry/progress.json"
+    monkeypatch.setenv("HARVEST_PROGRESS", str(path))
+    handle = source.handle
+    observed = []
+
+    def inspect(request):
+        if request.url.params.get("lang") == "en" and request.url.path.endswith(
+            "/metadata"
+        ):
+            observed.append(read(path))
+            errors = [
+                json.loads(line)
+                for line in path.with_suffix(".errors.jsonl").read_text().splitlines()
+            ]
+            assert errors[0]["resource"] == "vs_region"
+            assert errors[0]["language"] == "sv"
+            assert errors[0]["stage"] == "codelist"
+            assert "503" in errors[0]["error"]
+        return handle(request)
+
+    source.handle = inspect
+    result = harvest(source, tmp_path / "data", tmp_path / "artifact")
+    assert observed[0]["processed"] == 1
+    assert observed[0]["succeeded"] == 1
+    assert observed[0]["failed"] == 0
+    assert observed[0]["remaining"] == 1
+    assert observed[0]["errors_by_stage"] == {"codelist": 1}
+    assert read(path)["failed"] == result["counts"]["failed"] == 1
+    assert read(path)["succeeded"] == 1
+    assert read(path)["error_count"] == 2
+    assert not any("telemetry" in name for name in result["manifest"])
+
+
 def test_full_incremental_and_silent_change_refresh(tmp_path):
     source, root = Source(), tmp_path / "data"
     initial = harvest(source, root, tmp_path / "first", full=True)

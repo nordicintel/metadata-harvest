@@ -13,6 +13,7 @@ from metadata_harvest.artifacts import (
     report_status,
 )
 from metadata_harvest.mapping import source_record
+from metadata_harvest.progress import Progress
 from metadata_harvest.storage import (
     JsonlStore,
     filename,
@@ -60,6 +61,8 @@ def prepare(data, providers):
 
 
 async def refresh_provider(provider, run_id, output):
+    progress = Progress("pxweb_v1", provider["code"])
+    progress.update(phase="discovery", run_id=run_id, discovered=0)
     result = {
         "provider_code": provider["code"],
         "run_id": run_id,
@@ -71,10 +74,28 @@ async def refresh_provider(provider, run_id, output):
     try:
         async for scope in discover_provider(provider):
             result["scopes"].append(scope)
+            progress.update(
+                language=scope["language"],
+                discovered=sum(len(s["records"]) for s in result["scopes"]),
+                scopes_completed=len(result["scopes"]),
+            )
+            for error in scope["errors"]:
+                progress.error(
+                    "discovery",
+                    scope.get("database_id", "listing"),
+                    scope["language"],
+                    str(error),
+                )
             write(Path(output) / "result.json", result)
     finally:
         result["finished_at"] = now()
         write(Path(output) / "result.json", result)
+    progress.update(
+        phase="finished",
+        result_status="completed_with_errors"
+        if progress.state["error_count"]
+        else "success",
+    )
     return result
 
 
@@ -312,6 +333,17 @@ async def build_provider(
     state = read(data / "work/current.json")
     if (state["run_id"], state["wave"]) != (run_id, wave):
         raise ValueError("Stale metadata work list")
+    progress = Progress("pxweb_v1", provider["code"])
+    progress.update(
+        phase="metadata",
+        run_id=run_id,
+        wave=wave,
+        full=state.get("full", False),
+        total=sum(
+            task["status"] == "pending" and task["provider_code"] == provider["code"]
+            for task in state["tasks"]
+        ),
+    )
     result = {
         "provider_code": provider["code"],
         "run_id": run_id,
@@ -330,6 +362,7 @@ async def build_provider(
         if time.monotonic() + 900 > deadline:
             break
         outcome = {"filename": task["filename"], "started_at": now()}
+        progress.update(current=task["filename"], operation="metadata")
         try:
             record = listings.records[task["filename"]]
             if filename(record) != task["filename"]:
@@ -357,13 +390,34 @@ async def build_provider(
             outcome["status"] = "success"
         except Exception as error:
             outcome.update(status="failed", error=f"{type(error).__name__}: {error}")
+            progress.error(
+                "metadata",
+                outcome.get("dataset_code", task["filename"]),
+                outcome.get("language", "unknown"),
+                outcome["error"],
+                url=outcome.get("api_url"),
+            )
         outcome["finished_at"] = now()
         result["outcomes"].append(outcome)
+        progress.update(
+            processed=len(result["outcomes"]),
+            succeeded=sum(o["status"] == "success" for o in result["outcomes"]),
+            failed=sum(o["status"] == "failed" for o in result["outcomes"]),
+        )
         write(output / "result.json", result)
         print(f"{provider['code']} {task['filename']}: {outcome['status']}", flush=True)
         await asyncio.sleep(provider.get("rate_limit", 1))
     result["finished_at"] = now()
     write(output / "result.json", result)
+    progress.update(
+        phase="finished",
+        result_status="running"
+        if progress.state["remaining"]
+        else "completed_with_errors"
+        if progress.state["failed"]
+        else "success",
+        current=None,
+    )
     return result
 
 

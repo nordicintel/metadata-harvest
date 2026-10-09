@@ -56,3 +56,19 @@ listing row before later pages, similar URLs with different full paths, language
 provider isolation, preservation on failure, retry after failure, independent
 codelist retries, and publication of successes alongside errors. Fixtures establish
 these failure semantics; live checks establish actual provider compatibility.
+
+## Required operational visibility
+
+Future adapters must expose live counters and individual structured errors through
+`Progress`, supervised by `metadata_harvest.monitor` in Actions. Keep telemetry
+outside certified output. Report phase/current resource before slow work, update
+counts after each outcome, and include full identities and URLs in errors.
+Unknown totals, not-yet-attempted dependencies and retries are not failed tables.
+Never claim progress from workflow status or an estimated request count.
+
+Use independent adapter queues and provider-specific rate limits. Serialize only
+publication, retain incremental reuse and resumable checkpoints, and never repeat
+a complete harvest for an unrelated change. Acceptance must prove live read-back
+of successes and individual failures before the worker exits, loss-of-monitoring
+behavior, cancellation, and unchanged output on an incremental run. See the
+[operational commands and heartbeat semantics](harvesting.md#inspect-a-running-job).

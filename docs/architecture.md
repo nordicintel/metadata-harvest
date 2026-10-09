@@ -24,7 +24,11 @@ discovery is retained explicitly because replacing it would change coverage.
 - `workflow.py` retains v1 reconciliation; v2 has its own orchestration, including
   independent codelist retries; `registry.py` explicitly identifies available adapters.
 - `runner.py` preserves existing commands and v1 defaults; Actions collectors are
-  the only production writers, sharing the `production-harvest` concurrency queue.
+  the only production writers, sharing the `production-publication` collector
+  queue. Adapter harvesting queues are independent.
+- `progress.py` records current worker counters and individual errors outside
+  certified output; `monitor.py` publishes readable Checks API updates during
+  execution and provides run/worker/error inspection without waiting for logs.
 
 A source response first passes native validation, then mapping and shared validation.
 Only a validated replacement advances the accepted source record. Full current

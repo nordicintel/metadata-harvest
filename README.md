@@ -43,7 +43,9 @@ ship in this one distribution.
 ## Operations and evidence
 
 V1 runs daily at 04:15 Europe/Stockholm; SCB at 06:15, incremental Monday–Saturday
-and full Sunday. Both workflows serialize production publication and support
+and full Sunday. Adapters harvest concurrently; only publication is serialized.
+[Live counts and individual errors](docs/harvesting.md#inspect-a-running-job) are
+available while workers run. Both workflows support
 manual execution and unfinished-work continuation. V1 uses `HARVEST_ENABLED`
 and SCB uses `PXWEB_V2_ENABLED` as schedule controls. SCB's gate is complete table
 acceptance; separate upstream codelist errors remain visible and retryable.

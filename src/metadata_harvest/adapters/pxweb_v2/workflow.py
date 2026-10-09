@@ -19,6 +19,7 @@ from metadata_harvest.adapters.pxweb_v2.validation import (
 )
 from metadata_harvest.artifacts import checkpoint_path, manifest, report_status
 from metadata_harvest.mapping import source_record
+from metadata_harvest.progress import Progress
 from metadata_harvest.storage import JsonlStore, filename, now, read, write
 
 
@@ -183,6 +184,8 @@ async def run(
                 client=owned,
             )
     deadline = time.monotonic() + budget_seconds
+    progress = Progress("pxweb_v2", provider["code"])
+    progress.update(phase="loading", full=full)
     base = manifest(data)
     metadata, codes, listings = load_stores(data)
     # Source stores are read-only to the worker, including legacy migration inputs.
@@ -197,7 +200,9 @@ async def run(
                 "Unfinished work belongs to another provider configuration"
             )
         client.configure(await client.get("config"))
+        progress.update(full=state["full"], resumed=True)
     else:
+        progress.update(phase="discovery", resumed=False)
         previous_report = data / "reports/harvest.json"
         failed = (
             {e.get("filename") for e in read(previous_report)["errors"]}
@@ -233,6 +238,18 @@ async def run(
         }
         async for scope in discover_provider(provider, client=client):
             language = scope["language"]
+            progress.update(
+                language=language,
+                discovered=state["counts"]["discovered"] + len(scope["records"]),
+            )
+            for error in scope["errors"]:
+                progress.error(
+                    "discovery",
+                    "tables",
+                    language,
+                    error,
+                    url=provider["base_api_url"] + "/tables",
+                )
             state["scopes"].append(
                 {
                     "language": language,
@@ -289,6 +306,18 @@ async def run(
                         else "created",
                     }
     completed = 0
+    succeeded = failed_count = 0
+    progress.update(
+        phase="metadata",
+        run_id=state["run_id"],
+        wave=state["wave"],
+        total=sum(task["status"] == "pending" for task in state["tasks"].values()),
+        reused=state["counts"]["reused"],
+        resumed_processed=sum(
+            task["status"] != "pending" for task in state["tasks"].values()
+        ),
+        request_interval_seconds=client.interval,
+    )
     last_save = time.monotonic()
     for name, task in list(state["tasks"].items()):
         if task["status"] != "pending":
@@ -297,6 +326,9 @@ async def run(
             break
         row = listings.records[name]
         language = row["language"]
+        progress.update(
+            current=row["dataset_code"], language=language, operation="metadata"
+        )
         try:
             document = (
                 metadata.records[name]
@@ -326,6 +358,16 @@ async def run(
                 except Exception:
                     pass
             task.update(status="failed", error=f"{type(error).__name__}: {error}")
+            progress.error(
+                "metadata",
+                row["dataset_code"],
+                language,
+                task["error"],
+                url=f"{provider['base_api_url']}/tables/{quote(row['dataset_code'], safe='')}/metadata",
+            )
+        succeeded += task["status"] == "success"
+        failed_count += task["status"] == "failed"
+        progress.update(succeeded=succeeded, failed=failed_count)
         document = metadata.records.get(name)
         if document is not None:
             for code in sorted(codelist_ids(document)):
@@ -342,6 +384,12 @@ async def run(
                     else:
                         continue
                 if key not in state["refreshed_codes"] or key not in codes.records:
+                    progress.update(
+                        current=code,
+                        language=language,
+                        operation="codelist",
+                        parent_table=row["dataset_code"],
+                    )
                     try:
                         payload = await fetch_codelist(code, language, client=client)
                     except Exception as error:
@@ -361,6 +409,14 @@ async def run(
                         state["code_errors"][key] = (
                             f"Codelist {code}/{language}: {error}"
                         )
+                        progress.error(
+                            "codelist",
+                            code,
+                            language,
+                            f"{type(error).__name__}: {error}",
+                            url=f"{provider['base_api_url']}/codelists/{quote(code, safe='')}",
+                            table=row["dataset_code"],
+                        )
                         continue
                     codes.records[key] = {
                         "provider_code": "scb",
@@ -369,7 +425,11 @@ async def run(
                     }
                     state["refreshed_codes"].append(key)
                     state["counts"]["codelists_fetched"] += 1
+                    progress.update(
+                        codelists_succeeded=state["counts"]["codelists_fetched"]
+                    )
         completed += 1
+        progress.update(processed=completed)
         if completed % 100 == 0 or time.monotonic() - last_save >= 60:
             _snapshot(output, metadata, codes, listings, state, base)
             last_save = time.monotonic()
@@ -377,7 +437,12 @@ async def run(
     state["no_progress_waves"] = (
         0 if completed else state.get("no_progress_waves", 0) + 1
     )
-    return _snapshot(output, metadata, codes, listings, state, base, final=True)
+    progress.update(phase="snapshot", current=None)
+    result = _snapshot(output, metadata, codes, listings, state, base, final=True)
+    progress.update(
+        phase="finished", result_status=result["status"], final_counts=result["counts"]
+    )
+    return result
 
 
 def _validate_reconciliation(result, output, metadata, codes, listings, previous):

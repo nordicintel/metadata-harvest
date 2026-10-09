@@ -91,8 +91,11 @@ The collector validates content, identities, reference resolution, removal
 evidence, checkpoint status and the original input fingerprint before changing
 the selected data root. Git publication stages only that adapter's directory.
 
-One worker owns both languages and a shared HTTP limiter (at least 0.5 seconds
-between requests, slower if `/config` requires it). Requests have 60-second
+One worker owns both languages and a shared HTTP limiter. After `/config`, request
+starts are spaced by `timeWindow / maxCallsPerTimeWindow`: SCB's 30 calls per
+10 seconds permits about 0.333 seconds, without an additional 0.5-second floor.
+The initial config request uses a conservative bootstrap interval. Stricter
+published limits and Retry-After still apply. Requests have 60-second
 timeouts and at most three retries for transport failures, 429 and server errors.
 Retry-After delays exceeding 120 seconds stop that request instead of retrying
 too soon. A source race cannot become accepted metadata. A dependency failure does not
@@ -108,9 +111,10 @@ continuations. Three waves with no progress stop automatic continuation.
 The independent `SCB PXWeb v2 metadata` workflow is configured for 06:15 Europe/Stockholm:
 incremental Monday–Saturday, full Sunday. Manual runs expose a `full` boolean.
 Scheduling requires `PXWEB_V2_ENABLED=true`, set only after live acceptance.
-Both adapters share production workflow concurrency; collectors alone publish.
-Pending runs use GitHub's `queue: max` so v1 continuations cannot displace a
-queued v2 run (the default concurrency queue retains only one pending run).
+Adapters harvest concurrently; only collectors share `production-publication`.
+Each adapter queues its own overlapping runs with `queue: max`. The live
+[progress and error inspector](harvesting.md#inspect-a-running-job) reports actual
+outcomes during the run; codelist errors remain separate from table failures.
 Artifacts expire after seven days. Collection rejects files reaching GitHub's
 100 MiB limit before publication; it never truncates or silently splits output.
 

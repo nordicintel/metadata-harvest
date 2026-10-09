@@ -19,7 +19,7 @@ on:
 
 # Enable after complete table acceptance; independent codelist errors remain reported.
 concurrency:
-  group: production-harvest
+  group: harvest-pxweb-v2
   queue: max
   cancel-in-progress: false
 
@@ -31,6 +31,9 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || vars.PXWEB_V2_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    permissions:
+      contents: read
+      checks: write
     outputs:
       skip: ${{ steps.run.outputs.skip }}
     steps:
@@ -46,12 +49,20 @@ jobs:
         name: Discover and harvest SCB sv/en
         timeout-minutes: 330
         env:
+          GH_TOKEN: ${{ github.token }}
           EXPECTED_RUN_ID: ${{ inputs.resume_run }}
           FULL_REFRESH: ${{ inputs.full || github.event.schedule == '15 6 * * 0' }}
         run: |
           args=()
           if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
-          uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2 "${args[@]}"
+          uv run --extra harvest python -m metadata_harvest.monitor run --name pxweb_v2-scb -- python -m metadata_harvest.runner run --adapter pxweb_v2 "${args[@]}"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: telemetry-pxweb-v2-${{ github.run_attempt }}
+          path: output/telemetry/
+          if-no-files-found: warn
+          retention-days: 7
       - if: always() && steps.run.outputs.skip != 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -61,8 +72,12 @@ jobs:
           retention-days: 7
 
   collect:
+    concurrency:
+      group: production-publication
+      queue: max
+      cancel-in-progress: false
     needs: harvest
-    if: always() && needs.harvest.result != 'skipped' && needs.harvest.outputs.skip != 'true'
+    if: always() && !cancelled() && needs.harvest.result != 'skipped' && needs.harvest.outputs.skip != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -91,7 +106,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           uv run --extra harvest python -m metadata_harvest.runner publish --adapter pxweb_v2 --run-id "$RUN_ID"
       - name: Continue unfinished work
-        if: steps.collect.outputs.continue == 'true'
+        if: steps.collect.outputs.continue == 'true' && needs.harvest.result == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ steps.collect.outputs.run_id }}

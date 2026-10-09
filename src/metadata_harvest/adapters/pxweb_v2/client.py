@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import math
 import time
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
@@ -44,13 +45,17 @@ class Client:
         if (
             not isinstance(calls, (int, float))
             or not isinstance(window, (int, float))
+            or isinstance(calls, bool)
+            or isinstance(window, bool)
+            or not math.isfinite(calls)
+            or not math.isfinite(window)
             or calls <= 0
             or window <= 0
         ):
             raise ValueError("Invalid API rate limit configuration")
         self.max_cells = config.get("maxDataCells")
         previous = self.interval
-        self.interval = max(0.5, window / calls)
+        self.interval = window / calls
         self.next_request += max(0, self.interval - previous)
 
     async def get(self, path: str, **params) -> dict:

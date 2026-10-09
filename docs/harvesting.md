@@ -1,7 +1,9 @@
 # Harvest jobs and publication
 
-The two production workflows are independent and share the `production-harvest`
-queue. Collectors publish to `main` and stage only their adapter's data directory.
+The two production workflows harvest concurrently. Each adapter has its own run
+queue; only collector jobs share the `production-publication` queue. A collector
+checks out current `main` after acquiring that lock and stages only its adapter's
+data directory. SCB request limits do not block other providers or adapters.
 
 | Adapter | Workflow | Schedule (Europe/Stockholm) | Enablement |
 |---|---|---|---|
@@ -13,6 +15,62 @@ complete table acceptance; independent codelist failures remain explicit errors
 and do not block that gate. Check repository variables for current enablement.
 V1 provider parallelism is controlled by `HARVEST_PARALLEL_PROVIDERS` (default 19,
 not the provider count). V2 uses one rate-limited worker for both languages.
+
+## Inspect a running job
+
+Each worker creates a **Harvest progress** GitHub check and verifies it can be
+read back **before starting source requests**. An independent supervisor updates
+that check every 30 seconds, including while a request is waiting or retrying.
+This does not depend on unfinished Actions logs or end-of-job artifact uploads.
+The check's details show phase, current resource/language, processed/total,
+accepted, failed, reused, remaining, codelist successes and separate errors by
+stage. Counts refer to this worker wave; v2 also reports previously completed
+checkpoint tasks. Discovery totals and ETA remain unknown until available.
+
+Read live counters or every individual error using the installed package and
+authenticated GitHub CLI:
+
+```powershell
+uv run python -m metadata_harvest.monitor status RUN_ID
+uv run python -m metadata_harvest.monitor status RUN_ID --errors
+uv run python -m metadata_harvest.monitor status RUN_ID --worker pxweb_v2-scb --error 1
+```
+
+Every error has its own numbered annotation containing adapter, provider,
+language, resource identity, stage, timestamp, exception and request URL where
+known. Error inspection paginates all annotations, not just recent examples.
+The API endpoint is `repos/nordicintel/metadata-harvest/check-runs/CHECK_ID/annotations`;
+`gh api --paginate` can inspect it directly. Error numbers are local to a worker.
+Large errors are transported in numbered annotation chunks and reconstructed by
+the inspector; incomplete transmission is labelled explicitly. Retries with an
+ambiguous API acknowledgement can repeat an annotation; the inspector deduplicates
+by worker and error number. Terminal upstream failure is distinct from
+an internally retried request. A codelist failure is never a table failure.
+
+`reported_at` is the supervisor heartbeat; `updated_at` is the last worker event.
+The status command marks an unfinished check stale after 90 seconds without a
+heartbeat, or when its workflow has already ended. A recent heartbeat with an old
+worker event means the process is alive but making no reported progress; inspect
+the current operation rather than assuming success. ETA uses measured completed
+task throughput after at least five tasks, includes time spent on their dependencies,
+and excludes final collection/publication. It is an estimate, never a promise.
+
+Three consecutive telemetry publication failures stop the worker, preserving
+existing snapshots. A failed or cancelled worker cannot automatically dispatch a
+continuation. Cancellation also prevents collectors from publishing. Worker
+telemetry (`progress.json` and one `progress.errors.jsonl`) is uploaded separately
+for seven days; it never enters the metadata collections or Git publication.
+The CI visibility test uses a short synthetic worker and proves that its counters
+and an individual error can be read **before it exits**, without harvesting APIs.
+
+Normal manual runs are incremental and resume unfinished work. Do not restart
+completed tasks to test unrelated code. A manual full refresh needs an explicit
+reason and runtime estimate; the configured Sunday refresh remains intentional.
+Before resuming a cancelled v2 run, recover its `pxweb-v2-ATTEMPT` artifact and
+validate it with `collect --output RECOVERED_DIRECTORY` against the unchanged
+published base. This preserves accepted tasks in `work/current.json`; do not
+discard that artifact and launch another full refresh. Stale artifacts must be
+reconciled explicitly, never forced past validation.
 
 ## Current output only
 
@@ -100,7 +158,7 @@ Selecting `--adapter pxweb_v2` switches defaults to `providers.pxweb_v2.json`,
 and `continue`:
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2 --full
+uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2
 uv run --extra harvest python -m metadata_harvest.runner collect --adapter pxweb_v2
 ```
 

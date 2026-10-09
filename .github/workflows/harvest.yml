@@ -18,7 +18,7 @@ on:
 # Set the repository variable HARVEST_ENABLED=false to pause automatic runs.
 # Manual runs remain available. HARVEST_PARALLEL_PROVIDERS defaults to 19.
 concurrency:
-  group: production-harvest
+  group: harvest-pxweb-v1
   queue: max
   cancel-in-progress: false
 
@@ -50,6 +50,9 @@ jobs:
         run: uv run --extra harvest python -m metadata_harvest.runner prepare
 
   refresh:
+    permissions:
+      contents: read
+      checks: write
     needs: prepare
     if: needs.prepare.outputs.skip == 'false' && needs.prepare.outputs.phase == 'refresh'
     runs-on: ubuntu-latest
@@ -72,9 +75,17 @@ jobs:
       - name: Refresh provider listings
         timeout-minutes: 110
         env:
+          GH_TOKEN: ${{ github.token }}
           PROVIDER: ${{ matrix.provider }}
           RUN_ID: ${{ needs.prepare.outputs.run_id }}
-        run: uv run --extra harvest python -m metadata_harvest.runner refresh --provider "$PROVIDER" --run-id "$RUN_ID"
+        run: uv run --extra harvest python -m metadata_harvest.monitor run --name "pxweb_v1-refresh-$PROVIDER" -- python -m metadata_harvest.runner refresh --provider "$PROVIDER" --run-id "$RUN_ID"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: telemetry-refresh-${{ matrix.provider }}-${{ github.run_attempt }}
+          path: output/telemetry/
+          if-no-files-found: warn
+          retention-days: 7
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -84,8 +95,12 @@ jobs:
           retention-days: 7
 
   collect-refresh:
+    concurrency:
+      group: production-publication
+      queue: max
+      cancel-in-progress: false
     needs: [prepare, refresh]
-    if: always() && needs.prepare.result == 'success' && needs.prepare.outputs.skip == 'false' && needs.prepare.outputs.phase == 'refresh'
+    if: always() && !cancelled() && needs.prepare.result == 'success' && needs.prepare.outputs.skip == 'false' && needs.prepare.outputs.phase == 'refresh'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -129,8 +144,11 @@ jobs:
           retention-days: 7
 
   build:
+    permissions:
+      contents: read
+      checks: write
     needs: [prepare, collect-refresh]
-    if: always() && needs.prepare.result == 'success' && needs.prepare.outputs.skip == 'false' && (needs.collect-refresh.result == 'success' || needs.prepare.outputs.phase == 'metadata') && (needs.collect-refresh.outputs.providers || needs.prepare.outputs.providers) != '[]'
+    if: always() && !cancelled() && needs.prepare.result == 'success' && needs.prepare.outputs.skip == 'false' && (needs.collect-refresh.result == 'success' || needs.prepare.outputs.phase == 'metadata') && (needs.collect-refresh.outputs.providers || needs.prepare.outputs.providers) != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 350
     strategy:
@@ -153,7 +171,15 @@ jobs:
           PROVIDER: ${{ matrix.provider }}
           RUN_ID: ${{ needs.prepare.outputs.run_id }}
           WAVE: ${{ needs.collect-refresh.outputs.wave || needs.prepare.outputs.wave }}
-        run: uv run --extra harvest python -m metadata_harvest.runner build --provider "$PROVIDER" --run-id "$RUN_ID" --wave "$WAVE"
+          GH_TOKEN: ${{ github.token }}
+        run: uv run --extra harvest python -m metadata_harvest.monitor run --name "pxweb_v1-build-$PROVIDER" -- python -m metadata_harvest.runner build --provider "$PROVIDER" --run-id "$RUN_ID" --wave "$WAVE"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: telemetry-build-${{ matrix.provider }}-${{ github.run_attempt }}
+          path: output/telemetry/
+          if-no-files-found: warn
+          retention-days: 7
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -163,8 +189,12 @@ jobs:
           retention-days: 7
 
   collect-metadata:
+    concurrency:
+      group: production-publication
+      queue: max
+      cancel-in-progress: false
     needs: [prepare, collect-refresh, build]
-    if: always() && needs.prepare.result == 'success' && needs.prepare.outputs.skip == 'false' && (needs.collect-refresh.result == 'success' || needs.prepare.outputs.phase == 'metadata')
+    if: always() && !cancelled() && needs.prepare.result == 'success' && needs.prepare.outputs.skip == 'false' && (needs.collect-refresh.result == 'success' || needs.prepare.outputs.phase == 'metadata')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -202,7 +232,7 @@ jobs:
           path: data/pxweb_v1/
           retention-days: 7
       - name: Continue unfinished work
-        if: success() && steps.collect.outputs.continue == 'true'
+        if: success() && needs.build.result == 'success' && steps.collect.outputs.continue == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ needs.prepare.outputs.run_id }}
