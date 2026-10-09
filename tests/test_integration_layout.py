@@ -18,7 +18,7 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
         "sdb",
         "trafa",
     }
-    for name in ("rowstore",):
+    for name in ("entrysoft",):
         with pytest.raises(NotImplementedError):
             get_adapter(name)
         assert get_adapter(name, require_available=False).preparation

@@ -66,7 +66,7 @@ ADAPTERS = {
     ),
     **{
         name: Adapter(name, False, preparation=f"docs/adapters/{name}.md")
-        for name in ("rowstore",)
+        for name in ("entrysoft",)
     },
 }
 
