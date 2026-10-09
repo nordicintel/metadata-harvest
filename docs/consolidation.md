@@ -198,3 +198,12 @@ validation was performed. All 287 tests, lint/format, schema-reference checks,
 wheel/sdist build and the plain-installation check passed. An independent
 GPT-6.1 Sol Medium documentation review completed with its findings resolved.
 [Verification evidence](verification/catalog.json) records the acceptance results.
+
+Hosted [CI](https://github.com/nordicintel/metadata-harvest/actions/runs/37918665145)
+passed 287 tests and package checks. The first
+[catalog run](https://github.com/nordicintel/metadata-harvest/actions/runs/37918683309)
+built and published all 39 collections; the
+[repeat](https://github.com/nordicintel/metadata-harvest/actions/runs/37918806748)
+reused all 39 and changed only the report. Both workflows deliberately reported
+incomplete coverage after successful publication because existing upstream errors
+remain visible. No harvester was started by either catalog run.
