@@ -52,6 +52,7 @@ def test_provider_entry_points_and_placeholders_are_consistent():
         ("uka", "providers.uka.json"),
         ("sdb", "providers.sdb.json"),
         ("trafa", "providers.trafa.json"),
+        ("entrysoft", "providers.entrysoft.json"),
     ]:
         for provider in json.loads((ROOT / config).read_text(encoding="utf-8")):
             expected[provider["code"]] = (

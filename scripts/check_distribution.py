@@ -35,6 +35,7 @@ def check(root: Path):
         "providers.uka.json",
         "providers.sdb.json",
         "providers.trafa.json",
+        "providers.entrysoft.json",
     ):
         providers.update(
             p["code"] for p in json.loads((root / config).read_text(encoding="utf-8"))

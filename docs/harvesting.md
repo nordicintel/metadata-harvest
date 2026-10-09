@@ -50,6 +50,8 @@ gh workflow run harvest-kolada.yml --ref main
 gh workflow run harvest-uka.yml --ref main
 gh workflow run harvest-sdb.yml --ref main
 gh workflow run harvest-trafa.yml --ref main
+# EntryScape: bounded by provider and request budget; the hosts rate-limit us.
+gh workflow run harvest-entrysoft.yml --ref main -f providers="catalogalese" -f max_requests=40
 # Deliberate PXWeb reharvest, including unchanged tables.
 gh workflow run harvest-pxweb-v2.yml --ref main -f full=true
 gh workflow run harvest-uka.yml --ref main -f full=true

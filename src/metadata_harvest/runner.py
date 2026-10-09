@@ -54,6 +54,8 @@ def main():
     parser.add_argument("--indicator", nargs="+")
     parser.add_argument("--subject", nargs="+")
     parser.add_argument("--product", nargs="+")
+    parser.add_argument("--provider-code", nargs="+")
+    parser.add_argument("--max-requests", type=int)
     parser.add_argument("--language", nargs="+", choices=("sv", "en"))
     parser.add_argument("--data", type=Path)
     parser.add_argument("--providers", type=Path)
@@ -165,6 +167,23 @@ def main():
             result = trafa_workflow.collect(
                 args.data, args.output, languages=provider["languages"]
             )
+        outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
+        return
+    if args.adapter == "entrysoft" and args.command in {"run", "collect"}:
+        from metadata_harvest.adapters.entrysoft import workflow as entrysoft_workflow
+
+        args.output = args.output or Path("output/entrysoft")
+        if args.command == "run":
+            options = {"selected": args.provider_code}
+            if args.max_requests:
+                options["max_requests"] = args.max_requests
+            result = asyncio.run(
+                entrysoft_workflow.run(
+                    read(args.providers), args.data, args.output, **options
+                )
+            )
+        else:
+            result = entrysoft_workflow.collect(args.data, args.output)
         outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
         return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
