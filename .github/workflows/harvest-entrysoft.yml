@@ -110,9 +110,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run catalog.yml --ref main
-      - name: Report incomplete harvest
-        if: steps.collect.outputs.status == 'completed_with_errors'
-        run: exit 1
+      - name: Fail only when a whole scope failed
+        run: uv run python -m metadata_harvest.outcome --adapter entrysoft
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

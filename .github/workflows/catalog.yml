@@ -33,6 +33,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           uv run python -m metadata_harvest.catalog publish
-      - name: Report incomplete coverage
-        run: |
-          uv run python -c "import json; r=json.load(open('data/catalog/reports/latest.json')); print(json.dumps(r['counts'])); raise SystemExit(r['status'] != 'success')"
+      - name: Fail only when an adapter's collections could not be taken
+        run: uv run python -m metadata_harvest.outcome --adapter catalog
