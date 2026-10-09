@@ -134,3 +134,9 @@ Adapters use independent harvest queues and a shared collector publication lock.
 SCB pacing follows `/config` without the former 0.5-second minimum. Incremental
 reuse, checkpoint continuation, resource isolation and adapter-scoped publication
 remain required and covered by regression tests. See [operations](harvesting.md).
+
+Live Checks API visibility was verified during the synthetic worker in
+[37900778026](https://github.com/nordicintel/metadata-harvest/actions/runs/37900778026):
+one accepted task, one remaining task and the complete individual codelist error
+were read while the worker and check were still in progress. This verifies the
+monitoring transport, not production harvest completion.

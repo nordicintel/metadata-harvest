@@ -10,6 +10,39 @@ from metadata_harvest.monitor import (
 )
 
 
+@pytest.fixture(autouse=True)
+def isolated_check_pointer(tmp_path, monkeypatch):
+    monkeypatch.setenv("HARVEST_CHECK_POINTER", str(tmp_path / "check.json"))
+
+
+def test_finalizer_closes_interrupted_check_without_overwriting_finished_result(
+    tmp_path, monkeypatch
+):
+    from metadata_harvest.monitor import close_check
+
+    monkeypatch.setenv("GITHUB_RUN_ID", "42")
+    monkeypatch.setenv("GITHUB_RUN_ATTEMPT", "2")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "owner/repo")
+    (tmp_path / "check.json").write_text(
+        json.dumps(
+            {"path": "repos/owner/repo/check-runs/1", "external_id": "harvest:42:2:p"}
+        )
+    )
+    calls = []
+    state = {"status": "in_progress", "external_id": "harvest:42:2:p"}
+
+    def api(path, **kwargs):
+        calls.append(kwargs)
+        return state
+
+    close_check("cancelled", api=api)
+    assert calls[-1]["payload"]["conclusion"] == "cancelled"
+    state["status"] = "completed"
+    calls.clear()
+    close_check("failure", api=api)
+    assert calls == [{}]
+
+
 def test_large_individual_errors_remain_fully_inspectable():
     error = {
         "number": 1,

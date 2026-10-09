@@ -126,6 +126,14 @@ class CheckReporter:
             },
         )
         self.path = f"repos/{self.repo}/check-runs/{result['id']}"
+        pointer = Path(
+            os.environ.get("HARVEST_CHECK_POINTER", "output/telemetry/check.json")
+        )
+        pointer.parent.mkdir(parents=True, exist_ok=True)
+        pointer.write_text(
+            json.dumps({"path": self.path, "external_id": self.external_id}),
+            encoding="utf-8",
+        )
         # Never launch a long worker until its telemetry can actually be read back.
         observed = self.api(self.path)
         if observed.get("external_id") != self.external_id:
@@ -328,9 +336,42 @@ def inspect_run(repo, run_id, *, errors=False, api=github_api):
     return result
 
 
+def close_check(conclusion, *, api=github_api):
+    """Always-step fallback if a runner signal killed the supervising process."""
+    pointer = Path(
+        os.environ.get("HARVEST_CHECK_POINTER", "output/telemetry/check.json")
+    )
+    if not pointer.exists():
+        return
+    reference = json.loads(pointer.read_text(encoding="utf-8"))
+    prefix = f"harvest:{os.environ['GITHUB_RUN_ID']}:{os.environ.get('GITHUB_RUN_ATTEMPT', '1')}:"
+    repo_prefix = f"repos/{os.environ['GITHUB_REPOSITORY']}/check-runs/"
+    if not reference["external_id"].startswith(prefix) or not reference[
+        "path"
+    ].startswith(repo_prefix):
+        raise ValueError("Refusing to close another run's progress check")
+    check = api(reference["path"])
+    if check.get("external_id") != reference["external_id"]:
+        raise ValueError("Progress check identity changed")
+    if check["status"] != "completed":
+        api(
+            reference["path"],
+            method="PATCH",
+            payload={
+                "status": "completed",
+                "conclusion": conclusion,
+                "completed_at": utc_now(),
+            },
+        )
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    close = sub.add_parser("close")
+    close.add_argument(
+        "--conclusion", choices=["failure", "cancelled"], default="failure"
+    )
     worker = sub.add_parser("run")
     worker.add_argument("--name", required=True)
     worker.add_argument("worker_command", nargs=argparse.REMAINDER)
@@ -341,6 +382,9 @@ def main():
     status.add_argument("--worker")
     status.add_argument("--error", type=int)
     args = parser.parse_args()
+    if args.command == "close":
+        close_check(args.conclusion)
+        return
     if args.command == "run":
         command = args.worker_command
         if command and command[0] == "--":

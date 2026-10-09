@@ -56,6 +56,11 @@ jobs:
           args=()
           if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
           uv run --extra harvest python -m metadata_harvest.monitor run --name pxweb_v2-scb -- python -m metadata_harvest.runner run --adapter pxweb_v2 "${args[@]}"
+      - name: Close interrupted progress check
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run python -m metadata_harvest.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
