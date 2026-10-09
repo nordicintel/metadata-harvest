@@ -20,6 +20,11 @@ REPORTS = {
     "sdb": "reports/latest.json",
     "trafa": "reports/latest.json",
     "entrysoft": "reports/latest.json",
+    "smhi_emissions": "reports/latest.json",
+    "forsakringskassan": "reports/latest.json",
+    "riksbank": "reports/latest.json",
+    "dataanalys": "reports/latest.json",
+    "tillvaxtverket": "reports/latest.json",
     "catalog": "reports/latest.json",
 }
 
@@ -44,6 +49,20 @@ def _discovery(report: dict, *, resource=None) -> list[str]:
     ]
 
 
+def _scoped(report: dict, *, discovery_resources=(), endpoint_prefix=None) -> list[str]:
+    """Named discovery resources, or endpoint errors of a whole scope, that failed."""
+    return [
+        e["resource"]
+        for e in report.get("errors") or []
+        if (e.get("stage") == "discovery" and e["resource"] in discovery_resources)
+        or (
+            endpoint_prefix is not None
+            and e.get("stage") == "endpoint"
+            and str(e["resource"]).startswith(endpoint_prefix)
+        )
+    ]
+
+
 def scope_failures(adapter: str, report: dict) -> list[str]:
     """Whole scopes that failed, as the report records them; empty means green."""
     if adapter in ("pxweb_v1", "pxweb_v2"):
@@ -53,13 +72,7 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
     if adapter == "sdb":
         return _discovery(report, resource=lambda r: "/" not in r)
     if adapter == "trafa":
-        return [
-            e["resource"]
-            for e in report.get("errors") or []
-            if e.get("stage") == "discovery"
-            and e["resource"] == "products"
-            or (e.get("stage") == "endpoint" and str(e["resource"]).startswith("*/"))
-        ]
+        return _scoped(report, discovery_resources=("products",), endpoint_prefix="*/")
     if adapter == "uka":
         return []  # the catalogue failing raises; indicator failures are individual
     if adapter == "entrysoft":
@@ -68,6 +81,20 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         if interrupted and "budget" not in interrupted:
             failures.append(f"run: {interrupted}")
         return failures
+    if adapter == "smhi_emissions":
+        return _scoped(report, discovery_resources=("filteroptions",))
+    if adapter == "forsakringskassan":
+        return _scoped(
+            report, discovery_resources=("reports", "texts"), endpoint_prefix="*/"
+        )
+    if adapter == "riksbank":
+        return _scoped(report, discovery_resources=("swea", "mpd", "swestr"))
+    if adapter == "dataanalys":
+        return _scoped(
+            report, discovery_resources=("charts", "dashboards"), endpoint_prefix="*/"
+        )
+    if adapter == "tillvaxtverket":
+        return []  # Every configured source endpoint is an individual dataset.
     if adapter == "catalog":
         # Catalog-level errors: a missing or unreadable accepted collection.
         return [e["collection"] for e in report.get("errors") or []]

@@ -71,6 +71,41 @@ ADAPTERS = {
         "harvest-entrysoft.yml",
         ("run", "collect", "publish"),
     ),
+    "smhi_emissions": Adapter(
+        "smhi_emissions",
+        True,
+        "providers.smhi_emissions.json",
+        "harvest-smhi-emissions.yml",
+        ("run", "collect", "publish"),
+    ),
+    "forsakringskassan": Adapter(
+        "forsakringskassan",
+        True,
+        "providers.forsakringskassan.json",
+        "harvest-forsakringskassan.yml",
+        ("run", "collect", "publish"),
+    ),
+    "riksbank": Adapter(
+        "riksbank",
+        True,
+        "providers.riksbank.json",
+        "harvest-riksbank.yml",
+        ("run", "collect", "publish"),
+    ),
+    "dataanalys": Adapter(
+        "dataanalys",
+        True,
+        "providers.dataanalys.json",
+        "harvest-dataanalys.yml",
+        ("run", "collect", "publish"),
+    ),
+    "tillvaxtverket": Adapter(
+        "tillvaxtverket",
+        True,
+        "providers.tillvaxtverket.json",
+        "harvest-tillvaxtverket.yml",
+        ("run", "collect", "publish"),
+    ),
 }
 
 

@@ -70,7 +70,17 @@ class Progress:
             temporary.write_text(
                 json.dumps(state, ensure_ascii=False), encoding="utf-8"
             )
-            temporary.replace(self.path)
+            # Windows readers can briefly hold the destination open without
+            # delete sharing. Retry the atomic replacement, preserving the
+            # previous complete status until it succeeds; permanent errors raise.
+            for attempt in range(4):
+                try:
+                    temporary.replace(self.path)
+                    break
+                except PermissionError:
+                    if attempt == 3:
+                        raise
+                    time.sleep(0.025 * (attempt + 1))
 
     def error(self, stage: str, resource: str, language: str, error: str, **details):
         self.state["error_count"] += 1

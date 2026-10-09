@@ -2,7 +2,7 @@
 
 This repository adopts the integration responsibilities in the three reviewed
 repositories, including shared schema ownership and independent observation retrieval.
-PXWeb v1, PXWeb v2, Kolada, UKÄ, SDB, Trafikanalys and EntryScape RowStore are implemented here. Catalogue services, HTTP APIs, databases,
+The adapters in the matrix below are implemented here. Catalogue services, HTTP APIs, databases,
 websites, file scrapers and BRÃ… remain outside this implementation.
 
 ## Responsibility migration
@@ -28,6 +28,11 @@ Imported schema licence/provenance is retained [with the schemas](../src/metadat
 | Kolada | `kolada`, sv; municipality/groups and OU | One-time trusted initialization; no runtime repository dependency | Metadata, targeted incremental refresh and standalone retrieval implemented; live acceptance recorded below | [Adapter guide](adapters/kolada.md) |
 | EntryScape RowStore (`entrysoft`) | 49 instance providers, sv | Third-party-APIs proof of concept `f139c99` and its imported harvest | Ported here: automatic table-to-dataset rules, monthly budgeted incremental refresh, standalone retrieval with aggregation | Bounded hosted runs; [adapter guide](adapters/entrysoft.md) |
 | UKÃ„ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | Ported here: metadata from transiently read exports, weekly refresh and standalone retrieval | First hosted full run and [adapter guide](adapters/uka.md) |
+| SMHI Nationella emissionsdatabasen | `smhi`, sv | docs/api/smhi-emissionsdatabasen research 2026-10-09 | Swedish metadata for 29 substances (region × sector × year), monthly full rebuild, standalone retrieval via getdata | First hosted run; [adapter guide](adapters/smhi_emissions.md) |
+| Tillväxtverket | `tillvaxtverket`, sv | docs/api/tillvaxtverket research 2026-10-09 | Metadata from DivePort distinct queries + data.europa.eu; filtered, paged retrieval | First hosted run; [adapter guide](adapters/tillvaxtverket.md) |
+| Socialstyrelsen analysverktyg (Superset) | `socialstyrelsen_analys`, sv | docs/api/socialstyrelsen-superset research 2026-10-09 | Indicator metadata and live retrieval through public Superset custom queries; Riket and Region levels; NPS and MART tables out of scope | First hosted run; [adapter guide](adapters/dataanalys.md) |
+| Riksbank (SWEA, forecasts, SWESTR) | `riksbank`, en | docs/api/riksbank research 2026-10-09 | 17 SWEA groups, 24 forecast series by policy round, SWESTR; hand-mapped SWEA units; paced at 1 request per 15 s | First hosted run; [adapter guide](adapters/riksbank.md) |
+| Försäkringskassan | `forsakringskassan`, sv | docs/api/forsakringskassan research 2026-10-09 | Catalogue + meta.json + texts; hash-based incremental; filtered JSON retrieval | First hosted run; [adapter guide](adapters/forsakringskassan.md) |
 
 Every adapter in the registry is now implemented here; no placeholder remains.
 
@@ -68,6 +73,16 @@ See [registry gaps](pxweb-registry-gaps.md) for HVD routing and original additio
 The HVD helper preserves the API's hidden parent path rather than guessing from the website.
 
 ## Verification evidence
+
+### Five-adapter integration (9 October 2026)
+
+SMHI emissions, Försäkringskassan, Socialstyrelsen analysverktyg, Riksbank and
+Tillväxtverket are connected to the registry, CLI, schedules, retrieval entry
+points and job-outcome rules. All 915 deterministic tests passed, together with
+Ruff, schema-reference, schedule-generation, build and plain-install checks
+(85 retrieval entry points). The [bounded live results](verification/new-adapters-live.json)
+verify metadata and observation retrieval for each provider without saving observations.
+Full harvest coverage is recorded separately from these bounded checks.
 
 The pre-consolidation baseline passed 175 deterministic tests. It contained 6,834 v1
 and 8,620 v2 accepted metadata documents; those documents used the legacy identity
@@ -263,4 +278,3 @@ was verified only by the proof of concept, from a host the instances do not bloc
 
 Evidence: [EntryScape RowStore](verification/entrysoft.json). The monthly schedule
 runs on the first of the month with a 1,500-request budget.
-

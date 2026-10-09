@@ -1,8 +1,60 @@
 import json
+from pathlib import Path
 
 import pytest
 
 from metadata_harvest.progress import Progress
+
+
+@pytest.mark.parametrize("failures", [1, 2])
+def test_progress_retries_transient_replace_without_exposing_partial_state(
+    tmp_path, monkeypatch, failures
+):
+    path = tmp_path / "progress.json"
+    monkeypatch.setenv("HARVEST_PROGRESS", str(path))
+    progress = Progress("test", "provider")
+    accepted = path.read_bytes()
+    original_replace = Path.replace
+    attempts = []
+    delays = []
+
+    def temporarily_locked(temporary, destination):
+        attempts.append(temporary)
+        if len(attempts) <= failures:
+            assert path.read_bytes() == accepted
+            assert json.loads(temporary.read_text())["processed"] == 7
+            raise PermissionError("[WinError 5] Access is denied")
+        return original_replace(temporary, destination)
+
+    monkeypatch.setattr(Path, "replace", temporarily_locked)
+    monkeypatch.setattr("metadata_harvest.progress.time.sleep", delays.append)
+    progress.update(processed=7)
+    assert json.loads(path.read_text())["processed"] == 7
+    assert len(attempts) == failures + 1
+    assert len(delays) == failures and sum(delays) < 1
+
+
+def test_progress_permanent_replace_failure_propagates_and_preserves_state(
+    tmp_path, monkeypatch
+):
+    path = tmp_path / "progress.json"
+    monkeypatch.setenv("HARVEST_PROGRESS", str(path))
+    progress = Progress("test", "provider")
+    accepted = path.read_bytes()
+    attempts = []
+    delays = []
+
+    def permanently_locked(temporary, destination):
+        attempts.append(temporary)
+        raise PermissionError("permanently denied")
+
+    monkeypatch.setattr(Path, "replace", permanently_locked)
+    monkeypatch.setattr("metadata_harvest.progress.time.sleep", delays.append)
+    with pytest.raises(PermissionError, match="permanently denied"):
+        progress.update(processed=7)
+    assert path.read_bytes() == accepted
+    assert len(attempts) == 4
+    assert len(delays) == 3 and sum(delays) < 1
 
 
 def test_progress_separates_failures_and_keeps_every_error(tmp_path, monkeypatch):
