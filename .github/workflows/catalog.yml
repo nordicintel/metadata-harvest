@@ -26,9 +26,11 @@ jobs:
           version: '0.12.7'
           python-version: '3.13'
       - run: uv sync --locked --extra harvest
+      - name: Install 7-Zip
+        run: sudo apt-get update && sudo apt-get install --yes 7zip
       - name: Build from accepted files only
         run: uv run python -m metadata_harvest.catalog build
-      - name: Publish catalog and coverage report
+      - name: Publish catalog archives and coverage state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

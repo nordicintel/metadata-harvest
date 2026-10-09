@@ -35,7 +35,9 @@ discovery is retained explicitly because replacing it would change coverage.
 - `runner.py` preserves existing commands and v1 defaults; Actions collectors are
   the only production writers, sharing the `production-publication` collector
   queue. Adapter harvesting queues are independent.
-- `catalog.py` reads committed accepted collections and promotes only catalog output.
+- `catalog.py` reads committed accepted collections, builds combined Dataset and
+  codelist 7z archives, and promotes them with catalog state/reports into Git.
+  JSONL byte ranges allow failed inputs to retain their prior content.
   It has no dependency on adapter discovery or harvesting orchestration.
 - `processing/` defines content-enrichment then semantic-enrichment proposals;
   no external lookup, inference rule or AI processor is implemented yet.

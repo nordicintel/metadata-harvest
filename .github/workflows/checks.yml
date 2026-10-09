@@ -51,6 +51,8 @@ jobs:
       - run: uv run --extra harvest ruff format --check .
       - run: uv run --extra harvest ruff check .
       - run: uv run python -m metadata_harvest.scheduling sync --check
+      - name: Install 7-Zip for catalog tests
+        run: sudo apt-get update && sudo apt-get install --yes 7zip
       - run: uv run --extra harvest pytest
       - run: uv run --extra harvest python scripts/generate_schema_reference.py --check
       - run: uv build
