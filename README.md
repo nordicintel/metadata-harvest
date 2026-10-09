@@ -1,93 +1,83 @@
 # metadata-harvest
 
-Importable Python adapters and independent jobs for API metadata harvesting.
-Output is grouped by adapter, provider and language. Only currently accessible
-source content is kept: no inactive archive, metadata versions or dated snapshots.
+NordicIntel's API integration layer: importable adapters, shared output schemas,
+validation, provider configuration, metadata jobs and on-demand observation retrieval.
+Only currently accessible source content is retained; there is no inactive store,
+metadata history or observation warehouse.
 
-## Implemented adapters
+## Coverage
 
-| Adapter | Configured coverage | Metadata retrieval | Output |
-|---|---|---|---|
-| [PXWeb v1](docs/pxweb-v1.md) | 26 providers, 52 databases, 62 language/database scopes | Website discovery, API GET and category-covering JSON-stat2 POST slices | `data/pxweb_v1/metadata/*.jsonl` |
-| [PXWeb v2](docs/pxweb-v2.md) | SCB production API, Swedish and English | API-only discovery, complete native metadata and referenced codelists; no observations requested | `data/pxweb_v2/metadata/*.jsonl.gz` and `codelists/*.jsonl.gz` |
+| Adapter | Configured providers | Capabilities here |
+|---|---|---|
+| [PXWeb v1](docs/pxweb-v1.md) | 26 providers; see [providers.json](providers.json) | Website discovery, complete API metadata, standalone retrieval, resumable daily job |
+| [PXWeb v2](docs/pxweb-v2.md) | SCB production API, `sv` and `en` | API discovery, complete metadata, independent codelists, standalone retrieval, daily incremental / Sunday full job |
+| SDB, Trafikanalys, Kolada, RowStore, UKÄ | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
 
-Each metadata collection contains one document per table with `value: []`.
-V1 discards observations returned by bounded metadata slices. V2 never requests
-observations. Valid v2 table metadata is accepted even when a referenced codelist
-fails; codelist errors are reported and retried separately.
+Metadata is one deterministic `.jsonl.gz` per adapter/provider/language under
+`data/<adapter>/metadata/`; codelists have separate grouped collections.
+Each Dataset uses `extension.nordicintel` identity, complete dimensions/categories
+and `value: []`. V1 discards observations from bounded metadata slices; v2 does
+not request observations. Standalone retrieval returns observations to its caller
+and writes nothing. A failed codelist never invalidates an otherwise valid table.
 
-The [seven latest v1 additions](docs/pxweb-registry-gaps.md) are Göteborg, Karlstad,
-Örebro, Helsingborg, Norrköping, Skogsstyrelsen SKA22 and **SCB HVD-uppdrag**.
-HVD's hidden API parent is handled explicitly; all 32 tables passed full metadata
-checks. The additions have passed complete discovery for 524 tables; metadata
-checks for Göteborg and Karlstad were bounded. Socialstyrelsen's PXWeb API remains
-unavailable and is not configured as supported. Exclusions are documented in the
-[gap report](docs/pxweb-registry-gaps.md) and [excluded providers](docs/excluded-providers.json).
+## Install and use
 
-## Use from Python
+Python 3.13+. Install this checkout with `pip install .` for retrieval, or
+`pip install '.[harvest]'` for harvesting and schema validation.
+The package is not currently published to PyPI.
 
 ```python
-from metadata_harvest import get_pxweb_tables, get_pxweb_metadata
+from importlib.metadata import entry_points
 
-records = await get_pxweb_tables(
-    "https://hvduppdrag.scb.se/pxweb/",
-    languages=["sv"],
-    database_ids=["uppdrag"],
-)
-document = await get_pxweb_metadata(records[0], provider_code="scb_hvd")
+retrieve = entry_points(group="nordicintel.retrieval", name="scb")[0].load()
+# Pass your aiohttp session, explicit category selection, and published metadata:
+# await retrieve(session, provider_code=..., dataset_code=..., language=...,
+#                selection=..., data_url=..., metadata_url=..., metadata=...)
 ```
 
-V2 exposes `Client`, `discover_provider`, `fetch_metadata` and `fetch_codelist`
-from `metadata_harvest.adapters.pxweb_v2`; see its [shared-client example](docs/pxweb-v2.md).
+See the [working retrieval example](docs/retrieval-guide.md) and
+[harvesting imports](docs/pxweb-v1.md). Plain imports do not load browser,
+HTTPX or schema-validation dependencies. All implemented provider entry points
+ship in this one distribution.
 
-## Automation and current status
+## Operations and evidence
 
-| Workflow | Schedule (Europe/Stockholm) | Control |
-|---|---|---|
-| Scheduled harvest (v1) | Daily 04:15 | Enabled unless `HARVEST_ENABLED=false`; provider parallelism defaults to 19 |
-| SCB PXWeb v2 metadata | 06:15; incremental Monday–Saturday, full Sunday | Scheduled runs require `PXWEB_V2_ENABLED=true`; manual runs expose `full` |
+V1 runs daily at 04:15 Europe/Stockholm; SCB at 06:15, incremental Monday–Saturday
+and full Sunday. Both workflows serialize production publication and support
+manual execution and unfinished-work continuation. V1 uses `HARVEST_ENABLED`
+and SCB uses `PXWEB_V2_ENABLED` as schedule controls. SCB's gate is complete table
+acceptance; separate upstream codelist errors remain visible and retryable.
 
-As checked on **9 October 2026**, v1 scheduling is enabled and v2 scheduling is
-still disabled. Both workflows can run manually and share a publication queue.
-The v2 harvest published all **8,620 tables** and **1,956 codelists**; its latest
-run reports **55 upstream codelist failures**, independently of table success.
-A subsequent incremental run reused every table and preserved all four compressed
-collections byte-for-byte. The zero-unresolved-error gate for enabling the v2
-schedule has not been met.
-
-The latest committed v1 report predates the seven additions and remains incomplete;
-configured and locally verified providers do not imply a completed production
-harvest. The current machine-readable results are
-[v1 harvest](data/pxweb_v1/reports/harvest.json),
-[v1 discovery](data/pxweb_v1/reports/refresh.json),
-[v2 harvest](data/pxweb_v2/reports/harvest.json) and
-[v2 discovery](data/pxweb_v2/reports/refresh.json).
+Implementation, converted-corpus verification and production acceptance are
+separate evidence. Consult [consolidation status](docs/consolidation.md) and the
+current [v1 report](data/pxweb_v1/reports/harvest.json) /
+[v2 report](data/pxweb_v2/reports/harvest.json); a failed run never means an empty
+successful catalogue. Listing failures protect accepted records from deletion.
 
 ## Documentation
 
-- [PXWeb v1 usage and live checks](docs/pxweb-v1.md)
-- [PXWeb v2 usage, refresh rules and verification](docs/pxweb-v2.md)
-- [Job operation, publication and recovery](docs/harvesting.md)
-- [Output contract and file formats](docs/output-contract.md)
-- [Implemented structure and remaining adapter migrations](docs/consolidation.md)
-- [Latest provider additions and exact verification scope](docs/pxweb-registry-gaps.md)
+- [Architecture and ownership](docs/architecture.md)
+- [Output contract and migration](docs/output-contract.md)
+- [Dataset mapping contract](docs/DATASET-METADATA.md) and [generated field reference](docs/DATASET-METADATA-REFERENCE.md)
+- [Retrieval contract](docs/RETRIEVAL.md) and [usage](docs/retrieval-guide.md)
+- [Adapter implementation guide](docs/adapter-guide.md)
+- [Jobs and recovery](docs/harvesting.md)
+- [Provider additions and HVD routing](docs/pxweb-registry-gaps.md)
 
-## Development
-
-Python 3.13+ and uv:
+## Verification
 
 ```powershell
-uv sync --locked
-uv run playwright install chromium
-uv run ruff check .
-uv run ruff format --check .
-uv run pytest
+uv sync --locked --extra harvest
+uv run --extra harvest playwright install chromium
+uv run --extra harvest ruff check .
+uv run --extra harvest ruff format --check .
+uv run --extra harvest python scripts/generate_schema_reference.py --check
+uv run --extra harvest pytest
 uv build
+uv run --extra harvest python scripts/check_distribution.py
 ```
 
-On Linux use `uv run playwright install --with-deps chromium`. Deterministic tests
-run without live providers. Explicit live checks and production harvesting are
-separate from CI. [Checks for the current implementation](https://github.com/nordicintel/metadata-harvest/actions/runs/37844771664)
-passed; the verified suite contains 175 tests.
-
-No PyPI publication or license has been configured.
+On Linux, browser installation uses `--with-deps`. Deterministic tests are separate
+from explicit live acceptance. Imported schemas and their renderer retain the
+[Apache-2.0 licence and provenance](src/metadata_harvest/schemas/README.md);
+this does not assign a new licence to unrelated repository code.

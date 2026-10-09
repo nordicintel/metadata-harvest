@@ -391,7 +391,10 @@ def _assemble(table, provider_code, metadata, samples):
     result = {
         "class": "dataset",
         "version": "2.0",
-        "label": table["title"],
+        "label": next(
+            (sample["label"] for sample in samples if sample.get("label")),
+            metadata.get("title") or table["title"],
+        ),
         "updated": table["published"],
         "value": [],
         "id": [variable["code"] for variable in variables],
@@ -552,7 +555,16 @@ async def _generate(requests, table, provider_code):
         requests.count,
         sum(map(len, covered.values())),
     )
-    return result
+    from metadata_harvest.mapping import map_metadata
+
+    record = {
+        **deepcopy(table),
+        "provider_code": provider_code,
+        "dataset_code": table["id"],
+    }
+    return map_metadata(
+        result, record, "pxweb_v1", max_cells=config.get("maxCells", _CELL_LIMIT)
+    )
 
 
 async def get_pxweb_metadata(table: dict, *, provider_code: str) -> dict:

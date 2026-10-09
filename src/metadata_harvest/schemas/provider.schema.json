@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/nordicintel/metadata-harvest/main/src/metadata_harvest/schemas/provider.schema.json",
+  "title": "NordicIntel provider",
+  "description": "Minimal Provider envelope. Only provider_code is stable; all other fields are deliberately unconstrained while the Provider model evolves.",
+  "type": "object",
+  "required": [
+    "provider_code"
+  ],
+  "properties": {
+    "provider_code": {
+      "description": "Stable Provider identity used by Dataset documents.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+      "examples": [
+        "scb",
+        "kolada"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

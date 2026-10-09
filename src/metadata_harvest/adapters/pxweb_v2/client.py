@@ -48,6 +48,7 @@ class Client:
             or window <= 0
         ):
             raise ValueError("Invalid API rate limit configuration")
+        self.max_cells = config.get("maxDataCells")
         previous = self.interval
         self.interval = max(0.5, window / calls)
         self.next_request += max(0, self.interval - previous)

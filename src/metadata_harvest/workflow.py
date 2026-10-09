@@ -7,6 +7,12 @@ from urllib.parse import unquote
 
 from metadata_harvest.adapters.pxweb_v1.discovery import discover_provider
 from metadata_harvest.adapters.pxweb_v1.metadata import get_pxweb_metadata
+from metadata_harvest.artifacts import (
+    check_collection_sizes,
+    checkpoint_path,
+    report_status,
+)
+from metadata_harvest.mapping import source_record
 from metadata_harvest.storage import (
     JsonlStore,
     filename,
@@ -23,7 +29,7 @@ from metadata_harvest.storage import (
 
 
 def prepare(data, providers):
-    current = Path(data) / "work/current.json"
+    current = checkpoint_path(data)
     state = read(current) if current.exists() else None
     if state and any(task["status"] == "pending" for task in state["tasks"]):
         codes = sorted(
@@ -40,6 +46,7 @@ def prepare(data, providers):
         return {
             "run_id": state["run_id"],
             "phase": "metadata",
+            "full": state.get("full", False),
             "wave": state["wave"],
             "providers": codes,
         }
@@ -125,7 +132,7 @@ def _scopes(providers, results, run_id):
     return scopes, errors
 
 
-def collect_refresh(data, providers, results, run_id):
+def collect_refresh(data, providers, results, run_id, *, full=False):
     data = Path(data)
     scopes, errors = _scopes(providers, results, run_id)
     fresh = []
@@ -136,13 +143,13 @@ def collect_refresh(data, providers, results, run_id):
         )
     grouped = {identity(row): row for row in group_records(fresh)}
     listings = JsonlStore(data / "table-records")
-    active = JsonlStore(data / "metadata")
+    active = JsonlStore(data / "metadata", compressed=True)
     previous = {identity(row): row for row in listings.records.values()}
     previous_names = set(listings.records)
     known = dict(active.records)
     for name, document in known.items():
         if name not in previous_names:
-            saved = document.get("extension", {}).get("metadata_harvest", {})
+            saved = source_record(document)
             if filename(saved) != name:
                 raise ValueError(f"Saved metadata identity mismatch: {name}")
             previous.setdefault(identity(saved), saved)
@@ -190,7 +197,10 @@ def collect_refresh(data, providers, results, run_id):
                     listings.records[name] = new
                     if name in active.records:
                         completed = active.records[name]
-                        if completed.get("updated") == new["published"]:
+                        if (
+                            source_record(completed).get("published")
+                            == new["published"]
+                        ):
                             completed = refresh_identity(completed, new)
                             validate_dataset(completed, new)
                             active.records[name] = completed
@@ -208,9 +218,12 @@ def collect_refresh(data, providers, results, run_id):
         if name in active.records:
             try:
                 existing = active.records[name]
-                if identity(existing["extension"]["metadata_harvest"]) != key:
+                if identity(source_record(existing)) != key:
                     raise ValueError("Saved metadata identity mismatch")
-                if existing.get("updated") == new["published"]:
+                if (
+                    not full
+                    and source_record(existing).get("published") == new["published"]
+                ):
                     existing = refresh_identity(existing, new)
                     validate_dataset(existing, new)
                     active.records[name] = existing
@@ -264,6 +277,7 @@ def collect_refresh(data, providers, results, run_id):
     state = {
         "run_id": run_id,
         "stage": "metadata",
+        "full": full,
         "wave": 1,
         "started_at": started_at,
         "refresh_report": refresh_name,
@@ -293,7 +307,7 @@ async def build_provider(
     }
     write(output / "result.json", result)
     listings = JsonlStore(data / "table-records")
-    completed = JsonlStore(output / "metadata")
+    completed = JsonlStore(output / "metadata", compressed=True)
     deadline = time.monotonic() + budget_seconds
     for task in state["tasks"]:
         if task["status"] != "pending" or task["provider_code"] != provider["code"]:
@@ -344,7 +358,7 @@ def collect_metadata(data, result_paths, run_id, wave):
     if (state["run_id"], state["wave"]) != (run_id, wave):
         raise ValueError("Stale metadata collector")
     listings = JsonlStore(data / "table-records")
-    active = JsonlStore(data / "metadata")
+    active = JsonlStore(data / "metadata", compressed=True)
     tasks = {task["filename"]: task for task in state["tasks"]}
     seen, providers = set(), set()
     progress = 0
@@ -399,14 +413,10 @@ def collect_metadata(data, result_paths, run_id, wave):
             counts[task["kind"]] += 1
         elif task["status"] == "failed":
             counts["failed"] += 1
-    status = (
-        "interrupted"
-        if state["stage"] == "interrupted"
-        else "running"
-        if pending
-        else "completed_with_errors"
-        if counts["failed"] or state["refresh_errors"]
-        else "success"
+    status = report_status(
+        pending=len(pending),
+        errors=[True] if counts["failed"] or state["refresh_errors"] else [],
+        interrupted=state["stage"] == "interrupted",
     )
     report = {
         "run_id": run_id,
@@ -432,6 +442,7 @@ def collect_metadata(data, result_paths, run_id, wave):
     if not pending:
         report["finished_at"] = report["updated_at"]
     active.save()
+    check_collection_sizes(data)
     write(data / "reports/harvest.json", report)
     if pending:
         write(data / "work/current.json", state)

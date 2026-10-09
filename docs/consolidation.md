@@ -1,133 +1,115 @@
-# API metadata consolidation
+# Integration consolidation inventory
 
-## Scope and decisions
+This repository adopts the integration responsibilities in the three reviewed
+repositories, including shared schema ownership and independent observation retrieval.
+Only PXWeb v1 and v2 are implemented here. Catalogue services, HTTP APIs, databases,
+websites, file scrapers and BRÅ remain outside this implementation.
 
-This repository owns API metadata adapters, provider configuration, publication,
-validation and source mappings. Adapters are importable Python modules with
-independently runnable jobs. No Redis, observation warehouse or plugin framework.
-All BRÅ work is excluded. New HTML, spreadsheet and PDF ingestion is excluded.
-The existing PXWeb v1 web discovery remains a legacy exception: replacing it
-with API-only discovery would change coverage and is a separate decision.
+## Responsibility migration
 
-Publish **one JSONL per provider and language, separated by adapter** (v2 uses
-lossless `.jsonl.gz` compression), under
-`data/<adapter>/metadata/`. Keep only the latest metadata for datasets still
-available at the source. Confirmed source removal deletes metadata and listing
-state. There is no inactive archive, reactivation store or snapshot/version model.
-Incomplete discovery is an error, not confirmation that missing datasets are gone.
+| Source and inspected revision | Adopt here | Supersede or leave external |
+|---|---|---|
+| [nordicintel-backend](https://github.com/nordicintel/nordicintel-backend/tree/56bc1df45fdb81500fb3022bf31c2a386a1ead06), plus database-free work at `35b7310` | Adapter knowledge, source semantics, selection and retrieval contracts | PostgreSQL/admin API infrastructure and older paired `DatasetDocuments` contract are not imported |
+| [nordicintel-project](https://github.com/nordicintel/nordicintel-project/blob/180490dc142ad7ae4ac345bec754f3c10709e9cc/docs/architecture.md) | Integration requirements, supported-source inventory and consumer boundaries | One repository per adapter and local-only execution are superseded by subpackages and resumable Actions |
+| [nordicintel-schemas](https://github.com/nordicintel/nordicintel-schemas/tree/77a7a4665fea6f3c2be8f286d560b79317f08dd7) | Dataset, Provider, Retrieval Result, mappings and semantic rules | This repository owns future schemas; prepared `2.0.0` was unpublished; old identifiers are replaced with repository-owned identifiers |
 
-Each adapter owns its current listing state, latest refresh/harvest status and an
-unfinished-work checkpoint under its own directory. Reports overwrite the previous
-status; completed checkpoints are deleted. Nothing accumulates by run date.
+Keep current grouped storage, resumable jobs and adapter-isolated publication.
+No source repository is archived and no unrelated job disabled by this handover.
+Imported schema licence/provenance is retained [with the schemas](../src/metadata_harvest/schemas/README.md).
 
-## Implemented and remaining work
+## Adapter matrix
 
-Completed: importable v1/v2 subpackages, adapter-specific configuration and output,
-grouped atomic publication, current-source-only deletion, resumable jobs and
-independent v2 automation. V2's complete SCB table collection is published; its
-schedule is still gated by separately reported upstream codelist failures.
-The seven additional v1 providers are configured and locally verified at the scope
-recorded in [registry additions](pxweb-registry-gaps.md).
+| Adapter | Provider / languages | Source evidence | Availability and output here | Remaining acceptance / preparation |
+|---|---|---|---|---|
+| PXWeb v1 | 26 codes below; configured languages independently | This repository baseline `060f310`; backend source knowledge | Complete metadata mapping and retrieval; shared Dataset, grouped gzip | Complete converted-corpus and renewed automated live acceptance tracked below |
+| PXWeb v2 | `scb`, sv/en | This repository baseline `060f310`; SCB production API | Metadata and codelists, common Dataset and standalone v2 retrieval | Complete table acceptance enables schedule; dependency errors remain separate |
+| SDB | `socialstyrelsen`, sv/en with asymmetric coverage | [sdb-adapter `344212d`](https://github.com/nordicintel/sdb-adapter/tree/344212d51a28b848288e2beb90b7a5432bfa225e) | Unavailable placeholder here; metadata/retrieval implemented externally | [Preparation](adapters/sdb.md) |
+| Trafikanalys | `trafa`, sv/en coverage requires verification | [trafa-adapter `936b20e`](https://github.com/nordicintel/trafa-adapter/tree/936b20eadd4ba9e748d6fb00c6ca67a7e414a290) | Unavailable here; metadata/retrieval implemented externally | [HTML discovery boundary](adapters/trafa.md) |
+| Kolada | `kolada`, Swedish source | [kolada-data-scraper `a80bb03`](https://github.com/rubenselander/kolada-data-scraper/tree/a80bb03) | Unavailable here; substantive external scraper | [Metadata independent of observations](adapters/kolada.md) |
+| RowStore | Provider identity unresolved; language source-dependent | [rowstore-adapter `27d6991`](https://github.com/nordicintel/rowstore-adapter/tree/27d6991ba649171c64d548a6cf7ef1f40d853bbf) | Unavailable scaffold; reusable external transport | [Semantics and pagination](adapters/rowstore.md) |
+| UKÄ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | **Implemented externally**, unavailable here | [CSV-export scope decision](adapters/uka.md) |
 
-Next migrations are SDB, API-only Trafa and metadata-only Kolada, followed by the
-less mature adapters in the inventory below. These are not implemented in this
-repository yet. Do not disable another repository's schedule until its replacement
-passes acceptance; do not archive or delete source repositories.
+External implementation is not support in this distribution. All five placeholders
+raise `NotImplementedError`, are excluded from production jobs and have no entry points.
+Their future common output target is the shared Dataset/retrieval contract.
 
-## Adapter implementation template
+## Configured PXWeb v1 provider coverage
 
-- `adapters/<source>/`: discovery, metadata retrieval and source-specific mapping.
-  V1's `discover_provider(provider)` yields scopes including completeness,
-  observed IDs and errors; its metadata function returns one complete document.
-- `storage.py`: deterministic grouped JSONL and atomic file replacement. Use
-  `JsonlStore` to merge successful replacements into the last accepted documents.
-  Never clear a language directory before fetching replacements.
-- `workflow.py`: checkpoints, reconciliation, partial results and reporting.
-  Deletion requires complete discovery for every known location. A provider
-  failure cannot become an empty successful discovery result.
-- `runner.py`: the existing Actions entry point remains compatible. Its pre-existing
-  argparse interface is retained, but new functionality belongs in importable
-  functions; do not expand this into a CLI framework.
-- `providers.json` owns v1 providers; `providers.pxweb_v2.json` owns SCB v2.
-  Keep future adapter configuration separate.
-- `.github/workflows/`: independent schedules/manual jobs; collectors alone publish.
-  Commit validated output, state and report together. Workers checkpoint grouped
-  artifacts; failed datasets retain prior successful metadata.
+The configuration below is distinct from successful current live acceptance.
 
-Keep request clients source-specific until the second adapter demonstrates a
-shared need. Catalogue and documentation records have separate completeness
-contracts from statistical table dimensions/categories.
+| Provider code | Languages | API root |
+|---|---|---|
+| `mi` | sv | https://www.mi.se/PXWeb/api/v1 |
+| `csn` | sv | https://statistik.csn.se/PXWeb/api/v1 |
+| `energi` | sv, en | https://pxexternal.energimyndigheten.se/api/v1 |
+| `fohm` | sv, en | https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1 |
+| `sjv` | sv | https://statistik.sjv.se/PXWeb/api/v1 |
+| `konj` | sv, en | https://prognos.konj.se/PxWeb/api/v1 |
+| `konjbar` | sv, en | https://statistik.konj.se/PxWeb/api/v1 |
+| `lansstyr` | sv | https://pxweb.lansstyrelsen.se/api/v1 |
+| `mcf` | sv, en | https://statistik.mcf.se/PXWeb/api/v1 |
+| `slu` | sv, en | https://skogsstatistik.slu.se/api/v1 |
+| `skog` | sv, en | https://pxweb.skogsstyrelsen.se/api/v1 |
+| `domstol` | sv, en | https://pxweb.etjanst.domstol.se/PxWeb/api/v1 |
+| `linkoping` | sv | https://statistik.linkoping.se/pxweb/api/v1 |
+| `kulturanalys` | sv | https://statistik.kulturanalys.se/api/v1 |
+| `ehm` | sv | https://statistik.ehalsomyndigheten.se/api/v1 |
+| `tillvaxtanalys` | sv | https://statistik.tillvaxtanalys.se/PxWeb/api/v1 |
+| `vgregion` | sv | https://pxweb2022.vgregion.se/Pxwebb/api/v1 |
+| `sundsvall` | sv | https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1 |
+| `skolverket` | sv | https://statistikdatabasen.skolverket.se/PxWeb/api/v1 |
+| `goteborg` | sv | https://statistikdatabas.goteborg.se/api/v1 |
+| `karlstad` | sv | https://pxweb2.karlstad.se/api/v1 |
+| `orebro` | sv | https://statistik.orebro.se/api/v1 |
+| `helsingborg` | sv | https://statistik.helsingborg.se/PxWeb/api/v1 |
+| `norrkoping` | sv | https://statistik.norrkoping.se/PxWeb/api/v1 |
+| `skog_ska22` | sv | https://pxwebska.skogsstyrelsen.se/api/v1 |
+| `scb_hvd` | sv | https://hvduppdrag.scb.se/api/v1 |
 
-## Inventory (checked 9 October 2026)
+See [registry gaps](pxweb-registry-gaps.md) for HVD routing and original addition checks.
+The HVD helper preserves the API's hidden parent path rather than guessing from the website.
 
-Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
+## Verification evidence
 
-| Source | Implementation / coverage | Automation and gaps | Migration status |
-|---|---|---|---|
-| PXWeb v1 | This repository; discovery and full category metadata; 26 providers, 62 configured scopes | Daily/manual Actions; latest run incomplete, details below | First adapter extracted; grouped publication implemented |
-| PXWeb v2 | This repository's `adapters/pxweb_v2`; SCB sv/en only, native full metadata and referenced codelists | Independent daily incremental / Sunday full workflow; scheduling gated on live acceptance | Implemented and published; all 8,620 table metadata records validated, 1,956 codelists accepted, 55 upstream codelist errors reported separately; schedule remains gated |
-| SDB | `nordicintel/sdb-adapter`; substantial metadata implementation | Replace directory clearing; add independent publication | Next established-source batch |
-| Trafa | `nordicintel/trafa-adapter`; substantial implementation | Resolve API/HTML discovery boundary; replace clearing | After SDB |
-| Kolada | `rubenselander/kolada-data-scraper`; v3 metadata, groups, municipalities and units | Existing exports depend on observations; establish availability/gender metadata and upstream timestamps | Metadata-only execution path required |
-| RowStore / EntryScape tables | `nordicintel/rowstore-adapter` scaffold; `rubenselander/swedish-data-api` transport | Consumer's 20,000-row cap cannot prove full category coverage | Reuse transport; mapping pending |
-| UKÄ | `nordicintel/uka-adapter`; scaffold and reference wrapper | Reconcile discovery with `/api/totals/{id}` | Pending |
-| Riksbanken, Försäkringskassan, KB | `rubenselander/swedish-data-api` agency clients | Assess completeness separately | Backlog |
-| SIRIS | API documentation component in `rubenselander/scb-publiceringskalender` | Scheduled documentation success unverified; isolate from HTML/files | Documentation track |
-| Catalogue connectors | `swedish-data-api`, `nordicintel/dataportalen`, `nordicintel/nordicintel-leads` | EntryScape, CKAN, Huwise, ArcGIS Hub, DCAT, researchdata.se OAI-PMH; not complete statistical table metadata | Separate catalogue track |
-| DST / Eurostat and further PXWeb providers | Archived implementations / provider candidates | Coverage and current endpoints unverified | Later backlog |
+The pre-consolidation baseline passed 175 deterministic tests. It contained 6,834 v1
+and 8,620 v2 accepted metadata documents; those documents used the legacy identity
+and did not conform to the adopted shared schema. Native-source coverage evidence
+is not canonical-schema acceptance.
 
-See [registry additions and HVD routing](pxweb-registry-gaps.md) for the seven
-new v1 sources and their live verification evidence.
+The explicit candidate conversion validates all records, identity and complete
+category order/count preservation before publication. Latest conversion evidence
+is recorded in each adapter's `reports/conversion.json` after conversion is published.
+New fixture and local HTTP tests cover contracts, protocol splitting/coordinate
+assembly, lifecycle isolation and packaging. Full production acceptance requires
+complete automated runs and subsequent incremental reuse, with every upstream
+failure accounted for in current reports; bounded checks alone do not establish it.
 
-## Published run evidence (8 October 2026)
+The old v2 run accepted 8,620 tables and 1,956 codelists with 55 separately reported
+upstream codelist failures. Those dependency failures do not revoke table acceptance
+or prevent scheduling under the agreed gate. The old v1 report was incomplete,
+including MCF ContentsCode mismatches, two energy API HTTP 400s and an SJV listing
+failure; these require renewed checks and must not be relabelled as success.
 
-Base commit: `6bb4a9e`. [Scheduled run 37753836760](https://github.com/nordicintel/metadata-harvest/actions/runs/37753836760)
-completed with errors on 8 October. Its committed report
-`data/pxweb_v1/reports/harvest.json` (latest status, overwritten by the next run) counts 6,229 reused,
-17 updated, 24 failed, 590 deferred and zero unfinished. Errors include 22 MCF
-ContentsCode mismatches, two Energimyndigheten HTTP 400 responses and one
-Jordbruksverket navigation failure. These remain source investigations, not
-diagnosed fixes in this structural change.
+Status claims and verification links are updated with implementation delivery;
+latest machine-readable [v1](../data/pxweb_v1/reports/harvest.json) and
+[v2](../data/pxweb_v2/reports/harvest.json) reports remain authoritative for run outcomes.
 
-The collector published successful data and then explicitly failed the workflow
-because results were incomplete. State survives through Git commits on `main`;
-Actions artifacts are temporary transport, not the authoritative store.
-This v1 report predates the seven provider additions. Production workflows check
-out `main`; local provider checks are not evidence of production publication.
-V2 has separate automated publication evidence in [its verification report](pxweb-v2.md#verification).
+### Shared-contract delivery verification (9 October 2026)
 
-## Acceptance gate for each migrated adapter
+All **15,454** existing metadata documents passed candidate conversion and identity,
+dimension/category order/count and source-record preservation checks: 6,834 v1 and
+8,620 v2. V1 metadata occupies 6.35 MiB compressed across 27 collections; v2 occupies
+46.25 MiB across two, largest 24.96 MiB. No collection was split or truncated.
 
-Require selected-provider importable execution, required languages and dimensions,
-validated output, stable unchanged metadata, distinct source/harvest timestamps,
-retention on failures, protected incomplete discovery, persisted state and a
-successful scheduled/manual run. Fixture tests and bounded live checks are
-separate evidence; neither a limited smoke test nor a green runner with failed
-dataset counts is full acceptance.
+The complete deterministic suite passes **211 tests**; Ruff lint/format, generated
+reference checks and package build pass. Wheel and sdist include all three schemas
+and licence; an isolated plain wheel install loads all **27 provider entry points**
+with no HTTPX, Playwright or jsonschema installed or imported.
 
-## Historical consolidation verification
-
-Local conversion reduced 13,694 per-dataset JSON files to 54 JSONL collections:
-27 metadata files containing 6,834 documents and 27 listing-state files
-containing 6,860 records. Canonical content
-hashes before/after conversion were identical (UTF-8, sorted object keys and task
-IDs, compact JSON; each task ID precedes its document in the hash input):
-
-| Collection | SHA-256 |
-|---|---|
-| Listings | `03681f0f92df5025427e46ac5fbf6925ad4d709d29383845fcd75676d796133a` |
-| Active metadata | `36579d66df3918af3609276f89903c85b22441cf2b9f3df5866a1a60a1cc92ab` |
-
-At the initial consolidation commit, 131 deterministic tests passed, including local HTTP/browser fixtures,
-legacy checkpoint/artifact migration, confirmed-removal deletion, failed-refresh
-retention, stable repeated JSONL and failure isolation. Ruff lint and format
-checks passed. A bounded live check for Medlingsinstitutet's Swedish
-`Loner_efter_bransch_arsdata.px` passed category and publication validation with
-`value: []`. This is one-table live evidence, not a full provider run.
-
-Independent code review found a mutable legacy-input snapshot bug; a failing
-regression test reproduced it and an independent snapshot fixed it. A separate
-regression also proved that an unserializable worker result cannot prevent later
-valid tables from being saved. These were local checks of the initial consolidation, not evidence of a successful
-scheduled v1 run. The current implementation has since passed 175 deterministic
-tests; [current CI](https://github.com/nordicintel/metadata-harvest/actions/runs/37844771664) is green.
+Bounded live metadata-to-retrieval checks pass for all **26 configured v1 providers**
+and SCB **sv/en**, including HVD routing, MCF singleton ContentsCode and Sundsvall's
+anonymous gateway bootstrap. Summaries contain no observations:
+[v1 evidence](../data/pxweb_v1/reports/retrieval.json),
+[v2 evidence](../data/pxweb_v2/reports/retrieval.json).
+These checks do not replace the required full automated run and incremental run;
+renewed production acceptance remains pending at this commit.

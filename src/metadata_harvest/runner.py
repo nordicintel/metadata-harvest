@@ -8,6 +8,8 @@ import subprocess
 from pathlib import Path
 
 from metadata_harvest.adapters.pxweb_v2 import workflow as v2_workflow
+from metadata_harvest.artifacts import check_collection_sizes, publication_directory
+from metadata_harvest.registry import ADAPTERS, get_adapter
 from metadata_harvest.storage import read
 from metadata_harvest.workflow import (
     build_provider,
@@ -38,9 +40,8 @@ def publish(message, *, data=Path("data/pxweb_v1")):
         )
 
     root = Path(git("rev-parse", "--show-toplevel").stdout.strip()).resolve()
-    relative = Path(data).resolve().relative_to(root).as_posix()
-    if relative not in {"data/pxweb_v1", "data/pxweb_v2"}:
-        raise ValueError("Publication requires a configured adapter data directory")
+    relative = publication_directory(root, Path(data))
+    check_collection_sizes(data)
     staged = git("diff", "--cached", "--name-only", "-z").stdout.split("\0")
     if any(path and not path.startswith(relative + "/") for path in staged):
         raise RuntimeError("Refusing to publish unrelated staged files")
@@ -78,9 +79,7 @@ def main():
             "collect",
         ],
     )
-    parser.add_argument(
-        "--adapter", choices=["pxweb_v1", "pxweb_v2"], default="pxweb_v1"
-    )
+    parser.add_argument("--adapter", choices=list(ADAPTERS), default="pxweb_v1")
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--data", type=Path)
     parser.add_argument("--providers", type=Path)
@@ -91,11 +90,12 @@ def main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--budget-seconds", type=float, default=19_200)
     args = parser.parse_args()
+    spec = get_adapter(args.adapter)
+    if args.command not in spec.commands:
+        parser.error(f"{args.adapter} supports {spec.commands}")
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
-    args.providers = args.providers or Path(
-        "providers.pxweb_v2.json" if is_v2 else "providers.json"
-    )
+    args.providers = args.providers or Path(spec.configuration)
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
     providers = read(args.providers)
     if is_v2 and args.command not in {"run", "collect", "publish", "continue"}:
@@ -166,6 +166,7 @@ def main():
             providers,
             [read(p) for p in args.artifacts.rglob("result.json")],
             args.run_id,
+            full=args.full,
         )
         outputs(
             {
@@ -202,7 +203,7 @@ def main():
                 "gh",
                 "workflow",
                 "run",
-                "harvest-pxweb-v2.yml" if is_v2 else "harvest.yml",
+                spec.workflow_file,
                 "--ref",
                 "main",
                 "-f",

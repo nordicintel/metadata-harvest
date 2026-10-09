@@ -8,9 +8,9 @@ queue. Collectors publish to `main` and stage only their adapter's data director
 | `pxweb_v1` | Scheduled harvest | Daily 04:15 | Enabled unless `HARVEST_ENABLED=false` |
 | `pxweb_v2` | SCB PXWeb v2 metadata | Daily 06:15; Sunday full, otherwise incremental | Scheduled runs require `PXWEB_V2_ENABLED=true` |
 
-Both can run manually. V2 manual dispatch exposes a `full` option. As checked on
-9 October 2026, v1 scheduling is enabled; v2 scheduling remains disabled because
-55 upstream codelist errors prevent the original zero-error acceptance gate.
+Both can run manually with a `full` option. SCB scheduling is enabled after
+complete table acceptance; independent codelist failures remain explicit errors
+and do not block that gate. Check repository variables for current enablement.
 V1 provider parallelism is controlled by `HARVEST_PARALLEL_PROVIDERS` (default 19,
 not the provider count). V2 uses one rate-limited worker for both languages.
 
@@ -21,7 +21,7 @@ into the other adapter's directory.
 
 | Path within the adapter directory | Purpose |
 |---|---|
-| `metadata/` | One collection per provider/language: v1 `.jsonl`, v2 `.jsonl.gz` |
+| `metadata/` | One deterministic `.jsonl.gz` collection per provider/language |
 | `codelists/` (v2) | One `.jsonl.gz` per provider/language; complete native codelist payloads |
 | `table-records/` | One JSONL per provider/language for current discovery state |
 | `reports/refresh.json` | Latest listing result and completeness/errors; overwritten |
@@ -32,7 +32,8 @@ Dataset identity is provider + dataset code + language. Collection filenames
 escape identifiers and add a checksum to avoid Windows case collisions. Each
 JSONL line is one dataset document. V1 groups multiple known source locations
 in `paths`, with the newest source timestamp determining the primary endpoint.
-V2 retains the complete catalogue record and native SCB metadata fields.
+Both map to the shared Dataset contract and retain complete source evidence under
+their adapter namespace. See [output mapping](output-contract.md).
 
 **Confirmed-absent datasets are deleted.** There is no inactive directory,
 reactivation state, dated output collection or application-level version history.
@@ -99,16 +100,16 @@ Selecting `--adapter pxweb_v2` switches defaults to `providers.pxweb_v2.json`,
 and `continue`:
 
 ```powershell
-uv run python -m metadata_harvest.runner run --adapter pxweb_v2 --full
-uv run python -m metadata_harvest.runner collect --adapter pxweb_v2
+uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2 --full
+uv run --extra harvest python -m metadata_harvest.runner collect --adapter pxweb_v2
 ```
 
 `run` writes worker output, `collect` validates and applies it locally, and `publish`
 commits/pushes the selected adapter directory. Use a separate `--data` directory
 for experiments and an empty `--output` directory for each v2 worker invocation.
-Run `uv run python -m metadata_harvest.runner --help` for supported arguments.
+Run `uv run --extra harvest python -m metadata_harvest.runner --help` for supported arguments.
 
-Run `uv run ruff check .`, `uv run ruff format --check .`, and `uv run pytest`.
+Run `uv run --extra harvest ruff check .`, `uv run --extra harvest ruff format --check .`, and `uv run --extra harvest pytest`.
 Tests cover adapter separation, confirmed removal, incomplete discovery, failed
 replacements, bounded status files, continuation, stable JSONL and safe publication.
 See [the output contract](output-contract.md) and [source inventory](consolidation.md).

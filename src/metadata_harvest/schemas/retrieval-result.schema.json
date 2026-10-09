@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/nordicintel/metadata-harvest/main/src/metadata_harvest/schemas/retrieval-result.schema.json",
+  "title": "NordicIntel adapter retrieval result",
+  "description": "Observation fragment returned by an adapter's live retrieval function: the JSON-stat2 id, size, dimension category indices, value and status for one selection. The calling service assembles the complete Dataset from its catalog metadata. See docs/RETRIEVAL.md.",
+  "type": "object",
+  "required": [
+    "id",
+    "size",
+    "dimension",
+    "value"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonblank"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Selected dimension codes in result order. Consumers check exact correspondence with the dimension keys and the selection.",
+      "examples": [
+        [
+          "region",
+          "ar"
+        ]
+      ]
+    },
+    "size": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "minItems": 1,
+      "description": "Category counts in id order. Consumers check that each equals the number of categories in the corresponding index.",
+      "examples": [
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "dimension": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/nonblank"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/dimension"
+      },
+      "description": "Selected dimensions keyed by dimension code, containing only category indices. Labels and other metadata come from the catalog."
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(0|[1-9][0-9]*)(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          }
+        }
+      ],
+      "description": "Observations in id/category index order (last dimension varies fastest): a nonempty dense array only when the source supplies every selected cell, else a sparse object keyed by zero-based observation index. Values may be numbers, strings or null; preserve zero, use null only for cells the source presents with a marker (kept in status), and leave out cells the source has no data for ({} when it has none). Consumers enforce dense length equal to product(size) and sparse indices below product(size).",
+      "examples": [
+        [
+          10,
+          null,
+          0,
+          12.5
+        ],
+        {
+          "0": 10,
+          "2": 0,
+          "3": 12.5
+        }
+      ]
+    },
+    "status": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(0|[1-9][0-9]*)(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Optional provider observation flags, such as suppression or provisional status. A string applies to every cell; an array aligns with the full flattened cube and uses null for unflagged cells; a sparse object maps zero-based observation indices to strings. Consumers check array length and index bounds against product(size). Preserve provider flag meanings.",
+      "examples": [
+        "p",
+        [
+          null,
+          "..",
+          null,
+          null
+        ],
+        {
+          "1": ".."
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "nonblank": {
+      "type": "string",
+      "pattern": "\\S",
+      "description": "At least one non-whitespace character; validation does not trim or normalize text."
+    },
+    "dimension": {
+      "type": "object",
+      "required": [
+        "category"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "object",
+          "required": [
+            "index"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "index": {
+              "description": "Selected category codes in result order, as an ordered code array or a code-to-position object.",
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/nonblank"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                {
+                  "type": "object",
+                  "minProperties": 1,
+                  "description": "Category code to zero-based position; positions must be unique and contiguous.",
+                  "propertyNames": {
+                    "$ref": "#/$defs/nonblank"
+                  },
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              ],
+              "examples": [
+                [
+                  "0",
+                  "1"
+                ],
+                {
+                  "0": 0,
+                  "1": 1
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

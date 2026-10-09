@@ -204,8 +204,14 @@ def test_metadata_preserves_native_payload_and_fetches_encoded_codelist():
             )
 
     document, codes = asyncio.run(run())
-    saved = document["extension"].pop("metadata_harvest")
-    assert document == metadata(language="en")
+    saved = document["extension"]["pxweb_v2"]["source_record"]
+    assert (
+        document["dimension"]["Region"]["category"]
+        == metadata(language="en")["dimension"]["Region"]["category"]
+    )
+    assert document["label"] == metadata(language="en")["label"]
+    assert document["value"] == []
+    assert document["extension"]["nordicintel"]["language"] == "en"
     assert saved["catalogue"] == table()
     assert codes == codelist("en")
 
@@ -254,8 +260,11 @@ def test_metadata_retries_source_change_with_fresh_catalogue():
             return await fetch_metadata(record(), client=client)
 
     result = asyncio.run(run())
-    assert result["updated"] == changed
-    assert result["extension"]["metadata_harvest"]["catalogue"]["updated"] == changed
+    assert result["updated"] == changed[:10]
+    assert (
+        result["extension"]["pxweb_v2"]["source_record"]["catalogue"]["updated"]
+        == changed
+    )
 
 
 def test_codelist_validation_rejects_duplicate_values_and_wrong_language():

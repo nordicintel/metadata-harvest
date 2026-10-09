@@ -75,7 +75,7 @@ def test_jsonl_migration_preserves_every_document_before_removing_legacy(tmp_pat
 
     rows = [dataset(record("a")), dataset(record("b"))]
     for row in rows:
-        write(tmp_path / filename(row["extension"]["metadata_harvest"]), row)
+        write(tmp_path / filename(row["extension"]["nordicintel"]), row)
     store = JsonlStore(tmp_path)
     store.save()
     assert list(JsonlStore(tmp_path).records.values()) == rows
