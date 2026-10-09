@@ -1,8 +1,8 @@
-# RowStore / EntryScape tables migration preparation
+# EntrySoft (formerly RowStore) / EntryScape tables migration preparation
 
 Status: importable unavailable placeholder only; no job or retrieval entry point.
 
-Source: [27d6991ba649171c64d548a6cf7ef1f40d853bbf](https://github.com/nordicintel/rowstore-adapter/tree/27d6991ba649171c64d548a6cf7ef1f40d853bbf). Coverage: Provider identity and dataset languages must be established from source catalogue semantics; no code is registered here.
+Source: [27d6991ba649171c64d548a6cf7ef1f40d853bbf](https://github.com/nordicintel/rowstore-adapter/tree/27d6991ba649171c64d548a6cf7ef1f40d853bbf). The external repository is still named `rowstore-adapter`. Coverage: Provider identity and dataset languages must be established from source catalogue semantics; no code is registered here.
 
 ## Reusable components
 

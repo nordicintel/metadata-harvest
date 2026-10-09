@@ -1,11 +1,11 @@
-"""Prepared rowstore integration; no harvesting or retrieval implemented here."""
+"""Prepared EntrySoft integration; no harvesting or retrieval implemented here."""
 
 AVAILABLE = False
 
 
 def _unavailable(*args, **kwargs):
     raise NotImplementedError(
-        "rowstore is not implemented here; see docs/adapters/rowstore.md"
+        "entrysoft is not implemented here; see docs/adapters/entrysoft.md"
     )
 
 
