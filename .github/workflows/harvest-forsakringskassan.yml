@@ -1,0 +1,124 @@
+name: Försäkringskassan metadata
+
+on:
+  # BEGIN GENERATED SCHEDULE
+  schedule:
+    - cron: '15 5 * * 2'
+      timezone: Europe/Stockholm
+    - cron: '45 4 1 * *'
+      timezone: Europe/Stockholm
+  # END GENERATED SCHEDULE
+  workflow_dispatch:
+    inputs:
+      subjects:
+        description: Optional space-separated report keys (such as ase-avslutsanledning) for a bounded run
+        default: ''
+      full:
+        description: Rebuild every table, even when its report's meta.json and texts are unchanged
+        type: boolean
+        default: false
+
+concurrency:
+  group: harvest-forsakringskassan
+  queue: max
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  harvest:
+    # BEGIN GENERATED ENABLEMENT
+    if: github.event_name == 'workflow_dispatch' || true
+    # END GENERATED ENABLEMENT
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: '0.12.7'
+          python-version: '3.13'
+      - run: uv sync --locked --extra harvest
+      - name: Resolve refresh mode from schedule or manual input
+        env:
+          SCHEDULE_CRON: ${{ github.event.schedule }}
+          MANUAL_FULL: ${{ inputs.full }}
+        run: uv run python -m metadata_harvest.scheduling resolve --adapter forsakringskassan
+      - id: run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SUBJECTS: ${{ inputs.subjects }}
+        run: |
+          args=()
+          if [ -n "$SUBJECTS" ]; then read -ra ids <<< "$SUBJECTS"; args+=(--subject "${ids[@]}"); fi
+          if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
+          uv run python -m metadata_harvest.monitor run --name forsakringskassan -- python -m metadata_harvest.runner run --adapter forsakringskassan "${args[@]}"
+      - name: Close interrupted progress check
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run python -m metadata_harvest.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: telemetry-forsakringskassan-${{ github.run_attempt }}
+          path: output/telemetry/
+          retention-days: 7
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: forsakringskassan-${{ github.run_attempt }}
+          path: output/forsakringskassan/
+          if-no-files-found: error
+          retention-days: 7
+
+  collect:
+    concurrency:
+      group: production-publication
+      queue: max
+      cancel-in-progress: false
+    needs: harvest
+    if: needs.harvest.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: '0.12.7'
+          python-version: '3.13'
+      - run: uv sync --locked --extra harvest
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: forsakringskassan-${{ github.run_attempt }}
+          path: output/forsakringskassan/
+      - id: collect
+        run: uv run python -m metadata_harvest.runner collect --adapter forsakringskassan
+      - name: Publish current Försäkringskassan metadata and errors
+        env:
+          RUN_ID: ${{ steps.collect.outputs.run_id }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          uv run python -m metadata_harvest.runner publish --adapter forsakringskassan --run-id "$RUN_ID"
+      - name: Construct catalog from published results
+        id: catalog
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run catalog.yml --ref main
+      - name: Fail only when a whole scope failed
+        run: uv run python -m metadata_harvest.outcome --adapter forsakringskassan
+      - name: Report catalog dispatch failure
+        if: always() && steps.catalog.outcome == 'failure'
+        run: exit 1
