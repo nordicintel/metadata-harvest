@@ -3,7 +3,7 @@
 This repository adopts the integration responsibilities in the three reviewed
 repositories, including shared schema ownership and independent observation retrieval.
 PXWeb v1, PXWeb v2 and Kolada are implemented here. Catalogue services, HTTP APIs, databases,
-websites, file scrapers and BRÅ remain outside this implementation.
+websites, file scrapers and BRÃ… remain outside this implementation.
 
 ## Responsibility migration
 
@@ -27,7 +27,7 @@ Imported schema licence/provenance is retained [with the schemas](../src/metadat
 | Trafikanalys | `trafa`, sv/en coverage requires verification | [trafa-adapter `936b20e`](https://github.com/nordicintel/trafa-adapter/tree/936b20eadd4ba9e748d6fb00c6ca67a7e414a290) | Unavailable here; metadata/retrieval implemented externally | [HTML discovery boundary](adapters/trafa.md) |
 | Kolada | `kolada`, sv; municipality/groups and OU | One-time trusted initialization; no runtime repository dependency | Metadata, targeted incremental refresh and standalone retrieval implemented; live acceptance recorded below | [Adapter guide](adapters/kolada.md) |
 | RowStore | Provider identity unresolved; language source-dependent | [rowstore-adapter `27d6991`](https://github.com/nordicintel/rowstore-adapter/tree/27d6991ba649171c64d548a6cf7ef1f40d853bbf) | Unavailable scaffold; reusable external transport | [Semantics and pagination](adapters/rowstore.md) |
-| UKÄ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | **Implemented externally**, unavailable here | [CSV-export scope decision](adapters/uka.md) |
+| UKÃ„ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | **Implemented externally**, unavailable here | [CSV-export scope decision](adapters/uka.md) |
 
 External implementation is not support in this distribution. All four placeholders
 raise `NotImplementedError`, are excluded from production jobs and have no entry points.
@@ -112,7 +112,8 @@ anonymous gateway bootstrap. Summaries contain no observations:
 [v1 evidence](verification/pxweb_v1-retrieval.json),
 [v2 evidence](verification/pxweb_v2-retrieval.json).
 These checks do not replace the required full automated run and incremental run;
-renewed production acceptance remains pending at this commit.
+Renewed SCB table acceptance is recorded below; remaining v1 source failures are
+reported individually rather than hidden.
 
 ### Harvest visibility and execution correction (9 October 2026)
 
@@ -150,7 +151,7 @@ of a non-first contents category: [evidence](verification/mcf-contents-selection
 The full local suite passed 239 tests; lint, formatting and package build passed.
 Existing running workers retain their checked-out code; this fix does not restart them.
 
-## Kolada delivery — 9 October 2026
+## Kolada delivery â€” 9 October 2026
 
 Kolada is implemented and published with 6,516 current metadata documents in one 35.6 MiB
 compressed collection. Initial data was imported once as trusted input; no seeding
@@ -207,3 +208,16 @@ built and published all 39 collections; the
 reused all 39 and changed only the report. Both workflows deliberately reported
 incomplete coverage after successful publication because existing upstream errors
 remain visible. No harvester was started by either catalog run.
+
+### Completed SCB table acceptance (9 October 2026)
+
+[Full resumed run](https://github.com/nordicintel/metadata-harvest/actions/runs/37901739481)
+published all 8,620 tables with zero failed or unfinished tables in commit `9b3c8df`.
+The 55 remaining codelist failures are isolated upstream errors; accepted tables
+remain published. Completed checkpoints were removed. SCB automatic scheduling
+is enabled in the central config after this complete table acceptance.
+
+[Incremental verification](https://github.com/nordicintel/metadata-harvest/actions/runs/37922439511)
+completed its worker with 8,571 reused tables, 49 updated tables, zero table failures
+and the same 55 codelist failures. Publication and output comparison remain pending.
+Dependency-only tasks reuse saved table metadata and retry codelists independently.
