@@ -165,10 +165,11 @@ reused and zero updates. Their unchanged metadata bytes were verified identical.
 Neither incremental run fetched KPI observations. This is sample-based acceptance,
 not a claim of fresh live verification or schema validation of every imported document.
 
-The complete local suite passed 267 tests; all 11 lifecycle tests then passed,
-including the additional missing-document recovery check. Lint, formatting, schema-reference checks,
+The complete [hosted suite](https://github.com/nordicintel/metadata-harvest/actions/runs/37910795515)
+passed 268 tests, including all 11 lifecycle tests. Lint, formatting, schema-reference checks,
 wheel/sdist build and a plain installation loading all 28 provider retrieval entry
 points passed. [Evidence](verification/kolada.json) contains only selections, counts
 and outcomes, never observations. The bounded [hosted run](https://github.com/nordicintel/metadata-harvest/actions/runs/37909830351)
 and publication passed with nine reused documents, zero updates and zero errors.
-The independent workflow is configured for daily incremental runs at 06:30 Europe/Stockholm.
+The independent daily incremental schedule was enabled on 9 October 2026 and runs
+at 06:30 Europe/Stockholm.
