@@ -1,8 +1,10 @@
-# PXWeb v2 migration assessment
+# PXWeb v2 reference assessment (historical)
 
 Reference code inspected on 8 October 2026. The SCB sv/en adapter is now
 implemented here; see [execution, output and verification](pxweb-v2.md).
-This reference assessment does not establish complete live acceptance.
+This is the pre-implementation reference assessment, not the current execution
+plan. Manual harvesting and grouped compressed publication are implemented and
+verified. Only schedule enablement remains gated; see the current adapter guide.
 
 | Implementation | Useful capabilities | Constraints / risks |
 |---|---|---|
@@ -10,7 +12,7 @@ This reference assessment does not establish complete live acceptance.
 | `nordicintel-adapter-pxweb2` local commit `2458eb25fe5ba208566d4906101bacb217e4638b` | Importable `PxWebAdapter`; per-language discovery including discontinued tables; `defaultSelection=false`; metadata and catalogue mapping; source marker includes period range | Coupled to core contracts and HTTP injection; no complete codelist publication path in `fetch_metadata`; pagination silently stops if page metadata absent |
 | `nordicintel-harvest` / `nordicintel-backend` local v2 adapters | Existing catalogue mapping, notes/contact/subject parsing, source URL mapping and tests | Broader runtime dependencies; discovery breaks on failed page retrieval, so copying it without explicit completeness would risk deletion after partial discovery |
 
-## Selection
+## Reference selection
 
 Use the personal scraper's API-focused discovery, configuration, codelist and
 incremental logic as the primary reference. Reuse the NordicIntel adapter's
@@ -26,16 +28,16 @@ upserted incrementally; final `language_refresh` replaces the desired codelists
 and prunes unseen tables. Its summary distinguishes table/language/codelist counts.
 Successful persistence cannot by itself establish complete publication.
 
-## Implementation scope
+## Implemented scope and acceptance criteria
 
 The SCB implementation adds `adapters/pxweb_v2` with importable discovery and metadata
 retrieval, a separate provider configuration and fixtures covering `/config`,
 every `/tables` page, `/tables/{id}/metadata` and referenced `/codelists/{id}`.
-Preserve multilingual categories and complete codelist payloads. Use the grouped
-JSONL pattern established by v1 under its own `data/pxweb_v2/` directory: merge validated successes, retain failed prior
-documents, and expose incomplete runs in reports.
+It preserves multilingual categories and complete codelist payloads in grouped
+`.jsonl.gz` files under `data/pxweb_v2/`, merges validated successes, retains prior
+content after transient failures, and exposes incomplete runs in reports.
 
-Before enabling its own manual/scheduled workflow, verify:
+The implemented behavior and regression coverage include:
 
 - Duplicate IDs, missing pages or changing pagination totals mark discovery
   incomplete and cannot confirm deletion of missing datasets.
@@ -49,5 +51,7 @@ Before enabling its own manual/scheduled workflow, verify:
 - Worker output, collector validation and persisted checkpoints survive partial
   failures and continuation; bounded live checks precede a full automated run.
 
-The new v2 schedule is gated by `PXWEB_V2_ENABLED=true` until acceptance.
+The v2 manual workflow is available and has published complete table metadata.
+Automatic scheduling remains gated by `PXWEB_V2_ENABLED=true`: the latest verified
+run has 55 upstream codelist errors, so the original zero-error gate remains unmet.
 No superseded schedule has been disabled.

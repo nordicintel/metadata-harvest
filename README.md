@@ -1,157 +1,93 @@
 # metadata-harvest
 
-API metadata harvesting for Python 3.13+, with PXWeb v1 and an API-only
-[SCB PXWeb v2 adapter (sv/en)](docs/pxweb-v2.md).
-See the [source inventory and migration plan](docs/consolidation.md),
-[output contract](docs/output-contract.md) and [PXWeb v2 assessment](docs/pxweb-v2-migration.md).
-Published metadata uses one JSONL collection per provider and language; v2 uses
-lossless gzip (`.jsonl.gz`) to keep complete collections within GitHub limits.
-The v1 configuration includes [26 providers, including SCB HVD-uppdrag](docs/pxweb-registry-gaps.md).
+Importable Python adapters and independent jobs for API metadata harvesting.
+Output is grouped by adapter, provider and language. Only currently accessible
+source content is kept: no inactive archive, metadata versions or dated snapshots.
+
+## Implemented adapters
+
+| Adapter | Configured coverage | Metadata retrieval | Output |
+|---|---|---|---|
+| [PXWeb v1](docs/pxweb-v1.md) | 26 providers, 52 databases, 62 language/database scopes | Website discovery, API GET and category-covering JSON-stat2 POST slices | `data/pxweb_v1/metadata/*.jsonl` |
+| [PXWeb v2](docs/pxweb-v2.md) | SCB production API, Swedish and English | API-only discovery, complete native metadata and referenced codelists; no observations requested | `data/pxweb_v2/metadata/*.jsonl.gz` and `codelists/*.jsonl.gz` |
+
+Each metadata collection contains one document per table with `value: []`.
+V1 discards observations returned by bounded metadata slices. V2 never requests
+observations. Valid v2 table metadata is accepted even when a referenced codelist
+fails; codelist errors are reported and retried separately.
+
+The [seven latest v1 additions](docs/pxweb-registry-gaps.md) are Göteborg, Karlstad,
+Örebro, Helsingborg, Norrköping, Skogsstyrelsen SKA22 and **SCB HVD-uppdrag**.
+HVD's hidden API parent is handled explicitly; all 32 tables passed full metadata
+checks. The additions have passed complete discovery for 524 tables; metadata
+checks for Göteborg and Karlstad were bounded. Socialstyrelsen's PXWeb API remains
+unavailable and is not configured as supported. Exclusions are documented in the
+[gap report](docs/pxweb-registry-gaps.md) and [excluded providers](docs/excluded-providers.json).
+
+## Use from Python
 
 ```python
-from metadata_harvest import get_pxweb_tables
+from metadata_harvest import get_pxweb_tables, get_pxweb_metadata
 
 records = await get_pxweb_tables(
-    "https://example.org/PXWeb/pxweb/",
-    languages=["sv", "en"],
-    database_ids=["Statistics"],
+    "https://hvduppdrag.scb.se/pxweb/",
+    languages=["sv"],
+    database_ids=["uppdrag"],
 )
+document = await get_pxweb_metadata(records[0], provider_code="scb_hvd")
 ```
 
-`languages=None` tries English and Swedish. A language in the URL overrides that
-list. A database in the URL is combined with supplied database IDs. Without a URL
-database, `database_ids=None` discovers databases separately for each language;
-`database_ids=[]` selects none. Folder and table inputs harvest their entire database.
-API-form inputs are converted to web URLs before navigation.
+V2 exposes `Client`, `discover_provider`, `fetch_metadata` and `fetch_codelist`
+from `metadata_harvest.adapters.pxweb_v2`; see its [shared-client example](docs/pxweb-v2.md).
 
-The function returns dictionaries with `id`, `path`, `category_path`, `title`,
-`score` (always `1.0`), `published`, `api_url`, `web_url`, `language`, and
-`database_id`. It preserves actual table links, meaningful category numbering,
-and date precision. Website listing dates are retained. Missing dates or titles
-use one flat API search per language/database, joined by full path and table ID.
-For dates still missing, only the corresponding API parent folders are requested,
-with a cached result per folder. API-only tables are never added and API subfolders are never crawled.
-Tables still undated are omitted with diagnostics containing their IDs and paths.
-Linköping may use category IDs as labels where the website supplies none.
-Root-level paths are `/`.
+## Automation and current status
 
-One Chromium instance is used per invocation, with isolated contexts. Browser API
-traffic is blocked before navigation using context routing and Chromium network
-blocking (including redirects), with service workers disabled. Only the explicit
-metadata enrichment requests above use Playwright's request client. Unsolicited
-popups and embedded frames are blocked. The library does not visit individual
-table pages, write output files, or expose a CLI.
+| Workflow | Schedule (Europe/Stockholm) | Control |
+|---|---|---|
+| Scheduled harvest (v1) | Daily 04:15 | Enabled unless `HARVEST_ENABLED=false`; provider parallelism defaults to 19 |
+| SCB PXWeb v2 metadata | 06:15; incremental Monday–Saturday, full Sunday | Scheduled runs require `PXWEB_V2_ENABLED=true`; manual runs expose `full` |
 
-Unsupported combinations require explicit website evidence and produce logging
-diagnostics. Automatic discovery skips candidates with no usable listing or missing
-titles/category labels, logging the database and reason. Explicitly requested
-databases still fail on those defects. Timeouts, server errors and incomplete
-traversal remain failures in both modes, aggregated into an `ExceptionGroup` after
-the remaining combinations are attempted.
-Transient web failures are retried at most four times, respecting `Retry-After`.
-Flat API enrichment is attempted once. Parent-folder lookups are cached and
-retry transient failures up to four times, respecting `Retry-After`. Exhausted
-request failures remain errors rather than being treated as absent dates.
-Failed stateful expansion restarts from a fresh navigation. Certificate failures
-retry in a new context using `ignore_https_errors=True`, with a warning.
+As checked on **9 October 2026**, v1 scheduling is enabled and v2 scheduling is
+still disabled. Both workflows can run manually and share a publication queue.
+The v2 harvest published all **8,620 tables** and **1,956 codelists**; its latest
+run reports **55 upstream codelist failures**, independently of table success.
+A subsequent incremental run reused every table and preserved all four compressed
+collections byte-for-byte. The zero-unresolved-error gate for enabling the v2
+schedule has not been met.
 
-## Complete table metadata
+The latest committed v1 report predates the seven additions and remains incomplete;
+configured and locally verified providers do not imply a completed production
+harvest. The current machine-readable results are
+[v1 harvest](data/pxweb_v1/reports/harvest.json),
+[v1 discovery](data/pxweb_v1/reports/refresh.json),
+[v2 harvest](data/pxweb_v2/reports/harvest.json) and
+[v2 discovery](data/pxweb_v2/reports/refresh.json).
 
-```python
-from metadata_harvest import get_pxweb_metadata
+## Documentation
 
-dataset = await get_pxweb_metadata(records[0], provider_code="provider-code")
-```
+- [PXWeb v1 usage and live checks](docs/pxweb-v1.md)
+- [PXWeb v2 usage, refresh rules and verification](docs/pxweb-v2.md)
+- [Job operation, publication and recovery](docs/harvesting.md)
+- [Output contract and file formats](docs/output-contract.md)
+- [Implemented structure and remaining adapter migrations](docs/consolidation.md)
+- [Latest provider additions and exact verification scope](docs/pxweb-registry-gaps.md)
 
-This operation uses the record's complete API URL for GET metadata and JSON-stat2
-POST slices. It recovers missing category lists, then covers every category with
-bounded slices (at most 10,000 cells, or the provider's lower advertised limit).
-It returns full dimensions with `value=[]`. No browser, files or persistent state
-are involved. Requests are sequential and paced by provider configuration; callers
-must also coordinate concurrent operations against the same provider.
+## Development
 
-Metadata precedence is table record, GET, then POST. Table identity and original
-fields live under `extension.metadata_harvest`; GET-only fields without standard
-equivalents live under its `pxweb` member at dataset or dimension level. Unknown
-fields, units, notes, links and extensions survive. Losing conflicting values are
-discarded. Observation values are discarded; status metadata retains its slice
-coordinates under `sample_status`. Synthetic eliminated dimensions and their roles
-are preserved under `auxiliary_dimensions` and `auxiliary_roles`. Category coverage
-does not mean all combinations of observations were downloaded.
-
-Run **Live PXWeb metadata** manually in GitHub Actions for every web-listed table
-across all 47 configured combinations. It uploads per-table request counts, category
-coverage, timestamps, hashes and failures. Local smoke checks can use
-`uv run python scripts/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
-limited runs deliberately never count as full acceptance. A failed GET, POST,
-recovery or completeness check raises an error rather than returning a partial
-dataset. Store/rebuild successfully before advancing the processed `published` value.
-
-## Development and validation
-
-Run **Live PXWeb compatibility** from GitHub Actions (`workflow_dispatch`) to
-test all 19 providers / 47 combinations on GitHub-hosted Chromium. Provider jobs
-run independently (maximum four at once); per-provider JSON evidence and a
-complete-matrix summary are uploaded even when a check fails. Hidden databases
-are tested explicitly and reported separately from discovery comparisons.
+Python 3.13+ and uv:
 
 ```powershell
 uv sync --locked
 uv run playwright install chromium
-uv run ruff format --check .
 uv run ruff check .
+uv run ruff format --check .
 uv run pytest
+uv build
 ```
 
-On Linux, install browser system dependencies with
-`uv run playwright install --with-deps chromium`. CI runs only deterministic
-local browser tests, including a test-only self-signed HTTPS fixture and server-side
-counters proving that unsolicited direct and redirected browser API requests never
-reach the server, while explicitly authorized enrichment requests are counted.
-The fixture key is public test data and must never be used for a real service.
-
-The active provider configuration is in `providers.json`:
-19 providers, 37 databases, 47 language/database combinations. Run live acceptance
-explicitly (it can take several minutes):
-
-```powershell
-uv run python scripts/check_pxweb_live.py
-# Optional focused rerun:
-uv run python scripts/check_pxweb_live.py --provider linkoping --output output/linkoping.json
-# Resume an interrupted run without discarding successful checks:
-uv run python scripts/check_pxweb_live.py --resume
-```
-
-The runner writes per-combination counts, errors, exact API/web input comparisons,
-discovery differences, timestamps, and successful records to `output/compatibility.json`.
-The runner preserves actual URLs and reports UUID-valued `rxid` session differences
-separately from semantic equivalence. It also checks one rendered table page per
-successful combination and records its title, categories, route, and metadata date.
-It runs at most three providers concurrently; each provider navigates sequentially.
-Use `--timeout` to change the default 900-second limit per invocation.
-The command exits nonzero if compatibility acceptance fails.
-Live service failures and source metadata gaps are not passing acceptance results.
-See [the dated compatibility report](docs/pxweb-compatibility.md) for configured
-harvest results and the separately reported discovery limitations.
-
-## Scheduled harvesting
-
-**Scheduled harvest** runs daily at **04:15 Europe/Stockholm**, with one job per
-provider. Start it manually from GitHub Actions. Set `HARVEST_ENABLED=false` in
-repository Actions variables to pause automatic runs; `HARVEST_PARALLEL_PROVIDERS`
-controls parallelism (default 19).
-
-The workflow publishes one metadata JSONL per provider/language under
-`data/pxweb_v1/metadata/`. Each adapter has its own output directory.
-Confirmed source removals delete metadata and listing state; there is no inactive
-archive or version store. Failed or incomplete discovery is reported and does not
-count as confirmation of removal. Current status reports overwrite their previous
-contents, and unfinished-work checkpoints are deleted once processing completes.
-
-See [harvesting.md](docs/harvesting.md) for file layout, report fields, scheduling,
-manual runs, continuation and recovery.
+On Linux use `uv run playwright install --with-deps chromium`. Deterministic tests
+run without live providers. Explicit live checks and production harvesting are
+separate from CI. [Checks for the current implementation](https://github.com/nordicintel/metadata-harvest/actions/runs/37844771664)
+passed; the verified suite contains 175 tests.
 
 No PyPI publication or license has been configured.
-
-Excluded provider configurations and reasons are tracked in
-[docs/excluded-providers.json](docs/excluded-providers.json). They are not harvested.

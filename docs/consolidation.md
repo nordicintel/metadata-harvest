@@ -20,17 +20,19 @@ Each adapter owns its current listing state, latest refresh/harvest status and a
 unfinished-work checkpoint under its own directory. Reports overwrite the previous
 status; completed checkpoints are deleted. Nothing accumulates by run date.
 
-## First change and next steps
+## Implemented and remaining work
 
-1. Preserve the existing output fields and public imports; document their contract.
-2. Move v1 discovery and mapping into `adapters/pxweb_v1`, retaining the runner.
-3. Compact existing files to JSONL with content verification and stable ordering.
-4. Verify retention, incomplete discovery, unchanged runs and limited live retrieval.
-5. Implement v2 from the [assessment](pxweb-v2-migration.md), then validate its own job.
-6. Migrate SDB, API-only Trafa and metadata-only Kolada before less mature adapters.
+Completed: importable v1/v2 subpackages, adapter-specific configuration and output,
+grouped atomic publication, current-source-only deletion, resumable jobs and
+independent v2 automation. V2's complete SCB table collection is published; its
+schedule is still gated by separately reported upstream codelist failures.
+The seven additional v1 providers are configured and locally verified at the scope
+recorded in [registry additions](pxweb-registry-gaps.md).
 
-Do not disable old schedules until the replacement passes acceptance and has a
-successful automated run. Do not archive or delete source repositories.
+Next migrations are SDB, API-only Trafa and metadata-only Kolada, followed by the
+less mature adapters in the inventory below. These are not implemented in this
+repository yet. Do not disable another repository's schedule until its replacement
+passes acceptance; do not archive or delete source repositories.
 
 ## Adapter implementation template
 
@@ -46,8 +48,8 @@ successful automated run. Do not archive or delete source repositories.
 - `runner.py`: the existing Actions entry point remains compatible. Its pre-existing
   argparse interface is retained, but new functionality belongs in importable
   functions; do not expand this into a CLI framework.
-- `providers.json`: the existing v1 configuration stays unchanged. Add a separate
-  source configuration only when implementing the next adapter.
+- `providers.json` owns v1 providers; `providers.pxweb_v2.json` owns SCB v2.
+  Keep future adapter configuration separate.
 - `.github/workflows/`: independent schedules/manual jobs; collectors alone publish.
   Commit validated output, state and report together. Workers checkpoint grouped
   artifacts; failed datasets retain prior successful metadata.
@@ -56,7 +58,7 @@ Keep request clients source-specific until the second adapter demonstrates a
 shared need. Catalogue and documentation records have separate completeness
 contracts from statistical table dimensions/categories.
 
-## Inventory (8 October 2026)
+## Inventory (checked 9 October 2026)
 
 Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
 
@@ -77,7 +79,7 @@ Rows beyond v1/v2 are handoff inventory, not renewed live acceptance claims.
 See [registry additions and HVD routing](pxweb-registry-gaps.md) for the seven
 new v1 sources and their live verification evidence.
 
-## Verified operational baseline
+## Published run evidence (8 October 2026)
 
 Base commit: `6bb4a9e`. [Scheduled run 37753836760](https://github.com/nordicintel/metadata-harvest/actions/runs/37753836760)
 completed with errors on 8 October. Its committed report
@@ -90,8 +92,9 @@ diagnosed fixes in this structural change.
 The collector published successful data and then explicitly failed the workflow
 because results were incomplete. State survives through Git commits on `main`;
 Actions artifacts are temporary transport, not the authoritative store.
-Production workflows explicitly check out `main`: local tests do not demonstrate
-that this branch has run successfully in production.
+This v1 report predates the seven provider additions. Production workflows check
+out `main`; local provider checks are not evidence of production publication.
+V2 has separate automated publication evidence in [its verification report](pxweb-v2.md#verification).
 
 ## Acceptance gate for each migrated adapter
 
@@ -102,7 +105,7 @@ successful scheduled/manual run. Fixture tests and bounded live checks are
 separate evidence; neither a limited smoke test nor a green runner with failed
 dataset counts is full acceptance.
 
-## First-change verification
+## Historical consolidation verification
 
 Local conversion reduced 13,694 per-dataset JSON files to 54 JSONL collections:
 27 metadata files containing 6,834 documents and 27 listing-state files
@@ -115,7 +118,7 @@ IDs, compact JSON; each task ID precedes its document in the hash input):
 | Listings | `03681f0f92df5025427e46ac5fbf6925ad4d709d29383845fcd75676d796133a` |
 | Active metadata | `36579d66df3918af3609276f89903c85b22441cf2b9f3df5866a1a60a1cc92ab` |
 
-All 131 deterministic tests passed, including local HTTP/browser fixtures,
+At the initial consolidation commit, 131 deterministic tests passed, including local HTTP/browser fixtures,
 legacy checkpoint/artifact migration, confirmed-removal deletion, failed-refresh
 retention, stable repeated JSONL and failure isolation. Ruff lint and format
 checks passed. A bounded live check for Medlingsinstitutet's Swedish
@@ -125,6 +128,6 @@ checks passed. A bounded live check for Medlingsinstitutet's Swedish
 Independent code review found a mutable legacy-input snapshot bug; a failing
 regression test reproduced it and an independent snapshot fixed it. A separate
 regression also proved that an unserializable worker result cannot prevent later
-valid tables from being saved. These local checks do not establish a successful
-scheduled run of the migrated implementation. Scheduled execution uses `main`;
-its automated acceptance must be assessed separately from the local verification.
+valid tables from being saved. These were local checks of the initial consolidation, not evidence of a successful
+scheduled v1 run. The current implementation has since passed 175 deterministic
+tests; [current CI](https://github.com/nordicintel/metadata-harvest/actions/runs/37844771664) is green.

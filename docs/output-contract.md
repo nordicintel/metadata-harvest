@@ -1,9 +1,9 @@
-# Baseline metadata contract and JSONL publication
+# Metadata output contract
 
-The internal move does not introduce a new metadata model. The approved storage
-change replaces per-dataset JSON files with provider/language JSONL collections.
-Consumers must stream each nonempty line as an independent JSON object instead
-of globbing `*.json`. Within each line the existing output fields are preserved.
+Publish one collection per provider/language inside each adapter's directory.
+V1 uses plain `.jsonl`; v2 uses lossless `.jsonl.gz` for metadata and codelists.
+Consumers must stream each nonempty JSONL line as an independent JSON object,
+decompressing gzip collections first. There are no per-table result files.
 
 ## Statistical metadata
 
@@ -12,7 +12,7 @@ its codelist collections and identity fields are described in the
 [v2 output contract](pxweb-v2.md#output-and-ownership). The v1 mapping below
 remains unchanged.
 
-Identity is `(provider_code, dataset_code, language)` inside
+Both adapters store identity `(provider_code, dataset_code, language)` inside
 `extension.metadata_harvest`. Documents have `class: "dataset"`, `version: "2.0"`,
 `label`, `updated`, `id`, `size`, `dimension`, `value: []` and `extension`.
 The metadata-only JSON-stat2 representation retains actual category counts and
@@ -38,15 +38,21 @@ and checkpoints. Dataset `updated` is the last successfully built source marker;
 a failed replacement must not advance it. Do not invent an upstream timestamp
 when a future source only provides retrieval time.
 
-`storage.validate_dataset` enforces the current publication invariants: identity,
+`storage.validate_dataset` enforces v1 publication invariants: identity,
 successful source timestamp, retained paths, dimensions/category counts and no
 observations. Source mapping additionally validates category coverage. This is
-not a claim of full external JSON Schema or StatDCAT-AP validation.
+not a claim of full external JSON Schema or StatDCAT-AP validation. V2 uses its
+own native metadata/codelist validation; it does not require v1 listing paths.
 
 ## Files and migration
 
-`data/<adapter>/metadata/<provider>__<language>__<digest>.jsonl` holds one line per
-latest source-available dataset. PXWeb v1 uses `data/pxweb_v1/`. Each adapter owns
+| Collection | Format |
+|---|---|
+| `data/pxweb_v1/metadata/<provider>__<language>__<digest>.jsonl` | V1 dataset metadata |
+| `data/pxweb_v2/metadata/<provider>__<language>__<digest>.jsonl.gz` | Native v2 dataset metadata |
+| `data/pxweb_v2/codelists/<provider>__<language>__<digest>.jsonl.gz` | `{provider_code, language, codelist}`; not datasets |
+
+Each metadata line is the latest accepted source-available dataset. Each adapter owns
 its separate `table-records/`, `reports/refresh.json`, `reports/harvest.json` and
 unfinished `work/current.json`. Confirmed-absent datasets are deleted without an
 archive. Reports are overwritten; the checkpoint is removed on completion.
@@ -55,6 +61,9 @@ A digest
 prevents case-insensitive filename collisions; quoted identifiers prevent path
 traversal. Lines are sorted by stable dataset task ID, object keys are sorted,
 UTF-8 is retained and each line ends in LF. Identical content is not rewritten.
+V2 uses deterministic gzip headers, preserving byte-identical compressed output
+when content is unchanged. A codelist failure does not invalidate its table:
+missing references are accounted for by explicit codelist errors in the report.
 
 The former `filename` field in continuation tasks remains a stable **logical
 record key**, not a physical output path. Retaining it lets old checkpoints and
@@ -82,15 +91,16 @@ directory. Production Actions already serialize publication.
 
 ## Schema ownership and consumers
 
-The existing runtime depends on Playwright, with no schema/model package dependency.
+V1 uses Playwright; v2 uses httpx. Neither depends on a schema/model package.
 Confirmed consumers are this repository's runner, collectors, diagnostic scripts,
-tests and documented Python public functions. A search of the local backend,
+tests and documented Python public functions. An 8 October 2026 search of the local backend,
 harvest, model and v2 adapter checkouts found no direct `metadata-harvest` import
 or path reference; this is not proof that no external file consumer exists.
 
 The actual related repositories are `nordicintel/nordicintel-schemas` and
 `nordicintel/nordicintel-model` (the handoff's short names do not resolve as given).
-Schemas HEAD `77a7a4665fea6f3c2be8f286d560b79317f08dd7` describes metadata-only
+The schema revision inspected on 8 October 2026,
+`77a7a4665fea6f3c2be8f286d560b79317f08dd7`, describes metadata-only
 JSON-stat2 and a prepared, unpublished 2.0.0 contract using
 `extension.nordicintel`. Model checkout `73017b7938685f7cdbc71c05ca804b9901552452`
 contains immutable JSON-stat and PXWeb codecs. Neither is copied or silently
@@ -98,6 +108,5 @@ adopted here: the current `extension.metadata_harvest` contract differs.
 
 Before changing these fields, read the complete schema specifications and adopted
 standards, including relevant StatDCAT-AP requirements; map actual source needs,
-explain departures and plan consumer updates. This first change documents the
-baseline and changes file packaging only. StatDCAT-AP representation remains an
+explain departures and plan consumer updates. StatDCAT-AP representation remains an
 open decision; catalogue metadata must not be forced into a complete cube contract.

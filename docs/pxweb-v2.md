@@ -105,7 +105,7 @@ then discarded. They are bounded transport files, never published metadata histo
 Unfinished checkpoints preserve full mode and successful progress across workflow
 continuations. Three waves with no progress stop automatic continuation.
 
-The independent `SCB PXWeb v2 metadata` workflow runs at 06:15 Europe/Stockholm:
+The independent `SCB PXWeb v2 metadata` workflow is configured for 06:15 Europe/Stockholm:
 incremental Monday–Saturday, full Sunday. Manual runs expose a `full` boolean.
 Scheduling requires `PXWEB_V2_ENABLED=true`, set only after live acceptance.
 Both adapters share production workflow concurrency; collectors alone publish.
@@ -148,6 +148,8 @@ reused all 8,620 tables with no created, updated or failed tables. All four
 compressed collections remained byte-identical (SHA-256 checked); only the latest
 reports changed. Collection and publication succeeded; the workflow reports
 incomplete harvesting because the same 55 upstream codelist errors remain.
-The full suite passes 170 tests; lint, formatting and package build pass.
-Scheduling remains disabled: the original acceptance gate requires zero unresolved
+At that v2 verification point, 170 deterministic tests passed. After the v1 provider
+additions, the suite passed 175 tests and [CI](https://github.com/nordicintel/metadata-harvest/actions/runs/37844771664)
+passed lint, formatting and tests; local package build also passed.
+Scheduling was checked on 9 October 2026 and remains disabled: the original acceptance gate requires zero unresolved
 errors, and SCB's 55 codelist failures remain visible in the latest harvest report.
