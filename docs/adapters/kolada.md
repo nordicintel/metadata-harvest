@@ -53,6 +53,10 @@ with no live rows removes that scope. Discontinued but accessible data stays inc
 No inactive store or observation database exists.
 
 Completed change checks and the selected KPI/scope restriction survive continuations.
+An ordinary daily/manual run starts fresh change checks and retains pending failures;
+it never inherits a previous sample restriction. Only an explicit continuation reuses
+the prior run's completed checks. A persistently failing scope cannot suppress updates
+to other scopes on later days.
 Pending work is saved with its check marker; accepted markers advance only with
 successful replacements. Collectors check artifact hashes and the current baseline,
 not every dataset. Unchanged metadata is reused without recompression. Only

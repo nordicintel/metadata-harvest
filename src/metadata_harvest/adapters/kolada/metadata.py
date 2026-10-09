@@ -76,7 +76,7 @@ def build_dataset(
     *,
     modified: str | None = None,
 ) -> dict:
-    """Map trusted seed or completed live coverage; caller validates live replacements."""
+    """Map current coverage; caller validates newly fetched replacements."""
     context = context_for(kpi, scope, coverage, references)
     years = [str(y) for y in sorted(coverage["years"])]
     entity_rows = {**context["entities"], **context["municipality_groups"]}

@@ -122,6 +122,7 @@ def main():
                         args.output,
                         kpis=args.kpi,
                         scope=args.scope,
+                        resume=bool(expected),
                         budget_seconds=args.budget_seconds,
                     )
                 )

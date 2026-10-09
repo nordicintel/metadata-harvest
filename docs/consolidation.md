@@ -152,7 +152,7 @@ Existing running workers retain their checked-out code; this fix does not restar
 
 ## Kolada delivery — 9 October 2026
 
-Kolada is implemented locally with 6,516 current metadata documents in one 35.6 MiB
+Kolada is implemented and published with 6,516 current metadata documents in one 35.6 MiB
 compressed collection. Initial data was imported once as trusted input; no seeding
 feature, external repository dependency, data.eu enrichment or observation store ships.
 Full native reference catalogues are retained once in compact current state.
@@ -165,8 +165,10 @@ reused and zero updates. Their unchanged metadata bytes were verified identical.
 Neither incremental run fetched KPI observations. This is sample-based acceptance,
 not a claim of fresh live verification or schema validation of every imported document.
 
-The complete local suite passed 265 tests. Lint, formatting, schema-reference checks,
+The complete local suite passed 267 tests; all 11 lifecycle tests then passed,
+including the additional missing-document recovery check. Lint, formatting, schema-reference checks,
 wheel/sdist build and a plain installation loading all 28 provider retrieval entry
 points passed. [Evidence](verification/kolada.json) contains only selections, counts
-and outcomes, never observations. The independent workflow is configured for daily
-incremental runs; its schedule remains gated until the bounded hosted run passes.
+and outcomes, never observations. The bounded [hosted run](https://github.com/nordicintel/metadata-harvest/actions/runs/37909830351)
+and publication passed with nine reused documents, zero updates and zero errors.
+The independent workflow is configured for daily incremental runs at 06:30 Europe/Stockholm.

@@ -46,11 +46,18 @@ class Source:
         return self.state["scopes"][code]["coverage"]
 
 
-def execute(source, data, output):
+def execute(source, data, output, *, resume=False):
     from metadata_harvest.adapters.kolada.workflow import collect, run
 
     result = asyncio.run(
-        run({}, data, output, client=source, clock=datetime(2026, 10, 9, 8, tzinfo=UTC))
+        run(
+            {},
+            data,
+            output,
+            client=source,
+            clock=datetime(2026, 10, 9, 8, tzinfo=UTC),
+            resume=resume,
+        )
     )
     collect(data, output)
     return result
@@ -152,7 +159,7 @@ def test_budget_continuation_preserves_selection_and_pending(seed_source, tmp_pa
     collect(data, tmp_path / "budget")
     saved = json.loads((data / "work/current.json").read_text())
     assert saved["selection"] == {"kpis": ["N1"], "scope": "ou"}
-    result = execute(source, data, tmp_path / "resume")
+    result = execute(source, data, tmp_path / "resume", resume=True)
     assert result["counts"]["checked"] == 1
     assert not (data / "work/current.json").exists()
 
@@ -194,9 +201,66 @@ def test_repeated_bounded_waves_advance_change_checks(
         monkeypatch.setattr(workflow, "monotonic", lambda ticks=ticks: next(ticks))
         asyncio.run(
             workflow.run(
-                {}, data, tmp_path / str(wave), client=source, budget_seconds=1.5
+                {},
+                data,
+                tmp_path / str(wave),
+                client=source,
+                budget_seconds=1.5,
+                resume=bool(wave),
             )
         )
         workflow.collect(data, tmp_path / str(wave))
     assert checks == ["municipality", "ou"]
     assert not (data / "work/current.json").exists()
+
+
+def test_failed_scope_does_not_suppress_new_changes_on_next_normal_run(
+    seed_source, tmp_path
+):
+    data = tmp_path / "data"
+    import_seed(seed_source, data)
+    source = Source(load_state(data))
+    source.hits = {"ou/N1"}
+    source.fail = {"ou/N1"}
+    execute(source, data, tmp_path / "first")
+    source.hits = {"municipality/N1"}
+    source.fetched = []
+    execute(source, data, tmp_path / "second")
+    assert source.fetched == ["municipality/N1", "ou/N1"]
+
+
+def test_normal_run_does_not_inherit_an_old_sample_restriction(seed_source, tmp_path):
+    from metadata_harvest.adapters.kolada.workflow import collect, run
+
+    data = tmp_path / "data"
+    import_seed(seed_source, data)
+    source = Source(load_state(data))
+    asyncio.run(
+        run(
+            {},
+            data,
+            tmp_path / "sample",
+            client=source,
+            kpis=["N1"],
+            scope="ou",
+            budget_seconds=0,
+        )
+    )
+    collect(data, tmp_path / "sample")
+    result = execute(source, data, tmp_path / "normal")
+    assert result["counts"]["checked"] == 2
+
+
+def test_missing_document_rebuilds_from_current_coverage(seed_source, tmp_path):
+    from metadata_harvest.adapters.kolada.state import save
+
+    data = tmp_path / "data"
+    import_seed(seed_source, data)
+    state, documents = load_state(data), load_documents(data)
+    expected = documents.pop("municipality/N1")
+    save(data, state, documents)
+    source = Source(state)
+    result = execute(source, data, tmp_path / "output")
+    assert result["counts"]["updated"] == 1
+    assert load_documents(data)["municipality/N1"] == expected
+    assert source.fetched == []

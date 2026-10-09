@@ -1,4 +1,4 @@
-"""Seed-aware incremental orchestration with independent KPI/scope failures."""
+"""Incremental orchestration with independent KPI/scope failures."""
 
 import shutil
 from collections import defaultdict
@@ -55,12 +55,15 @@ async def run(
     clock=None,
     kpis=None,
     scope=None,
+    resume=False,
     budget_seconds=19200,
 ) -> dict:
     """Refresh signals first, then publish only validated changed replacements.
 
     The optional KPI/scope restriction applies to all per-KPI API work. Listings
     are small native metadata catalogues, never an observation-wide rescrape.
+    Explicit continuations reuse completed checks; ordinary runs check fresh
+    signals while retaining failed replacements in the pending queue.
     """
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
@@ -75,7 +78,7 @@ async def run(
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(data / relative, dest)
     current = data / "work/current.json"
-    previous = read(current) if current.exists() else {}
+    previous = read(current) if resume and current.exists() else {}
     if previous.get("selection") and kpis is None and scope is None:
         kpis = previous["selection"]["kpis"]
         scope = previous["selection"]["scope"]
@@ -215,6 +218,10 @@ async def run(
                     state["scopes"][code] = entry
                     state["pending"][code] = "data"
                 document = documents.get(code)
+                if document is None and not entry.get("empty"):
+                    state["pending"].setdefault(
+                        code, "metadata" if entry["coverage"].get("years") else "data"
+                    )
                 if document:
                     saved = document["extension"]["kolada"]
                     context = context_for(
