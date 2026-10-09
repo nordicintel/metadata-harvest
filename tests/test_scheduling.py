@@ -17,6 +17,8 @@ def test_modes_and_manual_override():
     ]
     assert resolve(config, "pxweb_v2", event="workflow_dispatch", full=True)["enabled"]
     assert resolve(config, "kolada", event="workflow_dispatch")["enabled"]
+    assert not resolve(config, "uka", event="schedule", cron="15 5 * * 1")["full"]
+    assert resolve(config, "uka", event="workflow_dispatch", full=True)["full"]
     with pytest.raises(ValueError):
         resolve(config, "kolada", event="workflow_dispatch", full=True)
     with pytest.raises(ValueError):

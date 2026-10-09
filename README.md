@@ -12,7 +12,8 @@ metadata history or observation warehouse.
 | [PXWeb v1](docs/pxweb-v1.md) | 26 providers; see [providers.json](providers.json) | Website discovery, complete API metadata, standalone retrieval, resumable daily job |
 | [PXWeb v2](docs/pxweb-v2.md) | SCB production API, `sv` and `en` | API discovery, complete metadata, independent codelists, standalone retrieval, daily incremental / Sunday full job |
 | [Kolada](docs/adapters/kolada.md) | `kolada`, Swedish; municipality/groups and OU | Current metadata, targeted incremental refresh, standalone retrieval |
-| SDB, Trafikanalys, RowStore, UKÄ | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
+| [UKÄ](docs/adapters/uka.md) | `uka`, Swedish; 113 indicators | Current metadata, weekly refresh reusing unchanged indicators, standalone retrieval |
+| SDB, Trafikanalys, RowStore | None enabled here | Explicitly unavailable packages and [migration preparation](docs/consolidation.md) |
 
 Metadata is one deterministic `.jsonl.gz` per adapter/provider/language under
 `data/<adapter>/metadata/`; codelists have separate grouped collections.
@@ -27,7 +28,8 @@ Python 3.13+. Install this checkout with `pip install .` for retrieval, or
 `pip install '.[harvest]'` for harvesting and schema validation.
 The package is not currently published to PyPI.
 
-```pythonfrom importlib.metadata import entry_points
+```python
+from importlib.metadata import entry_points
 
 
 retrieve = entry_points(group="nordicintel.retrieval", name="scb")[0].load()

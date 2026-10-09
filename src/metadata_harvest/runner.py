@@ -51,6 +51,7 @@ def main():
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--kpi", nargs="+")
     parser.add_argument("--scope", choices=("municipality", "ou"))
+    parser.add_argument("--indicator", nargs="+")
     parser.add_argument("--data", type=Path)
     parser.add_argument("--providers", type=Path)
     parser.add_argument("--provider")
@@ -103,6 +104,24 @@ def main():
                 }
             )
             return
+    if args.adapter == "uka" and args.command in {"run", "collect"}:
+        from metadata_harvest.adapters.uka import workflow as uka_workflow
+
+        args.output = args.output or Path("output/uka")
+        if args.command == "run":
+            result = asyncio.run(
+                uka_workflow.run(
+                    read(args.providers)[0],
+                    args.data,
+                    args.output,
+                    indicators=args.indicator,
+                    full=args.full,
+                )
+            )
+        else:
+            result = uka_workflow.collect(args.data, args.output)
+        outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
+        return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
     providers = read(args.providers)
     if is_v2 and args.command not in {"run", "collect", "publish", "continue"}:

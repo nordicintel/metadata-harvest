@@ -26,3 +26,9 @@ enabled = true
 [[adapters.kolada.schedules]]
 cron = "30 6 * * *"
 mode = "incremental" # Kolada intentionally has no full refresh mode.
+
+[adapters.uka]
+enabled = true
+[[adapters.uka.schedules]]
+cron = "15 5 * * 1"
+mode = "incremental" # Unchanged indicators are reused; manual runs may pass full.
