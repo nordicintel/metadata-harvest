@@ -8,18 +8,21 @@ timezone = "Europe/Stockholm"
 [adapters.pxweb_v1]
 enabled = true
 [[adapters.pxweb_v1.schedules]]
-cron = "15 4 * * *"
+cron = "15 4 * * 1-6"
 mode = "incremental"
+[[adapters.pxweb_v1.schedules]]
+cron = "15 4 * * 0"
+mode = "full" # Weekly complete refresh.
 
 [adapters.pxweb_v2]
 # Complete table acceptance verified 9 October 2026; dependency errors stay separate.
 enabled = true
 [[adapters.pxweb_v2.schedules]]
-cron = "15 6 * * 1-6"
+cron = "15 6 2-14,16-31 * *"
 mode = "incremental"
 [[adapters.pxweb_v2.schedules]]
-cron = "15 6 * * 0"
-mode = "full"
+cron = "15 6 1,15 * *"
+mode = "full" # Twice a month: a complete SCB refresh takes hours.
 
 [adapters.kolada]
 enabled = true

@@ -11,13 +11,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_modes_and_manual_override():
     config = load(ROOT / "schedules.toml")
-    assert resolve(config, "pxweb_v2", event="schedule", cron="15 6 * * 0")["full"]
-    assert not resolve(config, "pxweb_v2", event="schedule", cron="15 6 * * 1-6")[
+    assert resolve(config, "pxweb_v2", event="schedule", cron="15 6 1,15 * *")["full"]
+    assert not resolve(config, "pxweb_v2", event="schedule", cron="15 6 2-14,16-31 * *")[
         "full"
     ]
     assert resolve(config, "pxweb_v2", event="workflow_dispatch", full=True)["enabled"]
     assert resolve(config, "kolada", event="workflow_dispatch")["enabled"]
     assert not resolve(config, "uka", event="schedule", cron="15 5 * * 1")["full"]
+    assert resolve(config, "pxweb_v1", event="schedule", cron="15 4 * * 0")["full"]
     assert resolve(config, "uka", event="workflow_dispatch", full=True)["full"]
     with pytest.raises(ValueError):
         resolve(config, "kolada", event="workflow_dispatch", full=True)
@@ -29,7 +30,7 @@ def test_config_rejects_invalid_modes_and_schedules(tmp_path):
     content = (ROOT / "schedules.toml").read_text()
     for edited in (
         content.replace('mode = "incremental"', 'mode = "unknown"', 1),
-        content.replace("15 4 * * *", "80 4 * * *"),
+        content.replace("15 4 * * 1-6", "80 4 * * 1-6"),
         content.replace("[adapters.kolada]", "[adapters.unavailable]"),
     ):
         target = tmp_path / "schedules.toml"
@@ -48,11 +49,11 @@ def test_sync_changes_only_marked_blocks(tmp_path):
     shutil.copyfile(ROOT / "schedules.toml", tmp_path / "schedules.toml")
     shutil.copytree(ROOT / ".github/workflows", tmp_path / ".github/workflows")
     config = tmp_path / "schedules.toml"
-    config.write_text(config.read_text().replace("15 4 * * *", "20 4 * * *"))
+    config.write_text(config.read_text().replace("15 4 * * 1-6", "20 4 * * 1-6"))
     assert sync(tmp_path, check=True) == ["harvest.yml"]
     sync(tmp_path)
     assert sync(tmp_path, check=True) == []
-    assert "20 4 * * *" in (tmp_path / ".github/workflows/harvest.yml").read_text()
+    assert "20 4 * * 1-6" in (tmp_path / ".github/workflows/harvest.yml").read_text()
 
 
 def test_workflows_have_unique_keys_and_valid_step_shapes():
