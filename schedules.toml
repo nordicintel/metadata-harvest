@@ -32,3 +32,9 @@ enabled = true
 [[adapters.uka.schedules]]
 cron = "15 5 * * 1"
 mode = "incremental" # Unchanged indicators are reused; manual runs may pass full.
+
+[adapters.sdb]
+enabled = true
+[[adapters.sdb.schedules]]
+cron = "45 5 * * 1"
+mode = "full" # Every run rebuilds every subject; SDB publishes no change signal.

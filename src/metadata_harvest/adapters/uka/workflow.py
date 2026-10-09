@@ -43,6 +43,7 @@ from metadata_harvest.adapters.uka.state import (
     save,
 )
 from metadata_harvest.artifacts import check_collection_sizes, manifest, report_status
+from metadata_harvest.currency import settle
 from metadata_harvest.progress import Progress
 from metadata_harvest.storage import read, write
 from metadata_harvest.validation import validate_metadata
@@ -307,29 +308,16 @@ async def run(
             counts["failed"] += 1
         progress.update(failed=counts["failed"])
 
-        for entry in selected:
-            code = str(entry.id)
-            info = state["indicators"][code]
-            was_withheld = code in withheld
-            document = published.pop(code, None) or withheld.pop(code, None)
-            if document is None:
-                info["status"] = "missing"
-                continue
-            verified = info.get("verified_at")
-            fresh = bool(verified) and now - datetime.fromisoformat(verified) <= max_age
-            if working.get(code) and fresh:
-                published[code] = document
-                info["status"] = "published"
-                counts["restored"] += was_withheld
-            else:
-                withheld[code] = document
-                info["status"] = "withheld"
-                info["withheld_reason"] = (
-                    "endpoint unavailable" if not working.get(code) else "stale"
-                )
-                counts["withheld"] += not was_withheld
-            if info["status"] == "published":
-                info.pop("withheld_reason", None)
+        settle(
+            [str(entry.id) for entry in selected],
+            published,
+            withheld,
+            state["indicators"],
+            working,
+            now,
+            max_age,
+            counts,
+        )
     finally:
         if client is None:
             await connection.close()
