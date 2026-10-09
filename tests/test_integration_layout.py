@@ -16,8 +16,9 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
         "kolada",
         "uka",
         "sdb",
+        "trafa",
     }
-    for name in ("trafa", "rowstore"):
+    for name in ("rowstore",):
         with pytest.raises(NotImplementedError):
             get_adapter(name)
         assert get_adapter(name, require_available=False).preparation

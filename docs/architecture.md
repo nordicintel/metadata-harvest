@@ -8,7 +8,8 @@ independent harvesting jobs, on-demand retrieval and integration documentation.
 The catalogue service, website, public HTTP API, production databases, file scrapers
 and all BRÅ work remain external. Consumers may use the shared contract for file-backed
 observations; this repository adds no file ingestion. UKÄ's CSV exports are read
-transiently, only to derive complete metadata, and are never stored. Existing PXWeb v1 website
+transiently, only to derive complete metadata, and are never stored. Trafikanalys
+product documentation pages are read for API combinations until that API is retired. Existing PXWeb v1 website
 discovery is retained explicitly because replacing it would change coverage.
 
 ## Boundaries

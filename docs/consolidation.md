@@ -2,7 +2,7 @@
 
 This repository adopts the integration responsibilities in the three reviewed
 repositories, including shared schema ownership and independent observation retrieval.
-PXWeb v1, PXWeb v2, Kolada, UKÄ and SDB are implemented here. Catalogue services, HTTP APIs, databases,
+PXWeb v1, PXWeb v2, Kolada, UKÄ, SDB and Trafikanalys are implemented here. Catalogue services, HTTP APIs, databases,
 websites, file scrapers and BRÃ… remain outside this implementation.
 
 ## Responsibility migration
@@ -24,14 +24,14 @@ Imported schema licence/provenance is retained [with the schemas](../src/metadat
 | PXWeb v1 | 26 codes below; configured languages independently | This repository baseline `060f310`; backend source knowledge | Complete metadata mapping and retrieval; shared Dataset, grouped gzip | Complete converted-corpus and renewed automated live acceptance tracked below |
 | PXWeb v2 | `scb`, sv/en | This repository baseline `060f310`; SCB production API | Metadata and codelists, common Dataset and standalone v2 retrieval | Complete table acceptance enables schedule; dependency errors remain separate |
 | SDB | `socialstyrelsen`, sv/en with asymmetric coverage | [sdb-adapter `344212d`](https://github.com/nordicintel/sdb-adapter/tree/344212d51a28b848288e2beb90b7a5432bfa225e) | Ported here: metadata per language, weekly full rebuild and standalone retrieval | First hosted run and [adapter guide](adapters/sdb.md) |
-| Trafikanalys | `trafa`, sv/en coverage requires verification | [trafa-adapter `936b20e`](https://github.com/nordicintel/trafa-adapter/tree/936b20eadd4ba9e748d6fb00c6ca67a7e414a290) | Unavailable here; metadata/retrieval implemented externally | [HTML discovery boundary](adapters/trafa.md) |
+| Trafikanalys | `trafa`, sv/en coverage requires verification | [trafa-adapter `936b20e`](https://github.com/nordicintel/trafa-adapter/tree/936b20eadd4ba9e748d6fb00c6ca67a7e414a290) | Ported here, temporarily: Swedish metadata with a scoped HTML-discovery exception, weekly full rebuild and standalone retrieval | Retire with the API; [adapter guide](adapters/trafa.md) |
 | Kolada | `kolada`, sv; municipality/groups and OU | One-time trusted initialization; no runtime repository dependency | Metadata, targeted incremental refresh and standalone retrieval implemented; live acceptance recorded below | [Adapter guide](adapters/kolada.md) |
 | RowStore | Provider identity unresolved; language source-dependent | [rowstore-adapter `27d6991`](https://github.com/nordicintel/rowstore-adapter/tree/27d6991ba649171c64d548a6cf7ef1f40d853bbf) | Unavailable scaffold; reusable external transport | [Semantics and pagination](adapters/rowstore.md) |
 | UKÃ„ | `uka`, Swedish source; English coverage unverified | [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd) | Ported here: metadata from transiently read exports, weekly refresh and standalone retrieval | First hosted full run and [adapter guide](adapters/uka.md) |
 
-External implementation is not support in this distribution. Both remaining placeholders
-raise `NotImplementedError`, are excluded from production jobs and have no entry points.
-Their future common output target is the shared Dataset/retrieval contract.
+External implementation is not support in this distribution. The remaining placeholder
+raises `NotImplementedError`, is excluded from production jobs and has no entry points.
+Its future common output target is the shared Dataset/retrieval contract.
 
 ## Configured PXWeb v1 provider coverage
 
