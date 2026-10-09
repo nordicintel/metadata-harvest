@@ -38,6 +38,15 @@ acceptance; independent codelist failures do not block that acceptance gate.
 Disabling a schedule does not cancel active jobs or disable manual operations.
 `HARVEST_PARALLEL_PROVIDERS` remains a separate operational control (default 19).
 
+## Job outcomes
+
+A harvest or catalog job goes red only when a whole scope failed: a provider or
+language discovery, a base API, or an adapter whose accepted collections the catalog
+could not take. Individual table, codelist, indicator and dataset errors are published
+in the adapter's report with `completed_with_errors` and leave the job green;
+`python -m metadata_harvest.outcome --adapter <name>` applies that rule from the
+published report and prints the counts.
+
 ## Deliberate manual operations
 
 Use GitHub Actions **Run workflow**, or these explicit commands:

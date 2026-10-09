@@ -154,7 +154,7 @@ def test_workflow_dispatch_is_one_way_and_before_error_exit():
             "metadata_harvest.runner publish"
         )
         assert content.index("gh workflow run catalog.yml") < content.index(
-            "      - name: Report incomplete"
+            "metadata_harvest.outcome --adapter"
         )
 
 

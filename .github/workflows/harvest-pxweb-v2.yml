@@ -130,9 +130,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: uv run --extra harvest python -m metadata_harvest.runner continue --adapter pxweb_v2 --run-id "$RUN_ID"
-      - name: Report incomplete harvest
-        if: steps.collect.outputs.status == 'completed_with_errors' || steps.collect.outputs.status == 'interrupted'
-        run: exit 1
+      - name: Fail only when a whole scope failed
+        run: uv run python -m metadata_harvest.outcome --adapter pxweb_v2
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1
