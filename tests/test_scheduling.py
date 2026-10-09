@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_modes_and_manual_override():
     config = load(ROOT / "schedules.toml")
     assert resolve(config, "pxweb_v2", event="schedule", cron="15 6 1,15 * *")["full"]
-    assert not resolve(config, "pxweb_v2", event="schedule", cron="15 6 2-14,16-31 * *")[
-        "full"
-    ]
+    assert not resolve(
+        config, "pxweb_v2", event="schedule", cron="15 6 2-14,16-31 * *"
+    )["full"]
     assert resolve(config, "pxweb_v2", event="workflow_dispatch", full=True)["enabled"]
     assert resolve(config, "kolada", event="workflow_dispatch")["enabled"]
     assert not resolve(config, "uka", event="schedule", cron="15 5 * * 1")["full"]
