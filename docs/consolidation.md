@@ -221,3 +221,31 @@ is enabled in the central config after this complete table acceptance.
 completed its worker with 8,571 reused tables, 49 updated tables, zero table failures
 and the same 55 codelist failures. Publication and output comparison remain pending.
 Dependency-only tasks reuse saved table metadata and retry codelists independently.
+
+## UKÄ, SDB and Trafikanalys delivery — 9 October 2026
+
+The three external adapters were ported in
+[#2](https://github.com/nordicintel/metadata-harvest/pull/2),
+[#3](https://github.com/nordicintel/metadata-harvest/pull/3) and
+[#4](https://github.com/nordicintel/metadata-harvest/pull/4).
+Each one is scheduled weekly and published by an independent hosted workflow,
+followed by a second run that confirmed byte-stable collections.
+
+| Adapter | Published | Bootstrap | Second run |
+|---|---|---|---|
+| UKÄ | 113 sv indicators | full: 113 rebuilt from about 3,300 exports in 24 min | incremental: 113 reused, no export downloads, 11 min |
+| SDB | 15 sv + 5 en subjects | 20 rebuilt, under 3 min | 20 unchanged |
+| Trafikanalys | 457 sv datasets | 457 rebuilt, under 3 min | 457 unchanged |
+
+All six runs finished with zero errors and nothing withheld. The second runs changed
+only state timestamps and reports. All three appear in the shared catalog.
+
+Bounded live checks validated rebuilt metadata and the retrieval fragments of:
+
+- UKÄ 15, 72 and 97;
+- SDB `sv/amning`, `sv/dodsorsaker` and `en/dodsorsaker`;
+- Trafikanalys T10011 and T10033.
+
+Evidence: [UKÄ](verification/uka.json), [SDB](verification/sdb.json),
+[Trafikanalys](verification/trafa.json). The external repositories are archived.
+Trafikanalys is temporary until its API is retired in the merger into Tillväxtanalys.
