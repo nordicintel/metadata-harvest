@@ -18,15 +18,18 @@ def github_api(path, *, method="GET", payload=None, paginate=False):
         args.extend(["--input", "-"])
     if paginate:
         args.extend(["--paginate", "--slurp"])
-    result = subprocess.run(
-        args,
-        input=json.dumps(payload) if payload is not None else None,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        timeout=20,
-        check=True,
-    )
+    try:
+        result = subprocess.run(
+            args,
+            input=json.dumps(payload) if payload is not None else None,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=20,
+            check=True,
+        )
+    except subprocess.CalledProcessError as error:
+        raise OSError(f"GitHub API {method} {path}: {error.stderr.strip()}") from error
     return json.loads(result.stdout)
 
 
