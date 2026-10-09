@@ -49,6 +49,7 @@ gh workflow run harvest-pxweb-v2.yml --ref main -f full=false
 gh workflow run harvest-kolada.yml --ref main
 gh workflow run harvest-uka.yml --ref main
 gh workflow run harvest-sdb.yml --ref main
+gh workflow run harvest-trafa.yml --ref main
 # Deliberate PXWeb reharvest, including unchanged tables.
 gh workflow run harvest-pxweb-v2.yml --ref main -f full=true
 gh workflow run harvest-uka.yml --ref main -f full=true

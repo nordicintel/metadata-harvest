@@ -57,9 +57,16 @@ ADAPTERS = {
         "harvest-sdb.yml",
         ("run", "collect", "publish"),
     ),
+    "trafa": Adapter(
+        "trafa",
+        True,
+        "providers.trafa.json",
+        "harvest-trafa.yml",
+        ("run", "collect", "publish"),
+    ),
     **{
         name: Adapter(name, False, preparation=f"docs/adapters/{name}.md")
-        for name in ("trafa", "rowstore")
+        for name in ("rowstore",)
     },
 }
 

@@ -38,3 +38,9 @@ enabled = true
 [[adapters.sdb.schedules]]
 cron = "45 5 * * 1"
 mode = "full" # Every run rebuilds every subject; SDB publishes no change signal.
+
+[adapters.trafa]
+enabled = true
+[[adapters.trafa.schedules]]
+cron = "15 6 * * 1"
+mode = "full" # Every run rebuilds every dataset; Trafikanalys has no update signal.
