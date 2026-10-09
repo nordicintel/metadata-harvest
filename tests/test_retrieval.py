@@ -168,8 +168,14 @@ def test_singleton_eliminated_code_matches_the_harvested_base_category(code):
     _, axes = _fragment(response, {code: ["actual"]}, dimensions)
     assert axes[code] == ["actual"]
     dimensions[code]["category"]["index"].append("other")
-    with pytest.raises(ValueError):
-        _fragment(response, {code: ["actual"]}, dimensions)
+    if code == "ContentsCode":
+        _, axes = _fragment(response, {code: ["other"]}, dimensions)
+        assert axes[code] == ["other"]
+        with pytest.raises(ValueError):
+            _fragment(response, {code: ["actual", "other"]}, dimensions)
+    else:
+        with pytest.raises(ValueError):
+            _fragment(response, {code: ["actual"]}, dimensions)
 
 
 def test_eliminated_extra_dimension_and_sparse_flags_are_preserved():

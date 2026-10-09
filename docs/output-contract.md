@@ -7,6 +7,14 @@ collections. Dataset identity is `(provider_code, dataset_code, language)` in
 
 ## Shared Dataset mapping
 
+MCF can return a single explicitly selected `ContentsCode` under the synthetic
+JSON-stat category code `EliminatedValue`, even when the source variable contains
+several categories. When the response marks elimination and exactly one known
+category was requested, v1 restores that requested code across category metadata,
+including units and notes. Standalone retrieval applies the same coordinate
+mapping. Multi-category selections remain strict; an ambiguous synthetic response
+is rejected. The complete source category list remains intact.
+
 The [packaged schema](../src/metadata_harvest/schemas/dataset-metadata.schema.json),
 [semantic contract](DATASET-METADATA.md) and [field reference](DATASET-METADATA-REFERENCE.md)
 are authoritative. Metadata requires complete dimensions/categories, `value: []`

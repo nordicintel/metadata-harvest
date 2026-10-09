@@ -48,8 +48,15 @@ def _fragment(response, selection, dimensions, auxiliary=None):
                 and len(selection[key]) == 1
                 and response["dimension"][key].get("extension", {}).get("elimination")
                 is True
-                and category_codes(dimensions.get(key, {}).get("category", {}))
-                == list(selection[key])
+                and (
+                    category_codes(dimensions.get(key, {}).get("category", {}))
+                    == list(selection[key])
+                    or (
+                        key == "ContentsCode"
+                        and selection[key][0]
+                        in category_codes(dimensions[key]["category"])
+                    )
+                )
             ):
                 axes[key] = list(selection[key])
             if set(axes[key]) != set(selection[key]):

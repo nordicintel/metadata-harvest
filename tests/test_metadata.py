@@ -391,6 +391,30 @@ def test_synthetic_singleton_dimension_and_its_role_are_preserved():
     )
 
 
+def test_selected_single_contents_code_keeps_all_categories_and_units():
+    provider = Provider()
+    provider.full["variables"][0]["code"] = "ContentsCode"
+    provider.source = deepcopy(provider.full)
+
+    def eliminate(sample):
+        dimension = sample["dimension"]["ContentsCode"]
+        category = dimension["category"]
+        if len(category["index"]) == 1:
+            selected = next(iter(category["index"]))
+            for field in category.values():
+                if isinstance(field, dict) and selected in field:
+                    field["EliminatedValue"] = field.pop(selected)
+            dimension["extension"] = {"elimination": True}
+        return sample
+
+    provider.mutate = eliminate
+    result = asyncio.run(_generate(provider, table(), "p"))
+    category = result["dimension"]["ContentsCode"]["category"]
+    assert list(category["index"]) == ["01", "02", "03", "04", "05"]
+    assert category["unit"]["05"]["label"] == "Unit 05"
+    assert "EliminatedValue" not in category["label"]
+
+
 def test_note_mandatory_positions_follow_merged_notes():
     result = _merge(
         {"note": ["Old"], "extension": {"noteMandatory": {"0": False}}},

@@ -140,3 +140,12 @@ Live Checks API visibility was verified during the synthetic worker in
 one accepted task, one remaining task and the complete individual codelist error
 were read while the worker and check were still in progress. This verifies the
 monitoring transport, not production harvest completion.
+
+The subsequent MCF category mismatch was an adapter defect: a single selected
+`ContentsCode` can be serialized as `EliminatedValue` even when the variable has
+several available categories. Harvesting and standalone retrieval now restore the
+explicitly selected code while preserving all categories, units and notes. Live
+checks passed for `B13`, `B22`, `B34` and `B40` in both languages, including retrieval
+of a non-first contents category: [evidence](verification/mcf-contents-selection.json).
+The full local suite passed 239 tests; lint, formatting and package build passed.
+Existing running workers retain their checked-out code; this fix does not restart them.

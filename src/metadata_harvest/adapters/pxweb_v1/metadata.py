@@ -282,17 +282,22 @@ def _read_sample(sample, variables, selections, limit):
             coordinates[code] = codes
             continue
         selected = selections[code]
-        # PXWeb can serialize a singleton contents variable as EliminatedValue
-        # even when its one GET code was explicitly selected (observed on MCF).
+        # MCF uses EliminatedValue for a single selected ContentsCode even when
+        # the source variable has multiple categories. Only an explicit singleton
+        # selection identifies which base category the response represents.
         known = expected[code].get("values")
+        replacement = selected if selected is not None else known
         if (
             codes == ["EliminatedValue"]
             and known
-            and len(known) == 1
+            and replacement
+            and len(replacement) == 1
+            and replacement[0] in known
+            and (len(known) == 1 or code == "ContentsCode")
             and dimensions[code].get("extension", {}).get("elimination") is True
         ):
 
-            def rekey(value, replacement=known[0]):
+            def rekey(value, replacement=replacement[0]):
                 if isinstance(value, dict):
                     return {
                         replacement if key == "EliminatedValue" else key: rekey(
@@ -305,7 +310,7 @@ def _read_sample(sample, variables, selections, limit):
                 return value
 
             dimensions[code] = rekey(dimensions[code])
-            codes = list(known)
+            codes = list(replacement)
         if selected is not None and set(codes) != set(selected):
             raise ValueError(f"POST categories differ from selection: {code}")
         known = expected[code].get("values")
