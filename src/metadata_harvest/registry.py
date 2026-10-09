@@ -43,9 +43,16 @@ ADAPTERS = {
         "harvest-kolada.yml",
         ("run", "collect", "publish", "continue"),
     ),
+    "uka": Adapter(
+        "uka",
+        True,
+        "providers.uka.json",
+        "harvest-uka.yml",
+        ("run", "collect", "publish"),
+    ),
     **{
         name: Adapter(name, False, preparation=f"docs/adapters/{name}.md")
-        for name in ("sdb", "trafa", "rowstore", "uka")
+        for name in ("sdb", "trafa", "rowstore")
     },
 }
 

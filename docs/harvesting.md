@@ -47,8 +47,10 @@ Use GitHub Actions **Run workflow**, or these explicit commands:
 gh workflow run harvest.yml --ref main -f full=false
 gh workflow run harvest-pxweb-v2.yml --ref main -f full=false
 gh workflow run harvest-kolada.yml --ref main
+gh workflow run harvest-uka.yml --ref main
 # Deliberate PXWeb reharvest, including unchanged tables.
 gh workflow run harvest-pxweb-v2.yml --ref main -f full=true
+gh workflow run harvest-uka.yml --ref main -f full=true
 # Catalog only: consumes existing accepted files and never contacts source APIs.
 gh workflow run catalog.yml --ref main
 ```

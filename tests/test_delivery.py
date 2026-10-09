@@ -49,6 +49,7 @@ def test_provider_entry_points_and_placeholders_are_consistent():
         ("pxweb_v1", "providers.json"),
         ("pxweb_v2", "providers.pxweb_v2.json"),
         ("kolada", "providers.kolada.json"),
+        ("uka", "providers.uka.json"),
     ]:
         for provider in json.loads((ROOT / config).read_text(encoding="utf-8")):
             expected[provider["code"]] = (

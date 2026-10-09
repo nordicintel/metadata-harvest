@@ -32,6 +32,7 @@ def check(root: Path):
         "providers.json",
         "providers.pxweb_v2.json",
         "providers.kolada.json",
+        "providers.uka.json",
     ):
         providers.update(
             p["code"] for p in json.loads((root / config).read_text(encoding="utf-8"))
