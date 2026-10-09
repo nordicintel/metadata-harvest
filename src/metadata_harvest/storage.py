@@ -11,7 +11,8 @@ from pathlib import Path
 from urllib.parse import quote
 from uuid import uuid4
 
-from metadata_harvest.adapters.pxweb_v1.metadata import _categories
+from metadata_harvest.mapping import source_record, v1_listing_fields
+from metadata_harvest.validation import validate_metadata
 
 
 def now():
@@ -97,46 +98,43 @@ def group_records(records):
 
 
 def validate_dataset(dataset, record):
-    if (
-        not isinstance(dataset, dict)
-        or dataset.get("class") != "dataset"
-        or dataset.get("version") != "2.0"
-        or dataset.get("value") != []
-    ):
-        raise ValueError("Expected a metadata-only JSON-stat2 dataset")
-    saved = dataset.get("extension", {}).get("metadata_harvest", {})
+    validate_metadata(dataset, adapter="pxweb_v1")
+    saved = source_record(dataset, "pxweb_v1")
     if (
         identity(saved) != identity(record)
-        or dataset.get("updated") != record["published"]
+        or saved.get("published") != record["published"]
     ):
-        raise ValueError("Metadata identity or successful timestamp mismatch")
-    if saved.get("paths") != record["paths"]:
+        raise ValueError("Metadata identity or accepted source timestamp mismatch")
+    shared = dataset["extension"]["nordicintel"]
+    expected = v1_listing_fields(record)
+    if any(
+        shared.get(k) != expected.get(k)
+        for k in ("data_url", "metadata_url", "source_url", "paths")
+    ):
+        raise ValueError("Canonical routes or paths disagree with source listing")
+    if saved.get("paths") != record.get("paths"):
         raise ValueError("Metadata has lost table locations")
-    ids, sizes = dataset.get("id"), dataset.get("size")
-    if (
-        not isinstance(ids, list)
-        or not ids
-        or not isinstance(sizes, list)
-        or len(ids) != len(sizes)
-    ):
-        raise ValueError("Invalid completed metadata dimensions")
-    for code, size in zip(ids, sizes, strict=True):
-        _categories(dataset["dimension"][code], size)
 
 
 def refresh_identity(dataset, record):
-    """Update listing metadata without replacing the last successful build date."""
-    dataset["label"] = record["title"]
-    saved = dataset["extension"]["metadata_harvest"]
-    saved.update(record)
-    saved["published"] = dataset["updated"]
+    """Refresh listing context without changing accepted metadata title/date."""
+    from copy import deepcopy
+
+    saved = source_record(dataset, "pxweb_v1")
+    published = saved["published"]
+    saved.update(deepcopy(record))
+    saved["published"] = published
+    shared = dataset["extension"]["nordicintel"]
+    for key in ("data_url", "metadata_url", "source_url", "paths"):
+        shared.pop(key, None)
+    shared.update(v1_listing_fields(record))
     return dataset
 
 
 def document_identity(document: dict) -> dict:
-    """Return the identity record from a listing or a completed dataset."""
     if document.get("class") == "dataset":
-        return document["extension"]["metadata_harvest"]
+        extension = document["extension"]
+        return extension.get("nordicintel", extension.get("metadata_harvest", {}))
     return document
 
 

@@ -1,7 +1,24 @@
-"""Importable PXWeb v2 metadata adapter; currently configured for SCB sv/en."""
+"""SCB PXWeb v2; harvesting imports load only when requested."""
 
-from metadata_harvest.adapters.pxweb_v2.client import Client
-from metadata_harvest.adapters.pxweb_v2.discovery import discover_provider
-from metadata_harvest.adapters.pxweb_v2.metadata import fetch_codelist, fetch_metadata
+from importlib import import_module
 
-__all__ = ["Client", "discover_provider", "fetch_codelist", "fetch_metadata"]
+__all__ = [
+    "Client",
+    "discover_provider",
+    "fetch_codelist",
+    "fetch_metadata",
+    "retrieve",
+]
+
+
+def __getattr__(name):
+    modules = {
+        "Client": "client",
+        "discover_provider": "discovery",
+        "fetch_metadata": "metadata",
+        "fetch_codelist": "metadata",
+        "retrieve": "retrieval",
+    }
+    if name not in modules:
+        raise AttributeError(name)
+    return getattr(import_module(f"{__name__}.{modules[name]}"), name)

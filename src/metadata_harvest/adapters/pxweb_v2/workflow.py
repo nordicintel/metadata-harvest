@@ -1,6 +1,5 @@
 """SCB worker and validating collector: current state, no metadata archives."""
 
-import hashlib
 import shutil
 import time
 from copy import deepcopy
@@ -18,6 +17,8 @@ from metadata_harvest.adapters.pxweb_v2.validation import (
     validate_codelist,
     validate_metadata,
 )
+from metadata_harvest.artifacts import checkpoint_path, manifest, report_status
+from metadata_harvest.mapping import source_record
 from metadata_harvest.storage import JsonlStore, filename, now, read, write
 
 
@@ -33,18 +34,6 @@ def code_key(code: str, language: str) -> str:
     return filename(
         {"provider_code": "scb", "dataset_code": code, "language": language}
     )
-
-
-def manifest(root: Path) -> dict:
-    """Content fingerprint for optimistic concurrency and artifact integrity."""
-    result = {}
-    for path in sorted(root.rglob("*")):
-        if path.is_file() and path.name != "result.json":
-            with path.open("rb") as stream:
-                result[path.relative_to(root).as_posix()] = hashlib.file_digest(
-                    stream, "sha256"
-                ).hexdigest()
-    return result
 
 
 def load_stores(root: Path) -> tuple[JsonlStore, JsonlStore, JsonlStore]:
@@ -66,7 +55,7 @@ def validate_provider(provider: dict) -> None:
 
 def _prune_codes(metadata: JsonlStore, codes: JsonlStore) -> None:
     required = {
-        code_key(code, doc["extension"]["metadata_harvest"]["language"])
+        code_key(code, source_record(doc)["language"])
         for doc in metadata.records.values()
         for code in codelist_ids(doc)
     }
@@ -95,7 +84,7 @@ def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
     }
     errors = list(state["discovery_errors"])
     referenced = {
-        code_key(code, doc["extension"]["metadata_harvest"]["language"])
+        code_key(code, source_record(doc)["language"])
         for doc in metadata.records.values()
         for code in codelist_ids(doc)
     }
@@ -120,14 +109,8 @@ def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
                 {"filename": name, "stage": "metadata", "error": task["error"]}
             )
     interrupted = pending and state.get("no_progress_waves", 0) >= 3
-    status = (
-        "interrupted"
-        if interrupted
-        else "running"
-        if pending
-        else "completed_with_errors"
-        if errors
-        else "success"
+    status = report_status(
+        pending=pending, errors=errors, interrupted=bool(interrupted)
     )
     report = {
         "run_id": state["run_id"],
@@ -206,7 +189,7 @@ async def run(
     for store in (metadata, codes, listings):
         store.directory = output / store.directory.name
         store._legacy.clear()
-    checkpoint = data / "work/current.json"
+    checkpoint = checkpoint_path(data)
     if checkpoint.exists():
         state = read(checkpoint)
         if state["provider"] != provider:
@@ -266,9 +249,8 @@ async def run(
             state["counts"]["discovered"] += len(current)
             if scope["complete"]:
                 for name in set(metadata.records) | set(listings.records):
-                    previous = (
-                        listings.records.get(name)
-                        or metadata.records[name]["extension"]["metadata_harvest"]
+                    previous = listings.records.get(name) or source_record(
+                        metadata.records[name]
                     )
                     if previous["language"] == language and name not in current:
                         if metadata.records.pop(name, None) is not None:
@@ -282,7 +264,7 @@ async def run(
                 if saved is not None and not full and name not in failed:
                     try:
                         validate_metadata(saved, row)
-                        reusable = saved["extension"]["metadata_harvest"] == row
+                        reusable = source_record(saved) == row
                     except (ValueError, KeyError, TypeError):
                         reusable = False
                 if reusable:
@@ -322,7 +304,7 @@ async def run(
                 else await fetch_metadata(row, client=client)
             )
             metadata.records[name] = document
-            listings.records[name] = deepcopy(document["extension"]["metadata_harvest"])
+            listings.records[name] = deepcopy(source_record(document))
             task["status"] = "success"
         except Exception as error:
             # A 404 during a catalogue race is confirmed against the table endpoint.
@@ -450,7 +432,7 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
     if not confirmed.issubset(failed):
         raise ValueError("Confirmed removals lack source-error evidence")
     for name in set(previous.records) - set(metadata.records):
-        saved = previous.records[name]["extension"]["metadata_harvest"]
+        saved = source_record(previous.records[name])
         scope = scopes[saved["language"]]
         if name not in confirmed and (
             not scope["complete"]
@@ -486,7 +468,7 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
             if expected != actual:
                 raise ValueError("Complete discovery scope does not match listings")
     referenced = {
-        code_key(code, doc["extension"]["metadata_harvest"]["language"])
+        code_key(code, source_record(doc)["language"])
         for doc in metadata.records.values()
         for code in codelist_ids(doc)
     }
@@ -544,7 +526,7 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
     previous = JsonlStore(data / "metadata")
     _validate_reconciliation(result, output, metadata, codes, listings, previous)
     for name, doc in metadata.records.items():
-        saved = doc["extension"]["metadata_harvest"]
+        saved = source_record(doc)
         if saved["provider_code"] != "scb" or saved["language"] not in {"sv", "en"}:
             raise ValueError("Unexpected metadata identity")
         if name in failed and previous.records.get(name) == doc:

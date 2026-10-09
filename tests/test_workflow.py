@@ -7,6 +7,7 @@ from playwright.async_api import async_playwright
 
 from metadata_harvest import get_pxweb_tables
 from metadata_harvest.adapters.pxweb_v1.discovery import _collect_database
+from metadata_harvest.mapping import map_metadata, source_record
 from metadata_harvest.runner import publish
 from metadata_harvest.storage import JsonlStore, filename, group_records, read, write
 from metadata_harvest.workflow import (
@@ -82,7 +83,7 @@ def scope(rows, *, complete=True, observed=None, invalid=None):
 
 
 def dataset(row):
-    return {
+    native = {
         "version": "2.0",
         "class": "dataset",
         "label": row["title"],
@@ -95,6 +96,7 @@ def dataset(row):
         "value": [],
         "extension": {"metadata_harvest": deepcopy(row)},
     }
+    return map_metadata(native, row, "pxweb_v1")
 
 
 def seed(data, row):
@@ -254,6 +256,7 @@ def test_deadline_checkpoints_remaining_work_and_resume_skips_refresh(
     assert prepare(tmp_path, [PROVIDER]) == {
         "run_id": "run",
         "phase": "metadata",
+        "full": False,
         "wave": 2,
         "providers": ["p"],
     }
@@ -279,12 +282,12 @@ def test_legacy_checkpoint_and_artifact_migrate_without_losing_metadata(tmp_path
     result = collect_metadata(tmp_path, [artifact / "result.json"], "run", 1)
     assert result["status"] == "success"
     assert JsonlStore(tmp_path / "metadata").records[filename(row)] == dataset(row)
-    assert len(list((tmp_path / "metadata").glob("*.jsonl"))) == 1
+    assert len(list((tmp_path / "metadata").glob("*.jsonl.gz"))) == 1
     assert not list((tmp_path / "metadata").glob("*.json"))
     assert not list((tmp_path / "table-records").glob("*.json"))
 
 
-def test_legacy_reused_metadata_migrates_with_updated_listing_title(tmp_path):
+def test_legacy_file_reuse_preserves_metadata_title_with_updated_listing(tmp_path):
     row = group_records([record()])[0]
     write(tmp_path / "table-records" / filename(row), row)
     write(tmp_path / "metadata" / filename(row), dataset(row))
@@ -293,12 +296,15 @@ def test_legacy_reused_metadata_migrates_with_updated_listing_title(tmp_path):
     assert result["counts"]["reused"] == 1
     assert not result["tasks"]
     saved = JsonlStore(tmp_path / "metadata").records[filename(row)]
-    assert saved["label"] == "Corrected listing title"
+    assert saved["label"] == row["title"]
+    assert source_record(saved)["title"] == "Corrected listing title"
     assert saved["updated"] == row["published"]
-    original = {p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl")}
+    original = {
+        p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl.gz")
+    }
     collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
     assert {
-        p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl")
+        p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl.gz")
     } == original
 
 
@@ -498,3 +504,12 @@ def test_adapter_output_directories_are_independent(tmp_path):
     assert {
         p.relative_to(other): p.read_bytes() for p in other.rglob("*.jsonl")
     } == original
+
+
+def test_full_refresh_queues_unchanged_metadata_and_preserves_mode(tmp_path):
+    row = seed(tmp_path, record())
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run", full=True)
+    assert state["full"] is True
+    assert state["counts"]["reused"] == 0
+    assert len(state["tasks"]) == 1
+    assert prepare(tmp_path, [PROVIDER])["full"] is True

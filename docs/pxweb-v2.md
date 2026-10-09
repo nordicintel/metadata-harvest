@@ -3,7 +3,7 @@
 The importable `metadata_harvest.adapters.pxweb_v2` package targets SCB's
 production API, configured in `providers.pxweb_v2.json`, in Swedish and English.
 It reads `/config`, all `/tables` pages, full table `/metadata`, and referenced
-`/codelists`. It never calls observation or saved-query endpoints.
+`/codelists`. Harvesting never calls observation or saved-query endpoints; the separate retrieval module calls the data endpoint only on demand.
 
 ```python
 from metadata_harvest.adapters.pxweb_v2 import (
@@ -30,11 +30,11 @@ async with Client(provider["base_api_url"]) as client:
 ## Output and ownership
 
 `data/pxweb_v2/metadata/` contains one deterministic gzip-compressed JSONL collection per
-language. Each line preserves SCB's native metadata-only JSON-stat2 response,
-including title, source timestamp, category counts, source extensions and empty
-`value`. `extension.metadata_harvest` adds `provider_code`, `dataset_code`,
-`language`, `base_api_url`, and the full `catalogue` record from discovery.
-It does not replace native SCB fields or claim external schema conformance.
+language. Each line is a validated shared Dataset; `extension.nordicintel` owns
+identity. Complete native content is mapped without loss: source extensions and
+the full catalogue record are retained under `extension.pxweb_v2`, with original
+timestamp precision preserved separately from root calendar-date `updated`.
+See the [mapping and migration contract](output-contract.md).
 
 `data/pxweb_v2/codelists/` contains one `.jsonl.gz` collection per language. Each line
 has `provider_code`, `language`, and `codelist`, the complete native codelist
@@ -80,8 +80,8 @@ history or reactivation store is produced.
 ## Execution and automation
 
 ```powershell
-uv run python -m metadata_harvest.runner run --adapter pxweb_v2 --full
-uv run python -m metadata_harvest.runner collect --adapter pxweb_v2
+uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2 --full
+uv run --extra harvest python -m metadata_harvest.runner collect --adapter pxweb_v2
 ```
 
 The worker reads published data and writes a candidate under `output/pxweb_v2/`.
@@ -151,5 +151,7 @@ incomplete harvesting because the same 55 upstream codelist errors remain.
 At that v2 verification point, 170 deterministic tests passed. After the v1 provider
 additions, the suite passed 175 tests and [CI](https://github.com/nordicintel/metadata-harvest/actions/runs/37844771664)
 passed lint, formatting and tests; local package build also passed.
-Scheduling was checked on 9 October 2026 and remains disabled: the original acceptance gate requires zero unresolved
-errors, and SCB's 55 codelist failures remain visible in the latest harvest report.
+That evidence predates the shared-schema mapping. The agreed scheduling gate is
+now complete table acceptance, even with independently reported codelist errors.
+Canonical conversion, standalone retrieval and renewed production acceptance are
+tracked in [consolidation](consolidation.md).

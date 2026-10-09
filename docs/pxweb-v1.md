@@ -66,19 +66,22 @@ It returns full dimensions with `value=[]`. No browser, files or persistent stat
 are involved. Requests are sequential and paced by provider configuration; callers
 must also coordinate concurrent operations against the same provider.
 
-Metadata precedence is table record, GET, then POST. Table identity and original
-fields live under `extension.metadata_harvest`; GET-only fields without standard
-equivalents live under its `pxweb` member at dataset or dimension level. Unknown
-fields, units, notes, links and extensions survive. Losing conflicting values are
-discarded. Observation values are discarded; status metadata retains its slice
-coordinates under `sample_status`. Synthetic eliminated dimensions and their roles
-are preserved under `auxiliary_dimensions` and `auxiliary_roles`. Category coverage
-does not mean all combinations of observations were downloaded.
+Metadata titles come from accepted POST metadata, then GET, then the listing as
+fallback. Shared identity is in `extension.nordicintel`; full source listing and
+native extras are retained under `extension.pxweb_v1`. Units, notes, links and
+extensions pass the [common mapping and semantic validation](output-contract.md).
+Observation values are discarded; sampled flag meaning and synthetic eliminated
+dimensions remain namespaced metadata. Category coverage does not mean every
+combination of observations was downloaded. Root `updated` is a calendar date,
+with original source precision retained for incremental comparison.
+
+Standalone observation retrieval is in `metadata_harvest.adapters.pxweb_v1.retrieval`
+and uses the caller's aiohttp session; see the [retrieval guide](retrieval-guide.md).
 
 Run **Live PXWeb metadata** manually in GitHub Actions for every web-listed table
 across all configured v1 language/database scopes. It uploads per-table request counts, category
 coverage, timestamps, hashes and failures. Local smoke checks can use
-`uv run python scripts/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
+`uv run --extra harvest python scripts/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
 limited runs deliberately never count as full acceptance. A failed GET, POST,
 recovery or completeness check raises an error rather than returning a partial
 dataset. Store/rebuild successfully before advancing the processed `published` value.
@@ -92,15 +95,15 @@ complete-matrix summary are uploaded even when a check fails. Hidden databases
 are tested explicitly and reported separately from discovery comparisons.
 
 ```powershell
-uv sync --locked
-uv run playwright install chromium
-uv run ruff format --check .
-uv run ruff check .
-uv run pytest
+uv sync --locked --extra harvest
+uv run --extra harvest playwright install chromium
+uv run --extra harvest ruff format --check .
+uv run --extra harvest ruff check .
+uv run --extra harvest pytest
 ```
 
 On Linux, install browser system dependencies with
-`uv run playwright install --with-deps chromium`. CI runs only deterministic
+`uv run --extra harvest playwright install --with-deps chromium`. CI runs only deterministic
 local browser tests, including a test-only self-signed HTTPS fixture and server-side
 counters proving that unsolicited direct and redirected browser API requests never
 reach the server, while explicitly authorized enrichment requests are counted.
@@ -111,11 +114,11 @@ The active provider configuration is in `providers.json`:
 explicitly (it can take several minutes):
 
 ```powershell
-uv run python scripts/check_pxweb_live.py
+uv run --extra harvest python scripts/check_pxweb_live.py
 # Optional focused rerun:
-uv run python scripts/check_pxweb_live.py --provider linkoping --output output/linkoping.json
+uv run --extra harvest python scripts/check_pxweb_live.py --provider linkoping --output output/linkoping.json
 # Resume an interrupted run without discarding successful checks:
-uv run python scripts/check_pxweb_live.py --resume
+uv run --extra harvest python scripts/check_pxweb_live.py --resume
 ```
 
 The runner writes per-combination counts, errors, exact API/web input comparisons,

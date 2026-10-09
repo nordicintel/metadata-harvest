@@ -9,6 +9,7 @@ from metadata_harvest.adapters.pxweb_v2.validation import (
     validate_codelist,
     validate_metadata,
 )
+from metadata_harvest.mapping import map_metadata
 
 
 async def fetch_metadata(record: dict, *, client: Client | None = None) -> dict:
@@ -40,8 +41,9 @@ async def fetch_metadata(record: dict, *, client: Client | None = None) -> dict:
             )
             continue
         validate_metadata(dataset, current)
-        dataset.setdefault("extension", {})["metadata_harvest"] = current
-        return dataset
+        return map_metadata(
+            dataset, current, "pxweb_v2", max_cells=getattr(client, "max_cells", None)
+        )
     raise ValueError("Source changed repeatedly during metadata retrieval")
 
 

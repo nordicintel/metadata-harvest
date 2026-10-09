@@ -8,7 +8,11 @@ version = "0.1.0"
 description = "Scheduled GitHub Actions to harvest table and dataset metadata from Swedish APIs and databases"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
+dependencies = ["aiohttp>=3.9,<4"]
+
+[project.optional-dependencies]
+harvest = [
+    "jsonschema[format]>=4.23,<5",
     "httpx>=0.28,<1",
     "playwright>=1.63.0",
 ]
@@ -32,3 +36,32 @@ line-length = 88
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
+
+[project.entry-points."nordicintel.retrieval"]
+csn = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+domstol = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+ehm = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+energi = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+fohm = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+goteborg = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+helsingborg = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+karlstad = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+konj = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+konjbar = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+kulturanalys = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+lansstyr = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+linkoping = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+mcf = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+mi = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+norrkoping = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+orebro = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+scb = "metadata_harvest.adapters.pxweb_v2.retrieval:retrieve"
+scb_hvd = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+sjv = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+skog = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+skog_ska22 = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+skolverket = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+slu = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+sundsvall = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+tillvaxtanalys = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"
+vgregion = "metadata_harvest.adapters.pxweb_v1.retrieval:retrieve"

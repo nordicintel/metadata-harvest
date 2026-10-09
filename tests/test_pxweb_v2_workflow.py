@@ -118,7 +118,7 @@ def test_removal_and_partial_discovery_are_language_isolated(tmp_path):
     assert result["status"] == "completed_with_errors"
     assert result["counts"]["removed"] == 1
     assert [
-        doc["extension"]["px"]["language"]
+        doc["extension"]["nordicintel"]["language"]
         for doc in JsonlStore(root / "metadata").records.values()
     ] == ["en"]
     assert len(list((root / "codelists").glob("*.jsonl.gz"))) == 1

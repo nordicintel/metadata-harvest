@@ -122,8 +122,9 @@ def test_full_coverage_preserves_metadata_and_precedence_without_observations():
     provider = Provider()
     original = table()
     result = asyncio.run(_generate(provider, original, "provider"))
-    assert result["label"] == "Web title"
-    assert result["updated"] == "2025-03"
+    assert result["label"] == "POST title"
+    assert "updated" not in result
+    assert result["extension"]["pxweb_v1"]["updated_original"] == "2025-03"
     assert result["id"] == ["Area", "Time"]
     assert result["size"] == [5, 3]
     assert result["role"] == {"time": ["Time"]}
@@ -132,14 +133,17 @@ def test_full_coverage_preserves_metadata_and_precedence_without_observations():
     area = result["dimension"]["Area"]
     assert area["label"] == "GET area"
     assert area["category"]["label"]["05"] == "Five"
-    assert area["category"]["unit"]["05"] == {"base": "Unit 05", "decimals": 0}
+    assert area["category"]["unit"]["05"] == {"label": "Unit 05", "decimals": 0}
     assert area["category"]["note"]["05"] == ["Note 05"]
     assert (
-        area["extension"]["metadata_harvest"]["pxweb"]["mystery"]["value"]
+        area["extension"]["pxweb_v1"]["metadata_harvest"]["pxweb"]["mystery"]["value"]
         == "metadata value must survive"
     )
-    assert result["extension"]["custom"] == {"first": False, "second": 0}
-    identity = result["extension"]["metadata_harvest"]
+    assert result["extension"]["pxweb_v1"]["custom"] == {"first": False, "second": 0}
+    identity = {
+        **result["extension"]["pxweb_v1"]["source_record"],
+        **result["extension"]["pxweb_v1"]["harvest_metadata"],
+    }
     assert identity["pxweb"]["unknown"] == {"nested": [1, 2]}
     assert identity["provider_code"] == "provider"
     assert identity["dataset_code"] == original["id"]
@@ -355,7 +359,7 @@ def test_eliminated_singleton_code_is_reconciled_without_losing_units():
 
     provider.mutate = eliminate
     result = asyncio.run(_generate(provider, table(), "p"))
-    assert result["dimension"]["Area"]["category"]["unit"]["A10"]["base"] == "Unit A10"
+    assert result["dimension"]["Area"]["category"]["unit"]["A10"]["label"] == "Unit A10"
     assert result["dimension"]["Area"]["category"]["label"] == {"A10": "Contents"}
 
 
@@ -378,12 +382,12 @@ def test_synthetic_singleton_dimension_and_its_role_are_preserved():
     provider.mutate = synthetic
     result = asyncio.run(_generate(provider, table(), "p"))
     assert result["id"] == ["Area", "Time"]
-    assert result["extension"]["metadata_harvest"]["auxiliary_roles"] == {
+    assert result["extension"]["pxweb_v1"]["harvest_metadata"]["auxiliary_roles"] == {
         "metric": ["ContentsCode"]
     }
     assert (
         "ContentsCode"
-        in result["extension"]["metadata_harvest"]["auxiliary_dimensions"]
+        in result["extension"]["pxweb_v1"]["harvest_metadata"]["auxiliary_dimensions"]
     )
 
 

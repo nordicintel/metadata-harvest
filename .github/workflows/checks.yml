@@ -16,8 +16,11 @@ jobs:
         with:
           version: "0.12.7"
           python-version: "3.13"
-      - run: uv sync --locked
-      - run: uv run playwright install --with-deps chromium
-      - run: uv run ruff format --check .
-      - run: uv run ruff check .
-      - run: uv run pytest
+      - run: uv sync --locked --extra harvest
+      - run: uv run --extra harvest playwright install --with-deps chromium
+      - run: uv run --extra harvest ruff format --check .
+      - run: uv run --extra harvest ruff check .
+      - run: uv run --extra harvest pytest
+      - run: uv run --extra harvest python scripts/generate_schema_reference.py --check
+      - run: uv build
+      - run: uv run --extra harvest python scripts/check_distribution.py

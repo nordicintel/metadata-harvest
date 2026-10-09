@@ -10,6 +10,8 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 from metadata_harvest import get_pxweb_metadata, get_pxweb_tables
+from metadata_harvest.mapping import source_record
+from metadata_harvest.validation import validate_metadata
 
 
 class RequestAudit(logging.Handler):
@@ -86,9 +88,8 @@ async def run(provider, output, *, limit=None):
                                     table, provider_code=provider["code"]
                                 )
                             assert dataset["value"] == []
-                            assert dataset["label"] == table["title"]
-                            assert dataset["updated"] == table["published"]
-                            identity = dataset["extension"]["metadata_harvest"]
+                            validate_metadata(dataset, adapter="pxweb_v1")
+                            identity = source_record(dataset)
                             assert all(
                                 identity[key] == value for key, value in table.items()
                             )
@@ -98,7 +99,7 @@ async def run(provider, output, *, limit=None):
                                 dimensions=dataset["id"],
                                 covered_categories=sum(dataset["size"]),
                                 category_coverage_complete=True,
-                                published=dataset["updated"],
+                                published=identity["published"],
                                 sha256=hashlib.sha256(
                                     json.dumps(
                                         dataset, ensure_ascii=False, sort_keys=True

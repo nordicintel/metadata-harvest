@@ -2,6 +2,9 @@
 
 from datetime import datetime
 
+from metadata_harvest.mapping import source_record
+from metadata_harvest.validation import validate_metadata as validate_shared
+
 
 def text(value, name: str) -> str:
     if not isinstance(value, str) or not value:
@@ -21,7 +24,8 @@ def validate_table(table: dict) -> None:
 def codelist_ids(dataset: dict) -> set[str]:
     ids = set()
     for dimension in dataset["dimension"].values():
-        entries = dimension.get("extension", {}).get("codelists", [])
+        extension = dimension.get("extension", {})
+        entries = extension.get("pxweb_v2", extension).get("codelists", [])
         if not isinstance(entries, list):
             raise ValueError("Invalid codelist references")
         for entry in entries:
@@ -30,6 +34,23 @@ def codelist_ids(dataset: dict) -> set[str]:
 
 
 def validate_metadata(dataset: dict, record: dict) -> None:
+    if "nordicintel" in dataset.get("extension", {}):
+        validate_shared(dataset, adapter="pxweb_v2")
+        saved = source_record(dataset, "pxweb_v2")
+        expected = {
+            key: record[key] for key in ("provider_code", "dataset_code", "language")
+        }
+        actual = dataset["extension"]["nordicintel"]
+        if (
+            any(
+                actual.get(key) != value or saved.get(key) != value
+                for key, value in expected.items()
+            )
+            or saved["catalogue"]["updated"] != record["catalogue"]["updated"]
+        ):
+            raise ValueError("Metadata identity or source timestamp mismatch")
+        codelist_ids(dataset)
+        return
     if (
         dataset.get("class") != "dataset"
         or dataset.get("version") != "2.0"

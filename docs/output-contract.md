@@ -1,112 +1,72 @@
-# Metadata output contract
+# Published output contract
 
-Publish one collection per provider/language inside each adapter's directory.
-V1 uses plain `.jsonl`; v2 uses lossless `.jsonl.gz` for metadata and codelists.
-Consumers must stream each nonempty JSONL line as an independent JSON object,
-decompressing gzip collections first. There are no per-table result files.
+One deterministic `.jsonl.gz` metadata collection per adapter, provider and language
+lives under `data/<adapter>/metadata/`; v2 codelists live under `codelists/` in separate
+collections. Dataset identity is `(provider_code, dataset_code, language)` in
+`extension.nordicintel`. Read gzip as UTF-8 JSON Lines, one independent document per line.
 
-## Statistical metadata
+## Shared Dataset mapping
 
-PXWeb v2 retains native SCB metadata with a source-specific catalogue record;
-its codelist collections and identity fields are described in the
-[v2 output contract](pxweb-v2.md#output-and-ownership). The v1 mapping below
-remains unchanged.
+The [packaged schema](../src/metadata_harvest/schemas/dataset-metadata.schema.json),
+[semantic contract](DATASET-METADATA.md) and [field reference](DATASET-METADATA-REFERENCE.md)
+are authoritative. Metadata requires complete dimensions/categories, `value: []`
+and no root observation `status`. The Provider schema is a minimal consumer contract;
+`providers*.json` remains separate operational configuration.
 
-Both adapters store identity `(provider_code, dataset_code, language)` inside
-`extension.metadata_harvest`. Documents have `class: "dataset"`, `version: "2.0"`,
-`label`, `updated`, `id`, `size`, `dimension`, `value: []` and `extension`.
-The metadata-only JSON-stat2 representation retains actual category counts and
-dimensions but contains no observation cube. Do not describe `value: []` as a
-populated JSON-stat cube or infer coverage of every observation combination.
-
-V1 mapping:
-
-| Input | Output / rule |
+| Source | Canonical mapping and retained evidence |
 |---|---|
-| Listing `id`, configured provider, language | Identity in `extension.metadata_harvest` |
-| Listing title | `label`; listing takes precedence over GET and sampled POST |
-| Listing `published` | `updated`, preserving provider precision; not harvest time |
-| All known locations | `extension.metadata_harvest.paths`; grouped across databases/categories |
-| GET variable codes and complete values | `id`, `size`, dimension category index and labels |
-| GET + bounded JSON-stat2 POST metadata | Units, notes, links, roles, extensions; observation values discarded |
-| GET-only fields lacking standard equivalents | `extension.metadata_harvest.pxweb` at dataset/dimension level |
-| Sample status | Coordinate-scoped `sample_status`; not a full-cube status array |
-| Synthetic eliminated dimensions / roles | `auxiliary_dimensions` / `auxiliary_roles` |
+| Configured provider, source dataset code, language | `extension.nordicintel`; never substitute an internal generated dataset code |
+| Accepted API metadata title | Root `label`; listing-only refresh does not overwrite it |
+| Source `updated` / v1 listing `published` | Root `updated` calendar date when a valid full date is available; original precision/timestamp in `extension.<adapter>.updated_original` |
+| Full accepted catalogue/listing record | `extension.<adapter>.source_record`; incremental comparisons use source signals, not truncated root dates |
+| API/web URLs and thematic paths | Shared `metadata_url`, `data_url`, `source_url`, `paths`; literal URL characters are encoded |
+| v2 period, time unit, subject | Shared `first_period`, `last_period`, normalized `time_unit`, `subject`; original values remain in the catalogue |
+| Contacts | Shared `contacts`, `mail` becomes `email`; unparsed contact prose remains `raw` |
+| Units | Category `unit`; native `base` becomes `label`; unknown unit fields remain under adapter category extensions |
+| Elimination and elimination value | Dimension `extension.nordicintel.elimination` / `elimination_value` |
+| Category notes, roles and ordinary JSON-stat fields | Retained in their corresponding standard positions |
+| Native extensions, PXWeb-only properties, mandatory notes and codelist references | Retained under the adapter namespace, including dimension extensions; no alternate codelist transformation is applied |
+| v1 sampled flags and synthetic dimensions | Namespaced `harvest_metadata.sample_status`, `auxiliary_dimensions`, `auxiliary_roles`; migrated legacy enrichment may remain inside its complete `source_record` |
+| Optional source values outside the shared profile | Exact original values retained in adapter `source_fields` under escaped JSON Pointer keys; required cube/category structure is never repaired by dropping fields |
 
-Harvest times (`started_at`, `finished_at`, report `updated_at`) live in run reports
-and checkpoints. Dataset `updated` is the last successfully built source marker;
-a failed replacement must not advance it. Do not invent an upstream timestamp
-when a future source only provides retrieval time.
+`extension.metadata_harvest` is a migration input only; new documents use shared
+identity and namespaced source evidence. Source timestamps are not harvest timestamps.
+Operational start/finish times live in reports. A failed replacement never advances
+its accepted source marker. Codelists are `{provider_code, language, codelist}` records,
+with their native ID and full payload, and are never represented as datasets.
 
-`storage.validate_dataset` enforces v1 publication invariants: identity,
-successful source timestamp, retained paths, dimensions/category counts and no
-observations. Source mapping additionally validates category coverage. This is
-not a claim of full external JSON Schema or StatDCAT-AP validation. V2 uses its
-own native metadata/codelist validation; it does not require v1 listing paths.
+## Current state and failure semantics
 
-## Files and migration
+`table-records/` stores current listings, `reports/` latest outcomes, and
+`work/current.json` unfinished work only. Confirmed removal deletes current records
+and unreferenced codelists. Incomplete discovery cannot authorize absence-based deletion.
+Table and codelist failures are independent, reported explicitly and retried;
+previous accepted data is retained during transient failures.
 
-| Collection | Format |
-|---|---|
-| `data/pxweb_v1/metadata/<provider>__<language>__<digest>.jsonl` | V1 dataset metadata |
-| `data/pxweb_v2/metadata/<provider>__<language>__<digest>.jsonl.gz` | Native v2 dataset metadata |
-| `data/pxweb_v2/codelists/<provider>__<language>__<digest>.jsonl.gz` | `{provider_code, language, codelist}`; not datasets |
+JSON object keys and record order are deterministic, LF-terminated UTF-8. Gzip
+headers are deterministic, unchanged content preserves bytes, and writes are batched.
+Replacement atomicity is per collection; the verified collector Git commit publishes
+all output/state/errors together. Staging is adapter-scoped. A 100 MiB file gate
+fails before publication; collections are never silently split or truncated.
 
-Each metadata line is the latest accepted source-available dataset. Each adapter owns
-its separate `table-records/`, `reports/refresh.json`, `reports/harvest.json` and
-unfinished `work/current.json`. Confirmed-absent datasets are deleted without an
-archive. Reports are overwritten; the checkpoint is removed on completion.
-A failed request or incomplete listing does not by itself prove source removal.
-A digest
-prevents case-insensitive filename collisions; quoted identifiers prevent path
-traversal. Lines are sorted by stable dataset task ID, object keys are sorted,
-UTF-8 is retained and each line ends in LF. Identical content is not rewritten.
-V2 uses deterministic gzip headers, preserving byte-identical compressed output
-when content is unchanged. A codelist failure does not invalidate its table:
-missing references are accounted for by explicit codelist errors in the report.
-
-The former `filename` field in continuation tasks remains a stable **logical
-record key**, not a physical output path. Retaining it lets old checkpoints and
-worker artifacts be consumed during migration. New workers emit grouped JSONL.
+## Repeatable conversion
 
 ```python
-from metadata_harvest.storage import JsonlStore, migrate_storage
+from metadata_harvest.migration import convert_collections
 
-# Explicit local migration, no provider traffic. Verifies every document.
-counts = migrate_storage("data/pxweb_v1")
-documents = JsonlStore("data/pxweb_v1/metadata").records.values()
+report = convert_collections(
+    "data/pxweb_v1", "output/candidate/pxweb_v1", adapter="pxweb_v1"
+)
 ```
 
-Migration reads legacy JSON, stages and verifies JSONL before removing old files,
-rejects conflicting duplicate identities and verifies round-trip equality.
-Collectors also read the legacy layout and write only grouped output. Empty
-collections are removed after replacement verification. No metadata versions or
-source-removed records are kept in the current output tree.
+Use a new candidate directory, with no unfinished source checkpoint. Conversion
+validates every document, identities, dimensions, category order/counts and source
+records, checks compressed sizes and proves the source manifest unchanged. A failed
+conversion exposes no candidate. Inspect the returned conversion report before replacing
+the corresponding published adapter directory; do not retain parallel legacy and
+canonical collections. Conversion requires no provider traffic and proves mapping
+integrity, not renewed source availability.
 
-Atomicity is per collection file. Only a completed collector's Git commit
-publishes the full state. If a collector crashes during multi-file replacement,
-inspect its artifact and restart from the last committed state; do not publish
-an unverified partial working tree. Never run multiple writers against one data
-directory. Production Actions already serialize publication.
-
-## Schema ownership and consumers
-
-V1 uses Playwright; v2 uses httpx. Neither depends on a schema/model package.
-Confirmed consumers are this repository's runner, collectors, diagnostic scripts,
-tests and documented Python public functions. An 8 October 2026 search of the local backend,
-harvest, model and v2 adapter checkouts found no direct `metadata-harvest` import
-or path reference; this is not proof that no external file consumer exists.
-
-The actual related repositories are `nordicintel/nordicintel-schemas` and
-`nordicintel/nordicintel-model` (the handoff's short names do not resolve as given).
-The schema revision inspected on 8 October 2026,
-`77a7a4665fea6f3c2be8f286d560b79317f08dd7`, describes metadata-only
-JSON-stat2 and a prepared, unpublished 2.0.0 contract using
-`extension.nordicintel`. Model checkout `73017b7938685f7cdbc71c05ca804b9901552452`
-contains immutable JSON-stat and PXWeb codecs. Neither is copied or silently
-adopted here: the current `extension.metadata_harvest` contract differs.
-
-Before changing these fields, read the complete schema specifications and adopted
-standards, including relevant StatDCAT-AP requirements; map actual source needs,
-explain departures and plan consumer updates. StatDCAT-AP representation remains an
-open decision; catalogue metadata must not be forced into a complete cube contract.
+Schemas were adopted from `nordicintel-schemas` commit `77a7a46`; prepared `2.0.0`
+was not published. Schema identifiers now belong to this repository, bundled in
+both distributions. Schema revision provenance does not introduce dataset versions.
