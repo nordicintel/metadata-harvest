@@ -325,13 +325,22 @@ def inspect_run(repo, run_id, *, errors=False, api=github_api):
                 "progress": state,
             }
             if errors:
-                annotations = api(
-                    f"repos/{repo}/check-runs/{check['id']}/annotations?per_page=100",
-                    paginate=True,
-                )
-                item["errors"] = decode_errors(
-                    [annotation for batch in annotations for annotation in batch]
-                )
+                item["errors"] = []
+                if state.get("error_count") != 0:
+                    try:
+                        annotations = api(
+                            f"repos/{repo}/check-runs/{check['id']}/annotations?per_page=100",
+                            paginate=True,
+                        )
+                        item["errors"] = decode_errors(
+                            [
+                                annotation
+                                for batch in annotations
+                                for annotation in batch
+                            ]
+                        )
+                    except (OSError, subprocess.SubprocessError, ValueError) as error:
+                        item["errors_unavailable"] = str(error)
             result.append(item)
     return result
 

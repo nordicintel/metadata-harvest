@@ -130,6 +130,35 @@ def test_stale_heartbeat_cannot_look_healthy():
     assert result[0]["stale"] is True
 
 
+def test_annotation_outage_preserves_other_workers_and_skips_zero_errors():
+    def api(path, **kwargs):
+        if "/actions/" in path:
+            return {"head_sha": "abc", "run_attempt": 1, "status": "in_progress"}
+        if "/commits/" in path:
+            return [
+                {
+                    "check_runs": [
+                        {
+                            "id": n,
+                            "external_id": f"harvest:42:1:p{n}",
+                            "status": "in_progress",
+                            "output": {"text": json.dumps({"error_count": n})},
+                        }
+                        for n in (0, 1, 2)
+                    ]
+                }
+            ]
+        if "/1/annotations" in path:
+            raise OSError("temporary GitHub error")
+        assert "/2/annotations" in path
+        return [[{"message": json.dumps({"number": 1, "error": "source failed"})}]]
+
+    results = inspect_run("owner/repo", "42", errors=True, api=api)
+    assert results[0]["errors"] == []
+    assert "temporary GitHub error" in results[1]["errors_unavailable"]
+    assert results[2]["errors"][0]["error"] == "source failed"
+
+
 def test_live_check_publishes_all_errors_in_batches_and_read_verifies_start(
     monkeypatch,
 ):
