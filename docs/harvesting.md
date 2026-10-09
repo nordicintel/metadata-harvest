@@ -36,6 +36,9 @@ uv run python -m metadata_harvest.monitor status RUN_ID --errors
 uv run python -m metadata_harvest.monitor status RUN_ID --worker pxweb_v2-scb --error 1
 ```
 
+CLI output escapes non-ASCII characters as JSON Unicode sequences, so redirected
+error inspection also works with Windows legacy console encodings without losing text.
+
 Every error has its own numbered annotation containing adapter, provider,
 language, resource identity, stage, timestamp, exception and request URL where
 known. Error inspection paginates all annotations, not just recent examples.

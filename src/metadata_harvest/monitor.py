@@ -411,7 +411,8 @@ def main():
             result["errors"] = [
                 e for e in result["errors"] if e["number"] == args.error
             ]
-    print(json.dumps(results, ensure_ascii=False, indent=2))
+    # Keep redirected output valid even with Windows legacy console encodings.
+    print(json.dumps(results, ensure_ascii=True, indent=2))
     if not results:
         print(
             "No live progress checks found for this run attempt; counts are UNKNOWN, not zero."
