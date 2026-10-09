@@ -21,11 +21,17 @@ def test_generated_schema_reference_is_current():
 
 
 def test_local_documentation_links_resolve():
-    documents = [
-        ROOT / "README.md",
-        *(ROOT / "docs").rglob("*.md"),
-        ROOT / "src/metadata_harvest/schemas/README.md",
-    ]
+    # Tracked documents only: ignored research material under docs/ may link
+    # to files that exist elsewhere.
+    tracked = subprocess.run(
+        ["git", "ls-files", "-z", "--", "README.md", "docs", "src/metadata_harvest"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.split("\0")
+    documents = [ROOT / name for name in tracked if name.endswith(".md")]
+    assert ROOT / "README.md" in documents
     broken = []
     for path in documents:
         for target in re.findall(

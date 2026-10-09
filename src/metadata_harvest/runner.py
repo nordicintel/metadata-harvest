@@ -20,6 +20,59 @@ from metadata_harvest.workflow import (
 )
 
 
+def _entrysoft_options(args):
+    options = {"selected": args.provider_code}
+    if args.max_requests:
+        options["max_requests"] = args.max_requests
+    return options
+
+
+# Single-worker adapters sharing the run/collect/publish lifecycle. Each entry maps
+# the adapter name to: whether run() takes the first configured provider or the
+# whole list, the run() keyword arguments taken from the parsed CLI arguments, and
+# the collect() keyword arguments taken from the first configured provider.
+SIMPLE_ADAPTERS = {
+    "uka": (
+        "single",
+        lambda a: {"indicators": a.indicator, "full": a.full},
+        lambda p: {},
+    ),
+    "sdb": (
+        "single",
+        lambda a: {"subjects": a.subject, "languages": a.language},
+        lambda p: {"languages": p["languages"]},
+    ),
+    "trafa": (
+        "single",
+        lambda a: {"products": a.product, "languages": a.language},
+        lambda p: {"languages": p["languages"]},
+    ),
+    "entrysoft": ("all", _entrysoft_options, lambda p: {}),
+}
+
+
+def run_simple(args):
+    """Run or collect one single-worker adapter and print its outcome."""
+    import importlib
+
+    providers_argument, run_options, collect_options = SIMPLE_ADAPTERS[args.adapter]
+    workflow = importlib.import_module(
+        f"metadata_harvest.adapters.{args.adapter}.workflow"
+    )
+    args.output = args.output or Path("output") / args.adapter
+    providers = read(args.providers)
+    if args.command == "run":
+        provider = providers if providers_argument == "all" else providers[0]
+        result = asyncio.run(
+            workflow.run(provider, args.data, args.output, **run_options(args))
+        )
+    else:
+        result = workflow.collect(
+            args.data, args.output, **collect_options(providers[0])
+        )
+    outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
+
+
 def outputs(values):
     lines = [
         f"{key}={json.dumps(value, separators=(',', ':')) if not isinstance(value, str) else value}"
@@ -109,82 +162,8 @@ def main():
                 }
             )
             return
-    if args.adapter == "uka" and args.command in {"run", "collect"}:
-        from metadata_harvest.adapters.uka import workflow as uka_workflow
-
-        args.output = args.output or Path("output/uka")
-        if args.command == "run":
-            result = asyncio.run(
-                uka_workflow.run(
-                    read(args.providers)[0],
-                    args.data,
-                    args.output,
-                    indicators=args.indicator,
-                    full=args.full,
-                )
-            )
-        else:
-            result = uka_workflow.collect(args.data, args.output)
-        outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
-        return
-    if args.adapter == "sdb" and args.command in {"run", "collect"}:
-        from metadata_harvest.adapters.sdb import workflow as sdb_workflow
-
-        args.output = args.output or Path("output/sdb")
-        provider = read(args.providers)[0]
-        if args.command == "run":
-            result = asyncio.run(
-                sdb_workflow.run(
-                    provider,
-                    args.data,
-                    args.output,
-                    subjects=args.subject,
-                    languages=args.language,
-                )
-            )
-        else:
-            result = sdb_workflow.collect(
-                args.data, args.output, languages=provider["languages"]
-            )
-        outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
-        return
-    if args.adapter == "trafa" and args.command in {"run", "collect"}:
-        from metadata_harvest.adapters.trafa import workflow as trafa_workflow
-
-        args.output = args.output or Path("output/trafa")
-        provider = read(args.providers)[0]
-        if args.command == "run":
-            result = asyncio.run(
-                trafa_workflow.run(
-                    provider,
-                    args.data,
-                    args.output,
-                    products=args.product,
-                    languages=args.language,
-                )
-            )
-        else:
-            result = trafa_workflow.collect(
-                args.data, args.output, languages=provider["languages"]
-            )
-        outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
-        return
-    if args.adapter == "entrysoft" and args.command in {"run", "collect"}:
-        from metadata_harvest.adapters.entrysoft import workflow as entrysoft_workflow
-
-        args.output = args.output or Path("output/entrysoft")
-        if args.command == "run":
-            options = {"selected": args.provider_code}
-            if args.max_requests:
-                options["max_requests"] = args.max_requests
-            result = asyncio.run(
-                entrysoft_workflow.run(
-                    read(args.providers), args.data, args.output, **options
-                )
-            )
-        else:
-            result = entrysoft_workflow.collect(args.data, args.output)
-        outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
+    if args.adapter in SIMPLE_ADAPTERS and args.command in {"run", "collect"}:
+        run_simple(args)
         return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
     providers = read(args.providers)
