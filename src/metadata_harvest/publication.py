@@ -16,12 +16,7 @@ def publish(message, *, data=Path("data/pxweb_v1"), verify=None):
 
     root = Path(git("rev-parse", "--show-toplevel").stdout.strip()).resolve()
     relative = publication_directory(root, Path(data))
-    check_collection_sizes(
-        data,
-        excluded=("catalog.jsonl.gz", "codelists.jsonl.gz")
-        if relative == "data/catalog"
-        else (),
-    )
+    check_collection_sizes(data)
     staged = git("diff", "--cached", "--name-only", "-z").stdout.split("\0")
     if any(path and not path.startswith(relative + "/") for path in staged):
         raise RuntimeError("Refusing to publish unrelated staged files")

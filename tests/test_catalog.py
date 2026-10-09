@@ -9,6 +9,16 @@ import pytest
 from metadata_harvest.catalog import build, promote
 
 
+def unpack(path):
+    import subprocess
+
+    from metadata_harvest.catalog import sevenzip
+
+    return subprocess.check_output(
+        [sevenzip(), "e", "-so", str(path), path.stem + ".jsonl"]
+    )
+
+
 def collection(root, content=b'{"trusted":true}\n'):
     path = root / "pxweb_v1/metadata/test__sv.jsonl.gz"
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -38,15 +48,15 @@ def test_offline_trusted_copy_reuse_and_removal(tmp_path, monkeypatch):
         "semantic_enrichment": "not_configured",
     }
     promote(data, candidate)
-    target = data / "catalog/catalog.jsonl.gz"
-    assert target.read_bytes() == source.read_bytes()
+    target = data / "catalog/catalog.7z"
+    assert unpack(target) == gzip.decompress(source.read_bytes())
     second = build(data, candidate, adapters=["pxweb_v1"])
     assert second["build_counts"]["reused"] == 1
     promote(data, candidate)
     source.write_bytes(gzip.compress(b"", mtime=0))
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
-    assert gzip.decompress(target.read_bytes()) == b""
+    assert unpack(target) == b""
 
 
 def test_corrupt_and_missing_retain_previous_other_collections_advance(tmp_path):
@@ -54,16 +64,16 @@ def test_corrupt_and_missing_retain_previous_other_collections_advance(tmp_path)
     source = collection(data)
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
-    target = data / "catalog/catalog.jsonl.gz"
-    before = target.read_bytes()
+    target = data / "catalog/catalog.7z"
+    before = unpack(target)
     source.write_bytes(b"broken gzip")
     other = source.with_name("other.jsonl.gz")
     other.write_bytes(gzip.compress(b"{}\n", mtime=0))
     result = build(data, candidate, adapters=["pxweb_v1"])
     assert result["status"] == "completed_with_errors"
     promote(data, candidate)
-    assert gzip.decompress(target.read_bytes()) == b'{}\n{"trusted":true}\n'
-    assert before in target.read_bytes()
+    assert unpack(target) == b'{}\n{"trusted":true}\n'
+    assert before in unpack(target)
     source.unlink()
     result = build(data, candidate, adapters=["pxweb_v1"])
     assert any("Missing" in error["error"] for error in result["errors"])
@@ -77,7 +87,7 @@ def test_stale_and_modified_candidates_rejected(tmp_path):
     with pytest.raises(ValueError, match="Stale"):
         promote(data, candidate)
     build(data, candidate, adapters=["pxweb_v1"])
-    (candidate / "catalog.jsonl.gz").write_bytes(b"tampered")
+    (candidate / "catalog.7z").write_bytes(b"tampered")
     with pytest.raises(ValueError, match="Candidate"):
         promote(data, candidate)
 
@@ -190,20 +200,16 @@ def test_combined_assets_separate_dataset_and_codelist_records(tmp_path):
     codes.parent.mkdir()
     codes.write_bytes(gzip.compress(b'{"codelist":{"id":"region"}}\n', mtime=0))
     build(data, candidate, adapters=["pxweb_v1", "pxweb_v2"])
-    assert gzip.decompress((candidate / "catalog.jsonl.gz").read_bytes()) == (
-        b'{"dataset":"sv"}\n{"dataset":"en"}\n'
-    )
-    assert gzip.decompress((candidate / "codelists.jsonl.gz").read_bytes()) == (
-        b'{"codelist":{"id":"region"}}\n'
-    )
-    assert sorted(p.name for p in candidate.glob("*.jsonl.gz")) == [
-        "catalog.jsonl.gz",
-        "codelists.jsonl.gz",
+    assert unpack(candidate / "catalog.7z") == (b'{"dataset":"sv"}\n{"dataset":"en"}\n')
+    assert unpack(candidate / "codelists.7z") == (b'{"codelist":{"id":"region"}}\n')
+    assert sorted(p.name for p in candidate.glob("*.7z")) == [
+        "catalog.7z",
+        "codelists.7z",
     ]
     promote(data, candidate)
-    first = (candidate / "catalog.jsonl.gz").read_bytes()
+    first = (candidate / "catalog.7z").read_bytes()
     build(data, candidate, adapters=["pxweb_v1", "pxweb_v2"])
-    assert (candidate / "catalog.jsonl.gz").read_bytes() == first
+    assert (candidate / "catalog.7z").read_bytes() == first
 
 
 def test_legacy_catalog_migrates_without_losing_failed_input(tmp_path):
@@ -229,9 +235,7 @@ def test_legacy_catalog_migrates_without_losing_failed_input(tmp_path):
     result = build(data, candidate, adapters=["pxweb_v1"])
     assert result["counts"]["retained"] == 1
     promote(data, candidate)
-    assert gzip.decompress((data / "catalog/catalog.jsonl.gz").read_bytes()) == (
-        b'{"trusted":true}\n'
-    )
+    assert unpack(data / "catalog/catalog.7z") == (b'{"trusted":true}\n')
     assert not legacy.exists()
     assert source.read_bytes() == b"broken"
 
@@ -242,7 +246,7 @@ def test_unavailable_previous_asset_blocks_build_instead_of_losing_records(tmp_p
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
     source.write_bytes(b"broken")
-    (data / "catalog/catalog.jsonl.gz").unlink()
+    (data / "catalog/catalog.7z").unlink()
     with pytest.raises(ValueError, match="previous|Previous"):
         build(data, candidate, adapters=["pxweb_v1"])
 
@@ -253,145 +257,12 @@ def test_corrupt_previous_asset_cannot_supply_retained_records(tmp_path):
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
     source.unlink()
-    (data / "catalog/catalog.jsonl.gz").write_bytes(b"corrupt previous asset")
+    (data / "catalog/catalog.7z").write_bytes(b"corrupt previous asset")
     with pytest.raises(ValueError, match="previous|Previous"):
         build(data, candidate, adapters=["pxweb_v1"])
 
 
-def test_release_upload_is_completed_before_publication_and_supports_retry(
-    tmp_path, monkeypatch
-):
-    import hashlib
-    import subprocess
-
-    import metadata_harvest.catalog as catalog
-
-    data, candidate = tmp_path / "data", tmp_path / "candidate"
-    collection(data)
-    build(data, candidate, adapters=["pxweb_v1"])
-    remote = {}
-    calls = []
-
-    def run(args, **kwargs):
-        calls.append(args)
-        if args[:3] == ["git", "rev-parse", "HEAD"]:
-            return subprocess.CompletedProcess(args, 0, "abc123\n", "")
-        if args[:2] == ["gh", "api"]:
-            if "--slurp" in args:
-                return subprocess.CompletedProcess(args, 0, "[[]]", "")
-            return subprocess.CompletedProcess(
-                args,
-                0 if remote else 1,
-                json.dumps(remote) if remote else "",
-                "" if remote else "Not Found (HTTP 404)",
-            )
-        if args[:3] == ["gh", "release", "create"]:
-            remote.update(draft=True, assets=[])
-        elif args[:3] == ["gh", "release", "upload"]:
-            for name in args[4:]:
-                if name.startswith("--"):
-                    continue
-                path = Path(name)
-                remote["assets"].append(
-                    {
-                        "name": path.name,
-                        "digest": "sha256:"
-                        + hashlib.sha256(path.read_bytes()).hexdigest(),
-                    }
-                )
-        elif args[:3] == ["gh", "release", "edit"]:
-            assert len(remote["assets"]) == 4
-            remote["draft"] = False
-        return subprocess.CompletedProcess(args, 0, "", "")
-
-    monkeypatch.setattr(catalog.subprocess, "run", run)
-    assert hasattr(catalog, "publish_release")
-    catalog.publish_release(data, candidate)
-    assert not remote["draft"]
-    assert {a["name"] for a in remote["assets"]} == {
-        "catalog.jsonl.gz",
-        "codelists.jsonl.gz",
-        "current.json",
-        "latest.json",
-    }
-    before = len([c for c in calls if c[:3] == ["gh", "release", "upload"]])
-    catalog.publish_release(data, candidate)
-    assert len([c for c in calls if c[:3] == ["gh", "release", "upload"]]) == before
-
-
-def test_draft_release_is_found_when_tag_endpoint_returns_404(monkeypatch):
-    import subprocess
-
-    import metadata_harvest.catalog as catalog
-
-    tag = "catalog-draft"
-    expected = {"id": 1, "tag_name": tag, "draft": True, "assets": []}
-
-    def run(args, **kwargs):
-        if args[-1].endswith("/tags/" + tag):
-            return subprocess.CompletedProcess(args, 1, "", "Not Found (HTTP 404)")
-        assert "--paginate" in args and "--slurp" in args
-        return subprocess.CompletedProcess(
-            args,
-            0,
-            json.dumps([[{"tag_name": "unrelated", "draft": True}], [expected]]),
-            "",
-        )
-
-    monkeypatch.setattr(catalog.subprocess, "run", run)
-    assert catalog._release(tag) == expected
-
-
-def test_release_failure_leaves_catalog_untouched(tmp_path, monkeypatch):
-    import subprocess
-
-    import metadata_harvest.catalog as catalog
-
-    data, candidate = tmp_path / "data", tmp_path / "candidate"
-    collection(data)
-    build(data, candidate, adapters=["pxweb_v1"])
-
-    def fail(*args, **kwargs):
-        raise subprocess.CalledProcessError(1, args[0], stderr="upload unavailable")
-
-    monkeypatch.setattr(catalog.subprocess, "run", fail)
-    assert hasattr(catalog, "publish_release")
-    with pytest.raises(subprocess.CalledProcessError):
-        catalog.publish_release(data, candidate)
-    assert not (data / "catalog").exists()
-
-
-def test_restore_downloads_only_assets_named_by_committed_state(tmp_path, monkeypatch):
-    import subprocess
-
-    import metadata_harvest.catalog as catalog
-
-    data, candidate = tmp_path / "data", tmp_path / "candidate"
-    collection(data)
-    build(data, candidate, adapters=["pxweb_v1"])
-    promote(data, candidate)
-    (data / "catalog/catalog.jsonl.gz").unlink()
-
-    def run(args, **kwargs):
-        assert args[:3] == ["gh", "release", "download"]
-        assert (
-            args[3]
-            == json.loads((candidate / "state/current.json").read_text())["release"]
-        )
-        directory = Path(args[args.index("--dir") + 1])
-        for name in ("catalog.jsonl.gz", "codelists.jsonl.gz"):
-            (directory / name).write_bytes((candidate / name).read_bytes())
-        return subprocess.CompletedProcess(args, 0, "", "")
-
-    monkeypatch.setattr(catalog.subprocess, "run", run)
-    assert hasattr(catalog, "restore_assets")
-    catalog.restore_assets(data)
-    assert (data / "catalog/catalog.jsonl.gz").read_bytes() == (
-        candidate / "catalog.jsonl.gz"
-    ).read_bytes()
-
-
-def test_unchanged_rebuild_keeps_release_and_published_report_identical(tmp_path):
+def test_unchanged_rebuild_keeps_state_archives_and_report_identical(tmp_path):
     data, candidate = tmp_path / "data", tmp_path / "candidate"
     collection(data)
     build(data, candidate, adapters=["pxweb_v1"])
@@ -401,6 +272,107 @@ def test_unchanged_rebuild_keeps_release_and_published_report_identical(tmp_path
     build(data, candidate, adapters=["pxweb_v1"])
     assert (candidate / "state/current.json").read_bytes() == before
     assert (candidate / "reports/latest.json").read_bytes() == report
+
+
+def test_codelist_change_recompresses_only_codelists(tmp_path, monkeypatch):
+    import metadata_harvest.catalog as catalog
+
+    data, candidate = tmp_path / "data", tmp_path / "candidate"
+    collection(data)
+    codes = data / "pxweb_v1/codelists/test__sv.jsonl.gz"
+    codes.parent.mkdir()
+    codes.write_bytes(gzip.compress(b'{"codelist":1}\n', mtime=0))
+    build(data, candidate, adapters=["pxweb_v1"])
+    promote(data, candidate)
+    before = (candidate / "catalog.7z").read_bytes()
+    compressed = []
+    compress = catalog._compress
+
+    def record(source, archive):
+        compressed.append(archive.name)
+        compress(source, archive)
+
+    monkeypatch.setattr(catalog, "_compress", record)
+    codes.write_bytes(gzip.compress(b'{"codelist":2}\n', mtime=0))
+    build(data, candidate, adapters=["pxweb_v1"])
+    assert compressed == ["codelists.7z"]
+    assert (candidate / "catalog.7z").read_bytes() == before
+    assert unpack(candidate / "codelists.7z") == b'{"codelist":2}\n'
+
+
+def test_identical_inputs_build_identical_archives_in_different_directories(tmp_path):
+    data = tmp_path / "data"
+    collection(data)
+    first, second = tmp_path / "first", tmp_path / "second"
+    build(data, first, adapters=["pxweb_v1"])
+    build(data, second, adapters=["pxweb_v1"])
+    for name in ("catalog.7z", "codelists.7z"):
+        assert (first / name).read_bytes() == (second / name).read_bytes()
+
+
+def test_size_limit_rejects_candidate_without_changing_accepted_catalog(
+    tmp_path, monkeypatch
+):
+    import metadata_harvest.catalog as catalog
+
+    data, candidate = tmp_path / "data", tmp_path / "candidate"
+    source = collection(data)
+    build(data, candidate, adapters=["pxweb_v1"])
+    promote(data, candidate)
+    before = (data / "catalog/catalog.7z").read_bytes()
+    source.write_bytes(gzip.compress(b'{"changed":true}\n', mtime=0))
+    check = catalog.check_collection_sizes
+    monkeypatch.setattr(
+        catalog, "check_collection_sizes", lambda path: check(path, limit=1)
+    )
+    with pytest.raises(ValueError, match="file limit"):
+        build(data, candidate, adapters=["pxweb_v1"])
+    assert (data / "catalog/catalog.7z").read_bytes() == before
+    assert not (candidate / "result.json").exists()
+
+
+def test_combined_archives_are_committed_with_state_and_reports(tmp_path, monkeypatch):
+    import subprocess
+
+    ignore = (Path(__file__).resolve().parents[1] / ".gitignore").read_text()
+    data, candidate = tmp_path / "data", tmp_path / "candidate"
+    collection(data)
+    build(data, candidate, adapters=["pxweb_v1"])
+    promote(data, candidate)
+    (tmp_path / ".gitignore").write_text(ignore)
+    monkeypatch.chdir(tmp_path)
+    subprocess.run(["git", "init"], check=True, capture_output=True)
+    subprocess.run(["git", "add", "data/catalog"], check=True, capture_output=True)
+    tracked = subprocess.check_output(["git", "ls-files"], text=True).splitlines()
+    assert tracked == [
+        "data/catalog/catalog.7z",
+        "data/catalog/codelists.7z",
+        "data/catalog/reports/latest.json",
+        "data/catalog/state/current.json",
+    ]
+
+
+def test_interrupted_compression_preserves_archive_and_can_retry(tmp_path, monkeypatch):
+    import subprocess
+
+    import metadata_harvest.catalog as catalog
+
+    source, archive = tmp_path / "catalog.jsonl", tmp_path / "catalog.7z"
+    source.write_bytes(b'{"dataset":1}\n')
+    archive.write_bytes(b"previous archive")
+
+    def fail(args, **kwargs):
+        Path(args[-2]).write_bytes(b"interrupted compression")
+        raise subprocess.CalledProcessError(1, args)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(catalog.subprocess, "run", fail)
+        with pytest.raises(subprocess.CalledProcessError):
+            catalog._compress(source, archive)
+    assert archive.read_bytes() == b"previous archive"
+    assert not list(tmp_path.glob("*.tmp"))
+    catalog._compress(source, archive)
+    assert unpack(archive) == source.read_bytes()
 
 
 @pytest.mark.parametrize("missing", [False, True])
@@ -431,118 +403,3 @@ def test_legacy_collection_without_newline_cannot_join_records(tmp_path, missing
         build(data, candidate, adapters=["pxweb_v1"])
     assert old.exists()
     assert not (candidate / "result.json").exists()
-
-
-def test_release_rejects_stale_input_before_contacting_github(tmp_path, monkeypatch):
-    import metadata_harvest.catalog as catalog
-
-    data, candidate = tmp_path / "data", tmp_path / "candidate"
-    source = collection(data)
-    build(data, candidate, adapters=["pxweb_v1"])
-    source.write_bytes(gzip.compress(b"{}\n", mtime=0))
-    monkeypatch.setattr(
-        catalog.subprocess, "run", lambda *a, **k: pytest.fail("network forbidden")
-    )
-    with pytest.raises(ValueError, match="Stale"):
-        catalog.publish_release(data, candidate)
-
-
-def test_restore_rejects_corruption_before_replacing_either_asset(
-    tmp_path, monkeypatch
-):
-    import subprocess
-
-    import metadata_harvest.catalog as catalog
-
-    data, candidate = tmp_path / "data", tmp_path / "candidate"
-    collection(data)
-    build(data, candidate, adapters=["pxweb_v1"])
-    promote(data, candidate)
-    (data / "catalog/catalog.jsonl.gz").unlink()
-    before = (data / "catalog/codelists.jsonl.gz").read_bytes()
-
-    def run(args, **kwargs):
-        directory = Path(args[args.index("--dir") + 1])
-        for name in ("catalog.jsonl.gz", "codelists.jsonl.gz"):
-            (directory / name).write_bytes(b"corrupt")
-        return subprocess.CompletedProcess(args, 0)
-
-    monkeypatch.setattr(catalog.subprocess, "run", run)
-    with pytest.raises(ValueError, match="checksum"):
-        catalog.restore_assets(data)
-    assert not (data / "catalog/catalog.jsonl.gz").exists()
-    assert (data / "catalog/codelists.jsonl.gz").read_bytes() == before
-
-
-def test_git_publication_commits_state_but_never_combined_payloads(
-    tmp_path, monkeypatch
-):
-    import subprocess
-
-    import metadata_harvest.publication as publication
-
-    ignore = (Path(__file__).resolve().parents[1] / ".gitignore").read_text()
-    real_run = subprocess.run
-    monkeypatch.chdir(tmp_path)
-
-    def git(*args):
-        return real_run(["git", *args], check=True, capture_output=True, text=True)
-
-    git("init", "-b", "main")
-    git("config", "user.name", "Test")
-    git("config", "user.email", "test@example.invalid")
-    (tmp_path / ".gitignore").write_text(ignore)
-    git("add", ".gitignore")
-    git("commit", "-m", "initial")
-    catalog = tmp_path / "data/catalog"
-    (catalog / "state").mkdir(parents=True)
-    (catalog / "state/current.json").write_text("{}")
-    for name in ("catalog.jsonl.gz", "codelists.jsonl.gz"):
-        with (catalog / name).open("wb") as stream:
-            stream.truncate(100 * 1024 * 1024)
-
-    def run(args, **kwargs):
-        if args[:2] == ["git", "push"]:
-            return subprocess.CompletedProcess(args, 0, "", "")
-        return real_run(args, **kwargs)
-
-    monkeypatch.setattr(publication.subprocess, "run", run)
-    publication.publish("catalog state", data=catalog)
-    tracked = git("ls-files").stdout.splitlines()
-    assert "data/catalog/state/current.json" in tracked
-    assert not any(name.endswith(".jsonl.gz") for name in tracked)
-
-
-def test_release_digest_mismatch_never_publishes_or_promotes(tmp_path, monkeypatch):
-    import subprocess
-
-    import metadata_harvest.catalog as catalog
-
-    data, candidate = tmp_path / "data", tmp_path / "candidate"
-    collection(data)
-    build(data, candidate, adapters=["pxweb_v1"])
-    calls = []
-
-    def run(args, **kwargs):
-        calls.append(args)
-        if args[:2] == ["gh", "api"]:
-            return subprocess.CompletedProcess(
-                args,
-                0,
-                json.dumps(
-                    {
-                        "draft": True,
-                        "assets": [
-                            {"name": "catalog.jsonl.gz", "digest": "sha256:wrong"}
-                        ],
-                    }
-                ),
-                "",
-            )
-        return subprocess.CompletedProcess(args, 0, "", "")
-
-    monkeypatch.setattr(catalog.subprocess, "run", run)
-    with pytest.raises(ValueError, match="Release assets"):
-        catalog.publish_release(data, candidate)
-    assert not any(args[:3] == ["gh", "release", "edit"] for args in calls)
-    assert not (data / "catalog").exists()
