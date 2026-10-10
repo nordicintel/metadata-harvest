@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>
 <title>Harvest Control</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -20,6 +20,8 @@
   --log-bg: #0a1013; --log-fg: #d5dde1; --log-dim: #6c7c84; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; }
 body { background: var(--bg); color: var(--fg); font-family: var(--font-ui); font-size: 14px; line-height: 1.45; }
 .wrap { max-width: 1500px; margin-inline: auto; padding-inline: 16px; padding-block: 14px 32px; display: grid; gap: 14px; }
 h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; text-wrap: balance; }
@@ -74,14 +76,18 @@ input[type=text], input[type=password], select { border: 1px solid var(--line); 
 .modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
 
 /* Grid */
-.grid { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 14px; align-items: start; }
-@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start; }
+.tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); }
+.tabs [role=tab] { border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: none; padding: 8px 14px; font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--muted); margin-bottom: -1px; }
+.tabs [role=tab][aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.tabs [role=tab]:hover { color: var(--fg); }
 .col { display: grid; gap: 14px; min-width: 0; }
 .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
 .panel header { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
 
 /* Workflows */
-.wf { display: grid; gap: 6px; }
+.wf { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); align-items: start; }
+.wf-item.sel { grid-column: 1 / -1; }
 .wf-item { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; display: grid; gap: 6px; }
 .wf-item.sel { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
 .wf-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
@@ -183,14 +189,18 @@ td.num { text-align: right; }
     <div class="hint" id="tokenHint">Reading runs works without a token (60 requests/hour). To start, cancel or re-run workflows, and to poll without hitting the limit, click <b>Create token</b>, which opens GitHub's fine-grained token page prefilled for this repo with <code>Actions: read and write</code>. Paste the token here once; it stays in this browser only.</div>
   </div>
 
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" id="tab-runs" data-tab="runs" aria-selected="true">Runs</button>
+    <button type="button" role="tab" id="tab-workflows" data-tab="workflows" aria-selected="false">Workflows</button>
+  </div>
   <div class="grid">
-    <div class="col">
+    <div class="col" id="page-workflows" data-page="workflows" hidden>
       <section class="panel" id="wfPanel" data-collapsible="wf">
         <header><button type="button" class="h2-btn" aria-expanded="true"><h2>Workflows</h2></button><span class="hint" id="wfCount"></span></header>
         <div class="panel-body"><div class="wf" id="wfList"><div class="empty">Loading workflows…</div></div></div>
       </section>
     </div>
-    <div class="col">
+    <div class="col" id="page-runs" data-page="runs">
       <section class="panel" id="runsPanel" data-collapsible="runs">
         <header>
           <button type="button" class="h2-btn" aria-expanded="true"><h2>Recent runs</h2></button>
@@ -307,6 +317,15 @@ td.num { text-align: right; }
   $('#confirm').addEventListener('click', (e) => { if (e.target === $('#confirm')) closeConfirm(false); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#confirm').hidden) closeConfirm(false); });
 
+  // ---------- tabs ----------
+  function showTab(name, remember) {
+    if (!['runs', 'workflows'].includes(name)) name = 'runs';
+    document.querySelectorAll('[data-page]').forEach((p) => { p.hidden = p.dataset.page !== name; });
+    document.querySelectorAll('[role=tab]').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
+    if (remember) { pref.set('tab', name); try { history.replaceState(null, '', '#' + name); } catch (e) {} }
+  }
+  document.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => showTab(t.dataset.tab, true)));
+
   // ---------- collapsible panels + setup strip ----------
   const pref = { get(k) { try { return localStorage.getItem('ui_' + k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem('ui_' + k, v); } catch (e) {} } };
   document.querySelectorAll('[data-collapsible]').forEach((sec) => {
@@ -414,7 +433,7 @@ td.num { text-align: right; }
         msg.textContent = 'Queued. Watching for the new run…';
         toast(`Started ${wf.name}`);
         const before = new Set(st.runs.map((r) => r.id));
-        for (let i = 0; i < 10; i++) { await new Promise((r) => setTimeout(r, 3000)); await loadRuns(); const nw = st.runs.find((r) => r.workflow_id === id && !before.has(r.id)); if (nw) { selectRun(nw.id); msg.textContent = ''; st.dispatchOpen = null; renderWorkflows(); break; } }
+        for (let i = 0; i < 10; i++) { await new Promise((r) => setTimeout(r, 3000)); await loadRuns(); const nw = st.runs.find((r) => r.workflow_id === id && !before.has(r.id)); if (nw) { st.dispatchOpen = null; renderWorkflows(); showTab('runs', true); selectRun(nw.id); break; } }
       } catch (err) { msg.textContent = 'Failed: ' + err.message; btn.disabled = false; }
     }
   });
@@ -584,7 +603,9 @@ td.num { text-align: right; }
     const saved = await store.get(); if (saved) { token = saved.v; st.tokenVia = saved.via; renderToken(); testToken(); } else renderToken();
     try { await loadWorkflows(); } catch (e) { $('#wfList').innerHTML = `<div class="empty">Could not load workflows: ${esc(e.message)}</div>`; }
     await refreshAll(true);
-    const h = location.hash.replace('#', ''); if (/^run\d+$/.test(h)) selectRun(+h.slice(3));
+    const h = location.hash.replace('#', '');
+    showTab(h === 'workflows' || h === 'runs' ? h : (pref.get('tab') || 'runs'), false);
+    if (/^run\d+$/.test(h)) selectRun(+h.slice(3));
     else { const running = st.runs.find(active); if (running) selectRun(running.id); }
     tick();
   })();
