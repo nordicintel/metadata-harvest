@@ -9,7 +9,7 @@ Approved scope: replace shared metadata with extensible Pydantic StatDCAT-AP 3.0
 - [x] Portal snapshot, matching, refresh and scheduling
 - [x] Adapter collection and retrieval migration
 - [x] Incremental catalog assembly, retention and publication
-- [ ] Corpus conversion, fidelity audit, full tests and live retrieval
+- [x] Corpus conversion, fidelity audit, full tests and live retrieval
 
 ## Execution ledger
 
@@ -28,10 +28,12 @@ Verification completed before cutover:
 - Wheel and source distribution built; isolated plain installation loaded all 85 legacy retrieval entry points without harvest-only dependencies.
 - Bundled upstream SHACL diagnostics ran on four representative datasets. Missing descriptions, scheme titles/labels and service endpoints remain diagnostic; globally shared adapter services deliberately keep deployment endpoints in retrieval bindings.
 
-Final review: a fresh read-only reviewer found three Important issues. Regression tests first reproduced all three, then passed after fixing singleton generic-endpoint matching, structural references after SCB filtering, and preservation of nested portal category/licence attributes. Full-suite verification and candidate acceptance remain pending below.
+Final review: a fresh read-only reviewer found three Important issues. Regression tests first reproduced all three, then passed after fixing singleton generic-endpoint matching, structural references after SCB filtering, and preservation of nested portal category/licence attributes. The final full suite passed all 979 tests; candidate integrity passed. The additional unchanged-input reuse run was skipped at the user's explicit request.
 
 Corpus verification additionally exposed circular conflict evidence during codelist merging. Conflict snapshots now remain JSON-compatible and retain successive assertions, including distinctions between `False` and `0`. Inspection of 1,956 native codelist records found 64 language-version sequence differences; `ni:categoryOrder` now records these explicitly. Both defects have regression tests that failed before the fixes.
 
 User matching refinement: keep every unmatched harvested dataset. Native comparison keys normalize URL encoding, lowercase, and strip whitespace/punctuation while stored identifiers remain unchanged. The matching investigation recovered provider-scoped native IDs from configured PxWeb API URLs, resolving CSN default-port/framework-case and Domstolsverket protocol differences. Normalization collisions remain ambiguous; titles and shared endpoints cannot establish identity.
 
-Post-assembly preservation audit: all 23,900 source contributions reconstruct exactly from 18,502 accepted datasets across twelve adapters. The durable [audit ledger](statdcat-audit/README.md) pins original Git state, source and output hashes, per-attribute destinations and every old-to-new identity. Full archive construction, unchanged-input verification and coordinated cutover remain pending.
+Post-assembly preservation audit: all 23,900 source contributions reconstruct exactly from 18,502 accepted datasets across twelve adapters. The durable [audit ledger](statdcat-audit/README.md) pins original Git state, source and output hashes, per-attribute destinations and every old-to-new identity. Both archives passed the existing 100 MiB size gate. The additional unchanged-input reuse run was skipped at the user's explicit request. Accepted collections, models, schemas, documentation and catalog state have cut over in this branch.
+
+Final [verification evidence](statdcat-audit/verification.json) distinguishes the 979-test automated suite, five live retrieval comparisons from saved accepted distributions, full source-preservation audit, package installation, and diagnostic upstream validation. Portal network verification covered two pages; the complete repository snapshot was validated offline. Existing provider harvest failures remain visible in catalog reports and do not indicate a migration assembly error.

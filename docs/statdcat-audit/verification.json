@@ -1,0 +1,476 @@
+{
+  "verified_at": "2026-10-10T01:10:13.101271+00:00",
+  "tests": {
+    "command": "uv run python -m pytest -q",
+    "passed": 979,
+    "warnings": [
+      "rdflib ConjunctiveGraph deprecation"
+    ],
+    "kind": "automated suite"
+  },
+  "lint": {
+    "command": "uv run ruff check .",
+    "status": "passed"
+  },
+  "source_preservation": {
+    "pxweb_v1": {
+      "datasets": 5999,
+      "verified_contributions": 7379,
+      "round_trip": "exact"
+    },
+    "pxweb_v2": {
+      "datasets": 5278,
+      "verified_contributions": 8620,
+      "round_trip": "exact"
+    },
+    "dataanalys": {
+      "datasets": 94,
+      "verified_contributions": 94,
+      "round_trip": "exact"
+    },
+    "entrysoft": {
+      "datasets": 442,
+      "verified_contributions": 442,
+      "round_trip": "exact"
+    },
+    "forsakringskassan": {
+      "datasets": 182,
+      "verified_contributions": 182,
+      "round_trip": "exact"
+    },
+    "kolada": {
+      "datasets": 5845,
+      "verified_contributions": 6516,
+      "round_trip": "exact"
+    },
+    "riksbank": {
+      "datasets": 42,
+      "verified_contributions": 42,
+      "round_trip": "exact"
+    },
+    "sdb": {
+      "datasets": 15,
+      "verified_contributions": 20,
+      "round_trip": "exact"
+    },
+    "smhi_emissions": {
+      "datasets": 29,
+      "verified_contributions": 29,
+      "round_trip": "exact"
+    },
+    "tillvaxtverket": {
+      "datasets": 6,
+      "verified_contributions": 6,
+      "round_trip": "exact"
+    },
+    "trafa": {
+      "datasets": 457,
+      "verified_contributions": 457,
+      "round_trip": "exact"
+    },
+    "uka": {
+      "datasets": 113,
+      "verified_contributions": 113,
+      "round_trip": "exact"
+    }
+  },
+  "catalog": {
+    "counts": {
+      "ambiguous": 0,
+      "codelists": 72568,
+      "datasets": 18502,
+      "distributions": 34379,
+      "filtered": 7130,
+      "matched": 13001,
+      "quality_findings": 14197,
+      "unmatched": 5501
+    },
+    "errors": [],
+    "stages": {
+      "content_enrichment": "completed",
+      "semantic_enrichment": "source_mapping",
+      "validation": "integrity_gated_descriptive_findings"
+    }
+  },
+  "archives": {
+    "catalog.7z": {
+      "sha256": "9c2b95201479e6ad4f31b672b1f668576e61a7c0c7db6df1a978c7795c7703e2",
+      "bytes": 39260431
+    },
+    "codelists.7z": {
+      "sha256": "9fb0f0e3d860ed41f663df5e8c9b5ab824e082276bd6bd017c7295fe29da90e2",
+      "bytes": 28597038
+    }
+  },
+  "unchanged_inputs": {
+    "status": "skipped",
+    "reason": "Explicit user instruction; no reuse build was run"
+  },
+  "live_retrieval": {
+    "kind": "live",
+    "started_at": "2026-10-10T00:23:55.271819+00:00",
+    "checks": [
+      {
+        "adapter": "pxweb_v2",
+        "scope": null,
+        "status": "passed",
+        "dataset": "urn:nordicintel:dataset:scb:TAB1",
+        "requests": 1,
+        "size": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "observation_values": 1
+      },
+      {
+        "adapter": "pxweb_v1",
+        "scope": null,
+        "status": "passed",
+        "dataset": "urn:nordicintel:dataset:csn:ABAKD11.px",
+        "requests": 1,
+        "size": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "observation_values": 1
+      },
+      {
+        "adapter": "kolada",
+        "scope": "municipality",
+        "status": "passed",
+        "dataset": "urn:nordicintel:dataset:rka:kolada:N00003",
+        "requests": 1,
+        "size": [
+          1,
+          1
+        ],
+        "observation_values": 1
+      },
+      {
+        "adapter": "kolada",
+        "scope": "ou",
+        "status": "passed",
+        "dataset": "urn:nordicintel:dataset:rka:kolada:N11010",
+        "requests": 1,
+        "size": [
+          1,
+          1
+        ],
+        "observation_values": 1
+      },
+      {
+        "adapter": "entrysoft",
+        "scope": null,
+        "status": "passed",
+        "dataset": "urn:nordicintel:dataset:ale:rowstore:4d8e086d-0fd9-4732-9d3e-a3c6973a4834",
+        "requests": 1,
+        "size": [
+          1,
+          1
+        ],
+        "observation_values": 1
+      }
+    ]
+  },
+  "upstream_diagnostic": {
+    "purpose": "diagnostic_only",
+    "shapes": "src\\metadata_harvest\\schemas\\statdcatap-3.0.0-diagnostic.ttl",
+    "checks": [
+      {
+        "dataset": "urn:nordicintel:dataset:scb:TAB1000",
+        "conforms": false,
+        "finding_count": 12,
+        "paths": {
+          "http://www.w3.org/ns/dcat#endpointURL": 1,
+          "http://purl.org/dc/terms/description": 2,
+          "http://www.w3.org/ns/dcat#accessURL": 1,
+          "http://www.w3.org/2004/02/skos/core#prefLabel": 2,
+          "http://purl.org/dc/terms/title": 6
+        },
+        "examples": [
+          {
+            "focus": "urn:nordicintel:service:pxweb_v2",
+            "path": "http://www.w3.org/ns/dcat#endpointURL",
+            "message": "Less than 1 values on <urn:nordicintel:service:pxweb_v2>->dcat:endpointURL",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:dataset:scb:TAB1000",
+            "path": "http://purl.org/dc/terms/description",
+            "message": "Less than 1 values on <urn:nordicintel:dataset:scb:TAB1000>->dc:description",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:catalog:scb:pxweb_v2:statistics",
+            "path": "http://purl.org/dc/terms/description",
+            "message": "Less than 1 values on <urn:nordicintel:catalog:scb:pxweb_v2:statistics>->dc:description",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:distribution:scb:pxweb_v2:TAB1000:sv",
+            "path": "http://www.w3.org/ns/dcat#accessURL",
+            "message": "Value does not have class rdfs:Resource",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "N672102f554aa47ae8a003a0d6d7d507f",
+            "path": "http://www.w3.org/2004/02/skos/core#prefLabel",
+            "message": "Less than 1 values on [ ni:additionalAttributes Literal(\"{\"pxweb_v2\":{}}\", datatype=rdf:JSON) ; rdf:type skos:Concept ; skos:notation Literal(\"UF\") ]->skos:prefLabel",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "Nb33c2371a1dd4aa784fadf66f9249ebe",
+            "path": "http://www.w3.org/2004/02/skos/core#prefLabel",
+            "message": "Less than 1 values on [ ni:additionalAttributes Literal(\"{\"pxweb_v2\":{}}\", datatype=rdf:JSON) ; rdf:type skos:Concept ; skos:notation Literal(\"UF\") ]->skos:prefLabel",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Stodundervisning",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Stodundervisning>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Modersmal",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Modersmal>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Tid",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Tid>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Kon",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:Kon>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:ContentsCode",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:ContentsCode>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:ArsKurs",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:scb:pxweb_v2:TAB1000:ArsKurs>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          }
+        ]
+      },
+      {
+        "dataset": "urn:nordicintel:dataset:csn:ABAKD11.px",
+        "conforms": false,
+        "finding_count": 10,
+        "paths": {
+          "http://www.w3.org/ns/dcat#endpointURL": 1,
+          "http://purl.org/dc/terms/description": 2,
+          "http://www.w3.org/ns/dcat#landingPage": 1,
+          "http://www.w3.org/ns/dcat#accessURL": 1,
+          "http://purl.org/dc/terms/title": 5
+        },
+        "examples": [
+          {
+            "focus": "urn:nordicintel:service:pxweb_v1",
+            "path": "http://www.w3.org/ns/dcat#endpointURL",
+            "message": "Less than 1 values on <urn:nordicintel:service:pxweb_v1>->dcat:endpointURL",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:dataset:csn:ABAKD11.px",
+            "path": "http://purl.org/dc/terms/description",
+            "message": "Less than 1 values on <urn:nordicintel:dataset:csn:ABAKD11.px>->dc:description",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:dataset:csn:ABAKD11.px",
+            "path": "http://www.w3.org/ns/dcat#landingPage",
+            "message": "Value does not have class foaf:Document",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:catalog:csn:pxweb_v1:statistics:CSNstat",
+            "path": "http://purl.org/dc/terms/description",
+            "message": "Less than 1 values on <urn:nordicintel:catalog:csn:pxweb_v1:statistics:CSNstat>->dc:description",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:distribution:csn:pxweb_v1:ABAKD11.px:sv",
+            "path": "http://www.w3.org/ns/dcat#accessURL",
+            "message": "Value does not have class rdfs:Resource",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:Antal%20personer%2C%20Ing%C3%A5ende%20skuld",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:Antal%20personer%2C%20Ing%C3%A5ende%20skuld>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:K%C3%B6n",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:K%C3%B6n>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:%C3%85ldersintervall",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:%C3%85ldersintervall>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:Skuldintervall",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:Skuldintervall>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:Skuldber%C3%A4kningsdatum",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:csn:pxweb_v1:ABAKD11.px:Skuldber%C3%A4kningsdatum>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          }
+        ]
+      },
+      {
+        "dataset": "urn:nordicintel:dataset:rka:kolada:N00003",
+        "conforms": false,
+        "finding_count": 7,
+        "paths": {
+          "http://www.w3.org/ns/dcat#endpointURL": 1,
+          "http://xmlns.com/foaf/0.1/page": 2,
+          "http://purl.org/dc/terms/description": 1,
+          "http://www.w3.org/ns/dcat#accessURL": 1,
+          "http://purl.org/dc/terms/title": 2
+        },
+        "examples": [
+          {
+            "focus": "urn:nordicintel:service:kolada",
+            "path": "http://www.w3.org/ns/dcat#endpointURL",
+            "message": "Less than 1 values on <urn:nordicintel:service:kolada>->dcat:endpointURL",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:dataset:rka:kolada:N00003",
+            "path": "http://xmlns.com/foaf/0.1/page",
+            "message": "Value does not have class foaf:Document",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:catalog:rka:kolada:statistics",
+            "path": "http://purl.org/dc/terms/description",
+            "message": "Less than 1 values on <urn:nordicintel:catalog:rka:kolada:statistics>->dc:description",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:distribution:kolada:kolada:municipality%2FN00003:sv",
+            "path": "http://www.w3.org/ns/dcat#accessURL",
+            "message": "Value does not have class rdfs:Resource",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:distribution:kolada:kolada:municipality%2FN00003:sv",
+            "path": "http://xmlns.com/foaf/0.1/page",
+            "message": "Value does not have class foaf:Document",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:kolada:kolada:municipality%2FN00003:municipality",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:kolada:kolada:municipality%2FN00003:municipality>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:kolada:kolada:municipality%2FN00003:year",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:kolada:kolada:municipality%2FN00003:year>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          }
+        ]
+      },
+      {
+        "dataset": "urn:nordicintel:dataset:ale:rowstore:4d8e086d-0fd9-4732-9d3e-a3c6973a4834",
+        "conforms": false,
+        "finding_count": 7,
+        "paths": {
+          "http://www.w3.org/ns/dcat#endpointURL": 1,
+          "http://xmlns.com/foaf/0.1/page": 2,
+          "http://purl.org/dc/terms/description": 1,
+          "http://www.w3.org/ns/dcat#accessURL": 1,
+          "http://purl.org/dc/terms/title": 2
+        },
+        "examples": [
+          {
+            "focus": "urn:nordicintel:service:entrysoft",
+            "path": "http://www.w3.org/ns/dcat#endpointURL",
+            "message": "Less than 1 values on <urn:nordicintel:service:entrysoft>->dcat:endpointURL",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:dataset:ale:rowstore:4d8e086d-0fd9-4732-9d3e-a3c6973a4834",
+            "path": "http://xmlns.com/foaf/0.1/page",
+            "message": "Value does not have class foaf:Document",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:catalog:ale:entrysoft:open-data",
+            "path": "http://purl.org/dc/terms/description",
+            "message": "Less than 1 values on <urn:nordicintel:catalog:ale:entrysoft:open-data>->dc:description",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:distribution:ale:entrysoft:4d8e086d-0fd9-4732-9d3e-a3c6973a4834:sv",
+            "path": "http://www.w3.org/ns/dcat#accessURL",
+            "message": "Value does not have class rdfs:Resource",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:distribution:ale:entrysoft:4d8e086d-0fd9-4732-9d3e-a3c6973a4834:sv",
+            "path": "http://xmlns.com/foaf/0.1/page",
+            "message": "Value does not have class foaf:Document",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:ale:entrysoft:4d8e086d-0fd9-4732-9d3e-a3c6973a4834:measure",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:ale:entrysoft:4d8e086d-0fd9-4732-9d3e-a3c6973a4834:measure>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          },
+          {
+            "focus": "urn:nordicintel:codelist:ale:entrysoft:4d8e086d-0fd9-4732-9d3e-a3c6973a4834:typ",
+            "path": "http://purl.org/dc/terms/title",
+            "message": "Less than 1 values on <urn:nordicintel:codelist:ale:entrysoft:4d8e086d-0fd9-4732-9d3e-a3c6973a4834:typ>->dc:title",
+            "severity": "http://www.w3.org/ns/shacl#Violation"
+          }
+        ]
+      }
+    ]
+  },
+  "portal_live_check": {
+    "scope": "search and second scroll page, not a complete refresh",
+    "reported_records": 23391,
+    "catalog": "oppnadata",
+    "status": "passed"
+  },
+  "distribution_install": {
+    "wheel": "passed",
+    "sdist": "passed",
+    "legacy_entry_points": 85,
+    "new_model_imports": "passed"
+  },
+  "recovery": {
+    "collections": 82,
+    "all_blob_identifiers_present": true,
+    "source": "Exact staged collections committed with this catalog state",
+    "additional_build": "not run"
+  }
+}
