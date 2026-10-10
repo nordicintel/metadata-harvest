@@ -2,78 +2,204 @@
 
 import asyncio
 import json
+from datetime import date
 
+import httpx
 import pytest
 
-from apps.harvest.metadata_adapters.kolada.metadata import build_dataset
-from apps.harvest.metadata_adapters.kolada.state import load_documents, load_state
+from apps.harvest.metadata_adapters.kolada import coverage as cov
+from apps.harvest.metadata_adapters.kolada.client import BudgetExpired, KoladaClient
+from apps.harvest.metadata_adapters.kolada.metadata import (
+    build_dataset,
+    updated_for,
+    years_for,
+)
+from apps.harvest.metadata_adapters.kolada.state import (
+    load_documents,
+    load_state,
+    normalize,
+)
 from apps.harvest.validation import validate_metadata
 from tests.support.kolada_fixture import initial_state as import_seed
 
 
-def test_change_probe_path_pagination_and_transient_splitting():
-    import httpx
+def cell(kpi, period, entity, gender="T", deleted=False):
+    return {
+        "kpi": kpi,
+        "period": period,
+        "entity": entity,
+        "gender": gender,
+        "deleted": deleted,
+    }
 
-    from apps.harvest.metadata_adapters.kolada.client import KoladaClient
 
+def run_client(handler, coroutine):
+    async def check():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http:
+            return await coroutine(KoladaClient({"rate_limit": 0}, http=http))
+
+    return asyncio.run(check())
+
+
+def test_change_scan_batches_windows_and_flattens_cells():
     calls = []
 
     def handler(request):
         calls.append(str(request.url))
-        path = request.url.path
-        if "N1,N2" in path:
-            return httpx.Response(504)
         rows = (
-            [{"kpi": "N1", "period": 2025, "ou": "O1", "values": []}]
-            if "/N1/" in path
+            [
+                {
+                    "kpi": "N1",
+                    "period": 2025,
+                    "municipality": "0180",
+                    "values": [
+                        {"gender": "T", "value": 1.0, "isdeleted": False},
+                        {"gender": "K", "value": None, "isdeleted": True},
+                    ],
+                }
+            ]
+            if "/data/municipality/0000," in request.url.path
             else []
         )
         return httpx.Response(200, json={"values": rows, "next_url": None})
 
-    async def check():
-        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http:
-            client = KoladaClient({"rate_limit": 0}, http=http)
-            assert await client.changed("ou", ["N1", "N2"], [2025], "2026-01-01") == {
-                "N1"
-            }
-
-    asyncio.run(check())
-    assert any("oudata/kpi/N1/year/2025" in c for c in calls)
-    assert all("from_date=2026-01-01" in c for c in calls)
-
-
-def test_coverage_keeps_suppression_but_not_deleted_rows():
-    import httpx
-
-    from apps.harvest.metadata_adapters.kolada.client import KoladaClient
-
-    rows = [
-        {
-            "kpi": "N1",
-            "period": 2025,
-            "ou": "O1",
-            "values": [
-                {"gender": "K", "value": None, "status": "Privacy", "isdeleted": False}
-            ],
-        },
-        {
-            "kpi": "N1",
-            "period": 2024,
-            "ou": "O2",
-            "values": [{"gender": "T", "value": 1, "isdeleted": True}],
-        },
+    ids = [f"{i:04d}" for i in range(30)]
+    records = run_client(
+        handler,
+        lambda c: c.changed_records("municipality", ids, [2024, 2025], "2026-10-01"),
+    )
+    assert records == [
+        cell("N1", 2025, "0180"),
+        cell("N1", 2025, "0180", "K", deleted=True),
     ]
+    assert len(calls) == 2  # 30 ids -> two batches, two years -> one window
+    assert all("from_date=2026-10-01" in c and "per_page=5000" in c for c in calls)
+    assert any("/data/municipality/0000," in c for c in calls)
 
-    async def check():
-        async with httpx.AsyncClient(
-            transport=httpx.MockTransport(
-                lambda r: httpx.Response(200, json={"values": rows, "next_url": None})
-            )
-        ) as http:
-            client = KoladaClient({"rate_limit": 0}, http=http)
-            return await client.coverage("ou", "N1", [2024, 2025], {})
 
-    assert asyncio.run(check()) == {"years": [2025], "genders": ["K"], "ou_ids": ["O1"]}
+def test_change_scan_fails_as_a_whole_when_one_window_fails():
+    def handler(request):
+        if "N2" in request.url.path:
+            return httpx.Response(504)
+        return httpx.Response(200, json={"values": [], "next_url": None})
+
+    with pytest.raises(ValueError, match="change windows failed"):
+        run_client(
+            handler,
+            lambda c: c.changed_records(
+                "ou", ["N1"] + [f"N2{i}" for i in range(25)], [2025], "2026-10-01"
+            ),
+        )
+
+
+def test_single_kpi_rescan_follows_pagination_and_checks_scope():
+    pages = {
+        1: {
+            "values": [
+                {"kpi": "N1", "period": 2024, "ou": "O1", "values": [{"gender": "T"}]}
+            ],
+            "next_url": "x",
+        },
+        2: {
+            "values": [
+                {"kpi": "N1", "period": 2025, "ou": "O2", "values": [{"gender": "M"}]}
+            ],
+            "next_url": None,
+        },
+    }
+
+    def handler(request):
+        assert request.url.path.endswith("/oudata/kpi/N1/year/2024,2025")
+        return httpx.Response(200, json=pages[int(request.url.params["page"])])
+
+    records = run_client(handler, lambda c: c.scope_records("ou", "N1", [2024, 2025]))
+    assert records == [cell("N1", 2024, "O1"), cell("N1", 2025, "O2", "M")]
+
+    def wrong(request):
+        return httpx.Response(
+            200,
+            json={
+                "values": [
+                    {
+                        "kpi": "N9",
+                        "period": 2024,
+                        "ou": "O1",
+                        "values": [{"gender": "T"}],
+                    }
+                ],
+                "next_url": None,
+            },
+        )
+
+    with pytest.raises(ValueError, match="outside requested"):
+        run_client(wrong, lambda c: c.scope_records("ou", "N1", [2024]))
+
+
+def test_coverage_merge_keeps_suppressed_cells_skips_deleted_and_filters():
+    inventory = {"0180", "G1"}
+    records = [
+        cell("N1", 2025, "0180", "K"),
+        cell("N1", 2024, "0180", "T", deleted=True),
+        cell("N1", 2026, "G1"),
+        cell("N1", 2026, "G999"),  # derivable comparison group, not inventoried
+    ]
+    assert cov.rebuild("municipality", records, entities=inventory) == {
+        "years": [2025, 2026],
+        "genders": ["K", "T"],
+        "municipality_ids": ["0180"],
+        "municipality_group_ids": ["G1"],
+    }
+    merged = cov.merge(
+        "ou",
+        {"years": [2023], "genders": ["T"], "ou_ids": ["O1"]},
+        [cell("N1", 2025, "O2", "M")],
+    )
+    assert merged == {
+        "years": [2023, 2025],
+        "genders": ["M", "T"],
+        "ou_ids": ["O1", "O2"],
+    }
+
+
+def test_years_follow_scope_rules():
+    assert years_for("municipality", date(2026, 10, 10))[-1] == 2028
+    assert years_for("municipality", date(2026, 10, 10))[0] == 1970
+    assert years_for("ou", date(2026, 10, 10)) == list(range(2003, 2027))
+
+
+def test_updated_date_rules():
+    today = date(2026, 10, 10)
+    assert updated_for({"publication_date": "2027-08-28"}, 2025, today) == "2026-08-28"
+    assert updated_for({"publication_date": "2026-03-01"}, 2025, today) == "2026-03-01"
+    assert updated_for({"publication_date": "2028-02-29"}, 2025, today) == "2027-02-28"
+    assert updated_for({"publication_date": None}, 2025, today, "2026-05-05") == (
+        "2026-05-05"
+    )
+    assert updated_for({}, 2024, today) == "2025-01-01"
+    assert updated_for({}, 2026, today) == "2026-10-10"
+    assert updated_for({}, None, today) == "2026-10-10"
+
+
+def test_normalize_reduces_legacy_state():
+    legacy = {
+        "kpis": {},
+        "references": {},
+        "pending": {"ou/N1": "data", "municipality/N1": "metadata"},
+        "scopes": {
+            "ou/N1": {
+                "coverage": {"years": [2025]},
+                "periods": [2025],
+                "checked_at": "2026-10-10T10:50:09+00:00",
+                "coverage_at": "2026-10-03T04:00:00+00:00",
+                "modified": "2026-01-01",
+            }
+        },
+    }
+    state = normalize(legacy)
+    assert state["refreshed"] == "2026-10-03"
+    assert state["scopes"] == {"ou/N1": {"coverage": {"years": [2025]}, "empty": False}}
+    assert state["pending"] == {"ou/N1": "rescan", "municipality/N1": "rebuild"}
+    assert normalize({})["refreshed"] is None
 
 
 @pytest.fixture
@@ -87,27 +213,16 @@ def seed_source(tmp_path):
                 "title": "Test",
                 "description": "Källa: SCB.",
                 "has_ou_data": True,
-                "modified": "2026-01-02",
-                "modified_source": "https://api.kolada.se/v3/data/",
-                "modified_checked_at": "2026-10-09T04:00:00Z",
-                "modified_evidence": json.dumps({"periods": list(range(1970, 2032))}),
-                "data_eu_modified": "2099-01-01",
                 "title_en": "Portal title",
             }
         ],
-        "municipality.json": [{"id": "0180", "title": "Stockholm"}],
         "ou.json": [{"id": "O1", "title": "Unit", "municipality": "0180"}],
         "kpi_groups.json": [],
         "municipality_groups.json": [],
-        "report.json": {
-            "snapshot_started_at": "2026-10-09T05:00:00Z",
-            "scrape_state": [{"last_full_scrape_completed_at": "2026-10-08T16:00:00Z"}],
-        },
     }
     for name, value in files.items():
         (source / name).write_text(json.dumps(value), encoding="utf-8")
     coverage = {
-        "kpi": "N1",
         "years": [2025],
         "genders": ["T"],
         "municipality_ids": ["0180"],
@@ -115,9 +230,7 @@ def seed_source(tmp_path):
     }
     (source / "municipality_coverage.jsonl").write_text(json.dumps(coverage) + "\n")
     (source / "ou_coverage.jsonl").write_text(
-        json.dumps(
-            {"kpi": "N1", "years": [2025], "genders": ["M", "K", "T"], "ou_ids": ["O1"]}
-        )
+        json.dumps({"years": [2025], "genders": ["M", "K", "T"], "ou_ids": ["O1"]})
         + "\n"
     )
     return source
@@ -136,11 +249,8 @@ def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeyp
     assert docs["municipality/N1"]["updated"] == "2026-01-02"
     assert docs["ou/N1"]["value"] == []
     assert "geo" not in docs["ou/N1"]["role"]
-    assert "data_eu" not in json.dumps(docs)
     assert "Portal title" not in json.dumps(docs)
-    saved = load_state(target)["scopes"]["municipality/N1"]
-    assert saved["checked_at"] == "2026-10-09T04:00:00Z"
-    assert saved["coverage_at"] == "2026-10-08T16:00:00Z"
+    assert load_state(target)["refreshed"] == "2026-10-08"
     before = (target / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
     import_seed(seed_source, target)
     assert (
@@ -154,25 +264,28 @@ def test_sample_mapping_preserves_suppressed_gender_and_group(seed_source, tmp_p
     for document in load_documents(target).values():
         validate_metadata(document, adapter="kolada")
     state = load_state(target)
-    cov = {
+    coverage = {
         "years": [2025],
         "genders": ["T"],
         "municipality_ids": ["0180"],
-        "municipality_group_ids": ["G1"],
+        "municipality_group_ids": ["G2328"],
     }
     refs = state["references"]
-    refs["municipality_groups"]["G1"] = {"id": "G1", "title": "Group", "members": []}
-    doc = build_dataset(state["kpis"]["N1"], "municipality", cov, refs)
-    assert doc["dimension"]["municipality"]["category"]["index"] == {"0180": 0, "G1": 1}
+    refs["municipality_groups"]["G2328"] = {"id": "G2328", "title": "G", "members": []}
+    doc = build_dataset(
+        state["kpis"]["N1"], "municipality", coverage, refs, updated="2026-01-02"
+    )
+    assert doc["dimension"]["municipality"]["category"]["index"] == {
+        "0180": 0,
+        "G2328": 1,
+    }
+    assert doc["dimension"]["municipality"]["category"]["label"]["0180"] == "Stockholm"
+    assert "gender" not in doc["dimension"]
     validate_metadata(doc, adapter="kolada")
 
 
 def test_request_budget_includes_waits_and_does_not_retry():
     from time import monotonic
-
-    import httpx
-
-    from apps.harvest.metadata_adapters.kolada.client import BudgetExpired, KoladaClient
 
     calls = []
 
@@ -181,12 +294,10 @@ def test_request_budget_includes_waits_and_does_not_retry():
         await asyncio.sleep(1)
         return httpx.Response(200, json={"values": []})
 
-    async def check():
-        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http:
-            client = KoladaClient({"rate_limit": 0}, http=http)
-            client.deadline = monotonic() + 0.01
-            with pytest.raises(BudgetExpired):
-                await client.listing("kpi")
+    async def check(client):
+        client.deadline = monotonic() + 0.01
+        with pytest.raises(BudgetExpired):
+            await client.listing("kpi")
 
-    asyncio.run(check())
+    run_client(handler, check)
     assert len(calls) == 1

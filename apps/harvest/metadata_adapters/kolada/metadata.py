@@ -4,12 +4,53 @@ import hashlib
 import json
 import logging
 import re
+from datetime import date
+from pathlib import Path
 
 logger = logging.getLogger("kolada_logger")
 
 BASE_URL = "https://api.kolada.se/v3"
 SCOPES = {"municipality": "data", "ou": "oudata"}
 GENDERS = {"m": "Män", "k": "Kvinnor", "t": "Totalt"}
+MUNICIPALITIES = Path("schemas/kolada_municipalities.json")
+FIRST_YEAR = {"municipality": 1970, "ou": 2003}
+
+
+def years_for(scope: str, today: date) -> list[int]:
+    """Municipality KPIs carry two forecast years; OU values are never future."""
+    last = today.year + (2 if scope == "municipality" else 0)
+    return list(range(FIRST_YEAR[scope], last + 1))
+
+
+def load_municipalities(path: Path = MUNICIPALITIES) -> dict:
+    """Static inventory of municipalities, regions and the useful groups."""
+    with open(path, encoding="utf-8") as stream:
+        rows = json.load(stream)
+    return {code: {"id": code, **row} for code, row in rows.items()}
+
+
+def updated_for(
+    kpi: dict, last_year: int | None, today: date, portal_modified: str | None = None
+) -> str:
+    """Last-change date without probing the source.
+
+    A future publication date names the next release, so the previous one was a
+    year earlier. Otherwise the portal's modified date, then the first day after
+    the last covered year, never a future date.
+    """
+    published = kpi.get("publication_date")
+    if published:
+        day = date.fromisoformat(published[:10])
+        if day > today:
+            try:
+                day = day.replace(year=day.year - 1)
+            except ValueError:  # 29 February
+                day = day.replace(year=day.year - 1, day=28)
+        return day.isoformat()
+    if portal_modified:
+        return portal_modified[:10]
+    day = date(last_year + 1, 1, 1) if last_year is not None else today
+    return min(day, today).isoformat()
 
 
 def reference_rows(rows: list[dict]) -> dict:
@@ -77,7 +118,7 @@ def build_dataset(
     coverage: dict,
     references: dict,
     *,
-    modified: str | None = None,
+    updated: str,
 ) -> dict:
     """Map current coverage; caller validates newly fetched replacements."""
     context = context_for(kpi, scope, coverage, references)
@@ -158,8 +199,7 @@ def build_dataset(
     }
     if scope == "municipality":
         result["role"]["geo"] = [scope]
-    if modified:
-        result["updated"] = modified[:10]
+    result["updated"] = updated[:10]
     source = re.search(r"[Kk]äll(?:a|or)\s*:?\s*(.+)", kpi.get("description") or "")
     if source:
         result["source"] = source[1].split(". ")[0].rstrip(".")
@@ -167,27 +207,21 @@ def build_dataset(
 
 
 async def fetch_metadata(record: dict, *, client) -> dict | None:
-    """Fetch current coverage for one KPI scope; never persist observation values."""
-    logger.debug(
-        "Fetching metadata for %s/%s (%d years)",
-        record["scope"],
-        record["kpi"]["id"],
-        len(record["years"]),
-    )
-    coverage = await client.coverage(
-        record["scope"], record["kpi"]["id"], record["years"], record["references"]
+    """Rescan one KPI scope and map its current coverage; values are discarded."""
+    from apps.harvest.metadata_adapters.kolada.coverage import rebuild
+
+    scope, kpi, today = record["scope"], record["kpi"], record["today"]
+    records = await client.scope_records(scope, kpi["id"], years_for(scope, today))
+    coverage = rebuild(
+        scope, records, entities=set(record["references"]["municipality"])
     )
     if not coverage["years"]:
-        logger.info(
-            "No data for %s/%s; no metadata produced",
-            record["scope"],
-            record["kpi"]["id"],
-        )
+        logger.info("No data for %s/%s; no metadata produced", scope, kpi["id"])
         return None
     return build_dataset(
-        record["kpi"],
-        record["scope"],
+        kpi,
+        scope,
         coverage,
         record["references"],
-        modified=record.get("modified"),
+        updated=updated_for(kpi, coverage["years"][-1], today),
     )

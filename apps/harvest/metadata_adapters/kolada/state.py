@@ -32,11 +32,32 @@ def load_documents(root: Path) -> dict:
     }
 
 
+EMPTY_STATE = {"kpis": {}, "references": {}, "scopes": {}, "pending": {}}
+TASKS = {"data": "rescan", "metadata": "rebuild"}
+
+
+def normalize(state: dict) -> dict:
+    """Reduce earlier per-scope probe markers to coverage plus a refresh date."""
+    state = {**EMPTY_STATE, **state}
+    stamps = []
+    for code, entry in list(state["scopes"].items()):
+        for key in ("checked_at", "data_checked_at", "coverage_at"):
+            if entry.get(key):
+                stamps.append(entry[key][:10])
+        state["scopes"][code] = {
+            "coverage": entry.get("coverage") or {},
+            "empty": bool(entry.get("empty")),
+        }
+    if "refreshed" not in state:
+        state["refreshed"] = min(stamps) if stamps else None
+    state["pending"] = {
+        code: TASKS.get(task, task) for code, task in state["pending"].items()
+    }
+    return state
+
+
 def load_state(root: Path) -> dict:
-    return next(
-        records(Path(root) / STATE),
-        {"kpis": {}, "references": {}, "scopes": {}, "pending": {}},
-    )
+    return normalize(next(records(Path(root) / STATE), {}))
 
 
 def save(

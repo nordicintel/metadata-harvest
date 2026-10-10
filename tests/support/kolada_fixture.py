@@ -2,7 +2,11 @@
 
 import json
 
-from apps.harvest.metadata_adapters.kolada.metadata import build_dataset, reference_rows
+from apps.harvest.metadata_adapters.kolada.metadata import (
+    build_dataset,
+    load_municipalities,
+    reference_rows,
+)
 from apps.harvest.metadata_adapters.kolada.state import load_documents, records, save
 
 
@@ -15,23 +19,23 @@ def initial_state(source, target):
         name: reference_rows(
             json.loads((source / f"{name}.json").read_text(encoding="utf-8"))
         )
-        for name in ("municipality", "ou", "municipality_groups", "kpi_groups")
+        for name in ("ou", "municipality_groups", "kpi_groups")
     }
-    state = {"kpis": {"N1": kpi}, "references": refs, "scopes": {}, "pending": {}}
+    refs["municipality"] = load_municipalities()
+    state = {
+        "kpis": {"N1": kpi},
+        "references": refs,
+        "scopes": {},
+        "pending": {},
+        "refreshed": "2026-10-08",
+    }
     documents = {}
     for scope in ("municipality", "ou"):
         coverage = next(records(source / f"{scope}_coverage.jsonl"))
         code = f"{scope}/N1"
-        entry = {
-            "coverage": coverage,
-            "modified": "2026-01-02" if scope == "municipality" else None,
-            "checked_at": "2026-10-09T04:00:00Z",
-            "coverage_at": "2026-10-08T16:00:00Z",
-            "periods": list(range(1970, 2032)),
-        }
-        state["scopes"][code] = entry
+        state["scopes"][code] = {"coverage": coverage, "empty": False}
         documents[code] = build_dataset(
-            kpi, scope, coverage, refs, modified=entry["modified"]
+            kpi, scope, coverage, refs, updated="2026-01-02"
         )
     save(target, state, documents)
     return {"seeded": 2}
