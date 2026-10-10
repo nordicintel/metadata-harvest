@@ -1,0 +1,593 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Harvest Control</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: operations console. Rail of workflows on the left, runs + live run on the right; stacks to one column on phones. */
+:root {
+  --bg: #f3f5f6; --panel: #ffffff; --panel-2: #e9edef; --line: #d3dadd; --fg: #17232a; --muted: #5d6d75;
+  --accent: #0b6f8a; --accent-ink: #ffffff; --ok: #1f8a4c; --warn: #b7791f; --bad: #c03a2b; --run: #2a6fd6;
+  --log-bg: #0f171b; --log-fg: #d5dde1; --log-dim: #76878f;
+  --font-ui: "IBM Plex Sans", system-ui, sans-serif; --font-display: "IBM Plex Sans Condensed", "IBM Plex Sans", sans-serif; --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #10171b; --panel: #171f24; --panel-2: #1f292f; --line: #2c383f; --fg: #e4eaed; --muted: #8e9ea6;
+  --accent: #46b4d2; --accent-ink: #0b1518; --ok: #4fc47d; --warn: #e0a640; --bad: #ef6a5c; --run: #6ea2f0;
+  --log-bg: #0a1013; --log-fg: #d5dde1; --log-dim: #6c7c84; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #10171b; --panel: #171f24; --panel-2: #1f292f; --line: #2c383f; --fg: #e4eaed; --muted: #8e9ea6;
+  --accent: #46b4d2; --accent-ink: #0b1518; --ok: #4fc47d; --warn: #e0a640; --bad: #ef6a5c; --run: #6ea2f0;
+  --log-bg: #0a1013; --log-fg: #d5dde1; --log-dim: #6c7c84; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-ui); font-size: 14px; line-height: 1.45; }
+.wrap { max-width: 1500px; margin-inline: auto; padding-inline: 16px; padding-block: 14px 32px; display: grid; gap: 14px; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; text-wrap: balance; }
+h1 { font-size: 22px; letter-spacing: .01em; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+a { color: var(--accent); }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 5px 10px; }
+button:hover { border-color: var(--accent); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+button.danger { color: var(--bad); }
+button:disabled { opacity: .5; cursor: default; }
+input[type=text], input[type=password], select { border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 5px 8px; min-width: 0; }
+
+/* Top bar */
+.top { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.top .repo { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.top .ctl { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 500; background: var(--panel-2); color: var(--muted); white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.ok { color: var(--ok); } .pill.bad { color: var(--bad); } .pill.warn { color: var(--warn); } .pill.run { color: var(--run); }
+.pill.run::before { animation: blink 1.2s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .pill.run::before { animation: none; } }
+.tokenbox { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.tokenbox input { width: 20ch; font-family: var(--font-mono); font-size: 12px; }
+.hint { font-size: 12px; color: var(--muted); }
+.hint code { font-family: var(--font-mono); font-size: 11px; }
+.btn-link { display: inline-block; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 5px 10px; text-decoration: none; color: var(--accent); font-weight: 500; white-space: nowrap; }
+.btn-link:hover { border-color: var(--accent); }
+.ok-text { color: var(--ok); } .warn-text { color: var(--warn); } .bad-text { color: var(--bad); }
+
+/* Brand, setup strip, collapsibles, modal */
+.brand { display: flex; gap: 10px; align-items: center; }
+.icon-btn { width: 34px; height: 34px; padding: 0; font-size: 17px; line-height: 1; display: inline-grid; place-items: center; }
+.icon-btn[aria-expanded="true"] { background: var(--panel-2); border-color: var(--accent); }
+.setup { display: grid; gap: 8px; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 8px; }
+.h2-btn { background: none; border: 0; padding: 0; display: inline-flex; align-items: center; gap: 6px; }
+.h2-btn::before { content: "\25BE"; color: var(--muted); font-size: 12px; width: 10px; transition: transform .15s; }
+.h2-btn[aria-expanded="false"]::before { transform: rotate(-90deg); }
+.panel.collapsed .panel-body { display: none; }
+.panel.collapsed header { margin-bottom: 0; }
+.modal { position: fixed; inset: 0; background: rgba(8, 14, 17, .55); display: grid; place-items: center; z-index: 10; padding: 16px; }
+.modal-card { background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 16px; width: min(100%, 460px); display: grid; gap: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+.modal-card h3 { font-size: 17px; }
+.modal-body { font-size: 13px; display: grid; gap: 6px; }
+.modal-body p { margin: 0; }
+.modal-body dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 0; }
+.modal-body dt { color: var(--muted); } .modal-body dd { margin: 0; font-family: var(--font-mono); font-size: 12px; overflow-wrap: anywhere; }
+.modal-body .warn-text { font-weight: 500; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 14px; align-items: start; }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+.col { display: grid; gap: 14px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+.panel header { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+
+/* Workflows */
+.wf { display: grid; gap: 6px; }
+.wf-item { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; display: grid; gap: 6px; }
+.wf-item.sel { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.wf-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.wf-name { font-weight: 600; cursor: pointer; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; background: none; border: 0; padding: 0; text-align: left; }
+.wf-file { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.wf-state { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.dispatch { display: grid; gap: 6px; padding-top: 6px; border-top: 1px dashed var(--line); }
+.dispatch label { display: grid; gap: 2px; font-size: 12px; }
+.dispatch label span { color: var(--muted); }
+.dispatch .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.dispatch .chk { display: flex; gap: 6px; align-items: center; }
+
+/* Runs table */
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; }
+tr.run-row { cursor: pointer; }
+tr.run-row:hover td { background: var(--panel-2); }
+tr.run-row.sel td { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+td.num { text-align: right; }
+.mono { font-family: var(--font-mono); font-size: 12px; }
+
+/* Live run */
+.live-head { display: grid; gap: 4px; }
+.live-title { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.live-title strong { font-family: var(--font-display); font-size: 18px; }
+.live-meta { font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
+.jobs { display: grid; gap: 8px; margin-top: 10px; }
+.job { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.job-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 10px; background: var(--panel-2); cursor: pointer; }
+.job-head b { font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.job.sel .job-head { box-shadow: inset 3px 0 0 var(--accent); }
+.steps { list-style: none; margin: 0; padding: 4px 0; font-size: 12px; }
+.steps li { display: grid; grid-template-columns: 14px 1fr auto; gap: 8px; align-items: center; padding: 2px 10px; }
+.steps li .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.steps li.success .dot { background: var(--ok); } .steps li.failure .dot { background: var(--bad); }
+.steps li.in_progress .dot { background: var(--run); animation: blink 1.2s infinite; } .steps li.skipped .dot { background: var(--muted); opacity: .4; }
+.steps li .t { color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 4px; background: var(--panel-2); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.bar i { display: block; height: 100%; background: var(--run); transition: width .4s; }
+.bar.done i { background: var(--ok); } .bar.bad i { background: var(--bad); }
+
+/* Harvest progress (from the monitor check-run) */
+.hp { margin-top: 10px; border: 1px solid var(--accent); border-radius: 6px; padding: 10px; display: grid; gap: 8px; }
+.hp-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.hp-head b { font-family: var(--font-display); font-size: 15px; flex: 1; }
+.hp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 8px; }
+.hp-stats div { display: grid; gap: 1px; }
+.hp-stats .k { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.hp-stats .v { font-family: var(--font-display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.hp-stats .v.ok { color: var(--ok); } .hp-stats .v.bad { color: var(--bad); }
+.hp .bar { margin-top: 0; }
+.hp-cur { white-space: normal; overflow-wrap: anywhere; }
+.hp .bad { color: var(--bad); }
+.hp-table td, .hp-table th { padding: 3px 6px; font-size: 12px; }
+.hp-table td.hint { max-width: 32ch; overflow: hidden; text-overflow: ellipsis; }
+
+/* Log window */
+.logbox { background: var(--log-bg); color: var(--log-fg); border-radius: 6px; border: 1px solid var(--line); margin-top: 10px; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.log-tools { display: flex; gap: 8px; align-items: center; padding: 6px 10px; border-bottom: 1px solid #243036; flex-wrap: wrap; font-size: 12px; color: var(--log-dim); }
+.log-tools input { background: #1a2429; border-color: #2c3a41; color: var(--log-fg); font-family: var(--font-mono); font-size: 12px; width: 18ch; }
+.log-tools label { display: flex; gap: 5px; align-items: center; }
+.log-tools .grow { flex: 1; }
+.log { font-family: var(--font-mono); font-size: 12px; line-height: 1.5; padding: 8px 10px; height: 420px; overflow: auto; white-space: pre; margin: 0; }
+.log .ts { color: var(--log-dim); }
+.log .err { color: #ff8a7a; } .log .warnl { color: #ffd37a; } .log .grp { color: #8fd3e8; font-weight: 500; }
+.log .ok { color: #8be0a4; }
+.empty { color: var(--muted); font-size: 13px; padding: 10px 0; }
+.toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 8px 14px; border-radius: 6px; font-size: 13px; z-index: 5; max-width: calc(100% - 32px); }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <button id="setupToggle" type="button" class="icon-btn" aria-expanded="true" aria-controls="setup" title="Show or hide connection settings">&#9881;</button>
+      <div>
+        <h1>Harvest Control</h1>
+        <div class="repo" id="repoLabel">nordicintel/metadata-harvest · main</div>
+      </div>
+    </div>
+    <div class="ctl">
+      <span class="pill" id="apiState">Connecting</span>
+      <span class="pill" id="rateState" title="GitHub API requests left this hour">rate —</span>
+      <button id="refreshBtn" type="button">Refresh</button>
+    </div>
+  </div>
+  <div id="setup" class="setup">
+    <div class="ctl">
+      <label class="hint"><input type="checkbox" id="autoRefresh" checked> auto-refresh</label>
+      <div class="tokenbox">
+        <input type="password" id="token" placeholder="GitHub token (actions:write)" autocomplete="off" aria-label="GitHub token">
+        <button id="saveToken" type="button">Save</button>
+        <button id="clearToken" type="button" hidden>Forget</button>
+        <a class="btn-link" id="newTokenLink" href="https://github.com/settings/personal-access-tokens/new?name=Harvest+Control&description=Start%2C+cancel+and+follow+metadata-harvest+workflows&target_name=nordicintel&expires_in=90&actions=write&metadata=read" target="_blank" rel="noopener">Create token ↗</a>
+      </div>
+    </div>
+    <div class="hint" id="tokenStatus" hidden></div>
+    <div class="hint" id="tokenHint">Reading runs works without a token (60 requests/hour). To start, cancel or re-run workflows, and to poll without hitting the limit, click <b>Create token</b>, which opens GitHub's fine-grained token page prefilled for this repo with <code>Actions: read and write</code>. Paste the token here once; it stays in this browser only.</div>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <section class="panel" id="wfPanel" data-collapsible="wf">
+        <header><button type="button" class="h2-btn" aria-expanded="true"><h2>Workflows</h2></button><span class="hint" id="wfCount"></span></header>
+        <div class="panel-body"><div class="wf" id="wfList"><div class="empty">Loading workflows…</div></div></div>
+      </section>
+    </div>
+    <div class="col">
+      <section class="panel" id="runsPanel" data-collapsible="runs">
+        <header>
+          <button type="button" class="h2-btn" aria-expanded="true"><h2>Recent runs</h2></button>
+          <div class="ctl">
+            <select id="runFilter" aria-label="Filter runs by workflow"><option value="">All workflows</option></select>
+            <span class="hint" id="runsNote"></span>
+          </div>
+        </header>
+        <div class="panel-body tbl-wrap">
+          <table id="runsTable">
+            <thead><tr><th>Status</th><th>Workflow</th><th>Started</th><th>Trigger</th><th>Branch</th><th class="num">Duration</th><th></th></tr></thead>
+            <tbody><tr><td colspan="7" class="empty">Loading runs…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="livePanel" data-collapsible="live">
+        <header><button type="button" class="h2-btn" aria-expanded="true"><h2>Live run</h2></button><div class="ctl" id="runActions"></div></header>
+        <div class="panel-body" id="liveBody"><div class="empty">Select a run above, or start a workflow, to follow its jobs, steps and log here.</div></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div id="confirm" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="modal-card">
+    <h3 id="confirmTitle">Confirm</h3>
+    <div id="confirmBody" class="modal-body"></div>
+    <div class="modal-actions"><button type="button" id="confirmNo">Cancel</button><button type="button" class="primary" id="confirmYes">Confirm</button></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+<script>
+(() => {
+  const OWNER = 'nordicintel', REPO = 'metadata-harvest', BRANCH = 'main';
+  const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
+  const $ = (s) => document.querySelector(s);
+
+  // ---------- state ----------
+  let token = '';
+  const KEY = 'gh_token';
+  const store = {
+    async get() {
+      try { const v = localStorage.getItem(KEY); if (v) return { v, via: 'localStorage' }; } catch (e) {}
+      try { const v = sessionStorage.getItem(KEY); if (v) return { v, via: 'sessionStorage' }; } catch (e) {}
+      try { const m = document.cookie.match(/(?:^|; )gh_token=([^;]*)/); if (m && m[1]) return { v: decodeURIComponent(m[1]), via: 'cookie' }; } catch (e) {}
+      try { const v = await idb('get'); if (v) return { v, via: 'IndexedDB' }; } catch (e) {}
+      return null;
+    },
+    async set(v) {
+      const ok = [];
+      try { localStorage.setItem(KEY, v); if (localStorage.getItem(KEY) === v) ok.push('localStorage'); } catch (e) {}
+      try { sessionStorage.setItem(KEY, v); } catch (e) {}
+      try { document.cookie = `gh_token=${encodeURIComponent(v)}; max-age=31536000; path=/; SameSite=Strict; Secure`; if (document.cookie.includes('gh_token=')) ok.push('cookie'); } catch (e) {}
+      try { await idb('set', v); if (await idb('get') === v) ok.push('IndexedDB'); } catch (e) {}
+      return ok;
+    },
+    async clear() {
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
+      try { document.cookie = 'gh_token=; max-age=0; path=/'; } catch (e) {}
+      try { await idb('del'); } catch (e) {}
+    },
+  };
+  function idb(op, val) {
+    return new Promise((res, rej) => {
+      const req = indexedDB.open('harvest-panel', 1);
+      req.onupgradeneeded = () => req.result.createObjectStore('kv');
+      req.onerror = () => rej(req.error);
+      req.onsuccess = () => {
+        const tx = req.result.transaction('kv', 'readwrite'); const os = tx.objectStore('kv');
+        const r = op === 'get' ? os.get(KEY) : op === 'set' ? os.put(val, KEY) : os.delete(KEY);
+        r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+      };
+    });
+  }
+  const st = { workflows: [], runs: [], selectedRun: null, selectedJob: null, jobs: [], checks: [], log: '', logJobId: null, dispatchOpen: null, inputs: {}, lastRunPoll: 0, follow: true, tokenVia: '' };
+  let timer = null, toastTimer = null;
+
+  // ---------- helpers ----------
+  const headers = () => { const h = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }; if (token) h.Authorization = 'Bearer ' + token; return h; };
+  async function gh(path, opts = {}) {
+    const r = await fetch(path.startsWith('http') ? path : API + path, { ...opts, headers: { ...headers(), ...(opts.headers || {}) } });
+    const rem = r.headers.get('X-RateLimit-Remaining'), lim = r.headers.get('X-RateLimit-Limit');
+    if (rem) { const el = $('#rateState'); el.textContent = `rate ${rem}/${lim}`; el.className = 'pill ' + (+rem < 10 ? 'bad' : +rem < 50 ? 'warn' : ''); }
+    if (!r.ok) { let msg = r.status + ' ' + r.statusText; try { const j = await r.json(); if (j.message) msg = j.message; } catch (e) {} const err = new Error(msg); err.status = r.status; throw err; }
+    if (r.status === 204) return null;
+    const ct = r.headers.get('content-type') || '';
+    return ct.includes('json') ? r.json() : r.text();
+  }
+  const toast = (msg) => { let t = $('.toast'); if (!t) { t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); } t.textContent = msg; clearTimeout(toastTimer); toastTimer = setTimeout(() => t.remove(), 4000); };
+  const fmtAgo = (iso) => { if (!iso) return '—'; const s = (Date.now() - new Date(iso)) / 1000; if (s < 60) return `${Math.round(s)}s ago`; if (s < 3600) return `${Math.round(s / 60)}m ago`; if (s < 86400) return `${Math.round(s / 3600)}h ago`; return `${Math.round(s / 86400)}d ago`; };
+  const fmtDur = (a, b) => { if (!a) return '—'; const s = Math.max(0, ((b ? new Date(b) : Date.now()) - new Date(a)) / 1000); const m = Math.floor(s / 60), r = Math.round(s % 60); return m ? `${m}m ${String(r).padStart(2, '0')}s` : `${r}s`; };
+  const fmtTime = (iso) => new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const stateOf = (r) => r.status === 'completed' ? (r.conclusion || 'completed') : r.status;
+  const pillClass = (s) => ({ success: 'ok', failure: 'bad', cancelled: 'warn', timed_out: 'bad', action_required: 'warn', in_progress: 'run', queued: 'run', pending: 'run', waiting: 'run', requested: 'run' }[s] || '');
+  const pill = (s) => `<span class="pill ${pillClass(s)}">${(s || '').replace(/_/g, ' ')}</span>`;
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const active = (r) => r && r.status !== 'completed';
+
+  // ---------- confirm dialog (confirm() is inert in this viewer) ----------
+  let confirmResolve = null;
+  function ask(title, bodyHtml, yesLabel = 'Confirm') {
+    return new Promise((resolve) => {
+      confirmResolve = resolve;
+      $('#confirmTitle').textContent = title; $('#confirmBody').innerHTML = bodyHtml; $('#confirmYes').textContent = yesLabel;
+      $('#confirm').hidden = false; $('#confirmYes').focus();
+    });
+  }
+  function closeConfirm(v) { $('#confirm').hidden = true; const r = confirmResolve; confirmResolve = null; if (r) r(v); }
+  $('#confirmYes').addEventListener('click', () => closeConfirm(true));
+  $('#confirmNo').addEventListener('click', () => closeConfirm(false));
+  $('#confirm').addEventListener('click', (e) => { if (e.target === $('#confirm')) closeConfirm(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#confirm').hidden) closeConfirm(false); });
+
+  // ---------- collapsible panels + setup strip ----------
+  const pref = { get(k) { try { return localStorage.getItem('ui_' + k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem('ui_' + k, v); } catch (e) {} } };
+  document.querySelectorAll('[data-collapsible]').forEach((sec) => {
+    const k = sec.dataset.collapsible; const btn = sec.querySelector('.h2-btn');
+    const apply = (c) => { sec.classList.toggle('collapsed', c); btn.setAttribute('aria-expanded', String(!c)); };
+    apply(pref.get(k) === 'closed');
+    btn.addEventListener('click', () => { const c = !sec.classList.contains('collapsed'); apply(c); pref.set(k, c ? 'closed' : 'open'); });
+  });
+  function setSetup(open, remember) { $('#setup').hidden = !open; $('#setupToggle').setAttribute('aria-expanded', String(open)); if (remember) pref.set('setup', open ? 'open' : 'closed'); }
+  $('#setupToggle').addEventListener('click', () => setSetup($('#setup').hidden, true));
+  if (pref.get('setup') === 'closed') setSetup(false, false);
+
+  // ---------- token ----------
+  function renderToken() {
+    $('#token').value = token ? '••••••••••••' : ''; $('#clearToken').hidden = !token; $('#tokenHint').hidden = !!token;
+    $('#tokenStatus').hidden = !token;
+  }
+  async function testToken() {
+    const el = $('#tokenStatus'); el.hidden = false; el.textContent = 'Checking token…'; el.className = 'hint';
+    try {
+      const repo = await gh('');
+      const p = repo.permissions || {};
+      const who = await gh('https://api.github.com/user').catch(() => null);
+      const canWrite = p.push || p.admin || p.maintain;
+      el.textContent = `Token OK${who ? ' for ' + who.login : ''} · ${canWrite ? 'can start and cancel runs' : 'read-only on this repo: Actions write access is missing'} · saved via ${st.tokenVia || 'this tab only'}`;
+      el.className = 'hint ' + (canWrite ? 'ok-text' : 'warn-text');
+      if (!st.tokenVia) el.textContent += ' (this viewer blocks browser storage, so you will need to paste it again next time)';
+      if (canWrite && pref.get('setup') !== 'open') setSetup(false, false);
+    } catch (e) {
+      el.textContent = `GitHub rejected the token: ${e.message}. Check it was generated for nordicintel/metadata-harvest and not expired.`; el.className = 'hint bad-text';
+    }
+  }
+  $('#saveToken').addEventListener('click', async () => {
+    const v = $('#token').value.trim(); if (!v || v.startsWith('••')) { toast('Paste a token first'); return; }
+    token = v;
+    const ok = await store.set(v); st.tokenVia = ok[0] || '';
+    renderToken(); toast(ok.length ? 'Token saved in this browser' : 'Token kept for this tab only');
+    await testToken(); refreshAll(true);
+  });
+  $('#clearToken').addEventListener('click', async () => { token = ''; st.tokenVia = ''; await store.clear(); renderToken(); toast('Token forgotten'); });
+  $('#token').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('#saveToken').click(); });
+
+  // ---------- workflows ----------
+  async function loadWorkflows() {
+    const j = await gh('/actions/workflows?per_page=100');
+    st.workflows = j.workflows.filter((w) => w.state === 'active').sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1));
+    const sel = $('#runFilter'); const cur = sel.value;
+    sel.innerHTML = '<option value="">All workflows</option>' + st.workflows.map((w) => `<option value="${w.id}">${esc(w.name)}</option>`).join('');
+    sel.value = cur;
+    $('#wfCount').textContent = `${st.workflows.length} active`;
+    renderWorkflows();
+  }
+  async function loadInputs(wf) {
+    if (st.inputs[wf.id]) return st.inputs[wf.id];
+    const j = await gh(`/contents/${wf.path}?ref=${BRANCH}`);
+    const text = atob(j.content.replace(/\n/g, ''));
+    const doc = jsyaml.load(text);
+    const on = doc.on ?? doc[true] ?? {};
+    const wd = typeof on === 'object' && on ? on.workflow_dispatch : null;
+    const inputs = wd && wd.inputs ? wd.inputs : {};
+    st.inputs[wf.id] = { dispatchable: !!wd || (Array.isArray(on) && on.includes('workflow_dispatch')) || on === 'workflow_dispatch', inputs };
+    return st.inputs[wf.id];
+  }
+  function lastRunFor(wf) { return st.runs.find((r) => r.workflow_id === wf.id); }
+  function renderWorkflows() {
+    const el = $('#wfList');
+    if (!st.workflows.length) { el.innerHTML = '<div class="empty">No active workflows found.</div>'; return; }
+    el.innerHTML = st.workflows.map((w) => {
+      const last = lastRunFor(w); const open = st.dispatchOpen === w.id;
+      const file = w.path.replace('.github/workflows/', '');
+      return `<div class="wf-item ${open ? 'sel' : ''}" data-id="${w.id}">
+        <div class="wf-head"><button class="wf-name" data-act="toggle" title="${esc(file)}">${esc(w.name)}</button><button class="primary" data-act="toggle">${open ? 'Close' : 'Run'}</button></div>
+        <div class="wf-state"><span class="wf-file">${esc(file)}</span>${last ? pill(stateOf(last)) + `<span>${fmtAgo(last.created_at)}</span>` : '<span>no recent runs</span>'}</div>
+        ${open ? `<div class="dispatch" id="dispatch-${w.id}"><div class="hint">Loading inputs…</div></div>` : ''}
+      </div>`;
+    }).join('');
+    if (st.dispatchOpen) renderDispatch(st.workflows.find((w) => w.id === st.dispatchOpen));
+  }
+  async function renderDispatch(wf) {
+    const box = document.getElementById('dispatch-' + wf.id); if (!box) return;
+    let info; try { info = await loadInputs(wf); } catch (e) { box.innerHTML = `<div class="hint">Could not read workflow file: ${esc(e.message)}</div>`; return; }
+    if (!info.dispatchable) { box.innerHTML = '<div class="hint">This workflow has no manual trigger (workflow_dispatch).</div>'; return; }
+    const fields = Object.entries(info.inputs).map(([k, v]) => {
+      const id = `in-${wf.id}-${k}`; const d = v.default ?? '';
+      if (v.type === 'boolean') return `<label class="chk"><input type="checkbox" id="${id}" data-input="${k}" ${d === true || d === 'true' ? 'checked' : ''}> <span>${esc(k)}</span> <span class="hint">${esc(v.description || '')}</span></label>`;
+      if (v.type === 'choice') return `<label><span>${esc(k)} · ${esc(v.description || '')}</span><select id="${id}" data-input="${k}">${(v.options || []).map((o) => `<option ${o == d ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select></label>`;
+      return `<label><span>${esc(k)}${v.required ? ' *' : ''} · ${esc(v.description || '')}</span><input type="text" id="${id}" data-input="${k}" value="${esc(d)}"></label>`;
+    }).join('');
+    box.innerHTML = `${fields || '<div class="hint">No inputs.</div>'}<div class="row"><label class="hint">ref <input type="text" id="ref-${wf.id}" value="${BRANCH}" style="width:10ch"></label><button class="primary" data-act="dispatch">Start run</button><span class="hint" id="dmsg-${wf.id}"></span></div>`;
+  }
+  $('#wfList').addEventListener('click', async (e) => {
+    const btn = e.target.closest('button'); if (!btn) return;
+    const item = e.target.closest('.wf-item'); const id = +item.dataset.id; const wf = st.workflows.find((w) => w.id === id);
+    if (btn.dataset.act === 'toggle') { st.dispatchOpen = st.dispatchOpen === id ? null : id; renderWorkflows(); return; }
+    if (btn.dataset.act === 'dispatch') {
+      if (!token) { toast('Save a token with Actions write access first'); return; }
+      const inputs = {}; item.querySelectorAll('[data-input]').forEach((el) => { inputs[el.dataset.input] = el.type === 'checkbox' ? String(el.checked) : el.value; });
+      const ref = document.getElementById('ref-' + id).value.trim() || BRANCH;
+      const rows = Object.entries(inputs).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v) || '<span class="hint">(empty)</span>'}</dd>`).join('');
+      const ok = await ask(`Start ${wf.name}?`, `<p>This queues a new run of <b>${esc(wf.path.replace('.github/workflows/', ''))}</b> on <b>${esc(ref)}</b>. Harvest runs can take hours and publish to the repository when they finish.</p><dl>${rows || '<dt>inputs</dt><dd>none</dd>'}</dl>`, 'Start run');
+      if (!ok) return;
+      btn.disabled = true; const msg = document.getElementById('dmsg-' + id); msg.textContent = 'Starting…';
+      try {
+        await gh(`/actions/workflows/${id}/dispatches`, { method: 'POST', body: JSON.stringify({ ref, inputs }) });
+        msg.textContent = 'Queued. Watching for the new run…';
+        toast(`Started ${wf.name}`);
+        const before = new Set(st.runs.map((r) => r.id));
+        for (let i = 0; i < 10; i++) { await new Promise((r) => setTimeout(r, 3000)); await loadRuns(); const nw = st.runs.find((r) => r.workflow_id === id && !before.has(r.id)); if (nw) { selectRun(nw.id); msg.textContent = ''; st.dispatchOpen = null; renderWorkflows(); break; } }
+      } catch (err) { msg.textContent = 'Failed: ' + err.message; btn.disabled = false; }
+    }
+  });
+
+  // ---------- runs ----------
+  async function loadRuns() {
+    const j = await gh('/actions/runs?per_page=40');
+    st.runs = j.workflow_runs; st.lastRunPoll = Date.now();
+    renderRuns(); renderWorkflows();
+    if (st.selectedRun) { const upd = st.runs.find((r) => r.id === st.selectedRun.id); if (upd) st.selectedRun = upd; }
+  }
+  function renderRuns() {
+    const f = $('#runFilter').value; const rows = st.runs.filter((r) => !f || String(r.workflow_id) === f);
+    const act = st.runs.filter(active).length;
+    $('#runsNote').textContent = act ? `${act} running` : 'nothing running';
+    const tb = $('#runsTable tbody');
+    if (!rows.length) { tb.innerHTML = '<tr><td colspan="7" class="empty">No runs.</td></tr>'; return; }
+    tb.innerHTML = rows.map((r) => `<tr class="run-row ${st.selectedRun && st.selectedRun.id === r.id ? 'sel' : ''}" data-id="${r.id}">
+      <td>${pill(stateOf(r))}</td><td>${esc(r.name)}${r.run_attempt > 1 ? ` <span class="hint">#${r.run_attempt}</span>` : ''}</td><td title="${esc(r.created_at)}">${fmtTime(r.created_at)}</td>
+      <td class="hint">${esc(r.event)}</td><td class="mono">${esc(r.head_branch)}</td><td class="num mono">${fmtDur(r.run_started_at, r.status === 'completed' ? r.updated_at : null)}</td>
+      <td><a href="${r.html_url}" target="_blank" rel="noopener">open</a></td></tr>`).join('');
+  }
+  $('#runsTable').addEventListener('click', (e) => { if (e.target.closest('a')) return; const tr = e.target.closest('tr.run-row'); if (tr) selectRun(+tr.dataset.id); });
+  $('#runFilter').addEventListener('change', renderRuns);
+
+  // ---------- live run ----------
+  async function selectRun(id) {
+    st.selectedRun = st.runs.find((r) => r.id === id) || { id }; st.selectedJob = null; st.jobs = []; st.log = ''; st.logJobId = null; st.follow = true;
+    renderRuns(); renderLive(); await pollLive(true);
+  }
+  async function pollLive(force) {
+    const r = st.selectedRun; if (!r) return;
+    try {
+      if (force || active(r) || !r.name) { const fresh = await gh(`/actions/runs/${r.id}`); st.selectedRun = fresh; }
+      const j = await gh(`/actions/runs/${st.selectedRun.id}/jobs?per_page=100`);
+      st.jobs = j.jobs;
+      await loadChecks();
+      if (!st.selectedJob || !st.jobs.find((x) => x.id === st.selectedJob)) { const cur = st.jobs.find((x) => x.status === 'in_progress') || st.jobs.find((x) => x.conclusion === 'failure') || st.jobs[st.jobs.length - 1]; st.selectedJob = cur ? cur.id : null; }
+      await loadLog();
+    } catch (e) { $('#liveBody').innerHTML = `<div class="empty">Could not load run: ${esc(e.message)}</div>`; return; }
+    renderLive();
+  }
+  async function loadChecks() {
+    const r = st.selectedRun; st.checks = [];
+    if (!r.head_sha) return;
+    try {
+      const j = await gh(`/commits/${r.head_sha}/check-runs?filter=all&per_page=100`);
+      const prefix = `harvest:${r.id}:${r.run_attempt || 1}:`;
+      st.checks = j.check_runs.filter((c) => (c.external_id || '').startsWith(prefix)).map((c) => {
+        let state = null; try { state = JSON.parse(c.output.text || 'null'); } catch (e) {}
+        return { id: c.id, worker: c.external_id.slice(prefix.length), status: c.status, conclusion: c.conclusion, title: c.output.title, state, url: c.html_url };
+      });
+    } catch (e) { /* check-runs are optional */ }
+  }
+  function renderChecks() {
+    if (!st.checks.length) return '';
+    const many = st.checks.length > 3;
+    const order = { in_progress: 0, queued: 1, completed: 2 };
+    const list = [...st.checks].sort((a, b) => (order[a.status] ?? 1) - (order[b.status] ?? 1) || a.worker.localeCompare(b.worker));
+    if (many) {
+      const agg = list.reduce((o, c) => { const s = c.state || {}; o.total += +s.total || 0; o.done += +s.processed || 0; o.ok += +s.succeeded || 0; o.bad += +s.failed || 0; o.running += c.status !== 'completed' ? 1 : 0; return o; }, { total: 0, done: 0, ok: 0, bad: 0, running: 0 });
+      return `<div class="hp"><div class="hp-head"><b>Harvest progress · ${list.length} workers</b>${pill(agg.running ? 'in_progress' : 'completed')}<span class="hint">${agg.running} running</span></div>
+        <div class="hp-stats"><div><span class="k">processed</span><span class="v">${agg.done.toLocaleString()} / ${agg.total ? agg.total.toLocaleString() : '?'}</span></div><div><span class="k">accepted</span><span class="v ok">${agg.ok.toLocaleString()}</span></div><div><span class="k">failed</span><span class="v ${agg.bad ? 'bad' : ''}">${agg.bad.toLocaleString()}</span></div></div>
+        <div class="bar ${agg.running ? '' : (agg.bad ? 'bad' : 'done')}"><i style="width:${agg.running ? (agg.total ? Math.round(agg.done / agg.total * 100) : 0) : 100}%"></i></div>
+        <div class="tbl-wrap"><table class="hp-table"><thead><tr><th>Worker</th><th>Phase</th><th class="num">Processed</th><th class="num">Accepted</th><th class="num">Failed</th><th>Current</th></tr></thead><tbody>${list.map((c) => { const s = c.state || {}; return `<tr><td class="mono">${esc(c.worker)}</td><td>${pill(c.status === 'completed' ? (c.conclusion || 'completed') : (s.phase || c.status))}</td><td class="num mono">${(+s.processed || 0)}/${s.total ?? '?'}</td><td class="num mono">${+s.succeeded || 0}</td><td class="num mono ${+s.failed ? 'bad' : ''}">${+s.failed || 0}</td><td class="hint mono">${esc(typeof s.current === 'string' ? s.current : (s.current ? JSON.stringify(s.current) : ''))}</td></tr>`; }).join('')}</tbody></table></div></div>`;
+    }
+    return list.map((c) => {
+      const s = c.state || {}; const total = +s.total || 0, done = +s.processed || 0; const pct = total ? Math.round(done / total * 100) : 0;
+      const eta = s.eta_seconds == null ? '—' : fmtDur(new Date(Date.now() - s.eta_seconds * 1000).toISOString(), null).replace(/^/, '~');
+      const errs = Object.entries(s.errors_by_stage || {}).map(([k, v]) => `${k} ${v}`).join(', ');
+      const stale = s.worker_update_age_seconds > 120 && c.status !== 'completed';
+      return `<div class="hp">
+        <div class="hp-head"><b>Harvest progress · ${esc(c.worker)}</b>${pill(c.status === 'completed' ? (c.conclusion || 'completed') : (s.phase || c.status))}<a class="hint" href="${c.url}" target="_blank" rel="noopener">check</a></div>
+        <div class="hp-stats">
+          <div><span class="k">processed</span><span class="v">${done.toLocaleString()} / ${total ? total.toLocaleString() : '?'}</span></div>
+          <div><span class="k">accepted</span><span class="v ok">${(+s.succeeded || 0).toLocaleString()}</span></div>
+          <div><span class="k">failed</span><span class="v ${+s.failed ? 'bad' : ''}">${(+s.failed || 0).toLocaleString()}</span></div>
+          <div><span class="k">reused</span><span class="v">${(+s.reused || 0).toLocaleString()}</span></div>
+          <div><span class="k">elapsed</span><span class="v">${s.elapsed_seconds != null ? fmtDur(new Date(Date.now() - s.elapsed_seconds * 1000).toISOString(), null) : '—'}</span></div>
+          <div><span class="k">eta</span><span class="v">${esc(eta)}</span></div>
+        </div>
+        <div class="bar ${c.status === 'completed' ? (c.conclusion === 'success' ? 'done' : 'bad') : ''}"><i style="width:${c.status === 'completed' ? 100 : pct}%"></i></div>
+        <div class="hint mono hp-cur">${s.current ? 'now: ' + esc(typeof s.current === 'string' ? s.current : JSON.stringify(s.current)) : esc(c.title || '')}${errs ? ' · errors by stage: ' + esc(errs) : ''}${stale ? ' · <span class="bad">no worker update for ' + Math.round(s.worker_update_age_seconds) + 's</span>' : ''}</div>
+      </div>`;
+    }).join('');
+  }
+  async function loadLog() {
+    const job = st.jobs.find((x) => x.id === st.selectedJob); if (!job) { st.log = ''; return; }
+    if (job.status === 'queued' || job.status === 'waiting') { st.log = ''; st.logJobId = job.id; return; }
+    if (st.logJobId === job.id && job.status === 'completed' && st.log) return; // already final
+    try { st.log = await gh(`/actions/jobs/${job.id}/logs`); st.logJobId = job.id; }
+    catch (e) { if (e.status === 404 || e.status === 410) { st.log = ''; } else { st.log = `[log unavailable: ${e.message}]`; } st.logJobId = job.id; }
+  }
+  function renderLive() {
+    const r = st.selectedRun; const body = $('#liveBody'); const acts = $('#runActions');
+    if (!r || !r.name) { acts.innerHTML = ''; return; }
+    const s = stateOf(r);
+    acts.innerHTML = `<a href="${r.html_url}" target="_blank" rel="noopener">View on GitHub</a> ${active(r) ? '<button class="danger" id="cancelBtn" type="button">Cancel run</button>' : '<button id="rerunBtn" type="button">Re-run</button>' + (r.conclusion === 'failure' ? ' <button id="rerunFailedBtn" type="button">Re-run failed jobs</button>' : '')}`;
+    const steps = st.jobs.flatMap((j) => j.steps || []); const done = steps.filter((x) => x.status === 'completed').length;
+    const pct = steps.length ? Math.round(done / steps.length * 100) : 0;
+    const jobsHtml = st.jobs.map((j) => `<div class="job ${j.id === st.selectedJob ? 'sel' : ''}" data-id="${j.id}">
+      <div class="job-head"><b>${esc(j.name)}</b>${pill(stateOf(j))}<span class="hint mono">${fmtDur(j.started_at, j.completed_at)}</span></div>
+      ${j.id === st.selectedJob ? `<ul class="steps">${(j.steps || []).map((sp) => `<li class="${sp.status === 'completed' ? sp.conclusion : sp.status}"><span class="dot"></span><span>${esc(sp.name)}</span><span class="t">${sp.started_at ? fmtDur(sp.started_at, sp.completed_at) : ''}</span></li>`).join('')}</ul>` : ''}
+    </div>`).join('');
+    const prevScroll = $('#log') ? { top: $('#log').scrollTop, filter: $('#logFilter').value } : { top: 0, filter: '' };
+    body.innerHTML = `<div class="live-head">
+      <div class="live-title"><strong>${esc(r.name)}</strong>${pill(s)}<span class="hint">run #${r.run_number}${r.run_attempt > 1 ? ` attempt ${r.run_attempt}` : ''}</span></div>
+      <div class="live-meta"><span>${esc(r.event)} on <span class="mono">${esc(r.head_branch)}</span></span><span>started ${r.run_started_at ? fmtTime(r.run_started_at) : '—'}</span><span>elapsed ${fmtDur(r.run_started_at, r.status === 'completed' ? r.updated_at : null)}</span><span>${done}/${steps.length} steps</span>${r.actor ? `<span>by ${esc(r.actor.login)}</span>` : ''}</div>
+      <div class="bar ${r.status === 'completed' ? (r.conclusion === 'success' ? 'done' : 'bad') : ''}"><i style="width:${r.status === 'completed' ? 100 : pct}%"></i></div>
+    </div>
+    ${renderChecks()}
+    <div class="jobs">${jobsHtml || '<div class="empty">No jobs yet. The run is queued.</div>'}</div>
+    <div class="logbox">
+      <div class="log-tools"><span>Log · ${esc((st.jobs.find((x) => x.id === st.selectedJob) || {}).name || '')}</span><input type="text" id="logFilter" placeholder="filter lines" value="${esc(prevScroll.filter)}"><span class="grow"></span><label><input type="checkbox" id="followLog" ${st.follow ? 'checked' : ''}> follow</label><label><input type="checkbox" id="hideTs" checked> hide timestamps</label><span id="logCount"></span></div>
+      <pre class="log" id="log"></pre>
+    </div>`;
+    renderLogText(); if (!st.follow) $('#log').scrollTop = prevScroll.top;
+    body.querySelectorAll('.job-head').forEach((h) => h.addEventListener('click', async () => { st.selectedJob = +h.parentElement.dataset.id; st.log = ''; st.logJobId = null; st.follow = true; await loadLog(); renderLive(); }));
+    $('#logFilter').addEventListener('input', renderLogText);
+    $('#hideTs').addEventListener('change', renderLogText);
+    $('#followLog').addEventListener('change', (e) => { st.follow = e.target.checked; if (st.follow) $('#log').scrollTop = $('#log').scrollHeight; });
+    $('#log').addEventListener('scroll', () => { const el = $('#log'); const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 8; if (!atBottom && st.follow) { st.follow = false; $('#followLog').checked = false; } });
+    const runLabel = `<dl><dt>workflow</dt><dd>${esc(r.name)}</dd><dt>run</dt><dd>#${r.run_number}${r.run_attempt > 1 ? ` attempt ${r.run_attempt}` : ''}</dd><dt>branch</dt><dd>${esc(r.head_branch)}</dd></dl>`;
+    const cb = $('#cancelBtn'); if (cb) cb.addEventListener('click', async () => { if (await ask('Cancel this run?', `<p class="warn-text">Work done so far in this run is lost unless the adapter checkpoints it.</p>${runLabel}`, 'Cancel run')) runAction(`/actions/runs/${r.id}/cancel`, 'Cancel requested'); });
+    const rb = $('#rerunBtn'); if (rb) rb.addEventListener('click', async () => { if (await ask('Re-run all jobs?', `<p>This starts a new attempt of the whole run with the same inputs. Harvest runs can take hours.</p>${runLabel}`, 'Re-run')) runAction(`/actions/runs/${r.id}/rerun`, 'Re-run queued'); });
+    const rf = $('#rerunFailedBtn'); if (rf) rf.addEventListener('click', async () => { if (await ask('Re-run failed jobs?', `<p>Only the jobs that failed are started again, in a new attempt.</p>${runLabel}`, 'Re-run failed jobs')) runAction(`/actions/runs/${r.id}/rerun-failed-jobs`, 'Re-run of failed jobs queued'); });
+  }
+  function renderLogText() {
+    const el = $('#log'); if (!el) return;
+    const job = st.jobs.find((x) => x.id === st.selectedJob);
+    if (!st.log) { el.innerHTML = `<span class="ts">${job && job.status !== 'completed' ? 'Waiting for log output… GitHub publishes a job log once the job is running; it is re-fetched on every poll.' : 'No log for this job.'}</span>`; $('#logCount').textContent = ''; return; }
+    const q = ($('#logFilter').value || '').toLowerCase(); const hide = $('#hideTs').checked;
+    const lines = st.log.split('\n'); let shown = 0; const out = [];
+    for (const raw of lines) {
+      if (q && !raw.toLowerCase().includes(q)) continue; shown++;
+      if (out.length > 6000) break;
+      const m = raw.match(/^(\d{4}-\d\d-\d\dT[\d:.]+Z) ?(.*)$/); const ts = m ? m[1] : ''; const txt = m ? m[2] : raw;
+      let cls = ''; if (/^##\[group\]|^##\[section\]/.test(txt)) cls = 'grp'; else if (/^##\[error\]|error|traceback|failed/i.test(txt)) cls = 'err'; else if (/^##\[warning\]|warn/i.test(txt)) cls = 'warnl'; else if (/\b(done|success|completed|accepted)\b/i.test(txt)) cls = 'ok';
+      out.push((hide || !ts ? '' : `<span class="ts">${ts.slice(11, 19)}</span> `) + (cls ? `<span class="${cls}">${esc(txt)}</span>` : esc(txt)));
+    }
+    el.innerHTML = out.join('\n');
+    $('#logCount').textContent = `${shown} / ${lines.length} lines`;
+    if (st.follow) el.scrollTop = el.scrollHeight;
+  }
+  async function runAction(path, okMsg) {
+    if (!token) { toast('Save a token with Actions write access first'); return; }
+    try { await gh(path, { method: 'POST' }); toast(okMsg); setTimeout(() => refreshAll(true), 2500); } catch (e) { toast('Failed: ' + e.message); }
+  }
+
+  // ---------- polling ----------
+  async function refreshAll(force) {
+    try { await loadRuns(); $('#apiState').textContent = token ? 'Connected' : 'Read-only'; $('#apiState').className = 'pill ok'; }
+    catch (e) { $('#apiState').textContent = e.message.includes('rate') ? 'Rate limited' : 'API error'; $('#apiState').className = 'pill bad'; return; }
+    if (st.selectedRun && (force || active(st.selectedRun))) await pollLive(false);
+  }
+  function tick() {
+    clearTimeout(timer);
+    const anyActive = st.runs.some(active) || active(st.selectedRun);
+    const every = !token ? 60000 : anyActive ? 8000 : 30000;
+    timer = setTimeout(async () => { if ($('#autoRefresh').checked && !document.hidden) await refreshAll(false); tick(); }, every);
+  }
+  $('#refreshBtn').addEventListener('click', () => refreshAll(true));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshAll(false); });
+  setInterval(() => { if (st.selectedRun && active(st.selectedRun)) { const el = document.querySelector('.live-meta'); if (el) renderLive(); } }, 1000 * 15);
+
+  (async () => {
+    const saved = await store.get(); if (saved) { token = saved.v; st.tokenVia = saved.via; renderToken(); testToken(); } else renderToken();
+    try { await loadWorkflows(); } catch (e) { $('#wfList').innerHTML = `<div class="empty">Could not load workflows: ${esc(e.message)}</div>`; }
+    await refreshAll(true);
+    const h = location.hash.replace('#', ''); if (/^run\d+$/.test(h)) selectRun(+h.slice(3));
+    else { const running = st.runs.find(active); if (running) selectRun(running.id); }
+    tick();
+  })();
+})();
+</script>
+</body></html>
