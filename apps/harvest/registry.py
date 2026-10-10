@@ -31,13 +31,13 @@ ADAPTERS = {
         "pxweb_v2",
         True,
         "harvest-pxweb-v2.yml",
-        ("run", "collect", "publish", "continue"),
+        ("run", "collect", "publish"),
     ),
     "kolada": Adapter(
         "kolada",
         True,
         "harvest-kolada.yml",
-        ("run", "collect", "publish", "continue"),
+        ("run", "collect", "publish"),
     ),
     "uka": Adapter(
         "uka",

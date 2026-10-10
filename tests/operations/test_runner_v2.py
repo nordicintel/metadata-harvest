@@ -15,13 +15,7 @@ def test_v2_runner_selects_own_config_data_and_full_mode(monkeypatch, capsys):
 
     async def run(provider, data, output, **options):
         received.update(provider=provider, data=data, output=output, **options)
-        return {
-            "run_id": "r",
-            "wave": 1,
-            "status": "success",
-            "continue": False,
-            "counts": {},
-        }
+        return {"run_id": "r", "status": "success", "counts": {}}
 
     monkeypatch.setattr(workflow, "run", run)
     monkeypatch.setattr(

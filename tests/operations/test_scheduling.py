@@ -138,7 +138,8 @@ def test_catalog_dispatch_failure_does_not_suppress_continuation():
         trigger = next(step for step in steps if step.get("id") == "catalog")
         assert trigger["continue-on-error"] == "true"
         assert steps[-1]["if"] == "always() && steps.catalog.outcome == 'failure'"
+        # Only the PXWeb v1 job continues across waves; the others finish in one run.
         assert any(
             step.get("name") == "Continue unfinished work"
             for step in steps[steps.index(trigger) + 1 : -1]
-        )
+        ) == (name == "harvest.yml")

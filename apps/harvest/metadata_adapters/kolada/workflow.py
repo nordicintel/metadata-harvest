@@ -92,14 +92,13 @@ async def run(
     clock=None,
     kpis=None,
     scope=None,
-    resume=False,
     budget_seconds=19200,
 ) -> dict:
     """Refresh accepted Kolada metadata from the change feed.
 
     The KPI/scope restriction bounds the rebuild work; the refresh marker only
-    advances after an unrestricted, complete change scan. ``resume`` is accepted
-    for the shared CLI: a run always finishes or leaves pending work for the next.
+    advances after an unrestricted, complete change scan. A run always finishes
+    or leaves pending work for the next scheduled run.
     """
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
@@ -133,7 +132,7 @@ async def run(
     if isinstance(connection, KoladaClient):
         connection.deadline = monotonic() + budget_seconds
     progress = Progress("kolada", "kolada")
-    progress.update(phase="discovery", run_id=run_id, wave=1)
+    progress.update(phase="discovery", run_id=run_id)
     counts = {"updated": 0, "removed": 0, "failed": 0, "reused": 0, "checked": 0}
     errors = []
     incomplete = False
@@ -342,9 +341,7 @@ async def run(
     )
     result = {
         "run_id": run_id,
-        "wave": 1,
         "status": status,
-        "continue": False,
         "counts": counts,
         "errors": errors,
         "pending": len(state["pending"]),

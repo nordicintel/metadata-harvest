@@ -16,9 +16,6 @@ on:
         type: choice
         options: [both, municipality, ou]
         default: both
-      resume_run:
-        description: Internal continuation ID
-        default: ''
 
 concurrency:
   group: harvest-kolada
@@ -52,7 +49,6 @@ jobs:
       - id: run
         env:
           GH_TOKEN: ${{ github.token }}
-          EXPECTED_RUN_ID: ${{ inputs.resume_run }}
           KPI_IDS: ${{ inputs.kpis }}
           SCOPE: ${{ inputs.scope }}
         run: |
@@ -123,12 +119,6 @@ jobs:
           waiting=$(gh run list --workflow catalog.yml --json status --jq '[.[] | select(.status | IN("requested", "waiting", "pending", "queued"))] | length')
           if [ "$waiting" -gt 0 ]; then echo "A queued catalog run will include this publication"; exit 0; fi
           gh workflow run catalog.yml --ref main
-      - name: Continue unfinished work
-        if: steps.collect.outputs.continue == 'true' && needs.harvest.result == 'success'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RUN_ID: ${{ steps.collect.outputs.run_id }}
-        run: uv run python -m apps.operations.harvest continue --adapter kolada --run-id "$RUN_ID"
       - name: Fail only when the whole adapter failed
         run: uv run python -m apps.operations.outcome --adapter kolada
       - name: Report catalog dispatch failure

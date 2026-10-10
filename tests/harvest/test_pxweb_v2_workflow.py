@@ -2,8 +2,6 @@
 
 import asyncio
 import json
-from copy import deepcopy
-from types import SimpleNamespace
 
 import httpx
 import pytest
@@ -76,7 +74,7 @@ def harvest(source, root, output, **kwargs):
             return await run(PROVIDER, root, output, client=client, **kwargs)
 
     result = asyncio.run(execute())
-    collect(root, output, result["run_id"], result["wave"])
+    collect(root, output, result["run_id"])
     return result
 
 
@@ -332,24 +330,6 @@ def test_nonfinite_source_json_cannot_poison_other_tables(tmp_path, resource):
     assert metadata_bytes(root) == before
 
 
-def test_continuation_retains_full_mode_and_rejects_stale_artifact(tmp_path):
-    from apps.harvest.metadata_adapters.pxweb_v2.workflow import collect
-
-    source, root = Source(), tmp_path / "data"
-    first = harvest(source, root, tmp_path / "first", full=True, budget_seconds=0)
-    assert first["continue"] is True
-    assert read(root / "work/current.json")["full"] is True
-    state = deepcopy(read(root / "work/current.json"))
-    with pytest.raises(ValueError, match="stale|Stale"):
-        collect(root, tmp_path / "first", first["run_id"], first["wave"])
-    assert read(root / "work/current.json") == state
-    second = harvest(source, root, tmp_path / "second")
-    assert second["run_id"] == first["run_id"]
-    assert second["full"] is True
-    assert second["status"] == "success"
-    assert not (root / "work/current.json").exists()
-
-
 def test_collector_rejects_tampered_metadata_without_writing(tmp_path):
     from apps.harvest.metadata_adapters.pxweb_v2.workflow import collect, run
 
@@ -366,42 +346,6 @@ def test_collector_rejects_tampered_metadata_without_writing(tmp_path):
     with pytest.raises(ValueError):
         collect(root, output, result["run_id"], result["wave"])
     assert not root.exists()
-
-
-def test_continuation_preserves_table_and_available_codes_after_dependency_failure(
-    tmp_path, monkeypatch
-):
-    from apps.harvest.metadata_adapters.pxweb_v2 import workflow
-
-    source, root = Source(), tmp_path / "data"
-    source.tables["sv"].append(table("T2"))
-    original = source.handle
-
-    def handler(request):
-        if request.url.path.endswith("/codelists/zz_missing"):
-            return httpx.Response(503)
-        response = original(request)
-        if request.url.path.endswith("/tables/T1/metadata"):
-            payload = response.json()
-            payload["dimension"]["Region"]["extension"]["codelists"].append(
-                {"id": "zz_missing"}
-            )
-            return httpx.Response(200, json=payload)
-        return response
-
-    source.handle = handler
-    ticks = iter([0, 0, 0, 0])
-    with monkeypatch.context() as patch:
-        patch.setattr(
-            workflow, "time", SimpleNamespace(monotonic=lambda: next(ticks, 1000))
-        )
-        first = harvest(source, root, tmp_path / "first", budget_seconds=200)
-    assert first["counts"]["failed"] == 0
-    assert first["counts"]["codelists_failed"] == 1
-    assert first["counts"]["unfinished"] == 2
-    second = harvest(source, root, tmp_path / "second")
-    assert second["counts"]["created"] == 3
-    assert source.requests.count(("/api/v2/codelists/vs_region", "sv")) == 1
 
 
 def test_confirmed_removed_codelist_payload_is_deleted_and_reported(tmp_path):
@@ -448,7 +392,7 @@ def test_collector_rejects_unsupported_language_deletion_even_with_valid_manifes
             return await workflow.run(PROVIDER, root, output, client=client)
 
     result = asyncio.run(execute())
-    candidate = output / result.get("snapshot", "")
+    candidate = output
     metadata = JsonlStore(candidate / "metadata", compressed=True)
     metadata.records = {
         key: doc
@@ -461,58 +405,8 @@ def test_collector_rejects_unsupported_language_deletion_even_with_valid_manifes
     result["manifest"] = workflow.manifest(candidate)
     write(output / "result.json", result)
     with pytest.raises(ValueError, match="remov|scope|listing"):
-        workflow.collect(root, output, result["run_id"], result["wave"])
+        workflow.collect(root, output, result["run_id"])
     assert workflow.manifest(root) == before
-
-
-def test_interrupted_checkpoint_leaves_previous_certified_candidate_collectable(
-    tmp_path, monkeypatch
-):
-    from apps.harvest.metadata_adapters.pxweb_v2 import workflow
-
-    source, root, output = Source(), tmp_path / "data", tmp_path / "output"
-    original = workflow._snapshot
-    calls = 0
-
-    def interrupted(*args, **kwargs):
-        nonlocal calls
-        calls += 1
-        if calls == 1:
-            return original(*args, **kwargs)
-        original_write = workflow.write
-
-        def fail_write(path, value):
-            if Path(path).name == "harvest.json":
-                raise OSError("Simulated interruption during checkpoint")
-            return original_write(path, value)
-
-        monkeypatch.setattr(workflow, "write", fail_write)
-        return original(*args, **kwargs)
-
-    from pathlib import Path
-
-    ticks = iter([0, 0, 0, 61, 61, 61])
-    with monkeypatch.context() as patch:
-        patch.setattr(
-            workflow, "time", SimpleNamespace(monotonic=lambda: next(ticks, 62))
-        )
-        patch.setattr(workflow, "_snapshot", interrupted)
-
-        async def execute():
-            client, _ = client_for(source.handle)
-            async with client:
-                return await workflow.run(PROVIDER, root, output, client=client)
-
-        with pytest.raises(OSError, match="Simulated"):
-            asyncio.run(execute())
-    # Restore the write boundary before collecting the previously certified batch.
-    from apps.harvest.storage import write
-
-    monkeypatch.setattr(workflow, "write", write)
-    result = read(output / "result.json")
-    accepted = workflow.collect(root, output, result["run_id"], result["wave"])
-    assert accepted["counts"]["created"] == 1
-    assert accepted["counts"]["unfinished"] == 1
 
 
 def test_bad_listing_row_preserves_old_table_and_publishes_good_siblings(tmp_path):
@@ -528,3 +422,47 @@ def test_bad_listing_row_preserves_old_table_and_publishes_good_siblings(tmp_pat
         "later",
         "EN1",
     }
+
+
+def test_stale_artifact_is_rejected_and_budget_exhaustion_fails_remaining(tmp_path):
+    from apps.harvest.metadata_adapters.pxweb_v2.workflow import collect
+
+    source, root = Source(), tmp_path / "data"
+    first = harvest(source, root, tmp_path / "first")
+    source.requests.clear()
+    result = harvest(source, root, tmp_path / "second", full=True, budget_seconds=0)
+    assert result["status"] == "completed_with_errors"
+    assert result["counts"]["failed"] == 2
+    assert not any(path.endswith("/metadata") for path, _ in source.requests)
+    assert not (root / "work").exists()
+    with pytest.raises(ValueError, match="Stale"):
+        collect(root, tmp_path / "first", first["run_id"])
+    third = harvest(source, root, tmp_path / "third")
+    assert third["status"] == "success"
+    assert third["counts"]["updated"] == 2
+
+
+def test_confirmed_removed_codelist_is_not_requested_again_on_refresh(tmp_path):
+    source, root = Source(), tmp_path / "data"
+    harvest(source, root, tmp_path / "first")
+    original = source.handle
+
+    def handler(request):
+        if "/codelists/" in request.url.path and request.url.params["lang"] == "sv":
+            return httpx.Response(404)
+        return original(request)
+
+    source.handle = handler
+    result = harvest(source, root, tmp_path / "second", full=True)
+    assert result["counts"]["codelists_failed"] == 1
+    assert len(result["removed_codelists"]) == 1
+    source.requests.clear()
+    again = harvest(source, root, tmp_path / "third")
+    assert again["counts"]["reused"] == 2
+    assert again["counts"]["codelists_failed"] == 1
+    assert "removed" in again["errors"][0]["error"]
+    assert not any("/codelists/" in path for path, _ in source.requests)
+    source.requests.clear()
+    full = harvest(source, root, tmp_path / "fourth", full=True)
+    assert ("/api/v2/codelists/vs_region", "sv") in source.requests
+    assert full["counts"]["codelists_failed"] == 1

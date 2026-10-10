@@ -14,10 +14,6 @@ on:
         description: Refresh every table and referenced codelist
         type: boolean
         default: false
-      resume_run:
-        description: Internal continuation ID; leave empty for normal manual runs
-        required: false
-        default: ''
 
 # Enable after complete table acceptance; independent codelist errors remain reported.
 concurrency:
@@ -59,7 +55,6 @@ jobs:
         timeout-minutes: 330
         env:
           GH_TOKEN: ${{ github.token }}
-          EXPECTED_RUN_ID: ${{ inputs.resume_run }}
         run: |
           args=()
           if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
@@ -128,12 +123,6 @@ jobs:
           waiting=$(gh run list --workflow catalog.yml --json status --jq '[.[] | select(.status | IN("requested", "waiting", "pending", "queued"))] | length')
           if [ "$waiting" -gt 0 ]; then echo "A queued catalog run will include this publication"; exit 0; fi
           gh workflow run catalog.yml --ref main
-      - name: Continue unfinished work
-        if: steps.collect.outputs.continue == 'true' && needs.harvest.result == 'success'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RUN_ID: ${{ steps.collect.outputs.run_id }}
-        run: uv run --extra harvest python -m apps.operations.harvest continue --adapter pxweb_v2 --run-id "$RUN_ID"
       - name: Fail only when the whole adapter failed
         run: uv run python -m apps.operations.outcome --adapter pxweb_v2
       - name: Report catalog dispatch failure

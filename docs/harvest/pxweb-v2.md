@@ -27,10 +27,12 @@ advances. Complete discovery or confirmed repeated inaccessible responses establ
 removal, while incomplete discovery preserves accepted records. Keep dangling native
 references accompanied by explicit dependency errors.
 
-Workers retain request limiting, deterministic batches, run mode and completed tasks
-across continuations. Collectors reject stale baselines and invalid artifacts.
-Recovered cancelled-run artifacts must validate before reuse. Full/incremental
-schedules come from `config/schedules.toml`, not a hard-coded weekly rule.
+A run writes its candidate once, at the end; there are no interim snapshots,
+checkpoints or continuation waves. Tables not reached within the time budget are
+reported as failed and retried by the next run. Codelists confirmed removed (two 404
+responses) are reported but not re-requested on refresh runs; a full run asks again.
+Collectors reject stale baselines and invalid artifacts. Full/incremental schedules
+come from `config/schedules.toml`, not a hard-coded weekly rule.
 
 ## Shared interfaces
 

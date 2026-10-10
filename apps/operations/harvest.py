@@ -195,15 +195,6 @@ def _main():
         if args.command in {"run", "collect"}:
             args.output = args.output or Path("output/kolada")
             if args.command == "run":
-                checkpoint = args.data / "work/current.json"
-                expected = os.environ.get("EXPECTED_RUN_ID")
-                if expected and (
-                    not checkpoint.exists() or read(checkpoint)["run_id"] != expected
-                ):
-                    outputs(
-                        {"skip": "true", "reason": "Continuation already completed"}
-                    )
-                    return
                 result = asyncio.run(
                     kolada_workflow.run(
                         providers_for_adapter(
@@ -215,18 +206,12 @@ def _main():
                         args.output,
                         kpis=args.kpi,
                         scope=args.scope,
-                        resume=bool(expected),
                         budget_seconds=args.budget_seconds,
                     )
                 )
             else:
                 result = kolada_workflow.collect(args.data, args.output)
-            outputs(
-                {
-                    k: result[k]
-                    for k in ("run_id", "wave", "status", "continue", "counts")
-                }
-            )
+            outputs({k: result[k] for k in ("run_id", "status", "counts")})
             return
     if args.adapter in SIMPLE_ADAPTERS and args.command in {"run", "collect"}:
         run_simple(args)
@@ -235,21 +220,12 @@ def _main():
     providers = providers_for_adapter(
         args.adapter, configuration=args.configuration, legacy_path=args.providers
     )
-    if is_v2 and args.command not in {"run", "collect", "publish", "continue"}:
-        parser.error("PXWeb v2 uses run, collect, publish and continue")
+    if is_v2 and args.command not in {"run", "collect", "publish"}:
+        parser.error("PXWeb v2 uses run, collect and publish")
     if args.command in {"run", "collect"}:
         if not is_v2 or len(providers) != 1:
             parser.error("run/collect require the SCB-only pxweb_v2 configuration")
         if args.command == "run":
-            expected = os.environ.get("EXPECTED_RUN_ID")
-            checkpoint = args.data / "work/current.json"
-            if expected and (
-                not checkpoint.exists() or read(checkpoint)["run_id"] != expected
-            ):
-                outputs(
-                    {"skip": "true", "reason": "Continuation was already completed"}
-                )
-                return
             result = asyncio.run(
                 v2_workflow.run(
                     providers[0],
@@ -262,14 +238,9 @@ def _main():
         else:
             artifact = read(args.output / "result.json")
             result = v2_workflow.collect(
-                args.data,
-                args.output,
-                args.run_id or artifact["run_id"],
-                args.wave or artifact["wave"],
+                args.data, args.output, args.run_id or artifact["run_id"]
             )
-        outputs(
-            {k: result[k] for k in ("run_id", "wave", "status", "continue", "counts")}
-        )
+        outputs({k: result[k] for k in ("run_id", "status", "counts")})
         return
     if args.command == "prepare":
         plan = prepare(args.data, providers)

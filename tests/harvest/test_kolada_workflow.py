@@ -235,7 +235,6 @@ def test_budget_expiry_keeps_pending_for_next_run(seed_source, tmp_path):
     source.budget_out = True
     result = execute(source, data, tmp_path / "output")
     assert result["status"] == "running"
-    assert result["continue"] is False
     assert load_state(data)["pending"] == {"ou/N1": "rescan"}
     assert len(load_documents(data)) == 2
 

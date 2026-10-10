@@ -19,7 +19,7 @@ uv run python -m apps.operations.harvest collect --adapter pxweb_v2 --data outpu
 locally; `publish` commits/pushes the selected production scope. PXWeb v1 instead has
 separate refresh/build worker and collector commands. Use adapter help and workflow
 arguments rather than constructing run identities by hand. Use a fresh output
-directory for each new worker invocation; continuation reuses its checkpoint.
+directory for each new worker invocation; only PXWeb v1 continues across waves.
 
 Accepted metadata is `data/<adapter>/metadata/<owner>__multilingual__<digest>.jsonl.gz`.
 State, reports and unfinished work are adapter-owned. Reports distinguish failures
@@ -34,7 +34,7 @@ scope authorizes removal. Some adapters use [currentness checks](../../apps/harv
 unreachable or stale documents are withheld in state and restored when eligible;
 this is different from deleting their accepted evidence.
 
-Resume unfinished work through the adapter checkpoint. Recover cancelled-worker
+Resume unfinished PXWeb v1 work through its checkpoint. Recover cancelled-worker
 artifacts and validate them against their original baseline before collection;
 do not bypass stale-artifact checks. Full refresh is an explicit adapter operation,
 not a routine response to an unrelated development change.

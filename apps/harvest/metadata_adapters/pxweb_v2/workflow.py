@@ -1,4 +1,10 @@
-"""SCB worker and validating collector: current state, no metadata archives."""
+"""SCB worker and validating collector: current state, no metadata archives.
+
+A run lists both language catalogues, fetches metadata only for tables whose
+catalogue entry changed (or everything in full mode), fetches referenced codelists
+once, and writes the candidate exactly once at the end. Work left over when the
+time budget runs out is reported as failed and picked up by the next run.
+"""
 
 import logging
 import shutil
@@ -11,7 +17,7 @@ from uuid import uuid4
 
 import httpx
 
-from apps.harvest.artifacts import checkpoint_path, report_status
+from apps.harvest.artifacts import report_status
 from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.discovery import discover_provider
@@ -29,6 +35,8 @@ from apps.operations.progress import Progress
 from apps.publication.artifacts import manifest
 
 logger = logging.getLogger("pxweb_v2_logger")
+
+REMOVED_CODELIST = "Codelist confirmed removed at the source (HTTP 404)"
 
 
 def code_identity(document: dict) -> dict:
@@ -62,52 +70,27 @@ def validate_provider(provider: dict) -> None:
         raise ValueError("The v2 job currently supports only SCB sv/en")
 
 
-def _prune_codes(metadata: JsonlStore, codes: JsonlStore) -> None:
-    required = {
+def _referenced(metadata: JsonlStore) -> set[str]:
+    return {
         code_key(code, source_record(doc)["language"])
         for doc in metadata.records.values()
         for code in codelist_ids(doc)
     }
-    before = len(codes.records)
+
+
+def _write_candidate(output, metadata, codes, listings, state, base):
+    """Write every store once, then the reports; the manifest certifies the set."""
+    required = _referenced(metadata)
     codes.records = {k: v for k, v in codes.records.items() if k in required}
-    if len(codes.records) != before:
-        logger.debug(
-            "Pruned %d codelists no longer referenced by any table (%d kept)",
-            before - len(codes.records),
-            len(codes.records),
-        )
-
-
-def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
-    """Batch all current documents; commit the manifest last to certify a snapshot."""
-    marker = output / "result.json"
-    previous_buffer = read(marker)["snapshot"] if marker.exists() else None
-    buffer = "buffer-1" if previous_buffer == "buffer-0" else "buffer-0"
-    destination = output / buffer
-    if destination.exists():
-        shutil.rmtree(destination)
-    _prune_codes(metadata, codes)
     for store in (metadata, codes, listings):
-        store.directory = destination / store.directory.name
+        store.directory = output / store.directory.name
         store.save()
-    pending = sum(task["status"] == "pending" for task in state["tasks"].values())
-    counts = {
-        **state["counts"],
-        "created": 0,
-        "updated": 0,
-        "failed": 0,
-        "unfinished": pending,
-    }
+    counts = {**state["counts"], "created": 0, "updated": 0, "failed": 0}
     errors = list(state["discovery_errors"])
-    referenced = {
-        code_key(code, source_record(doc)["language"])
-        for doc in metadata.records.values()
-        for code in codelist_ids(doc)
-    }
     code_errors = {
-        key: error for key, error in state["code_errors"].items() if key in referenced
+        key: error for key, error in state["code_errors"].items() if key in required
     }
-    for key in referenced - set(codes.records):
+    for key in required - set(codes.records):
         code_errors.setdefault(
             key, "Referenced codelist is unavailable; retrieval has not completed"
         )
@@ -119,69 +102,42 @@ def _snapshot(output, metadata, codes, listings, state, base, *, final=False):
     for name, task in state["tasks"].items():
         if task["status"] == "success":
             counts[task["kind"]] += 1
-        elif task["status"] == "failed":
+        else:
             counts["failed"] += 1
             errors.append(
                 {"filename": name, "stage": "metadata", "error": task["error"]}
             )
-    interrupted = pending and state.get("no_progress_waves", 0) >= 3
-    if interrupted:
-        logger.warning(
-            "No progress in %d consecutive waves with %d tasks pending; "
-            "marking the run interrupted instead of continuing",
-            state.get("no_progress_waves", 0),
-            pending,
-        )
-    status = report_status(
-        pending=pending, errors=errors, interrupted=bool(interrupted)
-    )
     report = {
         "run_id": state["run_id"],
-        "wave": state["wave"],
         "full": state["full"],
         "started_at": state["started_at"],
         "updated_at": now(),
-        "status": status,
+        "status": report_status(pending=0, errors=errors),
         "counts": counts,
         "errors": errors,
         "scopes": state["scopes"],
         "removed_tables": state["removed_tables"],
-        "removed_codelists": state["removed_codelists"],
+        "removed_codelists": sorted(state["removed_codelists"]),
     }
-    write(destination / "reports/harvest.json", report)
+    write(output / "reports/harvest.json", report)
     write(
-        destination / "reports/refresh.json",
+        output / "reports/refresh.json",
         {
             "run_id": state["run_id"],
             "scopes": state["scopes"],
             "errors": state["discovery_errors"],
         },
     )
-    if pending:
-        write(destination / "work/current.json", {**state, "wave": state["wave"] + 1})
     result = {
         **report,
-        "continue": bool(pending) and not interrupted,
         "base": base,
-        "manifest": manifest(destination),
-        "snapshot": buffer,
+        "manifest": manifest(output),
         "provider": state["provider"],
-        "final": final,
     }
     write(output / "result.json", result)
-    # Only temporary transport buffers exist; retain one certified candidate.
-    if previous_buffer is not None:
-        shutil.rmtree(output / previous_buffer)
-    log = logger.info if final else logger.debug
-    log(
-        "%s snapshot %s (wave %d): status=%s, continue=%s, pending=%d, "
-        "errors=%d, counts=%s",
-        "Final" if final else "Interim",
-        buffer,
-        state["wave"],
-        status,
-        result["continue"],
-        pending,
+    logger.info(
+        "Candidate written: status=%s, errors=%d, counts=%s",
+        result["status"],
         len(errors),
         counts,
     )
@@ -219,14 +175,11 @@ async def run(
                 client=owned,
             )
     logger.info(
-        "PXWeb v2 run starting: provider=%s languages=%s mode=%s "
-        "budget=%.0fs published=%s candidate=%s",
+        "PXWeb v2 run starting: provider=%s languages=%s mode=%s budget=%.0fs",
         provider["code"],
         provider["languages"],
         "full" if full else "refresh",
         budget_seconds,
-        data,
-        output,
     )
     deadline = time.monotonic() + budget_seconds
     progress = Progress("pxweb_v2", provider["code"])
@@ -239,253 +192,193 @@ async def run(
         len(codes.records),
         len(listings.records),
     )
-    # Source stores are read-only to the worker, including legacy migration inputs.
     for store in (metadata, codes, listings):
-        store.directory = output / store.directory.name
         store._legacy.clear()
-    checkpoint = checkpoint_path(data)
-    if checkpoint.exists():
-        state = read(checkpoint)
-        if state["provider"] != provider:
-            raise ValueError(
-                "Unfinished work belongs to another provider configuration"
-            )
-        client.configure(await client.get("config"))
-        progress.update(full=state["full"], resumed=True)
-        logger.info(
-            "Resuming checkpoint of run %s at wave %d (%s run): %d tasks pending, "
-            "%d already processed; discovery is skipped and the checkpoint "
-            "task list decides what is fetched",
-            state["run_id"],
-            state["wave"],
-            "full" if state["full"] else "refresh",
-            sum(task["status"] == "pending" for task in state["tasks"].values()),
-            sum(task["status"] != "pending" for task in state["tasks"].values()),
-        )
-        if state["full"] != full:
-            logger.warning(
-                "Requested full=%s is ignored; the checkpoint was started with full=%s",
-                full,
-                state["full"],
-            )
-    else:
-        progress.update(phase="discovery", resumed=False)
-        previous_report = data / "reports/harvest.json"
-        failed = (
-            {e.get("filename") for e in read(previous_report)["errors"]}
-            if previous_report.exists()
-            else set()
-        )
-        failed_codes = (
-            {e.get("codelist_key") for e in read(previous_report)["errors"]}
-            if previous_report.exists()
-            else set()
-        )
-        state = {
-            "run_id": uuid4().hex,
-            "wave": 1,
-            "full": full,
-            "provider": provider,
-            "started_at": now(),
-            "tasks": {},
-            "scopes": [],
-            "discovery_errors": [],
-            "refreshed_codes": [],
-            "code_errors": {},
-            "retry_codes": sorted(key for key in failed_codes if key),
-            "removed_tables": [],
-            "removed_codelists": [],
-            "no_progress_waves": 0,
-            "counts": {
-                "reused": 0,
-                "removed": 0,
-                "discovered": 0,
-                "codelists_fetched": 0,
-            },
-        }
-        logger.info(
-            "No checkpoint: starting run %s at wave 1 (%s); previous report lists "
-            "%d failed tables and %d failed codelists to retry",
-            state["run_id"],
-            "full run, every table is re-fetched" if full else "refresh run",
-            sum(1 for name in failed if name),
-            len(state["retry_codes"]),
-        )
-        async for scope in discover_provider(provider, client=client):
-            language = scope["language"]
-            progress.update(
-                language=language,
-                discovered=state["counts"]["discovered"] + len(scope["records"]),
-            )
-            for error in scope["errors"]:
-                progress.error(
-                    "discovery",
-                    "tables",
-                    language,
-                    error,
-                    url=provider["base_api_url"] + "/tables",
-                )
-            state["scopes"].append(
-                {
-                    "language": language,
-                    "complete": scope["complete"],
-                    "count": len(scope["records"]),
-                    "observed_ids": scope["observed_ids"],
-                }
-            )
-            state["discovery_errors"].extend(
-                {"language": language, "stage": "discovery", "error": error}
-                for error in scope["errors"]
-            )
-            current = {filename(row): row for row in scope["records"]}
-            state["counts"]["discovered"] += len(current)
-            removed_before = state["counts"]["removed"]
-            selection = Counter()
-            if scope["complete"]:
-                for name in set(metadata.records) | set(listings.records):
-                    previous = listings.records.get(name) or source_record(
-                        metadata.records[name]
-                    )
-                    if previous["language"] == language and name not in current:
-                        logger.debug(
-                            "Removing %s: absent from the complete %s catalogue",
-                            name,
-                            language,
-                        )
-                        if metadata.records.pop(name, None) is not None:
-                            state["counts"]["removed"] += 1
-                        listings.records.pop(name, None)
-                logger.info(
-                    "Scope %s is complete: %d stored tables absent from the "
-                    "catalogue were removed",
-                    language,
-                    state["counts"]["removed"] - removed_before,
-                )
-            else:
-                logger.warning(
-                    "Scope %s is incomplete: stored tables missing from the partial "
-                    "catalogue are kept, not treated as removed",
-                    language,
-                )
-            for name, row in current.items():
-                listings.records[name] = row
-                saved = metadata.records.get(name)
-                reusable = False
-                needs_codes = False
-                reason = (
-                    "full run"
-                    if full
-                    else "new table"
-                    if saved is None
-                    else "previously failed"
-                    if name in failed
-                    else None
-                )
-                if saved is not None and not full and name not in failed:
-                    try:
-                        validate_metadata(saved, row)
-                        reusable = source_record(saved) == row
-                        if not reusable:
-                            reason = "catalogue entry changed"
-                    except (ValueError, KeyError, TypeError) as error:
-                        reusable = False
-                        reason = "saved metadata invalid"
-                        logger.debug(
-                            "Saved metadata for %s failed validation: %s: %s",
-                            name,
-                            type(error).__name__,
-                            error,
-                        )
-                if reusable:
-                    for code in codelist_ids(saved):
-                        key = code_key(code, language)
-                        try:
-                            validate_codelist(
-                                codes.records[key]["codelist"], code, language
-                            )
-                            needs_codes |= key in failed_codes
-                        except (ValueError, KeyError, TypeError):
-                            needs_codes = True
-                    if needs_codes:
-                        reason = "codelist missing, invalid or previously failed"
-                if reusable and not needs_codes:
-                    state["counts"]["reused"] += 1
-                    selection["reused unchanged"] += 1
-                    logger.debug("Skip %s: unchanged since last accepted", name)
-                else:
-                    state["tasks"][name] = {
-                        "status": "pending",
-                        "kind": "reused"
-                        if reusable
-                        else "updated"
-                        if saved is not None
-                        else "created",
-                    }
-                    selection[reason] += 1
-                    logger.debug(
-                        "Queue %s as %s: %s", name, state["tasks"][name]["kind"], reason
-                    )
-            queued = {k: v for k, v in selection.items() if k != "reused unchanged"}
-            logger.info(
-                "Scope %s selection: %d catalogue tables -> %d reused unchanged, "
-                "%d queued (%s)",
-                language,
-                len(current),
-                selection["reused unchanged"],
-                sum(queued.values()),
-                ", ".join(f"{k}: {v}" for k, v in sorted(queued.items())) or "none",
-            )
-    pending_kinds = Counter(
-        task["kind"] for task in state["tasks"].values() if task["status"] == "pending"
-    )
+    previous_report = data / "reports/harvest.json"
+    report = read(previous_report) if previous_report.exists() else {}
+    failed = {e.get("filename") for e in report.get("errors", []) if e.get("filename")}
+    # Codelists confirmed 404 are reported, not re-requested on every refresh.
+    dead_codes = set(report.get("removed_codelists", []))
+    failed_codes = {
+        e.get("codelist_key")
+        for e in report.get("errors", [])
+        if e.get("codelist_key") and e["codelist_key"] not in dead_codes
+    }
+    state = {
+        "run_id": uuid4().hex,
+        "full": full,
+        "provider": provider,
+        "started_at": now(),
+        "tasks": {},
+        "scopes": [],
+        "discovery_errors": [],
+        "refreshed_codes": set(),
+        "code_errors": {},
+        "removed_tables": [],
+        "removed_codelists": set() if full else set(dead_codes),
+        "counts": {
+            "reused": 0,
+            "removed": 0,
+            "discovered": 0,
+            "codelists_fetched": 0,
+        },
+    }
     logger.info(
-        "Work plan for wave %d: %d tasks pending (%d new, %d updated, %d "
-        "codelist-only), %d already processed, %d discovered, %d reused, %d removed",
-        state["wave"],
-        sum(pending_kinds.values()),
-        pending_kinds["created"],
-        pending_kinds["updated"],
-        pending_kinds["reused"],
-        sum(task["status"] != "pending" for task in state["tasks"].values()),
+        "Run %s (%s); previous report lists %d failed tables, %d failed codelists "
+        "to retry and %d codelists confirmed removed",
+        state["run_id"],
+        "full run, every table is re-fetched" if full else "refresh run",
+        len(failed),
+        len(failed_codes),
+        len(dead_codes),
+    )
+    progress.update(phase="discovery")
+    async for scope in discover_provider(provider, client=client):
+        language = scope["language"]
+        progress.update(
+            language=language,
+            discovered=state["counts"]["discovered"] + len(scope["records"]),
+        )
+        for error in scope["errors"]:
+            progress.error(
+                "discovery",
+                "tables",
+                language,
+                error,
+                url=provider["base_api_url"] + "/tables",
+            )
+        state["scopes"].append(
+            {
+                "language": language,
+                "complete": scope["complete"],
+                "count": len(scope["records"]),
+                "observed_ids": scope["observed_ids"],
+            }
+        )
+        state["discovery_errors"].extend(
+            {"language": language, "stage": "discovery", "error": error}
+            for error in scope["errors"]
+        )
+        current = {filename(row): row for row in scope["records"]}
+        state["counts"]["discovered"] += len(current)
+        removed_before = state["counts"]["removed"]
+        selection = Counter()
+        if scope["complete"]:
+            for name in set(metadata.records) | set(listings.records):
+                previous = listings.records.get(name) or source_record(
+                    metadata.records[name]
+                )
+                if previous["language"] == language and name not in current:
+                    if metadata.records.pop(name, None) is not None:
+                        state["counts"]["removed"] += 1
+                    listings.records.pop(name, None)
+            logger.info(
+                "Scope %s is complete: %d stored tables absent from the catalogue "
+                "were removed",
+                language,
+                state["counts"]["removed"] - removed_before,
+            )
+        else:
+            logger.warning(
+                "Scope %s is incomplete: stored tables missing from the partial "
+                "catalogue are kept, not treated as removed",
+                language,
+            )
+        for name, row in current.items():
+            listings.records[name] = row
+            saved = metadata.records.get(name)
+            reusable = False
+            needs_codes = False
+            reason = (
+                "full run"
+                if full
+                else "new table"
+                if saved is None
+                else "previously failed"
+                if name in failed
+                else None
+            )
+            if saved is not None and not full and name not in failed:
+                try:
+                    validate_metadata(saved, row)
+                    reusable = source_record(saved) == row
+                    if not reusable:
+                        reason = "catalogue entry changed"
+                except (ValueError, KeyError, TypeError) as error:
+                    reason = "saved metadata invalid"
+                    logger.debug(
+                        "Saved metadata for %s failed validation: %s: %s",
+                        name,
+                        type(error).__name__,
+                        error,
+                    )
+            if reusable:
+                for code in codelist_ids(saved):
+                    key = code_key(code, language)
+                    if key in dead_codes:
+                        continue
+                    try:
+                        validate_codelist(
+                            codes.records[key]["codelist"], code, language
+                        )
+                        needs_codes |= key in failed_codes
+                    except (ValueError, KeyError, TypeError):
+                        needs_codes = True
+                if needs_codes:
+                    reason = "codelist missing, invalid or previously failed"
+            if reusable and not needs_codes:
+                state["counts"]["reused"] += 1
+                selection["reused unchanged"] += 1
+            else:
+                state["tasks"][name] = {
+                    "status": "pending",
+                    "kind": "reused"
+                    if reusable
+                    else "updated"
+                    if saved is not None
+                    else "created",
+                }
+                selection[reason] += 1
+        queued = {k: v for k, v in selection.items() if k != "reused unchanged"}
+        logger.info(
+            "Scope %s selection: %d catalogue tables -> %d reused unchanged, "
+            "%d queued (%s)",
+            language,
+            len(current),
+            selection["reused unchanged"],
+            sum(queued.values()),
+            ", ".join(f"{k}: {v}" for k, v in sorted(queued.items())) or "none",
+        )
+    kinds = Counter(task["kind"] for task in state["tasks"].values())
+    logger.info(
+        "Work plan: %d tasks (%d new, %d updated, %d codelist-only), %d discovered, "
+        "%d reused, %d removed",
+        sum(kinds.values()),
+        kinds["created"],
+        kinds["updated"],
+        kinds["reused"],
         state["counts"]["discovered"],
         state["counts"]["reused"],
         state["counts"]["removed"],
     )
-    completed = 0
-    succeeded = failed_count = codelists_reused = 0
+    completed = succeeded = failed_count = 0
     progress.update(
         phase="metadata",
         run_id=state["run_id"],
-        wave=state["wave"],
-        total=sum(task["status"] == "pending" for task in state["tasks"].values()),
+        total=len(state["tasks"]),
         reused=state["counts"]["reused"],
-        resumed_processed=sum(
-            task["status"] != "pending" for task in state["tasks"].values()
-        ),
         request_interval_seconds=client.interval,
     )
-    last_save = time.monotonic()
-    for name, task in list(state["tasks"].items()):
-        if task["status"] != "pending":
-            continue
-        if time.monotonic() + 180 > deadline:
-            logger.warning(
-                "Time budget reached in wave %d (%.0f s left, 180 s reserved) after "
-                "%d tasks; the remaining tasks stay pending for the next wave",
-                state["wave"],
-                deadline - time.monotonic(),
-                completed,
+    for name, task in state["tasks"].items():
+        if time.monotonic() > deadline:
+            task.update(
+                status="failed",
+                error="Time budget exhausted before this table was fetched",
             )
-            break
+            failed_count += 1
+            continue
         row = listings.records[name]
         language = row["language"]
-        logger.debug(
-            "Processing %s %s/%s (%s)",
-            task["kind"],
-            language,
-            row["dataset_code"],
-            name,
-        )
         progress.update(
             current=row["dataset_code"], language=language, operation="metadata"
         )
@@ -498,9 +391,6 @@ async def run(
             metadata.records[name] = document
             listings.records[name] = deepcopy(source_record(document))
             task["status"] = "success"
-            logger.debug(
-                "Accepted %s/%s (%s)", language, row["dataset_code"], task["kind"]
-            )
         except Exception as error:
             # A 404 during a catalogue race is confirmed against the table endpoint.
             if (
@@ -508,13 +398,6 @@ async def run(
                 and error.response.status_code in {404, 410}
                 and "/tables/" in str(error.request.url)
             ):
-                logger.info(
-                    "Table %s/%s returned HTTP %d; confirming absence at the "
-                    "table endpoint",
-                    language,
-                    row["dataset_code"],
-                    error.response.status_code,
-                )
                 try:
                     await client.get(
                         f"tables/{quote(row['dataset_code'], safe='')}", lang=language
@@ -531,25 +414,12 @@ async def run(
                             state["counts"]["removed"] += 1
                         listings.records.pop(name, None)
                         state["removed_tables"].append(name)
-                    else:
-                        logger.info(
-                            "Table %s/%s absence not confirmed (HTTP %d); keeping it",
-                            language,
-                            row["dataset_code"],
-                            confirmation.response.status_code,
-                        )
                 except Exception as confirm_error:
                     logger.info(
                         "Table %s/%s absence check inconclusive (%s); keeping it",
                         language,
                         row["dataset_code"],
                         type(confirm_error).__name__,
-                    )
-                else:
-                    logger.info(
-                        "Table %s/%s still exists at the source; keeping it",
-                        language,
-                        row["dataset_code"],
                     )
             task.update(status="failed", error=f"{type(error).__name__}: {error}")
             logger.error(
@@ -572,145 +442,102 @@ async def run(
         if document is not None:
             for code in sorted(codelist_ids(document)):
                 key = code_key(code, language)
-                if key in state["code_errors"]:
+                if key in state["code_errors"] or key in state["refreshed_codes"]:
                     continue
-                if task["kind"] == "reused" and key not in state.get("retry_codes", []):
+                if key in state["removed_codelists"]:
+                    state["code_errors"][key] = REMOVED_CODELIST
+                    continue
+                if task["kind"] == "reused" and key not in failed_codes:
                     try:
                         validate_codelist(
                             codes.records[key]["codelist"], code, language
                         )
                     except (KeyError, ValueError, TypeError):
-                        logger.debug(
-                            "Stored codelist %s (%s) is missing or invalid; refetching",
-                            code,
-                            language,
-                        )
+                        pass
                     else:
-                        codelists_reused += 1
-                        logger.debug(
-                            "Reusing stored codelist %s (%s) for unchanged table %s",
-                            code,
-                            language,
-                            row["dataset_code"],
-                        )
                         continue
-                if key not in state["refreshed_codes"] or key not in codes.records:
-                    progress.update(
-                        current=code,
-                        language=language,
-                        operation="codelist",
-                        parent_table=row["dataset_code"],
-                    )
-                    try:
-                        payload = await fetch_codelist(code, language, client=client)
-                    except Exception as error:
-                        if isinstance(
-                            error, httpx.HTTPStatusError
-                        ) and error.response.status_code in {404, 410}:
-                            logger.info(
-                                "Codelist %s (%s) returned HTTP %d; asking again "
-                                "to confirm absence",
-                                code,
-                                language,
-                                error.response.status_code,
-                            )
-                            try:
-                                # Two source responses confirm absence; a transient
-                                # second failure does not justify deletion.
-                                await fetch_codelist(code, language, client=client)
-                            except httpx.HTTPStatusError as confirmation:
-                                if confirmation.response.status_code in {404, 410}:
-                                    logger.warning(
-                                        "Codelist %s (%s) confirmed removed at the "
-                                        "source (HTTP %d)",
-                                        code,
-                                        language,
-                                        confirmation.response.status_code,
-                                    )
-                                    codes.records.pop(key, None)
-                                    state["removed_codelists"].append(key)
-                            except Exception as confirm_error:
-                                logger.info(
-                                    "Codelist %s (%s) absence check inconclusive "
-                                    "(%s); keeping it",
+                progress.update(
+                    current=code,
+                    language=language,
+                    operation="codelist",
+                    parent_table=row["dataset_code"],
+                )
+                try:
+                    payload = await fetch_codelist(code, language, client=client)
+                except Exception as error:
+                    if isinstance(
+                        error, httpx.HTTPStatusError
+                    ) and error.response.status_code in {404, 410}:
+                        try:
+                            # Two source responses confirm absence; a transient
+                            # second failure does not justify deletion.
+                            await fetch_codelist(code, language, client=client)
+                        except httpx.HTTPStatusError as confirmation:
+                            if confirmation.response.status_code in {404, 410}:
+                                logger.warning(
+                                    "Codelist %s (%s) confirmed removed at the "
+                                    "source (HTTP %d)",
                                     code,
                                     language,
-                                    type(confirm_error).__name__,
+                                    confirmation.response.status_code,
                                 )
-                        state["code_errors"][key] = (
-                            f"Codelist {code}/{language}: {error}"
-                        )
-                        logger.error(
-                            "Codelist %s (%s) for table %s failed: %s: %s",
-                            code,
-                            language,
-                            row["dataset_code"],
-                            type(error).__name__,
-                            error,
-                        )
-                        progress.error(
-                            "codelist",
-                            code,
-                            language,
-                            f"{type(error).__name__}: {error}",
-                            url=f"{provider['base_api_url']}/codelists/{quote(code, safe='')}",
-                            table=row["dataset_code"],
-                        )
-                        continue
-                    codes.records[key] = {
-                        "provider_code": "scb",
-                        "language": language,
-                        "codelist": payload,
-                    }
-                    state["refreshed_codes"].append(key)
-                    state["counts"]["codelists_fetched"] += 1
-                    logger.debug(
-                        "Fetched codelist %s (%s) referenced by table %s",
+                                codes.records.pop(key, None)
+                                state["removed_codelists"].add(key)
+                        except Exception as confirm_error:
+                            logger.info(
+                                "Codelist %s (%s) absence check inconclusive "
+                                "(%s); keeping it",
+                                code,
+                                language,
+                                type(confirm_error).__name__,
+                            )
+                    state["code_errors"][key] = f"Codelist {code}/{language}: {error}"
+                    logger.error(
+                        "Codelist %s (%s) for table %s failed: %s: %s",
                         code,
                         language,
                         row["dataset_code"],
+                        type(error).__name__,
+                        error,
                     )
-                    progress.update(
-                        codelists_succeeded=state["counts"]["codelists_fetched"]
+                    progress.error(
+                        "codelist",
+                        code,
+                        language,
+                        f"{type(error).__name__}: {error}",
+                        url=f"{provider['base_api_url']}/codelists/{quote(code, safe='')}",
+                        table=row["dataset_code"],
                     )
+                    continue
+                codes.records[key] = {
+                    "provider_code": "scb",
+                    "language": language,
+                    "codelist": payload,
+                }
+                state["refreshed_codes"].add(key)
+                state["counts"]["codelists_fetched"] += 1
+                progress.update(
+                    codelists_succeeded=state["counts"]["codelists_fetched"]
+                )
         completed += 1
         progress.update(processed=completed)
-        if completed % 100 == 0 or time.monotonic() - last_save >= 60:
-            _snapshot(output, metadata, codes, listings, state, base)
-            last_save = time.monotonic()
+        if completed % 500 == 0:
             logger.info(
-                "Wave %d progress: %d tables processed (%d succeeded, %d failed)",
-                state["wave"],
+                "Progress: %d tables processed (%d succeeded, %d failed)",
                 completed,
                 succeeded,
                 failed_count,
             )
-    pending_now = sum(task["status"] == "pending" for task in state["tasks"].values())
     logger.info(
-        "Metadata phase of wave %d finished: %d tasks processed (%d succeeded, "
-        "%d failed), %d codelists fetched in total, %d stored codelists reused, "
-        "%d tasks still pending",
-        state["wave"],
+        "Metadata phase finished: %d tasks processed (%d succeeded, %d failed), "
+        "%d codelists fetched",
         completed,
         succeeded,
         failed_count,
         state["counts"]["codelists_fetched"],
-        codelists_reused,
-        pending_now,
     )
-    state["no_progress_waves"] = (
-        0 if completed else state.get("no_progress_waves", 0) + 1
-    )
-    if pending_now and not completed:
-        logger.warning(
-            "Wave %d processed nothing while %d tasks are pending "
-            "(%d consecutive waves without progress)",
-            state["wave"],
-            pending_now,
-            state["no_progress_waves"],
-        )
     progress.update(phase="snapshot", current=None)
-    result = _snapshot(output, metadata, codes, listings, state, base, final=True)
+    result = _write_candidate(output, metadata, codes, listings, state, base)
     progress.update(
         phase="finished", result_status=result["status"], final_counts=result["counts"]
     )
@@ -729,41 +556,9 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
     if set(scopes) != {"sv", "en"} or len(result["scopes"]) != 2:
         raise ValueError("Missing or duplicate discovery scope")
     failed = {e.get("filename") for e in result["errors"] if e.get("filename")}
-    pending = set()
-    checkpoint = output / "work/current.json"
-    if checkpoint.exists():
-        state = read(checkpoint)
-        if (
-            state["run_id"] != result["run_id"]
-            or state["wave"] != result["wave"] + 1
-            or state["provider"] != result["provider"]
-            or state["full"] != result["full"]
-        ):
-            raise ValueError("Invalid continuation checkpoint identity")
-        pending = {
-            name for name, task in state["tasks"].items() if task["status"] == "pending"
-        }
-        if any(
-            task["status"] not in {"pending", "success", "failed"}
-            for task in state["tasks"].values()
-        ):
-            raise ValueError("Invalid continuation task status")
-    if (
-        len(pending) != result["counts"]["unfinished"]
-        or len(failed) != result["counts"]["failed"]
-        or bool(pending) != checkpoint.exists()
-    ):
-        raise ValueError("Report counts do not match pending or failed work")
-    expected_status = (
-        "interrupted"
-        if pending and not result["continue"]
-        else "running"
-        if pending
-        else "completed_with_errors"
-        if result["errors"]
-        else "success"
-    )
-    if result["status"] != expected_status or (not pending and result["continue"]):
+    if len(failed) != result["counts"]["failed"]:
+        raise ValueError("Report counts do not match failed work")
+    if result["status"] != report_status(pending=0, errors=result["errors"]):
         raise ValueError("Inconsistent harvest status")
     confirmed = set(result["removed_tables"])
     if not confirmed.issubset(failed):
@@ -780,7 +575,7 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
     for name, row in listings.records.items():
         if row["provider_code"] != "scb" or row["language"] not in scopes:
             raise ValueError("Unexpected listing identity")
-        if name not in metadata.records and name not in failed | pending:
+        if name not in metadata.records and name not in failed:
             raise ValueError(
                 "Listing has neither accepted metadata nor a reported failure"
             )
@@ -804,11 +599,7 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
             }
             if expected != actual:
                 raise ValueError("Complete discovery scope does not match listings")
-    referenced = {
-        code_key(code, source_record(doc)["language"])
-        for doc in metadata.records.values()
-        for code in codelist_ids(doc)
-    }
+    referenced = _referenced(metadata)
     code_errors = {
         e["codelist_key"] for e in result["errors"] if e["stage"] == "codelist"
     }
@@ -821,34 +612,12 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
         raise ValueError("Unresolved or unreferenced codelists in candidate")
 
 
-def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dict:
+def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
     """Validate the entire artifact before applying it; Git publishes all files together."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
-    logger.info(
-        "Collecting candidate: run %s wave %d (expected run %s wave %d), "
-        "snapshot %s, status=%s, final=%s",
-        result["run_id"],
-        result["wave"],
-        run_id,
-        wave,
-        result.get("snapshot"),
-        result["status"],
-        result.get("final"),
-    )
-    if (
-        result["run_id"] != run_id
-        or result["wave"] != wave
-        or manifest(data) != result["base"]
-    ):
-        logger.error(
-            "Rejecting candidate: run/wave mismatch or published state changed "
-            "since the worker started"
-        )
+    if result["run_id"] != run_id or manifest(data) != result["base"]:
         raise ValueError("Stale worker artifact or changed published state")
-    if result.get("snapshot") not in {"buffer-0", "buffer-1"}:
-        raise ValueError("Invalid candidate buffer")
-    output = output / result["snapshot"]
     if manifest(output) != result["manifest"]:
         raise ValueError("Worker artifact content does not match its manifest")
     validate_provider(result["provider"])
@@ -862,11 +631,7 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
                 if path.parts[0] != "table-records"
                 else path.suffix == ".jsonl"
             )
-        ) or relative in {
-            "reports/refresh.json",
-            "reports/harvest.json",
-            "work/current.json",
-        }
+        ) or relative in {"reports/refresh.json", "reports/harvest.json"}
         if not allowed:
             raise ValueError(f"Unexpected artifact path: {relative}")
         if (output / relative).stat().st_size >= 100 * 1024 * 1024:
@@ -876,22 +641,7 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
     metadata, codes, listings = load_stores(output)
     failed = {e.get("filename") for e in result["errors"]}
     previous = JsonlStore(data / "metadata")
-    logger.info(
-        "Candidate holds %d metadata documents, %d codelists, %d table records; "
-        "published state holds %d metadata documents",
-        len(metadata.records),
-        len(codes.records),
-        len(listings.records),
-        len(previous.records),
-    )
-    try:
-        _validate_reconciliation(result, output, metadata, codes, listings, previous)
-    except Exception as error:
-        logger.error(
-            "Candidate failed reconciliation: %s: %s", type(error).__name__, error
-        )
-        raise
-    logger.info("Reconciliation passed; validating each document before applying")
+    _validate_reconciliation(result, output, metadata, codes, listings, previous)
     for name, doc in metadata.records.items():
         saved = source_record(doc)
         if saved["provider_code"] != "scb" or saved["language"] not in {"sv", "en"}:
@@ -905,13 +655,10 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
                 raise ValueError("Metadata does not match accepted listing")
         for code in codelist_ids(doc):
             key = code_key(code, saved["language"])
-            if key not in codes.records:
-                continue  # Missing references were checked against explicit codelist errors.
-            validate_codelist(
-                codes.records[key]["codelist"],
-                code,
-                saved["language"],
-            )
+            if key in codes.records:
+                validate_codelist(
+                    codes.records[key]["codelist"], code, saved["language"]
+                )
     for document in codes.records.values():
         if document["provider_code"] != "scb" or document["language"] not in {
             "sv",
@@ -921,21 +668,15 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
         validate_codelist(
             document["codelist"], document["codelist"]["id"], document["language"]
         )
-    added = len(set(metadata.records) - set(previous.records))
-    dropped = len(set(previous.records) - set(metadata.records))
-    changed = sum(
-        1
-        for name, doc in metadata.records.items()
-        if name in previous.records and previous.records[name] != doc
-    )
     logger.info(
-        "Applying candidate: metadata +%d new, %d changed, -%d removed; "
-        "%d codelists, %d table records",
-        added,
-        changed,
-        dropped,
-        len(codes.records),
-        len(listings.records),
+        "Applying candidate: metadata +%d new, %d changed, -%d removed",
+        len(set(metadata.records) - set(previous.records)),
+        sum(
+            1
+            for name, doc in metadata.records.items()
+            if name in previous.records and previous.records[name] != doc
+        ),
+        len(set(previous.records) - set(metadata.records)),
     )
     for incoming in (metadata, codes, listings):
         target = JsonlStore(
@@ -945,26 +686,12 @@ def collect(data: str | Path, output: str | Path, run_id: str, wave: int) -> dic
         )
         target.records = incoming.records
         target.save()
-    for relative in (
-        "reports/refresh.json",
-        "reports/harvest.json",
-        "work/current.json",
-    ):
-        if (output / relative).exists():
-            write(data / relative, read(output / relative))
-        else:
-            (data / relative).unlink(missing_ok=True)
+    for relative in ("reports/refresh.json", "reports/harvest.json"):
+        write(data / relative, read(output / relative))
+    (data / "work/current.json").unlink(missing_ok=True)
+    shutil.rmtree(data / "work", ignore_errors=True)
     if manifest(data) != result["manifest"]:
-        logger.error("Collected state differs from the validated artifact manifest")
         raise ValueError(
             "Collected state differs from validated artifact; do not publish"
         )
-    logger.info(
-        "Collected run %s wave %d: status=%s, continue=%s, counts=%s",
-        result["run_id"],
-        result["wave"],
-        result["status"],
-        result["continue"],
-        result["counts"],
-    )
     return result
