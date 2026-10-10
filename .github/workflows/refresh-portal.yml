@@ -1,0 +1,43 @@
+name: Refresh oppnadata snapshot
+on:
+  workflow_dispatch:
+  # BEGIN GENERATED SCHEDULE
+  schedule:
+    - cron: '30 3 * * 0'
+      timezone: Europe/Stockholm
+  # END GENERATED SCHEDULE
+concurrency:
+  group: production-publication
+  queue: max
+  cancel-in-progress: false
+permissions:
+  contents: write
+  actions: write
+jobs:
+  refresh:
+    # BEGIN GENERATED ENABLEMENT
+    if: github.event_name == 'workflow_dispatch' || true
+    # END GENERATED ENABLEMENT
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          version: '0.12.7'
+          python-version: '3.13'
+      - run: uv sync --locked --extra harvest
+      - name: Download and validate complete oppnadata snapshot
+        run: uv run python -m metadata_harvest.portal refresh
+      - name: Publish only the validated editorial snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          uv run python -m metadata_harvest.portal publish
+      - name: Rebuild catalog offline from accepted inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run catalog.yml --ref main

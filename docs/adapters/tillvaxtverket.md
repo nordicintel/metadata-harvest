@@ -6,7 +6,7 @@ on-demand retrieval for Tillväxtverket's open accommodation statistics
 query server at `https://oppnadata.tillvaxtverket.se`. The provider code is
 `tillvaxtverket`. No authentication is needed.
 
-Research: [docs/api/tillvaxtverket](../api/tillvaxtverket/README.md) (2026-10-09).
+Research: [provider documentation](https://tillvaxtverket.se/tillvaxtverket/statistikochanalys.675.html) (2026-10-09).
 The server's own API description is `https://oppnadata.tillvaxtverket.se/api.yaml`
 (DivePort Web API, OpenAPI 3).
 

@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "Concept": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "properties": {
+        "ni:additionalAttributes": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Ni:Additionalattributes",
+          "type": "object"
+        },
+        "@id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "@Id"
+        },
+        "@type": {
+          "const": "skos:Concept",
+          "default": "skos:Concept",
+          "title": "@Type",
+          "type": "string"
+        },
+        "skos:notation": {
+          "minLength": 1,
+          "title": "Skos:Notation",
+          "type": "string"
+        },
+        "skos:prefLabel": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Skos:Preflabel",
+          "type": "object"
+        },
+        "skos:note": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Skos:Note",
+          "type": "object"
+        },
+        "skos:broader": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Skos:Broader",
+          "type": "array"
+        },
+        "ni:unit": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ni:Unit"
+        },
+        "ni:coordinates": {
+          "$ref": "#/$defs/JsonValue",
+          "default": null
+        },
+        "ni:aggregationMap": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ni:Aggregationmap"
+        }
+      },
+      "required": [
+        "skos:notation"
+      ],
+      "title": "Concept",
+      "type": "object"
+    },
+    "JsonValue": {}
+  },
+  "additionalProperties": {
+    "$ref": "#/$defs/JsonValue"
+  },
+  "properties": {
+    "ni:additionalAttributes": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "$ref": "#/$defs/JsonValue"
+        },
+        "type": "object"
+      },
+      "title": "Ni:Additionalattributes",
+      "type": "object"
+    },
+    "@id": {
+      "minLength": 1,
+      "title": "@Id",
+      "type": "string"
+    },
+    "@type": {
+      "const": "skos:ConceptScheme",
+      "default": "skos:ConceptScheme",
+      "title": "@Type",
+      "type": "string"
+    },
+    "skos:prefLabel": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Skos:Preflabel",
+      "type": "object"
+    },
+    "codes": {
+      "items": {
+        "$ref": "#/$defs/Concept"
+      },
+      "title": "Codes",
+      "type": "array"
+    },
+    "ni:categoryOrder": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Ni:Categoryorder",
+      "type": "object"
+    },
+    "ni:sourceIdentity": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "title": "Ni:Sourceidentity",
+      "type": "object"
+    },
+    "@context": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "@id"
+  ],
+  "title": "CodeList",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nordicintel/metadata-harvest/schemas/codelist.schema.json"
+}

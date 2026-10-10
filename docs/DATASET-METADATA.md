@@ -1,3 +1,5 @@
+> Transition reference: this documents the legacy native/observation shape. The authoritative published metadata contract is the [Pydantic StatDCAT profile](output-contract.md); new consumers use typed distributions.
+
 # Dataset metadata and observations
 
 [The schema](../src/metadata_harvest/schemas/dataset-metadata.schema.json) defines a JSON-stat2

@@ -4,9 +4,12 @@ import gzip
 import json
 from pathlib import Path
 
+from metadata_harvest.accepted import collection_name, contribution_documents
+from metadata_harvest.accepted import write_metadata as write_accepted_metadata
+from metadata_harvest.models import Dataset
 from metadata_harvest.storage import write_jsonl
 
-COLLECTION = "metadata/kolada__sv.jsonl.gz"
+COLLECTION = "metadata/" + collection_name("kolada")
 STATE = "state/current.jsonl.gz"
 
 
@@ -15,7 +18,11 @@ def records(path: Path):
         opener = gzip.open if path.suffix == ".gz" else open
         with opener(path, "rt", encoding="utf-8") as stream:
             for line in stream:
-                yield json.loads(line)
+                value = json.loads(line)
+                if value.get("@type") == "dcat:Dataset":
+                    yield from contribution_documents(Dataset.from_jsonld(value))
+                else:
+                    yield value
 
 
 def load_documents(root: Path) -> dict:
@@ -36,5 +43,7 @@ def save(
     root: Path, state: dict, documents: dict, *, write_metadata: bool = True
 ) -> None:
     if write_metadata:
-        write_jsonl(Path(root) / COLLECTION, (documents[k] for k in sorted(documents)))
+        write_accepted_metadata(
+            Path(root), documents.values(), adapter="kolada", empty_providers=["kolada"]
+        )
     write_jsonl(Path(root) / STATE, [state])

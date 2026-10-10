@@ -1,3 +1,28 @@
+# Typed distribution retrieval
+
+```python
+import json
+import aiohttp
+from metadata_harvest import Dataset, retrieve_distribution
+
+# Decode one line from the extracted catalog.jsonl.
+dataset = Dataset.from_jsonld(json_line_record)
+distribution = next(d for d in dataset.distributions if d.retrieval is not None)
+selection = {
+    axis.code: axis.categories[:1] for axis in distribution.retrieval.dimensions
+}
+async with aiohttp.ClientSession() as session:
+    observations = await retrieve_distribution(
+        session, distribution, selection=selection
+    )
+```
+
+Choose the distribution whose language, scope and API you need. It supplies the original routing identity, adapter, endpoints, dimensions and operational settings. The caller owns its session, pacing, timeout and cancellation policy. Category order, request splitting, errors and the existing observation-result format are preserved. No observations are persisted by retrieval.
+
+## Transition API
+
+The provider entry points and JSON Pointer interface below remain compatibility wrappers for one transition release. New consumers should use the typed interface above.
+
 # Standalone PXWeb retrieval
 
 A plain installation of this one distribution provides both retrieval modules and

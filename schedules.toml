@@ -86,3 +86,10 @@ enabled = true
 [[adapters.tillvaxtverket.schedules]]
 cron = "45 7 * * 1"
 mode = "full" # Weekly Monday 07:45; every run probes every dataset (3 requests each) and rebuilds only those whose LOAD_DATE signal changed
+
+# Editorial snapshot refresh is separate from statistical adapters/services.
+[snapshots.oppnadata]
+enabled = true
+[[snapshots.oppnadata.schedules]]
+cron = "30 3 * * 0"
+mode = "full"

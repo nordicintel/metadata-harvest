@@ -141,9 +141,11 @@ def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeyp
     saved = load_state(target)["scopes"]["municipality/N1"]
     assert saved["checked_at"] == "2026-10-09T04:00:00Z"
     assert saved["coverage_at"] == "2026-10-08T16:00:00Z"
-    before = (target / "metadata/kolada__sv.jsonl.gz").read_bytes()
+    before = (target / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
     import_seed(seed_source, target)
-    assert (target / "metadata/kolada__sv.jsonl.gz").read_bytes() == before
+    assert (
+        target / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz"
+    ).read_bytes() == before
 
 
 def test_sample_mapping_preserves_suppressed_gender_and_group(seed_source, tmp_path):

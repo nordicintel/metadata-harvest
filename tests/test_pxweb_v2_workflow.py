@@ -121,7 +121,11 @@ def test_full_incremental_and_silent_change_refresh(tmp_path):
     initial = harvest(source, root, tmp_path / "first", full=True)
     assert initial["status"] == "success"
     assert initial["counts"]["created"] == 2
-    assert len(list((root / "metadata").glob("*.jsonl.gz"))) == 2
+    assert len(list((root / "metadata").glob("*.jsonl.gz"))) == 1
+    assert {
+        doc["extension"]["nordicintel"]["language"]
+        for doc in JsonlStore(root / "metadata").records.values()
+    } == {"sv", "en"}
     assert len(list((root / "codelists").glob("*.jsonl.gz"))) == 2
     assert not (root / "work/current.json").exists()
     before = metadata_bytes(root)
@@ -438,7 +442,14 @@ def test_collector_rejects_unsupported_language_deletion_even_with_valid_manifes
 
     result = asyncio.run(execute())
     candidate = output / result.get("snapshot", "")
-    for folder in ("metadata", "codelists", "table-records"):
+    metadata = JsonlStore(candidate / "metadata", compressed=True)
+    metadata.records = {
+        key: doc
+        for key, doc in metadata.records.items()
+        if doc["extension"]["nordicintel"]["language"] != "en"
+    }
+    metadata.save()
+    for folder in ("codelists", "table-records"):
         next((candidate / folder).glob("*__en__*.jsonl*")).unlink()
     result["manifest"] = workflow.manifest(candidate)
     write(output / "result.json", result)

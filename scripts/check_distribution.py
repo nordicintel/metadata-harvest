@@ -15,6 +15,9 @@ def check(root: Path):
     source = max((root / "dist").glob("*.tar.gz"), key=lambda p: p.stat().st_mtime)
     expected = {
         "dataset-metadata.schema.json",
+        "codelist.schema.json",
+        "harvest-contribution.schema.json",
+        "legacy-dataset-metadata.schema.json",
         "provider.schema.json",
         "retrieval-result.schema.json",
         "LICENSE",
@@ -50,6 +53,10 @@ import importlib.metadata as m, importlib.resources as r, json, sys
 entries = m.entry_points(group='nordicintel.retrieval')
 for entry in entries:
     entry.load()
+from metadata_harvest import Dataset, Distribution, CodeList, retrieve_distribution
+assert callable(retrieve_distribution)
+sample = Dataset(id='urn:nordicintel:installation-check', unfamiliar=False)
+assert Dataset.from_jsonld(sample.to_jsonld()).additional_attributes['custom']['unfamiliar'] is False
 assert not any(k.startswith(('httpx', 'playwright', 'jsonschema')) for k in sys.modules)
 installed = {d.metadata['Name'].lower() for d in m.distributions()}
 assert not installed.intersection({'httpx', 'playwright', 'jsonschema'})

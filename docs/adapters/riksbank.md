@@ -9,7 +9,7 @@ retrieval for three Sveriges Riksbank APIs at `https://api.riksbank.se`:
 - **SWESTR** (`/swestr/v1`): the Swedish krona Short Term Rate.
 
 The provider code is `riksbank`. Access is anonymous. Research, samples and the
-operation lists are in [docs/api/riksbank](../api/riksbank/REPORT.md).
+operation lists are in [provider documentation](https://developer.riksbank.se/).
 
 ## Scope decisions
 

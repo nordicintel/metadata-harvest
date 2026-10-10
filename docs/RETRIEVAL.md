@@ -1,3 +1,5 @@
+> Transition reference: this documents the legacy native/observation shape. The authoritative published metadata contract is the [Pydantic StatDCAT profile](output-contract.md); new consumers use typed distributions.
+
 # Adapter retrieval
 
 An API adapter makes one function separately installable and importable: the live

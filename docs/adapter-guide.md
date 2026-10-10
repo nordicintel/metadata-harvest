@@ -6,12 +6,14 @@ explicit small table, not a plugin system. Placeholder adapters raise
 
 1. Define adapter-specific provider configuration and complete language-specific
    discovery; return observed records, scope completeness and explicit failures.
-2. Validate native source metadata, map without losing source meaning, and call
-   `validate_metadata(..., adapter=...)` before accepting any replacement.
+2. Parse native metadata inside the adapter, then return `list[HarvestContribution]`
+   from the public `fetch_metadata` boundary. Validate with the local Pydantic models
+   before accepting any replacement; preserve unfamiliar fields in source extensions.
 3. Keep complete source change signals in the accepted `source_record`; use shared
    storage and artifact helpers with adapter-owned discovery/reconciliation rules.
-4. Implement standalone async retrieval and static `REQUIRED_METADATA`, importing
-   only base dependencies; register only actually supported provider codes.
+4. Supply typed distribution retrieval bindings and implement standalone async
+   retrieval, importing only base dependencies. `REQUIRED_METADATA` remains a
+   compatibility mechanism for the transition release.
 5. Add fixtures, lifecycle/isolation tests, bounded live checks, complete automated
    acceptance and a subsequent reuse/byte-stability check before claiming readiness.
 6. Deliver provider coverage, source mappings, preparation gaps and verification

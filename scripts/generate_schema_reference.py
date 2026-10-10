@@ -1,210 +1,73 @@
-"""Generate the Dataset field reference from the packaged authoritative schema.
+"""Generate published JSON Schemas and field documentation from Pydantic v2."""
 
-Renderer adapted from nordicintel/nordicintel-schemas 77a7a46 (Apache-2.0).
-"""
-
-import html
 import json
 import sys
 from pathlib import Path
 
-SCHEMA = "src/metadata_harvest/schemas/dataset-metadata.schema.json"
+from metadata_harvest.models import CodeList, Dataset, HarvestContribution
+
+ROOT = Path(__file__).resolve().parents[1]
+MODELS = {
+    "dataset-metadata": Dataset,
+    "codelist": CodeList,
+    "harvest-contribution": HarvestContribution,
+}
 
 
-def cell(value: str) -> str:
-    return html.escape(value, quote=False).replace("|", "&#124;").replace("\n", "<br>")
-
-
-def render(schema: dict) -> str:
-    """Document reachable properties; expand scalar refs, link shared object shapes once."""
-    sections = [("Dataset", schema, "jstat")]
-    references = {}
-
-    def resolve(node: dict, seen: tuple = ()) -> dict:
-        if not isinstance(node, dict):
-            return {} if node else {"description": "Not allowed."}
-        if "$ref" not in node:
-            return node
-        reference = node["$ref"]
-        if not reference.startswith("#/") or reference in seen:
-            raise ValueError(
-                f"Unsupported external or cyclic alias reference: {reference}"
-            )
-        target = schema
-        for part in reference[2:].split("/"):
-            target = target[part.replace("~1", "/").replace("~0", "~")]
-        return resolve(target, (*seen, reference)) | {
-            key: value for key, value in node.items() if key != "$ref"
-        }
-
-    def types(node: dict, seen: tuple = ()) -> str:
-        if node.get("$ref") in seen:
-            return "object"
-        seen = (*seen, node.get("$ref")) if "$ref" in node else seen
-        node = resolve(node)
-        alternatives = node.get("oneOf", node.get("anyOf", []))
-        if "type" not in node and alternatives:
-            return " / ".join(dict.fromkeys(types(item, seen) for item in alternatives))
-        values = node.get("type")
-        if values is None:
-            if "const" in node:
-                value = node["const"]
-                values = {
-                    str: "string",
-                    bool: "boolean",
-                    int: "integer",
-                    float: "number",
-                    list: "array",
-                    dict: "object",
-                    type(None): "null",
-                }[type(value)]
-            else:
-                values = "object" if "properties" in node else "any"
-        values = [values] if isinstance(values, str) else values
-        result = []
-        for value in values:
-            if value == "array" and isinstance(node.get("items"), dict):
-                value = f"array<{types(node['items'], seen)}>"
-            result.append(value)
-        return " / ".join(result)
-
-    def children(node: dict, prefix: str, source: str) -> list[str]:
-        node = resolve(node)
-        rows = []
-        properties = dict(node.get("properties", {}))
-        required = set(node.get("required", []))
-        for keyword in ("allOf", "anyOf", "oneOf"):
-            branches = [resolve(branch) for branch in node.get(keyword, [])]
-            for branch in branches:
-                for name, definition in branch.get("properties", {}).items():
-                    properties.setdefault(name, definition)
-            groups = [set(branch.get("required", [])) for branch in branches]
-            if groups:
-                required.update(
-                    set.union(*groups)
-                    if keyword == "allOf"
-                    else set.intersection(*groups)
-                )
-        for name, definition in properties.items():
-            path = f"{prefix}.{name}" if prefix else name
-            origin = "nordicintel" if name == "nordicintel" else source
-            rows.extend(property_rows(path, definition, name in required, origin))
-        # Dynamic keys are useful only when their values have documented structure.
-        dynamic = list(node.get("patternProperties", {}).values())
-        if isinstance(node.get("additionalProperties"), dict):
-            dynamic.append(node["additionalProperties"])
-        for index, definition in enumerate(dynamic):
-            path = f"{prefix}.{{key}}" if prefix else "{key}"
-            if len(dynamic) > 1:
-                path += f"[{index + 1}]"
-            origin = "nordicintel" if "nordicintel" in properties else source
-            rows.extend(nested(definition, path, origin))
-        if isinstance(node.get("items"), dict):
-            rows.extend(nested(node["items"], prefix + "[]", source))
-        return rows
-
-    def nested(definition: dict, path: str, source: str) -> list[str]:
-        target = resolve(definition)
-        if "$ref" in definition and target.get("properties"):
-            return property_rows(path, definition, False, source)
-        return children(target, path, source)
-
-    def property_rows(
-        path: str, definition: dict, required: bool, source: str
-    ) -> list[str]:
-        target = resolve(definition)
-        description = target.get("description", "")
-        if "const" in target:
-            description += (
-                " Fixed value: " + json.dumps(target["const"], ensure_ascii=False) + "."
-            )
-        elif "enum" in target:
-            description += (
-                " Allowed: " + json.dumps(target["enum"], ensure_ascii=False) + "."
-            )
-        if target.get("additionalProperties") is True:
-            description += " Additional properties allowed."
-        conditions = target.get("anyOf", target.get("oneOf", []))
-        required_groups = [
-            item["required"] for item in conditions if item.get("required")
-        ]
-        if required_groups:
-            description += (
-                " Conditional required groups: " + json.dumps(required_groups) + "."
-            )
-        examples = target.get("examples", [])
-        columns = [
-            f"`{cell(path)}`",
-            source,
-            str(required).lower(),
-            cell(types(definition)),
-            cell(description.strip()),
-            "<code>" + cell(json.dumps(examples, ensure_ascii=False)) + "</code>",
-        ]
-        reference = definition.get("$ref")
-        shared = reference and target.get("properties")
-        if shared:
-            key = (reference, source)
-            if key not in references:
-                references[key] = len(sections)
-                sections.append((reference.rsplit("/", 1)[-1], target, source))
-            columns[4] += f" See [properties](#section-{references[key]})."
-        rows = ["| " + " | ".join(columns) + " |"]
-        if not shared:
-            rows.extend(children(target, path, source))
-        return rows
-
-    output = [
-        "<!-- markdownlint-disable-file MD013 MD033 -->",
+def artifacts():
+    schemas = {}
+    for name, model in MODELS.items():
+        schema = model.model_json_schema(by_alias=True, mode="validation")
+        schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+        schema["$id"] = (
+            f"https://github.com/nordicintel/metadata-harvest/schemas/{name}.schema.json"
+        )
+        schema.setdefault("properties", {})["@context"] = {"type": "object"}
+        schemas[name] = schema
+        yield (
+            ROOT / f"src/metadata_harvest/schemas/{name}.schema.json",
+            json.dumps(schema, ensure_ascii=False, indent=2) + "\n",
+        )
+    lines = [
+        "# Metadata model reference",
         "",
-        "# Dataset metadata property reference",
+        "Generated from [Pydantic models](../src/metadata_harvest/models.py); do not edit by hand.",
         "",
-        f"Generated from [`{SCHEMA}`](../{SCHEMA}); do not edit by hand.",
+        "NordicIntel profile 1.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.",
         "",
-        "`required` means required within the containing object, not necessarily at the root. "
-        "Conditional requirements are noted in descriptions; consult the schema for full constraints.",
-        "",
-        "`jstat` marks standard JSON-stat2 fields; `nordicintel` marks fields inside "
-        "the NordicIntel namespace and custom namespace conventions (including nested objects). Provider/adapter namespace "
-        "contents are open and have no fixed property inventory.",
-        "",
-        "Paths are relative to each section; `{key}` is a dynamic map key and `[]` an array item. "
-        "Shared objects are documented once. Primitive map entries, unused definitions and "
-        "arbitrary additional properties are omitted. Examples come only from schema annotations.",
+        "Every source-bearing model accepts JSON-valued extras. Serialization places unfamiliar properties in `ni:additionalAttributes` under the `custom` namespace; adapters use their source namespace. This property is explicitly JSON-valued in the inline JSON-LD context.",
         "",
     ]
-    index = 0
-    while index < len(sections):
-        title, node, source = sections[index]
-        output.extend(
+    definitions = {
+        "Dataset": schemas["dataset-metadata"],
+        **schemas["harvest-contribution"].get("$defs", {}),
+    }
+    for name, schema in sorted(definitions.items()):
+        if not schema.get("properties"):
+            continue
+        lines.extend(
             [
-                f'<a id="section-{index}"></a>',
+                f"## {name}",
                 "",
-                f"## {cell(title)}",
-                "",
-                "| Property | Source | Required | Type | Description | Examples |",
-                "| --- | --- | --- | --- | --- | --- |",
+                "| Property | Required | Definition |",
+                "| --- | --- | --- |",
             ]
         )
-        output.extend(children(node, "", source))
-        output.append("")
-        index += 1
-    return "\n".join(output)
+        for key, definition in schema["properties"].items():
+            text = json.dumps(definition, ensure_ascii=False, sort_keys=True).replace(
+                "|", "&#124;"
+            )
+            lines.append(
+                f"| `{key}` | {key in schema.get('required', [])} | `{text}` |"
+            )
+        lines.append("")
+    yield ROOT / "docs/DATASET-METADATA-REFERENCE.md", "\n".join(lines)
 
 
 if __name__ == "__main__":
-    root = Path(__file__).resolve().parents[1]
-    schema = json.loads(
-        (root / "src/metadata_harvest/schemas/dataset-metadata.schema.json").read_text(
-            encoding="utf-8"
-        )
-    )
-    target = root / "docs/DATASET-METADATA-REFERENCE.md"
-    content = render(schema)
-    if "--check" in sys.argv:
-        if not target.exists() or target.read_text(encoding="utf-8") != content:
-            raise SystemExit(
-                "Schema reference is stale: run scripts/generate_schema_reference.py"
-            )
-    else:
-        target.write_text(content, encoding="utf-8", newline="\n")
+    for path, content in artifacts():
+        if "--check" in sys.argv:
+            if not path.exists() or path.read_text(encoding="utf-8") != content:
+                raise SystemExit(f"Generated artifact is stale: {path}")
+        else:
+            path.write_text(content, encoding="utf-8", newline="\n")

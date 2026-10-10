@@ -70,7 +70,7 @@ def test_provider_entry_points_and_placeholders_are_consistent():
                 f"metadata_harvest.adapters.{adapter}.retrieval:retrieve"
             )
     assert entries == expected
-    assert project["dependencies"] == ["aiohttp>=3.9,<4"]
+    assert project["dependencies"] == ["aiohttp>=3.9,<4", "pydantic>=2.12,<3"]
     from metadata_harvest.registry import ADAPTERS
 
     for name, spec in ADAPTERS.items():

@@ -49,7 +49,9 @@ def load(path: Path) -> dict:
         raise ValueError(
             "Schedule config must name every implemented adapter exactly once"
         )
-    for adapter, item in config["adapters"].items():
+    if set(config.get("snapshots", {})) - {"oppnadata"}:
+        raise ValueError("Unknown snapshot schedule")
+    for adapter, item in {**config["adapters"], **config.get("snapshots", {})}.items():
         if not isinstance(item.get("enabled"), bool) or not item.get("schedules"):
             raise ValueError("Each adapter requires enabled and nonempty schedules")
         seen = set()
@@ -105,8 +107,13 @@ def sync(root: Path, *, check=False) -> list[str]:
     root = Path(root)
     config = load(root / "schedules.toml")
     changed = []
-    for adapter, item in config["adapters"].items():
-        path = root / ".github/workflows" / ADAPTERS[adapter].workflow_file
+    for adapter, item in {**config["adapters"], **config.get("snapshots", {})}.items():
+        filename = (
+            "refresh-portal.yml"
+            if adapter == "oppnadata"
+            else ADAPTERS[adapter].workflow_file
+        )
+        path = root / ".github/workflows" / filename
         original = path.read_text(encoding="utf-8")
         body = "schedule:\n" + "\n".join(
             f"  - cron: '{s['cron']}'\n    timezone: {config['timezone']}"

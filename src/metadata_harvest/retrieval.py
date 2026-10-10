@@ -6,6 +6,7 @@ from itertools import product
 
 import aiohttp
 
+from metadata_harvest.models import Distribution
 from metadata_harvest.semantics import category_codes, validate_cube
 
 
@@ -195,3 +196,58 @@ async def retrieve_selection(
         result["status"] = {str(i): statuses[i] for i in sorted(statuses)}
     validate_cube(result, selection=selection)
     return result
+
+
+async def retrieve_distribution(
+    session: aiohttp.ClientSession,
+    distribution: Distribution,
+    *,
+    selection: Mapping[str, Sequence[str]],
+) -> dict:
+    """Retrieve a typed distribution through its adapter, preserving caller policy.
+
+    The compatibility projection lives here for one transition release; callers
+    do not resolve legacy JSON Pointers or choose a provider's only entry point.
+    """
+    from importlib import import_module
+
+    from metadata_harvest.models import Distribution
+    from metadata_harvest.registry import get_adapter
+    from metadata_harvest.statdcat import legacy_document
+
+    if not isinstance(distribution, Distribution):
+        raise TypeError("A validated Distribution model is required")
+    binding = distribution.retrieval
+    if binding is None:
+        raise ValueError("Distribution has no implemented retrieval binding")
+    get_adapter(binding.source.adapter)
+    available = {axis.code: set(axis.categories) for axis in binding.dimensions}
+    for code, values in selection.items():
+        if (
+            code not in available
+            or isinstance(values, str)
+            or not values
+            or len(set(values)) != len(values)
+            or not set(values) <= available[code]
+        ):
+            raise ValueError(f"Invalid selection: {code}")
+    document = legacy_document(distribution)
+    module = import_module(
+        f"metadata_harvest.adapters.{binding.source.adapter}.retrieval"
+    )
+    resolved = {}
+    for pointer in module.REQUIRED_METADATA:
+        value = document
+        for part in pointer.strip("/").split("/"):
+            value = value[part.replace("~1", "/").replace("~0", "~")]
+        resolved[pointer] = value
+    return await module.retrieve(
+        session,
+        provider_code=binding.source.provider_code,
+        dataset_code=binding.source.dataset_code,
+        language=binding.source.language,
+        selection=selection,
+        data_url=next(iter(distribution.access_url), None),
+        metadata_url=binding.metadata_url,
+        metadata=resolved,
+    )

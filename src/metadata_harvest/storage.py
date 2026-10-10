@@ -11,7 +11,9 @@ from pathlib import Path
 from urllib.parse import quote
 from uuid import uuid4
 
+from metadata_harvest.accepted import contribution_documents, write_metadata
 from metadata_harvest.mapping import source_record, v1_listing_fields
+from metadata_harvest.models import PROFILE_VERSION, Dataset
 from metadata_harvest.validation import validate_metadata
 
 
@@ -75,11 +77,19 @@ def filename(record):
 
 
 def read(path):
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    value = json.loads(Path(path).read_text(encoding="utf-8"))
+    if (
+        Path(path).name == "result.json"
+        and value.get("profile_version") != PROFILE_VERSION
+    ):
+        raise ValueError("Incompatible legacy worker artifact; run the current worker")
+    return value
 
 
 def write(path, value):
     path = Path(path)
+    if path.name == "result.json":
+        value["profile_version"] = PROFILE_VERSION
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{uuid4().hex}.tmp")
     try:
@@ -202,6 +212,16 @@ class JsonlStore:
             with opener(path, "rt", encoding="utf-8") as stream:
                 for number, line in enumerate(stream, 1):
                     document = json.loads(line)
+                    if document.get("@type") == "dcat:Dataset":
+                        model = Dataset.from_jsonld(document)
+                        for contribution in contribution_documents(model):
+                            name = filename(self.identify(contribution))
+                            if name in self.records:
+                                raise ValueError(
+                                    f"Duplicate source contribution in {path}:{number}"
+                                )
+                            self.records[name] = contribution
+                        continue
                     name = filename(self.identify(document))
                     if collection_filename(
                         self.identify(document)
@@ -222,6 +242,18 @@ class JsonlStore:
 
     def save(self) -> None:
         """Write deterministic JSONL; unchanged groups retain their exact bytes."""
+        if self.directory.name == "metadata":
+            for path, original in self._legacy.items():
+                if read(path) != original:
+                    raise ValueError(f"Legacy input changed during migration: {path}")
+            for name, document in self.records.items():
+                if filename(self.identify(document)) != name:
+                    raise ValueError("Dataset key does not match identity")
+            write_metadata(self.directory.parent, self.records.values())
+            for path in self._legacy:
+                path.unlink()
+            self._legacy.clear()
+            return
         groups: dict[str, list[dict]] = {}
         for name, document in sorted(self.records.items()):
             if filename(self.identify(document)) != name:

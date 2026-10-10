@@ -1,0 +1,978 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/nordicintel/metadata-harvest/main/src/metadata_harvest/schemas/dataset-metadata.schema.json",
+  "title": "NordicIntel JSON-stat2 Dataset metadata and observations",
+  "description": "JSON-stat2 profile for harvester, scraper and wrapper output, one complete document per language. Supports metadata-only output and observations parsed from provider files for NordicIntel to store and serve. Standard fields retain JSON-stat2 meaning. All custom metadata lives in namespaced extensions.",
+  "type": "object",
+  "required": [
+    "version",
+    "class",
+    "value",
+    "id",
+    "size",
+    "dimension",
+    "label",
+    "extension"
+  ],
+  "additionalProperties": false,
+  "if": {
+    "properties": {
+      "value": {
+        "const": []
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "then": {
+    "not": {
+      "required": [
+        "status"
+      ]
+    }
+  },
+  "properties": {
+    "version": {
+      "const": "2.0"
+    },
+    "class": {
+      "const": "dataset"
+    },
+    "label": {
+      "type": "string",
+      "description": "Human-readable dataset name/title, as given by the provider.",
+      "pattern": "\\S",
+      "examples": [
+        "Befolkning efter region och år"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "Dataset attribution as reported by the provider; it may name another originating organization. Omit when unknown. The provider identity is extension.nordicintel.provider_code.",
+      "examples": [
+        "Statistiska centralbyrån"
+      ]
+    },
+    "updated": {
+      "$ref": "#/$defs/date"
+    },
+    "note": {
+      "$ref": "#/$defs/stringArray",
+      "description": "Dataset-level explanatory notes in the document language; omit when unavailable. One substitution note per documented marker equivalent applied, in the standard format, comes last."
+    },
+    "href": {
+      "$ref": "#/$defs/url",
+      "description": "Optional standard JSON-stat2 Dataset link. Provider retrieval URLs are defined separately in extension.nordicintel; this field does not replace them."
+    },
+    "link": {
+      "$ref": "#/$defs/links"
+    },
+    "id": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonblank"
+      },
+      "description": "Complete ordered dimension codes. Consumers check exact correspondence with dimension keys. This is dimension ordering, not a Dataset identifier.",
+      "minItems": 1,
+      "uniqueItems": true,
+      "examples": [
+        [
+          "Region",
+          "Time"
+        ]
+      ]
+    },
+    "size": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "description": "Actual category counts in id order, including for metadata-only output. Consumers check correspondence with each dimension's categories and observation count or sparse index bounds against the product of size.",
+      "examples": [
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "role": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "$ref": "#/$defs/stringArray",
+          "uniqueItems": true,
+          "description": "Existing dimension codes assigned the time role; references and cross-role uniqueness are application checks."
+        },
+        "geo": {
+          "$ref": "#/$defs/stringArray",
+          "uniqueItems": true,
+          "description": "Existing dimension codes assigned the geo role; references and cross-role uniqueness are application checks."
+        },
+        "metric": {
+          "$ref": "#/$defs/stringArray",
+          "uniqueItems": true,
+          "description": "Existing dimension codes assigned the metric role; references and cross-role uniqueness are application checks."
+        }
+      },
+      "description": "Semantic roles assigned to existing dimension codes. Each supplied array is nonempty and unique; array order need not follow dimension order. Applications enforce at most one role per dimension.",
+      "additionalProperties": false,
+      "examples": [
+        {
+          "time": [
+            "Time"
+          ],
+          "geo": [
+            "Region"
+          ]
+        }
+      ]
+    },
+    "dimension": {
+      "type": "object",
+      "description": "Complete JSON-stat2 dimension metadata keyed by provider dimension code; id supplies order.",
+      "additionalProperties": {
+        "$ref": "#/$defs/jstat_dimension"
+      },
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/nonblank"
+      }
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(0|[1-9][0-9]*)(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ]
+          }
+        }
+      ],
+      "description": "Required observations: [] means metadata-only. Otherwise include exactly the cells the source provides: a dense array in id/category index order (last dimension varies fastest) only when the source supplies every cell, else a sparse object keyed by zero-based observation index. Values may be numbers, strings or null; preserve zero, use null only for cells the source presents with a marker (kept in status), and leave out cells the source has no data for. {} means the source has no data for any cell, not metadata-only. Consumers enforce dense length equal to product(size) and sparse indices below product(size).",
+      "examples": [
+        [],
+        [
+          0,
+          null,
+          12.5,
+          "text"
+        ],
+        {
+          "0": 0,
+          "2": 12.5,
+          "3": "text"
+        },
+        {}
+      ]
+    },
+    "status": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^(0|[1-9][0-9]*)(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Optional provider observation flags, such as suppression or provisional status. A string applies to every cell; an array aligns with the full flattened cube and uses null for unflagged cells; a sparse object maps zero-based observation indices to strings. Marker cells have null values; markers replaced by a documented value are not flagged. Consumers check array length and index bounds against product(size). Omit for metadata-only value: []. Preserve provider flag meanings; no universal code vocabulary is imposed.",
+      "examples": [
+        "p",
+        [
+          null,
+          "s",
+          "p",
+          null
+        ],
+        {
+          "1": "s",
+          "2": "p"
+        }
+      ]
+    },
+    "extension": {
+      "$ref": "#/$defs/dataset_extension"
+    }
+  },
+  "$defs": {
+    "nonblank": {
+      "type": "string",
+      "pattern": "\\S",
+      "description": "At least one non-whitespace character; validation does not trim or normalize text."
+    },
+    "language_code": {
+      "type": "string",
+      "enum": [
+        "sv",
+        "en"
+      ],
+      "description": "Supported metadata languages: Swedish (sv) and English (en)."
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonblank"
+      },
+      "description": "Nonempty array of distinct nonblank strings, used for JSON-stat2 notes and dimension roles.",
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "path_node": {
+      "type": "object",
+      "required": [
+        "id",
+        "label"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Original thematic node identifier, not a dataset access key."
+        },
+        "label": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Thematic node label in the document language."
+        },
+        "url": {
+          "$ref": "#/$defs/url",
+          "description": "Optional classification or documentation URL for this thematic node."
+        }
+      },
+      "description": "One thematic node identified by the provider's thematic node code and localized label, with an optional supporting URL.",
+      "additionalProperties": false
+    },
+    "path_array": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/path_node"
+      },
+      "description": "A nonempty thematic chain, ordered from broad to narrow classification.",
+      "minItems": 1
+    },
+    "dateOrDatetime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "\\S",
+      "description": "Provider date or timestamp text from which a valid calendar date can be extracted, or null when unknown. Preserve provider formatting; timezone information is optional. Date extractability is a consumer responsibility, not enforced by a format or timestamp pattern.",
+      "examples": [
+        "2026-09-15",
+        "2026-09-15T09:00:00",
+        "2026-09-15 09:00:00",
+        null
+      ]
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Contact person or team name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "pattern": "\\S",
+          "description": "Email address, not a mailto URL; enable email format checking."
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Telephone number as text, preserving prefixes and extensions."
+        },
+        "organization": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Organization responsible for this contact."
+        },
+        "address": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Postal or visiting address as provider text."
+        },
+        "url": {
+          "$ref": "#/$defs/url",
+          "description": "Contact page URL."
+        }
+      },
+      "description": "Provider-reported contact. Additional properties are ONLY for information that cannot be parsed or mapped into name, email, phone, organization, address or url. Do not use alternate keys or raw copies to bypass or duplicate these attributes. At least one property must be supplied.",
+      "additionalProperties": true,
+      "minProperties": 1
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^[Hh][Tt][Tt][Pp][Ss]?://[^\\s/?#]+[^\\s]*$",
+      "description": "Absolute HTTP(S) resource URL. Resolve relative provider URLs against their original page or endpoint."
+    },
+    "jstat_category": {
+      "type": "object",
+      "description": "JSON-stat2 categories. Supply an index, or a single category label when the dimension has exactly one category. Labels are optional when an index is supplied.",
+      "properties": {
+        "index": {
+          "description": "Category ordering as an ordered code array or a code-to-position object.",
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/nonblank"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            {
+              "type": "object",
+              "minProperties": 1,
+              "description": "Category code to zero-based position; positions must be unique and contiguous.",
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "propertyNames": {
+                "$ref": "#/$defs/nonblank"
+              },
+              "examples": [
+                {
+                  "00": 0,
+                  "01": 1
+                }
+              ]
+            }
+          ],
+          "examples": [
+            [
+              "00",
+              "01"
+            ],
+            {
+              "00": 0,
+              "01": 1
+            }
+          ]
+        },
+        "label": {
+          "type": "object",
+          "description": "Provider labels keyed by existing category code. Omit unavailable labels; do not invent translations. With no index, exactly one category label identifies the sole category.",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/nonblank"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/nonblank"
+          },
+          "examples": [
+            {
+              "00": "Riket",
+              "01": "Stockholms län"
+            }
+          ]
+        },
+        "note": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/stringArray"
+          },
+          "description": "Category code to ordered notes; each key must reference an existing category.",
+          "propertyNames": {
+            "$ref": "#/$defs/nonblank"
+          }
+        },
+        "unit": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S",
+                "description": "Provider's unit label in the document language."
+              },
+              "decimals": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Nonnegative decimal places for display; not a statement of measurement accuracy."
+              },
+              "position": {
+                "type": "string",
+                "enum": [
+                  "start",
+                  "end"
+                ],
+                "description": "Placement of the unit symbol relative to the value: start or end."
+              },
+              "symbol": {
+                "type": "string",
+                "description": "Unit symbol, such as %, EUR or kr."
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1,
+            "description": "JSON-stat2 unit label, optional decimal precision, symbol and symbol position. Omit unknown decimals. Other provider unit metadata belongs under the dimension's namespaced categories entry.",
+            "examples": [
+              {
+                "label": "antal",
+                "decimals": 0,
+                "position": "end"
+              }
+            ]
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/nonblank"
+          },
+          "description": "Units by existing category code, commonly on a metric dimension. Omit unknown units."
+        },
+        "child": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/nonblank"
+            },
+            "uniqueItems": true
+          },
+          "description": "Category hierarchy: parent category code to its immediate child category codes. All codes refer to categories in this dimension."
+        },
+        "coordinates": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "description": "Geographic category code to [longitude, latitude]."
+        }
+      },
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "index"
+          ]
+        },
+        {
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "minProperties": 1,
+              "maxProperties": 1
+            }
+          }
+        }
+      ]
+    },
+    "category_metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "Additional metadata keyed by category code in the enclosing dimension. Each value is an open object; codes must identify existing categories. Standard category labels, notes, units, hierarchies and coordinates stay in category."
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^(19|20)[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "description": "Valid calendar date in YYYY-MM-DD form, within the published JSON-stat2 schema's 1900–2099 range. Extract the provider's calendar date without timezone conversion. Omit when unknown; preserve useful original text as updated_original in the provider or adapter namespace.",
+      "examples": [
+        "2026-09-15"
+      ]
+    },
+    "nordicintel_dataset": {
+      "type": "object",
+      "required": [
+        "provider_code",
+        "dataset_code",
+        "language"
+      ],
+      "properties": {
+        "provider_code": {
+          "type": "string",
+          "description": "Stable provider code, e.g. scb.",
+          "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+          "examples": [
+            "scb",
+            "kolada"
+          ]
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/url"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Provider's human-readable page for this dataset. The field names the original dataset page, not the attribution in source.",
+          "examples": [
+            "https://example.org/population",
+            null
+          ]
+        },
+        "doc_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/url"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Provider's primary documentation or methodology URL for this dataset.",
+          "examples": [
+            "https://example.org/population/methodology",
+            null
+          ]
+        },
+        "metadata_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/url"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Provider's endpoint or file containing metadata for this dataset. Harvesters and adapters supply it for direct metadata refetches, avoiding URL reconstruction. This outward-facing provider URL is not a public API metadata link.",
+          "examples": [
+            "https://example.org/api/POP01/metadata",
+            null
+          ]
+        },
+        "data_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/url"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Provider's endpoint or file for this dataset's observations. Harvesters and adapters supply it for direct data requests, avoiding URL reconstruction. This outward-facing provider URL is not a public API data link. Request bodies and execution settings belong to the retrieval implementation.",
+          "examples": [
+            "https://example.org/api/POP01/data",
+            null
+          ]
+        },
+        "dataset_code": {
+          "type": "string",
+          "description": "Opaque, case-sensitive provider dataset code, unique within its provider and shared across language versions. Do not slugify.",
+          "pattern": "\\S",
+          "examples": [
+            "TAB335",
+            "ABAKD12.px",
+            "N11730_OU"
+          ]
+        },
+        "language": {
+          "$ref": "#/$defs/language_code",
+          "description": "Language of this metadata document; no silent language fallback.",
+          "examples": [
+            "sv",
+            "en"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Longer free-text description of the dataset.",
+          "examples": [
+            "Folkmängd vid årets slut."
+          ]
+        },
+        "discontinued": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null,
+          "description": "Whether publication or updates for this Dataset have stopped. False means explicitly active; omission or null means unknown.",
+          "examples": [
+            true,
+            false,
+            null
+          ]
+        },
+        "official_statistics": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null,
+          "description": "Provider-reported official national statistics status. Preserve true, false and unknown (omitted or null); never infer it solely from provider identity.",
+          "examples": [
+            true,
+            false,
+            null
+          ]
+        },
+        "time_unit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "annual",
+            "semiannual",
+            "quarterly",
+            "monthly",
+            "weekly",
+            "daily",
+            "other",
+            null
+          ],
+          "default": null,
+          "description": "Granularity of statistical time periods, not publication frequency. Use other for a known granularity outside the enum; omit or use null when unknown.",
+          "examples": [
+            "annual",
+            "quarterly",
+            "other",
+            null
+          ]
+        },
+        "first_period": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "First period covered by the Dataset, either reported by the Provider or inferred by a local implementation; not necessarily a category label. Preserve the Provider's original form instead of standardizing it.",
+          "pattern": "\\S",
+          "examples": [
+            "2020",
+            "2020K1",
+            null
+          ]
+        },
+        "last_period": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Last period covered by the Dataset, either reported by the Provider or inferred by a local implementation; not necessarily a category label. Preserve the Provider's original form instead of standardizing it.",
+          "pattern": "\\S",
+          "examples": [
+            "2025",
+            "2025K4",
+            null
+          ]
+        },
+        "next_release": {
+          "$ref": "#/$defs/dateOrDatetime",
+          "default": null,
+          "description": "Date/datetime of the next expected release of the dataset, as announced by the provider.",
+          "examples": [
+            "2027-02-20",
+            null
+          ]
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "pattern": "\\S",
+              "description": "Original subject code."
+            },
+            "label": {
+              "type": "string",
+              "pattern": "\\S",
+              "description": "Subject name in this document language."
+            }
+          },
+          "description": "Primary thematic classification with code, localized label or both. Omit when unavailable; null and empty objects are not accepted.",
+          "additionalProperties": false,
+          "anyOf": [
+            {
+              "required": [
+                "code"
+              ]
+            },
+            {
+              "required": [
+                "label"
+              ]
+            }
+          ],
+          "examples": [
+            {
+              "code": "BE",
+              "label": "Befolkning"
+            }
+          ]
+        },
+        "paths": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/path_array"
+          },
+          "default": null,
+          "description": "Ordered thematic chains from broader to narrower nodes. Multiple chains describe multiple thematic memberships, never API routes or dataset lookup keys.",
+          "examples": [
+            [
+              [
+                {
+                  "id": "population",
+                  "label": "Befolkning"
+                },
+                {
+                  "id": "count",
+                  "label": "Folkmängd"
+                }
+              ]
+            ]
+          ]
+        },
+        "contacts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/contact"
+          },
+          "default": null,
+          "description": "Provider-reported contacts. Populate the named attributes whenever the supplied information can be parsed or mapped to them. Additional properties are ONLY for information that cannot be represented by those attributes.",
+          "examples": [
+            [
+              {
+                "organization": "Statistikmyndigheten",
+                "email": "statistics@example.org"
+              }
+            ]
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "description": "Open namespace object: additional properties may contain any JSON value, including null, arrays and nested objects. Use existing JSON-stat2 or NordicIntel fields whenever their meaning fits; do not duplicate or alias them."
+    },
+    "nordicintel_dimension": {
+      "type": "object",
+      "properties": {
+        "elimination": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this dimension may be omitted from a data selection. Construction default is false. True does not require an elimination_value; validation inserts neither default.",
+          "examples": [
+            false,
+            true
+          ]
+        },
+        "elimination_value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "\\S",
+          "default": null,
+          "description": "Optional category code to use when this dimension is omitted. Null when unspecified. A supplied code must identify a category in this dimension, including a sole category identified by its label map; consumers check this relationship.",
+          "examples": [
+            null,
+            "00"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "description": "Attribution for this dimension as reported by the provider, which may name a different originating organization."
+        },
+        "updated": {
+          "$ref": "#/$defs/dateOrDatetime",
+          "description": "Provider-reported dimension update text, preserving provider precision and formatting. A consumer must be able to extract a calendar date. Omit or use null when unknown."
+        },
+        "categories": {
+          "$ref": "#/$defs/category_metadata"
+        }
+      },
+      "additionalProperties": true,
+      "description": "Open namespace object: additional properties may contain any JSON value, including null, arrays and nested objects. Use existing JSON-stat2 or NordicIntel fields whenever their meaning fits; do not duplicate or alias them."
+    },
+    "nordicintel_resource": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Optional explanation of the resource or its use."
+        },
+        "category_id": {
+          "$ref": "#/$defs/nonblank",
+          "description": "Existing category code in the enclosing dimension. Only use on links belonging to a dimension; omit for whole-dimension resources. Dataset links concern the whole Dataset."
+        }
+      },
+      "additionalProperties": true,
+      "description": "Open namespace object: additional properties may contain any JSON value, including null, arrays and nested objects. Use existing JSON-stat2 or NordicIntel fields whenever their meaning fits; do not duplicate or alias them."
+    },
+    "dataset_extension": {
+      "type": "object",
+      "properties": {
+        "nordicintel": {
+          "$ref": "#/$defs/nordicintel_dataset"
+        }
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "Namespaced extensions. nordicintel holds shared fields; other keys are provider_code or adapter_type namespaces with open object contents. Never place unnamespaced custom fields here. Defined namespace fields retain their constraints.",
+      "required": [
+        "nordicintel"
+      ]
+    },
+    "dimension_extension": {
+      "type": "object",
+      "properties": {
+        "nordicintel": {
+          "$ref": "#/$defs/nordicintel_dimension"
+        }
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "$ref": "#/$defs/category_metadata"
+          }
+        },
+        "additionalProperties": true
+      },
+      "description": "Namespaced extensions. nordicintel holds shared fields; other keys are provider_code or adapter_type namespaces with open object contents. Never place unnamespaced custom fields here. Defined namespace fields retain their constraints."
+    },
+    "resource_extension": {
+      "type": "object",
+      "properties": {
+        "nordicintel": {
+          "$ref": "#/$defs/nordicintel_resource"
+        }
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "Namespaced extensions. nordicintel holds shared fields; other keys are provider_code or adapter_type namespaces with open object contents. Never place unnamespaced custom fields here. Defined namespace fields retain their constraints."
+    },
+    "resource": {
+      "type": "object",
+      "required": [
+        "href",
+        "label"
+      ],
+      "properties": {
+        "href": {
+          "$ref": "#/$defs/url"
+        },
+        "label": {
+          "$ref": "#/$defs/nonblank"
+        },
+        "type": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Known resource media type; omit when unknown."
+        },
+        "note": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "extension": {
+          "$ref": "#/$defs/resource_extension"
+        }
+      },
+      "additionalProperties": false,
+      "description": "JSON-stat2 resource link. Use label and known type to describe the target; custom descriptions and category references belong in extension.nordicintel. Provider or adapter extras use their own namespaces."
+    },
+    "links": {
+      "type": "object",
+      "patternProperties": {
+        "^(about|alternate|appendix|archives|author|blocked-by|bookmark|canonical|chapter|collection|contents|copyright|create-form|current|derivedfrom|describedby|describes|disclosure|dns-prefetch|duplicate|edit|edit-form|edit-media|enclosure|first|glossary|help|hosts|hub|icon|index|item|last|latest-version|license|lrdd|memento|monitor|monitor-group|next|next-archive|nofollow|noreferrer|original|payment|pingback|preconnect|predecessor-version|prefetch|preload|prerender|prev|preview|previous|prev-archive|privacy-policy|profile|related|replies|search|section|self|service|start|stylesheet|subsection|successor-version|tag|terms-of-service|timegate|timemap|type|up|version-history|via|webmention|working-copy|working-copy-of)$": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "Optional JSON-stat2 relation map for additional resources. Use the named extension.nordicintel URL fields for the provider's dataset page, primary documentation, metadata endpoint and data endpoint; do not replace those fields with link entries. Other relation names accepted by the published JSON-stat2 schema are also supported."
+    },
+    "jstat_dimension": {
+      "type": "object",
+      "required": [
+        "category"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Provider's dimension label in this document language; omit if unavailable."
+        },
+        "category": {
+          "$ref": "#/$defs/jstat_category"
+        },
+        "note": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "href": {
+          "$ref": "#/$defs/url"
+        },
+        "link": {
+          "$ref": "#/$defs/links"
+        },
+        "extension": {
+          "$ref": "#/$defs/dimension_extension"
+        }
+      },
+      "additionalProperties": false,
+      "description": "JSON-stat2 dimension with complete categories. Custom shared metadata belongs in extension.nordicintel; provider or adapter extras belong in sibling namespaces."
+    }
+  },
+  "$comment": "Self-contained subset of the published JSON-stat2 Dataset schema v1.05 (2025-06-13). Enable format checks. Consumers additionally check id/dimension membership, size/category counts, category positions and references, namespace ownership, role assignments, category-scoped resources and elimination references. Defaults do not insert values. See ../docs/DATASET-METADATA.md."
+}

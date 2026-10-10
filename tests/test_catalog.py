@@ -6,7 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.catalog import build, promote
+from metadata_harvest.catalog import build_legacy as build
+from metadata_harvest.catalog import promote
 
 
 def unpack(path):

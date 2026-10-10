@@ -1,102 +1,61 @@
-# Accepted adapter and shared catalog output
+# Extensible StatDCAT metadata contract
 
-One deterministic `.jsonl.gz` metadata collection per adapter, provider and language
-lives under `data/<adapter>/metadata/`; v2 codelists live under `codelists/` in separate
-collections. Dataset identity is `(provider_code, dataset_code, language)` in
-`extension.nordicintel`. Read gzip as UTF-8 JSON Lines, one independent document per line.
+Local [Pydantic v2 models](../src/metadata_harvest/models.py) define NordicIntel profile **1.0.0**. The independently pinned upstream basis is [StatDCAT-AP 3.0.0](https://semiceu.github.io/StatDCAT-AP/drafts/3.0.0/); its exact commit and document hash are in [profile.json](../src/metadata_harvest/profile.json). This is an extensible profile, not a promise of exact upstream shape conformance.
 
-## Shared Dataset mapping
+Generate JSON Schema and [field documentation](DATASET-METADATA-REFERENCE.md) with `uv run python scripts/generate_schema_reference.py`; CI checks both against the models. The explicitly named legacy schema remains only for native parsing and transition compatibility.
 
-MCF can return a single explicitly selected `ContentsCode` under the synthetic
-JSON-stat category code `EliminatedValue`, even when the source variable contains
-several categories. When the response marks elimination and exactly one known
-category was requested, v1 restores that requested code across category metadata,
-including units and notes. Standalone retrieval applies the same coordinate
-mapping. Multi-category selections remain strict; an ambiguous synthetic response
-is rejected. The complete source category list remains intact.
+## Identity and structure
 
-The [packaged schema](../src/metadata_harvest/schemas/dataset-metadata.schema.json),
-[semantic contract](DATASET-METADATA.md) and [field reference](DATASET-METADATA-REFERENCE.md)
-are authoritative. Metadata requires complete dimensions/categories, `value: []`
-and no root observation `status`. The Provider schema is a minimal consumer contract;
-`providers*.json` remains separate operational configuration.
+A dataset combines language-tagged metadata and independently replaceable source distributions. Kolada municipality and OU contributions share the native KPI dataset identity. Each distribution retains its scope, language, selectable codes, category order, structure and operational options. Conflicting structural versions are not forced into a common shape.
 
-| Source | Canonical mapping and retained evidence |
-|---|---|
-| Configured provider, source dataset code, language | `extension.nordicintel`; never substitute an internal generated dataset code |
-| Accepted API metadata title | Root `label`; listing-only refresh does not overwrite it |
-| Source `updated` / v1 listing `published` | Root `updated` calendar date when a valid full date is available; original precision/timestamp in `extension.<adapter>.updated_original` |
-| Full accepted catalogue/listing record | `extension.<adapter>.source_record`; incremental comparisons use source signals, not truncated root dates |
-| API/web URLs and thematic paths | Shared `metadata_url`, `data_url`, `source_url`, `paths`; literal URL characters are encoded |
-| v2 period, time unit, subject | Shared `first_period`, `last_period`, normalized `time_unit`, `subject`; original values remain in the catalogue |
-| Contacts | Shared `contacts`, `mail` becomes `email`; unparsed contact prose remains `raw` |
-| Units | Category `unit`; native `base` becomes `label`; unknown unit fields remain under adapter category extensions |
-| Elimination and elimination value | Dimension `extension.nordicintel.elimination` / `elimination_value` |
-| Category notes, roles and ordinary JSON-stat fields | Retained in their corresponding standard positions |
-| Native extensions, PXWeb-only properties, mandatory notes and codelist references | Retained under the adapter namespace, including dimension extensions; no alternate codelist transformation is applied |
-| v1 sampled flags and synthetic dimensions | Namespaced `harvest_metadata.sample_status`, `auxiliary_dimensions`, `auxiliary_roles`; migrated legacy enrichment may remain inside its complete `source_record` |
-| Optional source values outside the shared profile | Exact original values retained in adapter `source_fields` under escaped JSON Pointer keys; required cube/category structure is never repaired by dropping fields |
+Organisations own catalogs. Every distribution's `dcat:accessService` is one of the **12 globally shared adapter services**. Provider hosts, endpoints and Riksbank API products do not create extra DataServices. [The complete inventory](source-inventory.md) maps every configured deployment and its original routing alias to its canonical owner. Göteborg, Linköping, Västra Götalandsregionen and Länsstyrelserna each own both EntryScape and PXWeb catalogs.
 
-`extension.metadata_harvest` is a migration input only; new documents use shared
-identity and namespaced source evidence. Source timestamps are not harvest timestamps.
-Operational start/finish times live in reports. A failed replacement never advances
-its accepted source marker. Codelists are `{provider_code, language, codelist}` records,
-with their native ID and full payload, and are never represented as datasets.
+`ni:retrieval.source` retains the exact original adapter, provider routing alias, dataset identifier and language. Portal matching enriches this identity; it never renames or merges datasets solely because they share a portal entry. Internal URNs preserve opaque codes by reversible percent encoding.
 
-## Current state and failure semantics
+Dataset-level structural properties use references to embedded RDF Data Cube definitions when applicable. Distribution structures remain authoritative. SKOS concept schemes contain category labels, notes, units, coordinates, hierarchies, aggregation mappings and source extensions. `ni:retrieval.dimensions` preserves selectable codes and ordering independently of RDF graph order. Alternate aggregation lists remain descriptive.
 
-Kolada publishes `metadata/kolada__sv.jsonl.gz`, with distinct `municipality/{KPI}`
-and `ou/{KPI}` dataset identities. Its compact `state/current.jsonl.gz` holds native
-reference catalogues, coverage, separate check/acceptance markers and pending work.
-References are retained once; documents expose relevant labels and memberships.
-The initial data was trusted and verified only through a bounded sample. Unchanged
-documents are neither revalidated nor recompressed during incremental refreshes.
-There is no seed command or ongoing dependency on a migration source.
+Codelists preserve language-specific sequences in `ni:categoryOrder`; merging translated labels does not discard different source ordering. Conflicting unit, mapping or extension assertions remain separate, JSON-compatible evidence.
 
-`table-records/` stores current listings, `reports/` latest outcomes, and
-`work/current.json` unfinished work only. Confirmed removal deletes current records
-and unreferenced codelists. Incomplete discovery cannot authorize absence-based deletion.
-Table and codelist failures are independent, reported explicitly and retried;
-previous accepted data is retained during transient failures.
+## Field dispositions
 
-JSON object keys and record order are deterministic, LF-terminated UTF-8. Gzip
-headers are deterministic, unchanged content preserves bytes, and writes are batched.
-Replacement atomicity is per collection; the verified collector Git commit publishes
-all output/state/errors together. Staging is adapter-scoped. A 100 MiB file gate
-fails before publication; collections are never silently split or truncated.
+| Previous attribute | Current location |
+| --- | --- |
+| `label`, description | `dct:title`, `dct:description`, language-tagged |
+| `updated` | `dct:modified` (source data modification) |
+| `first_period`, `last_period` | `dct:temporal` with `dcat:startDate` and `dcat:endDate` where conversion is faithful |
+| `time_unit` | `dcat:temporalResolution` when representable; never publication frequency |
+| `source_url`, `doc_url` | `dcat:landingPage`, `foaf:page` |
+| `data_url` | Distribution `dcat:accessURL`; downloaded resources use `dcat:downloadURL` |
+| `metadata_url`, adapter request options | `ni:retrieval` |
+| contacts, subject | `dcat:contactPoint`, `dcat:theme` |
+| publisher, creator, language, licence, frequency, lifecycle status | Standard properties at their source level; licences stay with their distributions |
+| dimension IDs, membership, order | RDF Data Cube components and explicit retrieval order |
+| category code, label, note, hierarchy | SKOS notation, preferred label, note and broader relations |
+| units, coordinates, aggregation maps | Typed concept properties in the NordicIntel namespace |
+| official-statistics and discontinued flags | Strict `bool | None` properties `ni:officialStatistics`, `ni:discontinued` |
+| elimination behaviour | Typed dimension `ni:elimination`, `ni:eliminationValue` |
+| other root attributes and original source assertions | `ni:sourceEvidence` at the source distribution |
+| otherwise unmapped fields at any supported level | `ni:additionalAttributes` under a source namespace |
 
-## Repeatable conversion
+Successfully mapped fields are not kept as parallel custom fields. Original period notation is represented by a notation descriptor where needed for exact transition reconstruction; genuinely unrepresentable periods stay as source attributes. Empty-value representation and source field presence remain explicit when the old format would otherwise lose them.
 
-```python
-from metadata_harvest.migration import convert_collections
+Every source-bearing model uses `extra="allow"` with JSON-valued validation. Unfamiliar Python/model fields serialize into `ni:additionalAttributes.custom`; adapters use their own namespace. The inline JSON-LD context types arbitrary JSON containers explicitly as `@json`. Future nested values, zeroes, `False`, empty strings and opaque codes survive serialization.
 
-report = convert_collections(
-    "data/pxweb_v1", "output/candidate/pxweb_v1", adapter="pxweb_v1"
-)
-```
+Invalid identities, membership, category order, hierarchy and unusable retrieval bindings fail validation. Optional source anomalies are retained with diagnostic evidence. Missing descriptive fields are quality findings, not publication rejection. Network requests, matching, merging and persistence remain outside validators.
 
-Use a new candidate directory, with no unfinished source checkpoint. Conversion
-validates every document, identities, dimensions, category order/counts and source
-records, checks compressed sizes and proves the source manifest unchanged. A failed
-conversion exposes no candidate. Inspect the returned conversion report before replacing
-the corresponding published adapter directory; do not retain parallel legacy and
-canonical collections. Conversion requires no provider traffic and proves mapping
-integrity, not renewed source availability.
+## Accepted collections and publication
 
-Schemas were adopted from `nordicintel-schemas` commit `77a7a46`; prepared `2.0.0`
-was not published. Schema identifiers now belong to this repository, bundled in
-both distributions. Schema revision provenance does not introduce dataset versions.
+Accepted `data/<adapter>/metadata/*.jsonl.gz` collections are grouped by canonical provider and contain multilingual models. Task keys, checkpoints and retries still use original source identities; one failed contribution must not erase a successful sibling. Public output is exactly:
 
-## Shared catalog output
+| Archive | Member |
+| --- | --- |
+| `data/catalog/catalog.7z` | `catalog.jsonl`, one assembled dataset per line |
+| `data/catalog/codelists.7z` | `codelists.jsonl`, one SKOS scheme per line |
 
-`data/<adapter>/` remains the accepted source layer. `data/catalog/<adapter>/metadata/`
-and `codelists/` preserve its grouped filenames and Dataset/codelist contracts.
-`data/catalog/state/current.json` holds accepted input hashes;
-`data/catalog/reports/latest.json` holds processing status and upstream coverage/errors.
-There are no permanent intermediate enrichment collections.
+Old retrieval entry points remain available for one transition release. New callers use [typed distribution retrieval](retrieval-guide.md), without resolving JSON Pointers.
 
-With both enrichment stages inactive, catalog collections are byte-identical copies
-of accepted input. Gzip integrity and file hashes are checked; no dataset is parsed
-or schema-validated again. A missing collection retains its prior catalog copy with
-an error. Removals within a valid accepted collection propagate when that collection
-is copied. See [catalog operations](catalog.md) for promotion and retry rules.
+## Offline migration and recovery
+
+`uv run python -m metadata_harvest.migration --source data --output output/statdcat-migration/data` builds a separate candidate without reharvesting. Per-adapter gzip ledgers connect every original record to its dataset/distribution and record every attribute disposition, source hash and exact round-trip result. Operational records are copied unchanged. Source files are never replaced by this command.
+
+Cutover must include code, collections, generated schemas, catalog state and documentation together. Worker result markers carry the profile version; incompatible pre-cutover artifacts are rejected. Git history and `convert_collections` retain recovery for earlier collection layouts. Catalog assembly validates candidates and records accepted committed Git blob identities for failed-input reconstruction.

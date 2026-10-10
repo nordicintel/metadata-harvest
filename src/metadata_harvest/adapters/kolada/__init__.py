@@ -10,9 +10,10 @@ async def discover_provider(provider, *, client=None):
 
 
 async def fetch_metadata(record, *, client):
+    from metadata_harvest.accepted import as_contributions
     from metadata_harvest.adapters.kolada.metadata import fetch_metadata as fetch
 
-    return await fetch(record, client=client)
+    return as_contributions(await fetch(record, client=client), adapter="kolada")
 
 
 async def retrieve(session, **kwargs):

@@ -4,6 +4,12 @@ import gzip
 import json
 from pathlib import Path
 
+from metadata_harvest.accepted import (
+    collection_name,
+    contribution_documents,
+    write_metadata,
+)
+from metadata_harvest.models import Dataset
 from metadata_harvest.storage import write_jsonl
 
 PROVIDER_CODE = "smhi"
@@ -12,14 +18,18 @@ REPORT = "reports/latest.json"
 
 
 def collection(language: str) -> str:
-    return f"metadata/{PROVIDER_CODE}__{language}.jsonl.gz"
+    return "metadata/" + collection_name(PROVIDER_CODE)
 
 
 def records(path: Path):
     if path.exists():
         with gzip.open(path, "rt", encoding="utf-8") as stream:
             for line in stream:
-                yield json.loads(line)
+                value = json.loads(line)
+                if value.get("@type") == "dcat:Dataset":
+                    yield from contribution_documents(Dataset.from_jsonld(value))
+                else:
+                    yield value
 
 
 def load_documents(root: Path, languages) -> dict:
@@ -41,7 +51,10 @@ def load_state(root: Path) -> dict:
 
 def save(root: Path, state: dict, documents: dict, languages) -> None:
     """Write every configured language's collection, even when it is empty."""
-    for language in languages:
-        keys = sorted(k for k in documents if k.split("/", 1)[0] == language)
-        write_jsonl(Path(root) / collection(language), (documents[k] for k in keys))
+    write_metadata(
+        Path(root),
+        documents.values(),
+        adapter="smhi_emissions",
+        empty_providers=[PROVIDER_CODE],
+    )
     write_jsonl(Path(root) / STATE, [state])

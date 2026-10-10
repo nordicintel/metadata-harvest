@@ -66,7 +66,7 @@ def execute(source, data, output, *, resume=False):
 def test_unchanged_reuses_seed_without_validation(seed_source, tmp_path, monkeypatch):
     data = tmp_path / "data"
     import_seed(seed_source, data)
-    before = (data / "metadata/kolada__sv.jsonl.gz").read_bytes()
+    before = (data / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
     source = Source(load_state(data))
     monkeypatch.setattr(
         "metadata_harvest.adapters.kolada.workflow.validate_metadata",
@@ -75,7 +75,10 @@ def test_unchanged_reuses_seed_without_validation(seed_source, tmp_path, monkeyp
     result = execute(source, data, tmp_path / "output")
     assert result["counts"]["reused"] == 2
     assert source.fetched == []
-    assert before == (data / "metadata/kolada__sv.jsonl.gz").read_bytes()
+    assert (
+        before
+        == (data / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
+    )
     assert not (data / "work/current.json").exists()
 
 

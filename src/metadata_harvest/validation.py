@@ -6,13 +6,21 @@ from importlib.resources import files
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from metadata_harvest.models import Dataset
 from metadata_harvest.semantics import validate_cube
 
 
 @cache
 def schema(name: str) -> dict:
     """Load a bundled authoritative schema without network resolution."""
-    if name not in {"dataset-metadata", "provider", "retrieval-result"}:
+    if name not in {
+        "dataset-metadata",
+        "legacy-dataset-metadata",
+        "provider",
+        "retrieval-result",
+        "codelist",
+        "harvest-contribution",
+    }:
         raise ValueError(f"Unknown schema: {name}")
     return json.loads(
         files("metadata_harvest")
@@ -39,7 +47,12 @@ def validate_provider(document: dict) -> None:
 
 def validate_dataset(document: dict, *, adapter: str | None = None) -> None:
     """Validate shared Dataset structure and cross-field relationships."""
-    _check("dataset-metadata", document)
+    if isinstance(document, Dataset):
+        return
+    if document.get("@type") == "dcat:Dataset":
+        Dataset.from_jsonld(document)
+        return
+    _check("legacy-dataset-metadata", document)
     validate_cube(document)
     provider = document["extension"]["nordicintel"]["provider_code"]
     allowed = {"nordicintel", provider}
@@ -77,6 +90,8 @@ def validate_dataset(document: dict, *, adapter: str | None = None) -> None:
 def validate_metadata(document: dict, *, adapter: str | None = None) -> None:
     """Require full metadata and no observations or observation flags."""
     validate_dataset(document, adapter=adapter)
+    if isinstance(document, Dataset) or document.get("@type") == "dcat:Dataset":
+        return
     if document["value"] != [] or "status" in document:
         raise ValueError("Harvest output must be metadata-only")
 

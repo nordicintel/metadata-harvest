@@ -202,7 +202,7 @@ def _check_gzip(path: Path) -> None:
         raise ValueError("Accepted JSONL collection must end with a newline")
 
 
-def build(data: Path, output: Path, *, adapters=None) -> dict:
+def build_legacy(data: Path, output: Path, *, adapters=None) -> dict:
     """Build two 7z archives; failed inputs retain their previous accepted records."""
     data, output = Path(data), Path(output)
     catalog = data / "catalog"
@@ -338,10 +338,21 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
     return {**result, "build_counts": counts}
 
 
+def build(data: Path, output: Path, *, adapters=None) -> dict:
+    from metadata_harvest.catalog_assembly import build as assemble_catalog
+
+    return assemble_catalog(data, output, adapters=adapters)
+
+
 def verify_candidate(data: Path, output: Path) -> dict:
     """Check all paths and fingerprints before any catalog mutation."""
     data, output = Path(data), Path(output)
     record = read(output / "result.json")
+    if "dependencies" in record:
+        from metadata_harvest.catalog_assembly import dependencies
+
+        if dependencies(data) != record["dependencies"]:
+            raise ValueError("Stale catalog dependencies; rebuild")
     if (
         inputs(data, record["adapters"]) != record["inputs"]
         or manifest(data / "catalog") != record["catalog_baseline"]

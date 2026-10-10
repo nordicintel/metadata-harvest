@@ -71,7 +71,7 @@ def _retain_optional_source_fields(document, adapter):
     """
     retained = document["extension"][adapter].setdefault("source_fields", {})
     for _ in range(1000):
-        errors = list(validator("dataset-metadata").iter_errors(document))
+        errors = list(validator("legacy-dataset-metadata").iter_errors(document))
         if not errors:
             if not retained:
                 document["extension"][adapter].pop("source_fields")
