@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from apps.harvest.registry import ADAPTERS
 from apps.paths import ROOT
+from apps.settings import load as load_settings
 
 
 def _cron(expression: str) -> None:
@@ -107,6 +108,7 @@ def sync(root: Path, *, check=False) -> list[str]:
     """Update only marked scheduling sections; --check never writes files."""
     root = Path(root)
     config = load(root / "config/schedules.toml")
+    paused = load_settings(root / "config")["scheduling"]["paused"]
     changed = []
     for adapter, item in {**config["adapters"], **config.get("snapshots", {})}.items():
         filename = (
@@ -124,7 +126,8 @@ def sync(root: Path, *, check=False) -> list[str]:
         text = _replace(
             text,
             "ENABLEMENT",
-            f"if: github.event_name == 'workflow_dispatch' || {str(item['enabled']).lower()}",
+            "if: github.event_name == 'workflow_dispatch' || "
+            + str(item["enabled"] and not paused).lower(),
         )
         if text != original:
             changed.append(path.name)

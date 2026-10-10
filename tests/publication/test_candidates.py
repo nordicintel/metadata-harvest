@@ -33,8 +33,8 @@ def test_tampered_candidate_cannot_be_promoted(tmp_path):
 
 def test_explicit_configuration_change_invalidates_candidate(tmp_path):
     data, output, config = candidate(tmp_path)
-    (config / "catalog.toml").write_text(
-        "include_scb_pxweb_v1 = true\n", encoding="utf-8"
+    (config / "settings.toml").write_text(
+        "[catalog]\ninclude_scb_pxweb_v1 = true\n", encoding="utf-8"
     )
     with pytest.raises(ValueError, match="Stale"):
         verify_candidate(data, output, config_dir=config)

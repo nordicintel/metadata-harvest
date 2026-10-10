@@ -54,6 +54,41 @@ def test_sync_changes_only_marked_blocks(tmp_path):
     assert "20 4 * * 1-6" in (tmp_path / ".github/workflows/harvest.yml").read_text()
 
 
+def test_paused_settings_disable_every_scheduled_workflow(tmp_path):
+    import shutil
+
+    (tmp_path / "config").mkdir()
+    shutil.copyfile(ROOT / "config/schedules.toml", tmp_path / "config/schedules.toml")
+    shutil.copytree(ROOT / ".github/workflows", tmp_path / ".github/workflows")
+    settings = tmp_path / "config/settings.toml"
+    settings.write_text("[scheduling]\npaused = true\n", encoding="utf-8")
+    assert sync(tmp_path)
+    for path in (tmp_path / ".github/workflows").glob("*.yml"):
+        text = path.read_text(encoding="utf-8")
+        if "# BEGIN GENERATED ENABLEMENT" in text:
+            assert "github.event_name == 'workflow_dispatch' || false" in text
+            assert "github.event_name == 'workflow_dispatch' || true" not in text
+    settings.write_text("[scheduling]\npaused = false\n", encoding="utf-8")
+    sync(tmp_path)
+    for path in (ROOT / ".github/workflows").glob("*.yml"):
+        restored = tmp_path / ".github/workflows" / path.name
+        assert restored.read_bytes() == path.read_bytes()
+
+
+def test_settings_reject_unknown_or_non_boolean_values(tmp_path):
+    from apps.settings import load as load_settings
+
+    assert load_settings(tmp_path)["scheduling"]["paused"] is False
+    for content in (
+        "[scheduling]\npaused = 1\n",
+        "[scheduling]\npause = true\n",
+        "[unknown]\nvalue = true\n",
+    ):
+        (tmp_path / "settings.toml").write_text(content, encoding="utf-8")
+        with pytest.raises(ValueError):
+            load_settings(tmp_path)
+
+
 def test_workflows_have_unique_keys_and_valid_step_shapes():
     import yaml
 

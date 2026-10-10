@@ -41,8 +41,8 @@ def test_catalog_builds_models_reuses_bytes_and_filters_scb(tmp_path, monkeypatc
     second = build(data, candidate, config_dir=tmp_path, adapters=["pxweb_v2"])
     assert second["build_counts"]["reused_groups"] == 1
     assert (candidate / "catalog.jsonl.zst").read_bytes() == before
-    config = tmp_path / "catalog.toml"
-    config.write_text("include_scb_pxweb_v1 = true\n", encoding="utf-8")
+    config = tmp_path / "settings.toml"
+    config.write_text("[catalog]\ninclude_scb_pxweb_v1 = true\n", encoding="utf-8")
     build(data, candidate, config_dir=tmp_path, adapters=["pxweb_v2"])
     lines = [
         json.loads(line)
@@ -65,7 +65,7 @@ def test_failed_input_retains_group_and_stale_configuration_blocks_promotion(tmp
     result = build(data, candidate, config_dir=tmp_path, adapters=["pxweb_v2"])
     assert result["errors"]
     assert unpack(candidate / "catalog.jsonl.zst") == original
-    (tmp_path / "catalog.toml").write_text("include_scb_pxweb_v1 = true\n")
+    (tmp_path / "settings.toml").write_text("[catalog]\ninclude_scb_pxweb_v1 = true\n")
     with pytest.raises(ValueError, match="Stale"):
         promote(data, candidate, config_dir=tmp_path)
 
