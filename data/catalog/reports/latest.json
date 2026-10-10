@@ -1,11 +1,11 @@
 {
   "counts": {
     "ambiguous": 0,
-    "codelists": 72568,
-    "datasets": 18502,
-    "distributions": 34379,
+    "codelists": 72565,
+    "datasets": 18501,
+    "distributions": 34367,
     "filtered": 7130,
-    "matched": 13001,
+    "matched": 13000,
     "quality_findings": 14203,
     "unmatched": 5501
   },
@@ -84,16 +84,23 @@
     "entrysoft/reports/latest.json": {
       "continue": false,
       "counts": {
-        "datasets": 442,
-        "deferred": 0,
-        "empty": 0,
+        "datasets": 441,
+        "deferred": 1,
+        "empty": 1,
         "failed": 0,
-        "harvested": 0,
+        "harvested": 29,
         "lists": 3,
-        "removed": 0,
-        "unchanged": 14
+        "removed": 1,
+        "unchanged": 528
       },
-      "deferred_tables": [],
+      "deferred_tables": [
+        {
+          "paging_requests": 372,
+          "reason": "source metadata not public (HTTP 401)",
+          "rowcount": 186189,
+          "table": "catalogborasse/ee2e049d-6e22-409f-bf86-ab4d8e32e03e"
+        }
+      ],
       "dropped_tables": [
         {
           "reason": "single row",
@@ -156,20 +163,28 @@
           "table_url": "https://skatteverket.entryscape.net/rowstore/dataset/b4de7df7-63c0-4e7e-bb59-1f156a591763"
         }
       ],
-      "errors": [],
+      "errors": [
+        {
+          "error": "RuntimeError: ConnectError: [Errno -2] Name or service not known",
+          "resource": "falunentryscapenet",
+          "stage": "discovery"
+        },
+        {
+          "error": "RuntimeError: ConnectError: [Errno -2] Name or service not known",
+          "resource": "stunsentryscapenet",
+          "stage": "discovery"
+        }
+      ],
       "interrupted": null,
       "list_datasets": [
         "3f4ae8e9-0908-4950-92b5-772e2ca1565f",
         "accf7b0c-3004-4ec0-9c39-ca8c32b30485",
         "65753bc9-a424-411d-b064-a8af678149dd"
       ],
-      "requests": 14,
-      "run_id": "3592927c3d4445c6bdf6ab01288a9cc9",
-      "selection": [
-        "catalogalese",
-        "catalogdiggse"
-      ],
-      "status": "success"
+      "requests": 343,
+      "run_id": "3fd90dd26ebe4a5bbc3b0b54d55b7dcb",
+      "selection": null,
+      "status": "completed_with_errors"
     },
     "forsakringskassan/reports/latest.json": {
       "continue": false,
@@ -315,13 +330,13 @@
     },
     "pxweb_v1/reports/harvest.json": {
       "counts": {
-        "created": 22,
+        "created": 0,
         "deferred": 0,
         "failed": 5,
         "removed": 0,
-        "reused": 7337,
+        "reused": 7367,
         "unfinished": 0,
-        "updated": 20
+        "updated": 12
       },
       "errors": [
         {
@@ -360,14 +375,14 @@
           "provider_code": "sjv"
         }
       ],
-      "finished_at": "2026-10-09T09:19:14.034191+00:00",
+      "finished_at": "2026-10-10T07:48:03.230329+00:00",
       "full": false,
       "refresh_error_count": 0,
       "refresh_report": "refresh.json",
-      "run_id": "20261009T090939.887752Z",
-      "started_at": "2026-10-09T09:10:22.507882+00:00",
+      "run_id": "20261010T070626.051546Z",
+      "started_at": "2026-10-10T07:07:11.590948+00:00",
       "status": "completed_with_errors",
-      "updated_at": "2026-10-09T09:19:14.034191+00:00",
+      "updated_at": "2026-10-10T07:48:03.230329+00:00",
       "wave": 1
     },
     "pxweb_v1/reports/refresh.json": {
@@ -62717,27 +62732,23 @@
       "continue": false,
       "counts": {
         "failed": 0,
-        "rebuilt": 0,
+        "rebuilt": 8,
         "removed": 0,
         "restored": 0,
-        "unchanged": 3,
+        "unchanged": 34,
         "withheld": 0
       },
       "errors": [],
       "published": {
         "en": 42
       },
-      "requests": 7,
-      "run_id": "0cab535386124fbf9a37f7b5504446a1",
+      "requests": 46,
+      "run_id": "3b743533833e4f3e905c78e865072920",
       "selection": {
         "languages": [
           "en"
         ],
-        "subjects": [
-          "mpd_SEQGDPNAYSA",
-          "swea_group_2",
-          "swestr"
-        ]
+        "subjects": null
       },
       "status": "success",
       "withheld": []
@@ -62980,7 +62991,7 @@
       "errors": [],
       "full": false,
       "published": 113,
-      "run_id": "6d56306485814e668798187146f7fa93",
+      "run_id": "57ca013601704b769f7654abe12018ee",
       "selection": null,
       "status": "success",
       "withheld": []
