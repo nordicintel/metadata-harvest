@@ -31,6 +31,7 @@ dev = [
     "pyyaml>=6,<7",
     "rdflib>=7,<8",
     "ruff>=0.13,<1",
+    "pytest-xdist>=3.6,<4",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -41,7 +42,8 @@ only-include = ["retrieval", "pyproject.toml", "README.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--import-mode=importlib"
+addopts = "--import-mode=importlib -n auto"
+markers = ["slow: full-harvest simulations; excluded from push checks"]
 
 [tool.ruff]
 target-version = "py313"

@@ -17,7 +17,8 @@ uv sync --locked --extra harvest              # Install development dependencies
 uv run ruff check .                          # Lint
 uv run ruff format --check .                 # Check formatting
 uv run pytest tests/retrieval                # Focused offline tests
-uv run pytest                               # Complete offline suite
+uv run pytest -m "not slow"                 # Fast suite run on every push
+uv run pytest                               # Complete offline suite (slow part runs nightly)
 uv build                                    # Build retrieval-only distributions
 uv run python scripts/checks/check_distribution.py # Verify isolated installation
 ```
