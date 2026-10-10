@@ -425,7 +425,7 @@ def test_services_are_concrete_and_shared_by_distributions_of_that_api():
     services = [
         concrete_service(binding) for binding in load_configuration().services.values()
     ]
-    assert len({s.id for s in services}) == 85
+    assert len({s.id for s in services}) == 83
     assert len({s.adapter for s in services}) == 12
     assert all(s.endpoint_url for s in services)
 
@@ -436,7 +436,7 @@ def test_all_entryscape_owners_use_canonical_organisation_codes():
 
     items = inventory()
     entry = [item for item in items if item["adapter"] == "entrysoft"]
-    assert len(entry) == 49
+    assert len(entry) == 47
     for item in entry:
         owner = item["owner"]
         if owner is None:
