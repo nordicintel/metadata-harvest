@@ -536,7 +536,7 @@ async def run(
         failed_count,
         state["counts"]["codelists_fetched"],
     )
-    progress.update(phase="snapshot", current=None)
+    progress.update(phase="writing", current=None)
     result = _write_candidate(output, metadata, codes, listings, state, base)
     progress.update(
         phase="finished", result_status=result["status"], final_counts=result["counts"]
