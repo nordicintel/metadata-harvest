@@ -82,28 +82,9 @@ The generated [configuration field reference](reference.md) defines
 construction fields; the [metadata reference](../model/reference.md)
 lists standard vocabulary aliases and NordicIntel (`ni:`) extensions.
 
-Profile 2.0.0 represents concrete services. `apps.migrations.profile_reader.read_dataset` is the
-explicit profile 1 reader/converter; `Dataset.from_jsonld` validates the current
-profile. Conversion preserves statistical payloads and operational settings and
-records replaced catalog/service identities in its ledger. It requires no harvest.
-Profile markers reject incompatible worker artifacts.
-Accepted-collection readers explicitly support historical profile 1 records,
-without rewriting production files. Production catalog assembly retains previous
-accepted Git blob references for recovery and converts records in its candidate;
-it cannot reuse profile 1 dataset bytes as profile 2 output. Production publication
-is a separate operation, not part of development verification.
-Unchanged codelists remain readable with the previous inline context; the profile 2
-context adds IRI typing for organisation and catalog homepages.
-
-To convert an existing committed profile 1 corpus into a separate candidate:
-
-```powershell
-uv run python scripts/migrations/migrate_profile2.py --source data --output output/profile2-migration
-```
-
-This preserves the existing publication enrichment, writes per-record migration
-ledgers and updates only configuration-derived relationships. The two archives
-remain `catalog.jsonl.zst` and `codelists.jsonl.zst`; unchanged Zstandard codelists are reused, and legacy 7z codelists are transcoded without changing their content.
+Historical profiles and explicit candidate conversion are documented in the
+[migration guide](../migrations/README.md). Profile markers reject incompatible worker
+artifacts; read compatibility does not rewrite accepted production files.
 
 The supplied [StatDCAT-AP 3.0.0 specification](<../reference/StatDCAT-AP 3.0.0.html>) is
 stored verbatim with a [hash and provenance](<../reference/StatDCAT-AP 3.0.0.provenance.json>).

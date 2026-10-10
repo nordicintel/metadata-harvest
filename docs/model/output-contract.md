@@ -45,17 +45,11 @@ Invalid identities, membership, category order, hierarchy and unusable retrieval
 
 ## Accepted collections and publication
 
-Accepted `data/<adapter>/metadata/*.jsonl.gz` collections are grouped by canonical provider and contain multilingual models. Task keys, checkpoints and retries still use original source identities; one failed contribution must not erase a successful sibling. Public output is exactly:
+Accepted `data/<adapter>/metadata/*.jsonl.gz` collections are grouped by canonical provider and contain multilingual models. Task keys, checkpoints and retries still use original source identities; one failed contribution must not erase a successful sibling. New catalog builds write `catalog.jsonl.zst` (one assembled dataset per line) and
+`codelists.jsonl.zst` (one SKOS scheme per line). Historical 7-Zip output remains
+readable. See [catalog operations](../catalog/README.md) for archive I/O, candidate
+verification and explicit promotion.
 
-| Archive | Member |
-| --- | --- |
-| `data/catalog/catalog.7z` | `catalog.jsonl`, one assembled dataset per line |
-| `data/catalog/codelists.7z` | `codelists.jsonl`, one SKOS scheme per line |
-
-Consumers use [catalog distribution retrieval](../retrieval/README.md) or call a retrieval adapter directly. Harvesting exposes no consumer retrieval entry points.
-
-## Offline migration and recovery
-
-`uv run python -m apps.migrations.collections --source data --output output/statdcat-migration/data` builds a separate candidate without reharvesting. Per-adapter gzip ledgers connect every original record to its dataset/distribution and record every attribute disposition, source hash and exact round-trip result. Operational records are copied unchanged. Source files are never replaced by this command.
-
-Cutover must include code, collections, generated schemas, catalog state and documentation together. Worker result markers carry the profile version; incompatible pre-cutover artifacts are rejected. Git history and `convert_collections` retain recovery for earlier collection layouts. Catalog assembly validates candidates and records accepted committed Git blob identities for failed-input reconstruction.
+Consumers use [distribution retrieval](../retrieval/README.md) or a direct adapter.
+Harvesting exposes no consumer retrieval entry points. Historical conversion and
+preservation ledgers are indexed under [migrations](../migrations/README.md).

@@ -69,7 +69,7 @@ not regenerate accepted data or production archives.
 
 Generated contracts and reference documentation are checked by the two generator
 scripts. [Configuration](configuration/README.md), [harvesting](harvest/README.md),
-[catalog](catalog/README.md), [publication](publication/README.md) and
+[catalog](catalog/README.md), and
 [retrieval](retrieval/README.md) document the corresponding interfaces.
 
 ## Workflows
@@ -81,3 +81,16 @@ metadata, `refresh-portal.yml` refreshes the accepted portal snapshot, and
 `catalog.yml` builds and publishes the shared catalog. Scheduled blocks are generated
 from `config/schedules.toml`; workflow filenames remain execution identities in the
 adapter registry. Publication jobs share the `production-publication` lock.
+
+## Command routing
+
+Run `uv run python -m apps.operations.<module> --help` from the checkout.
+
+| Module | Role |
+| --- | --- |
+| `harvest` | Adapter workers, collection and scoped publication |
+| `catalog` | Offline candidate build and explicit production promotion |
+| `portal` | Accepted snapshot import, refresh and publication |
+| `scheduling` | Resolve schedules and synchronize workflow blocks |
+| `monitor` | Live progress and individual error inspection |
+| `outcome` | Report failure status for the selected scope |
