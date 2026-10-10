@@ -15,6 +15,7 @@ from apps.configuration import (
     providers_for_adapter,
     use_configuration,
 )
+from apps.harvest.logs import configure as configure_logging
 from apps.harvest.metadata_adapters.pxweb_v1.workflow import (
     build_provider,
     collect_metadata,
@@ -163,6 +164,7 @@ def _main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--budget-seconds", type=float, default=19_200)
     args = parser.parse_args()
+    configure_logging()
     spec = get_adapter(args.adapter)
     if args.command not in spec.commands:
         parser.error(f"{args.adapter} supports {spec.commands}")

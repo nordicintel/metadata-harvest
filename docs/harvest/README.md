@@ -47,6 +47,10 @@ After editing it, run `uv run python -m apps.operations.scheduling sync`, then
 Disabling a schedule does not cancel existing jobs or disable manual runs.
 `scheduling.paused = true` in [settings.toml](../../config/settings.toml) blocks
 every scheduled run the same way; sync and commit after changing it too.
+`logging.level` in the same file sets the log level shared by every metadata
+adapter (`DEBUG`, `INFO`, `WARNING`, `ERROR`, or `OFF` to silence them); the harvest
+entry point installs one stderr handler so adapter log lines appear in workflow
+run output.
 
 ```sh
 uv run python -m apps.operations.monitor status RUN_ID
