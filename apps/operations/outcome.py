@@ -1,13 +1,17 @@
-"""Decide whether a finished job should fail: only when a whole scope failed.
+"""Decide whether a finished job should fail: only when a whole adapter failed.
 
 Individual table, codelist, indicator or dataset errors are reported in the
-published reports and stay visible there; they never fail a job. A job fails
-only when a whole provider, language scope or base API could not be read, or
-when the catalog could not take an adapter's accepted collections at all.
+published reports and stay visible there; they never fail a job. A failed scope
+(a provider, language or base API that could not be read) is reported as a
+warning while the rest of the adapter still produced results. A job fails only
+when the adapter as a whole produced nothing: every scope failed, or a scope
+failed and no item was read from the source in the run. The catalog fails only
+when no adapter's collections could be taken at all.
 """
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 from apps.harvest.storage import read
@@ -101,6 +105,40 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
     raise ValueError(f"Unknown adapter: {adapter}")
 
 
+# Counters that prove an item was read from the source during the run. Counters of
+# retained, withheld, reused or removed items are not evidence of a working source.
+READ_COUNTS = (
+    "harvested",
+    "rebuilt",
+    "unchanged",
+    "updated",
+    "created",
+    "checked",
+    "relabelled",
+)
+
+
+def adapter_failed(adapter: str, report: dict, failures: list[str]) -> bool:
+    """Whether the whole adapter failed, not only some of its scopes."""
+    if not failures:
+        return False
+    if adapter in ("pxweb_v1", "pxweb_v2"):
+        scopes = report.get("scopes") or []
+        return len(failures) >= len(scopes)
+    counts = report.get("counts") or {}
+    if adapter == "catalog":
+        return not counts.get("datasets")
+    return not any(counts.get(key) for key in READ_COUNTS)
+
+
+def _warn(adapter: str, failures: list[str]) -> None:
+    message = f"{adapter} completed with errors; failed scopes: {', '.join(failures)}"
+    print(f"::warning title=Partial harvest::{message}")
+    if summary := os.environ.get("GITHUB_STEP_SUMMARY"):
+        with open(summary, "a", encoding="utf-8") as file:
+            file.write(f"⚠️ {message}\n")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--adapter", choices=sorted(REPORTS), required=True)
@@ -114,6 +152,7 @@ def main() -> None:
         if harvest.exists():
             report = {**read(harvest), "scopes": report.get("scopes")}
     failures = scope_failures(args.adapter, report)
+    failed = adapter_failed(args.adapter, report, failures)
     print(
         json.dumps(
             {
@@ -121,11 +160,14 @@ def main() -> None:
                 "counts": report.get("counts"),
                 "errors": len(report.get("errors") or []),
                 "scope_failures": failures,
+                "adapter_failed": failed,
             },
             ensure_ascii=False,
         )
     )
-    raise SystemExit(bool(failures))
+    if failures and not failed:
+        _warn(args.adapter, failures)
+    raise SystemExit(failed)
 
 
 if __name__ == "__main__":

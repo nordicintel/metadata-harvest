@@ -35,5 +35,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           uv run python -m apps.operations.catalog publish
-      - name: Fail only when an adapter's collections could not be taken
+      - name: Fail only when no adapter's collections could be taken
         run: uv run python -m apps.operations.outcome --adapter catalog

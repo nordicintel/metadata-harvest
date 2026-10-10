@@ -102,6 +102,56 @@ def test_supervisor_stops_on_loss_of_visibility_without_restarting(
     assert len(launches) == 1
 
 
+@pytest.mark.parametrize(
+    "exit_code,result_status,conclusion",
+    [
+        (0, "completed_with_errors", "success"),
+        (0, "interrupted", "success"),
+        (0, "running", "failure"),
+        (1, "completed_with_errors", "failure"),
+    ],
+)
+def test_only_a_failed_worker_fails_the_live_check(
+    monkeypatch, tmp_path, exit_code, result_status, conclusion
+):
+    import apps.operations.monitor as monitor
+
+    progress = tmp_path / "progress.json"
+    conclusions = []
+
+    class Reporter:
+        def __init__(self, name):
+            pass
+
+        def start(self):
+            pass
+
+        def update(self, state, errors, *, conclusion=None):
+            conclusions.append(conclusion)
+
+    class Process:
+        returncode = exit_code
+
+        def poll(self):
+            return self.returncode
+
+        def wait(self, **kwargs):
+            return self.returncode
+
+    def launch(*args, **kwargs):
+        progress.write_text(json.dumps({"result_status": result_status}))
+        progress.with_suffix(".errors.jsonl").write_text(
+            json.dumps({"stage": "metadata", "resource": "T1"}) + "\n"
+        )
+        return Process()
+
+    monkeypatch.setenv("HARVEST_PROGRESS", str(progress))
+    monkeypatch.setattr(monitor, "CheckReporter", Reporter)
+    monkeypatch.setattr(monitor.subprocess, "Popen", launch)
+    assert monitor.run_monitored("test", ["worker"], interval=0) == exit_code
+    assert conclusions[-1] == conclusion
+
+
 def test_stale_heartbeat_cannot_look_healthy():
     def api(path, **kwargs):
         if "/actions/" in path:

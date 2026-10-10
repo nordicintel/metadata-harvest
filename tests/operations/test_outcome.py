@@ -1,12 +1,13 @@
-"""Jobs fail only on whole-scope failures; individual errors stay green."""
+"""Jobs fail only when a whole adapter failed; other errors stay green."""
 
 import json
+import os
 import subprocess
 import sys
 
 import pytest
 
-from apps.operations.outcome import REPORTS, scope_failures
+from apps.operations.outcome import REPORTS, adapter_failed, scope_failures
 from apps.paths import ROOT
 
 
@@ -114,6 +115,83 @@ def test_whole_scope_failures_fail():
     assert scope_failures(
         "entrysoft", {"errors": [], "interrupted": "host: HTTP 429 received 2 times"}
     )
+
+
+def test_only_a_whole_adapter_failure_fails():
+    partial = {
+        "pxweb_v2": {
+            "scopes": [
+                {"language": "sv", "complete": True},
+                {"language": "en", "complete": False},
+            ]
+        },
+        "entrysoft": {
+            "counts": {"unchanged": 528, "harvested": 29},
+            "errors": [{"stage": "discovery", "resource": "falunentryscapenet"}],
+        },
+        "riksbank": {
+            "counts": {"unchanged": 34},
+            "errors": [{"stage": "discovery", "resource": "swea"}],
+        },
+        "catalog": {
+            "counts": {"datasets": 18501},
+            "errors": [{"collection": "kolada"}],
+        },
+    }
+    for adapter, report in partial.items():
+        failures = scope_failures(adapter, report)
+        assert failures and not adapter_failed(adapter, report, failures), adapter
+    whole = {
+        "pxweb_v2": {"scopes": [{"language": "en", "complete": False}]},
+        "kolada": {
+            "counts": {"reused": 9, "checked": 0},
+            "errors": [{"stage": "discovery", "resource": "kpi"}],
+        },
+        "riksbank": {
+            "counts": {"unchanged": 0, "withheld": 42},
+            "errors": [
+                {"stage": "discovery", "resource": api}
+                for api in ("swea", "mpd", "swestr")
+            ],
+        },
+        "catalog": {"counts": {"datasets": 0}, "errors": [{"collection": "kolada"}]},
+    }
+    for adapter, report in whole.items():
+        failures = scope_failures(adapter, report)
+        assert adapter_failed(adapter, report, failures), adapter
+    assert not adapter_failed("sdb", {"counts": {}}, [])
+
+
+def test_command_warns_but_succeeds_on_a_partial_failure(tmp_path, monkeypatch):
+    summary = tmp_path / "summary.md"
+    (tmp_path / "entrysoft/reports").mkdir(parents=True)
+    (tmp_path / "entrysoft/reports/latest.json").write_text(
+        json.dumps(
+            {
+                "status": "completed_with_errors",
+                "counts": {"unchanged": 528},
+                "errors": [{"stage": "discovery", "resource": "falunentryscapenet"}],
+            }
+        )
+    )
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "apps.operations.outcome",
+            "--adapter",
+            "entrysoft",
+            "--data",
+            str(tmp_path),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        env={**os.environ, "GITHUB_STEP_SUMMARY": str(summary)},
+    )
+    assert result.returncode == 0
+    assert "::warning" in result.stdout and "falunentryscapenet" in result.stdout
+    assert "falunentryscapenet" in summary.read_text(encoding="utf-8")
 
 
 def test_command_reads_the_published_report(tmp_path):

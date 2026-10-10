@@ -134,7 +134,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: uv run --extra harvest python -m apps.operations.harvest continue --adapter pxweb_v2 --run-id "$RUN_ID"
-      - name: Fail only when a whole scope failed
+      - name: Fail only when the whole adapter failed
         run: uv run python -m apps.operations.outcome --adapter pxweb_v2
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'

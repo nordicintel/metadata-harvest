@@ -114,7 +114,7 @@ jobs:
           waiting=$(gh run list --workflow catalog.yml --json status --jq '[.[] | select(.status | IN("requested", "waiting", "pending", "queued"))] | length')
           if [ "$waiting" -gt 0 ]; then echo "A queued catalog run will include this publication"; exit 0; fi
           gh workflow run catalog.yml --ref main
-      - name: Fail only when a whole scope failed
+      - name: Fail only when the whole adapter failed
         run: uv run python -m apps.operations.outcome --adapter entrysoft
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'

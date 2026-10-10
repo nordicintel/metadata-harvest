@@ -256,16 +256,14 @@ def run_monitored(name, command, *, interval=30):
         else:
             process.wait()
         state, errors = read_progress(path)
-        unhealthy = errors or state.get("result_status") in {
-            "running",
-            "interrupted",
-            "completed_with_errors",
-        }
+        # Individual and scope errors stay visible as warning annotations; only a
+        # worker that crashed or never finished its run fails the check.
+        unfinished = state.get("result_status") == "running"
         conclusion = (
             "cancelled"
             if interrupted
             else "failure"
-            if process.returncode or unhealthy
+            if process.returncode or unfinished
             else "success"
         )
         state.update(
