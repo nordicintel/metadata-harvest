@@ -256,7 +256,11 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run catalog.yml --ref main
+        run: |
+          # A queued catalog run checks out main only when it starts, after this push.
+          waiting=$(gh run list --workflow catalog.yml --json status --jq '[.[] | select(.status | IN("requested", "waiting", "pending", "queued"))] | length')
+          if [ "$waiting" -gt 0 ]; then echo "A queued catalog run will include this publication"; exit 0; fi
+          gh workflow run catalog.yml --ref main
       - name: Continue unfinished work
         if: success() && needs.build.result == 'success' && steps.collect.outputs.continue == 'true'
         env:
