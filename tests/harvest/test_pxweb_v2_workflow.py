@@ -341,10 +341,10 @@ def test_collector_rejects_tampered_metadata_without_writing(tmp_path):
             return await run(PROVIDER, root, output, client=client)
 
     result = asyncio.run(execute())
-    target = next((output / result["snapshot"] / "metadata").glob("*.jsonl.gz"))
+    target = next((output / "metadata").glob("*.jsonl.gz"))
     target.write_text("{}\n")
     with pytest.raises(ValueError):
-        collect(root, output, result["run_id"], result["wave"])
+        collect(root, output, result["run_id"])
     assert not root.exists()
 
 
@@ -449,6 +449,7 @@ def test_confirmed_removed_codelist_is_not_requested_again_on_refresh(tmp_path):
 
     def handler(request):
         if "/codelists/" in request.url.path and request.url.params["lang"] == "sv":
+            source.requests.append((request.url.path, "sv"))
             return httpx.Response(404)
         return original(request)
 

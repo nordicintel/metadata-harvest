@@ -92,7 +92,10 @@ def _write_candidate(output, metadata, codes, listings, state, base):
     }
     for key in required - set(codes.records):
         code_errors.setdefault(
-            key, "Referenced codelist is unavailable; retrieval has not completed"
+            key,
+            REMOVED_CODELIST
+            if key in state["removed_codelists"]
+            else "Referenced codelist is unavailable; retrieval has not completed",
         )
     counts["codelists_failed"] = len(code_errors)
     errors.extend(
