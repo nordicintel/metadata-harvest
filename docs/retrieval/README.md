@@ -35,9 +35,14 @@ consumer implementation and supports this keyword interface:
 from retrieval.data_adapters.pxweb_v1 import retrieve
 
 result = await retrieve(
-    session, provider_code=source_alias, dataset_code=native_code,
-    language=language, selection=selection, data_url=data_url,
-    metadata_url=metadata_url, metadata=operational_metadata,
+    session,
+    provider_code=source_alias,
+    dataset_code=native_code,
+    language=language,
+    selection=selection,
+    data_url=data_url,
+    metadata_url=metadata_url,
+    metadata=operational_metadata,
 )
 ```
 
