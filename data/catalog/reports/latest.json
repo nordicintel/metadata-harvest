@@ -1,11 +1,11 @@
 {
   "counts": {
     "ambiguous": 0,
-    "codelists": 72568,
-    "datasets": 18502,
-    "distributions": 34379,
+    "codelists": 72565,
+    "datasets": 18501,
+    "distributions": 34367,
     "filtered": 7130,
-    "matched": 13001,
+    "matched": 13000,
     "quality_findings": 14203,
     "unmatched": 5501
   },
@@ -84,16 +84,23 @@
     "entrysoft/reports/latest.json": {
       "continue": false,
       "counts": {
-        "datasets": 442,
-        "deferred": 0,
-        "empty": 0,
+        "datasets": 441,
+        "deferred": 1,
+        "empty": 1,
         "failed": 0,
-        "harvested": 0,
+        "harvested": 29,
         "lists": 3,
-        "removed": 0,
-        "unchanged": 14
+        "removed": 1,
+        "unchanged": 528
       },
-      "deferred_tables": [],
+      "deferred_tables": [
+        {
+          "paging_requests": 372,
+          "reason": "source metadata not public (HTTP 401)",
+          "rowcount": 186189,
+          "table": "catalogborasse/ee2e049d-6e22-409f-bf86-ab4d8e32e03e"
+        }
+      ],
       "dropped_tables": [
         {
           "reason": "single row",
@@ -156,20 +163,28 @@
           "table_url": "https://skatteverket.entryscape.net/rowstore/dataset/b4de7df7-63c0-4e7e-bb59-1f156a591763"
         }
       ],
-      "errors": [],
+      "errors": [
+        {
+          "error": "RuntimeError: ConnectError: [Errno -2] Name or service not known",
+          "resource": "falunentryscapenet",
+          "stage": "discovery"
+        },
+        {
+          "error": "RuntimeError: ConnectError: [Errno -2] Name or service not known",
+          "resource": "stunsentryscapenet",
+          "stage": "discovery"
+        }
+      ],
       "interrupted": null,
       "list_datasets": [
         "3f4ae8e9-0908-4950-92b5-772e2ca1565f",
         "accf7b0c-3004-4ec0-9c39-ca8c32b30485",
         "65753bc9-a424-411d-b064-a8af678149dd"
       ],
-      "requests": 14,
-      "run_id": "3592927c3d4445c6bdf6ab01288a9cc9",
-      "selection": [
-        "catalogalese",
-        "catalogdiggse"
-      ],
-      "status": "success"
+      "requests": 343,
+      "run_id": "3fd90dd26ebe4a5bbc3b0b54d55b7dcb",
+      "selection": null,
+      "status": "completed_with_errors"
     },
     "forsakringskassan/reports/latest.json": {
       "continue": false,
