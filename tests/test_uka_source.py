@@ -4,7 +4,7 @@ import copy
 
 import pytest
 
-from metadata_harvest.adapters.uka.source import (
+from harvesting.adapters.uka.source import (
     Indicator,
     documentation_url,
     is_discontinued,

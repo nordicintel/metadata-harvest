@@ -1,6 +1,6 @@
 # PXWeb v1 discovery and metadata
 
-The importable `metadata_harvest.adapters.pxweb_v1` package uses website discovery
+The importable `harvesting.adapters.pxweb_v1` package uses website discovery
 and API metadata retrieval. The top-level imports remain supported. Configuration
 is in [`catalogs.json`](../catalogs.json); see [provider additions and live evidence](pxweb-registry-gaps.md).
 
@@ -12,7 +12,7 @@ and [owner inventory](source-inventory.md). Discovery dictionaries below remain
 native operational records.
 
 ```python
-from metadata_harvest import get_pxweb_tables
+from harvesting import get_pxweb_tables
 
 records = await get_pxweb_tables(
     "https://example.org/PXWeb/pxweb/",
@@ -61,7 +61,7 @@ retry in a new context using `ignore_https_errors=True`, with a warning.
 ## Complete table metadata
 
 ```python
-from metadata_harvest import get_pxweb_metadata
+from harvesting import get_pxweb_metadata
 
 dataset = await get_pxweb_metadata(records[0], provider_code="provider-code")
 ```
@@ -82,7 +82,7 @@ dimensions remain namespaced metadata. Category coverage does not mean every
 combination of observations was downloaded. Root `updated` is a calendar date,
 with original source precision retained for incremental comparison.
 
-Standalone observation retrieval is in `metadata_harvest.adapters.pxweb_v1.retrieval`
+Standalone observation retrieval is in `retrieval.adapters.pxweb_v1`
 and uses the caller's aiohttp session; see the [retrieval guide](retrieval-guide.md).
 
 Run **Live PXWeb metadata** manually in GitHub Actions for every web-listed table

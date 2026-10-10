@@ -10,8 +10,8 @@ from pathlib import Path
 import pytest
 from playwright.async_api import async_playwright
 
-from metadata_harvest import get_pxweb_tables
-from metadata_harvest.adapters.pxweb_v1.discovery import (
+from harvesting import get_pxweb_tables
+from harvesting.adapters.pxweb_v1.discovery import (
     _context,
     _databases,
     _date,
@@ -21,7 +21,7 @@ from metadata_harvest.adapters.pxweb_v1.discovery import (
     _record,
     _retry_after,
 )
-from metadata_harvest.configuration import providers_for_adapter
+from harvesting.configuration import providers_for_adapter
 
 
 @pytest.mark.parametrize(
@@ -436,7 +436,7 @@ def test_pagination(website):
 
 
 def test_stalled_expansion_fails(website, monkeypatch):
-    import metadata_harvest.adapters.pxweb_v1.discovery as module
+    import harvesting.adapters.pxweb_v1.discovery as module
 
     host, routes, requests = website
     activate = module._activate
@@ -631,7 +631,7 @@ def test_stateful_expansion_retry_reloads_page(website):
 
 
 def test_ineffective_full_control_falls_back_to_branches(website, monkeypatch):
-    import metadata_harvest.adapters.pxweb_v1.discovery as module
+    import harvesting.adapters.pxweb_v1.discovery as module
 
     monkeypatch.setattr(module, "_TIMEOUT", 1000)
     host, routes, requests = website
@@ -664,7 +664,7 @@ def test_popup_redirect_cannot_reach_api(website):
 
 
 def test_month_precision_and_listing_date_conventions():
-    from metadata_harvest.adapters.pxweb_v1.discovery import _numeric_date_format
+    from harvesting.adapters.pxweb_v1.discovery import _numeric_date_format
 
     assert _date("September 2022") == "2022-09"
     assert _numeric_date_format(["22/09/2026", "01/02/2026"]) == "%d/%m/%Y"
@@ -759,7 +759,7 @@ def test_folder_enrichment_distinguishes_repeated_ids_and_encodes_paths(website)
 
 @pytest.mark.parametrize("http_date", [False, True])
 def test_folder_retry_after_and_cache(website, monkeypatch, http_date):
-    import metadata_harvest.adapters.pxweb_v1.discovery as implementation
+    import harvesting.adapters.pxweb_v1.discovery as implementation
 
     host, routes, requests = website
     routes["/pxweb/sv/db/"] = (200, table(date=""), {})
@@ -794,7 +794,7 @@ def test_folder_retry_after_and_cache(website, monkeypatch, http_date):
 
 
 def test_flat_rate_limit_waits_without_second_request(website, monkeypatch):
-    import metadata_harvest.adapters.pxweb_v1.discovery as implementation
+    import harvesting.adapters.pxweb_v1.discovery as implementation
 
     host, routes, requests = website
     routes["/pxweb/sv/db/"] = (200, table(date=""), {})
@@ -871,7 +871,7 @@ def test_discovery_skips_unusable_candidates_but_explicit_selection_fails(
 
 
 def test_discovery_server_errors_are_not_skipped(website, monkeypatch):
-    import metadata_harvest.adapters.pxweb_v1.discovery as implementation
+    import harvesting.adapters.pxweb_v1.discovery as implementation
 
     host, routes, requests = website
     monkeypatch.setattr(implementation, "_ATTEMPTS", 1)
@@ -891,7 +891,7 @@ def test_discovery_server_errors_are_not_skipped(website, monkeypatch):
 def test_goteborg_enrichment_requests_are_paced(monkeypatch):
     from types import SimpleNamespace
 
-    import metadata_harvest.adapters.pxweb_v1.discovery as module
+    import harvesting.adapters.pxweb_v1.discovery as module
 
     waits = []
     requested = []
@@ -932,7 +932,7 @@ def test_goteborg_enrichment_requests_are_paced(monkeypatch):
 
 @pytest.mark.parametrize("flat", [True, False])
 def test_hvd_enrichment_uses_real_api_parent(monkeypatch, flat):
-    import metadata_harvest.adapters.pxweb_v1.discovery as module
+    import harvesting.adapters.pxweb_v1.discovery as module
 
     root = _parse_url("https://hvduppdrag.scb.se/pxweb/sv/uppdrag/")
     row = {
@@ -965,7 +965,7 @@ def test_hvd_enrichment_uses_real_api_parent(monkeypatch, flat):
 def test_failed_parent_url_does_not_poison_same_basename_in_other_folder(
     monkeypatch, malformed_sibling
 ):
-    from metadata_harvest.adapters.pxweb_v1 import discovery as module
+    from harvesting.adapters.pxweb_v1 import discovery as module
 
     root = module._parse_url("https://example.test/pxweb/sv/db/")
     rows = [

@@ -59,12 +59,12 @@ jobs:
           args=()
           if [ -n "$KPI_IDS" ]; then read -ra ids <<< "$KPI_IDS"; args+=(--kpi "${ids[@]}"); fi
           if [ -n "$SCOPE" ] && [ "$SCOPE" != both ]; then args+=(--scope "$SCOPE"); fi
-          uv run python -m metadata_harvest.monitor run --name kolada -- python -m metadata_harvest.runner run --adapter kolada "${args[@]}"
+          uv run python -m harvesting.monitor run --name kolada -- python -m harvesting.runner run --adapter kolada "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m metadata_harvest.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -105,14 +105,14 @@ jobs:
           name: kolada-${{ github.run_attempt }}
           path: output/kolada/
       - id: collect
-        run: uv run python -m metadata_harvest.runner collect --adapter kolada
+        run: uv run python -m harvesting.runner collect --adapter kolada
       - name: Publish current Kolada metadata and errors
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m metadata_harvest.runner publish --adapter kolada --run-id "$RUN_ID"
+          uv run python -m harvesting.runner publish --adapter kolada --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -124,9 +124,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ steps.collect.outputs.run_id }}
-        run: uv run python -m metadata_harvest.runner continue --adapter kolada --run-id "$RUN_ID"
+        run: uv run python -m harvesting.runner continue --adapter kolada --run-id "$RUN_ID"
       - name: Fail only when a whole scope failed
-        run: uv run python -m metadata_harvest.outcome --adapter kolada
+        run: uv run python -m harvesting.outcome --adapter kolada
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

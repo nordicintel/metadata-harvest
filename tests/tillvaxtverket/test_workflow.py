@@ -5,9 +5,9 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from metadata_harvest.adapters.tillvaxtverket import source
-from metadata_harvest.adapters.tillvaxtverket.client import Unreachable
-from metadata_harvest.adapters.tillvaxtverket.state import (
+from harvesting.adapters.tillvaxtverket import source
+from harvesting.adapters.tillvaxtverket.client import Unreachable
+from harvesting.adapters.tillvaxtverket.state import (
     collection,
     load_documents,
     load_state,
@@ -39,7 +39,7 @@ class Source(RecordedClient):
 
 
 def start(client, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.tillvaxtverket.workflow import run
+    from harvesting.adapters.tillvaxtverket.workflow import run
 
     return asyncio.run(
         run(PROVIDER, data, output, client=client, clock=clock, **options)
@@ -47,7 +47,7 @@ def start(client, data, output, *, clock=NOW, **options):
 
 
 def execute(client, data, output, **options):
-    from metadata_harvest.adapters.tillvaxtverket.workflow import collect
+    from harvesting.adapters.tillvaxtverket.workflow import collect
 
     result = start(client, data, output, **options)
     collect(data, output, languages=["sv"])
@@ -72,7 +72,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_publishes_six_valid_documents(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = published(data)
     assert sorted(documents) == sorted(key(name) for name in NAMES)
@@ -266,7 +266,7 @@ def test_unexpected_published_file_raises_and_publishes_nothing(data, tmp_path):
 def test_dataset_dropped_from_registry_is_removed_only_in_unbounded_run(
     data, tmp_path, monkeypatch
 ):
-    from metadata_harvest.adapters.tillvaxtverket import workflow
+    from harvesting.adapters.tillvaxtverket import workflow
 
     kept = tuple(spec for spec in source.DATASETS if spec.name != YEAR)
     monkeypatch.setattr(workflow, "DATASETS", kept)
@@ -306,7 +306,7 @@ def test_bounded_run_touches_only_selected(data, tmp_path):
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.tillvaxtverket.workflow import collect
+    from harvesting.adapters.tillvaxtverket.workflow import collect
 
     start(Source(), data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

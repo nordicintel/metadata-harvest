@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest import runner
+from harvesting import runner
 
 
 @pytest.mark.parametrize(
@@ -42,7 +42,7 @@ from metadata_harvest import runner
 def test_run_and_collect_use_adapter_configuration(
     monkeypatch, adapter, flags, expected
 ):
-    workflow = importlib.import_module(f"metadata_harvest.adapters.{adapter}.workflow")
+    workflow = importlib.import_module(f"harvesting.adapters.{adapter}.workflow")
     calls = []
     result = {
         "run_id": "test-run",

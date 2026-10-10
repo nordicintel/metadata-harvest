@@ -69,7 +69,7 @@ class RecordedClient:
         self.failing.add(fixture_key(url))
 
     async def get_json(self, url: str) -> Any:
-        from metadata_harvest.adapters.forsakringskassan.client import Unreachable
+        from harvesting.adapters.forsakringskassan.client import Unreachable
 
         key = fixture_key(url)
         self.requests.append(key)
@@ -142,7 +142,7 @@ async def retrieve_from(fake: FakeTables, selection, **kwargs):
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from metadata_harvest.adapters.forsakringskassan.retrieval import retrieve
+    from harvesting.adapters.forsakringskassan.retrieval import retrieve
 
     app = web.Application()
     app.router.add_get("/v1/{report}/{name}.json", fake.handle)
@@ -177,7 +177,7 @@ async def retrieve_from(fake: FakeTables, selection, **kwargs):
 
 def check_fragment(fragment: dict[str, Any], selection) -> None:
     """Validate a fragment: result schema plus the contract's consumer checks."""
-    from metadata_harvest.validation import validate_retrieval
+    from harvesting.validation import validate_retrieval
 
     validate_retrieval(fragment, selection=selection)
     ids = fragment["id"]

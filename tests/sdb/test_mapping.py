@@ -5,14 +5,14 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.adapters.sdb.mapping import (
+from harvesting.adapters.sdb.mapping import (
     Subject,
     build_dataset,
     build_dimension,
     html_to_text,
     time_unit_from_swedish_label,
 )
-from metadata_harvest.validation import validate_metadata
+from harvesting.validation import validate_metadata
 
 SDB_DATA = json.loads(
     (Path(__file__).parent / "fixtures" / "sdb.json").read_text(encoding="utf-8")

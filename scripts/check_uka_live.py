@@ -11,13 +11,13 @@ from pathlib import Path
 
 import aiohttp
 
-from metadata_harvest.adapters.uka.client import TIMEOUT, USER_AGENT, UkaClient
-from metadata_harvest.adapters.uka.retrieval import REQUIRED_METADATA, retrieve
-from metadata_harvest.adapters.uka.source import parse_catalogue
-from metadata_harvest.adapters.uka.workflow import fetch_metadata
-from metadata_harvest.configuration import providers_for_adapter
-from metadata_harvest.storage import write
-from metadata_harvest.validation import validate_retrieval
+from harvesting.adapters.uka.client import TIMEOUT, USER_AGENT, UkaClient
+from harvesting.adapters.uka.retrieval import REQUIRED_METADATA, retrieve
+from harvesting.adapters.uka.source import parse_catalogue
+from harvesting.adapters.uka.workflow import fetch_metadata
+from harvesting.configuration import providers_for_adapter
+from harvesting.storage import write
+from harvesting.validation import validate_retrieval
 
 INDICATORS = {"15", "72", "97"}
 

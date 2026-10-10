@@ -8,8 +8,8 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.adapters.riksbank.client import Unreachable
-from metadata_harvest.adapters.riksbank.state import (
+from harvesting.adapters.riksbank.client import Unreachable
+from harvesting.adapters.riksbank.state import (
     collection,
     load_documents,
     load_state,
@@ -49,7 +49,7 @@ class Source(RecordedClient):
 
 
 def start(source, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.riksbank.workflow import run
+    from harvesting.adapters.riksbank.workflow import run
 
     return asyncio.run(
         run(PROVIDER, data, output, client=source, clock=clock, **options)
@@ -57,7 +57,7 @@ def start(source, data, output, *, clock=NOW, **options):
 
 
 def execute(source, data, output, **options):
-    from metadata_harvest.adapters.riksbank.workflow import collect
+    from harvesting.adapters.riksbank.workflow import collect
 
     result = start(source, data, output, **options)
     collect(data, output, languages=["en"])
@@ -86,7 +86,7 @@ def data(bootstrapped, tmp_path):
 
 
 def test_bootstrap_publishes_valid_documents(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = published(data)
     assert set(documents) == ALL
@@ -162,7 +162,7 @@ def test_one_failing_api_keeps_the_others(data, tmp_path):
     assert result["counts"]["unchanged"] == 4 and result["counts"]["withheld"] == 4
     assert set(published(data)) == {k for k in ALL if "swea_" not in k}
 
-    from metadata_harvest.outcome import _discovery
+    from harvesting.outcome import _discovery
 
     assert _discovery(result, resource=lambda r: r in {"swea", "mpd", "swestr"}) == [
         "swea"
@@ -348,7 +348,7 @@ def test_recovered_failure_stays_in_telemetry_but_not_final_report(
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.riksbank.workflow import collect
+    from harvesting.adapters.riksbank.workflow import collect
 
     start(Source(), data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

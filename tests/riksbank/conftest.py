@@ -228,7 +228,7 @@ async def retrieve_from(fake: FakeRiksbank, api: str, selection, **overrides):
     import aiohttp
     from aiohttp.test_utils import TestServer
 
-    from metadata_harvest.adapters.riksbank.retrieval import retrieve
+    from harvesting.adapters.riksbank.retrieval import retrieve
 
     async with TestServer(fake.app()) as server:
         async with aiohttp.ClientSession() as session:
@@ -254,7 +254,7 @@ async def retrieve_from(fake: FakeRiksbank, api: str, selection, **overrides):
 
 def check_fragment(fragment: dict[str, Any], selection) -> None:
     """Validate a fragment: result schema plus the contract's consumer checks."""
-    from metadata_harvest.validation import validate_retrieval
+    from harvesting.validation import validate_retrieval
 
     validate_retrieval(fragment, selection=selection)
     ids = fragment["id"]

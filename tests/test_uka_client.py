@@ -4,7 +4,7 @@ import gzip
 
 import pytest
 
-from metadata_harvest.adapters.uka.client import UkaClient, Unreachable
+from harvesting.adapters.uka.client import UkaClient, Unreachable
 from tests.uka_support import (
     FIXTURES,
     RECORDED,

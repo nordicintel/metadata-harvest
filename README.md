@@ -22,30 +22,38 @@ metadata history or observation warehouse.
 | [FÃ¶rsÃ¤kringskassan](docs/adapters/forsakringskassan.md) | `forsakringskassan`, sv; 182 accepted datasets, 28 tables with undeclared dimensions excluded | Current metadata, weekly incremental (meta.json/texts hashes) and monthly full, standalone retrieval |
 | [EntryScape RowStore](docs/adapters/entrysoft.md) | 49 EntryScape instances; see [catalogs.json](catalogs.json) | 442 datasets derived automatically from 531 RowStore tables, monthly budgeted refresh of changed tables, standalone retrieval with aggregation |
 
-Metadata uses the extensible NordicIntel StatDCAT profile, defined by local Pydantic v2 models. Accepted files contain one multilingual dataset per line, grouped by organisation within each adapter. Distributions retain their independent structure, source identity and retrieval binding. Exactly one shared DataService exists per adapter; organisations can own catalogs using several adapters. See the [complete provider inventory](docs/source-inventory.md).
+Metadata uses the extensible NordicIntel StatDCAT profile, defined by local Pydantic v2 models. Accepted files contain one multilingual dataset per line, grouped by organisation within each adapter. Distributions retain their independent structure, source identity and retrieval binding. Concrete DataServices reference shared adapter definitions; organisations can own catalogs using several adapters. See the [complete provider inventory](docs/source-inventory.md).
 
 ## Install and use
 
-Python 3.13+. Install this checkout with `pip install .` for retrieval, or
-`pip install '.[harvest]'` for harvesting and schema validation.
-The package is not currently published to PyPI.
+Python 3.13+. `pip install .` installs only the retrieval library. Its distribution
+name remains `metadata-harvest`, with the import namespace `retrieval` and only
+`aiohttp` as a runtime dependency. It is not currently published to PyPI.
 
 ```python
-from metadata_harvest import Dataset, retrieve_distribution
+from retrieval import retrieve_distribution
 
-# record is one decoded JSONL entry from catalog.jsonl.zst.
-dataset = Dataset.from_jsonld(record)
-distribution = next(d for d in dataset.distributions if d.retrieval is not None)
+# record is a decoded catalog JSONL entry; session is caller-owned aiohttp.
+distribution = next(d for d in record["dcat:distribution"] if d.get("ni:retrieval"))
 selection = {
-    axis.code: axis.categories[:1] for axis in distribution.retrieval.dimensions
+    axis["code"]: axis["categories"][:1]
+    for axis in distribution["ni:retrieval"]["dimensions"]
 }
 result = await retrieve_distribution(session, distribution, selection=selection)
 ```
 
-See the [working retrieval example](docs/retrieval-guide.md) and
-[harvesting imports](docs/pxweb-v1.md). Plain imports do not load browser,
-HTTPX or schema-validation dependencies. All implemented provider entry points
-ship in this one distribution.
+Repository workflows live in root `harvesting/`; retrieval implementation lives
+in root `retrieval/`. Run `uv sync --locked --extra harvest` from this checkout
+for the complete development/harvesting environment. Repository commands now use
+`uv run python -m harvesting.runner ...` (and the corresponding harvesting modules).
+No manual `PYTHONPATH` setup is needed. The harvesting clients, Pydantic models,
+configuration, accepted collections and publication logic remain repository code.
+
+All existing `nordicintel.retrieval` entry-point names are preserved. Consumers of
+old installed Python imports should use `retrieval` or `retrieval.adapters.<adapter>`.
+The repository's typed `harvesting.retrieve_distribution` bridge remains available.
+See [retrieval usage](docs/retrieval-guide.md) and the
+[dependency inventory](docs/retrieval-dependencies.md).
 
 ## Operations
 
@@ -53,7 +61,7 @@ Accepted adapter results live under `data/<adapter>/`; the shared consumer catal
 will be written by future production builds as `data/catalog/catalog.jsonl.zst`, with reference codes in
 `data/catalog/codelists.jsonl.zst` and coverage/state alongside them. Each file is
 a compressed JSONL stream. Existing `.7z` publication files remain readable until
-production cutover. Zstandard support is included in the Python package. The catalog reads
+production cutover. Zstandard belongs to the repository environment; consumers decompress archives separately. The catalog reads
 committed accepted files only. Constructing it never starts a harvest, refreshes a
 source, or resumes unfinished harvesting.
 
@@ -101,5 +109,5 @@ uv run --extra harvest python scripts/check_distribution.py
 
 On Linux, browser installation uses `--with-deps`. Deterministic tests are separate
 from explicit live acceptance. Imported schemas and their renderer retain the
-[Apache-2.0 licence and provenance](src/metadata_harvest/schemas/README.md);
+[Apache-2.0 licence and provenance](harvesting/schemas/README.md);
 this does not assign a new licence to unrelated repository code.

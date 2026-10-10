@@ -33,7 +33,7 @@ def record(identifier="T1", publisher="Statistiska centralbyrån", url=None):
 
 
 def test_import_is_atomic_and_rejects_partial_or_wrong_catalog(tmp_path):
-    from metadata_harvest.portal import import_snapshot
+    from harvesting.portal import import_snapshot
 
     source = tmp_path / "input.jsonl"
     target = tmp_path / "accepted"
@@ -49,8 +49,8 @@ def test_import_is_atomic_and_rejects_partial_or_wrong_catalog(tmp_path):
 
 
 def test_match_is_scoped_and_ambiguous_identifiers_do_not_merge():
-    from metadata_harvest.portal import PortalIndex
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     match = PortalIndex(
@@ -70,8 +70,8 @@ def test_match_is_scoped_and_ambiguous_identifiers_do_not_merge():
 
 
 def test_enrichment_preserves_metadata_and_scb_filter_is_reversible():
-    from metadata_harvest.portal import PortalIndex, enrich, publication_view
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex, enrich, publication_view
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     original = deepcopy(dataset.to_jsonld())
@@ -87,8 +87,8 @@ def test_enrichment_preserves_metadata_and_scb_filter_is_reversible():
 
 
 def test_hvd_and_other_pxweb_v1_services_are_not_filtered():
-    from metadata_harvest.portal import publication_view
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import publication_view
+    from harvesting.statdcat import convert_dataset
 
     doc = legacy(provider="scb_hvd")
     doc["extension"]["nordicintel"]["data_url"] = (
@@ -114,8 +114,8 @@ def test_hvd_and_other_pxweb_v1_services_are_not_filtered():
     ],
 )
 def test_singleton_service_endpoints_never_establish_identity(url):
-    from metadata_harvest.portal import PortalIndex
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     dataset.distributions[0].access_url = [url]
@@ -126,9 +126,9 @@ def test_singleton_service_endpoints_never_establish_identity(url):
 
 
 def test_filter_removes_references_to_removed_distribution_structures():
-    from metadata_harvest.portal import publication_view
-    from metadata_harvest.quality import validate_publication
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import publication_view
+    from harvesting.quality import validate_publication
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     dataset.distributions[0].access_url = [
@@ -142,8 +142,8 @@ def test_filter_removes_references_to_removed_distribution_structures():
 
 
 def test_portal_nested_unknown_properties_survive_enrichment():
-    from metadata_harvest.portal import PortalIndex, enrich
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex, enrich
+    from harvesting.statdcat import convert_dataset
 
     portal = record()
     portal["categories"] = [
@@ -168,8 +168,8 @@ def test_portal_nested_unknown_properties_survive_enrichment():
 
 
 def test_linked_resource_attributes_and_secondary_labels_survive():
-    from metadata_harvest.portal import PortalIndex, enrich
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex, enrich
+    from harvesting.statdcat import convert_dataset
 
     portal = record()
     portal["landing_page"] = [
@@ -214,8 +214,8 @@ def test_linked_resource_attributes_and_secondary_labels_survive():
     ],
 )
 def test_configured_pxweb_urls_supply_provider_scoped_native_ids(provider, url):
-    from metadata_harvest.portal import PortalIndex
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex
+    from harvesting.statdcat import convert_dataset
 
     doc = legacy(provider=provider, code="ABAKD11.px")
     doc["extension"]["pxweb_v1"] = doc["extension"].pop("pxweb_v2")
@@ -236,8 +236,8 @@ def test_configured_pxweb_urls_supply_provider_scoped_native_ids(provider, url):
 
 
 def test_identifier_matching_normalizes_encoding_case_whitespace_and_punctuation():
-    from metadata_harvest.portal import PortalIndex
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(code="AB%20-01.px"), adapter="pxweb_v2").dataset
     portal = record("ab_01.px")
@@ -256,8 +256,8 @@ def test_identifier_matching_normalizes_encoding_case_whitespace_and_punctuation
 
 
 def test_portal_pxweb_query_endpoint_is_access_not_a_file_download():
-    from metadata_harvest.portal import PortalIndex, enrich
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex, enrich
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     portal = record()
@@ -273,8 +273,8 @@ def test_portal_pxweb_query_endpoint_is_access_not_a_file_download():
 
 
 def test_distinct_dataset_page_fragments_do_not_match():
-    from metadata_harvest.portal import PortalIndex
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.portal import PortalIndex
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     dataset.landing_page = ["https://example.org/table-pages#A"]

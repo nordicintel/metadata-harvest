@@ -6,8 +6,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from metadata_harvest.models import Dataset
-from metadata_harvest.statdcat import convert_dataset, legacy_document
+from harvesting.models import Dataset
+from harvesting.statdcat import convert_dataset, legacy_document
 
 
 def differences(a, b, path=""):

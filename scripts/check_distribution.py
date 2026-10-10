@@ -12,54 +12,54 @@ from pathlib import Path
 
 def check(root: Path):
     wheel = max((root / "dist").glob("*.whl"), key=lambda p: p.stat().st_mtime)
-    source = max((root / "dist").glob("*.tar.gz"), key=lambda p: p.stat().st_mtime)
-    expected = {
-        "dataset-metadata.schema.json",
-        "codelist.schema.json",
-        "harvest-contribution.schema.json",
-        "legacy-dataset-metadata.schema.json",
-        "provider.schema.json",
-        "retrieval-result.schema.json",
-        "LICENSE",
-    }
     with zipfile.ZipFile(wheel) as archive:
-        assert expected <= {
-            Path(n).name for n in archive.namelist() if "/schemas/" in n
-        }
+        names = archive.namelist()
+        assert "retrieval/distribution.py" in names
+        assert all(n.startswith("retrieval/") or ".dist-info/" in n for n in names)
+    source = max((root / "dist").glob("*.tar.gz"), key=lambda p: p.stat().st_mtime)
     with tarfile.open(source) as archive:
-        assert expected <= {
-            Path(n).name for n in archive.getnames() if "/schemas/" in n
-        }
-    from metadata_harvest.configuration import load_configuration, providers_for_adapter
+        files = [n.split("/", 1)[1] for n in archive.getnames() if "/" in n]
+        assert all(
+            n.startswith("retrieval/")
+            or n
+            in {"retrieval", "pyproject.toml", "README.md", "PKG-INFO", ".gitignore"}
+            for n in files
+        )
+    import tomllib
 
-    providers = {
-        p["code"]
-        for a in load_configuration().adapters
-        for p in providers_for_adapter(a)
-    }
-    code = """
-import importlib.metadata as m, importlib.resources as r, json, sys
+    project = tomllib.loads((root / "pyproject.toml").read_text())["project"]
+    providers = set(project["entry-points"]["nordicintel.retrieval"])
+    code = r"""
+import asyncio, importlib.metadata as m, importlib.util, json, sys
+from retrieval import retrieve_distribution
 entries = m.entry_points(group='nordicintel.retrieval')
 for entry in entries:
     entry.load()
-from metadata_harvest import Dataset, Distribution, CodeList, retrieve_distribution
-assert callable(retrieve_distribution)
-sample = Dataset(id='urn:nordicintel:installation-check', unfamiliar=False)
-assert Dataset.from_jsonld(sample.to_jsonld()).additional_attributes['custom']['unfamiliar'] is False
-assert not any(k.startswith(('httpx', 'playwright', 'jsonschema')) for k in sys.modules)
+assert importlib.util.find_spec('harvesting') is None
+assert importlib.util.find_spec('metadata_harvest') is None
 installed = {d.metadata['Name'].lower() for d in m.distributions()}
-assert not installed.intersection({'httpx', 'playwright', 'jsonschema'})
-from metadata_harvest.configuration import load_configuration
-assert len(load_configuration().adapters) == 12
-assert len(load_configuration().services) == 85
-from metadata_harvest.catalog import open_catalog
-import tempfile, pathlib, zstandard
-with tempfile.TemporaryDirectory() as directory:
-    path = pathlib.Path(directory) / 'catalog.jsonl.zst'
-    path.write_bytes(zstandard.ZstdCompressor(level=6).compress(b'{"ok":true}' + bytes([10])))
-    with open_catalog(path) as stream:
-        assert json.loads(stream.readline()) == {'ok': True}
-assert len(list(r.files('metadata_harvest').joinpath('schemas').iterdir())) >= 4
+assert not installed.intersection({'pydantic', 'zstandard', 'httpx', 'playwright', 'jsonschema'})
+class Response:
+    status = 200
+    async def __aenter__(self): return self
+    async def __aexit__(self, *args): pass
+    def raise_for_status(self): pass
+    async def json(self, **kwargs):
+        return {'id':['x'], 'size':[1], 'dimension':{'x':{'category':{'index':['01']}}}, 'value':[0]}
+class Session:
+    def __init__(self): self.calls=[]
+    def post(self, url, **kwargs):
+        self.calls.append((url,kwargs)); return Response()
+distribution = {
+ 'dcat:accessURL':['https://example.org/data'],
+ 'ni:retrieval':{'source':{'adapter':'pxweb_v2','source_code':'scb','dataset_code':'01','language':'sv'},
+                 'dimensions':[{'code':'x','categories':['01']}], 'options':{'max_cells':1}},
+ 'ni:structure':{'qb:component':[{'qb:order':1,'qb:dimension':{'dct:identifier':'x','qb:codeList':{'codes':[{'skos:notation':'01'}]}}}]}}
+session=Session()
+result=asyncio.run(retrieve_distribution(session,distribution,selection={'x':['01']}))
+assert result['value']==[0]
+assert session.calls==[('https://example.org/data?lang=sv&outputFormat=json-stat2',{'json':{'selection':[{'variableCode':'x','valueCodes':['01']}]}})]
+assert not any(k.startswith(('harvesting','metadata_harvest','pydantic','zstandard','httpx','playwright','jsonschema')) for k in sys.modules)
 print(json.dumps(sorted(e.name for e in entries)))
 """
     with tempfile.TemporaryDirectory(prefix="metadata-wheel-") as temporary:
@@ -89,7 +89,7 @@ print(json.dumps(sorted(e.name for e in entries)))
         )
         assert set(json.loads(result.stdout)) == providers
     print(
-        f"Verified wheel + sdist schemas and plain retrieval installation: {len(providers)} providers"
+        f"Verified retrieval-only wheel and fixture dispatch: {len(providers)} providers"
     )
 
 

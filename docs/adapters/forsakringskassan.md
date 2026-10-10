@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.forsakringskassan` package implements metadata and
+The `harvesting.adapters.forsakringskassan` package implements metadata and
 on-demand retrieval for Försäkringskassan's statistics database
 (*statistikdatabas*), the JSON API behind
 <https://www.forsakringskassan.se/statistik-och-analys/statistikdatabas>:
@@ -137,10 +137,10 @@ when a year or month is added) and of the report's text entries
   `unchanged`.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter forsakringskassan
-uv run --extra harvest python -m metadata_harvest.runner run --adapter forsakringskassan --full
-uv run --extra harvest python -m metadata_harvest.runner run --adapter forsakringskassan --subject ase-avslutsanledning ase-beslut-lan
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter forsakringskassan
+uv run --extra harvest python -m harvesting.runner run --adapter forsakringskassan
+uv run --extra harvest python -m harvesting.runner run --adapter forsakringskassan --full
+uv run --extra harvest python -m harvesting.runner run --adapter forsakringskassan --subject ase-avslutsanledning ase-beslut-lan
+uv run --extra harvest python -m harvesting.runner collect --adapter forsakringskassan
 ```
 
 ### Failures and publication
@@ -165,7 +165,7 @@ uv run --extra harvest python -m metadata_harvest.runner collect --adapter forsa
 - **Duplicates.** A report listed twice in the catalogue, or a table listed twice
   in a report, is quarantined: reported, not rebuilt, previous documents kept.
 - **Publication rule.** Shared with UKÄ, SDB and Trafikanalys
-  (`metadata_harvest.currency.settle`, `max_age_days` 60): a table is published
+  (`harvesting.currency.settle`, `max_age_days` 60): a table is published
   only while its report endpoint works and its document was verified within 60
   days; otherwise it is withheld in state and restored automatically.
 - **Removal.** Only an unbounded run removes: reports absent from a complete
@@ -180,7 +180,7 @@ The `forsakringskassan` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/id", "/extension/forsakringskassan")`.
 
 ```python
-from metadata_harvest.adapters.forsakringskassan.retrieval import retrieve
+from retrieval.adapters.forsakringskassan import retrieve
 
 shared = document["extension"]["nordicintel"]
 fragment = await retrieve(

@@ -8,14 +8,14 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from metadata_harvest.adapters.sdb.client import SdbClient
-from metadata_harvest.adapters.sdb.mapping import time_unit_from_swedish_label
-from metadata_harvest.adapters.sdb.retrieval import REQUIRED_METADATA, retrieve
-from metadata_harvest.adapters.sdb.workflow import fetch_metadata
-from metadata_harvest.configuration import providers_for_adapter
-from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import write
-from metadata_harvest.validation import validate_retrieval
+from harvesting.adapters.sdb.client import SdbClient
+from harvesting.adapters.sdb.mapping import time_unit_from_swedish_label
+from harvesting.adapters.sdb.retrieval import REQUIRED_METADATA, retrieve
+from harvesting.adapters.sdb.workflow import fetch_metadata
+from harvesting.configuration import providers_for_adapter
+from harvesting.semantics import category_codes
+from harvesting.storage import write
+from harvesting.validation import validate_retrieval
 
 SAMPLE = (("sv", "amning"), ("sv", "dodsorsaker"), ("en", "dodsorsaker"))
 

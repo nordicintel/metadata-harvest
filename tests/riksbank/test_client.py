@@ -7,7 +7,7 @@ import pytest
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 
-from metadata_harvest.adapters.riksbank.client import (
+from harvesting.adapters.riksbank.client import (
     KEY_HEADER,
     KEY_VARIABLE,
     RiksbankClient,

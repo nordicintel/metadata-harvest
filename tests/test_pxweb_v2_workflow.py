@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import httpx
 import pytest
 
-from metadata_harvest.storage import JsonlStore, read
+from harvesting.storage import JsonlStore, read
 from tests.test_pxweb_v2 import CONFIG, PROVIDER, client_for, codelist, metadata, table
 
 
@@ -61,7 +61,7 @@ class Source:
 
 
 def harvest(source, root, output, **kwargs):
-    from metadata_harvest.adapters.pxweb_v2.workflow import collect, run
+    from harvesting.adapters.pxweb_v2.workflow import collect, run
 
     async def execute():
         client, _ = client_for(source.handle)
@@ -326,7 +326,7 @@ def test_nonfinite_source_json_cannot_poison_other_tables(tmp_path, resource):
 
 
 def test_continuation_retains_full_mode_and_rejects_stale_artifact(tmp_path):
-    from metadata_harvest.adapters.pxweb_v2.workflow import collect
+    from harvesting.adapters.pxweb_v2.workflow import collect
 
     source, root = Source(), tmp_path / "data"
     first = harvest(source, root, tmp_path / "first", full=True, budget_seconds=0)
@@ -344,7 +344,7 @@ def test_continuation_retains_full_mode_and_rejects_stale_artifact(tmp_path):
 
 
 def test_collector_rejects_tampered_metadata_without_writing(tmp_path):
-    from metadata_harvest.adapters.pxweb_v2.workflow import collect, run
+    from harvesting.adapters.pxweb_v2.workflow import collect, run
 
     source, root, output = Source(), tmp_path / "data", tmp_path / "output"
 
@@ -364,7 +364,7 @@ def test_collector_rejects_tampered_metadata_without_writing(tmp_path):
 def test_continuation_preserves_table_and_available_codes_after_dependency_failure(
     tmp_path, monkeypatch
 ):
-    from metadata_harvest.adapters.pxweb_v2 import workflow
+    from harvesting.adapters.pxweb_v2 import workflow
 
     source, root = Source(), tmp_path / "data"
     source.tables["sv"].append(table("T2"))
@@ -427,8 +427,8 @@ def test_confirmed_removed_codelist_payload_is_deleted_and_reported(tmp_path):
 def test_collector_rejects_unsupported_language_deletion_even_with_valid_manifest(
     tmp_path,
 ):
-    from metadata_harvest.adapters.pxweb_v2 import workflow
-    from metadata_harvest.storage import write
+    from harvesting.adapters.pxweb_v2 import workflow
+    from harvesting.storage import write
 
     source, root, output = Source(), tmp_path / "data", tmp_path / "second"
     harvest(source, root, tmp_path / "first")
@@ -461,7 +461,7 @@ def test_collector_rejects_unsupported_language_deletion_even_with_valid_manifes
 def test_interrupted_checkpoint_leaves_previous_certified_candidate_collectable(
     tmp_path, monkeypatch
 ):
-    from metadata_harvest.adapters.pxweb_v2 import workflow
+    from harvesting.adapters.pxweb_v2 import workflow
 
     source, root, output = Source(), tmp_path / "data", tmp_path / "output"
     original = workflow._snapshot
@@ -499,7 +499,7 @@ def test_interrupted_checkpoint_leaves_previous_certified_candidate_collectable(
         with pytest.raises(OSError, match="Simulated"):
             asyncio.run(execute())
     # Restore the write boundary before collecting the previously certified batch.
-    from metadata_harvest.storage import write
+    from harvesting.storage import write
 
     monkeypatch.setattr(workflow, "write", write)
     result = read(output / "result.json")

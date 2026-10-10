@@ -12,9 +12,9 @@ from uuid import UUID
 
 from playwright.async_api import async_playwright
 
-import metadata_harvest.adapters.pxweb_v1.discovery as implementation
-from metadata_harvest import get_pxweb_tables
-from metadata_harvest.configuration import providers_for_adapter
+import harvesting.adapters.pxweb_v1.discovery as implementation
+from harvesting import get_pxweb_tables
+from harvesting.configuration import providers_for_adapter
 
 _audit = ContextVar("audit", default=None)
 

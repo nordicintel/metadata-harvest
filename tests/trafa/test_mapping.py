@@ -2,19 +2,19 @@
 
 import pytest
 
-from metadata_harvest.adapters.trafa.mapping import (
+from harvesting.adapters.trafa.mapping import (
     MeasureProbe,
     build_dataset,
     parse_probe,
     probe_query,
     untranslated_items,
 )
-from metadata_harvest.adapters.trafa.source import (
+from harvesting.adapters.trafa.source import (
     parse_combinations,
     parse_product,
     select_combinations,
 )
-from metadata_harvest.validation import validate_metadata
+from harvesting.validation import validate_metadata
 
 
 def product(recorded, name, language="sv"):

@@ -26,7 +26,7 @@ from urllib.parse import urlencode
 
 import pytest
 
-from metadata_harvest.adapters.smhi_emissions.api import (
+from harvesting.adapters.smhi_emissions.api import (
     DATA_URL,
     FILTER_OPTIONS_URL,
     probe_parameters,
@@ -177,8 +177,8 @@ def fake_smhi() -> FakeSmhi:
 
 def native(substance: str = "CO2") -> dict[str, Any]:
     """The harvested ``extension.smhi_emissions`` of a substance's document."""
-    from metadata_harvest.adapters.smhi_emissions.mapping import build_dataset
-    from metadata_harvest.adapters.smhi_emissions.source import (
+    from harvesting.adapters.smhi_emissions.mapping import build_dataset
+    from harvesting.adapters.smhi_emissions.source import (
         parse_filter_options,
         parse_probe,
     )
@@ -196,7 +196,7 @@ async def retrieve_from(fake: FakeSmhi, selection, *, substance="CO2", **kwargs)
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from metadata_harvest.adapters.smhi_emissions.retrieval import retrieve
+    from harvesting.adapters.smhi_emissions.retrieval import retrieve
 
     app = web.Application()
     app.router.add_get("/api/getdata/", fake.getdata)
@@ -227,7 +227,7 @@ async def retrieve_from(fake: FakeSmhi, selection, *, substance="CO2", **kwargs)
 
 def check_fragment(fragment: dict[str, Any], selection) -> None:
     """Validate a fragment: result schema plus the contract's consumer checks."""
-    from metadata_harvest.validation import validate_retrieval
+    from harvesting.validation import validate_retrieval
 
     validate_retrieval(fragment, selection=selection)
     ids = fragment["id"]

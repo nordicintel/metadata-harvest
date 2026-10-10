@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.tillvaxtverket` package implements metadata and
+The `harvesting.adapters.tillvaxtverket` package implements metadata and
 on-demand retrieval for Tillväxtverket's open accommodation statistics
 (inkvarteringsstatistik), served by a Dimensional Insight DivePort (Diver/Spectre)
 query server at `https://oppnadata.tillvaxtverket.se`. The provider code is
@@ -155,9 +155,9 @@ checks every dataset.
 | Full rebuild | 7 or 8 per dataset, about 45 in all | 15 for two datasets on 2026-10-09 |
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter tillvaxtverket
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter tillvaxtverket
-uv run --extra harvest python -m metadata_harvest.runner run --adapter tillvaxtverket --product GuestNights_Country_Year
+uv run --extra harvest python -m harvesting.runner run --adapter tillvaxtverket
+uv run --extra harvest python -m harvesting.runner collect --adapter tillvaxtverket
+uv run --extra harvest python -m harvesting.runner run --adapter tillvaxtverket --product GuestNights_Country_Year
 ```
 
 `--product` takes dataset names or codes, case-insensitively. Unknown names are
@@ -182,7 +182,7 @@ reported as `discovery` errors containing "Unknown".
   failure is reported as `dependency` (`<key>#data.europa.eu`, `<key>#labels`) and
   keeps the last accepted record or labels. A dataset that has never had one falls
   back to its name or its column names. The table itself never fails.
-- **Publication rule.** It is shared through `metadata_harvest.currency.settle`: a
+- **Publication rule.** It is shared through `harvesting.currency.settle`: a
   dataset is published only while its endpoint works and its document was verified
   within 60 days. Otherwise it is withheld in state and restored automatically.
 - **Removal.** A failure never removes anything. An unbounded run drops documents
@@ -195,7 +195,7 @@ The `tillvaxtverket` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/id", "/extension/tillvaxtverket")` (the column map).
 
 ```python
-from metadata_harvest.adapters.tillvaxtverket.retrieval import retrieve
+from retrieval.adapters.tillvaxtverket import retrieve
 
 fragment = await retrieve(
     session,

@@ -93,3 +93,37 @@ files fresher, resumes a checkpoint or dispatches a harvester. Identity/categori
 and source evidence are protected by the proposal interface. Current placeholders
 produce no changes; future changed proposals must pass common validation.
 The [catalog guide](catalog.md) defines current outputs, trust and failure handling.
+
+## Repository and retrieval separation
+
+Root `harvesting/` contains the repository application formerly under
+`src/metadata_harvest/`. Root `retrieval/` owns consumer-facing observation retrieval
+implementation, shared coordinate validation and the UKÄ export parser. Harvesting
+imports shared pure helpers directly from their defining modules; retrieval never imports harvesting.
+The existing root project/lockfile supplies the development environment, while
+its wheel includes only retrieval. CI and repository commands use `harvesting.*`;
+no manual import-path configuration is required. Source data paths are unchanged.
+
+The [dependency inventory](retrieval-dependencies.md) records the extraction.
+
+## Adapter retrieval ownership
+
+- Each adapter owns its own consumer data-retrieval implementation in
+  `retrieval/adapters/<adapter>.py`, including protocol-specific request construction,
+  response interpretation and error handling.
+- Adapters do not have to use a common data-retrieval function. Do not introduce
+  a universal retrieval engine or force unrelated protocols into one implementation.
+- `retrieve_distribution()` is an optional consumer convenience dispatcher. It
+  selects the adapter from catalog metadata; consumers can call an adapter directly.
+  Harvesters are not required to use this dispatcher.
+- Harvesting-specific data probes, coverage discovery, metadata inference and
+  endpoint checks belong in their respective `harvesting/adapters/` modules,
+  even when they request observations from a data endpoint. Their clients and
+  harvesting retry/pacing policies stay there as well.
+- Share helpers only for genuinely identical behaviour. PXWeb v1 and v2 currently
+  share request splitting and coordinate assembly; this does not establish a common
+  implementation requirement for other adapters. Pure parsing/validation helpers
+  may be reused where their semantics actually agree.
+- The installable export contains `retrieval/` only. Harvesting remains functional
+  repository code and must not be removed or made dependent on a new retrieval
+  workflow merely to produce that export.

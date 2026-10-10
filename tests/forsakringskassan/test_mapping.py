@@ -4,16 +4,16 @@ import copy
 
 import pytest
 
-from metadata_harvest.adapters.forsakringskassan.api import (
+from harvesting.adapters.forsakringskassan.api import (
     REPORTS_URL,
     TEXTS_URL,
     meta_url,
 )
-from metadata_harvest.adapters.forsakringskassan.mapping import (
+from harvesting.adapters.forsakringskassan.mapping import (
     STATUS_NOTE,
     build_dataset,
 )
-from metadata_harvest.adapters.forsakringskassan.source import (
+from harvesting.adapters.forsakringskassan.source import (
     Listed,
     catalogue,
     fingerprint,
@@ -24,7 +24,7 @@ from metadata_harvest.adapters.forsakringskassan.source import (
     text_entries,
     undeclared_dimensions,
 )
-from metadata_harvest.validation import validate_metadata
+from harvesting.validation import validate_metadata
 from tests.forsakringskassan.conftest import RecordedClient
 
 

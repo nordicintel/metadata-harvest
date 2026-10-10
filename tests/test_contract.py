@@ -8,8 +8,8 @@ from tests.test_pxweb_v2 import metadata, record
 
 
 def test_native_mapping_produces_shared_identity_and_preserves_source_fields():
-    from metadata_harvest.mapping import map_metadata
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.mapping import map_metadata
+    from harvesting.validation import validate_metadata
 
     native = metadata()
     native["dimension"]["Region"]["extension"].update(
@@ -46,8 +46,8 @@ def test_native_mapping_produces_shared_identity_and_preserves_source_fields():
     ["size", "index", "role", "elimination", "hierarchy", "observations", "status"],
 )
 def test_shared_validation_rejects_semantic_defects(defect):
-    from metadata_harvest.mapping import map_metadata
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.mapping import map_metadata
+    from harvesting.validation import validate_metadata
 
     result = map_metadata(metadata(), record(), "pxweb_v2")
     dimension = result["dimension"]["Region"]
@@ -72,7 +72,7 @@ def test_shared_validation_rejects_semantic_defects(defect):
 
 
 def test_schema_resources_are_owned_here_and_fragment_checks_selection():
-    from metadata_harvest.validation import schema, validate_retrieval
+    from harvesting.validation import schema, validate_retrieval
 
     assert "metadata-harvest" in schema("dataset-metadata")["$id"]
     fragment = {
@@ -91,7 +91,7 @@ def test_schema_resources_are_owned_here_and_fragment_checks_selection():
 
 
 def test_mapping_encodes_source_url_without_double_encoding():
-    from metadata_harvest.mapping import map_metadata
+    from harvesting.mapping import map_metadata
     from tests.test_workflow import dataset, record
 
     row = record()
@@ -105,7 +105,7 @@ def test_mapping_encodes_source_url_without_double_encoding():
 
 
 def test_v2_time_unit_maps_shared_vocabulary_without_changing_catalogue():
-    from metadata_harvest.mapping import map_metadata
+    from harvesting.mapping import map_metadata
 
     row = record()
     row["catalogue"]["timeUnit"] = "Annual"

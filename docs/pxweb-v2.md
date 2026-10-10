@@ -1,17 +1,17 @@
 # SCB PXWeb v2 metadata
 
-The importable `metadata_harvest.adapters.pxweb_v2` package targets SCB's
+The importable `harvesting.adapters.pxweb_v2` package targets SCB's
 production API, configured in `catalogs.json`, in Swedish and English.
 It reads `/config`, all `/tables` pages, full table `/metadata`, and referenced
 `/codelists`. Harvesting never calls observation or saved-query endpoints; the separate retrieval module calls the data endpoint only on demand.
 
 ```python
-from metadata_harvest.adapters.pxweb_v2 import (
+from harvesting.adapters.pxweb_v2 import (
     Client,
     discover_provider,
     fetch_metadata,
 )
-from metadata_harvest.configuration import providers_for_adapter
+from harvesting.configuration import providers_for_adapter
 
 provider = providers_for_adapter("pxweb_v2")[0]
 async with Client(provider["base_api_url"]) as client:
@@ -83,8 +83,8 @@ history or reactivation store is produced.
 ## Execution and automation
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2 --full
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter pxweb_v2
+uv run --extra harvest python -m harvesting.runner run --adapter pxweb_v2 --full
+uv run --extra harvest python -m harvesting.runner collect --adapter pxweb_v2
 ```
 
 The worker reads published data and writes a candidate under `output/pxweb_v2/`.

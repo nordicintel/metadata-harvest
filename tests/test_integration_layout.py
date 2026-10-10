@@ -8,7 +8,7 @@ from tests.test_workflow import dataset, record
 
 
 def test_registry_separates_ready_adapters_from_prepared_placeholders():
-    from metadata_harvest.registry import ADAPTERS, get_adapter
+    from harvesting.registry import ADAPTERS, get_adapter
 
     assert {name for name, spec in ADAPTERS.items() if spec.available} == {
         "pxweb_v1",
@@ -30,8 +30,8 @@ def test_registry_separates_ready_adapters_from_prepared_placeholders():
 
 
 def test_conversion_is_staged_and_preserves_sources_and_identity(tmp_path):
-    from metadata_harvest.migration import convert_collections
-    from metadata_harvest.storage import JsonlStore, filename
+    from harvesting.migration import convert_collections
+    from harvesting.storage import JsonlStore, filename
 
     source, target = tmp_path / "source", tmp_path / "candidate"
     old = JsonlStore(source / "metadata")
@@ -55,7 +55,7 @@ def test_conversion_is_staged_and_preserves_sources_and_identity(tmp_path):
 
 
 def test_invalid_conversion_never_creates_a_publishable_candidate(tmp_path):
-    from metadata_harvest.migration import convert_collections
+    from harvesting.migration import convert_collections
 
     root = tmp_path / "source" / "metadata"
     root.mkdir(parents=True)
@@ -69,8 +69,8 @@ def test_invalid_conversion_never_creates_a_publishable_candidate(tmp_path):
 
 
 def test_refresh_listing_does_not_replace_accepted_metadata_title():
-    from metadata_harvest.mapping import map_metadata, source_record
-    from metadata_harvest.storage import refresh_identity
+    from harvesting.mapping import map_metadata, source_record
+    from harvesting.storage import refresh_identity
 
     row = record()
     doc = map_metadata(dataset(row), row, "pxweb_v1")
@@ -81,7 +81,7 @@ def test_refresh_listing_does_not_replace_accepted_metadata_title():
 
 
 def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_title():
-    from metadata_harvest.storage import refresh_identity, validate_dataset
+    from harvesting.storage import refresh_identity, validate_dataset
 
     row = record()
     doc = dataset(row)

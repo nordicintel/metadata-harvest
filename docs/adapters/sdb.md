@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.sdb` package implements Swedish and English metadata
+The `harvesting.adapters.sdb` package implements Swedish and English metadata
 and on-demand retrieval for Socialstyrelsen's statistics database API,
 `https://sdb.socialstyrelsen.se/api/v1`.
 
@@ -73,10 +73,10 @@ every subject**. An identical rebuild keeps the accepted bytes and is counted as
 `unchanged`.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter sdb
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter sdb
+uv run --extra harvest python -m harvesting.runner run --adapter sdb
+uv run --extra harvest python -m harvesting.runner collect --adapter sdb
 # Bounded runs:
-uv run --extra harvest python -m metadata_harvest.runner run --adapter sdb --subject amning dodsorsaker --language sv
+uv run --extra harvest python -m harvesting.runner run --adapter sdb --subject amning dodsorsaker --language sv
 ```
 
 A run proceeds as follows:
@@ -107,7 +107,7 @@ Further rules:
   language. Malformed or duplicate listing rows block removal.
 - Errors produce `completed_with_errors`; successful subjects are still published.
 
-The publication rule is shared with UKÄ in `metadata_harvest.currency`.
+The publication rule is shared with UKÄ in `harvesting.currency`.
 
 ## Retrieval
 
@@ -115,7 +115,7 @@ The `socialstyrelsen` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/extension/socialstyrelsen/result_dimensions",)`:
 
 ```python
-from metadata_harvest.adapters.sdb.retrieval import retrieve
+from retrieval.adapters.sdb import retrieve
 
 fragment = await retrieve(
     session,

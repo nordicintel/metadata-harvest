@@ -5,7 +5,7 @@
 An API adapter makes one function separately installable and importable: the live
 service calls it to fetch selected observations for a dataset whose metadata has
 already been harvested. This document is the contract for that function: packaging,
-discovery, inputs, result and errors. [The result schema](../src/metadata_harvest/schemas/retrieval-result.schema.json)
+discovery, inputs, result and errors. [The result schema](../harvesting/schemas/retrieval-result.schema.json)
 validates the returned structure.
 
 New callers use `retrieve_distribution(session, distribution, selection=...)` as
@@ -209,4 +209,4 @@ and it has no data for `(01, 2025)`, which is left out.
 This repository owns the bundled schemas and their identifiers; consumers can pin a
 repository commit or package release. The imported baseline is schema commit
 `77a7a4665fea6f3c2be8f286d560b79317f08dd7`, whose prepared `2.0.0` was unpublished.
-See [schema provenance](../src/metadata_harvest/schemas/README.md).
+See [schema provenance](../harvesting/schemas/README.md).

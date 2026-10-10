@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.riksbank` package implements metadata and on-demand
+The `harvesting.adapters.riksbank` package implements metadata and on-demand
 retrieval for three Sveriges Riksbank APIs at `https://api.riksbank.se`:
 
 - **SWEA** (`/swea/v1`): interest rates and exchange rates, 117 series in 17 groups;
@@ -123,9 +123,9 @@ between requests, so a full run takes about 12 minutes; one endpoint retry adds 
 never requested.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter riksbank
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter riksbank
-uv run --extra harvest python -m metadata_harvest.runner run --adapter riksbank --subject swea_group_2 SEQGDPNAYSA swestr
+uv run --extra harvest python -m harvesting.runner run --adapter riksbank
+uv run --extra harvest python -m harvesting.runner collect --adapter riksbank
+uv run --extra harvest python -m harvesting.runner run --adapter riksbank --subject swea_group_2 SEQGDPNAYSA swestr
 ```
 
 `--subject` accepts dataset codes, SWEA group ids (`2`), SWEA series ids
@@ -160,7 +160,7 @@ required and never logged.
 - **Metadata failures.** A probe that answers but cannot be mapped (for example no
   vintage in the latest round) keeps the previous document.
 - **Publication rule.** Shared with UKÄ, SDB and Trafikanalys in
-  `metadata_harvest.currency`: a dataset is published only while its endpoint
+  `harvesting.currency`: a dataset is published only while its endpoint
   works and its document was verified within 60 days.
 - **Removal.** Only an unbounded run with a complete listing removes a group or
   forecast series that the catalogue no longer lists.
@@ -171,7 +171,7 @@ The `riksbank` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/id", "/extension/riksbank")`.
 
 ```python
-from metadata_harvest.adapters.riksbank.retrieval import retrieve
+from retrieval.adapters.riksbank import retrieve
 
 shared = document["extension"]["nordicintel"]
 fragment = await retrieve(

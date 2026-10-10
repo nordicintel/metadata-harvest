@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.progress import Progress
+from harvesting.progress import Progress
 
 
 @pytest.mark.parametrize("failures", [1, 2])
@@ -27,7 +27,7 @@ def test_progress_retries_transient_replace_without_exposing_partial_state(
         return original_replace(temporary, destination)
 
     monkeypatch.setattr(Path, "replace", temporarily_locked)
-    monkeypatch.setattr("metadata_harvest.progress.time.sleep", delays.append)
+    monkeypatch.setattr("harvesting.progress.time.sleep", delays.append)
     progress.update(processed=7)
     assert json.loads(path.read_text())["processed"] == 7
     assert len(attempts) == failures + 1
@@ -49,7 +49,7 @@ def test_progress_permanent_replace_failure_propagates_and_preserves_state(
         raise PermissionError("permanently denied")
 
     monkeypatch.setattr(Path, "replace", permanently_locked)
-    monkeypatch.setattr("metadata_harvest.progress.time.sleep", delays.append)
+    monkeypatch.setattr("harvesting.progress.time.sleep", delays.append)
     with pytest.raises(PermissionError, match="permanently denied"):
         progress.update(processed=7)
     assert path.read_bytes() == accepted
@@ -98,7 +98,7 @@ def test_progress_does_not_write_inside_collections_by_default(tmp_path, monkeyp
 def test_pacing_uses_provider_limit(config, expected):
     import asyncio
 
-    from metadata_harvest.adapters.pxweb_v2.client import Client
+    from harvesting.adapters.pxweb_v2.client import Client
 
     async def check():
         async with Client() as client:

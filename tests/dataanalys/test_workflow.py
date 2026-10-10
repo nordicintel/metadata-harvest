@@ -5,8 +5,8 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from metadata_harvest.adapters.dataanalys.client import Unreachable
-from metadata_harvest.adapters.dataanalys.state import (
+from harvesting.adapters.dataanalys.client import Unreachable
+from harvesting.adapters.dataanalys.state import (
     collection,
     load_documents,
     load_state,
@@ -26,7 +26,7 @@ BOOTSTRAP = {
 
 
 def start(source, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.dataanalys.workflow import run
+    from harvesting.adapters.dataanalys.workflow import run
 
     return asyncio.run(
         run(PROVIDER, data, output, client=source, clock=clock, **options)
@@ -34,7 +34,7 @@ def start(source, data, output, *, clock=NOW, **options):
 
 
 def execute(source, data, output, **options):
-    from metadata_harvest.adapters.dataanalys.workflow import collect
+    from harvesting.adapters.dataanalys.workflow import collect
 
     result = start(source, data, output, **options)
     collect(data, output, languages=["sv"])
@@ -59,8 +59,8 @@ def data(tmp_path):
 
 
 def test_bootstrap_publishes_valid_documents(data, tmp_path):
-    from metadata_harvest.storage import read
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.storage import read
+    from harvesting.validation import validate_metadata
 
     documents = published(data)
     assert set(documents) == BOOTSTRAP
@@ -129,7 +129,7 @@ def test_error_telemetry_is_visible_before_next_sibling_and_retry_can_recover(
 ):
     import json
 
-    from metadata_harvest.adapters.dataanalys.api import DATA_URL
+    from harvesting.adapters.dataanalys.api import DATA_URL
 
     progress = tmp_path / "telemetry" / "progress.json"
     monkeypatch.setenv("HARVEST_PROGRESS", str(progress))
@@ -241,7 +241,7 @@ def test_whole_listing_failure_preserves_documents_and_records_scope_error(
 
 
 def test_dashboard_failure_still_rebuilds_independent_indicators(data, tmp_path):
-    from metadata_harvest.adapters.dataanalys.api import (
+    from harvesting.adapters.dataanalys.api import (
         DASHBOARD_COLUMNS,
         DASHBOARD_LIST_URL,
         list_query,
@@ -267,12 +267,12 @@ def test_dashboard_failure_still_rebuilds_independent_indicators(data, tmp_path)
 
 
 def test_later_chart_page_failure_retains_first_page_and_processes_dashboards(client):
-    from metadata_harvest.adapters.dataanalys.api import (
+    from harvesting.adapters.dataanalys.api import (
         CHART_COLUMNS,
         CHART_LIST_URL,
         list_query,
     )
-    from metadata_harvest.adapters.dataanalys.workflow import discover
+    from harvesting.adapters.dataanalys.workflow import discover
     from tests.dataanalys.conftest import get_key
 
     listing = client.listing("chart")
@@ -474,7 +474,7 @@ def test_links_and_unpublished_dashboards(data, tmp_path):
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.dataanalys.workflow import collect
+    from harvesting.adapters.dataanalys.workflow import collect
 
     start(RecordedClient(), data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

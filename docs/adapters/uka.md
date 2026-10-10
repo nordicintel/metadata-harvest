@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.uka` package implements Swedish metadata and
+The `harvesting.adapters.uka` package implements Swedish metadata and
 on-demand retrieval for UKÄ's undocumented statistics indicators API,
 `https://statistik-api.uka.se/api`. It was ported from
 [uka-adapter `ca533a7`](https://github.com/nordicintel/uka-adapter/tree/ca533a715e7774a757056afb7cf55db80092f4dd),
@@ -63,11 +63,11 @@ The workflow runs every Monday at 05:15 Europe/Stockholm, as configured in
 [schedules.toml](../../schedules.toml). A run takes minutes when little changed.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter uka
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter uka
+uv run --extra harvest python -m harvesting.runner run --adapter uka
+uv run --extra harvest python -m harvesting.runner collect --adapter uka
 # Bounded run or forced rebuild of every indicator:
-uv run --extra harvest python -m metadata_harvest.runner run --adapter uka --indicator 97 15
-uv run --extra harvest python -m metadata_harvest.runner run --adapter uka --full
+uv run --extra harvest python -m harvesting.runner run --adapter uka --indicator 97 15
+uv run --extra harvest python -m harvesting.runner run --adapter uka --full
 ```
 
 A run proceeds as follows:
@@ -102,7 +102,7 @@ indicators are still published.
 The `uka` entry point works in a plain installation and needs only `REQUIRED_METADATA = ("/role",)`:
 
 ```python
-from metadata_harvest.adapters.uka.retrieval import retrieve
+from retrieval.adapters.uka import retrieve
 
 result = await retrieve(
     session,

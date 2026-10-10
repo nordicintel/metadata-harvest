@@ -29,7 +29,7 @@ from urllib.parse import urlencode
 
 import pytest
 
-from metadata_harvest.adapters.dataanalys.client import RequestRejected, Unreachable
+from harvesting.adapters.dataanalys.client import RequestRejected, Unreachable
 
 FIXTURES = Path(__file__).parent / "fixtures"
 RECORDED: dict[str, Any] = json.loads(
@@ -276,7 +276,7 @@ def harvested_g082() -> dict[str, Any]:
     """The harvested G082 document, built from the recorded answers."""
     import asyncio
 
-    from metadata_harvest.adapters.dataanalys.workflow import fetch_metadata
+    from harvesting.adapters.dataanalys.workflow import fetch_metadata
 
     [document] = asyncio.run(
         fetch_metadata(
@@ -293,7 +293,7 @@ def g082() -> dict[str, Any]:
 
 def metadata_of(document: dict[str, Any]) -> dict[str, Any]:
     """Resolve ``REQUIRED_METADATA`` as the service does."""
-    from metadata_harvest.adapters.dataanalys.retrieval import REQUIRED_METADATA
+    from harvesting.adapters.dataanalys.retrieval import REQUIRED_METADATA
 
     resolved = {}
     for pointer in REQUIRED_METADATA:
@@ -310,7 +310,7 @@ async def retrieve_from(fake: FakeSuperset, document, selection, **overrides):
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from metadata_harvest.adapters.dataanalys.retrieval import retrieve
+    from harvesting.adapters.dataanalys.retrieval import retrieve
 
     app = web.Application()
     app.router.add_post("/api/v1/chart/data", fake.handle)
@@ -333,7 +333,7 @@ async def retrieve_from(fake: FakeSuperset, document, selection, **overrides):
 
 def check_fragment(fragment: dict[str, Any], selection) -> None:
     """Validate a fragment: result schema plus the contract's consumer checks."""
-    from metadata_harvest.validation import validate_retrieval
+    from harvesting.validation import validate_retrieval
 
     validate_retrieval(fragment, selection=selection)
     ids = fragment["id"]

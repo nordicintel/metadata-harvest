@@ -7,8 +7,8 @@ from urllib.parse import urlencode
 
 import pytest
 
-from metadata_harvest.adapters.uka.client import ExportFile, Unreachable
-from metadata_harvest.adapters.uka.state import (
+from harvesting.adapters.uka.client import ExportFile, Unreachable
+from harvesting.adapters.uka.state import (
     COLLECTION,
     load_documents,
     load_state,
@@ -89,7 +89,7 @@ class Source:
 
 
 def execute(source, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.uka.workflow import collect, run
+    from harvesting.adapters.uka.workflow import collect, run
 
     result = asyncio.run(
         run(PROVIDER, data, output, client=source, clock=clock, **options)
@@ -109,7 +109,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_publishes_valid_documents(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = load_documents(data)
     assert set(documents) == {"67", "72"}
@@ -126,7 +126,7 @@ def test_unchanged_rerun_downloads_nothing_and_is_byte_identical(
 ):
     before = (data / COLLECTION).read_bytes()
     monkeypatch.setattr(
-        "metadata_harvest.adapters.uka.workflow.validate_metadata",
+        "harvesting.adapters.uka.workflow.validate_metadata",
         lambda *a, **k: pytest.fail("Unchanged indicators must not be rebuilt"),
     )
     source = Source()
@@ -151,7 +151,7 @@ def test_changed_link_rebuilds_only_that_indicator(data, tmp_path):
 def test_mapping_version_and_full_rebuild_everything(data, tmp_path, monkeypatch):
     result = execute(Source(), data, tmp_path / "full", full=True)
     assert result["counts"]["rebuilt"] == 2
-    monkeypatch.setattr("metadata_harvest.adapters.uka.workflow.MAPPING_VERSION", 99)
+    monkeypatch.setattr("harvesting.adapters.uka.workflow.MAPPING_VERSION", 99)
     result = execute(Source(), data, tmp_path / "mapping")
     assert result["counts"]["rebuilt"] == 2
 
@@ -227,7 +227,7 @@ def test_complete_catalogue_removes_and_incomplete_catalogue_keeps(data, tmp_pat
 
 
 def test_catalogue_failure_publishes_nothing(data, tmp_path):
-    from metadata_harvest.adapters.uka.workflow import run
+    from harvesting.adapters.uka.workflow import run
 
     source = Source()
     source.catalogue_error = Unreachable("UKÄ is down")
@@ -248,7 +248,7 @@ def test_bounded_run_touches_only_selected(data, tmp_path):
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.uka.workflow import collect, run
+    from harvesting.adapters.uka.workflow import collect, run
 
     asyncio.run(run(PROVIDER, data, tmp_path / "out", client=Source(), clock=NOW))
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

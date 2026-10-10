@@ -15,7 +15,7 @@ from typing import Any
 import pytest
 from aiohttp import web
 
-from metadata_harvest.validation import validate_retrieval
+from harvesting.validation import validate_retrieval
 
 FIXTURES = Path(__file__).parent / "fixtures"
 SDB_DATA = json.loads((FIXTURES / "sdb.json").read_text(encoding="utf-8"))

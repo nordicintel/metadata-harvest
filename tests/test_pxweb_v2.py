@@ -92,7 +92,7 @@ class Time:
 
 
 def client_for(handler):
-    from metadata_harvest.adapters.pxweb_v2.client import Client
+    from harvesting.adapters.pxweb_v2.client import Client
 
     clock = Time()
     return Client(
@@ -104,7 +104,7 @@ def client_for(handler):
 
 
 def test_client_paces_requests_and_retries_under_stricter_config():
-    from metadata_harvest.adapters.pxweb_v2.client import Client
+    from harvesting.adapters.pxweb_v2.client import Client
 
     clock, starts = Time(), []
 
@@ -133,7 +133,7 @@ def test_client_paces_requests_and_retries_under_stricter_config():
     "failure", [None, "duplicate", "missing", "totals", "language", "malformed"]
 )
 def test_discovery_proves_complete_pagination_per_language(failure):
-    from metadata_harvest.adapters.pxweb_v2.discovery import discover_provider
+    from harvesting.adapters.pxweb_v2.discovery import discover_provider
 
     def handler(request):
         if request.url.path.endswith("/config"):
@@ -183,7 +183,7 @@ def test_discovery_proves_complete_pagination_per_language(failure):
 
 
 def test_metadata_preserves_native_payload_and_fetches_encoded_codelist():
-    from metadata_harvest.adapters.pxweb_v2.metadata import (
+    from harvesting.adapters.pxweb_v2.metadata import (
         fetch_codelist,
         fetch_metadata,
     )
@@ -220,7 +220,7 @@ def test_metadata_preserves_native_payload_and_fetches_encoded_codelist():
     "defect", ["values", "language", "table", "counts", "index", "labels"]
 )
 def test_invalid_metadata_is_rejected(defect):
-    from metadata_harvest.adapters.pxweb_v2.validation import validate_metadata
+    from harvesting.adapters.pxweb_v2.validation import validate_metadata
 
     value = metadata()
     if defect == "values":
@@ -240,7 +240,7 @@ def test_invalid_metadata_is_rejected(defect):
 
 
 def test_metadata_retries_source_change_with_fresh_catalogue():
-    from metadata_harvest.adapters.pxweb_v2.metadata import fetch_metadata
+    from harvesting.adapters.pxweb_v2.metadata import fetch_metadata
 
     changed = "2026-10-02T06:00:00Z"
     value = metadata()
@@ -268,7 +268,7 @@ def test_metadata_retries_source_change_with_fresh_catalogue():
 
 
 def test_codelist_validation_rejects_duplicate_values_and_wrong_language():
-    from metadata_harvest.adapters.pxweb_v2.validation import validate_codelist
+    from harvesting.adapters.pxweb_v2.validation import validate_codelist
 
     for value in [codelist("en"), {**codelist(), "values": codelist()["values"] * 2}]:
         with pytest.raises(ValueError):
@@ -279,7 +279,7 @@ def test_codelist_validation_rejects_duplicate_values_and_wrong_language():
     "bad", [None, {"id": "bad"}, {"id": "good", "label": "duplicate"}]
 )
 def test_bad_catalogue_row_does_not_stop_later_pages(bad):
-    from metadata_harvest.adapters.pxweb_v2.discovery import discover_provider
+    from harvesting.adapters.pxweb_v2.discovery import discover_provider
 
     def handler(request):
         if request.url.path.endswith("/config"):

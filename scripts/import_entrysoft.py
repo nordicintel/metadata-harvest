@@ -14,11 +14,11 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
-from metadata_harvest.adapters.entrysoft.datasets import trim
-from metadata_harvest.adapters.entrysoft.state import load_tables, table_key
-from metadata_harvest.adapters.entrysoft.workflow import markers, publish
-from metadata_harvest.configuration import providers_for_adapter
-from metadata_harvest.storage import write
+from harvesting.adapters.entrysoft.datasets import trim
+from harvesting.adapters.entrysoft.state import load_tables, table_key
+from harvesting.adapters.entrysoft.workflow import markers, publish
+from harvesting.configuration import providers_for_adapter
+from harvesting.storage import write
 
 
 def import_results(source: Path, data: Path, providers: list[dict]) -> dict:
@@ -28,7 +28,7 @@ def import_results(source: Path, data: Path, providers: list[dict]) -> dict:
     with (source / "metadata.jsonl").open(encoding="utf-8") as stream:
         for line in stream:
             document = json.loads(line)
-            record = document["extension"]["metadata_harvest"]
+            record = document["extension"]["harvesting"]
             key = table_key(record)
             previous = state.get(key, {})
             tables[key] = {
@@ -132,7 +132,7 @@ def compare(data: Path, poc_datasets: Path) -> list[str]:
             dataset = json.loads(line)
             if dataset["kind"] == "cube":
                 expected[tuple(sorted(dataset["tables"]))] = dataset
-    from metadata_harvest.adapters.entrysoft.state import collection_store
+    from harvesting.adapters.entrysoft.state import collection_store
 
     published = {
         tuple(sorted(d["extension"]["entrysoft"]["tables"])): d

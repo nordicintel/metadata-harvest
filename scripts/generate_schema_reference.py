@@ -4,7 +4,7 @@ import json
 import sys
 from pathlib import Path
 
-from metadata_harvest.models import CodeList, Dataset, HarvestContribution
+from harvesting.models import CodeList, Dataset, HarvestContribution
 
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = {
@@ -25,13 +25,13 @@ def artifacts():
         schema.setdefault("properties", {})["@context"] = {"type": "object"}
         schemas[name] = schema
         yield (
-            ROOT / f"src/metadata_harvest/schemas/{name}.schema.json",
+            ROOT / f"harvesting/schemas/{name}.schema.json",
             json.dumps(schema, ensure_ascii=False, indent=2) + "\n",
         )
     lines = [
         "# Metadata model reference",
         "",
-        "Generated from [Pydantic models](../src/metadata_harvest/models.py); do not edit by hand.",
+        "Generated from [Pydantic models](../harvesting/models.py); do not edit by hand.",
         "",
         "NordicIntel profile 2.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.",
         "",

@@ -19,9 +19,7 @@ from aiohttp import web
 )
 def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
     async def run():
-        module = importlib.import_module(
-            f"metadata_harvest.adapters.{adapter}.retrieval"
-        )
+        module = importlib.import_module(f"harvesting.adapters.{adapter}.retrieval")
         requests = []
 
         async def handler(request):
@@ -110,7 +108,7 @@ def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
                         await module.retrieve(session, **kwargs)
                 else:
                     result = await module.retrieve(session, **kwargs)
-                    from metadata_harvest.validation import validate_retrieval
+                    from harvesting.validation import validate_retrieval
 
                     validate_retrieval(result, selection=kwargs["selection"])
                     assert result["id"] == ["x", "y"]
@@ -132,7 +130,7 @@ def test_retrieval_import_does_not_load_harvesting():
         [
             sys.executable,
             "-c",
-            "import json,sys; import metadata_harvest.adapters.pxweb_v1.retrieval; import metadata_harvest.adapters.pxweb_v2.retrieval; print(json.dumps(sorted(sys.modules)))",
+            "import json,sys; import harvesting.adapters.pxweb_v1.retrieval; import harvesting.adapters.pxweb_v2.retrieval; print(json.dumps(sorted(sys.modules)))",
         ],
         text=True,
         capture_output=True,
@@ -146,7 +144,7 @@ def test_retrieval_import_does_not_load_harvesting():
 
 @pytest.mark.parametrize("code", ["ContentsCode", "Measure"])
 def test_singleton_eliminated_code_matches_the_harvested_base_category(code):
-    from metadata_harvest.retrieval import _fragment
+    from retrieval._selection import _fragment
 
     dimensions = {
         code: {
@@ -179,7 +177,7 @@ def test_singleton_eliminated_code_matches_the_harvested_base_category(code):
 
 
 def test_eliminated_extra_dimension_and_sparse_flags_are_preserved():
-    from metadata_harvest.retrieval import _fragment
+    from retrieval._selection import _fragment
 
     response = {
         "id": ["x", "area"],
@@ -201,7 +199,7 @@ def test_eliminated_extra_dimension_and_sparse_flags_are_preserved():
 
 
 def test_sundsvall_bootstraps_anonymous_gateway_using_the_callers_session():
-    from metadata_harvest.adapters.pxweb_v1.retrieval import retrieve
+    from harvesting.adapters.pxweb_v1.retrieval import retrieve
 
     async def run():
         calls = []
@@ -255,7 +253,7 @@ def test_sundsvall_bootstraps_anonymous_gateway_using_the_callers_session():
     "evidence", ["absent", "native_only", "harvested_only", "both"]
 )
 def test_synthetic_axis_requires_native_and_harvested_elimination_evidence(evidence):
-    from metadata_harvest.retrieval import _fragment
+    from retrieval._selection import _fragment
 
     auxiliary = {"category": {"index": ["EliminatedValue"]}}
     if evidence in {"native_only", "both"}:

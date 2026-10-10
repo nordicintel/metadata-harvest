@@ -5,12 +5,12 @@ from copy import deepcopy
 import pytest
 from playwright.async_api import async_playwright
 
-from metadata_harvest import get_pxweb_tables
-from metadata_harvest.adapters.pxweb_v1.discovery import _collect_database
-from metadata_harvest.mapping import map_metadata, source_record
-from metadata_harvest.runner import publish
-from metadata_harvest.storage import JsonlStore, filename, group_records, read, write
-from metadata_harvest.workflow import (
+from harvesting import get_pxweb_tables
+from harvesting.adapters.pxweb_v1.discovery import _collect_database
+from harvesting.mapping import map_metadata, source_record
+from harvesting.runner import publish
+from harvesting.storage import JsonlStore, filename, group_records, read, write
+from harvesting.workflow import (
     build_provider,
     collect_metadata,
     collect_refresh,
@@ -22,7 +22,7 @@ PROVIDER = {"code": "p", "languages": ["sv"], "database_ids": ["db"], "rate_limi
 
 
 def test_adapter_discovers_selected_provider_scopes(website):
-    from metadata_harvest.adapters.pxweb_v1.discovery import discover_provider
+    from harvesting.adapters.pxweb_v1.discovery import discover_provider
 
     base, routes, _ = website
     routes["/pxweb/sv/db/"] = (
@@ -222,7 +222,7 @@ def test_provider_failures_are_isolated_and_old_metadata_survives(
             raise RuntimeError("provider failed")
         return dataset(row)
 
-    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", fetch)
+    monkeypatch.setattr("harvesting.workflow.get_pxweb_metadata", fetch)
     result = asyncio.run(
         build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "artifact")
     )
@@ -321,7 +321,7 @@ def test_unserializable_dataset_does_not_poison_later_worker_results(
             result["extension"]["invalid"] = float("nan")
         return result
 
-    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", fetch)
+    monkeypatch.setattr("harvesting.workflow.get_pxweb_metadata", fetch)
     artifact = tmp_path / "artifact"
     result = asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, artifact))
     assert [outcome["status"] for outcome in result["outcomes"]] == [
@@ -380,7 +380,7 @@ def test_partial_browser_extraction_preserves_good_rows_and_observed_bad_ids(
         pass
 
     monkeypatch.setattr(
-        "metadata_harvest.adapters.pxweb_v1.discovery._enrich_missing", no_enrichment
+        "harvesting.adapters.pxweb_v1.discovery._enrich_missing", no_enrichment
     )
 
     async def collect():
@@ -412,9 +412,7 @@ def test_visible_rows_survive_incomplete_expansion(website, monkeypatch):
     async def stalled(*args):
         raise RuntimeError("Incomplete expansion")
 
-    monkeypatch.setattr(
-        "metadata_harvest.adapters.pxweb_v1.discovery._activate", stalled
-    )
+    monkeypatch.setattr("harvesting.adapters.pxweb_v1.discovery._activate", stalled)
 
     async def collect():
         async with async_playwright() as p:
@@ -474,7 +472,7 @@ def test_publish_rebases_unrelated_main_push_without_force(tmp_path, monkeypatch
     assert (first / "README.md").read_text() == "unrelated update"
     assert read(first / "data/pxweb_v1/result.json") == {
         "saved": True,
-        "profile_version": "1.0.0",
+        "profile_version": "2.0.0",
     }
     (first / "README.md").write_text("unrelated staged edit")
     git(first, "add", "README.md")
@@ -527,7 +525,7 @@ def test_failed_full_refresh_retries_unchanged_table_after_incomplete_discovery(
     async def failed(*args, **kwargs):
         raise RuntimeError("temporary provider failure")
 
-    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", failed)
+    monkeypatch.setattr("harvesting.workflow.get_pxweb_metadata", failed)
     asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "artifact"))
     collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
     # A later failed listing must not erase unfinished replacement failures.
@@ -544,7 +542,7 @@ def test_failed_full_refresh_retries_unchanged_table_after_incomplete_discovery(
     async def succeeded(row, **kwargs):
         return dataset(row)
 
-    monkeypatch.setattr("metadata_harvest.workflow.get_pxweb_metadata", succeeded)
+    monkeypatch.setattr("harvesting.workflow.get_pxweb_metadata", succeeded)
     asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "retry"))
     final = collect_metadata(tmp_path, [tmp_path / "retry/result.json"], "run", 1)
     assert final["status"] == "success" and final["counts"]["failed"] == 0

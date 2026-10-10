@@ -5,12 +5,12 @@ import json
 
 import pytest
 
-from metadata_harvest.storage import filename, read, write
+from harvesting.storage import filename, read, write
 from tests.test_workflow import dataset, record
 
 
 def test_compressed_collections_preserve_content_and_exact_bytes(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     row = {
         "provider_code": "scb",
@@ -35,7 +35,7 @@ def test_compressed_collections_preserve_content_and_exact_bytes(tmp_path):
 
 
 def test_jsonl_store_accepts_explicit_codelist_identity(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     def identify(doc):
         return {
@@ -52,7 +52,7 @@ def test_jsonl_store_accepts_explicit_codelist_identity(tmp_path):
 
 
 def test_jsonl_store_groups_languages_and_is_stable(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     rows = [record("z"), record("a"), {**record("b"), "language": "en"}]
     store = JsonlStore(tmp_path)
@@ -71,7 +71,7 @@ def test_jsonl_store_groups_languages_and_is_stable(tmp_path):
 
 
 def test_jsonl_migration_preserves_every_document_before_removing_legacy(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     rows = [dataset(record("a")), dataset(record("b"))]
     for row in rows:
@@ -84,7 +84,7 @@ def test_jsonl_migration_preserves_every_document_before_removing_legacy(tmp_pat
 
 
 def test_invalid_jsonl_replacement_preserves_previous_group(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     row = record()
     store = JsonlStore(tmp_path)
@@ -99,7 +99,7 @@ def test_invalid_jsonl_replacement_preserves_previous_group(tmp_path):
 
 
 def test_conflicting_legacy_and_jsonl_are_rejected_without_deletion(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     row = record()
     store = JsonlStore(tmp_path)
@@ -113,7 +113,7 @@ def test_conflicting_legacy_and_jsonl_are_rejected_without_deletion(tmp_path):
 
 
 def test_failure_in_later_language_does_not_replace_earlier_group(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     store = JsonlStore(tmp_path)
     for language in ("en", "sv"):
@@ -133,7 +133,7 @@ def test_failure_in_later_language_does_not_replace_earlier_group(tmp_path):
 
 
 def test_legacy_document_can_be_updated_in_place_during_migration(tmp_path):
-    from metadata_harvest.storage import JsonlStore
+    from harvesting.storage import JsonlStore
 
     row = record()
     write(tmp_path / filename(row), row)

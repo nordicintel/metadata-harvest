@@ -7,8 +7,8 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.adapters.sdb.client import SdbClient, Unreachable
-from metadata_harvest.adapters.sdb.state import (
+from harvesting.adapters.sdb.client import SdbClient, Unreachable
+from harvesting.adapters.sdb.state import (
     collection,
     load_documents,
     load_state,
@@ -44,7 +44,7 @@ def seeded(sdb):
 
 
 def start(sdb, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.sdb.workflow import run
+    from harvesting.adapters.sdb.workflow import run
 
     async def main():
         client = SdbClient({"base_url": sdb.api_root}, retry_delay=0)
@@ -59,7 +59,7 @@ def start(sdb, data, output, *, clock=NOW, **options):
 
 
 def execute(sdb, data, output, **options):
-    from metadata_harvest.adapters.sdb.workflow import collect
+    from harvesting.adapters.sdb.workflow import collect
 
     result = start(sdb, data, output, **options)
     collect(data, output, languages=LANGUAGES)
@@ -80,7 +80,7 @@ def data(seeded, tmp_path):
 
 
 def test_bootstrap_publishes_both_languages(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     assert published(data) == {
         "sv/amning",
@@ -225,7 +225,7 @@ def test_renamed_result_fields_and_unlisted_years(seeded, tmp_path):
 
 
 def test_stale_artifact_rejected(seeded, data, tmp_path):
-    from metadata_harvest.adapters.sdb.workflow import collect
+    from harvesting.adapters.sdb.workflow import collect
 
     start(seeded, data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

@@ -53,12 +53,12 @@ jobs:
           args=()
           if [ -n "$SUBJECTS" ]; then read -ra ids <<< "$SUBJECTS"; args+=(--subject "${ids[@]}"); fi
           if [ -n "$LANGUAGES" ]; then read -ra langs <<< "$LANGUAGES"; args+=(--language "${langs[@]}"); fi
-          uv run python -m metadata_harvest.monitor run --name riksbank -- python -m metadata_harvest.runner run --adapter riksbank "${args[@]}"
+          uv run python -m harvesting.monitor run --name riksbank -- python -m harvesting.runner run --adapter riksbank "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m metadata_harvest.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -98,14 +98,14 @@ jobs:
           name: riksbank-${{ github.run_attempt }}
           path: output/riksbank/
       - id: collect
-        run: uv run python -m metadata_harvest.runner collect --adapter riksbank
+        run: uv run python -m harvesting.runner collect --adapter riksbank
       - name: Publish current Riksbank metadata and errors
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m metadata_harvest.runner publish --adapter riksbank --run-id "$RUN_ID"
+          uv run python -m harvesting.runner publish --adapter riksbank --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -113,7 +113,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run catalog.yml --ref main
       - name: Fail only when a whole scope failed
-        run: uv run python -m metadata_harvest.outcome --adapter riksbank
+        run: uv run python -m harvesting.outcome --adapter riksbank
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

@@ -1,6 +1,6 @@
 """Rules that turn harvested tables into datasets, on hand-made documents."""
 
-from metadata_harvest.adapters.entrysoft.datasets import (
+from harvesting.adapters.entrysoft.datasets import (
     MAX_LISTED,
     apply_column_rules,
     build_datasets,

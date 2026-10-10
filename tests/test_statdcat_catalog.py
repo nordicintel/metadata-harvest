@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from metadata_harvest.accepted import write_metadata
+from harvesting.accepted import write_metadata
 from tests.test_catalog import unpack
 from tests.test_statdcat import legacy
 
@@ -12,8 +12,8 @@ from tests.test_statdcat import legacy
 def test_catalog_builds_models_reuses_bytes_and_filters_scb(tmp_path, monkeypatch):
     import socket
 
-    from metadata_harvest.catalog import build, promote
-    from metadata_harvest.portal import import_snapshot
+    from harvesting.catalog import build, promote
+    from harvesting.portal import import_snapshot
     from tests.test_portal import record
 
     monkeypatch.setattr(
@@ -49,7 +49,7 @@ def test_catalog_builds_models_reuses_bytes_and_filters_scb(tmp_path, monkeypatc
 
 
 def test_failed_input_retains_group_and_stale_configuration_blocks_promotion(tmp_path):
-    from metadata_harvest.catalog import build, promote
+    from harvesting.catalog import build, promote
 
     data = tmp_path / "data"
     candidate = tmp_path / "candidate"
@@ -69,7 +69,7 @@ def test_failed_input_retains_group_and_stale_configuration_blocks_promotion(tmp
 def test_committed_failed_input_is_restored_while_sibling_update_advances(tmp_path):
     import subprocess
 
-    from metadata_harvest.catalog import build, promote
+    from harvesting.catalog import build, promote
 
     def git(*args):
         return subprocess.run(
@@ -104,8 +104,8 @@ def test_committed_failed_input_is_restored_while_sibling_update_advances(tmp_pa
 
 
 def test_unrelated_portal_change_reuses_assembled_owner(tmp_path):
-    from metadata_harvest.catalog import build, promote
-    from metadata_harvest.portal import import_snapshot
+    from harvesting.catalog import build, promote
+    from harvesting.portal import import_snapshot
     from tests.test_portal import record
 
     data = tmp_path / "data"
@@ -135,9 +135,9 @@ def test_previous_profile_reads_and_blob_recovery_do_not_require_production_cuto
     import gzip
     import subprocess
 
-    from metadata_harvest.accepted import load_contributions
-    from metadata_harvest.catalog import build, promote
-    from metadata_harvest.models import PROFILE1_CONTEXT, Dataset
+    from harvesting.accepted import load_contributions
+    from harvesting.catalog import build, promote
+    from harvesting.models import PROFILE1_CONTEXT, Dataset
 
     def git(*args):
         subprocess.run(["git", *args], cwd=tmp_path, check=True, capture_output=True)

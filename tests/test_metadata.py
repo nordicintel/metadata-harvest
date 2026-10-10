@@ -10,8 +10,8 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest import get_pxweb_metadata
-from metadata_harvest.adapters.pxweb_v1.metadata import _generate, _merge, _read_sample
+from harvesting import get_pxweb_metadata
+from harvesting.adapters.pxweb_v1.metadata import _generate, _merge, _read_sample
 
 
 def table(url="https://example.test/Prefix/api/v1/sv/Database/Folder/T%20%C3%A5.px"):
@@ -229,7 +229,7 @@ def test_invalid_input_fails_before_playwright(monkeypatch):
         pytest.fail("Playwright must not start")
 
     monkeypatch.setattr(
-        "metadata_harvest.adapters.pxweb_v1.metadata.async_playwright", forbidden
+        "harvesting.adapters.pxweb_v1.metadata.async_playwright", forbidden
     )
     with pytest.raises(ValueError):
         asyncio.run(get_pxweb_metadata({}, provider_code="p"))
@@ -298,7 +298,7 @@ def test_public_certificate_recovery(server, caplog):
 
 
 def test_cancellation_disposes_request_context(monkeypatch):
-    from metadata_harvest.adapters.pxweb_v1 import metadata as module
+    from harvesting.adapters.pxweb_v1 import metadata as module
 
     closed = []
 

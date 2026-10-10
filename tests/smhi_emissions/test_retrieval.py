@@ -5,7 +5,7 @@ import asyncio
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.smhi_emissions import retrieval
+from harvesting.adapters.smhi_emissions import retrieval
 from tests.smhi_emissions.conftest import load
 
 YEARS = ["1990", "2000", "2005", "2010", "2015", "2020", "2021", "2022", "2023", "2024"]

@@ -15,15 +15,15 @@ from pathlib import Path
 
 import zstandard
 
-from metadata_harvest.artifacts import check_collection_sizes, manifest
-from metadata_harvest.catalog import ASSETS, _compress, open_catalog, previous_asset
-from metadata_harvest.catalog_assembly import dependencies
-from metadata_harvest.models import Dataset
-from metadata_harvest.profile_migration import (
+from harvesting.artifacts import check_collection_sizes, manifest
+from harvesting.catalog import ASSETS, _compress, open_catalog, previous_asset
+from harvesting.catalog_assembly import dependencies
+from harvesting.models import Dataset
+from harvesting.profile_migration import (
     normalize_agent_homepages,
     upgrade_document,
 )
-from metadata_harvest.quality import validate_publication
+from harvesting.quality import validate_publication
 
 
 def encoded(value):

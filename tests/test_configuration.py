@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.configuration import load_configuration, providers_for_adapter
-from metadata_harvest.models import DataService
+from harvesting.configuration import load_configuration, providers_for_adapter
+from harvesting.models import DataService
 
 
 def test_all_existing_worker_settings_survive_configuration_conversion():
@@ -62,9 +62,9 @@ def test_concrete_services_accept_endpoints_and_publishers():
 
 
 def test_shared_host_keeps_catalog_publishers_and_discovery_scope_separate():
-    from metadata_harvest.adapters.entrysoft.discovery import within_catalog_scope
-    from metadata_harvest.models import SourceIdentity
-    from metadata_harvest.sources import resolve_source
+    from harvesting.adapters.entrysoft.discovery import within_catalog_scope
+    from harvesting.models import SourceIdentity
+    from harvesting.sources import resolve_source
 
     source = SourceIdentity(
         adapter="entrysoft",
@@ -98,9 +98,9 @@ def test_shared_host_keeps_catalog_publishers_and_discovery_scope_separate():
 
 
 def test_profile_upgrade_keeps_payloads_ids_and_unattributed_records():
-    from metadata_harvest.models import PROFILE1_CONTEXT
-    from metadata_harvest.profile_migration import read_dataset, upgrade_document
-    from metadata_harvest.statdcat import convert_dataset, legacy_document
+    from harvesting.models import PROFILE1_CONTEXT
+    from harvesting.profile_migration import read_dataset, upgrade_document
+    from harvesting.statdcat import convert_dataset, legacy_document
     from tests.test_statdcat import legacy
 
     native = legacy()
@@ -140,7 +140,7 @@ def test_profile_upgrade_keeps_payloads_ids_and_unattributed_records():
 
 
 def test_unattributed_refresh_preserves_findings_across_languages():
-    from metadata_harvest.statdcat import assemble, convert_dataset
+    from harvesting.statdcat import assemble, convert_dataset
     from tests.test_statdcat import legacy
 
     contributions = []
@@ -157,7 +157,7 @@ def test_unattributed_refresh_preserves_findings_across_languages():
 def test_homepage_is_an_iri_and_previous_codelists_remain_readable():
     from rdflib import Graph, URIRef
 
-    from metadata_harvest.models import PROFILE1_CONTEXT, Agent, CodeList
+    from harvesting.models import PROFILE1_CONTEXT, Agent, CodeList
 
     agent = Agent(id="urn:test:org", homepage=["https://example.org/"])
     graph = Graph().parse(data=json.dumps(agent.to_jsonld()), format="json-ld")
@@ -172,9 +172,9 @@ def test_homepage_is_an_iri_and_previous_codelists_remain_readable():
 
 
 def test_explicit_legacy_overrides_feed_service_metadata_and_context_resets():
-    from metadata_harvest.configuration import legacy_configuration, use_configuration
-    from metadata_harvest.models import SourceIdentity
-    from metadata_harvest.sources import resolve_source
+    from harvesting.configuration import legacy_configuration, use_configuration
+    from harvesting.models import SourceIdentity
+    from harvesting.sources import resolve_source
 
     original = load_configuration()
     rows = [{"code": "scb", "base_api_url": "https://example.org/api/v2", "timeout": 0}]
@@ -197,8 +197,8 @@ def test_offline_profile_migration_retains_publication_and_codelist_bytes(tmp_pa
     import gzip
     from importlib.util import module_from_spec, spec_from_file_location
 
-    from metadata_harvest.accepted import write_metadata
-    from metadata_harvest.catalog import build, promote
+    from harvesting.accepted import write_metadata
+    from harvesting.catalog import build, promote
     from tests.test_catalog import unpack
     from tests.test_statdcat import legacy
 

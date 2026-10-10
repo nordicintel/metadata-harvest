@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.outcome import REPORTS, scope_failures
+from harvesting.outcome import REPORTS, scope_failures
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -133,7 +133,7 @@ def test_command_reads_the_published_report(tmp_path):
         [
             sys.executable,
             "-m",
-            "metadata_harvest.outcome",
+            "harvesting.outcome",
             "--adapter",
             "sdb",
             "--data",
@@ -156,5 +156,5 @@ def test_every_workflow_uses_the_outcome_command(adapter):
         )
     )
     text = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")
-    assert f"metadata_harvest.outcome --adapter {adapter}" in text
+    assert f"harvesting.outcome --adapter {adapter}" in text
     assert "completed_with_errors" not in text

@@ -1,6 +1,6 @@
 """Two independent placeholder stages with transactional proposals."""
 
-from metadata_harvest.processing import StageResult, process_dataset
+from harvesting.processing import StageResult, process_dataset
 
 
 def test_inactive_stages_do_not_mutate_or_validate():
@@ -11,7 +11,7 @@ def test_inactive_stages_do_not_mutate_or_validate():
 
 
 def test_stage_order_and_failed_proposal_isolation(monkeypatch):
-    import metadata_harvest.processing as processing
+    import harvesting.processing as processing
 
     monkeypatch.setattr(processing, "_validate", lambda before, after: None)
 
@@ -31,7 +31,7 @@ def test_stage_order_and_failed_proposal_isolation(monkeypatch):
 
 
 def test_rejected_proposal_retains_input(monkeypatch):
-    import metadata_harvest.processing as processing
+    import harvesting.processing as processing
 
     def reject(before, after):
         raise ValueError("Invalid replacement")
@@ -46,7 +46,7 @@ def test_rejected_proposal_retains_input(monkeypatch):
 
 
 def test_real_proposals_validate_and_protect_source_contract():
-    from metadata_harvest.mapping import map_metadata
+    from harvesting.mapping import map_metadata
     from tests.test_pxweb_v2 import metadata, record
 
     document = map_metadata(metadata(), record(), "pxweb_v2")

@@ -5,16 +5,16 @@ import json
 
 import pytest
 
-from metadata_harvest.adapters.kolada.metadata import build_dataset
-from metadata_harvest.adapters.kolada.state import load_documents, load_state
-from metadata_harvest.validation import validate_metadata
+from harvesting.adapters.kolada.metadata import build_dataset
+from harvesting.adapters.kolada.state import load_documents, load_state
+from harvesting.validation import validate_metadata
 from tests.kolada_fixture import initial_state as import_seed
 
 
 def test_change_probe_path_pagination_and_transient_splitting():
     import httpx
 
-    from metadata_harvest.adapters.kolada.client import KoladaClient
+    from harvesting.adapters.kolada.client import KoladaClient
 
     calls = []
 
@@ -45,7 +45,7 @@ def test_change_probe_path_pagination_and_transient_splitting():
 def test_coverage_keeps_suppression_but_not_deleted_rows():
     import httpx
 
-    from metadata_harvest.adapters.kolada.client import KoladaClient
+    from harvesting.adapters.kolada.client import KoladaClient
 
     rows = [
         {
@@ -125,7 +125,7 @@ def seed_source(tmp_path):
 
 def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeypatch):
     monkeypatch.setattr(
-        "metadata_harvest.validation.validate_metadata",
+        "harvesting.validation.validate_metadata",
         lambda *a, **k: pytest.fail("Seed validation forbidden"),
     )
     target = tmp_path / "data"
@@ -172,7 +172,7 @@ def test_request_budget_includes_waits_and_does_not_retry():
 
     import httpx
 
-    from metadata_harvest.adapters.kolada.client import BudgetExpired, KoladaClient
+    from harvesting.adapters.kolada.client import BudgetExpired, KoladaClient
 
     calls = []
 

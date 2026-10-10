@@ -7,7 +7,7 @@ from pathlib import Path
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.tillvaxtverket import retrieval
+from harvesting.adapters.tillvaxtverket import retrieval
 from tests.tillvaxtverket.conftest import NAME, metadata_for
 
 TYPES = ["Camping", "Hotell", "SoL", "Stugbyar", "Vandrarhem"]

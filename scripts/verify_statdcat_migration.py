@@ -5,10 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 
-from metadata_harvest.accepted import read_records
-from metadata_harvest.migration import encoded
-from metadata_harvest.models import Dataset
-from metadata_harvest.statdcat import legacy_document
+from harvesting.accepted import read_records
+from harvesting.migration import encoded
+from harvesting.models import Dataset
+from harvesting.statdcat import legacy_document
 
 
 def verify(data: Path, audit: Path, adapters=None):

@@ -8,7 +8,7 @@ from urllib.parse import parse_qs
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.trafa import retrieval
+from harvesting.adapters.trafa import retrieval
 
 DRIVM = "t10011|itrfslut|ar|drivm"
 HIERARCHY = "t10011|avstslut|itrfslut|ar|agarkat|tillst"

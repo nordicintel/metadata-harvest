@@ -7,15 +7,15 @@ import pytest
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 
-from metadata_harvest.adapters.entrysoft.mapping import BLANK, to_document
-from metadata_harvest.adapters.entrysoft.retrieval import (
+from harvesting.adapters.entrysoft.mapping import BLANK, to_document
+from harvesting.adapters.entrysoft.retrieval import (
     MAX_REQUESTS,
     REQUIRED_METADATA,
     filter_value,
     number,
     retrieve,
 )
-from metadata_harvest.validation import validate_retrieval
+from harvesting.validation import validate_retrieval
 from tests.entrysoft.conftest import page
 
 

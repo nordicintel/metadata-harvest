@@ -62,7 +62,7 @@ these failure semantics; live checks establish actual provider compatibility.
 ## Required operational visibility
 
 Future adapters must expose live counters and individual structured errors through
-`Progress`, supervised by `metadata_harvest.monitor` in Actions. Keep telemetry
+`Progress`, supervised by `harvesting.monitor` in Actions. Keep telemetry
 outside certified output. Report phase/current resource before slow work, update
 counts after each outcome, and include full identities and URLs in errors.
 Unknown totals, not-yet-attempted dependencies and retries are not failed tables.

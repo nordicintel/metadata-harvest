@@ -20,7 +20,7 @@ from urllib.parse import parse_qsl, urlsplit
 import httpx
 import pytest
 
-from metadata_harvest.adapters.entrysoft.categories import (
+from harvesting.adapters.entrysoft.categories import (
     PAGE_SIZE,
     classify,
     infer_structure,
@@ -28,8 +28,8 @@ from metadata_harvest.adapters.entrysoft.categories import (
     prefix_pattern,
     remainder_pattern,
 )
-from metadata_harvest.adapters.entrysoft.client import Client
-from metadata_harvest.adapters.entrysoft.tables import table_document
+from harvesting.adapters.entrysoft.client import Client
+from harvesting.adapters.entrysoft.tables import table_document
 
 TABLE = "rowstore/dataset/00000000-0000-0000-0000-000000000000"
 
@@ -238,7 +238,7 @@ def test_jsonstat_document_is_valid_metadata_only_output():
 
 
 def test_empty_table_is_reported_as_empty():
-    from metadata_harvest.adapters.entrysoft.categories import EmptyTable
+    from harvesting.adapters.entrysoft.categories import EmptyTable
 
     with pytest.raises(EmptyTable):
         run([])

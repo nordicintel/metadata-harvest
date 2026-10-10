@@ -4,12 +4,12 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest import runner
-from metadata_harvest.configuration import providers_for_adapter
+from harvesting import runner
+from harvesting.configuration import providers_for_adapter
 
 
 def test_v2_runner_selects_own_config_data_and_full_mode(monkeypatch, capsys):
-    from metadata_harvest.adapters.pxweb_v2 import workflow
+    from harvesting.adapters.pxweb_v2 import workflow
 
     received = {}
 

@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The self-contained `metadata_harvest.adapters.kolada` package implements Swedish
+The self-contained `harvesting.adapters.kolada` package implements Swedish
 metadata and on-demand retrieval against [Kolada API v3](https://api.kolada.se/v3/docs).
 There is no runtime dependency on another repository, database or data.eu.
 
@@ -37,11 +37,11 @@ entire KPI groups. `updated` is a verified native change day, never a harvest/po
 ## Refresh and failures
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter kolada
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter kolada
+uv run --extra harvest python -m harvesting.runner run --adapter kolada
+uv run --extra harvest python -m harvesting.runner collect --adapter kolada
 # Restrict per-KPI work; small native reference catalogues still refresh.
-uv run --extra harvest python -m metadata_harvest.runner run --adapter kolada --kpi N78110 U30750
-uv run --extra harvest python -m metadata_harvest.runner run --adapter kolada --kpi U30750 --scope ou
+uv run --extra harvest python -m harvesting.runner run --adapter kolada --kpi N78110 U30750
+uv run --extra harvest python -m harvesting.runner run --adapter kolada --kpi U30750 --scope ou
 ```
 
 Initial current data was imported once from trusted existing results. There is no
@@ -88,7 +88,7 @@ using the injected `KoladaClient`. Workflow orchestration validates replacements
 The standalone `kolada` retrieval entry point works in a plain installation:
 
 ```python
-from metadata_harvest.adapters.kolada.retrieval import retrieve
+from retrieval.adapters.kolada import retrieve
 
 result = await retrieve(
     session,

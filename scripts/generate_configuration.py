@@ -4,7 +4,7 @@ import json
 import sys
 from pathlib import Path
 
-from metadata_harvest.configuration import SourceConfiguration, load_configuration
+from harvesting.configuration import SourceConfiguration, load_configuration
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -13,13 +13,13 @@ def artifacts():
     configuration = load_configuration(ROOT)
     for name in ("adapters.json", "organisations.json", "catalogs.json"):
         yield (
-            ROOT / "src/metadata_harvest/configuration" / name,
+            ROOT / "harvesting/configuration" / name,
             (ROOT / name).read_text(encoding="utf-8"),
         )
     schema = SourceConfiguration.model_json_schema()
     schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
     yield (
-        ROOT / "src/metadata_harvest/schemas/source-configuration.schema.json",
+        ROOT / "harvesting/schemas/source-configuration.schema.json",
         json.dumps(schema, ensure_ascii=False, indent=2) + "\n",
     )
     reference = [

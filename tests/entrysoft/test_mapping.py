@@ -1,14 +1,14 @@
 """Dataset records become valid, eliminable, queryable Dataset documents."""
 
-from metadata_harvest.adapters.entrysoft.datasets import build_datasets
-from metadata_harvest.adapters.entrysoft.mapping import (
+from harvesting.adapters.entrysoft.datasets import build_datasets
+from harvesting.adapters.entrysoft.mapping import (
     BLANK,
     ROW_COUNT,
     codes,
     time_unit,
     to_document,
 )
-from metadata_harvest.validation import validate_metadata
+from harvesting.validation import validate_metadata
 from tests.entrysoft.test_datasets import document
 
 PROVIDER = {"code": "x", "label": "Exempel kommun", "base_url": "https://x"}

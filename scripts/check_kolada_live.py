@@ -6,11 +6,11 @@ from pathlib import Path
 
 import aiohttp
 
-from metadata_harvest.adapters.kolada.retrieval import REQUIRED_METADATA, retrieve
-from metadata_harvest.adapters.kolada.state import COLLECTION, records
-from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import write
-from metadata_harvest.validation import validate_metadata, validate_retrieval
+from harvesting.adapters.kolada.retrieval import REQUIRED_METADATA, retrieve
+from harvesting.adapters.kolada.state import COLLECTION, records
+from harvesting.semantics import category_codes
+from harvesting.storage import write
+from harvesting.validation import validate_metadata, validate_retrieval
 
 KPIS = {"N00003", "N78110", "N78111", "U30750", "U60495", "N26527"}
 

@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.smhi_emissions` package implements metadata and
+The `harvesting.adapters.smhi_emissions` package implements metadata and
 on-demand retrieval for SMHI's national database of emissions to air,
 `https://nationellaemissionsdatabasen.smhi.se/api/`.
 
@@ -119,9 +119,9 @@ the years, so the documents are rebuilt. `--full` is not accepted, because every
 is already complete.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter smhi_emissions
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter smhi_emissions
-uv run --extra harvest python -m metadata_harvest.runner run --adapter smhi_emissions --subject CO2 NOx
+uv run --extra harvest python -m harvesting.runner run --adapter smhi_emissions
+uv run --extra harvest python -m harvesting.runner collect --adapter smhi_emissions
+uv run --extra harvest python -m harvesting.runner run --adapter smhi_emissions --subject CO2 NOx
 ```
 
 `--subject` selects substance codes. An exact match is tried first, then a
@@ -145,7 +145,7 @@ case-insensitive one.
 - **Metadata failures.** A probe that answers but cannot be mapped is a `metadata`
   failure, for example one with an unknown sector label, no years or non-numeric
   values. It keeps the last document.
-- **Publication rule.** This uses the shared rule in `metadata_harvest.currency`. A
+- **Publication rule.** This uses the shared rule in `harvesting.currency`. A
   dataset is published only while its probe works and its document was verified
   within 60 days. Otherwise it is withheld in state and restored automatically.
 - **Removal.** Only an unbounded run with a complete tree removes a substance, and
@@ -159,7 +159,7 @@ The `smhi` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/id", "/extension/smhi_emissions")`.
 
 ```python
-from metadata_harvest.adapters.smhi_emissions.retrieval import retrieve
+from retrieval.adapters.smhi_emissions import retrieve
 
 fragment = await retrieve(
     session,

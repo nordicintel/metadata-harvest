@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.scheduling import load, resolve, sync
+from harvesting.scheduling import load, resolve, sync
 
 ROOT = Path(__file__).resolve().parents[1]
 

@@ -8,11 +8,11 @@ from pathlib import Path
 
 import aiohttp
 
-from metadata_harvest.accepted import load_contributions, read_records
-from metadata_harvest.models import Dataset
-from metadata_harvest.retrieval import retrieve_distribution
-from metadata_harvest.statdcat import convert_dataset, legacy_document
-from metadata_harvest.validation import validate_retrieval
+from harvesting.accepted import load_contributions, read_records
+from harvesting.models import Dataset
+from harvesting.retrieval import retrieve_distribution
+from harvesting.statdcat import convert_dataset, legacy_document
+from harvesting.validation import validate_retrieval
 
 
 class RecordedSession:
@@ -83,9 +83,7 @@ async def main():
                 else axis.categories[:1]
                 for axis in distribution.retrieval.dimensions
             }
-            mod = importlib.import_module(
-                f"metadata_harvest.adapters.{adapter}.retrieval"
-            )
+            mod = importlib.import_module(f"harvesting.adapters.{adapter}.retrieval")
             metadata = {}
             for pointer in mod.REQUIRED_METADATA:
                 value = old

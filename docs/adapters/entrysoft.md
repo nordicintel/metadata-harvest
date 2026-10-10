@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.entrysoft` package publishes the RowStore tables of
+The `harvesting.adapters.entrysoft` package publishes the RowStore tables of
 Swedish EntryScape catalogues as queryable datasets. EntryScape (MetaSolutions)
 exposes an uploaded CSV file as a paged JSON API, `https://{instance}/rowstore/dataset/{uuid}`,
 with per-column filters. Agencies and municipalities use it to publish tabular
@@ -91,7 +91,7 @@ paging cost that harvesting them would take.
 
 ## Retrieval
 
-The 49 entry points resolve to `metadata_harvest.adapters.entrysoft.retrieval:retrieve`,
+The 49 entry points resolve to `retrieval.adapters.entrysoft:retrieve`,
 with `REQUIRED_METADATA = ("/id", "/dimension", "/extension/entrysoft")`.
 
 - Rows matching the selection are read from the tables the `part` selection covers
@@ -107,8 +107,8 @@ with `REQUIRED_METADATA = ("/id", "/dimension", "/extension/entrysoft")`.
 ## Operations
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter entrysoft --provider-code catalogalese --max-requests 40
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter entrysoft
+uv run --extra harvest python -m harvesting.runner run --adapter entrysoft --provider-code catalogalese --max-requests 40
+uv run --extra harvest python -m harvesting.runner collect --adapter entrysoft
 uv run --extra harvest python scripts/check_entrysoft_live.py --provider catalogalese   # from a GitHub runner only
 ```
 

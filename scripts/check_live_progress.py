@@ -7,8 +7,8 @@ import sys
 import time
 from pathlib import Path
 
-from metadata_harvest.monitor import github_api, inspect_run
-from metadata_harvest.progress import Progress
+from harvesting.monitor import github_api, inspect_run
+from harvesting.progress import Progress
 
 
 def worker():
@@ -36,7 +36,7 @@ def check():
         [
             sys.executable,
             "-m",
-            "metadata_harvest.monitor",
+            "harvesting.monitor",
             "run",
             "--name",
             "visibility-smoke",

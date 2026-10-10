@@ -4,12 +4,12 @@ import asyncio
 
 import pytest
 
-from metadata_harvest.adapters.dataanalys import api, source
-from metadata_harvest.adapters.dataanalys.mapping import (
+from harvesting.adapters.dataanalys import api, source
+from harvesting.adapters.dataanalys.mapping import (
     build_dataset,
     indicator_label,
 )
-from metadata_harvest.adapters.dataanalys.source import (
+from harvesting.adapters.dataanalys.source import (
     Discovery,
     add_charts,
     add_dashboards,
@@ -17,8 +17,8 @@ from metadata_harvest.adapters.dataanalys.source import (
     parse_cube,
     resolve_link,
 )
-from metadata_harvest.adapters.dataanalys.workflow import discover, fetch_metadata
-from metadata_harvest.validation import validate_metadata
+from harvesting.adapters.dataanalys.workflow import discover, fetch_metadata
+from harvesting.validation import validate_metadata
 from tests.dataanalys.conftest import RecordedClient, apply_synthetic
 
 GONV_COLUMNS = {
@@ -176,7 +176,7 @@ def test_lists_are_paged_until_the_count(monkeypatch):
             }
 
     monkeypatch.setattr(api, "PAGE_SIZE", 10)
-    monkeypatch.setattr("metadata_harvest.adapters.dataanalys.workflow.PAGE_SIZE", 10)
+    monkeypatch.setattr("harvesting.adapters.dataanalys.workflow.PAGE_SIZE", 10)
 
     result = asyncio.run(discover(Paging()))
 

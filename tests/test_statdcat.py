@@ -51,7 +51,7 @@ def legacy(language="sv", code="T1", provider="scb"):
 
 
 def test_models_preserve_nested_custom_fields_and_reject_boolean_coercion():
-    from metadata_harvest.models import Dataset, Dimension
+    from harvesting.models import Dataset, Dimension
 
     dimension = Dimension(code="01", label={"sv": ["Region"]}, future={"zero": 0})
     model = Dataset(
@@ -78,7 +78,7 @@ def test_models_preserve_nested_custom_fields_and_reject_boolean_coercion():
 
 
 def test_conversion_maps_periods_and_preserves_unknowns_without_parallel_fields():
-    from metadata_harvest.statdcat import convert_dataset, legacy_document
+    from harvesting.statdcat import convert_dataset, legacy_document
 
     source = legacy()
     original = deepcopy(source)
@@ -106,7 +106,7 @@ def test_conversion_maps_periods_and_preserves_unknowns_without_parallel_fields(
 
 
 def test_language_and_kolada_scope_assembly_keeps_distinct_bindings():
-    from metadata_harvest.statdcat import assemble, convert_dataset
+    from harvesting.statdcat import assemble, convert_dataset
 
     parts = []
     for language, code in [
@@ -130,7 +130,7 @@ def test_language_and_kolada_scope_assembly_keeps_distinct_bindings():
 
 
 def test_unrepresentable_period_and_conflicting_flags_survive():
-    from metadata_harvest.statdcat import assemble, convert_dataset
+    from harvesting.statdcat import assemble, convert_dataset
 
     doc = legacy()
     doc["extension"]["nordicintel"]["first_period"] = "1992-1998"
@@ -148,7 +148,7 @@ def test_unrepresentable_period_and_conflicting_flags_survive():
 
 
 def test_software_services_are_separate_from_scb_owner_and_catalogs():
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.statdcat import convert_dataset
 
     main = legacy()
     main["extension"]["nordicintel"]["data_url"] = (
@@ -184,8 +184,8 @@ def test_software_services_are_separate_from_scb_owner_and_catalogs():
 def test_jsonld_expansion_preserves_extensions_and_codelist_membership():
     from rdflib import Graph, URIRef
 
-    from metadata_harvest.models import NAMESPACE
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.models import NAMESPACE
+    from harvesting.statdcat import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     dataset.new_field = {"nested": {"false": False, "zero": 0}}
@@ -201,7 +201,7 @@ def test_jsonld_expansion_preserves_extensions_and_codelist_membership():
 
 
 def test_invalid_source_hierarchy_is_rejected():
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.statdcat import convert_dataset
 
     doc = legacy()
     doc["dimension"]["Region"]["category"]["child"] = {"01": ["00"], "00": ["01"]}
@@ -210,8 +210,8 @@ def test_invalid_source_hierarchy_is_rejected():
 
 
 def test_codelist_attribute_conflicts_remain_json_and_keep_every_assertion():
-    from metadata_harvest.models import CodeList, Concept
-    from metadata_harvest.statdcat import merge_codelists
+    from harvesting.models import CodeList, Concept
+    from harvesting.statdcat import merge_codelists
 
     schemes = [
         CodeList(
@@ -238,8 +238,8 @@ def test_codelist_attribute_conflicts_remain_json_and_keep_every_assertion():
 
 
 def test_codelist_merge_preserves_language_specific_category_order():
-    from metadata_harvest.models import CodeList
-    from metadata_harvest.statdcat import convert_codelist, merge_codelists
+    from harvesting.models import CodeList
+    from harvesting.statdcat import convert_codelist, merge_codelists
 
     schemes = [
         convert_codelist(
@@ -264,9 +264,9 @@ def test_codelist_merge_preserves_language_specific_category_order():
 
 def test_every_configured_source_has_an_explicit_service_and_owner_disposition():
 
-    from metadata_harvest.configuration import providers_for_adapter
-    from metadata_harvest.registry import ADAPTERS
-    from metadata_harvest.sources import deployment, inventory
+    from harvesting.configuration import providers_for_adapter
+    from harvesting.registry import ADAPTERS
+    from harvesting.sources import deployment, inventory
 
     configured = set()
     for adapter in ADAPTERS:
@@ -292,8 +292,8 @@ def test_every_configured_source_has_an_explicit_service_and_owner_disposition()
 
 
 def test_riksbank_api_products_and_pxweb_databases_keep_distinct_catalogs():
-    from metadata_harvest.models import SourceIdentity
-    from metadata_harvest.sources import source_entities
+    from harvesting.models import SourceIdentity
+    from harvesting.sources import source_entities
 
     def entities(adapter, provider, url, record):
         return source_entities(
@@ -340,8 +340,8 @@ def test_riksbank_api_products_and_pxweb_databases_keep_distinct_catalogs():
 
 
 def test_service_identity_depends_on_binding_and_description_on_adapter():
-    from metadata_harvest.models import SourceIdentity
-    from metadata_harvest.sources import source_entities
+    from harvesting.models import SourceIdentity
+    from harvesting.sources import source_entities
 
     services = []
     for provider in ("scb_hvd", "csn", "konj", "konjbar", "linkoping"):
@@ -358,9 +358,9 @@ def test_service_identity_depends_on_binding_and_description_on_adapter():
 def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
     import asyncio
 
-    from metadata_harvest.adapters.pxweb_v1 import retrieval as v1
-    from metadata_harvest.retrieval import retrieve_distribution
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.adapters.pxweb_v1 import retrieval as v1
+    from harvesting.retrieval import retrieve_distribution
+    from harvesting.statdcat import convert_dataset
 
     doc = legacy(provider="scb_hvd")
     doc["extension"]["pxweb_v1"] = doc["extension"].pop("pxweb_v2")
@@ -390,7 +390,7 @@ def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
 
 
 def test_compatibility_projection_keeps_descriptive_and_optional_values():
-    from metadata_harvest.statdcat import convert_dataset, legacy_document
+    from harvesting.statdcat import convert_dataset, legacy_document
 
     doc = legacy()
     doc.update(updated="2026-10-01", note=["A note"], source="Attribution")
@@ -414,8 +414,8 @@ def test_compatibility_projection_keeps_descriptive_and_optional_values():
 
 
 def test_services_are_concrete_and_shared_by_distributions_of_that_api():
-    from metadata_harvest.configuration import load_configuration
-    from metadata_harvest.sources import concrete_service
+    from harvesting.configuration import load_configuration
+    from harvesting.sources import concrete_service
 
     services = [
         concrete_service(binding) for binding in load_configuration().services.values()
@@ -426,8 +426,8 @@ def test_services_are_concrete_and_shared_by_distributions_of_that_api():
 
 
 def test_all_entryscape_owners_use_canonical_organisation_codes():
-    from metadata_harvest.models import SourceIdentity
-    from metadata_harvest.sources import inventory, source_entities
+    from harvesting.models import SourceIdentity
+    from harvesting.sources import inventory, source_entities
 
     items = inventory()
     entry = [item for item in items if item["adapter"] == "entrysoft"]
@@ -476,8 +476,8 @@ def test_all_entryscape_owners_use_canonical_organisation_codes():
 
 
 def test_missing_description_is_a_quality_finding_not_an_identity_error():
-    from metadata_harvest.quality import validate_publication
-    from metadata_harvest.statdcat import convert_dataset
+    from harvesting.quality import validate_publication
+    from harvesting.statdcat import convert_dataset
 
     model = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     assert any(
@@ -487,7 +487,7 @@ def test_missing_description_is_a_quality_finding_not_an_identity_error():
 
 
 def test_malformed_optional_contacts_preserve_source_values():
-    from metadata_harvest.statdcat import convert_dataset, legacy_document
+    from harvesting.statdcat import convert_dataset, legacy_document
 
     for contacts in (
         "free text",
@@ -521,10 +521,10 @@ def test_every_public_adapter_returns_typed_contributions(adapter, monkeypatch):
     import asyncio
     import importlib
 
-    from metadata_harvest.models import HarvestContribution
+    from harvesting.models import HarvestContribution
 
     suffix = "metadata" if adapter in {"pxweb_v1", "pxweb_v2", "kolada"} else "workflow"
-    native = importlib.import_module(f"metadata_harvest.adapters.{adapter}.{suffix}")
+    native = importlib.import_module(f"harvesting.adapters.{adapter}.{suffix}")
     document = legacy(provider="p")
     document["extension"][adapter] = document["extension"].pop("pxweb_v2")
 
@@ -536,7 +536,7 @@ def test_every_public_adapter_returns_typed_contributions(adapter, monkeypatch):
         "get_pxweb_metadata" if adapter == "pxweb_v1" else "fetch_metadata",
         fetch,
     )
-    public = importlib.import_module(f"metadata_harvest.adapters.{adapter}")
+    public = importlib.import_module(f"harvesting.adapters.{adapter}")
     kwargs = {"provider_code": "p"} if adapter == "pxweb_v1" else {"client": object()}
     parts = asyncio.run(public.fetch_metadata({}, **kwargs))
     assert len(parts) == 1 and isinstance(parts[0], HarvestContribution)

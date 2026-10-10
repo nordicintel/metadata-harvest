@@ -28,7 +28,7 @@ def test_local_documentation_links_resolve():
     # Tracked documents only: ignored research material under docs/ may link
     # to files that exist elsewhere.
     tracked = subprocess.run(
-        ["git", "ls-files", "-z", "--", "README.md", "docs", "src/metadata_harvest"],
+        ["git", "ls-files", "-z", "--", "README.md", "docs", "harvesting"],
         cwd=ROOT,
         check=True,
         capture_output=True,
@@ -55,25 +55,21 @@ def test_provider_entry_points_and_placeholders_are_consistent():
     ]
     entries = project["entry-points"]["nordicintel.retrieval"]
     expected = {}
-    from metadata_harvest.configuration import load_configuration, providers_for_adapter
+    from harvesting.configuration import load_configuration, providers_for_adapter
 
     for adapter in load_configuration().adapters:
         for provider in providers_for_adapter(adapter):
-            expected[provider["code"]] = (
-                f"metadata_harvest.adapters.{adapter}.retrieval:retrieve"
-            )
+            expected[provider["code"]] = f"retrieval.adapters.{adapter}:retrieve"
     assert entries == expected
     assert project["dependencies"] == [
         "aiohttp>=3.9,<4",
-        "pydantic>=2.12,<3",
-        "zstandard>=0.25,<1",
     ]
-    from metadata_harvest.registry import ADAPTERS
+    from harvesting.registry import ADAPTERS
 
     for name, spec in ADAPTERS.items():
         if not spec.available:
             assert (ROOT / spec.preparation).is_file()
-            module = importlib.import_module(f"metadata_harvest.adapters.{name}")
+            module = importlib.import_module(f"harvesting.adapters.{name}")
             assert module.AVAILABLE is False
             import pytest
 

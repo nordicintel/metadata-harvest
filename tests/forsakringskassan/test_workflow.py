@@ -5,13 +5,13 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from metadata_harvest.adapters.forsakringskassan.api import (
+from harvesting.adapters.forsakringskassan.api import (
     REPORTS_URL,
     TEXTS_URL,
     meta_url,
 )
-from metadata_harvest.adapters.forsakringskassan.client import Unreachable
-from metadata_harvest.adapters.forsakringskassan.state import (
+from harvesting.adapters.forsakringskassan.client import Unreachable
+from harvesting.adapters.forsakringskassan.state import (
     collection,
     load_documents,
     load_state,
@@ -35,7 +35,7 @@ ALL_KEYS = {
 
 
 def start(source, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.forsakringskassan.workflow import run
+    from harvesting.adapters.forsakringskassan.workflow import run
 
     return asyncio.run(
         run(PROVIDER, data, output, client=source, clock=clock, **options)
@@ -43,7 +43,7 @@ def start(source, data, output, *, clock=NOW, **options):
 
 
 def execute(source, data, output, **options):
-    from metadata_harvest.adapters.forsakringskassan.workflow import collect
+    from harvesting.adapters.forsakringskassan.workflow import collect
 
     result = start(source, data, output, **options)
     collect(data, output, languages=["sv"])
@@ -64,7 +64,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_publishes_valid_documents(data, tmp_path):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = published(data)
     assert set(documents) == ALL_KEYS
@@ -260,7 +260,7 @@ def test_unknown_subject_is_reported(data, tmp_path):
 
 
 def test_endpoint_telemetry_contains_the_report_url(data, tmp_path, monkeypatch):
-    from metadata_harvest.adapters.forsakringskassan import workflow
+    from harvesting.adapters.forsakringskassan import workflow
 
     events = []
 
@@ -308,7 +308,7 @@ def test_duplicates_are_quarantined(data, tmp_path):
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.forsakringskassan.workflow import collect
+    from harvesting.adapters.forsakringskassan.workflow import collect
 
     start(RecordedClient(), data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

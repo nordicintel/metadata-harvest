@@ -1,6 +1,6 @@
 # Metadata model reference
 
-Generated from [Pydantic models](../src/metadata_harvest/models.py); do not edit by hand.
+Generated from [Pydantic models](../harvesting/models.py); do not edit by hand.
 
 NordicIntel profile 2.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.
 

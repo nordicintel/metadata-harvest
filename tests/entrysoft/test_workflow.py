@@ -8,8 +8,8 @@ from urllib.parse import parse_qsl, urlsplit
 import httpx
 import pytest
 
-from metadata_harvest.adapters.entrysoft.client import Client
-from metadata_harvest.adapters.entrysoft.state import (
+from harvesting.adapters.entrysoft.client import Client
+from harvesting.adapters.entrysoft.state import (
     collection_store,
     load_current,
     load_tables,
@@ -153,7 +153,7 @@ def source():
 
 
 def execute(fake, data, output, **options):
-    from metadata_harvest.adapters.entrysoft.workflow import collect, run
+    from harvesting.adapters.entrysoft.workflow import collect, run
 
     transport = httpx.MockTransport(fake)
 
@@ -191,7 +191,7 @@ def data(source, tmp_path):
 
 
 def test_bootstrap_publishes_merged_and_single_datasets(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = list(collection_store(data).records.values())
     for document in documents:
@@ -266,9 +266,7 @@ def test_budget_stop_keeps_finished_work(source, tmp_path):
 
 
 def test_second_throttle_stops_the_run(source, data, tmp_path, monkeypatch):
-    monkeypatch.setattr(
-        "metadata_harvest.adapters.entrysoft.client.MIN_THROTTLE_PAUSE", 0.0
-    )
+    monkeypatch.setattr("harvesting.adapters.entrysoft.client.MIN_THROTTLE_PAUSE", 0.0)
     source.throttle.add("alpha.example")
     result = execute(source, data, tmp_path / "throttled")
     assert result["interrupted"] and "429" in json.dumps(result["errors"])
@@ -282,7 +280,7 @@ def test_bounded_run_touches_only_selected_providers(source, data, tmp_path):
 
 
 def test_stale_artifact_rejected(source, data, tmp_path):
-    from metadata_harvest.adapters.entrysoft.workflow import collect, run
+    from harvesting.adapters.entrysoft.workflow import collect, run
 
     transport = httpx.MockTransport(source)
     asyncio.run(

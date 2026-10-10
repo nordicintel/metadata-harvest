@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.adapters.tillvaxtverket.source import (
+from harvesting.adapters.tillvaxtverket.source import (
     BY_NAME,
     COUNTRY,
     Conflict,
@@ -15,7 +15,7 @@ from metadata_harvest.adapters.tillvaxtverket.source import (
     parse_probe,
     parse_regions,
 )
-from metadata_harvest.validation import validate_metadata
+from harvesting.validation import validate_metadata
 from tests.tillvaxtverket.conftest import (
     RECORDED,
     RecordedClient,
@@ -25,7 +25,7 @@ from tests.tillvaxtverket.conftest import (
 
 
 def build(name, client=None):
-    from metadata_harvest.adapters.tillvaxtverket.workflow import fetch_metadata
+    from harvesting.adapters.tillvaxtverket.workflow import fetch_metadata
 
     return asyncio.run(fetch_metadata(BY_NAME[name], client=client or RecordedClient()))
 

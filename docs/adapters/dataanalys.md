@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.dataanalys` package implements metadata and on-demand
+The `harvesting.adapters.dataanalys` package implements metadata and on-demand
 retrieval for Socialstyrelsen's analysverktyg, a public Apache Superset instance at
 `https://dataanalys.socialstyrelsen.se` with health-care indicators such as
 "Indikatorer för god och nära vård".
@@ -186,10 +186,10 @@ Listing details:
   86,400-second cache.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter dataanalys
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter dataanalys
-uv run --extra harvest python -m metadata_harvest.runner run --adapter dataanalys --subject GONV NRAA
-uv run --extra harvest python -m metadata_harvest.runner run --adapter dataanalys --indicator G082 PS|G013
+uv run --extra harvest python -m harvesting.runner run --adapter dataanalys
+uv run --extra harvest python -m harvesting.runner collect --adapter dataanalys
+uv run --extra harvest python -m harvesting.runner run --adapter dataanalys --subject GONV NRAA
+uv run --extra harvest python -m harvesting.runner run --adapter dataanalys --indicator G082 PS|G013
 ```
 
 - `--subject` selects area codes (`run(areas=...)`).
@@ -228,7 +228,7 @@ uv run --extra harvest python -m metadata_harvest.runner run --adapter dataanaly
   `Unreachable` is an `endpoint` error, and the document is withheld. Any other
   failure is a `metadata` error that keeps the last document. A truncated cube
   (20,000 rows reached) counts as such a failure.
-- **Publication rule.** The shared `metadata_harvest.currency.settle` publishes a
+- **Publication rule.** The shared `harvesting.currency.settle` publishes a
   dataset only while its endpoint works and its document was verified within 60
   days (`max_age_days`). Otherwise the document is withheld in state and restored
   automatically.
@@ -244,7 +244,7 @@ The `socialstyrelsen_analys` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/id", "/extension/socialstyrelsen_analys")`.
 
 ```python
-from metadata_harvest.adapters.dataanalys.retrieval import retrieve
+from retrieval.adapters.dataanalys import retrieve
 
 fragment = await retrieve(
     session,

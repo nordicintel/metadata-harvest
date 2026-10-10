@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 
 import pytest
 
-from metadata_harvest.adapters.uka.export import (
+from harvesting.adapters.uka.export import (
     PATH_SEPARATOR,
     TOTAL,
     Dimension,

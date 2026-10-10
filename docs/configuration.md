@@ -109,7 +109,7 @@ remain `catalog.jsonl.zst` and `codelists.jsonl.zst`; unchanged Zstandard codeli
 The supplied [StatDCAT-AP 3.0.0 specification](<reference/StatDCAT-AP 3.0.0.html>) is
 stored verbatim with a [hash and provenance](<reference/StatDCAT-AP 3.0.0.provenance.json>).
 Its referenced images/styles were not bundled in the supplied HTML. The upstream
-revision pinned in [profile.json](../src/metadata_harvest/profile.json) remains
+revision pinned in [profile.json](../harvesting/profile.json) remains
 independent of this reference snapshot. Upstream descriptive requirements are
 quality findings; identities, retrieval structures and information preservation
 remain publication gates.

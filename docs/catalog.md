@@ -4,7 +4,7 @@ The builder runs offline: accepted contributions → grouping → portal matchin
 
 ## Inputs and matching
 
-The repository owns `data/data_eu/oppnadata.jsonl.gz` and its hash/count manifest. Import an existing export with `python -m metadata_harvest.portal import --source <export.jsonl>` or download a candidate with `python -m metadata_harvest.portal refresh`. Scope is always the `oppnadata` catalog. Interrupted pagination, invalid scope and malformed/duplicate identities fail before accepting the candidate. The separate `refresh-portal.yml` workflow runs weekly through [schedules.toml](../schedules.toml).
+The repository owns `data/data_eu/oppnadata.jsonl.gz` and its hash/count manifest. Import an existing export with `python -m harvesting.portal import --source <export.jsonl>` or download a candidate with `python -m harvesting.portal refresh`. Scope is always the `oppnadata` catalog. Interrupted pagination, invalid scope and malformed/duplicate identities fail before accepting the candidate. The separate `refresh-portal.yml` workflow runs weekly through [schedules.toml](../schedules.toml).
 
 Matching order is explicit [overrides](../catalog-matches.json), provider-scoped native identifiers, then exact dataset-specific access/metadata/landing-page URLs. Titles and shared endpoints are not identity evidence. Ambiguous matches are reported. Overrides may identify an equivalent dataset or a broader related entry; broader entries are not flattened into the dataset. Unmatched harvested datasets remain; portal-only datasets are not added.
 
@@ -19,9 +19,9 @@ The [publication switch](../catalog.toml) `include_scb_pxweb_v1 = false` removes
 Zstandard is included in the Python dependencies. 7-Zip is needed only when reading the existing legacy `.7z` publication.
 
 ```powershell
-uv run python -m metadata_harvest.catalog build
+uv run python -m harvesting.catalog build
 # Explicit publication commits/pushes only data/catalog/.
-uv run python -m metadata_harvest.catalog publish
+uv run python -m harvesting.catalog publish
 ```
 
 New production builds produce `catalog.jsonl.zst` and `codelists.jsonl.zst`, each a compressed JSONL stream. Models embed a bundled inline context. No release assets or external storage are required. Compression uses Zstandard level 6 with a content checksum and no timestamps. Consumers can stream JSONL without extracting a temporary file. All files retain the existing 100 MiB gate.
@@ -41,7 +41,7 @@ Previous archives must match their recorded hashes. Candidates carry source, dep
 ```python
 import io
 import json
-from metadata_harvest.catalog import open_catalog
+from harvesting.catalog import open_catalog
 
 with open_catalog("catalog.jsonl.zst") as raw:
     with io.TextIOWrapper(raw, encoding="utf-8") as stream:

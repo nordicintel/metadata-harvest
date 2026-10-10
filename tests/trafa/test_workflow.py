@@ -5,8 +5,8 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from metadata_harvest.adapters.trafa.client import Unreachable
-from metadata_harvest.adapters.trafa.state import collection, load_documents, load_state
+from harvesting.adapters.trafa.client import Unreachable
+from harvesting.adapters.trafa.state import collection, load_documents, load_state
 from tests.trafa.conftest import RecordedClient, fixture_key
 
 NOW = datetime(2026, 10, 12, 6, tzinfo=UTC)
@@ -27,7 +27,7 @@ class Source(RecordedClient):
 
 
 def start(source, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.trafa.workflow import run
+    from harvesting.adapters.trafa.workflow import run
 
     return asyncio.run(
         run(PROVIDER, data, output, client=source, clock=clock, **options)
@@ -35,7 +35,7 @@ def start(source, data, output, *, clock=NOW, **options):
 
 
 def execute(source, data, output, **options):
-    from metadata_harvest.adapters.trafa.workflow import collect
+    from harvesting.adapters.trafa.workflow import collect
 
     result = start(source, data, output, **options)
     collect(data, output, languages=["sv"])
@@ -57,7 +57,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_publishes_valid_datasets_of_recorded_products(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = published(data)
     assert {key.split("/", 1)[1].split("|")[0] for key in documents} == {
@@ -144,7 +144,7 @@ def test_bounded_run_touches_only_selected(data, tmp_path):
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.trafa.workflow import collect
+    from harvesting.adapters.trafa.workflow import collect
 
     start(Source(), data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")

@@ -15,7 +15,7 @@ websites, file scrapers and BRÃ… remain outside this implementation.
 
 Keep current grouped storage, resumable jobs and adapter-isolated publication.
 No source repository is archived and no unrelated job disabled by this handover.
-Imported schema licence/provenance is retained [with the schemas](../src/metadata_harvest/schemas/README.md).
+Imported schema licence/provenance is retained [with the schemas](../harvesting/schemas/README.md).
 
 ## Adapter matrix
 

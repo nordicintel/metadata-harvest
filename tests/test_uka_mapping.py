@@ -5,14 +5,14 @@ from urllib.parse import urlencode
 
 import pytest
 
-from metadata_harvest.adapters.uka.mapping import Scan, build_dataset
-from metadata_harvest.adapters.uka.source import (
+from harvesting.adapters.uka.mapping import Scan, build_dataset
+from harvesting.adapters.uka.source import (
     Entry,
     Indicator,
     parse_catalogue,
     parse_totals,
 )
-from metadata_harvest.validation import validate_metadata
+from harvesting.validation import validate_metadata
 from tests.uka_support import RECORDED, UKA, export_text
 
 ENTRIES = {

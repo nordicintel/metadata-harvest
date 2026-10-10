@@ -8,10 +8,10 @@ from check_statdcat_live import source
 from pyshacl import validate
 from rdflib import Graph, Namespace
 
-from metadata_harvest.statdcat import convert_dataset
+from harvesting.statdcat import convert_dataset
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
-shapes = Path("src/metadata_harvest/schemas/statdcatap-3.0.0-diagnostic.ttl")
+shapes = Path("harvesting/schemas/statdcatap-3.0.0-diagnostic.ttl")
 report = {"purpose": "diagnostic_only", "shapes": str(shapes), "checks": []}
 for adapter, provider in [
     ("pxweb_v2", "scb"),

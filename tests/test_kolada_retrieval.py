@@ -10,7 +10,7 @@ from aiohttp import web
 @pytest.mark.parametrize("scope", ["municipality", "ou"])
 @pytest.mark.parametrize("case", ["normal", "empty", "404", "500", "invalid", "cancel"])
 def test_retrieve(scope, case):
-    from metadata_harvest.adapters.kolada.retrieval import retrieve
+    from harvesting.adapters.kolada.retrieval import retrieve
 
     async def run():
         calls = []
@@ -94,7 +94,7 @@ def test_retrieve(scope, case):
 
 
 def test_split_paginated_results_follow_requested_coordinates():
-    from metadata_harvest.adapters.kolada.retrieval import retrieve
+    from harvesting.adapters.kolada.retrieval import retrieve
 
     async def run():
         calls = []

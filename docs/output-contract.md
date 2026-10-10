@@ -1,6 +1,6 @@
 # Extensible StatDCAT metadata contract
 
-Local [Pydantic v2 models](../src/metadata_harvest/models.py) define NordicIntel profile **2.0.0**. The independently pinned upstream basis is [StatDCAT-AP 3.0.0](https://semiceu.github.io/StatDCAT-AP/drafts/3.0.0/); its exact commit and document hash are in [profile.json](../src/metadata_harvest/profile.json). This is an extensible profile, not a promise of exact upstream shape conformance.
+Local [Pydantic v2 models](../harvesting/models.py) define NordicIntel profile **2.0.0**. The independently pinned upstream basis is [StatDCAT-AP 3.0.0](https://semiceu.github.io/StatDCAT-AP/drafts/3.0.0/); its exact commit and document hash are in [profile.json](../harvesting/profile.json). This is an extensible profile, not a promise of exact upstream shape conformance.
 
 Generate JSON Schema and [field documentation](DATASET-METADATA-REFERENCE.md) with `uv run python scripts/generate_schema_reference.py`; CI checks both against the models. The explicitly named legacy schema remains only for native parsing and transition compatibility.
 
@@ -56,6 +56,6 @@ Old retrieval entry points remain available for one transition release. New call
 
 ## Offline migration and recovery
 
-`uv run python -m metadata_harvest.migration --source data --output output/statdcat-migration/data` builds a separate candidate without reharvesting. Per-adapter gzip ledgers connect every original record to its dataset/distribution and record every attribute disposition, source hash and exact round-trip result. Operational records are copied unchanged. Source files are never replaced by this command.
+`uv run python -m harvesting.migration --source data --output output/statdcat-migration/data` builds a separate candidate without reharvesting. Per-adapter gzip ledgers connect every original record to its dataset/distribution and record every attribute disposition, source hash and exact round-trip result. Operational records are copied unchanged. Source files are never replaced by this command.
 
 Cutover must include code, collections, generated schemas, catalog state and documentation together. Worker result markers carry the profile version; incompatible pre-cutover artifacts are rejected. Git history and `convert_collections` retain recovery for earlier collection layouts. Catalog assembly validates candidates and records accepted committed Git blob identities for failed-input reconstruction.

@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from metadata_harvest.monitor import (
+from harvesting.monitor import (
     CheckReporter,
     decode_errors,
     error_annotations,
@@ -18,7 +18,7 @@ def isolated_check_pointer(tmp_path, monkeypatch):
 def test_finalizer_closes_interrupted_check_without_overwriting_finished_result(
     tmp_path, monkeypatch
 ):
-    from metadata_harvest.monitor import close_check
+    from harvesting.monitor import close_check
 
     monkeypatch.setenv("GITHUB_RUN_ID", "42")
     monkeypatch.setenv("GITHUB_RUN_ATTEMPT", "2")
@@ -61,7 +61,7 @@ def test_large_individual_errors_remain_fully_inspectable():
 def test_supervisor_stops_on_loss_of_visibility_without_restarting(
     monkeypatch, tmp_path
 ):
-    from metadata_harvest import monitor
+    from harvesting import monitor
 
     class Reporter:
         def __init__(self, name):

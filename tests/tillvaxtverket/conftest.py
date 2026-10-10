@@ -208,7 +208,7 @@ async def retrieve_from(fake: FakeDivePort, selection, **kwargs):
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from metadata_harvest.adapters.tillvaxtverket.retrieval import retrieve
+    from harvesting.adapters.tillvaxtverket.retrieval import retrieve
 
     app = web.Application()
     app.router.add_get("/api/api/query/inkvartering/data/{name}", fake.handle)
@@ -236,7 +236,7 @@ async def retrieve_from(fake: FakeDivePort, selection, **kwargs):
 
 def check_fragment(fragment: dict[str, Any], selection) -> None:
     """Validate a fragment: result schema plus the contract's consumer checks."""
-    from metadata_harvest.validation import validate_retrieval
+    from harvesting.validation import validate_retrieval
 
     validate_retrieval(fragment, selection=selection)
     ids = fragment["id"]

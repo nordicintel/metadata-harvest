@@ -7,7 +7,7 @@ import pytest
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 
-from metadata_harvest.adapters.dataanalys.client import (
+from harvesting.adapters.dataanalys.client import (
     DataanalysClient,
     RequestRejected,
     Unreachable,

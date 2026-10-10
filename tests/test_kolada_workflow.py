@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 
 import pytest
 
-from metadata_harvest.adapters.kolada.state import load_documents, load_state
+from harvesting.adapters.kolada.state import load_documents, load_state
 from tests.kolada_fixture import initial_state as import_seed
 from tests.test_kolada import seed_source as source_fixture
 
@@ -47,7 +47,7 @@ class Source:
 
 
 def execute(source, data, output, *, resume=False):
-    from metadata_harvest.adapters.kolada.workflow import collect, run
+    from harvesting.adapters.kolada.workflow import collect, run
 
     result = asyncio.run(
         run(
@@ -69,7 +69,7 @@ def test_unchanged_reuses_seed_without_validation(seed_source, tmp_path, monkeyp
     before = (data / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
     source = Source(load_state(data))
     monkeypatch.setattr(
-        "metadata_harvest.adapters.kolada.workflow.validate_metadata",
+        "harvesting.adapters.kolada.workflow.validate_metadata",
         lambda *a, **k: pytest.fail("Unchanged seed validation forbidden"),
     )
     result = execute(source, data, tmp_path / "output")
@@ -129,7 +129,7 @@ def test_metadata_only_change_does_not_fetch_values(seed_source, tmp_path):
 
 
 def test_stale_artifact_rejected(seed_source, tmp_path):
-    from metadata_harvest.adapters.kolada.workflow import collect, run
+    from harvesting.adapters.kolada.workflow import collect, run
 
     data = tmp_path / "data"
     import_seed(seed_source, data)
@@ -142,7 +142,7 @@ def test_stale_artifact_rejected(seed_source, tmp_path):
 
 
 def test_budget_continuation_preserves_selection_and_pending(seed_source, tmp_path):
-    from metadata_harvest.adapters.kolada.workflow import collect, run
+    from harvesting.adapters.kolada.workflow import collect, run
 
     data = tmp_path / "data"
     import_seed(seed_source, data)
@@ -186,7 +186,7 @@ def test_repeated_bounded_waves_advance_change_checks(
 ):
     from itertools import count
 
-    from metadata_harvest.adapters.kolada import workflow
+    from harvesting.adapters.kolada import workflow
 
     data = tmp_path / "data"
     import_seed(seed_source, data)
@@ -233,7 +233,7 @@ def test_failed_scope_does_not_suppress_new_changes_on_next_normal_run(
 
 
 def test_normal_run_does_not_inherit_an_old_sample_restriction(seed_source, tmp_path):
-    from metadata_harvest.adapters.kolada.workflow import collect, run
+    from harvesting.adapters.kolada.workflow import collect, run
 
     data = tmp_path / "data"
     import_seed(seed_source, data)
@@ -255,7 +255,7 @@ def test_normal_run_does_not_inherit_an_old_sample_restriction(seed_source, tmp_
 
 
 def test_missing_document_rebuilds_from_current_coverage(seed_source, tmp_path):
-    from metadata_harvest.adapters.kolada.state import save
+    from harvesting.adapters.kolada.state import save
 
     data = tmp_path / "data"
     import_seed(seed_source, data)

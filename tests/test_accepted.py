@@ -7,7 +7,7 @@ from tests.test_statdcat import legacy
 
 
 def test_accepted_collection_combines_languages_and_round_trips_task_records(tmp_path):
-    from metadata_harvest.accepted import load_contributions, write_metadata
+    from harvesting.accepted import load_contributions, write_metadata
 
     documents = [legacy("sv"), legacy("en")]
     write_metadata(tmp_path, documents, adapter="pxweb_v2")
@@ -25,7 +25,7 @@ def test_accepted_collection_combines_languages_and_round_trips_task_records(tmp
 
 
 def test_accepted_scopes_do_not_erase_each_other(tmp_path):
-    from metadata_harvest.accepted import load_contributions, write_metadata
+    from harvesting.accepted import load_contributions, write_metadata
 
     docs = []
     for scope in ["municipality", "ou"]:
@@ -41,7 +41,7 @@ def test_accepted_scopes_do_not_erase_each_other(tmp_path):
 
 
 def test_existing_metadata_store_persists_models_and_preserves_task_keys(tmp_path):
-    from metadata_harvest.storage import JsonlStore, filename
+    from harvesting.storage import JsonlStore, filename
 
     store = JsonlStore(tmp_path / "metadata", compressed=True)
     doc = legacy()

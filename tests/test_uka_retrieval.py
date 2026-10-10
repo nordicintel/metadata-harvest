@@ -9,8 +9,8 @@ from urllib.parse import urlencode
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.uka.retrieval import export_request, retrieve
-from metadata_harvest.validation import validate_retrieval
+from harvesting.adapters.uka.retrieval import export_request, retrieve
+from harvesting.validation import validate_retrieval
 from tests.uka_support import (
     FIXTURES,
     UKA,

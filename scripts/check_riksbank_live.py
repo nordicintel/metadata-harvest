@@ -12,13 +12,13 @@ import asyncio
 from datetime import UTC, datetime
 from pathlib import Path
 
-from metadata_harvest.adapters.riksbank.client import RiksbankClient
-from metadata_harvest.adapters.riksbank.retrieval import REQUIRED_METADATA, retrieve
-from metadata_harvest.adapters.riksbank.workflow import build_record, discover_api
-from metadata_harvest.configuration import providers_for_adapter
-from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import write
-from metadata_harvest.validation import validate_retrieval
+from harvesting.adapters.riksbank.client import RiksbankClient
+from harvesting.adapters.riksbank.retrieval import REQUIRED_METADATA, retrieve
+from harvesting.adapters.riksbank.workflow import build_record, discover_api
+from harvesting.configuration import providers_for_adapter
+from harvesting.semantics import category_codes
+from harvesting.storage import write
+from harvesting.validation import validate_retrieval
 
 SAMPLES = {"swea": "swea_group_2", "mpd": "mpd_SEQGDPNAYSA", "swestr": "swestr"}
 

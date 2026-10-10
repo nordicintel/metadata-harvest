@@ -51,12 +51,12 @@ jobs:
           args=()
           if [ -n "$PRODUCTS" ]; then read -ra ids <<< "$PRODUCTS"; args+=(--product "${ids[@]}"); fi
           if [ -n "$LANGUAGES" ]; then read -ra langs <<< "$LANGUAGES"; args+=(--language "${langs[@]}"); fi
-          uv run python -m metadata_harvest.monitor run --name trafa -- python -m metadata_harvest.runner run --adapter trafa "${args[@]}"
+          uv run python -m harvesting.monitor run --name trafa -- python -m harvesting.runner run --adapter trafa "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m metadata_harvest.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -96,14 +96,14 @@ jobs:
           name: trafa-${{ github.run_attempt }}
           path: output/trafa/
       - id: collect
-        run: uv run python -m metadata_harvest.runner collect --adapter trafa
+        run: uv run python -m harvesting.runner collect --adapter trafa
       - name: Publish current Trafikanalys metadata and errors
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m metadata_harvest.runner publish --adapter trafa --run-id "$RUN_ID"
+          uv run python -m harvesting.runner publish --adapter trafa --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -111,7 +111,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run catalog.yml --ref main
       - name: Fail only when a whole scope failed
-        run: uv run python -m metadata_harvest.outcome --adapter trafa
+        run: uv run python -m harvesting.outcome --adapter trafa
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

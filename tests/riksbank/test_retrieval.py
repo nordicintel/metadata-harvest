@@ -5,7 +5,7 @@ import asyncio
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.riksbank import retrieval
+from harvesting.adapters.riksbank import retrieval
 
 DAYS = ["2026-10-03", "2026-10-05", "2026-10-06", "2026-10-07", "2026-10-08"]
 """2026-10-03 is a Saturday: no observation exists."""

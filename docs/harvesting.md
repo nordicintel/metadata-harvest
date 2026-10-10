@@ -11,8 +11,8 @@ Edit [schedules.toml](../schedules.toml), then run and commit both the config an
 its generated workflow changes:
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.scheduling sync
-uv run --extra harvest python -m metadata_harvest.scheduling sync --check
+uv run --extra harvest python -m harvesting.scheduling sync
+uv run --extra harvest python -m harvesting.scheduling sync --check
 ```
 
 CI runs the check command. Do not hand-edit the marked schedule/enablement blocks
@@ -60,7 +60,7 @@ A harvest or catalog job goes red only when a whole scope failed: a provider or
 language discovery, a base API, or an adapter whose accepted collections the catalog
 could not take. Individual table, codelist, indicator and dataset errors are published
 in the adapter's report with `completed_with_errors` and leave the job green;
-`python -m metadata_harvest.outcome --adapter <name>` applies that rule from the
+`python -m harvesting.outcome --adapter <name>` applies that rule from the
 published report and prints the counts.
 
 ## Deliberate manual operations
@@ -110,9 +110,9 @@ Read live counters or every individual error using the installed package and
 authenticated GitHub CLI:
 
 ```powershell
-uv run python -m metadata_harvest.monitor status RUN_ID
-uv run python -m metadata_harvest.monitor status RUN_ID --errors
-uv run python -m metadata_harvest.monitor status RUN_ID --worker pxweb_v2-scb --error 1
+uv run python -m harvesting.monitor status RUN_ID
+uv run python -m harvesting.monitor status RUN_ID --errors
+uv run python -m harvesting.monitor status RUN_ID --worker pxweb_v2-scb --error 1
 ```
 
 CLI output escapes non-ASCII characters as JSON Unicode sequences, so redirected
@@ -243,14 +243,14 @@ Selecting `--adapter pxweb_v2` switches defaults to `catalogs.json`,
 and `continue`:
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter pxweb_v2
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter pxweb_v2
+uv run --extra harvest python -m harvesting.runner run --adapter pxweb_v2
+uv run --extra harvest python -m harvesting.runner collect --adapter pxweb_v2
 ```
 
 `run` writes worker output, `collect` validates and applies it locally, and `publish`
 commits/pushes the selected adapter directory. Use a separate `--data` directory
 for experiments and an empty `--output` directory for each v2 worker invocation.
-Run `uv run --extra harvest python -m metadata_harvest.runner --help` for supported arguments.
+Run `uv run --extra harvest python -m harvesting.runner --help` for supported arguments.
 
 Run `uv run --extra harvest ruff check .`, `uv run --extra harvest ruff format --check .`, and `uv run --extra harvest pytest`.
 Tests cover adapter separation, confirmed removal, incomplete discovery, failed

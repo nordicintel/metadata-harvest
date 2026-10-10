@@ -6,12 +6,12 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.catalog import build_legacy as build
-from metadata_harvest.catalog import promote
+from harvesting.catalog import build_legacy as build
+from harvesting.catalog import promote
 
 
 def unpack(path):
-    from metadata_harvest.catalog import open_catalog
+    from harvesting.catalog import open_catalog
 
     with open_catalog(path) as stream:
         return stream.read()
@@ -27,7 +27,7 @@ def collection(root, content=b'{"trusted":true}\n'):
 def test_streaming_lines_without_extracted_files(tmp_path):
     import io
 
-    from metadata_harvest.catalog import _compress, open_catalog
+    from harvesting.catalog import _compress, open_catalog
 
     source = tmp_path / "catalog.jsonl"
     source.write_text('{"title":"åäö"}\n{"number":2}\n', encoding="utf-8")
@@ -46,7 +46,7 @@ def test_previous_7z_retains_failed_inputs_and_is_removed_only_at_promotion(tmp_
     import hashlib
     import subprocess
 
-    from metadata_harvest.catalog import ASSETS, sevenzip
+    from harvesting.catalog import ASSETS, sevenzip
 
     data, candidate = tmp_path / "data", tmp_path / "candidate"
     source = collection(data)
@@ -84,7 +84,7 @@ def test_previous_7z_retains_failed_inputs_and_is_removed_only_at_promotion(tmp_
 def test_offline_trusted_copy_reuse_and_removal(tmp_path, monkeypatch):
     import socket
 
-    import metadata_harvest.validation as validation
+    import harvesting.validation as validation
 
     monkeypatch.setattr(
         socket, "create_connection", lambda *a, **k: pytest.fail("network forbidden")
@@ -169,14 +169,14 @@ def test_catalog_import_does_not_load_harvesting():
     import subprocess
     import sys
 
-    code = "import metadata_harvest.catalog,sys; assert not any(x in sys.modules for x in ['metadata_harvest.runner','metadata_harvest.workflow','httpx','playwright'])"
+    code = "import harvesting.catalog,sys; assert not any(x in sys.modules for x in ['harvesting.runner','harvesting.workflow','httpx','playwright'])"
     subprocess.run([sys.executable, "-c", code], check=True)
 
 
 def test_catalog_publication_rejects_unrelated_staging(tmp_path, monkeypatch):
     import subprocess
 
-    from metadata_harvest.publication import publish
+    from harvesting.publication import publish
 
     def git(*args):
         return subprocess.run(
@@ -198,7 +198,7 @@ def test_catalog_publication_rejects_unrelated_staging(tmp_path, monkeypatch):
 def test_cli_rejects_uncommitted_source_results(tmp_path, monkeypatch):
     import subprocess
 
-    from metadata_harvest.catalog import verify_published
+    from harvesting.catalog import verify_published
 
     subprocess.run(["git", "init", str(tmp_path)], check=True, capture_output=True)
     monkeypatch.chdir(tmp_path)
@@ -210,23 +210,23 @@ def test_cli_rejects_uncommitted_source_results(tmp_path, monkeypatch):
 def test_workflow_dispatch_is_one_way_and_before_error_exit():
     root = Path(__file__).resolve().parents[1]
     catalog = (root / ".github/workflows/catalog.yml").read_text()
-    assert "metadata_harvest.runner" not in catalog
+    assert "harvesting.runner" not in catalog
     assert "gh workflow run" not in catalog
     assert "schedule:" not in catalog
     for name in ("harvest.yml", "harvest-pxweb-v2.yml", "harvest-kolada.yml"):
         content = (root / ".github/workflows" / name).read_text()
         assert content.index("gh workflow run catalog.yml") > content.rindex(
-            "metadata_harvest.runner publish"
+            "harvesting.runner publish"
         )
         assert content.index("gh workflow run catalog.yml") < content.index(
-            "metadata_harvest.outcome --adapter"
+            "harvesting.outcome --adapter"
         )
 
 
 def test_cli_rejects_ignored_source_files(tmp_path, monkeypatch):
     import subprocess
 
-    from metadata_harvest.catalog import verify_published
+    from harvesting.catalog import verify_published
 
     def git(*args):
         return subprocess.run(
@@ -334,7 +334,7 @@ def test_unchanged_rebuild_keeps_state_archives_and_report_identical(tmp_path):
 
 
 def test_codelist_change_recompresses_only_codelists(tmp_path, monkeypatch):
-    import metadata_harvest.catalog as catalog
+    import harvesting.catalog as catalog
 
     data, candidate = tmp_path / "data", tmp_path / "candidate"
     collection(data)
@@ -372,7 +372,7 @@ def test_identical_inputs_build_identical_archives_in_different_directories(tmp_
 def test_size_limit_rejects_candidate_without_changing_accepted_catalog(
     tmp_path, monkeypatch
 ):
-    import metadata_harvest.catalog as catalog
+    import harvesting.catalog as catalog
 
     data, candidate = tmp_path / "data", tmp_path / "candidate"
     source = collection(data)
@@ -412,7 +412,7 @@ def test_combined_archives_are_committed_with_state_and_reports(tmp_path, monkey
 
 
 def test_interrupted_compression_preserves_archive_and_can_retry(tmp_path, monkeypatch):
-    import metadata_harvest.catalog as catalog
+    import harvesting.catalog as catalog
 
     source, archive = tmp_path / "catalog.jsonl", tmp_path / "catalog.jsonl.zst"
     source.write_bytes(b'{"dataset":1}\n')

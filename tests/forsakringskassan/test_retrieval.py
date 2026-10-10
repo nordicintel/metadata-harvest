@@ -6,7 +6,7 @@ from urllib.parse import unquote
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.forsakringskassan import retrieval
+from harvesting.adapters.forsakringskassan import retrieval
 
 AVSLUT = "ase-avslutsanledning/ASEAvslutsanledning"
 LAN = "ase-beslut-lan/ASEBeslutLan"

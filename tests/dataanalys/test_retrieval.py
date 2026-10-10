@@ -7,8 +7,8 @@ import math
 import aiohttp
 import pytest
 
-from metadata_harvest.adapters.dataanalys import retrieval
-from metadata_harvest.semantics import category_codes
+from harvesting.adapters.dataanalys import retrieval
+from harvesting.semantics import category_codes
 from tests.dataanalys.conftest import check_fragment, retrieve_from
 
 COLUMNS = {

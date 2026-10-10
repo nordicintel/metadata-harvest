@@ -13,7 +13,7 @@ The native field names, JSON-stat examples and provider entry-point calls below
 describe adapter parsing and transition compatibility, not the published JSON-LD
 shape. Dated acceptance sections record their original verification.
 
-The `metadata_harvest.adapters.trafa` package implements metadata and on-demand
+The `harvesting.adapters.trafa` package implements metadata and on-demand
 retrieval for the Trafikanalys open data API, `https://api.trafa.se/api`.
 
 - It was ported from
@@ -72,9 +72,9 @@ usable update signal, and a full run is about 400 requests in about a minute, so
 and is counted as `unchanged`.
 
 ```powershell
-uv run --extra harvest python -m metadata_harvest.runner run --adapter trafa
-uv run --extra harvest python -m metadata_harvest.runner collect --adapter trafa
-uv run --extra harvest python -m metadata_harvest.runner run --adapter trafa --product T10011 T10033
+uv run --extra harvest python -m harvesting.runner run --adapter trafa
+uv run --extra harvest python -m harvesting.runner collect --adapter trafa
+uv run --extra harvest python -m harvesting.runner run --adapter trafa --product T10011 T10033
 ```
 
 ### Failures and publication
@@ -86,7 +86,7 @@ uv run --extra harvest python -m metadata_harvest.runner run --adapter trafa --p
 - **Dataset endpoint.** A dataset's `/data` unit probe is its endpoint check.
 - **Metadata failures.** A failing documentation page, parse or validation is a
   metadata failure. It keeps the previous documents and removes none.
-- **Publication rule.** It is shared with UKÄ and SDB in `metadata_harvest.currency`.
+- **Publication rule.** It is shared with UKÄ and SDB in `harvesting.currency`.
   A dataset is published only while its endpoint works and its document was
   verified within 60 days. Otherwise it is withheld in state and restored
   automatically.
@@ -99,7 +99,7 @@ The `trafa` entry point works in a plain installation. It needs
 `REQUIRED_METADATA = ("/id", "/extension/trafa")`.
 
 ```python
-from metadata_harvest.adapters.trafa.retrieval import retrieve
+from retrieval.adapters.trafa import retrieve
 
 fragment = await retrieve(
     session,

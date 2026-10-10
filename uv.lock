@@ -477,8 +477,6 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
-    { name = "pydantic" },
-    { name = "zstandard" },
 ]
 
 [package.optional-dependencies]
@@ -490,11 +488,13 @@ harvest = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "pydantic" },
     { name = "pyshacl" },
     { name = "pytest" },
     { name = "pyyaml" },
     { name = "rdflib" },
     { name = "ruff" },
+    { name = "zstandard" },
 ]
 
 [package.metadata]
@@ -503,18 +503,18 @@ requires-dist = [
     { name = "httpx", marker = "extra == 'harvest'", specifier = ">=0.28,<1" },
     { name = "jsonschema", extras = ["format"], marker = "extra == 'harvest'", specifier = ">=4.23,<5" },
     { name = "playwright", marker = "extra == 'harvest'", specifier = ">=1.63.0" },
-    { name = "pydantic", specifier = ">=2.12,<3" },
-    { name = "zstandard", specifier = ">=0.25,<1" },
 ]
 provides-extras = ["harvest"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "pydantic", specifier = ">=2.12,<3" },
     { name = "pyshacl", specifier = ">=0.30,<1" },
     { name = "pytest", specifier = ">=8,<10" },
     { name = "pyyaml", specifier = ">=6,<7" },
     { name = "rdflib", specifier = ">=7,<8" },
     { name = "ruff", specifier = ">=0.13,<1" },
+    { name = "zstandard", specifier = ">=0.25,<1" },
 ]
 
 [[package]]

@@ -4,8 +4,8 @@ import copy
 
 import pytest
 
-from metadata_harvest.adapters.riksbank import mapping, source
-from metadata_harvest.validation import validate_metadata
+from harvesting.adapters.riksbank import mapping, source
+from harvesting.validation import validate_metadata
 from tests.riksbank.conftest import API, RECORDED, fixture_key
 
 GROUPS = RECORDED[fixture_key(f"{API}/swea/v1/Groups")]

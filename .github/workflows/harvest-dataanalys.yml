@@ -51,12 +51,12 @@ jobs:
           args=()
           if [ -n "$AREAS" ]; then read -ra codes <<< "$AREAS"; args+=(--subject "${codes[@]}"); fi
           if [ -n "$INDICATORS" ]; then read -ra codes <<< "$INDICATORS"; args+=(--indicator "${codes[@]}"); fi
-          uv run python -m metadata_harvest.monitor run --name dataanalys -- python -m metadata_harvest.runner run --adapter dataanalys "${args[@]}"
+          uv run python -m harvesting.monitor run --name dataanalys -- python -m harvesting.runner run --adapter dataanalys "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m metadata_harvest.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -96,14 +96,14 @@ jobs:
           name: dataanalys-${{ github.run_attempt }}
           path: output/dataanalys/
       - id: collect
-        run: uv run python -m metadata_harvest.runner collect --adapter dataanalys
+        run: uv run python -m harvesting.runner collect --adapter dataanalys
       - name: Publish current analysverktyg metadata and errors
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m metadata_harvest.runner publish --adapter dataanalys --run-id "$RUN_ID"
+          uv run python -m harvesting.runner publish --adapter dataanalys --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -111,7 +111,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run catalog.yml --ref main
       - name: Fail only when a whole scope failed
-        run: uv run python -m metadata_harvest.outcome --adapter dataanalys
+        run: uv run python -m harvesting.outcome --adapter dataanalys
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

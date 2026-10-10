@@ -8,9 +8,9 @@ from pathlib import Path
 
 import pytest
 
-from metadata_harvest.adapters.smhi_emissions.api import FILTER_OPTIONS_URL
-from metadata_harvest.adapters.smhi_emissions.client import Unreachable
-from metadata_harvest.adapters.smhi_emissions.state import (
+from harvesting.adapters.smhi_emissions.api import FILTER_OPTIONS_URL
+from harvesting.adapters.smhi_emissions.client import Unreachable
+from harvesting.adapters.smhi_emissions.state import (
     collection,
     load_documents,
     load_state,
@@ -39,7 +39,7 @@ class Source(RecordedClient):
 
 
 def start(source, data, output, *, clock=NOW, **options):
-    from metadata_harvest.adapters.smhi_emissions.workflow import run
+    from harvesting.adapters.smhi_emissions.workflow import run
 
     return asyncio.run(
         run(PROVIDER, data, output, client=source, clock=clock, **options)
@@ -47,7 +47,7 @@ def start(source, data, output, *, clock=NOW, **options):
 
 
 def execute(source, data, output, **options):
-    from metadata_harvest.adapters.smhi_emissions.workflow import collect
+    from harvesting.adapters.smhi_emissions.workflow import collect
 
     result = start(source, data, output, **options)
     collect(data, output, languages=["sv"])
@@ -79,7 +79,7 @@ def data(bootstrapped, tmp_path):
 
 
 def test_bootstrap_publishes_one_valid_dataset_per_substance(data):
-    from metadata_harvest.validation import validate_metadata
+    from harvesting.validation import validate_metadata
 
     documents = published(data)
     assert set(documents) == {key(code) for code in substances()}
@@ -172,7 +172,7 @@ def test_listing_failure_publishes_nothing(data, tmp_path):
 def test_discovery_failure_is_reported_live_before_raise(
     data, tmp_path, monkeypatch, malformed
 ):
-    from metadata_harvest.adapters.smhi_emissions import workflow
+    from harvesting.adapters.smhi_emissions import workflow
 
     events = []
     monkeypatch.setattr(
@@ -199,7 +199,7 @@ def test_discovery_failure_is_reported_live_before_raise(
 def test_failed_probe_is_reported_before_valid_sibling(
     data, tmp_path, monkeypatch, stage
 ):
-    from metadata_harvest.adapters.smhi_emissions import workflow
+    from harvesting.adapters.smhi_emissions import workflow
 
     events, before_sibling = [], []
     monkeypatch.setattr(
@@ -233,7 +233,7 @@ def test_failed_probe_is_reported_before_valid_sibling(
 def test_recovered_retry_has_live_attempt_but_no_final_error(
     data, tmp_path, monkeypatch
 ):
-    from metadata_harvest.adapters.smhi_emissions import workflow
+    from harvesting.adapters.smhi_emissions import workflow
 
     events = []
     monkeypatch.setattr(
@@ -333,7 +333,7 @@ def test_conflicting_duplicate_substance_is_quarantined(data, tmp_path):
 
 
 def test_stale_artifact_rejected(data, tmp_path):
-    from metadata_harvest.adapters.smhi_emissions.workflow import collect
+    from harvesting.adapters.smhi_emissions.workflow import collect
 
     start(Source(), data, tmp_path / "out")
     (data / "reports/latest.json").write_text("{}", encoding="utf-8")
@@ -342,7 +342,7 @@ def test_stale_artifact_rejected(data, tmp_path):
 
 
 def test_english_is_not_configurable(tmp_path):
-    from metadata_harvest.adapters.smhi_emissions.workflow import run
+    from harvesting.adapters.smhi_emissions.workflow import run
 
     with pytest.raises(ValueError, match="Swedish only"):
         asyncio.run(

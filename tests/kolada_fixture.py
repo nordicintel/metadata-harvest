@@ -2,8 +2,8 @@
 
 import json
 
-from metadata_harvest.adapters.kolada.metadata import build_dataset, reference_rows
-from metadata_harvest.adapters.kolada.state import load_documents, records, save
+from harvesting.adapters.kolada.metadata import build_dataset, reference_rows
+from harvesting.adapters.kolada.state import load_documents, records, save
 
 
 def initial_state(source, target):
