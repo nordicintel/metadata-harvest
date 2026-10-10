@@ -42,7 +42,7 @@ MAX_QUERY_STRING = 1800
 An adapter bound (no limit is documented), kept below common 2,048-character
 URL limits."""
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("forsakringskassan_logger")
 
 
 def table_url(report: str, table: str) -> str:
@@ -93,8 +93,10 @@ def meta_url(report: str) -> str:
 
 async def _check_table(session: aiohttp.ClientSession, url: str, table: str) -> None:
     """Raise LookupError unless the report's ``meta.json`` still lists ``table``."""
+    logger.debug("Empty table response: checking %s for table %s", url, table)
     async with session.get(url, headers={"Accept": "application/json"}) as response:
         if response.status == 404:
+            logger.warning("%s answered 404: the report no longer exists", url)
             raise LookupError(f"Försäkringskassan has no report at {url}")
         response.raise_for_status()
         meta = await response.json(content_type=None)
@@ -102,6 +104,7 @@ async def _check_table(session: aiohttp.ClientSession, url: str, table: str) -> 
     if table not in {
         item.get("table") for item in breakdowns if isinstance(item, dict)
     }:
+        logger.warning("%s no longer lists table %s", url, table)
         raise LookupError(f"Försäkringskassan no longer lists table {table!r}")
 
 
@@ -218,6 +221,14 @@ async def retrieve(
     if any(not codes for codes in variables.values()):
         raise ValueError("every selected dimension needs at least one code")
     url = data_url or table_url(report, table)
+    logger.debug(
+        "Retrieving %s/%s from %s: %d measures, %d filtered dimensions",
+        report,
+        table,
+        url,
+        len(measures),
+        len(variables),
+    )
 
     parts = split_selection(variables)
     if len(parts) > 1:
@@ -228,6 +239,10 @@ async def retrieve(
         empty = empty and not rows
         results.append(_cells(rows, part, measures))
     if empty:
+        logger.info(
+            "%s: every response was empty; verifying that the table exists",
+            dataset_code,
+        )
         # An unknown table of a known report also answers [] (not 404).
         await _check_table(session, metadata_url or meta_url(report), table)
 
@@ -262,6 +277,13 @@ async def retrieve(
             else dict(sorted(value.items(), key=lambda item: int(item[0])))
         ),
     }
+    logger.debug(
+        "%s: %d of %d cells returned, %d suppressed",
+        dataset_code,
+        len(value),
+        total,
+        len(status),
+    )
     if status:
         fragment["status"] = dict(sorted(status.items(), key=lambda item: int(item[0])))
     return fragment

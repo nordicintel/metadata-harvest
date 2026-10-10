@@ -13,6 +13,7 @@ unbounded run proves an indicator's removal.
 """
 
 import asyncio
+import logging
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -75,6 +76,8 @@ from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
+logger = logging.getLogger("dataanalys_logger")
+
 ADAPTER = "dataanalys"
 LANGUAGES = ("sv",)
 COUNTS = (
@@ -88,6 +91,13 @@ COUNTS = (
 )
 MAX_PAGES = 50
 """Stop paging a list after this many pages (5,000 rows): a runaway guard."""
+
+
+def _sample(items, limit: int = 10) -> str:
+    """A short, readable list of ``items`` for a log line."""
+    items = list(items)
+    shown = ", ".join(str(item) for item in items[:limit])
+    return shown + (f" (+{len(items) - limit} more)" if len(items) > limit else "")
 
 
 def area_of(key: str) -> str:
@@ -116,10 +126,35 @@ async def _list(
                 )
             count = page_count
         except Exception as error:
+            logger.warning(
+                "%s listing stopped at page %d with %d of %d rows kept (%s: %s)",
+                resource,
+                page,
+                len(rows),
+                count,
+                type(error).__name__,
+                error,
+            )
             return rows, count, error
         rows += result
+        logger.debug(
+            "%s listing page %d: %d rows (%d of %d)",
+            resource,
+            page,
+            len(result),
+            len(rows),
+            count,
+        )
         if len(result) < PAGE_SIZE or len(rows) >= count:
             break
+    else:
+        logger.warning(
+            "%s listing reached the %d page guard with %d of %d rows",
+            resource,
+            MAX_PAGES,
+            len(rows),
+            count,
+        )
     return rows, count, None
 
 
@@ -129,6 +164,7 @@ async def discover(client) -> Discovery:
     Page failures are recorded independently; cancellation still propagates.
     """
     discovery = Discovery()
+    logger.info("Discovery: reading the chart and dashboard lists")
     charts, discovery.charts_count, error = await _list(
         client, CHART_LIST_URL, CHART_COLUMNS, "chart"
     )
@@ -149,6 +185,30 @@ async def discover(client) -> Discovery:
     if error is not None:
         discovery.problems.append(("dashboards", error))
     add_dashboards(discovery, dashboards)
+    logger.info(
+        "Discovery: charts %d of %d listed (complete=%s), dashboards %d of %d "
+        "listed (complete=%s), %d usable dashboards",
+        discovery.charts_listed,
+        discovery.charts_count,
+        discovery.charts_complete,
+        discovery.dashboards_listed,
+        discovery.dashboards_count,
+        discovery.dashboards_complete,
+        len(discovery.dashboards),
+    )
+    logger.info(
+        "Discovery: %d complete areas (%s), %d incomplete, %d unsupported "
+        "datasources ignored, %d unreadable listing rows",
+        len(discovery.areas),
+        _sample(sorted(discovery.areas)),
+        len(discovery.incomplete),
+        len(discovery.unsupported),
+        len(discovery.problems),
+    )
+    for code, reason in sorted(discovery.incomplete.items()):
+        logger.warning("Discovery: area %s cannot be harvested: %s", code, reason)
+    if discovery.unsupported:
+        logger.debug("Discovery: unsupported datasources %s", discovery.unsupported)
     return discovery
 
 
@@ -173,6 +233,13 @@ class _Harvester:
         """
         columns = [*CATALOGUE_REQUIRED, *CATALOGUE_OPTIONAL]
         for attempt in (1, 2):
+            logger.debug(
+                "Area %s: catalogue query %d on %s with %d columns",
+                area.code,
+                attempt,
+                area.catalogue_dataset,
+                len(columns),
+            )
             try:
                 body = await self.client.post_json(
                     DATA_URL, catalogue_body(area.catalogue_id, columns)
@@ -186,6 +253,13 @@ class _Harvester:
                         f"{area.catalogue_dataset} lacks catalogue columns {required}"
                     ) from error
                 columns = [c for c in columns if c not in missing]
+                logger.info(
+                    "Area %s: %s lacks optional catalogue columns %s; "
+                    "querying again without them",
+                    area.code,
+                    area.catalogue_dataset,
+                    missing,
+                )
                 continue
             rows = result_rows(body)
             if len(rows) >= CATALOGUE_ROW_LIMIT:
@@ -193,7 +267,17 @@ class _Harvester:
                     f"{area.catalogue_dataset}: {len(rows)} catalogue rows reach the "
                     f"row limit {CATALOGUE_ROW_LIMIT}; the catalogue may be truncated"
                 )
-            return parse_catalogue(rows, columns)
+            catalogue = parse_catalogue(rows, columns)
+            logger.info(
+                "Area %s: catalogue lists %d indicators (%d rows, %d duplicated "
+                "codes, %d malformed rows)",
+                area.code,
+                len(catalogue.rows),
+                len(rows),
+                len(catalogue.duplicates),
+                len(catalogue.problems),
+            )
+            return catalogue
         raise AssertionError("unreachable")
 
     async def columns(self, area: Area) -> dict[str, str]:
@@ -204,6 +288,7 @@ class _Harvester:
             UnsupportedLayout: A required logical column has no candidate.
         """
         if area.code in self.columns_cache:
+            logger.debug("Area %s: reusing probed Trender columns", area.code)
             return self.columns_cache[area.code]
         choice = dict.fromkeys(TRENDER_COLUMNS, 0)
         longest = max(len(candidates) for candidates, _ in TRENDER_COLUMNS.values())
@@ -234,9 +319,25 @@ class _Harvester:
                         raise UnsupportedLayout(
                             f"{area.values_dataset} has none of {list(candidates)}"
                         ) from error
+                    logger.debug(
+                        "Area %s: %s has no column %s for %s; %s",
+                        area.code,
+                        area.values_dataset,
+                        column,
+                        name,
+                        "trying the next alias"
+                        if choice[name] < len(candidates)
+                        else "optional, dropped",
+                    )
                 continue
             result_rows(body)
             self.columns_cache[area.code] = current
+            logger.info(
+                "Area %s: probed %s columns %s",
+                area.code,
+                area.values_dataset,
+                ", ".join(f"{name}={column}" for name, column in current.items()),
+            )
             return current
         raise ValueError(f"{area.values_dataset}: columns could not be resolved")
 
@@ -249,6 +350,7 @@ class _Harvester:
         Raises:
             Unreachable: The values query (the endpoint check) did not answer.
         """
+        logger.debug("%s|%s: querying dimension categories", area.code, code)
         rows = result_rows(
             await self.client.post_json(
                 DATA_URL, cube_body(area.values_id, columns, code)
@@ -260,9 +362,24 @@ class _Harvester:
             )
         cube = parse_cube(rows, columns)
         if cube is None:
+            logger.debug(
+                "%s|%s: no Riket or Region rows; out of scope", area.code, code
+            )
             return None, ""
         link = resolve_link(
             self.discovery, area.code, code, row.get("HrefIndicatorDashboard")
+        )
+        log = logger.warning if link.resolution == "unresolved" else logger.debug
+        log(
+            "%s|%s: %d dimension rows -> %d regions, %d periods; web page "
+            "resolved by %s (dashboard %s)",
+            area.code,
+            code,
+            len(rows),
+            len(cube.regions),
+            len(cube.periods),
+            link.resolution,
+            link.dashboard.slug if link.dashboard is not None else "none",
         )
         document = build_dataset(
             area,
@@ -285,6 +402,7 @@ class _Harvester:
 
 async def discover_provider(provider: dict, *, client=None) -> Discovery:
     """The current chart and dashboard listings, interpreted."""
+    logger.info("Discovering the current analysverktyg listings")
     connection = client or DataanalysClient(provider)
     try:
         return await discover(connection)
@@ -299,8 +417,16 @@ async def fetch_metadata(record: dict, *, client) -> list[dict]:
     ``record`` holds ``area`` and ``indicators`` (``MBusinessKey`` codes) and, to
     avoid listing again, a ``discovery`` from :func:`discover_provider`.
     """
-    discovery = record.get("discovery") or await discover(client)
+    discovery = record.get("discovery")
+    if discovery is None:
+        logger.info("No discovery supplied for %s; listing again", record["area"])
+        discovery = await discover(client)
     area = discovery.areas[record["area"]]
+    logger.info(
+        "Building %d requested indicators of area %s",
+        len(record["indicators"]),
+        area.code,
+    )
     harvester = _Harvester(client, discovery)
     catalogue = await harvester.catalogue(area)
     columns = await harvester.columns(area)
@@ -313,6 +439,7 @@ async def fetch_metadata(record: dict, *, client) -> list[dict]:
         if document is None:
             raise LookupError(f"{area.code}|{code} has no Riket or Region rows")
         documents.append(document)
+    logger.info("Built %d documents for area %s", len(documents), area.code)
     return documents
 
 
@@ -347,6 +474,16 @@ async def run(
     state = load_state(data)
     published = load_documents(data, configured)
     withheld = state["withheld"]
+    logger.info(
+        "Baseline in %s: %d published documents, %d withheld, %d state entries, "
+        "mapping version %s (current %s)",
+        data,
+        len(published),
+        len(withheld),
+        len(state["datasets"]),
+        state.get("mapping_version"),
+        MAPPING_VERSION,
+    )
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         target = output / relative
@@ -370,6 +507,18 @@ async def run(
     bounded = areas is not None or indicators is not None
     wanted = {name.casefold() for name in indicators} if indicators else None
     found: set[str] = set()
+    logger.info(
+        "Run start: %s; areas=%s indicators=%s languages=%s max_age=%dd "
+        "retry_cooldown=%ss request_interval=%ss; the site has no change signal, "
+        "so every selected indicator is rebuilt (no refresh selection)",
+        "bounded (removes nothing)" if bounded else "full",
+        _sample(sorted(areas)) if areas is not None else "all",
+        _sample(sorted(indicators)) if indicators else "all",
+        selected_languages,
+        max_age.days,
+        cooldown,
+        provider.get("request_interval_seconds", 1.0),
+    )
 
     def matches(key: str) -> bool:
         if wanted is None:
@@ -387,6 +536,7 @@ async def run(
             entry["url"] = url
         errors.append(entry)
         if emit:
+            logger.error("%s failed at %s: %s", resource, stage, entry["error"])
             progress.error(
                 stage,
                 resource,
@@ -406,7 +556,8 @@ async def run(
             and matches(key)
         }
 
-    def remove(key):
+    def remove(key, reason):
+        logger.info("Removing %s: %s", key, reason)
         settled.discard(key)
         state["datasets"].pop(key, None)
         failures.pop(key, None)
@@ -426,6 +577,7 @@ async def run(
     def record_failure(key: str, stage: str, error: Exception, *, url=DATA_URL):
         """Publish the attempt immediately; only unresolved attempts enter reports."""
         failures[key] = (stage, error)
+        logger.error("%s failed at %s: %s: %s", key, stage, type(error).__name__, error)
         progress.error(stage, key, "sv", f"{type(error).__name__}: {error}", url=url)
         progress.update(failed=len(failures))
 
@@ -457,6 +609,9 @@ async def run(
                 ),
             )
         listed_areas = sorted(set(discovery.areas) | set(discovery.incomplete))
+        logger.info(
+            "Listed areas (%d): %s", len(listed_areas), _sample(listed_areas, 30)
+        )
         if not listed_areas and discovery.charts_complete:
             fail(
                 "discovery",
@@ -474,15 +629,29 @@ async def run(
         )
         if areas is None:
             selected = listed_areas
+            logger.info("Selected all %d listed areas", len(selected))
         else:
             names = {name.casefold() for name in areas}
             selected = [a for a in listed_areas if a.casefold() in names]
+            logger.info(
+                "Selected %d of %d listed areas by the areas argument: %s",
+                len(selected),
+                len(listed_areas),
+                _sample(selected),
+            )
             for name in sorted(names - {a.casefold() for a in listed_areas}):
                 fail("discovery", name, LookupError("Unknown analysis area"))
         if not bounded and charts_whole:
             for key in sorted(known()):
                 if area_of(key) not in listed_areas:
-                    remove(key)
+                    remove(key, "its area is no longer in the complete chart list")
+        elif bounded:
+            logger.info("Bounded run: unlisted areas and indicators are not removed")
+        else:
+            logger.warning(
+                "Chart list incomplete: removals are not proven, so no dataset "
+                "will be removed"
+            )
 
         harvester = _Harvester(connection, discovery)
 
@@ -502,10 +671,19 @@ async def run(
         async def harvest(area_code: str) -> bool:
             """Process one area; return whether an endpoint failure occurred."""
             previous = known(area_code)
+            logger.debug(
+                "Area %s: %d datasets known from earlier runs", area_code, len(previous)
+            )
             settled.update(previous)
             for key in previous:
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
             if area_code in discovery.incomplete:
+                logger.warning(
+                    "Area %s: tables not listed exactly once; its %d known datasets "
+                    "stay as they are and are treated as working",
+                    area_code,
+                    len(previous),
+                )
                 for key in previous:
                     working[key] = True
                 record_failure(
@@ -521,14 +699,34 @@ async def run(
                 columns = await harvester.columns(area)
             except UnsupportedLayout as error:
                 if not previous:  # never harvested: out of the model, not a failure
+                    logger.info(
+                        "Area %s is outside the model and was never harvested; "
+                        "skipped without a failure: %s",
+                        area_code,
+                        error,
+                    )
                     unsupported_areas[area_code] = str(error)
                     return False
+                logger.warning(
+                    "Area %s changed to an unsupported layout; its %d known "
+                    "datasets stay as they are",
+                    area_code,
+                    len(previous),
+                )
                 for key in previous:
                     working[key] = True
                 record_failure(f"*/{area_code}", "metadata", error)
                 return False
             except Exception as error:
                 stage = "endpoint" if isinstance(error, Unreachable) else "metadata"
+                logger.warning(
+                    "Area %s: %s failure while reading its catalogue and columns; "
+                    "its %d known datasets are treated as %s",
+                    area_code,
+                    stage,
+                    len(previous),
+                    "unavailable (withheld)" if stage == "endpoint" else "working",
+                )
                 for key in previous:  # reported once, for the area
                     working[key] = stage == "metadata"
                 record_failure(f"*/{area_code}", stage, error)
@@ -537,6 +735,10 @@ async def run(
             progress.update(failed=len(failures))
             catalogue_problems[area_code] = catalogue.problems
             current = set()
+            tally = dict.fromkeys(
+                ("skipped", "rebuilt", "unchanged", "out_of_scope", "unreachable"), 0
+            )
+            rejected = 0
             for code in catalogue.duplicates:
                 key = f"sv/{area_code}|{code}"
                 if not matches(key):
@@ -546,6 +748,7 @@ async def run(
                 settled.add(key)
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
                 working[key] = True
+                rejected += 1
                 record_failure(
                     key,
                     "metadata",
@@ -555,6 +758,10 @@ async def run(
             for code, row in catalogue.rows:
                 key = f"sv/{area_code}|{code}"
                 if not matches(key):
+                    tally["skipped"] += 1
+                    logger.debug(
+                        "%s: skipped, not matched by the indicator filter", key
+                    )
                     continue
                 found.add(key)
                 current.add(key)
@@ -567,43 +774,88 @@ async def run(
                     )
                 except Unreachable as error:
                     working[key] = False
+                    tally["unreachable"] += 1
                     record_failure(key, "endpoint", error)
                     endpoint_failed = True
                     continue
                 except Exception as error:  # the values query answered
                     working[key] = True
+                    rejected += 1
                     record_failure(key, "metadata", error)
                     continue
                 if document is None:
+                    tally["out_of_scope"] += 1
                     out_of_scope.add(key)
                     if not bounded and charts_whole and catalogue.complete:
                         current.discard(key)
-                        remove(key)
+                        remove(key, "it has no Riket or Region rows")
                     else:
+                        logger.debug(
+                            "%s: no Riket or Region rows; kept because the run is "
+                            "bounded or the listings are incomplete",
+                            key,
+                        )
                         working[key] = True
                     continue
                 accept(key, document, resolution)
+                tally[outcomes[key]] += 1
+                logger.debug("%s: accepted, %s", key, outcomes[key])
                 progress.update(succeeded=len(outcomes))
+            logger.info(
+                "Area %s: %d known; %d in catalogue, %d skipped by the indicator "
+                "filter, %d rebuilt, %d unchanged, %d out of scope, %d rejected, "
+                "%d unreachable",
+                area_code,
+                len(previous),
+                len(catalogue.rows) + len(catalogue.duplicates),
+                tally["skipped"],
+                tally["rebuilt"],
+                tally["unchanged"],
+                tally["out_of_scope"],
+                rejected,
+                tally["unreachable"],
+            )
             if not bounded and charts_whole and catalogue.complete:
                 for key in sorted(previous - current):
-                    remove(key)
+                    remove(key, "absent from the complete catalogue")
             else:
                 # An absent row in an incomplete or bounded run was not checked.
                 # Leave its accepted publication/state untouched by currency rules.
+                if previous - current:
+                    logger.info(
+                        "Area %s: %d known datasets are absent from the catalogue "
+                        "or filter and are left untouched (%s)",
+                        area_code,
+                        len(previous - current),
+                        "bounded run"
+                        if bounded
+                        else "chart list incomplete"
+                        if not charts_whole
+                        else "catalogue has malformed rows",
+                    )
                 settled.difference_update(previous - current)
             return endpoint_failed
 
         progress.update(phase="metadata", total=len(selected), processed=0)
         retry = []
         for number, area_code in enumerate(selected, start=1):
+            logger.info("Area %d/%d: %s", number, len(selected), area_code)
             progress.update(current=area_code, operation="rebuild")
             if await harvest(area_code):
                 retry.append(area_code)
             progress.update(processed=number)
         if retry:
+            logger.warning(
+                "Endpoint failures in %d areas (%s); retrying them once after a "
+                "%ss cooldown",
+                len(retry),
+                _sample(retry),
+                cooldown,
+            )
             progress.update(operation="retry cooldown", current=None)
             await asyncio.sleep(cooldown)
             for area_code in retry:
+                logger.info("Retrying area %s", area_code)
                 progress.update(current=area_code, operation="retry")
                 await harvest(area_code)
         for area_code, problems in sorted(catalogue_problems.items()):
@@ -639,6 +891,13 @@ async def run(
             counts[outcome] += 1
         counts["out_of_scope"] = len(out_of_scope)
         progress.update(failed=counts["failed"])
+        was_withheld = set(withheld)
+        logger.info(
+            "Settling %d checked datasets: published only while the endpoint "
+            "worked and verification is at most %d days old",
+            len(settled),
+            max_age.days,
+        )
         settle(
             sorted(settled),
             published,
@@ -649,6 +908,21 @@ async def run(
             max_age,
             counts,
         )
+        for reason in ("endpoint unavailable", "stale"):
+            newly = sorted(
+                key
+                for key in set(withheld) - was_withheld
+                if state["datasets"].get(key, {}).get("withheld_reason") == reason
+            )
+            if newly:
+                logger.warning(
+                    "Withheld %d datasets (%s): %s", len(newly), reason, _sample(newly)
+                )
+        restored = sorted(was_withheld & set(published))
+        if restored:
+            logger.info(
+                "Restored %d withheld datasets: %s", len(restored), _sample(restored)
+            )
     finally:
         if client is None:
             await connection.close()
@@ -661,6 +935,27 @@ async def run(
     state["mapping_version"] = MAPPING_VERSION
     save(output, state, published, configured)
     status = report_status(pending=0, errors=errors)
+    if unsupported_areas:
+        logger.info(
+            "Areas outside the model: %s",
+            "; ".join(f"{a}: {r}" for a, r in sorted(unsupported_areas.items())),
+        )
+    if unresolved:
+        logger.warning(
+            "%d indicators have no resolvable web page: %s",
+            len(unresolved),
+            _sample(sorted(unresolved)),
+        )
+    logger.info(
+        "Run finished: status=%s counts=%s published=%d withheld=%d requests=%s "
+        "errors=%d",
+        status,
+        counts,
+        len(published),
+        len(withheld),
+        getattr(connection, "request_count", None),
+        len(errors),
+    )
     result = {
         "run_id": uuid4().hex,
         "status": status,
@@ -692,6 +987,14 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
+    logger.info(
+        "Collecting %d files of run %s (status %s) from %s into %s",
+        len(result["manifest"]),
+        result.get("run_id"),
+        result.get("status"),
+        output,
+        data,
+    )
     if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
         raise ValueError("Stale analysverktyg artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
@@ -706,4 +1009,5 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+        logger.debug("Collected %s", relative)
     return result

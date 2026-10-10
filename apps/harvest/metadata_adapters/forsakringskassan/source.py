@@ -11,6 +11,7 @@ Each table becomes one NordicIntel Dataset (see the adapter guide).
 import hashlib
 import html
 import json
+import logging
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass
@@ -23,6 +24,8 @@ from apps.harvest.metadata_adapters.forsakringskassan.api import (
     ROW_COUNTER,
     SITE,
 )
+
+logger = logging.getLogger("forsakringskassan_logger")
 
 _KEY = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
 """Report, table, dimension and measure keys: safe in URLs and dataset codes."""
@@ -93,6 +96,13 @@ def catalogue(body: Any, problems: list) -> tuple[list[Listed], bool]:
             complete = False
         else:
             listed.append(matches[0])
+    logger.debug(
+        "Catalogue: %d groups, %d unique reports, %d problems, complete=%s",
+        len(body),
+        len(listed),
+        len(problems),
+        complete,
+    )
     return listed, complete
 
 
@@ -231,6 +241,16 @@ def parse_meta(meta: Any, report: str, area: str) -> Report:
     columns = (meta.get("table") or {}).get("order") or []
     undeclared = tuple(
         dict.fromkeys(c for c in columns if isinstance(c, str) and c not in known)
+    )
+    logger.debug(
+        "Parsed meta.json of %s: %d dimensions, %d measures, %d tables "
+        "(%d duplicate names), undeclared columns %s",
+        report,
+        len(dimensions),
+        len(measures),
+        len(tables),
+        len(duplicates),
+        list(undeclared),
     )
     return Report(
         key=report,
@@ -436,4 +456,11 @@ def undeclared_dimensions(rows: Any, table: Table) -> list[str]:
         keys |= set(row["dimensions"]) - {ROW_COUNTER}
     if missing := sorted(set(table.dimensions) - keys):
         raise ValueError(f"probe rows lack declared dimensions {missing}")
-    return sorted(keys - set(table.dimensions))
+    extra = sorted(keys - set(table.dimensions))
+    logger.debug(
+        "Probe of table %s: %d rows, undeclared row keys %s",
+        table.name,
+        len(rows),
+        extra,
+    )
+    return extra

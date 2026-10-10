@@ -28,7 +28,7 @@ the export files to download."""
 CONCURRENCY = 4
 """Most periods fetched at once for one selection."""
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("uka_logger")
 
 
 def export_request(

@@ -7,6 +7,7 @@ they stay queryable through the adapter and are recorded under
 dimension is aggregated by retrieval, like cells that cover several rows.
 """
 
+import logging
 import re
 from copy import deepcopy
 
@@ -15,6 +16,8 @@ from apps.harvest.metadata_adapters.entrysoft.datasets import (
     PART_DIMENSION,
 )
 from apps.harvest.validation import validate_metadata
+
+logger = logging.getLogger("entrysoft_logger")
 
 ADAPTER = "entrysoft"
 LANGUAGE = "sv"
@@ -174,4 +177,12 @@ def to_document(dataset: dict, provider: dict) -> dict:
     if date := source_date(updated):
         document["updated"] = date
     validate_metadata(document, adapter=ADAPTER)
+    logger.debug(
+        "Mapped dataset %s/%s: %d dimensions, %d unlisted filters, %d tables",
+        dataset["provider_code"],
+        dataset["dataset_code"],
+        len(ids),
+        len(filters),
+        len(dataset["tables"]),
+    )
     return document

@@ -11,6 +11,7 @@ a substance's removal.
 """
 
 import asyncio
+import logging
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -55,6 +56,8 @@ ADAPTER = "smhi_emissions"
 LANGUAGES = ("sv",)
 COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
 
+logger = logging.getLogger("smhi_emissions_logger")
+
 
 async def build_substance(client, substance: Substance, options: FilterOptions):
     """Probe one substance and return its validated document and submission.
@@ -63,10 +66,19 @@ async def build_substance(client, substance: Substance, options: FilterOptions):
         Unreachable: The probe failed (an endpoint failure).
         Exception: Any other error is a metadata failure; the probe answered.
     """
+    logger.debug("Probing substance %s (%s)", substance.code, substance.long_name)
     body = await client.get_json(DATA_URL, probe_parameters(substance.code))
     probe = parse_probe(body, options, substance.code)
     document = build_dataset(substance, options, probe)
     validate_metadata(document, adapter=ADAPTER)
+    logger.debug(
+        "Validated %s: %d years %s-%s, submission %s",
+        substance.code,
+        len(probe.years),
+        probe.years[0],
+        probe.years[-1],
+        probe.submission,
+    )
     return document, probe.submission
 
 
@@ -78,6 +90,12 @@ async def discover_provider(provider: dict, *, client=None) -> list[dict]:
     finally:
         if client is None:
             await connection.close()
+    logger.info(
+        "Discovered %d substances (%d quarantined, %d malformed entries)",
+        len(options.substances),
+        len(options.quarantined),
+        len(options.problems),
+    )
     return [
         {"code": s.code, "substance_id": s.substance_id, "long_name": s.long_name}
         for s in options.substances.values()
@@ -88,7 +106,13 @@ async def fetch_metadata(record: dict, *, client) -> dict:
     """Build and validate the Swedish document of ``{"code": <substance code>}``."""
     options = parse_filter_options(await client.get_json(FILTER_OPTIONS_URL))
     if record["code"] not in options.substances:
+        logger.warning(
+            "Substance %s is not in the current getfilteroptions tree (%d listed)",
+            record["code"],
+            len(options.substances),
+        )
         raise LookupError(f"Unknown SMHI emissions substance {record['code']!r}")
+    logger.info("Building single document for substance %s", record["code"])
     document, _ = await build_substance(
         client, options.substances[record["code"]], options
     )
@@ -99,6 +123,9 @@ def _select(options: FilterOptions, subjects) -> tuple[list[str], list[str]]:
     """Selected substance codes (exact, else case-insensitive) and unknown names."""
     listed = [*options.substances, *options.quarantined]
     if subjects is None:
+        logger.info(
+            "No subject filter: selecting all %d listed substances", len(listed)
+        )
         return listed, []
     selected, unknown = [], []
     for name in subjects:
@@ -107,9 +134,23 @@ def _select(options: FilterOptions, subjects) -> tuple[list[str], list[str]]:
         ]
         if len(matches) == 1:
             selected.append(matches[0])
+            logger.debug("Subject %r matched substance %s", name, matches[0])
         else:
             unknown.append(name)
-    return list(dict.fromkeys(selected)), unknown
+            logger.warning(
+                "Subject %r matches %d listed substances; treated as unknown",
+                name,
+                len(matches),
+            )
+    chosen = list(dict.fromkeys(selected))
+    logger.info(
+        "Subject filter: selected %d of %d listed substances; %d unknown%s",
+        len(chosen),
+        len(listed),
+        len(unknown),
+        f" ({unknown})" if unknown else "",
+    )
+    return chosen, unknown
 
 
 async def run(
@@ -148,6 +189,31 @@ async def run(
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
     cooldown = provider.get("retry_cooldown_seconds", 60)
+    logger.info(
+        "Starting %s full rebuild: subjects=%s languages=%s max_age_days=%s "
+        "retry_cooldown=%ss; the adapter has no refresh mode, every selected "
+        "substance is re-probed",
+        ADAPTER,
+        subjects if subjects is not None else "all",
+        selected_languages,
+        max_age.days,
+        cooldown,
+    )
+    logger.info(
+        "Baseline: %d published documents, %d withheld, %d state entries, %d files "
+        "copied to the worker output",
+        len(published),
+        len(withheld),
+        len(state["datasets"]),
+        len(baseline),
+    )
+    if state.get("mapping_version") != MAPPING_VERSION:
+        logger.info(
+            "Stored mapping version %s differs from current %s; documents are "
+            "rebuilt with the new mapping",
+            state.get("mapping_version"),
+            MAPPING_VERSION,
+        )
     connection = client or SmhiClient()
     progress = Progress(ADAPTER, PROVIDER_CODE)
     counts = dict.fromkeys(COUNTS, 0)
@@ -169,6 +235,14 @@ async def run(
             "url": url,
             "error": f"{type(error).__name__}: {error}",
         }
+        if emit:
+            logger.error(
+                "%s failure for %s%s: %s",
+                stage,
+                resource,
+                " (recorded)" if record else "",
+                entry["error"],
+            )
         if record:
             errors.append(entry)
         if emit:
@@ -189,7 +263,19 @@ async def run(
                 raise ValueError("getfilteroptions lists no substances")
         except Exception as error:
             fail("discovery", "filteroptions", error, record=False)
+            logger.error("Discovery failed; the run publishes nothing")
             raise
+        logger.info(
+            "Discovered %d sectors and %d substances; %d quarantined, %d malformed "
+            "entries; tree complete=%s",
+            len(options.sectors),
+            len(options.substances),
+            len(options.quarantined),
+            len(options.problems),
+            options.complete,
+        )
+        for code, reason in options.quarantined.items():
+            logger.warning("Quarantined substance %s: %s", code, reason)
         for resource, error in options.problems:
             fail("discovery", resource, error)
         selected, unknown = _select(options, subjects)
@@ -202,10 +288,22 @@ async def run(
             for language in selected_languages
         }
         if subjects is None and options.complete:
-            for key in sorted(known() - listed):
+            gone = sorted(known() - listed)
+            logger.info(
+                "Complete tree in an unbounded run: %d previously known datasets "
+                "are no longer listed and are removed",
+                len(gone),
+            )
+            for key in gone:
                 state["datasets"].pop(key, None)
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
+                    logger.info("Removed %s: substance no longer listed", key)
+        else:
+            logger.info(
+                "Removal check skipped (%s): absent datasets are kept",
+                "subject-filtered run" if subjects is not None else "incomplete tree",
+            )
 
         working, failures, settled = {}, {}, set()
         pending = []
@@ -215,6 +313,10 @@ async def run(
                 settled.add(key)
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
                 if code in options.quarantined:  # keep the last document until stale
+                    logger.info(
+                        "Not probing %s: quarantined, last document kept until stale",
+                        key,
+                    )
                     working[key] = True
                     failures[key] = ("metadata", ValueError(options.quarantined[code]))
                     fail(
@@ -223,8 +325,16 @@ async def run(
                 else:
                     pending.append((key, options.substances[code]))
 
+        logger.info(
+            "Probing %d of %d candidate datasets (%d quarantined skipped); every "
+            "selected substance is rebuilt, nothing is skipped as unchanged",
+            len(pending),
+            len(settled),
+            len(settled) - len(pending),
+        )
         progress.update(phase="metadata", total=len(pending), processed=0)
         for attempt in (1, 2):
+            logger.info("Rebuild pass %d: %d datasets", attempt, len(pending))
             retry = []
             for key, substance in pending:
                 progress.update(current=key, operation=f"rebuild (attempt {attempt})")
@@ -235,6 +345,14 @@ async def run(
                         connection, substance, options
                     )
                 except Unreachable as error:
+                    logger.warning(
+                        "Probe of %s unreachable on attempt %d; %s",
+                        key,
+                        attempt,
+                        "will retry after the cooldown"
+                        if attempt == 1
+                        else "giving up",
+                    )
                     working[key], failures[key] = False, ("endpoint", error)
                     fail(
                         "endpoint",
@@ -249,6 +367,11 @@ async def run(
                     retry.append((key, substance))
                     continue
                 except Exception as error:  # the probe answered: endpoint works
+                    logger.warning(
+                        "Probe of %s answered but the metadata was rejected; "
+                        "not retried",
+                        key,
+                    )
                     working[key], failures[key] = True, ("metadata", error)
                     fail(
                         "metadata",
@@ -265,7 +388,11 @@ async def run(
                 working[key] = True
                 submissions[substance.code] = submission
                 accepted = published.get(key) or withheld.get(key)
-                counts["unchanged" if document == accepted else "rebuilt"] += 1
+                outcome = "unchanged" if document == accepted else "rebuilt"
+                counts[outcome] += 1
+                logger.debug(
+                    "Accepted %s: %s (submission %s)", key, outcome, submission
+                )
                 info.update(
                     verified_at=stamp,
                     mapping_version=MAPPING_VERSION,
@@ -278,8 +405,20 @@ async def run(
                     succeeded=counts["rebuilt"] + counts["unchanged"],
                     failed=len(failures),
                 )
+            logger.info(
+                "Pass %d done: %d rebuilt, %d unchanged so far, %d to retry",
+                attempt,
+                counts["rebuilt"],
+                counts["unchanged"],
+                len(retry),
+            )
             if not retry or attempt == 2:
                 break
+            logger.info(
+                "Retrying %d unreachable datasets after a %ss cooldown",
+                len(retry),
+                cooldown,
+            )
             progress.update(operation="retry cooldown", current=None)
             await asyncio.sleep(cooldown)
             pending = retry
@@ -293,6 +432,12 @@ async def run(
             state["datasets"][key]["error"] = fail(stage, key, error, url, emit=False)
             counts["failed"] += 1
         progress.update(failed=counts["failed"])
+        logger.info(
+            "Settling %d datasets: published only when the probe answered and the "
+            "document was verified within %d days",
+            len(settled),
+            max_age.days,
+        )
         settle(
             sorted(settled),
             published,
@@ -303,6 +448,19 @@ async def run(
             max_age,
             counts,
         )
+        for key in sorted(settled):
+            info = state["datasets"][key]
+            if info.get("status") == "withheld":
+                logger.warning(
+                    "Withheld %s: %s (last verified %s)",
+                    key,
+                    info.get("withheld_reason"),
+                    info.get("verified_at"),
+                )
+            elif info.get("status") == "missing":
+                logger.warning("No accepted document exists for %s", key)
+            else:
+                logger.debug("Settled %s as %s", key, info.get("status"))
     finally:
         if client is None:
             await connection.close()
@@ -330,6 +488,17 @@ async def run(
     result.update(base_manifest=baseline, manifest=manifest(output))
     write(output / "result.json", result)
     progress.update(phase="finished", result_status=status, current=None)
+    logger.info(
+        "Finished with status %s: %s; published=%s withheld=%d errors=%d "
+        "submissions=%s tree_complete=%s",
+        status,
+        ", ".join(f"{name}={counts[name]}" for name in COUNTS),
+        result["published"],
+        len(withheld),
+        len(errors),
+        result["submissions"],
+        options.complete,
+    )
     return result
 
 
@@ -337,7 +506,14 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
+    logger.info(
+        "Collecting worker output (run %s, status %s, %d files)",
+        result.get("run_id"),
+        result.get("status"),
+        len(result.get("manifest") or ()),
+    )
     if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+        logger.error("Published baseline changed since the run; refusing to collect")
         raise ValueError("Stale SMHI emissions artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("SMHI emissions artifact checksum mismatch")
@@ -351,4 +527,6 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+        logger.debug("Applied %s", relative)
+    logger.info("Applied %d files to the published data", len(result["manifest"]))
     return result

@@ -8,6 +8,7 @@ pages that ``source_url`` links to.
 """
 
 import json
+import logging
 import math
 import re
 from collections import defaultdict
@@ -23,6 +24,8 @@ from apps.harvest.metadata_adapters.dataanalys.api import (
     LEVELS,
     SITE,
 )
+
+logger = logging.getLogger("dataanalys_logger")
 
 AREA_TABLE = re.compile(
     r"^(?i:semantic)\.semantic_VAI_(?P<area>[A-Za-z0-9]+)_"
@@ -155,6 +158,11 @@ def _quarantined_ids(discovery: Discovery, rows: list, resource: str) -> set[int
             else:
                 first[identity] = row
     for identity in sorted(conflicts):
+        logger.warning(
+            "%s listing: id %s appears with conflicting contents; quarantined",
+            resource,
+            identity,
+        )
         discovery.problems.append(
             (
                 f"{resource}/{identity}",
@@ -221,6 +229,14 @@ def add_charts(discovery: Discovery, rows: Iterable[Any]) -> None:
             discovery.areas[code] = Area(
                 code, catalogue_id, catalogue, values_id, values
             )
+            logger.debug(
+                "Area %s: catalogue %s (%d), values %s (%d)",
+                code,
+                catalogue,
+                catalogue_id,
+                values,
+                values_id,
+            )
             continue
         reasons = []
         for role in (CATALOGUE, VALUES):
@@ -231,6 +247,11 @@ def add_charts(discovery: Discovery, rows: Iterable[Any]) -> None:
                 reasons.append(f"several {role} tables listed: {listed}")
         discovery.incomplete[code] = "; ".join(reasons)
     discovery.unsupported = sorted(unsupported)
+    logger.debug(
+        "Charts: %d rows interpreted, %d indicator codes filtered by charts",
+        len(rows),
+        len(discovery.filters),
+    )
 
 
 def add_dashboards(discovery: Discovery, rows: Iterable[Any]) -> None:
@@ -261,6 +282,7 @@ def add_dashboards(discovery: Discovery, rows: Iterable[Any]) -> None:
             continue
         slug = (row.get("slug") or "").strip()
         if not slug:
+            logger.debug("Dashboard %s has no slug; skipped", dashboard_id)
             continue
         tags = frozenset(
             str(tag["name"])
@@ -352,6 +374,13 @@ def resolve_link(
     dashboard = discovery.by_slug.get(slug) if slug else None
     if dashboard is not None and dashboard.published:
         return Link("href", dashboard)
+    logger.debug(
+        "%s|%s: catalogue link slug %r is not a listed published dashboard; "
+        "looking for a dashboard whose charts filter on the indicator",
+        area,
+        code,
+        slug,
+    )
     if not discovery.dashboards_complete:
         raise ValueError(
             f"catalogue link {slug!r} is not a listed dashboard and the dashboard "
@@ -375,7 +404,11 @@ def resolve_link(
             ),
         )
     if (overview := overview_dashboard(discovery, area)) is not None:
+        logger.debug(
+            "%s|%s: no chart filters it; using the area start page", area, code
+        )
         return Link("area_overview", overview)
+    logger.debug("%s|%s: no dashboard found for the indicator", area, code)
     return Link("unresolved")
 
 

@@ -30,7 +30,7 @@ _ACCEPT_JSON = {"Accept": "application/json"}
 _INTEGER = re.compile(r"-?\d+")
 _DECIMAL = re.compile(r"-?\d+[,.]\d+")
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("sdb_logger")
 
 
 def subject_url(language: str, subject: str) -> str:
@@ -151,6 +151,16 @@ async def retrieve(
         + _selection_path([fields[dimension] for dimension in dimensions], combination)
         for combination in itertools.product(*chunked)
     ]
+    logger.debug(
+        "Retrieving %s/%s: %d dimensions, %s categories, %d request URLs "
+        "(selection chunked to keep path segments under %d characters)",
+        language,
+        dataset_code,
+        len(dimensions),
+        {dimension: len(codes[dimension]) for dimension in dimensions},
+        len(urls),
+        MAX_SEGMENT_LENGTH,
+    )
     semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
     pages = await _gather(_fetch_rows(session, url, semaphore) for url in urls)
 
@@ -160,11 +170,27 @@ async def retrieve(
             if metadata_url
             else subject_url(language, dataset_code)
         )
+        logger.debug(
+            "%s/%s: %d of %d requests answered 404; checking that the subject "
+            "still exists",
+            language,
+            dataset_code,
+            sum(rows is None for rows in pages),
+            len(pages),
+        )
         if not await _exists(session, subject):
+            logger.warning("SDB subject %s/%s no longer exists", language, dataset_code)
             raise LookupError(
                 f"SDB subject {dataset_code!r} ({language}) no longer exists."
             )
 
+    logger.debug(
+        "%s/%s: received %d rows from %d requests",
+        language,
+        dataset_code,
+        sum(len(rows or ()) for rows in pages),
+        len(pages),
+    )
     return _build_fragment(
         dimensions, codes, fields, (row for rows in pages for row in rows or ())
     )
@@ -187,6 +213,10 @@ async def _fetch_rows(
         return None
     rows = list(first["data"])
     page_count = int(first.get("sidor") or 1)
+    if page_count > 1:
+        logger.debug(
+            "%s has %d pages; fetching pages 2-%d", url, page_count, page_count
+        )
 
     async def fetch_page(page: int) -> list[dict[str, Any]]:
         async with semaphore:
@@ -208,6 +238,7 @@ async def _get_json(
     logger.debug("GET %s %s", url, params)
     async with session.get(url, params=params, headers=_ACCEPT_JSON) as response:
         if response.status == 404:
+            logger.debug("GET %s answered 404 (no rows)", url)
             return None
         response.raise_for_status()
         return await response.json(content_type=None)

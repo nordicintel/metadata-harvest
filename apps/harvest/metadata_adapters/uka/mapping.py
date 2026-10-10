@@ -1,5 +1,6 @@
 """Build NordicIntel Dataset documents from an indicator's export files."""
 
+import logging
 from dataclasses import dataclass, field
 from email.utils import parsedate_to_datetime
 from typing import Any
@@ -20,6 +21,8 @@ from retrieval._uka_export import (
     category_code,
     read_export,
 )
+
+logger = logging.getLogger("uka_logger")
 
 LANGUAGE = "sv"
 """UKÄ publishes the indicators in Swedish only."""
@@ -100,6 +103,12 @@ class Scan:
             if row.marker is not None:
                 self.markers.add(row.marker)
         if conflicting:
+            logger.warning(
+                "Period %s export gives %d category combinations more than once "
+                "with different values",
+                period,
+                len(conflicting),
+            )
             self.conflicts[period] = [list(key) for key in sorted(conflicting)]
         self.files[period] = PeriodFile(url, last_modified, len(cells))
 
@@ -190,6 +199,12 @@ def build_dataset(entry: Entry, indicator: Indicator, scan: Scan) -> dict[str, A
     if layout is None or not scan.files:
         raise ValueError(f"indicator {indicator.id} has no readable export")
     periods = [period for period in indicator.periods if period in scan.files]
+    logger.debug(
+        "Building indicator %s: %d of %d periods have an export",
+        indicator.id,
+        len(periods),
+        len(indicator.periods),
+    )
     time = layout.period_column
     dimension: dict[str, Any] = {time: {"label": time, "category": {"index": periods}}}
     for position, categories in enumerate(scan.categories):
@@ -213,6 +228,7 @@ def build_dataset(entry: Entry, indicator: Indicator, scan: Scan) -> dict[str, A
     if description := plain_text(indicator.description):
         shared["description"] = description
     if is_discontinued(indicator):
+        logger.debug("Indicator %s is marked discontinued by UKÄ", indicator.id)
         shared["discontinued"] = True
     if time_unit := TIME_UNITS.get(time):
         shared["time_unit"] = time_unit

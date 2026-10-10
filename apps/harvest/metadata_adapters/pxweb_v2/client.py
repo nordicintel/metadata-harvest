@@ -2,12 +2,15 @@
 
 import asyncio
 import json
+import logging
 import math
 import time
 from datetime import UTC, datetime
 from email.utils import parsedate_to_datetime
 
 import httpx
+
+logger = logging.getLogger("pxweb_v2_logger")
 
 SCB_URL = "https://statistikdatabasen.scb.se/api/v2"
 
@@ -57,6 +60,15 @@ class Client:
         previous = self.interval
         self.interval = window / calls
         self.next_request += max(0, self.interval - previous)
+        logger.info(
+            "Source rate limit: %s calls per %s s -> request interval %.3f s "
+            "(was %.3f s); max data cells %s",
+            calls,
+            window,
+            self.interval,
+            previous,
+            self.max_cells,
+        )
 
     async def get(self, path: str, **params) -> dict:
         """Get a JSON object; retry transient failures at most three times."""
@@ -64,6 +76,9 @@ class Client:
             for attempt in range(4):
                 await self.sleep(max(0, self.next_request - self.clock()))
                 self.next_request = self.clock() + self.interval
+                logger.debug(
+                    "GET %s params=%s (attempt %d/4)", path, params, attempt + 1
+                )
                 try:
                     response = await self.http.get(path, params=params)
                     response.raise_for_status()
@@ -78,6 +93,15 @@ class Client:
                         and response.status_code != 429
                         and response.status_code < 500
                     ):
+                        logger.warning(
+                            "GET %s failed and will not be retried (%s): %s: %s",
+                            path,
+                            "retries exhausted"
+                            if attempt == 3
+                            else "non-retryable HTTP status",
+                            type(error).__name__,
+                            error,
+                        )
                         raise
                     delay = 2**attempt
                     if response is not None and response.headers.get("Retry-After"):
@@ -92,7 +116,23 @@ class Client:
                                 ).total_seconds(),
                             )
                     if delay > 120:
+                        logger.warning(
+                            "GET %s: server asked for a %.0f s wait (over the 120 s "
+                            "limit); giving up",
+                            path,
+                            delay,
+                        )
                         raise
+                    logger.warning(
+                        "GET %s failed (%s %s); backing off %.1f s before attempt %d/4",
+                        path,
+                        "HTTP" if response is not None else "error",
+                        response.status_code
+                        if response is not None
+                        else type(error).__name__,
+                        delay,
+                        attempt + 2,
+                    )
                     self.next_request = max(self.next_request, self.clock() + delay)
                     continue
                 payload = response.json()

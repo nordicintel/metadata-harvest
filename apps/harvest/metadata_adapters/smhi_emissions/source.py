@@ -12,12 +12,15 @@ subsector is the sector itself. Substances repeat across subsectors; the 29
 distinct codes are the datasets.
 """
 
+import logging
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
 from retrieval.data_adapters.smhi_emissions import TOTAL_LABEL, resolve_label, series
+
+logger = logging.getLogger("smhi_emissions_logger")
 
 _SECTOR = re.compile(r"[1-9]\d*")
 
@@ -147,6 +150,7 @@ def parse_filter_options(body: Any) -> FilterOptions:
             if not name or not isinstance(number, int) or isinstance(number, bool):
                 raise ValueError(f"substance {code!r} lacks substance_id or long_name")
         except ValueError as error:
+            logger.warning("Skipping malformed substance entry %s: %s", resource, error)
             options.problems.append((resource, error))
             continue
         seen.setdefault(code, {}).setdefault((number, name), []).append(sub_code)
@@ -156,9 +160,16 @@ def parse_filter_options(body: Any) -> FilterOptions:
                 f"substance {code!r} is listed with conflicting identities "
                 f"{sorted(variants)}"
             )
+            logger.debug("Quarantined %s: %d identities", code, len(variants))
             continue
         ((number, name), listed_in) = next(iter(variants.items()))
         options.substances[code] = Substance(code, number, name, tuple(listed_in))
+    logger.debug(
+        "Parsed %d sectors and %d substance entries into %d substances",
+        len(sectors),
+        len(entries),
+        len(options.substances),
+    )
     return options
 
 

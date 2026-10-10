@@ -50,7 +50,7 @@ MAX_URL_LENGTH = 6_000
 """Longest request URL sent; a 6,680-character URL was accepted on 2026-10-09
 (nginx), the server limit is undocumented."""
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("tillvaxtverket_logger")
 
 
 def cbase_url(area: str, name: str) -> str:

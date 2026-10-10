@@ -4,12 +4,15 @@ Observation payloads are consumed in memory, never stored in output/state/logs.
 """
 
 import asyncio
+import logging
 from datetime import date, timedelta
 from time import monotonic
 
 import httpx
 
 from apps.harvest.metadata_adapters.kolada.metadata import BASE_URL, SCOPES
+
+logger = logging.getLogger("kolada_logger")
 
 
 def chunks(items, size):
@@ -43,19 +46,30 @@ class KoladaClient:
         self.next_request = 0.0
         self.requests = 0
         self.deadline = None
+        logger.info(
+            "Kolada client: base=%s rate_limit=%ss timeout=%ss group_ids=%d "
+            "(max 4 concurrent requests)",
+            self.base,
+            self.delay,
+            self.timeout,
+            len(self.group_ids),
+        )
 
     async def close(self):
+        logger.info("Kolada client closing after %d HTTP requests", self.requests)
         if self.owned:
             await self.http.aclose()
 
     async def get(self, path: str, params=None, *, attempts=3):
         remaining = None if self.deadline is None else self.deadline - monotonic()
         if remaining is not None and remaining <= 0:
+            logger.warning("Request budget exhausted before GET %s", path)
             raise BudgetExpired("Worker request budget exhausted")
         try:
             async with asyncio.timeout(remaining):
                 return await self._get(path, params, attempts=attempts)
         except TimeoutError as error:
+            logger.warning("Request budget exhausted during GET %s", path)
             raise BudgetExpired("Worker request budget exhausted") from error
 
     async def _get(self, path: str, params=None, *, attempts=3):
@@ -66,6 +80,14 @@ class KoladaClient:
                         await asyncio.sleep(max(0, self.next_request - monotonic()))
                         self.next_request = monotonic() + self.delay
                     self.requests += 1
+                    logger.debug(
+                        "GET %s params=%s (request %d, attempt %d/%d)",
+                        path,
+                        params,
+                        self.requests,
+                        attempt + 1,
+                        attempts,
+                    )
                     response = await self.http.get(
                         f"{self.base}/{path.lstrip('/')}",
                         params=params,
@@ -84,11 +106,31 @@ class KoladaClient:
                     return payload
             except (httpx.HTTPError, httpx.TransportError) as error:
                 if not transient(error) or attempt == attempts - 1:
+                    if transient(error):
+                        logger.warning(
+                            "GET %s failed after %d attempts: %s",
+                            path,
+                            attempts,
+                            type(error).__name__,
+                        )
+                    else:
+                        logger.debug("GET %s failed without retry: %s", path, error)
                     raise
                 retry = (
                     error.response.headers.get("Retry-After", "")
                     if isinstance(error, httpx.HTTPStatusError)
                     else ""
+                )
+                logger.warning(
+                    "Transient failure on GET %s (%s); backing off %ss before "
+                    "attempt %d/%d",
+                    path,
+                    type(error).__name__
+                    if not isinstance(error, httpx.HTTPStatusError)
+                    else error.response.status_code,
+                    float(retry) if retry.isdigit() else 2**attempt,
+                    attempt + 2,
+                    attempts,
                 )
                 await asyncio.sleep(float(retry) if retry.isdigit() else 2**attempt)
 
@@ -110,6 +152,7 @@ class KoladaClient:
         rows = []
         async for page in self.pages(name):
             rows.extend(page)
+        logger.debug("Listing %s: %d rows", name, len(rows))
         return rows
 
     async def kpi(self, identifier):
@@ -117,9 +160,11 @@ class KoladaClient:
             rows = await self.listing(f"kpi/{identifier}")
         except httpx.HTTPStatusError as error:
             if error.response.status_code == 404:
+                logger.debug("KPI %s returned 404", identifier)
                 return None
             raise
         if not rows:
+            logger.debug("KPI %s returned no rows", identifier)
             return None
         if len(rows) != 1 or rows[0].get("id") != identifier:
             raise ValueError("KPI identity mismatch")
@@ -162,6 +207,15 @@ class KoladaClient:
                 raise
             split = ids if len(ids) >= len(years) else years
             if len(split) > 1:
+                logger.warning(
+                    "Change probe for %s (%d KPIs, %d years) failed transiently "
+                    "(%s); splitting the %s in two",
+                    scope,
+                    len(ids),
+                    len(years),
+                    type(error).__name__,
+                    "KPIs" if split is ids else "years",
+                )
                 mid = len(split) // 2
                 found = set()
                 for part in (split[:mid], split[mid:]):
@@ -173,6 +227,13 @@ class KoladaClient:
                         areas=areas,
                     )
                 return found
+            logger.warning(
+                "Change probe for %s/%s year %s cannot be split further; "
+                "retrying with a minimal page",
+                scope,
+                ",".join(ids),
+                ",".join(map(str, years)),
+            )
             payload = await self.get(
                 self.query(scope, ids, years, areas=areas),
                 {"per_page": 1, **({"from_date": cutoff} if cutoff else {})},
@@ -196,6 +257,12 @@ class KoladaClient:
             for area in areas:
                 remaining = sorted(set(ids) - found)
                 if not remaining:
+                    logger.debug(
+                        "Change probe %s: all %d KPIs already flagged; "
+                        "skipping remaining windows",
+                        scope,
+                        len(ids),
+                    )
                     return found
                 for batch in chunks(remaining, 25):
                     found |= await self._changed_window(
@@ -206,9 +273,22 @@ class KoladaClient:
     async def modified(self, scope, identifier, years, *, earliest, today):
         """Native positive-day/empty-next-day boundary, only for affected KPIs."""
         upper = today + timedelta(days=1)
+        logger.debug(
+            "Dating last change of %s/%s: searching %s..%s",
+            scope,
+            identifier,
+            earliest,
+            upper,
+        )
         if await self.changed(scope, [identifier], years, upper.isoformat()):
             raise ValueError("Future cutoff returns data; cannot establish change date")
         if not await self.changed(scope, [identifier], years, earliest.isoformat()):
+            logger.debug(
+                "%s/%s: nothing changed since %s; modification date unknown",
+                scope,
+                identifier,
+                earliest,
+            )
             return None
         lo, hi = earliest.toordinal(), upper.toordinal()
         while hi - lo > 1:
@@ -226,6 +306,7 @@ class KoladaClient:
             scope, [identifier], years, (day + timedelta(days=1)).isoformat()
         ):
             raise ValueError("Source changed during date probe")
+        logger.debug("%s/%s: last changed %s", scope, identifier, day)
         return day.isoformat()
 
     async def coverage(self, scope, identifier, years, references):
@@ -236,6 +317,13 @@ class KoladaClient:
             areas = list(chunks(ids, 25))
         else:
             areas = [None]
+        logger.debug(
+            "Collecting %s/%s coverage: %d years, %d area batches",
+            scope,
+            identifier,
+            len(years),
+            len(areas),
+        )
         for window in chunks(years, 25):
             for area in areas:
                 async for rows in self.pages(
@@ -263,6 +351,14 @@ class KoladaClient:
                             entities.add(row[scope])
                             genders.add(value["gender"])
         result = {"years": sorted(periods), "genders": sorted(genders)}
+        logger.debug(
+            "%s/%s coverage: %d years, %d entities, genders %s",
+            scope,
+            identifier,
+            len(periods),
+            len(entities),
+            sorted(genders),
+        )
         if scope == "ou":
             result["ou_ids"] = sorted(entities)
         else:

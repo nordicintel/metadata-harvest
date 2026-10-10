@@ -10,7 +10,7 @@ import aiohttp
 
 from apps.harvest.metadata_adapters.trafa.api import ACCEPT_JSON
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("trafa_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=60)
 USER_AGENT = "nordicintel-metadata-harvest/trafa"
@@ -80,6 +80,15 @@ class TrafaClient:
                     error.status == 429 or error.status >= 500
                 )
                 if not transient or attempt == self._attempts:
+                    logger.warning(
+                        "GET %s failed on attempt %d/%d (%s: %s); %s",
+                        url,
+                        attempt,
+                        self._attempts,
+                        type(error).__name__,
+                        error,
+                        "retries exhausted" if transient else "not retryable",
+                    )
                     raise Unreachable(
                         f"GET {url} {dict(params or {})} failed: "
                         f"{type(error).__name__}: {error}"
@@ -96,6 +105,6 @@ class TrafaClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("GET %s (%.1fs)", location, time.monotonic() - started)
+            logger.debug("GET %s (%.1fs)", location, time.monotonic() - started)
             return body
         raise AssertionError("unreachable")

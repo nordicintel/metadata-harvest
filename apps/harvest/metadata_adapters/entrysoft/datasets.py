@@ -43,9 +43,12 @@ Tables
 from __future__ import annotations
 
 import hashlib
+import logging
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
+
+logger = logging.getLogger("entrysoft_logger")
 
 MAPPING_VERSION = 1
 """Increment when a rule change must regroup every accepted table offline."""
@@ -268,12 +271,25 @@ def apply_column_rules(document: dict) -> TableView:
     if not view.dimensions and view.identifiers:
         # One row per entity (Skatteverket's rents: one row per värdeområde, one
         # column per year): the key column is the dimension, not noise.
+        logger.debug(
+            "%s: no dimension left after column rules; identifiers %s become "
+            "the dimensions",
+            document["extension"]["metadata_harvest"]["table_url"],
+            view.identifiers,
+        )
         view.dimensions = [
             _dimension(column, None)
             for column in columns
             if column.name in view.identifiers
         ]
         view.identifiers = []
+    logger.debug(
+        "%s: %d dimensions, %d identifiers, %d constants",
+        document["extension"]["metadata_harvest"]["table_url"],
+        len(view.dimensions),
+        len(view.identifiers),
+        len(view.constants),
+    )
     return view
 
 
@@ -338,11 +354,20 @@ def build_datasets(documents: list[dict]) -> tuple[list[dict], list[dict]]:
         table_url = document["extension"]["metadata_harvest"]["table_url"]
         if _TEST_TITLE.search(str(document["label"])):
             dropped.append({"table_url": table_url, "reason": "test table"})
+            logger.debug("%s: dropped (test table)", table_url)
             continue
         if document["extension"]["rowstore"]["rowcount"] < 2:
             dropped.append({"table_url": table_url, "reason": "single row"})
+            logger.debug("%s: dropped (single row)", table_url)
             continue
         views.append(apply_column_rules(document))
+    logger.info(
+        "Dataset rules: %d accepted tables, %d dropped (%s)",
+        len(documents),
+        len(dropped),
+        ", ".join(f"{n} {r}" for r, n in Counter(d["reason"] for d in dropped).items())
+        or "none",
+    )
 
     # Union tables that share a title stem or a catalogue dataset (Transportstyrelsen
     # splits one dataset into differently named tables with the same columns).
@@ -406,6 +431,11 @@ def build_datasets(documents: list[dict]) -> tuple[list[dict], list[dict]]:
             ),
         }
         if len(members) > 1:
+            logger.debug(
+                "Dataset %s merges %d tables with identical columns",
+                dataset["dataset_code"],
+                len(members),
+            )
             parts = dict(zip(_part_labels(members), dataset["tables"], strict=True))
             dataset["dimensions"].insert(
                 0,
@@ -427,12 +457,27 @@ def build_datasets(documents: list[dict]) -> tuple[list[dict], list[dict]]:
         by_code[(dataset["provider_code"], dataset["dataset_code"])].append(dataset)
     for group in by_code.values():
         if len(group) > 1:
+            logger.info(
+                "Dataset code %s/%s is shared by %d groups with different columns; "
+                "appending column digests",
+                group[0]["provider_code"],
+                group[0]["dataset_code"],
+                len(group),
+            )
             for dataset in group:
                 digest = hashlib.sha256(
                     "|".join(dataset.get("signature", [])).encode()
                 ).hexdigest()[:8]
                 dataset["dataset_code"] += "#" + digest
     datasets.sort(key=lambda d: (d["provider_code"], d["dataset_code"]))
+    logger.info(
+        "Grouped %d tables into %d datasets (%d merged from several tables, "
+        "%d without a usable dimension)",
+        len(views),
+        len(datasets),
+        sum(1 for d in datasets if len(d["tables"]) > 1),
+        sum(1 for d in datasets if d["kind"] != "cube"),
+    )
     return datasets, dropped
 
 

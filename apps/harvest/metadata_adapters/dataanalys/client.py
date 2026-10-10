@@ -11,7 +11,7 @@ import aiohttp
 
 from apps.harvest.metadata_adapters.dataanalys.api import ACCEPT_JSON
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("dataanalys_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=120, sock_connect=30, sock_read=90)
 USER_AGENT = "nordicintel-metadata-harvest/dataanalys"
@@ -82,6 +82,13 @@ class DataanalysClient:
         self._retry_delay = retry_delay
         self._last_start: float | None = None
         self.request_count = 0
+        logger.info(
+            "Client: requests at least %.1fs apart, up to %d attempts each, "
+            "backoff from %.1fs",
+            self._interval,
+            self._attempts,
+            self._retry_delay,
+        )
 
     @property
     def session(self) -> aiohttp.ClientSession:
@@ -94,6 +101,7 @@ class DataanalysClient:
     async def close(self) -> None:
         if self._owned and self._session is not None:
             await self._session.close()
+        logger.info("Client closed after %d requests", self.request_count)
 
     async def get_json(self, url: str, params: Mapping[str, str] | None = None) -> Any:
         """Return the decoded JSON body of ``GET url``."""
@@ -107,6 +115,7 @@ class DataanalysClient:
         if self._last_start is not None:
             wait = self._last_start + self._interval - time.monotonic()
             if wait > 0:
+                logger.debug("Pacing: waiting %.2fs before the next request", wait)
                 await asyncio.sleep(wait)
         self._last_start = time.monotonic()
 
@@ -126,12 +135,26 @@ class DataanalysClient:
                             _retry_after(response.headers.get("Retry-After")),
                         )
                     if response.status >= 400:
+                        logger.debug(
+                            "%s %s rejected with HTTP %d (not retried)",
+                            method,
+                            url,
+                            response.status,
+                        )
                         raise RequestRejected(
                             method, url, response.status, await response.text()
                         )
                     payload = await response.json(content_type=None)
             except (aiohttp.ClientError, TimeoutError, _Transient) as error:
                 if attempt == self._attempts:
+                    logger.error(
+                        "Giving up on %s %s after %d attempts (%s: %s)",
+                        method,
+                        url,
+                        attempt,
+                        type(error).__name__,
+                        error,
+                    )
                     raise Unreachable(
                         f"{method} {url} {dict(params or {})} failed: "
                         f"{type(error).__name__}: {error}"
@@ -152,6 +175,6 @@ class DataanalysClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("%s %s (%.1fs)", method, url, time.monotonic() - started)
+            logger.debug("%s %s (%.1fs)", method, url, time.monotonic() - started)
             return payload
         raise AssertionError("unreachable")

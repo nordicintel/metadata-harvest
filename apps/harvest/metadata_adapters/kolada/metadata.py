@@ -2,7 +2,10 @@
 
 import hashlib
 import json
+import logging
 import re
+
+logger = logging.getLogger("kolada_logger")
 
 BASE_URL = "https://api.kolada.se/v3"
 SCOPES = {"municipality": "data", "ou": "oudata"}
@@ -165,10 +168,21 @@ def build_dataset(
 
 async def fetch_metadata(record: dict, *, client) -> dict | None:
     """Fetch current coverage for one KPI scope; never persist observation values."""
+    logger.debug(
+        "Fetching metadata for %s/%s (%d years)",
+        record["scope"],
+        record["kpi"]["id"],
+        len(record["years"]),
+    )
     coverage = await client.coverage(
         record["scope"], record["kpi"]["id"], record["years"], record["references"]
     )
     if not coverage["years"]:
+        logger.info(
+            "No data for %s/%s; no metadata produced",
+            record["scope"],
+            record["kpi"]["id"],
+        )
         return None
     return build_dataset(
         record["kpi"],

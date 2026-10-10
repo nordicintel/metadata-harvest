@@ -48,9 +48,10 @@ Disabling a schedule does not cancel existing jobs or disable manual runs.
 `scheduling.paused = true` in [settings.toml](../../config/settings.toml) blocks
 every scheduled run the same way; sync and commit after changing it too.
 `logging.level` in the same file sets the log level shared by every metadata
-adapter (`DEBUG`, `INFO`, `WARNING`, `ERROR`, or `OFF` to silence them); the harvest
-entry point installs one stderr handler so adapter log lines appear in workflow
-run output.
+adapter and the catalog build (`DEBUG`, `INFO`, `WARNING`, `ERROR`, or `OFF` to
+silence them); the harvest and catalog entry points install one stderr handler so
+log lines appear in workflow run output, with stage timings at `INFO`. Each adapter
+logs under its own `<adapter>_logger` name, so lines are attributable per adapter.
 
 ```sh
 uv run python -m apps.operations.monitor status RUN_ID

@@ -13,7 +13,9 @@ Publication is offline: the dataset rules regroup every accepted table structure
 on each run, so nothing is requested to apply a rule change.
 """
 
+import logging
 import shutil
+from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 from uuid import uuid4
@@ -57,6 +59,8 @@ from apps.harvest.metadata_adapters.entrysoft.tables import table_document
 from apps.harvest.storage import document_identity, filename, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+
+logger = logging.getLogger("entrysoft_logger")
 
 REQUESTS_PER_SECOND = 1.0
 DEFAULT_MAX_REQUESTS = 1500
@@ -114,6 +118,12 @@ def rebuild(tables: dict, providers: list[dict]) -> tuple[dict, dict]:
     """
     by_code = {p["code"]: p for p in providers}
     documents = harvested_documents(tables)
+    logger.info(
+        "Rebuilding datasets offline from %d accepted table structures "
+        "(of %d known tables)",
+        len(documents),
+        len(tables),
+    )
     datasets, dropped = build_datasets(documents)
     by_url = {d["extension"]["metadata_harvest"]["table_url"]: d for d in documents}
     mapped, lists = {}, []
@@ -126,9 +136,19 @@ def rebuild(tables: dict, providers: list[dict]) -> tuple[dict, dict]:
         )
         if dataset["kind"] != "cube":
             lists.append(dataset["dataset_code"])
+            logger.debug(
+                "Dataset %s has no dimension; kept as a list-only dataset, "
+                "not published",
+                dataset["dataset_code"],
+            )
             continue
         document = to_document(dataset, by_code.get(dataset["provider_code"], {}))
         mapped[filename(document_identity(document))] = document
+    logger.info(
+        "Mapped %d cube datasets (%d list-only datasets not published)",
+        len(mapped),
+        len(lists),
+    )
     return mapped, {"dropped": dropped, "lists": lists, "datasets": len(mapped)}
 
 
@@ -138,6 +158,12 @@ def publish(tables: dict, current: dict, providers: list[dict], output: Path) ->
     store = collection_store(output)
     store.records = documents
     store.save()
+    logger.info(
+        "Wrote %d dataset documents and state for %d tables to %s",
+        len(documents),
+        len(tables),
+        output,
+    )
     current.update(mapping_version=MAPPING_VERSION, dropped=summary["dropped"])
     save_tables(output, tables)
     save_current(output, current)
@@ -146,6 +172,7 @@ def publish(tables: dict, current: dict, providers: list[dict], output: Path) ->
 
 async def discover_provider(provider: dict, *, client=None) -> dict:
     """The provider's single-language discovery scope."""
+    logger.debug("Discovering provider %s on its own", provider["code"])
     connection = client or Client(provider["base_url"])
     try:
         async for scope in discover(provider, client=connection):
@@ -158,6 +185,7 @@ async def discover_provider(provider: dict, *, client=None) -> dict:
 
 async def fetch_metadata(record: dict, *, client) -> dict:
     """The trimmed structure document of one discovered table."""
+    logger.debug("Fetching structure of table %s", record["table_url"])
     structure = await infer_structure(
         client,
         record["table_url"],
@@ -200,11 +228,52 @@ async def run(
     counts = dict.fromkeys(COUNTS, 0)
     errors, deferred, requests = [], [], 0
     interrupted = None
+    strategies = Counter()
+    done = 0
     wanted = set(selected) if selected else None
     chosen = [p for p in providers if wanted is None or p["code"] in wanted]
     for code in sorted((wanted or set()) - {p["code"] for p in providers}):
+        logger.warning("Requested provider %r is not configured; skipping it", code)
         errors.append(
             {"stage": "discovery", "resource": code, "error": "Unknown provider"}
+        )
+    logger.info(
+        "EntryScape run starting: %d of %d configured providers (%s), "
+        "max_requests=%d, max_paging_requests=%d, requests_per_second=%.2f, "
+        "preflight=%s",
+        len(chosen),
+        len(providers),
+        ", ".join(sorted(wanted)) if wanted else "all",
+        max_requests,
+        max_paging_requests,
+        requests_per_second,
+        preflight,
+    )
+    if tables:
+        logger.info(
+            "Incremental refresh: %d tables known from earlier runs (%s); "
+            "unchanged tables will be skipped",
+            len(tables),
+            ", ".join(
+                f"{n} {s}"
+                for s, n in sorted(
+                    Counter(t.get("status") for t in tables.values()).items()
+                )
+            ),
+        )
+    else:
+        logger.info("Initial harvest: no accepted tables yet, every table is new")
+    if wanted is not None:
+        logger.info(
+            "Provider selection active: tables of unselected providers are left "
+            "untouched and absent tables are not pruned"
+        )
+    if current.get("mapping_version") not in (None, MAPPING_VERSION):
+        logger.info(
+            "Mapping version changed (%s -> %s); datasets are regrouped offline "
+            "from accepted tables without any request",
+            current.get("mapping_version"),
+            MAPPING_VERSION,
         )
 
     def fail(stage, resource, error):
@@ -214,6 +283,8 @@ async def run(
             "error": f"{type(error).__name__}: {error}",
         }
         errors.append(entry)
+        if stage != "run":
+            logger.error("%s failed for %s: %s", stage, resource, entry["error"])
         progress.error(stage, resource, "sv", entry["error"])
         return entry
 
@@ -225,6 +296,7 @@ async def run(
             except CONNECTION_ERRORS as error:
                 if unresolvable(error):
                     raise
+                logger.error("Cannot connect to %s: %s", base_url, type(error).__name__)
                 raise Blocked(f"{base_url}: {type(error).__name__}") from error
             except (RateLimited, BudgetExhausted) as error:
                 raise Blocked(f"{base_url}: {error}") from error
@@ -257,6 +329,7 @@ async def run(
         except EmptyTable:
             entry.update(status="empty", rowcount=0)
             counts["empty"] += 1
+            logger.debug("%s: empty table (0 rows), recorded", key)
         except NeedsPaging as deferral:
             entry.update(
                 status="deferred",
@@ -271,6 +344,14 @@ async def run(
                 }
             )
             counts["deferred"] += 1
+            logger.debug(
+                "%s: deferred, %d rows need ~%d paging requests (limit %d): %s",
+                key,
+                deferral.rowcount,
+                deferral.estimated_requests,
+                max_paging_requests,
+                deferral.reason,
+            )
         else:
             entry.update(
                 status="ok",
@@ -280,12 +361,21 @@ async def run(
                 document=trim(table_document(record, structure)),
             )
             counts["harvested"] += 1
+            strategies[structure["strategy"]] += 1
+            logger.debug(
+                "%s: harvested %d rows via %s in %d requests",
+                key,
+                structure["rowcount"],
+                structure["strategy"],
+                structure["requests"],
+            )
         tables[key] = entry
         return entry["status"]
 
     try:
         if preflight:
             progress.update(phase="discovery", current="preflight")
+            logger.info("Preflight: checking %d hosts", len(PREFLIGHT_HOSTS))
             for host in PREFLIGHT_HOSTS:
                 try:
                     await call(
@@ -296,12 +386,30 @@ async def run(
                         ),
                     )
                 except Exception as error:
+                    logger.error(
+                        "Preflight failed for %s (%s); not starting the run",
+                        host,
+                        type(error).__name__,
+                    )
                     raise Blocked(f"{host} is not reachable; not starting") from error
+                logger.debug("Preflight: %s reachable", host)
+        else:
+            logger.info("Preflight skipped")
         table_errors = 0
         progress.update(phase="metadata", total=len(chosen), processed=0)
         for position, provider in enumerate(chosen, start=1):
             code = provider["code"]
             progress.update(current=code, operation="discovery")
+            logger.info(
+                "[%d/%d] Provider %s: discovering tables (%d/%d requests spent)",
+                position,
+                len(chosen),
+                code,
+                pacer.sent,
+                max_requests,
+            )
+            before = dict(counts)
+            decisions = Counter()
             try:
                 scope = await call(
                     provider["base_url"],
@@ -313,6 +421,12 @@ async def run(
                 raise
             except Exception as error:
                 fail("discovery", code, error)
+                logger.warning(
+                    "Provider %s skipped: discovery failed, its %d known tables "
+                    "are kept as they are",
+                    code,
+                    sum(1 for k in tables if k.startswith(code + "/")),
+                )
                 current["providers"][code] = {"checked_at": stamp, "complete": False}
                 continue
             if scope["errors"]:
@@ -326,6 +440,16 @@ async def run(
                 "tables": len(scope["records"]),
             }
             listed = {table_key(r): r for r in scope["records"]}
+            known = sum(1 for k in tables if k.startswith(code + "/"))
+            logger.info(
+                "Provider %s: %d tables listed, %d already known, %d new; "
+                "scope complete=%s",
+                code,
+                len(listed),
+                len(listed.keys() & tables.keys()),
+                len(listed.keys() - tables.keys()),
+                scope["complete"],
+            )
             if scope["complete"] and wanted is None:
                 for key in [
                     k
@@ -336,6 +460,25 @@ async def run(
                 ]:
                     tables.pop(key)
                     counts["removed"] += 1
+                    logger.debug("%s: no longer listed by the provider; removed", key)
+                if counts["removed"] > before["removed"]:
+                    logger.info(
+                        "Provider %s: %d of %d known tables are no longer listed "
+                        "and were removed",
+                        code,
+                        counts["removed"] - before["removed"],
+                        known,
+                    )
+            elif not scope["complete"]:
+                logger.warning(
+                    "Provider %s: scope incomplete, not pruning its %d known tables",
+                    code,
+                    known,
+                )
+            else:
+                logger.info(
+                    "Provider %s: selection active, not pruning absent tables", code
+                )
             for key, record in listed.items():
                 previous = tables.get(key)
                 settled = previous is not None and previous.get("status") in (
@@ -343,11 +486,31 @@ async def run(
                     "empty",
                     "deferred",
                 )
+                why = (
+                    "new table"
+                    if previous is None
+                    else f"previous attempt ended as {previous.get('status')}"
+                )
                 if settled and any(markers(record).values()):
                     if previous["markers"] == markers(record):
                         counts["unchanged"] += 1
+                        decisions["unchanged (modified markers equal)"] += 1
+                        logger.debug(
+                            "%s: unchanged (%s), skipped", key, previous.get("status")
+                        )
                         continue
+                    why = "modified markers changed"
+                    logger.debug(
+                        "%s: markers changed %s -> %s",
+                        key,
+                        previous["markers"],
+                        markers(record),
+                    )
                 elif settled:
+                    logger.debug(
+                        "%s: no modified markers in the catalogue; probing row count",
+                        key,
+                    )
                     progress.update(current=key, operation="row count")
                     page = await call(
                         record["base_url"],
@@ -358,7 +521,22 @@ async def run(
                     if page.get("resultCount") == previous.get("rowcount"):
                         previous["markers"] = markers(record)
                         counts["unchanged"] += 1
+                        decisions["unchanged (row count equal)"] += 1
+                        logger.debug(
+                            "%s: row count still %s, skipped",
+                            key,
+                            previous.get("rowcount"),
+                        )
                         continue
+                    why = "row count changed"
+                    logger.debug(
+                        "%s: row count %s -> %s",
+                        key,
+                        previous.get("rowcount"),
+                        page.get("resultCount"),
+                    )
+                decisions[f"harvest: {why}"] += 1
+                logger.debug("%s: harvesting (%s)", key, why)
                 progress.update(current=key, operation="harvest")
                 try:
                     await harvest(record)
@@ -378,13 +556,44 @@ async def run(
                     }
                     counts["failed"] += 1
                     table_errors += 1
+                    logger.warning(
+                        "%s: failure recorded (%d/%d tolerated); previous document "
+                        "is kept",
+                        key,
+                        table_errors,
+                        MAX_TABLE_ERRORS,
+                    )
                     if table_errors >= MAX_TABLE_ERRORS:
                         raise Blocked(
                             f"{table_errors} unexpected table failures"
                         ) from error
+            done += 1
+            logger.info(
+                "Provider %s done: %d listed; decisions: %s; outcomes: %s; "
+                "%d/%d requests spent",
+                code,
+                len(listed),
+                ", ".join(f"{n} {why}" for why, n in sorted(decisions.items()))
+                or "nothing to do",
+                ", ".join(
+                    f"{counts[k] - before[k]} {k}"
+                    for k in ("harvested", "empty", "deferred", "failed")
+                    if counts[k] - before[k]
+                )
+                or "no table work",
+                pacer.sent,
+                max_requests,
+            )
             progress.update(processed=position, succeeded=counts["harvested"])
     except Blocked as error:
         interrupted = str(error)
+        logger.error(
+            "Run stopped early after %d of %d providers: %s; finished tables are "
+            "kept and the rest waits for the next run",
+            done,
+            len(chosen),
+            interrupted,
+        )
         fail("run", "budget", error)
     progress.update(failed=counts["failed"])
 
@@ -409,6 +618,26 @@ async def run(
     result.update(base_manifest=baseline, manifest=manifest(output))
     write(output / "result.json", result)
     progress.update(phase="finished", result_status=status, current=None)
+    if deferred:
+        logger.info(
+            "%d tables deferred beyond max_paging_requests=%d (about %d paging "
+            "requests in total); they stay deferred until the limit is raised "
+            "or the table changes",
+            len(deferred),
+            max_paging_requests,
+            sum(d["paging_requests"] for d in deferred),
+        )
+    log = logger.info if status == "success" else logger.warning
+    log(
+        "EntryScape run finished: status=%s, %d requests, counts=%s, "
+        "strategies=%s, %d errors, interrupted=%s",
+        status,
+        requests,
+        counts,
+        dict(strategies) or "none",
+        len(errors),
+        interrupted,
+    )
     return result
 
 
@@ -416,9 +645,17 @@ def collect(data: Path, output: Path) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
+    logger.info(
+        "Collecting EntryScape artifact %s (status %s, %d files)",
+        result.get("run_id"),
+        result.get("status"),
+        len(result["manifest"]),
+    )
     if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+        logger.error("Published baseline changed since the run started; refusing")
         raise ValueError("Stale EntryScape artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
+        logger.error("Artifact checksums do not match its manifest; refusing")
         raise ValueError("EntryScape artifact checksum mismatch")
     for relative in result["manifest"]:
         if relative not in {TABLES, CURRENT, REPORT} and not (
@@ -432,9 +669,19 @@ def collect(data: Path, output: Path) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+        logger.debug("Applied %s", relative)
+    removed = 0
     for stale in (
         (data / "metadata").glob("*.jsonl.gz") if (data / "metadata").exists() else []
     ):
         if f"metadata/{stale.name}" not in result["manifest"]:
             stale.unlink()
+            removed += 1
+            logger.debug("Removed stale collection %s", stale.name)
+    logger.info(
+        "Collected %d files into %s, removed %d stale collections",
+        len(result["manifest"]),
+        data,
+        removed,
+    )
     return result

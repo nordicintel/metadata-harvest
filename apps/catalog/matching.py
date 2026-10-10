@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import re
+import time
 from collections import defaultdict
 from dataclasses import dataclass
 from urllib.parse import unquote, urlsplit, urlunsplit
@@ -13,6 +15,8 @@ from apps.harvest.sources import inventory
 from apps.model.models import (
     Dataset,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def _strings(value):
@@ -69,6 +73,7 @@ class PortalIndex:
     """Index identifiers by owner; shared URL values never establish identity."""
 
     def __init__(self, documents, *, overrides=None):
+        started = time.perf_counter()
         self.documents = {}
         self.overrides = overrides or {}
         self.identifiers = defaultdict(set)
@@ -125,6 +130,15 @@ class PortalIndex:
                             for owner, native_id in self.native_pxweb_ids(url):
                                 if key := _identifier_key(native_id):
                                     self.identifiers[(owner, key)].add(identifier)
+        logger.info(
+            "portal index: %d records, %d identifier keys, %d url keys, "
+            "%d overrides in %.1fs",
+            len(self.documents),
+            len(self.identifiers),
+            len(self.urls),
+            len(self.overrides),
+            time.perf_counter() - started,
+        )
 
     def native_pxweb_ids(self, url):
         """Read opaque table IDs only from configured provider API paths."""
@@ -164,6 +178,7 @@ class PortalIndex:
         }
 
     def fingerprint(self, probes: list[dict]) -> str:
+        started = time.perf_counter()
         assertions = []
         for probe in probes:
             match = self.match_probe(probe)
@@ -177,11 +192,17 @@ class PortalIndex:
                     "records": [self.documents[i] for i in ids],
                 }
             )
-        return hashlib.sha256(
+        digest = hashlib.sha256(
             json.dumps(
                 assertions, sort_keys=True, ensure_ascii=False, separators=(",", ":")
             ).encode()
         ).hexdigest()
+        logger.debug(
+            "portal fingerprint over %d probes in %.2fs",
+            len(probes),
+            time.perf_counter() - started,
+        )
+        return digest
 
     def match(self, dataset: Dataset) -> Match:
         return self.match_probe(self.probe(dataset))

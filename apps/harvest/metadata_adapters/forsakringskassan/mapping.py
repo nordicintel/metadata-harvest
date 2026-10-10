@@ -1,5 +1,6 @@
 """Map one Försäkringskassan table to a metadata-only NordicIntel Dataset document."""
 
+import logging
 import re
 from collections.abc import Mapping
 from typing import Any
@@ -21,6 +22,8 @@ from apps.harvest.metadata_adapters.forsakringskassan.source import (
     plain,
     stated_unit,
 )
+
+logger = logging.getLogger("forsakringskassan_logger")
 
 MAPPING_VERSION = 1
 """Increment when a mapping change must rebuild every report in incremental runs."""
@@ -190,6 +193,7 @@ def build_dataset(
     if description := plain(entry.get("about")):
         nordicintel["description"] = description
     if DISCONTINUED in name:
+        logger.debug("Report %s is marked discontinued in its name", report.key)
         nordicintel["discontinued"] = True
     if report.official is not None:
         nordicintel["official_statistics"] = report.official
@@ -272,6 +276,14 @@ def build_dataset(
         "value": [],
         "extension": {"nordicintel": nordicintel, PROVIDER_CODE: native},
     }
+    logger.debug(
+        "Built dataset %s/%s: %d dimensions, %d describedby links, %d contacts",
+        report.key,
+        table.name,
+        len(ids),
+        len(about.links),
+        len(about.emails),
+    )
     if about.links:
         document["link"] = {
             "describedby": [

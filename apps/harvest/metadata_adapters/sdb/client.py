@@ -11,7 +11,7 @@ import aiohttp
 
 from retrieval.data_adapters.sdb import API_ROOT
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("sdb_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=300, sock_connect=30, sock_read=120)
 USER_AGENT = "nordicintel-metadata-harvest/sdb"
@@ -57,6 +57,11 @@ class SdbClient:
         return self._session
 
     async def close(self) -> None:
+        logger.info(
+            "SDB client done: %d requests (including retries) to %s",
+            self.request_count,
+            self._api_root,
+        )
         if self._owned and self._session is not None:
             await self._session.close()
 
@@ -75,6 +80,7 @@ class SdbClient:
                     url, params=params, headers={"Accept": "application/json"}
                 ) as response:
                     if response.status == 404:
+                        logger.debug("GET %s answered 404", url)
                         raise NotFoundError(f"SDB returned 404 for {url}")
                     response.raise_for_status()
                     body = await response.json(content_type=None)
@@ -83,13 +89,22 @@ class SdbClient:
                     error.status == 429 or error.status >= 500
                 )
                 if not transient or attempt == self._attempts:
+                    logger.warning(
+                        "Giving up on %s after %d/%d attempts (%s): %s",
+                        url,
+                        attempt,
+                        self._attempts,
+                        "permanent error" if not transient else "retries exhausted",
+                        error,
+                    )
                     raise Unreachable(
                         f"GET {url} {dict(params or {})} failed: "
                         f"{type(error).__name__}: {error}"
                     ) from error
                 delay = self._retry_delay * 2 ** (attempt - 1)
                 logger.warning(
-                    "Attempt %d/%d for %s failed (%s); retrying in %.0fs",
+                    "Attempt %d/%d for %s failed (%s); backing off %.0fs before "
+                    "retrying",
                     attempt,
                     self._attempts,
                     url,
@@ -98,6 +113,12 @@ class SdbClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("GET %s (%.1fs)", url, time.monotonic() - started)
+            logger.debug(
+                "GET %s %s (%.1fs, attempt %d)",
+                url,
+                dict(params or {}),
+                time.monotonic() - started,
+                attempt,
+            )
             return body
         raise AssertionError("unreachable")

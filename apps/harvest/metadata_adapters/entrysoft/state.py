@@ -8,9 +8,12 @@ collections are derived from it on every run, so they are never edited directly.
 
 import gzip
 import json
+import logging
 from pathlib import Path
 
 from apps.harvest.storage import JsonlStore, write_jsonl
+
+logger = logging.getLogger("entrysoft_logger")
 
 TABLES = "state/tables.jsonl.gz"
 CURRENT = "state/current.jsonl.gz"
@@ -30,18 +33,22 @@ def records(path: Path):
 
 
 def load_tables(root: Path) -> dict:
-    return {entry["key"]: entry for entry in records(Path(root) / TABLES)}
+    tables = {entry["key"]: entry for entry in records(Path(root) / TABLES)}
+    logger.debug("Loaded %d known tables from %s", len(tables), Path(root) / TABLES)
+    return tables
 
 
 def save_tables(root: Path, tables: dict) -> None:
     write_jsonl(Path(root) / TABLES, (tables[k] for k in sorted(tables)))
+    logger.debug("Saved %d tables to %s", len(tables), Path(root) / TABLES)
 
 
 def load_current(root: Path) -> dict:
-    return next(
-        records(Path(root) / CURRENT),
-        {"mapping_version": None, "providers": {}, "dropped": []},
-    )
+    current = next(records(Path(root) / CURRENT), None)
+    if current is None:
+        logger.debug("No run state at %s; starting from an empty state", CURRENT)
+        current = {"mapping_version": None, "providers": {}, "dropped": []}
+    return current
 
 
 def save_current(root: Path, current: dict) -> None:

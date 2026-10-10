@@ -18,6 +18,7 @@ withheld in state. Only a complete discovery in an unbounded run proves removal.
 """
 
 import asyncio
+import logging
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -65,6 +66,10 @@ from retrieval.data_adapters.riksbank import api_of
 
 LANGUAGES = ("en",)
 APIS = ("swea", "mpd", "swestr")
+logger = logging.getLogger("riksbank_logger")
+
+PROGRESS_EVERY = 10
+"""Log a progress line after this many built datasets."""
 COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
 
 
@@ -91,6 +96,7 @@ def _probe_url(record):
 
 async def discover_api(client, api: str) -> Listing:
     """Read one API's catalogue; raises when the whole scope cannot be read."""
+    logger.debug("Reading the %s catalogue", api)
     if api == "swea":
         groups = await _request(client, GROUPS_URL)
         return swea_listing(groups, await _request(client, SERIES_URL))
@@ -109,6 +115,7 @@ async def build_record(client, record: dict) -> dict:
     """
     if record["api"] == "swea":
         group_id = record["group"]["groupId"]
+        logger.debug("Probing SWEA group %s for its latest observations", group_id)
         latest = await client.get_json(latest_by_group_url(group_id))
         if latest is None:
             raise ValueError(f"no latest observations for SWEA group {group_id}")
@@ -116,6 +123,9 @@ async def build_record(client, record: dict) -> dict:
     elif record["api"] == "mpd":
         series_id = record["series"]["series_id"]
         latest_round = record["policy_rounds"][-1]
+        logger.debug(
+            "Probing forecast %s at its latest round %s", series_id, latest_round
+        )
         probe = await client.get_json(
             MPD_FORECASTS,
             {"series": series_id, "policy_round_name": latest_round},
@@ -125,8 +135,10 @@ async def build_record(client, record: dict) -> dict:
             raise ValueError(f"no {latest_round} vintage of {series_id}")
         document = build_mpd(record, probe)
     else:  # discovery already read the latest fixing
+        logger.debug("SWESTR needs no probe: discovery already read the latest fixing")
         document = build_swestr(record["latest"])
     validate_metadata(document, adapter=PROVIDER_CODE)
+    logger.debug("Validated the %s document", record["dataset_code"])
     return document
 
 
@@ -134,11 +146,13 @@ async def discover_provider(provider: dict, *, client=None) -> list[dict]:
     """Every dataset record of the three APIs (four catalogue requests)."""
     connection = client or RiksbankClient(provider)
     try:
-        return [
-            record
-            for api in APIS
-            for record in (await discover_api(connection, api)).records
-        ]
+        records = []
+        for api in APIS:
+            found = (await discover_api(connection, api)).records
+            logger.info("Discovered %d %s dataset records", len(found), api)
+            records += found
+        logger.info("Discovered %d Riksbank dataset records in total", len(records))
+        return records
     finally:
         if client is None:
             await connection.close()
@@ -146,6 +160,7 @@ async def discover_provider(provider: dict, *, client=None) -> list[dict]:
 
 async def fetch_metadata(record: dict, *, client) -> dict:
     """Build and validate the document of one discovered record."""
+    logger.debug("Fetching metadata of %s", record["dataset_code"])
     return await build_record(client, record)
 
 
@@ -210,6 +225,17 @@ async def run(
     state = load_state(data)
     published = load_documents(data, configured)
     withheld = state["withheld"]
+    logger.info(
+        "Loaded published baseline from %s: %d files, %d published documents, "
+        "%d withheld, state for %d datasets (state mapping version %s, current %s)",
+        data,
+        len(baseline),
+        len(published),
+        len(withheld),
+        len(state["datasets"]),
+        state.get("mapping_version"),
+        MAPPING_VERSION,
+    )
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         target = output / relative
@@ -225,6 +251,32 @@ async def run(
     errors: list[dict] = []
     wanted = {name.casefold() for name in subjects} if subjects else None
     apis = _apis_for(subjects)
+    logger.info(
+        "Riksbank %s: languages %s; APIs to discover %s of %s; max age %d days, "
+        "retry cooldown %ss, request interval %ss",
+        "full rebuild" if wanted is None else "bounded rebuild",
+        selected_languages,
+        apis,
+        list(APIS),
+        max_age.days,
+        cooldown,
+        getattr(connection, "_interval", None),
+    )
+    if wanted is None:
+        logger.info(
+            "No ETag, Last-Modified or timestamp is published, so every discovered "
+            "dataset is rebuilt and probed; an identical rebuild keeps its bytes"
+        )
+    else:
+        logger.info(
+            "Only datasets matching %d selected names %s are rebuilt; the names "
+            "narrow discovery to %d of %d APIs and resolve against SWEA group "
+            "ids/series ids, forecast series ids and dataset codes",
+            len(wanted),
+            sorted(subjects),
+            len(apis),
+            len(APIS),
+        )
     scopes: dict[str, str] = {}
     matched: set[str] = set()
     failure_urls = {}
@@ -255,6 +307,14 @@ async def run(
             "error": f"{type(error).__name__}: {error}",
         }
         errors.append(entry)
+        logger.log(
+            logging.DEBUG if report_only else logging.ERROR,
+            "Recorded %s failure for %s: %s: %s",
+            stage,
+            resource,
+            type(error).__name__,
+            error,
+        )
         if not report_only:
             notify(stage, resource, error, url)
         return entry
@@ -303,8 +363,21 @@ async def run(
             outcome = None
         except Unreachable as error:
             outcome, endpoint_failed = ("endpoint", error), True
+            logger.warning(
+                "%s: probe endpoint unreachable (%s); queued for one retry after the "
+                "cooldown, and the last good document is withheld if it stays down",
+                record["dataset_code"],
+                error,
+            )
         except Exception as error:  # the probe answered: endpoint works
             outcome = ("metadata", error)
+            logger.error(
+                "%s: probe answered but the document could not be built (%s: %s); "
+                "the last good document stays published while it is still fresh",
+                record["dataset_code"],
+                type(error).__name__,
+                error,
+            )
         for key in keys_of(record):
             settled.add(key)
             info = state["datasets"].setdefault(key, {})
@@ -318,12 +391,30 @@ async def run(
             working[key] = True
             accepted = published.get(key) or withheld.get(key)
             counts["unchanged" if document == accepted else "rebuilt"] += 1
+            logger.debug(
+                "%s: %s",
+                key,
+                "identical to the accepted document, keeping it"
+                if document == accepted
+                else "new document"
+                if accepted is None
+                else "document changed, replacing the accepted one",
+            )
             info.update(verified_at=stamp, mapping_version=MAPPING_VERSION, error=None)
             (withheld if key in withheld else published)[key] = document
+        processed = counts["rebuilt"] + counts["unchanged"] + len(failures)
         progress.update(
-            processed=counts["rebuilt"] + counts["unchanged"] + len(failures),
+            processed=processed,
             succeeded=counts["rebuilt"] + counts["unchanged"],
         )
+        if processed and processed % PROGRESS_EVERY == 0:
+            logger.info(
+                "Built %d datasets so far: %d rebuilt, %d unchanged, %d failing",
+                processed,
+                counts["rebuilt"],
+                counts["unchanged"],
+                len(failures),
+            )
         return endpoint_failed
 
     async def harvest(api: str) -> tuple[bool, list[dict]]:
@@ -332,6 +423,15 @@ async def run(
         try:
             listing = await discover_api(connection, api)
         except Exception as error:
+            logger.error(
+                "Discovery of the %s API failed (%s: %s); %s",
+                api,
+                type(error).__name__,
+                error,
+                "endpoint unreachable, will retry after the cooldown"
+                if isinstance(error, Unreachable)
+                else "catalogue unusable, no retry",
+            )
             notify(
                 "discovery",
                 api,
@@ -347,6 +447,13 @@ async def run(
                 ),
             )
             unavailable = known(api)
+            logger.warning(
+                "%s scope failed: not rebuilding its %d known datasets; each is "
+                "withheld unless it was verified within the maximum age and its "
+                "endpoint still works",
+                api,
+                len(unavailable),
+            )
             for key in unavailable:
                 settled.add(key)
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
@@ -359,19 +466,59 @@ async def run(
         for resource, error in listing.problems:
             fail("discovery", resource, error)
         records = listing.records
+        logger.info(
+            "Discovery %s: %s, %d dataset records, %d catalogue problems, "
+            "%d quarantined datasets (%s)",
+            api,
+            scopes[api],
+            len(records),
+            len(listing.problems),
+            len(listing.quarantined),
+            ", ".join(sorted(listing.quarantined)) or "none",
+        )
         if wanted is not None:
             records = [r for r in records if _aliases(r) & wanted]
             for record in listing.records:
                 matched.update(_aliases(record) & wanted)
             for code in listing.quarantined:
                 matched.add(code.casefold())
+            logger.info(
+                "Subject filter on %s: selected %d of %d records, skipped %d not "
+                "matching %s; no removal check in a bounded run",
+                api,
+                len(records),
+                len(listing.records),
+                len(listing.records) - len(records),
+                sorted(subjects),
+            )
         elif listing.complete:
             current = {key for record in records for key in keys_of(record)}
-            for key in sorted(known(api) - current):
+            previous = known(api)
+            gone = sorted(previous - current)
+            logger.info(
+                "Removal check on %s: complete listing, %d of %d known keys are no "
+                "longer listed",
+                api,
+                len(gone),
+                len(previous),
+            )
+            for key in gone:
                 settled.discard(key)
                 state["datasets"].pop(key, None)
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
+                logger.warning(
+                    "%s is no longer listed by the %s API; removed", key, api
+                )
+        else:
+            logger.info(
+                "Removal check on %s skipped: the listing is incomplete, so absence "
+                "proves nothing",
+                api,
+            )
+        logger.debug(
+            "%s datasets to build: %s", api, [r["dataset_code"] for r in records]
+        )
         return False, records
 
     try:
@@ -384,24 +531,51 @@ async def run(
                 retry_apis.append(api)
             pending += records
         progress.update(phase="metadata", total=len(pending), processed=0)
+        logger.info(
+            "Discovery done: %d datasets selected for rebuild; %d API scopes need a "
+            "retry; expecting %d probe requests",
+            len(pending),
+            len(retry_apis),
+            sum(r["api"] != "swestr" for r in pending),
+        )
         retry_records = []
         for record in pending:
             progress.update(current=record["dataset_code"], operation="rebuild")
             if await build(record):
                 retry_records.append(record)
+        logger.info(
+            "First pass done: %d rebuilt, %d unchanged, %d failing; %d datasets and "
+            "%d API scopes to retry",
+            counts["rebuilt"],
+            counts["unchanged"],
+            len(failures),
+            len(retry_records),
+            len(retry_apis),
+        )
         if retry_apis or retry_records:
             progress.update(operation="retry cooldown", current=None)
+            logger.info("Waiting %ss before retrying unreachable endpoints", cooldown)
             await asyncio.sleep(cooldown)
             for api in retry_apis:
+                logger.info("Retrying discovery of the %s API", api)
                 _, records = await harvest(api)
                 retry_records += records
             for record in retry_records:
                 progress.update(current=record["dataset_code"], operation="retry")
                 await build(record)
         if apis and all(scopes.get(api) == "failed" for api in apis):
+            logger.error(
+                "Every attempted API scope failed (%s); publishing nothing",
+                ", ".join(apis),
+            )
             raise failures[apis[0]][1]
         if wanted is not None:
             resolvable = all(scopes.get(api) != "failed" for api in apis)
+            if not resolvable:
+                logger.warning(
+                    "Cannot tell whether selected names are unknown: an API scope "
+                    "failed"
+                )
             for name in sorted(subjects) if resolvable else []:
                 if name.casefold() not in matched:
                     fail("discovery", name, LookupError("Unknown Riksbank dataset"))
@@ -412,6 +586,13 @@ async def run(
                 if affected in state["datasets"]:
                     state["datasets"][affected]["error"] = entry
         progress.update(failed=counts["failed"])
+        logger.info(
+            "Settling %d keys: published only if the endpoint worked this run and "
+            "the document was verified within %d days, otherwise withheld",
+            len(settled),
+            max_age.days,
+        )
+        was_withheld = set(withheld)
         settle(
             sorted(settled),
             published,
@@ -422,6 +603,12 @@ async def run(
             max_age,
             counts,
         )
+        for key in sorted(set(withheld) - was_withheld):
+            logger.warning(
+                "%s withheld: %s", key, state["datasets"][key].get("withheld_reason")
+            )
+        for key in sorted(was_withheld - set(withheld)):
+            logger.info("%s restored to the published set", key)
     finally:
         if client is None:
             await connection.close()
@@ -452,6 +639,18 @@ async def run(
     result.update(base_manifest=baseline, manifest=manifest(output))
     write(output / "result.json", result)
     progress.update(phase="finished", result_status=status, current=None)
+    logger.log(
+        logging.INFO if not errors else logging.WARNING,
+        "Riksbank run finished with status %s after %s requests: counts %s; "
+        "published %s; %d withheld; %d errors; scopes %s",
+        status,
+        result["requests"],
+        counts,
+        result["published"],
+        len(withheld),
+        len(errors),
+        result["apis"],
+    )
     return result
 
 
@@ -459,6 +658,13 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
+    logger.info(
+        "Collecting Riksbank artifact %s (status %s, %d files) into %s",
+        output,
+        result.get("status"),
+        len(result["manifest"]),
+        data,
+    )
     if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
         raise ValueError("Stale Riksbank artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
@@ -473,4 +679,6 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+        logger.debug("Applied %s", relative)
+    logger.info("Collected %d files into %s", len(result["manifest"]), data)
     return result

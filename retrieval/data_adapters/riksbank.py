@@ -61,7 +61,7 @@ documented for ``/swea/v1/Observations/{seriesId}/{from}/{to}`` or SWESTR histor
 1900-01-01 to 2026-10-09 (46,299 days, 32,211 rows, 1 MB) was answered in one call
 on 2026-10-09. Longer ranges are split rather than sent untested."""
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("riksbank_logger")
 
 
 def api_of(dataset_code: str) -> str | None:
@@ -106,12 +106,14 @@ async def _get(
     empty: tuple[int, ...] = (204,),
 ) -> Any:
     """GET ``url`` and decode JSON; None for an ``empty`` status (no content)."""
+    logger.debug("GET %s %s", url, params or {})
     async with session.get(url, params=params, headers=ACCEPT_JSON) as response:
         if response.status in empty:
             logger.debug("GET %s %s: %d (no data)", url, params, response.status)
             return None
         if response.status == 400:
             text = (await response.text())[:300]
+            logger.warning("Riksbank rejected GET %s %s: %s", url, params or {}, text)
             raise ValueError(f"Riksbank rejected GET {url} {params or ''}: {text}")
         response.raise_for_status()
         return await response.json(content_type=None)
@@ -138,9 +140,16 @@ async def _swea(session, selection, data_url, metadata_url, native) -> dict:
     wanted = set(selection[TIME])
     cells: dict[tuple[str, str], Any] = {}
     empty = []
+    ranges = date_ranges(selection[TIME])
+    logger.debug(
+        "SWEA: %d series x %d date ranges for %d selected dates",
+        len(selection[SERIES]),
+        len(ranges),
+        len(wanted),
+    )
     for series_id in selection[SERIES]:
         found = False
-        for first, last in date_ranges(selection[TIME]):
+        for first, last in ranges:
             rows = await _get(
                 session, _swea_series_url(data_url, series_id, first, last)
             )
@@ -153,6 +162,11 @@ async def _swea(session, selection, data_url, metadata_url, native) -> dict:
             empty.append(series_id)
     if empty:
         # SWEA answers 204 both for unknown series and for empty ranges.
+        logger.info(
+            "SWEA: %d of %d series returned no rows; checking whether they still exist",
+            len(empty),
+            len(selection[SERIES]),
+        )
         group = native.get("group_id")
         url = metadata_url or (
             f"{SWEA_ROOT}/Series/ByGroup/{group}" if group is not None else None
@@ -163,6 +177,7 @@ async def _swea(session, selection, data_url, metadata_url, native) -> dict:
                 raise LookupError(f"SWEA group {group} no longer exists ({url})")
             known = {str(row.get("seriesId")) for row in listed}
             if gone := [code for code in empty if code not in known]:
+                logger.error("SWEA series %s no longer exist in %s", gone, url)
                 raise LookupError(f"SWEA series {gone} no longer exist in {url}")
     return {
         (series_id, day): (value, None) for (series_id, day), value in cells.items()
@@ -210,6 +225,7 @@ async def _mpd(session, selection, data_url, metadata_url, native) -> dict:
             # unknown series alike.
             body = await _get(session, base, params, empty=(204, 404))
             if body is None:
+                logger.debug("Forecasts: no %s vintage of %s", policy_round, series_id)
                 continue
             answered.add(series_id)
             for vintage in _vintages(body, series_id):
@@ -231,6 +247,11 @@ async def _mpd(session, selection, data_url, metadata_url, native) -> dict:
                         cells[(series_id, policy_round, period)] = (value, None)
     if missing := [s for s in selection[SERIES] if s not in answered]:
         url = metadata_url or MPD_SERIES_IDS
+        logger.info(
+            "Forecasts: no vintage answered for %d series; checking %s",
+            len(missing),
+            url,
+        )
         listed = await _get(session, url)
         known = {
             str(item.get("series_id"))
@@ -238,6 +259,7 @@ async def _mpd(session, selection, data_url, metadata_url, native) -> dict:
             if isinstance(item, Mapping)
         }
         if gone := [code for code in missing if code not in known]:
+            logger.error("Forecast series %s no longer listed in %s", gone, url)
             raise LookupError(f"forecast series {gone} no longer listed in {url}")
     return cells
 
@@ -289,6 +311,7 @@ async def _fetch_cells(session, api, selection, data_url, metadata_url, native):
         return await _swestr(session, selection, data_url, metadata_url, native)
     except aiohttp.ClientResponseError as error:
         if error.status == 404 and api != "mpd":
+            logger.error("Riksbank %s resource not found: %s", api, error)
             raise LookupError(f"Riksbank resource not found: {error}") from error
         raise
 
@@ -329,7 +352,14 @@ async def retrieve(
         raise ValueError(f"not a Riksbank dataset code: {dataset_code!r}")
     _check_selection(api, selection, metadata)
     _dates(selection[TIME])
+    logger.info(
+        "Retrieving %s: api=%s, selected codes per dimension %s",
+        dataset_code,
+        api,
+        {name: len(codes) for name, codes in selection.items()},
+    )
     cells = await _fetch_cells(session, api, selection, data_url, metadata_url, native)
+    logger.info("Retrieved %d observation cells for %s", len(cells), dataset_code)
 
     ids = list(selection)
     order = list(DIMENSIONS[api])

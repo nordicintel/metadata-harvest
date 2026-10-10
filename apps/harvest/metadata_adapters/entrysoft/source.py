@@ -14,10 +14,13 @@ from __future__ import annotations
 
 import csv
 import io
+import logging
 
 import httpx
 
 from apps.harvest.metadata_adapters.entrysoft.client import Client
+
+logger = logging.getLogger("entrysoft_logger")
 
 DCAT = "http://www.w3.org/ns/dcat#"
 DELIMITERS = (",", ";", "\t", "|")
@@ -28,6 +31,7 @@ def _decode(data: bytes) -> str:
         try:
             return data.decode(encoding)
         except UnicodeDecodeError:
+            logger.debug("Source file is not valid %s; trying the next one", encoding)
             continue
     raise ValueError("Source file is neither UTF-8 nor Windows-1252 text")
 
@@ -49,6 +53,7 @@ async def source_file_urls(client: Client, source_uri: str) -> list[str]:
     urls = [o.get("value") for o in properties.get(DCAT + "downloadURL", [])]
     if not urls:
         urls = [o.get("value") for o in properties.get(DCAT + "accessURL", [])]
+        logger.debug("%s lists no downloadURL; using accessURL values", source_uri)
     return [url for url in urls if url]
 
 
@@ -72,6 +77,7 @@ async def load_source_rows(
             None,
             f"{len(urls)} source files, more requests than paging ({max_files} allowed)",
         )
+    logger.debug("Reading %d source file(s) of %s", len(urls), source_uri)
     rows: list[dict[str, str]] = []
     for url in urls:
         try:
@@ -91,5 +97,7 @@ async def load_source_rows(
                 None,
                 f"source file is {content_type or 'of unknown type'} and binary, not CSV",
             )
-        rows.extend(parse_csv(data))
+        parsed = parse_csv(data)
+        logger.debug("Source file %s: %d rows", url, len(parsed))
+        rows.extend(parsed)
     return rows, "ok"

@@ -12,6 +12,7 @@ dataset's removal.
 """
 
 import asyncio
+import logging
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -53,6 +54,8 @@ from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
+logger = logging.getLogger("trafa_logger")
+
 LANGUAGES = ("sv",)
 EXCLUDED_PRODUCTS = {
     "ATFT": 'Test product "Annotering test", harvested only on request.'
@@ -89,10 +92,15 @@ class _Product:
     async def probe(self, product, combination, language: str):
         query = probe_query(product, combination)
         if (language, query) not in self.probes:
+            logger.debug(
+                "Probing %s (%s): %s", combination.dataset_code, language, query
+            )
             body = await self.client.get_json(
                 DATA_URL, {"query": query, "lang": api_language(language)}
             )
             self.probes[(language, query)] = body
+        else:
+            logger.debug("Reusing cached %s probe for %s", language, query)
         return parse_probe(self.probes[(language, query)])
 
     async def discover(self):
@@ -100,6 +108,13 @@ class _Product:
         failure, other errors (documentation page, parsing) metadata failures."""
         swedish = await self.structure("sv")
         english = await self.structure("en") if "en" in self.languages else None
+        logger.debug(
+            "Product %s: structure read (sv%s), %d variables, %d measures",
+            self.entry["unique_id"],
+            " and en" if english else "",
+            len(swedish.variables),
+            len(swedish.measures),
+        )
         try:
             html = await self.client.get_text(documentation_url(swedish.unique_id))
         except Unreachable as error:  # the page is not the value endpoint
@@ -130,7 +145,11 @@ async def discover_provider(provider: dict, *, client=None) -> list[dict]:
     """The current product list."""
     connection = client or TrafaClient()
     try:
-        return product_list(await connection.get_json(STRUCTURE_URL, {"lang": "SV"}))
+        products = product_list(
+            await connection.get_json(STRUCTURE_URL, {"lang": "SV"})
+        )
+        logger.info("Trafikanalys lists %d products", len(products))
+        return products
     finally:
         if client is None:
             await connection.close()
@@ -140,6 +159,11 @@ async def fetch_metadata(record: dict, *, client) -> list[dict]:
     """Build and validate every Swedish dataset of one product-list entry."""
     product = _Product(client, record, ["sv"], {})
     swedish, english, selection = await product.discover()
+    logger.info(
+        "Product %s: building %d Swedish datasets",
+        record["unique_id"],
+        len(selection.datasets),
+    )
     return [
         await product.build(combination, swedish, english, "sv")
         for combination in selection.datasets
@@ -183,6 +207,22 @@ async def run(
     connection = client or TrafaClient()
     progress = Progress("trafa", PROVIDER_CODE)
     counts = dict.fromkeys(COUNTS, 0)
+    logger.info(
+        "Trafikanalys run starting: %s (requested products: %s); languages %s "
+        "(configured %s); max_age %s days, retry cooldown %ss; baseline "
+        "%d published, %d withheld, %d tracked datasets",
+        "full rebuild of every product (no update signal is published)"
+        if products is None
+        else "rebuild restricted to the requested products",
+        "all" if products is None else sorted(products),
+        selected_languages,
+        configured,
+        max_age.days,
+        cooldown,
+        len(published),
+        len(withheld),
+        len(state["datasets"]),
+    )
     errors, report = [], {"combinations_without_measures": {}, "excluded": {}}
 
     def fail(stage, resource, error):
@@ -192,6 +232,7 @@ async def run(
             "error": f"{type(error).__name__}: {error}",
         }
         errors.append(entry)
+        logger.error("%s failure for %s: %s", stage, resource, entry["error"])
         progress.error(stage, resource, resource.split("/", 1)[0], entry["error"])
         return entry
 
@@ -207,6 +248,7 @@ async def run(
     try:
         progress.update(phase="discovery", current="products")
         listed = product_list(await connection.get_json(STRUCTURE_URL, {"lang": "SV"}))
+        logger.info("Trafikanalys lists %d products", len(listed))
         if not listed:
             raise ValueError("Trafikanalys lists no products")
         if products is None:
@@ -217,10 +259,25 @@ async def run(
                 if e["unique_id"] in EXCLUDED_PRODUCTS
             }
             selected_ids = {e["unique_id"] for e in selected}
-            for key in sorted(k for k in known() if product_of(k) not in selected_ids):
+            logger.info(
+                "Full run: selected %d of %d listed products; excluded %s",
+                len(selected),
+                len(listed),
+                sorted(report["excluded"]) or "none",
+            )
+            orphans = sorted(k for k in known() if product_of(k) not in selected_ids)
+            for key in orphans:
                 state["datasets"].pop(key, None)
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
+                    logger.debug("Removed %s: its product is no longer harvested", key)
+            if orphans:
+                logger.info(
+                    "Dropped %d known datasets whose product is no longer listed "
+                    "or is excluded (%d accepted documents removed)",
+                    len(orphans),
+                    counts["removed"],
+                )
         else:
             wanted = {name.casefold() for name in products}
             selected = [
@@ -229,6 +286,13 @@ async def run(
                 if {e["unique_id"].casefold(), e["name"].casefold()} & wanted
             ]
             names = {k.casefold() for e in listed for k in (e["unique_id"], e["name"])}
+            logger.info(
+                "Restricted run: %d of %d listed products match the requested %s; "
+                "datasets of other products and removals are left untouched",
+                len(selected),
+                len(listed),
+                sorted(products),
+            )
             for name in sorted(wanted - names):
                 fail("discovery", name, LookupError("Unknown Trafikanalys product"))
 
@@ -239,6 +303,12 @@ async def run(
             product_id = entry["unique_id"]
             harvester = _Product(connection, entry, selected_languages, probes)
             previous = known(product_id)
+            before = dict(counts)
+            logger.debug(
+                "Product %s: %d datasets already known before rebuild",
+                product_id,
+                len(previous),
+            )
             settled.update(previous)
             for key in previous:
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
@@ -246,6 +316,16 @@ async def run(
                 swedish, english, selection = await harvester.discover()
             except Exception as error:
                 stage = "endpoint" if isinstance(error, Unreachable) else "metadata"
+                logger.warning(
+                    "Product %s: discovery failed at the %s stage (%s: %s); "
+                    "its %d known datasets keep their accepted documents%s",
+                    product_id,
+                    stage,
+                    type(error).__name__,
+                    error,
+                    len(previous),
+                    "; will retry after the cooldown" if stage == "endpoint" else "",
+                )
                 for key in previous:  # reported once, for the product
                     working[key] = stage == "metadata"
                 failures[f"*/{product_id}"] = (stage, error)
@@ -255,6 +335,17 @@ async def run(
                 report["combinations_without_measures"][product_id] = (
                     selection.without_measures
                 )
+                logger.info(
+                    "Product %s: skipped %d listed combinations without measures",
+                    product_id,
+                    len(selection.without_measures),
+                )
+            logger.debug(
+                "Product %s: %d listed combinations reduce to %d maximal datasets",
+                product_id,
+                sum(len(c.listed) for c in selection.datasets),
+                len(selection.datasets),
+            )
             current = set()
             endpoint_failed = False
             for combination in selection.datasets:
@@ -271,11 +362,26 @@ async def run(
                     except Unreachable as error:
                         working[key], failures[key] = False, ("endpoint", error)
                         endpoint_failed = True
+                        logger.warning(
+                            "Dataset %s: value endpoint unreachable (%s)", key, error
+                        )
                         continue
                     except Exception as error:  # the probe answered: endpoint works
                         working[key], failures[key] = True, ("metadata", error)
+                        logger.warning(
+                            "Dataset %s: metadata build failed (%s: %s); the endpoint "
+                            "answered, so any accepted document stays published",
+                            key,
+                            type(error).__name__,
+                            error,
+                        )
                         continue
                     if document is None:
+                        logger.debug(
+                            "Dataset %s: skipped, English labels are not real "
+                            "translations; any earlier document is dropped",
+                            key,
+                        )
                         counts["untranslated"] += 1
                         settled.discard(key)
                         state["datasets"].pop(key, None)
@@ -286,6 +392,14 @@ async def run(
                     working[key] = True
                     accepted = published.get(key) or withheld.get(key)
                     counts["unchanged" if document == accepted else "rebuilt"] += 1
+                    logger.debug(
+                        "Dataset %s: %s",
+                        key,
+                        "identical to the accepted document, bytes kept"
+                        if document == accepted
+                        else "rebuilt"
+                        + (" (new)" if accepted is None else " (content changed)"),
+                    )
                     info.update(
                         verified_at=stamp, mapping_version=MAPPING_VERSION, error=None
                     )
@@ -299,8 +413,34 @@ async def run(
                         published.pop(key, None) or withheld.pop(key, None)
                     ) is not None:
                         counts["removed"] += 1
+                    logger.debug(
+                        "Dataset %s: removed, complete discovery of %s no longer "
+                        "lists it",
+                        key,
+                        product_id,
+                    )
+            else:
+                missing = previous - current
+                if missing:
+                    logger.info(
+                        "Product %s: %d known datasets are not in this discovery; "
+                        "kept because the run is restricted to named products",
+                        product_id,
+                        len(missing),
+                    )
+            logger.info(
+                "Product %s: %d datasets discovered; %d rebuilt, %d unchanged, "
+                "%d untranslated, %d removed",
+                product_id,
+                len(selection.datasets),
+                counts["rebuilt"] - before["rebuilt"],
+                counts["unchanged"] - before["unchanged"],
+                counts["untranslated"] - before["untranslated"],
+                counts["removed"] - before["removed"],
+            )
             return endpoint_failed
 
+        logger.info("Rebuilding %d products", len(selected))
         progress.update(phase="metadata", total=len(selected), processed=0)
         retry = []
         for number, entry in enumerate(selected, start=1):
@@ -309,11 +449,21 @@ async def run(
                 retry.append(entry)
             progress.update(processed=number)
         if retry:
+            logger.warning(
+                "Retrying %d products with endpoint failures after a %ss cooldown: %s",
+                len(retry),
+                cooldown,
+                [entry["unique_id"] for entry in retry],
+            )
             progress.update(operation="retry cooldown", current=None)
             await asyncio.sleep(cooldown)
             for entry in retry:
                 progress.update(current=entry["unique_id"], operation="retry")
-                await harvest(entry)
+                if await harvest(entry):
+                    logger.warning(
+                        "Product %s: still has endpoint failures after the retry",
+                        entry["unique_id"],
+                    )
         for key, (stage, error) in sorted(failures.items()):
             entry = fail(stage, key, error)
             counts["failed"] += 1
@@ -321,6 +471,12 @@ async def run(
                 if affected in state["datasets"]:
                     state["datasets"][affected]["error"] = entry
         progress.update(failed=counts["failed"])
+        logger.info(
+            "Settling %d datasets: published only while the endpoint works and "
+            "the document was verified within %d days",
+            len(settled),
+            max_age.days,
+        )
         settle(
             sorted(settled),
             published,
@@ -331,6 +487,22 @@ async def run(
             max_age,
             counts,
         )
+        outcomes = {}
+        for key in sorted(settled):
+            info = state["datasets"].get(key, {})
+            outcome = info.get("withheld_reason") or info.get("status")
+            outcomes[outcome] = outcomes.get(outcome, 0) + 1
+            if info.get("status") != "published":
+                logger.debug("Dataset %s settled as %s", key, outcome)
+        logger.info("Settled outcomes: %s", dict(sorted(outcomes.items(), key=str)))
+        if withheld:
+            logger.warning(
+                "%d datasets are withheld (%d newly, %d restored this run): %s",
+                len(withheld),
+                counts["withheld"],
+                counts["restored"],
+                sorted({product_of(key) for key in withheld}),
+            )
     finally:
         if client is None:
             await connection.close()
@@ -357,6 +529,16 @@ async def run(
     result.update(base_manifest=baseline, manifest=manifest(output))
     write(output / "result.json", result)
     progress.update(phase="finished", result_status=status, current=None)
+    logger.info(
+        "Trafikanalys run finished with status %s after %s requests: counts %s; "
+        "published %s; %d withheld; %d errors",
+        status,
+        getattr(connection, "request_count", "unknown"),
+        counts,
+        result["published"],
+        len(withheld),
+        len(errors),
+    )
     return result
 
 
@@ -364,7 +546,13 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
+    logger.info(
+        "Collecting Trafikanalys artifact (run %s, status %s)",
+        result.get("run_id"),
+        result.get("status"),
+    )
     if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+        logger.error("Refusing the artifact: published baseline changed since the run")
         raise ValueError("Stale Trafikanalys artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("Trafikanalys artifact checksum mismatch")
@@ -378,4 +566,6 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+        logger.debug("Applied %s", relative)
+    logger.info("Applied %d artifact files", len(result["manifest"]))
     return result

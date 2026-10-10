@@ -8,7 +8,7 @@ from typing import Any
 
 import aiohttp
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("smhi_emissions_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=60)
 USER_AGENT = "nordicintel-metadata-harvest/smhi_emissions"
@@ -80,12 +80,23 @@ class SmhiClient:
                 else:  # transport errors retry; an undecodable body does not
                     transient = not isinstance(error, ValueError)
                 if not transient or attempt == self._attempts:
+                    logger.warning(
+                        "GET %s failed after %d of %d attempts (%s: %s)%s",
+                        url,
+                        attempt,
+                        self._attempts,
+                        type(error).__name__,
+                        error,
+                        "" if transient else "; not retryable",
+                    )
                     raise Unreachable(
                         f"GET {url} {dict(params or {})} failed: "
                         f"{type(error).__name__}: {error}"
                     ) from error
                 delay = self._retry_delay * 2 ** (attempt - 1)
                 if retry_after and retry_after.isdigit():
+                    if float(retry_after) > delay:
+                        logger.info("Honouring Retry-After of %ss", retry_after)
                     delay = max(delay, float(retry_after))
                 logger.warning(
                     "Attempt %d/%d for %s failed (%s: %s); retrying in %.0fs",
@@ -98,6 +109,6 @@ class SmhiClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("GET %s (%.1fs)", location, time.monotonic() - started)
+            logger.debug("GET %s (%.1fs)", location, time.monotonic() - started)
             return body
         raise AssertionError("unreachable")

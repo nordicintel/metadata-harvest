@@ -18,6 +18,7 @@ results are re-read in whole passes until a pass finds nothing new.
 
 from __future__ import annotations
 
+import logging
 import re
 from collections.abc import AsyncIterator
 
@@ -30,6 +31,8 @@ from apps.harvest.metadata_adapters.entrysoft.client import (
 )
 from apps.harvest.sources import catalog_configurations
 from apps.model.models import SourceIdentity
+
+logger = logging.getLogger("entrysoft_logger")
 
 SEARCH_PATH = "store/search"
 SEARCH_PAGE = 100
@@ -80,6 +83,13 @@ async def _search_pass(client: Client, query: str) -> tuple[dict[str, dict], int
             raise ValueError("Invalid EntryStore search response")
         for hit in children:
             hits[f"{hit.get('contextId')}/{hit.get('entryId')}"] = hit
+        logger.debug(
+            "Search page %d (offset %d): %d hits, %d distinct so far",
+            pages,
+            offset,
+            len(children),
+            len(hits),
+        )
         if len(children) < SEARCH_PAGE:
             return hits, pages  # a short page is the last one
         offset += SEARCH_PAGE
@@ -100,10 +110,23 @@ async def search_all(
         found, pages = await _search_pass(client, query)
         new = found.keys() - hits.keys()
         hits.update(found)
+        logger.debug(
+            "Search pass %d: %d pages, %d distinct hits, %d new",
+            passes,
+            pages,
+            len(found),
+            len(new),
+        )
         if passes == 1 and pages == 1:
             return list(hits.values()), passes  # one page: offsets cannot shift
         if passes > 1 and not new:
+            logger.debug("Search pass %d found nothing new; result is stable", passes)
             return list(hits.values()), passes
+    logger.error(
+        "Search results still changing after %d passes (%d hits)",
+        max_passes,
+        len(hits),
+    )
     raise ValueError(f"Search results still changing after {max_passes} passes")
 
 
@@ -111,11 +134,15 @@ async def fetch_datasets(client: Client, uris: set[str]) -> dict[str, dict]:
     """Metadata of the given dataset resource URIs: batched search, then per-entry fallback."""
     datasets: dict[str, dict] = {}
     pending = sorted(uris)
+    logger.info("Looking up %d referenced catalogue datasets in batches", len(uris))
+    batches = 0
     while pending:
         batch, size = [], 0
         while pending and size + len(pending[0]) < 3000:
             batch.append(pending.pop(0))
             size += len(batch[-1]) + 6
+        batches += 1
+        logger.debug("Dataset batch %d: %d URIs", batches, len(batch))
         query = "resource:(" + " OR ".join(f'"{uri}"' for uri in batch) + ")"
         payload = await client.get(
             SEARCH_PATH, {"type": "solr", "query": query, "limit": SEARCH_PAGE}
@@ -124,17 +151,40 @@ async def fetch_datasets(client: Client, uris: set[str]) -> dict[str, dict]:
             uri, properties = _subject(hit, DCAT + "Dataset")
             if uri in uris:
                 datasets[uri] = properties
-    for uri in sorted(uris - datasets.keys()):
+    missing = uris - datasets.keys()
+    if missing:
+        logger.info(
+            "Batched search returned %d of %d datasets; fetching %d individually",
+            len(datasets),
+            len(uris),
+            len(missing),
+        )
+    for uri in sorted(missing):
         if "/resource/" not in uri:
+            logger.debug("Dataset %s has no resource URI; no details available", uri)
             continue
         try:
             metadata = await client.get(uri.replace("/resource/", "/metadata/"))
         except httpx.HTTPStatusError as error:
             if error.response.status_code in (401, 403, 404, 410):
+                logger.debug(
+                    "Dataset %s is not public (HTTP %d); tables stay listed "
+                    "without dataset details",
+                    uri,
+                    error.response.status_code,
+                )
                 continue  # not public: the table is still listed, without dataset details
             raise
         if uri in metadata:
             datasets[uri] = metadata[uri]
+    if len(datasets) < len(uris):
+        logger.warning(
+            "Resolved %d of %d datasets; the rest are listed without dataset details",
+            len(datasets),
+            len(uris),
+        )
+    else:
+        logger.info("Resolved all %d datasets", len(datasets))
     return datasets
 
 
@@ -191,15 +241,35 @@ async def discover_provider(
         return
     distributions = datasets = None
     error, passes = None, 0
+    logger.info(
+        "Discovering RowStore tables on %s (%s, languages %s)",
+        provider["base_url"],
+        provider["code"],
+        ", ".join(provider["languages"]),
+    )
     try:
         distributions, passes = await search_all(client, DISTRIBUTION_QUERY)
+        found = len(distributions)
         distributions = [hit for hit in distributions if _in_scope(provider, hit)]
+        logger.info(
+            "%s: %d RowStore distributions found in %d search pass(es); "
+            "%d within the configured catalog scope, %d excluded",
+            provider["code"],
+            found,
+            passes,
+            len(distributions),
+            found - len(distributions),
+        )
         referenced = {_parent_dataset(hit) for hit in distributions} - {None}
         datasets = await fetch_datasets(client, referenced)
-    except (RateLimited, BudgetExhausted):
+    except (RateLimited, BudgetExhausted) as limit:
+        logger.warning(
+            "Discovery on %s stopped by run limit: %s", provider["code"], limit
+        )
         raise  # the run's limits stop everything, not just this instance
     except Exception as failure:
         error = f"{type(failure).__name__}: {failure}"
+        logger.error("Discovery on %s failed: %s", provider["code"], error)
 
     for language in provider["languages"]:
         scope = {
@@ -211,15 +281,23 @@ async def discover_provider(
             "search_passes": passes,
         }
         if error:
+            logger.warning(
+                "%s [%s]: scope is incomplete, so absent tables prove nothing",
+                provider["code"],
+                language,
+            )
             scope["errors"].append(error)
             yield scope
             continue
         by_table: dict[str, dict] = {}
+        skipped = 0
         for hit in distributions:
             uri, properties = _subject(hit, DCAT + "Distribution")
             urls = [o.get("value", "") for o in _values(properties, DCAT + "accessURL")]
             tables = [url for url in urls if TABLE_URL.match(url)]
             if not uri or not tables:
+                skipped += 1
+                logger.debug("Distribution %s has no RowStore table URL; skipped", uri)
                 continue
             dataset_uri = _parent_dataset(hit)
             dataset = datasets.get(dataset_uri) or {}
@@ -228,6 +306,7 @@ async def discover_provider(
                 location = {"distribution": uri, "dataset": dataset_uri}
                 if code in by_table:
                     by_table[code]["paths"].append(location)
+                    logger.debug("Table %s is also listed through %s", code, uri)
                     continue
                 distribution_modified = _first(properties, DCTERMS + "modified")
                 dataset_modified = _first(dataset, DCTERMS + "modified")
@@ -260,4 +339,13 @@ async def discover_provider(
         )
         scope["observed_ids"] = [record["dataset_code"] for record in scope["records"]]
         scope["complete"] = True
+        logger.info(
+            "%s [%s]: %d distinct tables discovered (%d listed more than once, "
+            "%d distributions without a table URL)",
+            provider["code"],
+            language,
+            len(by_table),
+            sum(1 for r in by_table.values() if len(r["paths"]) > 1),
+            skipped,
+        )
         yield scope

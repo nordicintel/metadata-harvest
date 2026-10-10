@@ -10,6 +10,7 @@ an unbounded run proves a subject's removal from that language.
 """
 
 import asyncio
+import logging
 import shutil
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -43,8 +44,21 @@ from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
+logger = logging.getLogger("sdb_logger")
+
 LANGUAGES = ("sv", "en")
+PROGRESS_EVERY = 25
+LISTED_LIMIT = 20
 COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
+
+
+def _listed(keys) -> str:
+    """Comma-joined sorted ``keys``, truncated so one log line stays readable."""
+    keys = sorted(keys)
+    shown = ", ".join(keys[:LISTED_LIMIT])
+    if len(keys) > LISTED_LIMIT:
+        shown += f", ... (+{len(keys) - LISTED_LIMIT} more)"
+    return shown
 
 
 def listing_rows(body, problems: list) -> tuple[list[dict], bool]:
@@ -82,13 +96,27 @@ async def build_subject(client, row: dict, language: str, time_unit, probes: dic
             str(v["namn"]): await client.get(language, code, str(v["namn"]))
             for v in variables
         }
+        logger.debug(
+            "%s/%s: fetched %d variables and %d category listings",
+            language,
+            code,
+            len(variables),
+            len(categories),
+        )
         if code in probes:  # probed in another language; check this endpoint too
+            logger.debug(
+                "%s/%s: reusing the result probe from another language; checking "
+                "only this language's result endpoint",
+                language,
+                code,
+            )
             await client.get(language, code, "resultat", params={"per_sida": 1})
         else:
             probes[code] = await probe_results(
                 client, language, code, variables, categories
             )
     except NotFoundError as error:
+        logger.warning("%s/%s: SDB answered 404: %s", language, code, error)
         raise Unreachable(str(error)) from error
     probe = probes[code]
     document = build_dataset(
@@ -101,6 +129,7 @@ async def build_subject(client, row: dict, language: str, time_unit, probes: dic
         source_record=row,
     )
     validate_metadata(document, adapter="sdb")
+    logger.debug("%s/%s: document built and validated", language, code)
     return document
 
 
@@ -108,10 +137,15 @@ async def discover_provider(provider: dict, *, client=None) -> dict:
     """Each configured language's subject listing."""
     connection = client or SdbClient(provider)
     try:
-        return {
+        listings = {
             language: await connection.get(language)
             for language in provider.get("languages", LANGUAGES)
         }
+        logger.info(
+            "Discovered SDB subject listings: %s",
+            ", ".join(f"{k}={len(v)} rows" for k, v in listings.items()),
+        )
+        return listings
     finally:
         if client is None:
             await connection.close()
@@ -120,6 +154,7 @@ async def discover_provider(provider: dict, *, client=None) -> dict:
 async def fetch_metadata(record: dict, *, client) -> dict:
     """Build one document from ``{"language", "namn", "text", "time_unit"}``."""
     row = {"namn": record["namn"], "text": record["text"]}
+    logger.debug("Fetching metadata for %s/%s", record["language"], record["namn"])
     return await build_subject(
         client, row, record["language"], record.get("time_unit"), {}
     )
@@ -150,6 +185,14 @@ async def run(
     state = load_state(data)
     published = load_documents(data, configured)
     withheld = state["withheld"]
+    logger.info(
+        "Baseline: %d published documents, %d withheld, %d tracked subjects "
+        "across %d files",
+        len(published),
+        len(withheld),
+        len(state["subjects"]),
+        len(baseline),
+    )
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         target = output / relative
@@ -164,6 +207,25 @@ async def run(
     counts = dict.fromkeys(COUNTS, 0)
     errors = []
     wanted = set(subjects) if subjects else None
+    logger.info(
+        "SDB run starting: %s; languages=%s (configured %s); subjects=%s; "
+        "max_age_days=%s; retry_cooldown_seconds=%s; SDB publishes no modification "
+        "dates, so every selected subject is rebuilt and compared with its accepted "
+        "document",
+        "filtered rebuild" if wanted else "full rebuild",
+        selected_languages,
+        configured,
+        sorted(wanted) if wanted else "all",
+        max_age.days,
+        cooldown,
+    )
+    if state.get("mapping_version") != MAPPING_VERSION:
+        logger.info(
+            "Mapping version changed (%s -> %s); rebuilt documents may differ from "
+            "accepted ones",
+            state.get("mapping_version"),
+            MAPPING_VERSION,
+        )
 
     def fail(stage, resource, error):
         entry = {
@@ -172,6 +234,7 @@ async def run(
             "error": f"{type(error).__name__}: {error}",
         }
         errors.append(entry)
+        logger.error("Recorded %s failure for %s: %s", stage, resource, entry["error"])
         progress.error(stage, resource, resource.split("/", 1)[0], entry["error"])
         return entry
 
@@ -186,12 +249,24 @@ async def run(
         swedish, sv_complete = listing_rows(await connection.get("sv"), problems)
         for resource, error in problems:
             fail("discovery", f"sv/{resource}", error)
+        logger.info(
+            "Swedish listing: %d valid subjects, %d malformed or duplicate rows, "
+            "listing %s",
+            len(swedish),
+            len(problems),
+            "complete" if sv_complete else "incomplete",
+        )
         if not swedish:
+            logger.error("SDB lists no Swedish subjects; aborting the run")
             raise ValueError("SDB lists no Swedish subjects")
         time_units = {
             row["namn"]: time_unit_from_swedish_label(row["text"]) for row in swedish
         }
+        logger.debug(
+            "Time units from Swedish labels: %s", dict(sorted(time_units.items()))
+        )
         for code in sorted((wanted or set()) - set(time_units)):
+            logger.warning("Requested subject %s is not in the Swedish listing", code)
             fail("discovery", f"*/{code}", LookupError("Unknown SDB subject"))
 
         tasks, working, settled = [], {}, set()
@@ -212,6 +287,12 @@ async def run(
                         unavailable = {
                             k for k in unavailable if k.split("/", 1)[1] in wanted
                         }
+                    logger.warning(
+                        "%s listing unavailable; skipping the language and marking "
+                        "its %d known subjects as not working (no removals)",
+                        language,
+                        len(unavailable),
+                    )
                     for key in unavailable:
                         state["subjects"].setdefault(key, {})["checked_at"] = stamp
                         working[key] = False
@@ -220,24 +301,76 @@ async def run(
                 for resource, error in problems:
                     fail("discovery", f"{language}/{resource}", error)
             listed = {f"{language}/{row['namn']}" for row in rows}
+            logger.info(
+                "%s listing: %d subjects, %d known from earlier runs, %s",
+                language,
+                len(listed),
+                len(known(language)),
+                "complete" if complete else "incomplete",
+            )
             if complete and wanted is None:
-                for key in sorted(known(language) - listed):
+                gone = sorted(known(language) - listed)
+                for key in gone:
                     state["subjects"].pop(key, None)
                     if (
                         published.pop(key, None) or withheld.pop(key, None)
                     ) is not None:
                         counts["removed"] += 1
-            tasks += [
+                if gone:
+                    logger.warning(
+                        "%s: %d known subjects are no longer listed and are removed "
+                        "(complete, unbounded listing): %s",
+                        language,
+                        len(gone),
+                        _listed(gone),
+                    )
+            else:
+                logger.info(
+                    "%s: removal check skipped (%s); known subjects missing from "
+                    "the listing are kept",
+                    language,
+                    "subject filter active"
+                    if wanted is not None
+                    else "listing incomplete",
+                )
+            selected = [
                 (language, row)
                 for row in rows
                 if wanted is None or row["namn"] in wanted
             ]
+            tasks += selected
+            logger.info(
+                "%s: selected %d of %d listed subjects for rebuild%s",
+                language,
+                len(selected),
+                len(rows),
+                "" if wanted is None else " (subject filter)",
+            )
+            if len(selected) < len(rows):
+                chosen = {row["namn"] for _, row in selected}
+                logger.debug(
+                    "%s: skipped by subject filter: %s",
+                    language,
+                    _listed(row["namn"] for row in rows if row["namn"] not in chosen),
+                )
+
+        logger.info(
+            "Rebuild plan: %d subject documents across %s",
+            len(tasks),
+            selected_languages,
+        )
 
         progress.update(phase="metadata", total=len(tasks), processed=0)
         probes, failures, pending = {}, {}, tasks
         for attempt in (1, 2):
             retry = []
-            for language, row in pending:
+            logger.info(
+                "Attempt %d/2: rebuilding %d subject documents%s",
+                attempt,
+                len(pending),
+                " (endpoint failures from attempt 1)" if attempt == 2 else "",
+            )
+            for position, (language, row) in enumerate(pending, 1):
                 key = f"{language}/{row['namn']}"
                 settled.add(key)
                 progress.update(current=key, operation=f"rebuild (attempt {attempt})")
@@ -251,6 +384,15 @@ async def run(
                     working[key] = False
                     failures[key] = ("endpoint", error)
                     retry.append((language, row))
+                    logger.warning(
+                        "%s: endpoint failure on attempt %d/2 (%s); %s",
+                        key,
+                        attempt,
+                        error,
+                        "queued for retry after cooldown"
+                        if attempt == 1
+                        else "giving up for this run",
+                    )
                     continue
                 except Exception as error:
                     failures[key] = ("metadata", error)
@@ -261,11 +403,31 @@ async def run(
                         working[key] = True
                     except Exception:
                         working[key] = False
+                    logger.warning(
+                        "%s: metadata failure on attempt %d/2 (%s: %s); result "
+                        "endpoint %s, so the last accepted document is %s; not "
+                        "retried",
+                        key,
+                        attempt,
+                        type(error).__name__,
+                        error,
+                        "still works" if working[key] else "also fails",
+                        "kept" if working[key] else "withheld if one exists",
+                    )
                     continue
                 failures.pop(key, None)
                 working[key] = True
                 accepted = published.get(key) or withheld.get(key)
                 counts["unchanged" if document == accepted else "rebuilt"] += 1
+                logger.debug(
+                    "%s: %s",
+                    key,
+                    "identical to the accepted document; kept"
+                    if document == accepted
+                    else "new document accepted"
+                    if accepted is None
+                    else "differs from the accepted document; replaced",
+                )
                 info.update(
                     verified_at=stamp, mapping_version=MAPPING_VERSION, error=None
                 )
@@ -274,15 +436,44 @@ async def run(
                     processed=counts["rebuilt"] + counts["unchanged"],
                     succeeded=counts["rebuilt"] + counts["unchanged"],
                 )
+                if position % PROGRESS_EVERY == 0 and position < len(pending):
+                    logger.info(
+                        "Attempt %d/2 progress: %d/%d processed (rebuilt=%d, "
+                        "unchanged=%d, failing=%d)",
+                        attempt,
+                        position,
+                        len(pending),
+                        counts["rebuilt"],
+                        counts["unchanged"],
+                        len(failures),
+                    )
             if not retry or attempt == 2:
                 break
+            logger.info(
+                "%d endpoint failures; waiting %ss before retrying them once",
+                len(retry),
+                cooldown,
+            )
             progress.update(operation="retry cooldown", current=None)
             await asyncio.sleep(cooldown)
             pending = retry
+        logger.info(
+            "Rebuild finished: rebuilt=%d, unchanged=%d, still failing=%d",
+            counts["rebuilt"],
+            counts["unchanged"],
+            len(failures),
+        )
         for key, (stage, error) in sorted(failures.items()):
             state["subjects"][key]["error"] = fail(stage, key, error)
             counts["failed"] += 1
         progress.update(failed=counts["failed"])
+        previously_withheld = set(withheld)
+        logger.info(
+            "Settling publication for %d checked subjects: published only while the "
+            "endpoint works and the document was verified within %d days",
+            len(settled),
+            max_age.days,
+        )
         settle(
             sorted(settled),
             published,
@@ -293,6 +484,24 @@ async def run(
             max_age,
             counts,
         )
+        newly_withheld = sorted(set(withheld) - previously_withheld)
+        restored = sorted(previously_withheld - set(withheld))
+        for key in newly_withheld:
+            logger.warning(
+                "%s: withheld (%s); the last accepted document is kept in state",
+                key,
+                state["subjects"][key].get("withheld_reason"),
+            )
+        for key in restored:
+            logger.info("%s: restored; endpoint works and verification is fresh", key)
+        logger.info(
+            "Settled: %d published, %d withheld (%d newly, %d still), %d restored",
+            len(published),
+            len(withheld),
+            len(newly_withheld),
+            len(withheld) - len(newly_withheld),
+            len(restored),
+        )
     finally:
         if client is None:
             await connection.close()
@@ -300,6 +509,7 @@ async def run(
     state["mapping_version"] = MAPPING_VERSION
     save(output, state, published, configured)
     status = report_status(pending=0, errors=errors)
+    logger.info("Report status %s with %d recorded errors", status, len(errors))
     result = {
         "run_id": uuid4().hex,
         "status": status,
@@ -321,6 +531,17 @@ async def run(
     result.update(base_manifest=baseline, manifest=manifest(output))
     write(output / "result.json", result)
     progress.update(phase="finished", result_status=status, current=None)
+    logger.info(
+        "SDB run finished: status=%s, counts=%s, published=%s, withheld=%d, "
+        "errors=%d, %d requests, output=%s",
+        status,
+        counts,
+        result["published"],
+        len(withheld),
+        len(errors),
+        getattr(connection, "request_count", 0),
+        output,
+    )
     return result
 
 
@@ -328,12 +549,25 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
+    logger.info(
+        "Collecting SDB artifact from %s into %s (run %s, status %s)",
+        output,
+        data,
+        result.get("run_id"),
+        result.get("status"),
+    )
     if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+        logger.error("Refusing artifact: the published baseline changed since the run")
         raise ValueError("Stale SDB artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
+        logger.error("Refusing artifact: output files do not match the manifest")
         raise ValueError("SDB artifact checksum mismatch")
     allowed = {STATE, REPORT, *(collection(language) for language in languages)}
     if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
+        logger.error(
+            "Refusing artifact: unexpected paths %s",
+            sorted(set(result["manifest"]) - allowed),
+        )
         raise ValueError("Unexpected SDB artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -342,4 +576,6 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+        logger.debug("Applied %s", relative)
+    logger.info("Applied %d SDB artifact files to %s", len(result["manifest"]), data)
     return result

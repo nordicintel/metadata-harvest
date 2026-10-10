@@ -6,9 +6,11 @@ import gzip
 import hashlib
 import io
 import json
+import logging
 import shutil
 import sqlite3
 import subprocess
+import time
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import unquote
@@ -30,6 +32,37 @@ from apps.model.vocabulary import PROFILE_VERSION
 from apps.paths import CONFIG
 from apps.portal.snapshot import accepted_records
 from apps.publication.artifacts import check_collection_sizes, manifest
+
+logger = logging.getLogger(__name__)
+
+
+class _Stage:
+    """Log a build stage's start at DEBUG and its elapsed time at INFO."""
+
+    def __init__(self, name, **fields):
+        self.name = name
+        self.fields = fields
+
+    def __enter__(self):
+        self.started = time.perf_counter()
+        logger.debug("%s: starting", self.name)
+        return self
+
+    def __exit__(self, kind, error, traceback):
+        detail = "".join(f" {k}={v}" for k, v in self.fields.items())
+        if error is not None:
+            logger.error(
+                "%s: failed after %.1fs%s (%s: %s)",
+                self.name,
+                time.perf_counter() - self.started,
+                detail,
+                type(error).__name__,
+                error,
+            )
+        else:
+            logger.info(
+                "%s: %.1fs%s", self.name, time.perf_counter() - self.started, detail
+            )
 
 
 def _json(value):
@@ -132,15 +165,26 @@ def build(
         )
         if any(a not in ADAPTERS or not ADAPTERS[a].available for a in adapters):
             raise ValueError("Unknown or unavailable catalog adapter")
-        baseline = inputs(data, adapters)
-        extra = dependencies(data, config_dir=config_dir)
-        config, overrides = configuration(config_dir)
+        build_started = time.perf_counter()
+        logger.info("catalog build: adapters=%s", ",".join(adapters))
+        with _Stage("fingerprint accepted inputs") as stage:
+            baseline = inputs(data, adapters)
+            stage.fields["inputs"] = len(baseline)
+        with _Stage("hash build dependencies") as stage:
+            extra = dependencies(data, config_dir=config_dir)
+            config, overrides = configuration(config_dir)
+            stage.fields["dependencies"] = len(extra)
+            stage.fields["overrides"] = len(overrides)
         rule_dependencies = {
             k: v for k, v in extra.items() if not k.startswith("portal:")
         }
         catalog = data / "catalog"
-        catalog_baseline = manifest(catalog)
-        previous = read(catalog / "state/current.json", {})
+        with _Stage("fingerprint previous catalog") as stage:
+            catalog_baseline = manifest(catalog)
+            previous = read(catalog / "state/current.json", {})
+            stage.fields["files"] = len(catalog_baseline)
+            stage.fields["previous_groups"] = len(previous.get("groups", {}))
+            stage.fields["previous_profile"] = previous.get("profile_version")
         for adapter in adapters:
             if not any(
                 n.startswith(adapter + "/metadata/") for n in baseline
@@ -152,7 +196,23 @@ def build(
                     f"No accepted metadata coverage for adapter: {adapter}"
                 )
         if previous.get("profile_version") not in {"1.0.0", PROFILE_VERSION}:
+            logger.warning(
+                "previous catalog profile %s is unsupported; rebuilding every group",
+                previous.get("profile_version"),
+            )
             previous = {}
+        elif previous.get("rules") != rule_dependencies:
+            old_rules = previous.get("rules") or {}
+            changed = sorted(
+                k
+                for k in set(rule_dependencies) | set(old_rules)
+                if rule_dependencies.get(k) != old_rules.get(k)
+            )
+            logger.info(
+                "publication rules changed since previous catalog (%s); "
+                "every group will be rebuilt",
+                ", ".join(changed),
+            )
         for asset, digest in previous.get("assets", {}).items():
             if (
                 asset not in ASSETS
@@ -171,13 +231,22 @@ def build(
         source_names = {n for n in baseline if "/metadata/" in n or "/codelists/" in n}
         source_names.update(previous.get("accepted", {}))
         groups = {}
-        for name in sorted(source_names):
-            groups.setdefault(_group(name), []).append(name)
+        with _Stage("group source collections by owner") as stage:
+            for name in sorted(source_names):
+                groups.setdefault(_group(name), []).append(name)
+            stage.fields["collections"] = len(source_names)
+            stage.fields["groups"] = len(groups)
         portal_path = data / "data_eu/oppnadata.jsonl.gz"
-        index = PortalIndex(
-            accepted_records(portal_path.parent) if portal_path.exists() else [],
-            overrides=overrides,
-        )
+        if not portal_path.exists():
+            logger.warning(
+                "no portal snapshot at %s; content enrichment is not configured",
+                portal_path,
+            )
+        with _Stage("load portal snapshot and build match index"):
+            index = PortalIndex(
+                accepted_records(portal_path.parent) if portal_path.exists() else [],
+                overrides=overrides,
+            )
         accepted = {}
         states = {}
         errors = []
@@ -254,18 +323,25 @@ def build(
                     for key, value in group_counts.items():
                         counts[key] += value
 
-                for group, names in sorted(groups.items()):
+                for position, (group, names) in enumerate(sorted(groups.items()), 1):
                     old = previous.get("groups", {}).get(group)
                     input_hashes = {n: baseline.get(n) for n in names}
-                    if (
-                        old
-                        and previous.get("profile_version") == PROFILE_VERSION
-                        and old["inputs"] == input_hashes
-                        and previous.get("rules") == rule_dependencies
-                        and "matching_inputs" in old
-                        and old.get("portal_fingerprint")
-                        == index.fingerprint(old["matching_inputs"])
-                    ):
+                    group_started = time.perf_counter()
+                    rebuild_reason = _rebuild_reason(
+                        old, input_hashes, previous, rule_dependencies, index
+                    )
+                    logger.info(
+                        "group %d/%d %s: %s (%d collections, reuse check %.1fs)",
+                        position,
+                        len(groups),
+                        group,
+                        "reusing previous output"
+                        if rebuild_reason is None
+                        else "rebuilding because " + rebuild_reason,
+                        len(names),
+                        time.perf_counter() - group_started,
+                    )
+                    if rebuild_reason is None:
                         append(
                             group,
                             {kind: previous_range(kind, group) for kind in streams},
@@ -321,9 +397,17 @@ def build(
                         for name in names:
                             path = data / name
                             db.execute("SAVEPOINT source_input")
+                            input_started = time.perf_counter()
                             try:
                                 raw = path.read_bytes()
                                 insert_input(name, raw)
+                                logger.debug(
+                                    "group %s: loaded %s (%d bytes) in %.1fs",
+                                    group,
+                                    name,
+                                    len(raw),
+                                    time.perf_counter() - input_started,
+                                )
                                 current[name] = {
                                     "sha256": hashlib.sha256(raw).hexdigest(),
                                     "blob": _blob(path),
@@ -341,6 +425,14 @@ def build(
                                         f"{name}: {error}; recovery: {recovery_error}"
                                     ) from recovery_error
                                 current[name] = previous_input
+                                logger.warning(
+                                    "group %s: %s is unreadable (%s); "
+                                    "recovered previous accepted blob %s",
+                                    group,
+                                    name,
+                                    error,
+                                    previous_input["blob"],
+                                )
                                 errors.append(
                                     {
                                         "collection": name,
@@ -350,9 +442,12 @@ def build(
                                 )
                             finally:
                                 db.execute("RELEASE source_input")
+                        load_elapsed = time.perf_counter() - group_started
                         probes = []
                         group_counts = {key: 0 for key in counts}
                         group_metadata = temp / "group-catalog.jsonl"
+                        assemble_started = time.perf_counter()
+                        identities = 0
                         with group_metadata.open("wb") as out:
                             for (identity,) in db.execute(
                                 "SELECT DISTINCT id FROM datasets ORDER BY id"
@@ -364,9 +459,19 @@ def build(
                                         (identity,),
                                     )
                                 ]
+                                identities += 1
                                 combined, schemes = assemble(
                                     list(model_contributions(models))
                                 )
+                                if identities % 1000 == 0:
+                                    logger.info(
+                                        "group %s: assembled %d dataset identities "
+                                        "(%d datasets) in %.1fs",
+                                        group,
+                                        identities,
+                                        group_counts["datasets"],
+                                        time.perf_counter() - assemble_started,
+                                    )
                                 for scheme in schemes:
                                     add_code(scheme)
                                 for dataset in combined:
@@ -412,7 +517,31 @@ def build(
                         )
                         accepted.update(current)
                         build_counts["rebuilt_groups"] += 1
+                        logger.info(
+                            "group %s: rebuilt %d datasets (%d matched, %d unmatched, "
+                            "%d ambiguous), %d distributions, %d codelists from %d "
+                            "identities; load %.1fs, assemble+enrich %.1fs, "
+                            "total %.1fs",
+                            group,
+                            group_counts["datasets"],
+                            group_counts["matched"],
+                            group_counts["unmatched"],
+                            group_counts["ambiguous"],
+                            group_counts["distributions"],
+                            group_counts["codelists"],
+                            identities,
+                            load_elapsed,
+                            time.perf_counter() - assemble_started,
+                            time.perf_counter() - group_started,
+                        )
                     except Exception as error:
+                        logger.error(
+                            "group %s: rebuild failed after %.1fs (%s: %s)",
+                            group,
+                            time.perf_counter() - group_started,
+                            type(error).__name__,
+                            error,
+                        )
                         errors.append(
                             {
                                 "collection": group,
@@ -445,28 +574,44 @@ def build(
                             }
                         )
                         build_counts["retained_groups"] += 1
+                        logger.warning(
+                            "group %s: retained previous output after failure", group
+                        )
                     finally:
                         db.close()
+            logger.info(
+                "groups done: %d rebuilt, %d reused, %d retained in %.1fs",
+                build_counts["rebuilt_groups"],
+                build_counts["reused_groups"],
+                build_counts["retained_groups"],
+                time.perf_counter() - build_started,
+            )
             for kind in ("catalog", "codelists"):
                 content = temp / (kind + ".jsonl")
                 asset = kind + ".jsonl.zst"
-                if asset in previous.get("assets", {}) and previous.get(
-                    "content_hashes", {}
-                ).get(kind) == _hash(content):
-                    shutil.copyfile(catalog / asset, output / asset)
-                else:
-                    _compress(content, output / asset)
+                with _Stage("write " + asset, bytes=content.stat().st_size) as stage:
+                    if asset in previous.get("assets", {}) and previous.get(
+                        "content_hashes", {}
+                    ).get(kind) == _hash(content):
+                        stage.fields["action"] = "copied unchanged archive"
+                        shutil.copyfile(catalog / asset, output / asset)
+                    else:
+                        stage.fields["action"] = "compressed"
+                        _compress(content, output / asset)
             content_hashes = {
                 kind: _hash(temp / (kind + ".jsonl"))
                 for kind in ("catalog", "codelists")
             }
         upstream = {}
-        for name in sorted(baseline):
-            if "/reports/" in name:
-                try:
-                    upstream[name] = read(data / name)
-                except Exception as error:
-                    errors.append({"collection": name, "error": str(error)})
+        with _Stage("read upstream reports") as stage:
+            for name in sorted(baseline):
+                if "/reports/" in name:
+                    try:
+                        upstream[name] = read(data / name)
+                    except Exception as error:
+                        logger.warning("upstream report %s unreadable: %s", name, error)
+                        errors.append({"collection": name, "error": str(error)})
+            stage.fields["reports"] = len(upstream)
         result = {
             "status": "completed_with_errors"
             if errors
@@ -487,6 +632,12 @@ def build(
                 "validation": "integrity_gated_descriptive_findings",
             },
         }
+        finish = _Stage(
+            "write candidate state, report and manifest",
+            status=result["status"],
+            errors=len(errors),
+        )
+        finish.__enter__()
         assets = {name: _hash(output / name) for name in ASSETS}
         write(
             output / "state/current.json",
@@ -512,4 +663,41 @@ def build(
                 "candidate": manifest(output),
             },
         )
+        finish.__exit__(None, None, None)
+        logger.info(
+            "catalog build finished: status=%s datasets=%d distributions=%d "
+            "codelists=%d matched=%d unmatched=%d ambiguous=%d errors=%d in %.1fs",
+            result["status"],
+            counts["datasets"],
+            counts["distributions"],
+            counts["codelists"],
+            counts["matched"],
+            counts["unmatched"],
+            counts["ambiguous"],
+            len(errors),
+            time.perf_counter() - build_started,
+        )
         return {**result, "build_counts": build_counts}
+
+
+def _rebuild_reason(old, input_hashes, previous, rule_dependencies, index):
+    """Explain why a group cannot reuse its previous output; None means reuse."""
+    if not old:
+        return "no previous output for this group"
+    if previous.get("profile_version") != PROFILE_VERSION:
+        return f"previous profile version {previous.get('profile_version')} differs"
+    if old["inputs"] != input_hashes:
+        changed = sorted(
+            n
+            for n in set(old["inputs"]) | set(input_hashes)
+            if old["inputs"].get(n) != input_hashes.get(n)
+        )
+        shown = ", ".join(changed[:5]) + (" ..." if len(changed) > 5 else "")
+        return f"{len(changed)} accepted collection(s) changed: {shown}"
+    if previous.get("rules") != rule_dependencies:
+        return "publication rules or code changed"
+    if "matching_inputs" not in old:
+        return "previous output has no matching inputs"
+    if old.get("portal_fingerprint") != index.fingerprint(old["matching_inputs"]):
+        return "portal match evidence changed"
+    return None

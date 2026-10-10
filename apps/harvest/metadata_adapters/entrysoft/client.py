@@ -7,10 +7,13 @@ of throttling does not slow the rest of the run.
 
 import asyncio
 import json
+import logging
 import time
 from urllib.parse import quote, urlencode
 
 import httpx
+
+logger = logging.getLogger("entrysoft_logger")
 
 # Apache on EntryScape instances answers HTTP 414 for request URLs around 9.5 KB
 # (8 KB worked). Stay well below that.
@@ -58,8 +61,19 @@ class Pacer:
     async def wait(self) -> None:
         async with self.lock:
             if self.budget is not None and self.sent >= self.budget:
+                logger.warning(
+                    "Request budget of %d used up; refusing further requests",
+                    self.budget,
+                )
                 raise BudgetExhausted(f"request budget of {self.budget} used up")
             self.sent += 1
+            if self.sent % 100 == 0:
+                logger.info(
+                    "%d requests sent (budget %s, interval %.2fs)",
+                    self.sent,
+                    self.budget if self.budget is not None else "unlimited",
+                    self.interval,
+                )
             delay = max(0.0, self.next_request - self.clock())
             self.next_request = max(self.next_request, self.clock()) + self.interval
         await self.sleep(delay)
@@ -67,6 +81,11 @@ class Pacer:
     def slow_down(self, retry_after: float) -> None:
         self.throttles += 1
         if self.max_throttles is not None and self.throttles > self.max_throttles:
+            logger.error(
+                "HTTP 429 received %d times, only %d tolerated; stopping the run",
+                self.throttles,
+                self.max_throttles,
+            )
             raise RateLimited(f"HTTP 429 received {self.throttles} times")
         self.interval = min(MAX_INTERVAL, max(self.interval, 0.05) * 2)
         pause = max(
@@ -74,6 +93,13 @@ class Pacer:
             MIN_THROTTLE_PAUSE if self.max_throttles is not None else retry_after,
         )
         self.next_request = max(self.next_request, self.clock() + pause)
+        logger.warning(
+            "HTTP 429 (throttle %d): pausing all requests for %.0fs, "
+            "request interval raised to %.2fs",
+            self.throttles,
+            pause,
+            self.interval,
+        )
 
     def recover(self) -> None:
         self.interval = max(self.base, self.interval * 0.9)
@@ -138,6 +164,13 @@ class Client:
         for attempt in range(ATTEMPTS):
             await self.pacer.wait()
             self.requests += 1
+            logger.debug(
+                "GET %s params=%s (attempt %d/%d)",
+                path,
+                sorted(params),
+                attempt + 1,
+                ATTEMPTS,
+            )
             try:
                 response = await self.http.get(path, params=params, headers=headers)
                 response.raise_for_status()
@@ -150,7 +183,21 @@ class Client:
                     or response.status_code == 429
                     or response.status_code >= 500
                 )
+                outcome = (
+                    f"HTTP {response.status_code}"
+                    if response is not None
+                    else type(error).__name__
+                )
                 if attempt == ATTEMPTS - 1 or not retryable:
+                    if retryable:
+                        logger.warning(
+                            "Giving up on %s after %d attempts: %s",
+                            path,
+                            attempt + 1,
+                            outcome,
+                        )
+                    else:
+                        logger.debug("%s answered %s; not retrying", path, outcome)
                     raise
                 delay = 2.0**attempt
                 header = (
@@ -161,7 +208,20 @@ class Client:
                 if header.isdigit():
                     delay = max(delay, float(header))
                 if delay > 120:
+                    logger.warning(
+                        "Giving up on %s: server asks for a %.0fs wait (%s)",
+                        path,
+                        delay,
+                        outcome,
+                    )
                     raise
+                logger.warning(
+                    "Retrying %s after %s (attempt %d/%d)",
+                    path,
+                    outcome,
+                    attempt + 1,
+                    ATTEMPTS,
+                )
                 if response is not None and response.status_code == 429:
                     self.pacer.slow_down(delay)
                 else:

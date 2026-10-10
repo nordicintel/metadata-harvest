@@ -11,7 +11,7 @@ import aiohttp
 from apps.harvest.metadata_adapters.uka.source import CATALOGUE_URL, totals_url
 from retrieval._uka_export import API_ROOT, EXPORT_PARAMS, NO_PERIOD_ERROR
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("uka_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=600, sock_connect=30, sock_read=120)
 USER_AGENT = "nordicintel-metadata-harvest/uka"
@@ -50,6 +50,13 @@ class UkaClient:
         self._attempts = attempts
         self._retry_delay = retry_delay
         self._limit = asyncio.Semaphore(int(provider.get("concurrency", 2)))
+        logger.debug(
+            "UKÄ client: base_url=%s, concurrency=%s, attempts=%d, retry_delay=%.1fs",
+            self.base_url,
+            provider.get("concurrency", 2),
+            attempts,
+            retry_delay,
+        )
         self.request_count = 0
         self.downloaded_bytes = 0
 
@@ -64,6 +71,11 @@ class UkaClient:
     async def close(self) -> None:
         if self._owned and self._session is not None:
             await self._session.close()
+            logger.info(
+                "UKÄ client closed after %d requests, %d bytes downloaded",
+                self.request_count,
+                self.downloaded_bytes,
+            )
 
     def _url(self, url: str) -> str:
         return url.replace(API_ROOT, self.base_url, 1)
@@ -150,6 +162,16 @@ class UkaClient:
                     error.status == 429 or error.status >= 500
                 )
                 if not transient or attempt == self._attempts:
+                    logger.error(
+                        "%s %s failed on attempt %d of %d (%s): %s: %s",
+                        method,
+                        url,
+                        attempt,
+                        self._attempts,
+                        "retries exhausted" if transient else "not retried",
+                        type(error).__name__,
+                        error,
+                    )
                     raise Unreachable(
                         f"{method} {url} {params or ''} failed: "
                         f"{type(error).__name__}: {error}"
@@ -165,7 +187,7 @@ class UkaClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info(
+            logger.debug(
                 "%s %s -> %d (%.1fs)", method, url, status, time.monotonic() - started
             )
             return result

@@ -1,8 +1,11 @@
 """On-demand Kolada observations; caller owns HTTP policy and connections."""
 
+import logging
 from urllib.parse import quote
 
 from retrieval._semantics import category_codes, validate_cube
+
+logger = logging.getLogger("kolada_logger")
 
 REQUIRED_METADATA = ("/dimension", "/extension/kolada")
 
@@ -41,6 +44,11 @@ async def retrieve(
             or not set(codes) <= set(category_codes(dimensions[key]["category"]))
         ):
             raise ValueError(f"Invalid selection: {key}")
+    logger.debug(
+        "Kolada retrieve %s: %s",
+        dataset_code,
+        {k: len(v) for k, v in selection.items()},
+    )
     positions = {k: {code: i for i, code in enumerate(v)} for k, v in selection.items()}
     result = {
         "id": list(selection),
@@ -69,8 +77,17 @@ async def retrieve(
                     url, params={"page": page, "per_page": 5000}
                 ) as response:
                     if response.status in {404, 410}:
+                        logger.warning(
+                            "Kolada %s returned %d for %s",
+                            url,
+                            response.status,
+                            dataset_code,
+                        )
                         raise LookupError(dataset_code)
                     if response.status == 400:
+                        logger.warning(
+                            "Kolada rejected the selection for %s", dataset_code
+                        )
                         raise ValueError("Kolada rejected the selection")
                     response.raise_for_status()
                     payload = await response.json()
@@ -119,5 +136,11 @@ async def retrieve(
                 raise ValueError("Kolada pagination exceeded 5000 pages")
     if flags:
         result["status"] = flags
+    logger.debug(
+        "Kolada retrieved %s: %d values, %d flagged cells",
+        dataset_code,
+        len(result["value"]),
+        len(flags),
+    )
     validate_cube(result)
     return result

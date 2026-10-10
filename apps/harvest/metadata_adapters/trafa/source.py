@@ -6,10 +6,13 @@ valid sets as "API-kombinationer"; each maximal combination with at least one
 measure becomes one NordicIntel Dataset (see README, "Mapping decisions").
 """
 
+import logging
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from typing import Any
+
+logger = logging.getLogger("trafa_logger")
 
 TIME = "Time"
 REGION = "Region"
@@ -276,6 +279,9 @@ def select_combinations(product: Product, listed: Sequence[str]) -> Selection:
         ):
             raise ValueError(f"combination {text!r} names unknown items {unknown}")
         if not normalized & product.measures.keys():
+            logger.debug(
+                "%s: set aside, combination %r has no measure", product.unique_id, text
+            )
             without_measures.append(text)
             continue
         sets.setdefault(normalized, []).append(text)
@@ -283,6 +289,11 @@ def select_combinations(product: Product, listed: Sequence[str]) -> Selection:
     datasets = []
     for items in sets:
         if any(items < other for other in sets):
+            logger.debug(
+                "%s: combination %s is a subset of a larger one, not a dataset",
+                product.unique_id,
+                sorted(items),
+            )
             continue
         covered = [
             text for other, group in sets.items() if other <= items for text in group
@@ -296,4 +307,13 @@ def select_combinations(product: Product, listed: Sequence[str]) -> Selection:
             )
         )
     datasets.sort(key=lambda combination: combination.dataset_code)
+    logger.debug(
+        "%s: %d listed combinations -> %d distinct item sets -> %d datasets "
+        "(%d without measures)",
+        product.unique_id,
+        len(listed),
+        len(sets),
+        len(datasets),
+        len(without_measures),
+    )
     return Selection(datasets, without_measures)

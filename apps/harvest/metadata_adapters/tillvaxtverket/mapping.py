@@ -8,6 +8,7 @@ every run.
 """
 
 import copy
+import logging
 import re
 from typing import Any
 
@@ -82,6 +83,9 @@ ZERO_NOTE = (
     "samlas in för anläggningstypen (t.ex. disponibla rum för Camping) och skiljer "
     "inte dessa fall åt."
 )
+
+
+logger = logging.getLogger("tillvaxtverket_logger")
 
 
 def _labels(columns: list[dict[str, Any]]) -> dict[str, str]:
@@ -180,6 +184,11 @@ def build_cube(
             (labels then fall back to column names).
     """
     names = labels or {}
+    if labels is None:
+        logger.debug(
+            "%s: no column labels available, labels fall back to column names",
+            spec.dataset_code,
+        )
     dimensions: dict[str, Any] = {REGION_DIMENSION: _region_dimension(regions)}
     for dimension in spec.dimensions:
         dimensions[dimension.id] = _plain_dimension(
@@ -298,6 +307,12 @@ def apply_dcat(
     Without a record (never fetched successfully) the label is the dataset name
     and description, contacts and official statistics status are left out.
     """
+    if dcat is None:
+        logger.debug(
+            "%s: no data.europa.eu record, label is the dataset name and "
+            "description and contacts are left out",
+            spec.dataset_code,
+        )
     result = copy.deepcopy(document)
     nordicintel = result["extension"]["nordicintel"]
     native = result["extension"][PROVIDER_CODE]

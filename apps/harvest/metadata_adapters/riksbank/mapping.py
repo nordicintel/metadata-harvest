@@ -17,6 +17,7 @@ Time representation (metadata-only, complete dimensions):
 """
 
 import calendar
+import logging
 import math
 from collections.abc import Mapping, Sequence
 from datetime import date, timedelta
@@ -40,6 +41,8 @@ from retrieval.data_adapters.riksbank import (
     SWESTR_MEASURES,
     TIME,
 )
+
+logger = logging.getLogger("riksbank_logger")
 
 MAPPING_VERSION = 1
 """Increment when a mapping change must be distinguishable in accepted state."""
@@ -283,6 +286,15 @@ def build_swea_group(record: Mapping[str, Any], latest: Sequence[Any]) -> dict:
     if units:
         category["unit"] = units
     dates = calendar_dates(first, last)
+    logger.debug(
+        "SWEA group %d: %d series, %d dates %s..%s (%d with a latest observation)",
+        group_id,
+        len(codes),
+        len(dates),
+        first,
+        last,
+        len(latest_dates),
+    )
     sources = sorted({_clean(row.get("source")) for row in rows} - {""})
     chain = group["chain"]
 
@@ -389,6 +401,13 @@ def build_mpd(record: Mapping[str, Any], probe: Any) -> dict:
     for period in observed:
         date.fromisoformat(period)  # ValueError for a non-date period
     frequency = infer_frequency(observed, series_id)
+    logger.debug(
+        "Forecast %s: %s vintage has %d periods, inferred %s frequency",
+        series_id,
+        latest_round,
+        len(observed),
+        frequency,
+    )
     start = meta.get("start_date") or observed[0]
     first = min(start, observed[0])
     periods = sorted(set(period_ends(first, observed[-1], frequency)) | set(observed))
@@ -484,6 +503,12 @@ def build_swestr(latest: Any) -> dict:
         raise ValueError(f"unexpected latest SWESTR response {str(latest)[:200]!r}")
     last = latest["date"]
     dates = calendar_dates(SWESTR_FIRST_DATE, last)
+    logger.debug(
+        "SWESTR: %d dates %s..%s from the latest fixing",
+        len(dates),
+        SWESTR_FIRST_DATE,
+        last,
+    )
     labels, notes, units = {}, {}, {}
     for code in SWESTR_MEASURES:
         label, unit, note = SWESTR_MEASURE_TEXT[code]

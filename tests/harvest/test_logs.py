@@ -15,9 +15,9 @@ def restore_default_logging():
 
 def _emit(stream, level):
     logs.configure(level, stream=stream)
-    logging.getLogger("apps.harvest.metadata_adapters.demo.client").info("hello")
+    logging.getLogger("sdb_logger").info("hello")
     logging.getLogger("retrieval.data_adapters.demo").debug("fine")
-    logging.getLogger("retrieval.data_adapters.demo").warning("careful")
+    logging.getLogger("apps.catalog.assembly").warning("careful")
     return stream.getvalue()
 
 
@@ -25,8 +25,8 @@ def test_adapter_loggers_inherit_level_and_readable_format():
     output = _emit(io.StringIO(), "INFO")
     lines = output.splitlines()
     assert len(lines) == 2
-    assert lines[0].endswith("INFO apps.harvest.metadata_adapters.demo.client: hello")
-    assert lines[1].endswith("WARNING retrieval.data_adapters.demo: careful")
+    assert lines[0].endswith("INFO sdb_logger: hello")
+    assert lines[1].endswith("WARNING apps.catalog.assembly: careful")
     assert _emit(io.StringIO(), "DEBUG").count("\n") == 3
     assert _emit(io.StringIO(), "WARNING").count("\n") == 1
 
@@ -34,9 +34,9 @@ def test_adapter_loggers_inherit_level_and_readable_format():
 def test_off_silences_adapters_and_reconfigure_does_not_duplicate_handlers():
     assert _emit(io.StringIO(), "OFF") == ""
     assert _emit(io.StringIO(), "INFO").count("\n") == 2
-    for name in logs.ADAPTER_LOGGERS:
+    for name in logs.NAMESPACES:
         handlers = logging.getLogger(name).handlers
-        assert [h.get_name() for h in handlers].count("metadata-adapters") == 1
+        assert [h.get_name() for h in handlers].count("metadata-harvest") == 1
 
 
 def test_level_comes_from_settings(tmp_path, monkeypatch):
@@ -53,3 +53,20 @@ def test_level_comes_from_settings(tmp_path, monkeypatch):
     logs.configure(stream=stream)
     logging.getLogger("apps.harvest.metadata_adapters.demo").error("silent")
     assert stream.getvalue() == ""
+
+
+def test_every_adapter_module_uses_its_deterministic_logger():
+    import re
+    from pathlib import Path
+
+    from apps.harvest.registry import ADAPTERS
+
+    for adapter in ADAPTERS:
+        assert logs.adapter_logger(adapter).name == f"{adapter}_logger"
+        files = list(Path("apps/harvest/metadata_adapters", adapter).glob("*.py"))
+        retrieval = Path("retrieval/data_adapters", adapter + ".py")
+        if retrieval.exists():
+            files.append(retrieval)
+        for file in files:
+            for found in re.findall(r"getLogger\(([^)]*)\)", file.read_text("utf-8")):
+                assert found == f'"{adapter}_logger"', f"{file}: {found}"

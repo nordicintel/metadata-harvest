@@ -7,7 +7,7 @@ from typing import Any
 
 import aiohttp
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("forsakringskassan_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=120)
 USER_AGENT = "nordicintel-metadata-harvest/forsakringskassan"
@@ -93,6 +93,15 @@ class ForsakringskassanClient:
                     and (error.status == 429 or error.status >= 500)
                 )
                 if not transient or attempt == self._attempts:
+                    logger.warning(
+                        "Giving up on %s after attempt %d/%d (%s: %s)%s",
+                        url,
+                        attempt,
+                        self._attempts,
+                        type(error).__name__,
+                        error,
+                        "" if transient else "; not retryable",
+                    )
                     raise Unreachable(
                         f"GET {url} failed: {type(error).__name__}: {error}"
                     ) from error
@@ -110,6 +119,11 @@ class ForsakringskassanClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("GET %s (%.1fs)", url, time.monotonic() - started)
+            logger.debug(
+                "GET %s ok in %.1fs (request %d)",
+                url,
+                time.monotonic() - started,
+                self.request_count,
+            )
             return body
         raise AssertionError("unreachable")

@@ -14,11 +14,14 @@ problem, the datasets it would change are quarantined (not rebuilt), and the
 listing is marked incomplete so that it cannot prove any removal.
 """
 
+import logging
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Any
+
+logger = logging.getLogger("riksbank_logger")
 
 _ROUND = re.compile(r"\d{4}:\d+")
 _SERIES_ID = re.compile(r"[A-Za-z0-9_]+")
@@ -45,6 +48,13 @@ class Listing:
         self.complete = False
         if code:
             self.quarantined.add(code)
+        logger.warning(
+            "Catalogue problem in %s: %s; quarantined (not rebuilt): %s; listing "
+            "marked incomplete",
+            resource,
+            error,
+            code or "no dataset",
+        )
 
 
 def swea_code(group_id: int) -> str:
@@ -114,6 +124,7 @@ def parse_groups(tree: Any, listing: Listing) -> dict[int, dict]:
             ValueError(f"group {group_id} is listed more than once"),
             swea_code(group_id),
         )
+    logger.debug("SWEA /Groups: %d groups in the tree", len(groups))
     return groups
 
 
@@ -175,6 +186,12 @@ def swea_listing(groups_body: Any, series_body: Any) -> Listing:
                     ValueError(f"series {series_id} is listed more than once"),
                     swea_code(group_id),
                 )
+    logger.debug(
+        "SWEA /Series: %d rows in %d groups with series (%d valid series ids)",
+        len(series_body),
+        len(by_group),
+        len(seen),
+    )
     for group_id, rows in by_group.items():
         code = swea_code(group_id)
         if group_id not in groups:
@@ -195,6 +212,7 @@ def swea_listing(groups_body: Any, series_body: Any) -> Listing:
             }
         )
     if not listing.records and not listing.quarantined:
+        logger.error("The SWEA catalogue lists no series")
         raise ValueError("the SWEA catalogue lists no series")
     return listing
 
@@ -213,7 +231,11 @@ def policy_rounds(body: Any) -> list[str]:
         or len(set(rounds)) != len(rounds)
     ):
         raise ValueError(f"unexpected policy round list {str(body)[:200]!r}")
-    return sorted(rounds, key=lambda r: tuple(int(p) for p in r.split(":")))
+    ordered = sorted(rounds, key=lambda r: tuple(int(p) for p in r.split(":")))
+    logger.debug(
+        "Forecast policy rounds: %d, %s to %s", len(ordered), ordered[0], ordered[-1]
+    )
+    return ordered
 
 
 def _mpd_problem(row: Any) -> str | None:
@@ -268,7 +290,11 @@ def mpd_listing(series_body: Any, rounds_body: Any) -> Listing:
                     "policy_rounds": rounds,
                 }
             )
+    logger.debug(
+        "Forecast series_ids: %d rows, %d distinct series", len(rows), len(found)
+    )
     if not listing.records and not listing.quarantined:
+        logger.error("The forecast API lists no series")
         raise ValueError("the forecast API lists no series")
     return listing
 

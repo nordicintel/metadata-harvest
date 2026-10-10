@@ -46,7 +46,7 @@ _SERVER_ERROR = "Server Error (500)"
 """Django's generic HTTP 500 page, also returned for an unknown substance code."""
 _REGION = re.compile(r"\d{2}|\d{4}")
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("smhi_emissions_logger")
 
 
 def dataset_code(substance: str) -> str:
@@ -189,9 +189,13 @@ async def _fetch(
         if server_error and not await _substance_listed(
             session, metadata_url, params["sub"]
         ):
+            logger.warning(
+                "SMHI answered 500 for %s and no longer lists it", params["sub"]
+            )
             raise LookupError(
                 f"SMHI no longer lists substance {params['sub']!r}"
             ) from error
+        logger.warning("SMHI request failed for %s: %s", params["sub"], error)
         raise error
     logger.debug("GET %s %s", url, params)
     return body
@@ -262,6 +266,13 @@ async def retrieve(
     years = set(selection[TIME])
     known_labels = {label: label for labels in groups.values() for label in labels}
 
+    logger.info(
+        "Retrieving %s: %d requests (%d regions x %d sector groups)",
+        substance,
+        len(queries),
+        len(regions),
+        len(needed),
+    )
     cells: dict[tuple[str, str, str], float | int] = {}
     for region, group, params in queries:
         body = await _fetch(session, url, params, listing)

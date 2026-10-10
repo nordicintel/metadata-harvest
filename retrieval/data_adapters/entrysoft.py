@@ -12,12 +12,15 @@ omitted dimensions all collapse into their cell. ``status`` reports ``rows=N``
 for a cell built from more than one row and the text of a non-numeric value.
 """
 
+import logging
 import math
 import re
 from collections.abc import Mapping, Sequence
 from typing import Any
 
 import aiohttp
+
+logger = logging.getLogger("entrysoft_logger")
 
 REQUIRED_METADATA = ("/id", "/dimension", "/extension/entrysoft")
 PAGE_SIZE = 500
@@ -70,6 +73,7 @@ async def _page(session: aiohttp.ClientSession, url: str, params: dict) -> dict:
         url, params=params, headers={"Accept": "application/json"}
     ) as response:
         if response.status == 404:
+            logger.warning("RowStore has no table at %s (HTTP 404)", url)
             raise LookupError(f"RowStore has no table at {url}")
         response.raise_for_status()
         try:
@@ -103,9 +107,21 @@ async def retrieve(
     dimensions = metadata.get("/dimension") or {}
     native = metadata.get("/extension/entrysoft") or {}
     tables = list(native.get("tables") or ([data_url] if data_url else []))
+    logger.info(
+        "Retrieving %s/%s [%s]: %d table(s), selection dimensions %s",
+        provider_code,
+        dataset_code,
+        language,
+        len(tables),
+        {name: len(values) for name, values in selection.items()},
+    )
     if not tables:
+        logger.warning("%s/%s lists no RowStore tables", provider_code, dataset_code)
         raise ValueError("The dataset lists no RowStore tables")
     if MEASURE_DIMENSION not in selection:
+        logger.warning(
+            "Selection for %s/%s has no measure", provider_code, dataset_code
+        )
         raise ValueError("The selection must include the measure dimension")
 
     def spec(name):
@@ -118,8 +134,12 @@ async def retrieve(
         if PART_DIMENSION in selection:
             unknown = [p for p in selection[PART_DIMENSION] if p not in mapping]
             if unknown:
+                logger.warning("Unknown parts %s requested", unknown)
                 raise ValueError(f"Unknown parts {unknown}")
             tables = [mapping[p] for p in selection[PART_DIMENSION]]
+            logger.debug(
+                "Part selection narrows %d tables to %d", len(part_of), len(tables)
+            )
     filters = {}
     for name, values in selection.items():
         if name in (PART_DIMENSION, MEASURE_DIMENSION):
@@ -128,6 +148,7 @@ async def retrieve(
         if not column:
             raise ValueError(f"Dimension {name!r} has no RowStore column")
         filters[column] = filter_value(list(values))
+    logger.debug("RowStore filters on columns %s", sorted(filters))
     measures = list(selection[MEASURE_DIMENSION])
     row_count = (
         measures == [ROW_COUNT]
@@ -146,6 +167,12 @@ async def retrieve(
         offset = 0
         while True:
             if requests >= MAX_REQUESTS:
+                logger.warning(
+                    "Selection for %s/%s needs more than %d requests; refusing",
+                    provider_code,
+                    dataset_code,
+                    MAX_REQUESTS,
+                )
                 raise ValueError(
                     f"The selection needs more than {MAX_REQUESTS} requests"
                 )
@@ -154,6 +181,13 @@ async def retrieve(
             )
             requests += 1
             rows = page["results"]
+            logger.debug(
+                "Table %s offset %d: %d rows of %s",
+                url,
+                offset,
+                len(rows),
+                page.get("resultCount"),
+            )
             for raw in rows:
                 row = {clean_name(k): v for k, v in raw.items()}
                 key = []
@@ -191,6 +225,14 @@ async def retrieve(
             if len(rows) < PAGE_SIZE or offset >= total:
                 break
 
+    logger.info(
+        "Retrieved %s/%s: %d requests, %d rows folded into %d cells",
+        provider_code,
+        dataset_code,
+        requests,
+        sum(counts.values()),
+        len(sums),
+    )
     sizes = [len(axes[name]) for name in ids]
     measure_axis = ids.index(MEASURE_DIMENSION)
     value: dict[str, Any] = {}

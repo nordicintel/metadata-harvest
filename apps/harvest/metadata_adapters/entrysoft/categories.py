@@ -42,12 +42,15 @@ Only the dimension/measure classification is heuristic; pass ``roles`` to overri
 
 from __future__ import annotations
 
+import logging
 import re
 from dataclasses import dataclass, field
 from math import ceil
 
 from apps.harvest.metadata_adapters.entrysoft.client import MAX_URL_LENGTH, Client
 from apps.harvest.metadata_adapters.entrysoft.source import load_source_rows
+
+logger = logging.getLogger("entrysoft_logger")
 
 PAGE_SIZE = 500
 NEAR_UNIQUE_SHARE = 0.98  # sample share of distinct values that triggers a full scan
@@ -287,6 +290,15 @@ class _State:
 
 async def _request(state: _State, column: str, pattern: str, label: str) -> dict:
     if state.enumeration_requests + 1 + state.pending > state.budget:
+        logger.debug(
+            "%s: enumerating %r would exceed the %d-request full scan "
+            "(%d used, %d dimensions pending); switching to full scan",
+            state.table_url,
+            column,
+            state.budget,
+            state.enumeration_requests,
+            state.pending,
+        )
         raise _UseFullScan
     state.enumeration_requests += 1
     before = len(state.values[column])
@@ -307,7 +319,23 @@ async def _request(state: _State, column: str, pattern: str, label: str) -> dict
     # Switch as soon as that projection exceeds a full scan.
     remaining = page["resultCount"] - len(page.get("results") or [])
     projected = state.enumeration_requests + ceil(remaining / PAGE_SIZE) + state.pending
+    logger.debug(
+        "%s: %r query %s matched %s rows, %d new values",
+        state.table_url,
+        column,
+        label,
+        page.get("resultCount"),
+        state.log[-1]["new"],
+    )
     if remaining > 0 and projected > state.budget:
+        logger.debug(
+            "%s: finishing %r would cost up to %d requests against a %d-request "
+            "full scan; switching to full scan",
+            state.table_url,
+            column,
+            projected,
+            state.budget,
+        )
         raise _UseFullScan
     return page
 
@@ -333,6 +361,12 @@ async def _enumerate(state: _State, column: str) -> None:
         seen = state.values[column]
         planned = plan_prefixes("", sorted(seen), fits)
         if planned is None:
+            logger.debug(
+                "%s: known values of %r cannot be split into URL-sized prefixes; "
+                "switching to full scan",
+                state.table_url,
+                column,
+            )
             raise _UseFullScan
         replan = False
         for prefix in planned:
@@ -358,6 +392,12 @@ async def _enumerate(state: _State, column: str) -> None:
             return  # the whole value space is complete
         pattern = remainder_pattern(completed, state.values[column])
         if not fits(pattern):
+            logger.debug(
+                "%s: remainder query for %r exceeds the URL limit; "
+                "switching to full scan",
+                state.table_url,
+                column,
+            )
             raise _UseFullScan
         page = await _request(state, column, pattern, "remainder")
         if _done(page):
@@ -366,6 +406,12 @@ async def _enumerate(state: _State, column: str) -> None:
 
 
 async def _full_scan(state: _State) -> None:
+    logger.debug(
+        "%s: full scan of %d rows (%d further requests)",
+        state.table_url,
+        state.total,
+        state.budget,
+    )
     fetched = PAGE_SIZE
     for offset in range(PAGE_SIZE, state.total, PAGE_SIZE):
         page = await state.client.get(
@@ -461,8 +507,15 @@ async def infer_structure(
     first = first_page or await client.get(table_url, {"_limit": PAGE_SIZE})
     total, rows = first.get("resultCount"), first.get("results") or []
     if total == 0:
+        logger.debug("%s: empty table", table_url)
         raise EmptyTable(f"Empty RowStore table: {table_url}")
     if not isinstance(total, int) or total < 0 or not rows:
+        logger.error(
+            "%s: invalid RowStore response (resultCount=%r, %d rows)",
+            table_url,
+            total,
+            len(rows),
+        )
         raise ValueError(f"Invalid RowStore table response: {table_url}")
     columns: list[str] = []
     for row in rows:
@@ -481,6 +534,14 @@ async def infer_structure(
         column for column in columns if roles_by_column[column]["role"] == "dimension"
     ]
 
+    logger.debug(
+        "%s: %d rows, %d columns, %d dimensions; first page holds %d rows",
+        table_url,
+        total,
+        len(columns),
+        len(dimensions),
+        len(rows),
+    )
     strategy, source_check = "single_page", None
     if total > len(rows):
         # Files first: the files a table was built from cost one request each,
@@ -488,12 +549,28 @@ async def infer_structure(
         source_check = await _from_source(state, source_uri, rows)
         if source_check == "used":
             strategy = "source_files"
+            logger.debug("%s: categories read from the source files", table_url)
         elif (
             dimensions
             and max_paging_requests is not None
             and state.budget > max_paging_requests
         ):
+            logger.debug(
+                "%s: source files not used (%s); paging needs %d requests, "
+                "more than the %d allowed; deferring",
+                table_url,
+                source_check,
+                state.budget,
+                max_paging_requests,
+            )
             raise NeedsPaging(source_check, total, state.budget)
+        else:
+            logger.debug(
+                "%s: source files not used (%s); paging needs up to %d requests",
+                table_url,
+                source_check,
+                state.budget,
+            )
     if strategy == "single_page" and total > len(rows) and dimensions:
         # A dimension that is nearly unique per row in the sample would need about
         # one request per 500 rows to enumerate: no cheaper than a full scan.
@@ -503,6 +580,13 @@ async def infer_structure(
             if len(state.values[c]) >= NEAR_UNIQUE_SHARE * len(rows)
         ]
         strategy = "full_scan" if near_unique else "enumeration"
+        if near_unique:
+            logger.debug(
+                "%s: dimensions %s are nearly unique per row; going straight to "
+                "a full scan",
+                table_url,
+                near_unique,
+            )
         try:
             if near_unique:
                 raise _UseFullScan
@@ -516,6 +600,12 @@ async def infer_structure(
             strategy = "full_scan"
             await _full_scan(state)
 
+    logger.debug(
+        "%s: structure inferred with strategy %s in %d requests",
+        table_url,
+        strategy,
+        client.requests - start,
+    )
     sample_keys = [tuple(row.get(column) for column in dimensions) for row in rows]
     return {
         "rowcount": total,

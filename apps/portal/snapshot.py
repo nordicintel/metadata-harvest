@@ -130,7 +130,7 @@ def refresh_snapshot(target: Path, *, client=None) -> dict:
             SEARCH_URL + "/search",
             params={
                 "filters": "dataset",
-                "limit": 200,
+                "limit": 500,
                 "scroll": "true",
                 "facets": json.dumps({"catalog": ["oppnadata"]}),
             },

@@ -14,7 +14,7 @@ from urllib.parse import quote, unquote, urlsplit, urlunsplit
 from playwright.async_api import Browser, Error, Page, async_playwright
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("pxweb_v1_logger")
 _TIMEOUT = 60000
 _ATTEMPTS = 4
 _API = re.compile(r"/api/v1(?:/|$)", re.I)
@@ -291,10 +291,23 @@ async def _goto(page: Page, url: str):
                 raise RuntimeError(f"No navigation response: {url}")
             if response.status in {429, 500, 502, 503, 504}:
                 if attempt == _ATTEMPTS - 1:
+                    logger.error(
+                        "Navigation gave up after %d attempts, HTTP %s: %s",
+                        _ATTEMPTS,
+                        response.status,
+                        url,
+                    )
                     raise RuntimeError(f"HTTP {response.status}: {url}")
-                await asyncio.sleep(
-                    _retry_after(response.headers.get("retry-after"), attempt)
+                delay = _retry_after(response.headers.get("retry-after"), attempt)
+                logger.warning(
+                    "Navigation HTTP %s (attempt %d of %d); retrying in %.1fs: %s",
+                    response.status,
+                    attempt + 1,
+                    _ATTEMPTS,
+                    delay,
+                    url,
                 )
+                await asyncio.sleep(delay)
                 continue
             if response.status >= 400:
                 if response.status in {400, 404}:
@@ -304,7 +317,16 @@ async def _goto(page: Page, url: str):
         except Error as error:
             if "CERT_" in str(error) or attempt == _ATTEMPTS - 1:
                 raise
-            await asyncio.sleep(_retry_after(None, attempt))
+            delay = _retry_after(None, attempt)
+            logger.warning(
+                "Navigation error (attempt %d of %d); retrying in %.1fs: %s: %s",
+                attempt + 1,
+                _ATTEMPTS,
+                delay,
+                url,
+                str(error).splitlines()[0] if str(error) else type(error).__name__,
+            )
+            await asyncio.sleep(delay)
 
 
 async def _entry(page: Page, route: _Route) -> _Route:
@@ -313,6 +335,7 @@ async def _entry(page: Page, route: _Route) -> _Route:
     await _goto(page, route.web() if route.recognized else route.root)
     actual = _parse_url(page.url)
     if actual.recognized and actual.language:
+        logger.debug("Entry point resolved to %s via redirect", actual.root)
         return _Route(actual.root)
     links = await page.locator("a[href]").evaluate_all("(els)=>els.map(e=>e.href)")
     candidates = [
@@ -323,11 +346,18 @@ async def _entry(page: Page, route: _Route) -> _Route:
     candidates = [x for x in candidates if x.recognized]
     roots = {x.root for x in candidates}
     if not roots and actual.recognized:
+        logger.debug("Entry point resolved to %s (no PXWeb links on page)", actual.root)
         return _Route(actual.root)
     if len(roots) != 1:
+        logger.error(
+            "Ambiguous PXWeb entry point at %s: %d candidate roots",
+            page.url,
+            len(roots),
+        )
         raise ValueError(
             f"Cannot identify an unambiguous PXWeb entry point: {page.url}"
         )
+    logger.debug("Entry point resolved to %s via page links", candidates[0].root)
     return _Route(candidates[0].root)
 
 
@@ -354,6 +384,11 @@ async def _discover(page: Page, root: _Route, language: str) -> list[str]:
     await _goto(page, root.web(language))
     actual = await _check_language(page, language)
     if actual.database:
+        logger.info(
+            "Language %s: entry URL already names database %s",
+            language,
+            actual.database,
+        )
         return [actual.database]
     links = await page.locator("a[href], select option[value]").evaluate_all(
         """els=>els.filter(e=>!e.closest('select.cboSelectLanguages,select[id*="language" i],select[name*="language" i]')).map(e=>e.href || new URL(e.value,location.href).href)"""
@@ -373,7 +408,14 @@ async def _discover(page: Page, root: _Route, language: str) -> list[str]:
         raise RuntimeError(
             f"No database links or supported selection controls: {page.url}"
         )
-    return list(dict.fromkeys(databases))
+    found = list(dict.fromkeys(databases))
+    logger.info(
+        "Language %s: discovered %d databases from website links: %s",
+        language,
+        len(found),
+        found,
+    )
+    return found
 
 
 # Extract only data belonging to each table row/node; never borrow page-wide dates.
@@ -535,6 +577,14 @@ async def _harvest(
             continue
         if len(visited) >= 10000:
             raise RuntimeError("Folder traversal exceeded 10000 pages")
+        logger.debug(
+            "Listing page %d (%d queued) for %s/%s: %s",
+            len(visited) + 1,
+            len(pending),
+            language,
+            database,
+            url,
+        )
         await _goto(page, url)
         actual = await _check_language(page, language, database)
         root = _Route(actual.root)
@@ -560,6 +610,9 @@ async def _harvest(
                 '(els)=>els.map(e=>e.outerHTML).join("")'
             )
             if state in states:
+                logger.error(
+                    "Tree expansion stopped changing but is incomplete: %s", page.url
+                )
                 raise RuntimeError(f"Incomplete expansion: {page.url}")
             states.add(state)
             try:
@@ -576,6 +629,7 @@ async def _harvest(
                 all_tables.extend(current)
             signature = tuple((row["href"], row["date"]) for row in current)
             if signature in pagination_states:
+                logger.error("Pagination repeated an earlier page: %s", page.url)
                 raise RuntimeError(f"Pagination stopped making progress: {page.url}")
             pagination_states.add(signature)
             raw_tables.extend(current)
@@ -631,8 +685,10 @@ async def _harvest(
                 )
                 if not represented:
                     pending.append(link["href"])
+                    logger.debug("Queued sub-folder listing: %s", link["href"])
             if link["next"]:
                 pending.append(link["href"])
+                logger.debug("Queued pagination page: %s", link["href"])
         if not raw_tables and not any(x not in visited for x in pending):
             body = await page.locator("body").inner_text()
             if not re.search(
@@ -645,6 +701,16 @@ async def _harvest(
             raw["date_format"] = date_format
         if collection is None:
             all_tables.extend(raw_tables)
+        logger.debug(
+            "Page %s: %d table rows (date format %s)", url, len(raw_tables), date_format
+        )
+    logger.info(
+        "Listing %s/%s traversed: %d pages visited, %d table rows found",
+        language,
+        database,
+        len(visited),
+        len(all_tables),
+    )
     if collection is not None:
         collection["complete"] = True
     try:
@@ -654,6 +720,12 @@ async def _harvest(
             raise
         collection["complete"] = False
         collection["errors"].append({"stage": "enrichment", "message": str(error)})
+        logger.error(
+            "Enrichment of %s/%s failed; scope marked incomplete: %s",
+            language,
+            database,
+            error,
+        )
     if collection is not None:
         return _partial_records(collection, language, database)
     for raw in all_tables:
@@ -728,6 +800,15 @@ def _partial_records(collection, language, database):
             }
             if issue not in collection["errors"]:
                 collection["errors"].append(issue)
+                logger.error(
+                    "Extraction failed for %s (%s): %s -> %s",
+                    table_id or "unidentified row",
+                    raw.get("href"),
+                    error,
+                    "id recorded as observed but invalid"
+                    if table_id
+                    else "scope marked incomplete",
+                )
     return sorted(records.values(), key=lambda record: (record["path"], record["id"]))
 
 
@@ -740,6 +821,7 @@ async def _collect_database(browser, url, language, database):
         "errors": [],
     }
     api_state = {}
+    logger.info("Collecting listing scope %s/%s from %s", language, database, url)
 
     async def harvest(page):
         page.context._pxweb_api = api_state
@@ -765,7 +847,26 @@ async def _collect_database(browser, url, language, database):
         collection["errors"].append(
             {"stage": "navigation", "message": f"{type(error).__name__}: {error}"}
         )
+        logger.error(
+            "Scope %s/%s failed during navigation; keeping partial rows only: %s: %s",
+            language,
+            database,
+            type(error).__name__,
+            error,
+        )
         records = _partial_records(collection, language, database)
+    logger.info(
+        "Scope %s/%s %s: %d usable records, %d observed ids, %d invalid ids, "
+        "%d errors, %d API parent-folder requests",
+        language,
+        database,
+        "complete" if collection["complete"] else "INCOMPLETE",
+        len(records),
+        len(collection["observed_ids"]),
+        len(collection["invalid_ids"]),
+        len(collection["errors"]),
+        api_state.get("folder_request_count", 0),
+    )
     return {
         "language": language,
         "database_id": database,
@@ -800,6 +901,11 @@ async def _api_listing(
         + "/".join(quote(x, safe="") for x in (language, database))
         + "?filter=*&query=*"
     )
+    logger.info(
+        "Fetching one flat API listing for %s/%s to fill missing dates/titles",
+        language,
+        database,
+    )
     try:
         response = await page.context.request.get(
             url, timeout=_TIMEOUT, max_redirects=0
@@ -821,11 +927,15 @@ async def _api_listing(
             if not isinstance(rows, list):
                 raise ValueError(f"API search returned no table listing: {url}")
             state["rows"] = rows
+            logger.info(
+                "Flat API listing for %s/%s: %d rows", language, database, len(rows)
+            )
             return rows
         finally:
             await response.dispose()
     except Exception as error:
         state["error"] = error
+        logger.error("Flat API listing failed for %s/%s: %s", language, database, error)
         raise
 
 
@@ -835,6 +945,7 @@ async def _api_folder(page, root, language, database, categories):
     cache = state.setdefault("folders", {})
     if categories in cache:
         value = cache[categories]
+        logger.debug("API parent folder %s served from cache", "/".join(categories))
         if isinstance(value, Exception):
             raise value
         return value
@@ -855,7 +966,16 @@ async def _api_folder(page, root, language, database, categories):
             except Error as error:
                 if "CERT_" in str(error) or attempt == _ATTEMPTS - 1:
                     raise
-                await asyncio.sleep(_retry_after(None, attempt))
+                delay = _retry_after(None, attempt)
+                logger.warning(
+                    "API parent folder request error (attempt %d of %d); retrying "
+                    "in %.1fs: %s",
+                    attempt + 1,
+                    _ATTEMPTS,
+                    delay,
+                    url,
+                )
+                await asyncio.sleep(delay)
                 continue
             try:
                 if (
@@ -879,6 +999,11 @@ async def _api_folder(page, root, language, database, categories):
                 if not isinstance(entries, list):
                     raise ValueError(f"API parent folder returned no listing: {url}")
                 cache[categories] = entries
+                logger.debug(
+                    "API parent folder %s: %d entries",
+                    "/".join(categories),
+                    len(entries),
+                )
                 return entries
             finally:
                 await response.dispose()
@@ -909,7 +1034,20 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
         if not row["date"] or not row["title"]:
             missing.append(row)
     if not missing:
+        logger.debug(
+            "All %d rows of %s/%s have dates and titles; no API enrichment needed",
+            len(rows),
+            language,
+            database,
+        )
         return
+    logger.info(
+        "%s/%s: %d of %d rows lack a date or title; enriching from the API",
+        language,
+        database,
+        len(missing),
+        len(rows),
+    )
     errors = []
     entries = await _api_listing(page, root, language, database)
     index, conflicts = {}, set()
@@ -933,6 +1071,7 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
             del index[key]
             continue
         index[key] = entry
+    from_listing = from_folder = 0
     for row in missing:
         try:
             table_id, categories, _ = _identity(row, language, database, folder_names)
@@ -941,9 +1080,14 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
             entry = entry or {}
             if not row["date"]:
                 _fill_date(row, entry)
+                from_listing += bool(row["date"])
             if not row["title"] and isinstance(entry.get("title"), str):
                 row["title"] = entry["title"].strip()
             if not row["date"]:
+                logger.debug(
+                    "%s has no date in the flat listing; trying its parent folder",
+                    table_id,
+                )
                 entries = await _api_folder(page, root, language, database, categories)
                 if any(not isinstance(entry, dict) for entry in entries):
                     errors.append(ValueError(f"Malformed API folder row: {categories}"))
@@ -960,8 +1104,20 @@ async def _enrich_missing(page, root, language, database, rows, folder_names):
                     )
                 if matches:
                     _fill_date(row, matches[0])
+                    from_folder += bool(row["date"])
         except Exception as error:
             errors.append(_failure(row.get("href", "unknown table"), error))
+    still_undated = sum(not row["date"] for row in rows)
+    logger.info(
+        "%s/%s enrichment: %d dates from flat listing, %d from parent folders, "
+        "%d rows still undated, %d errors",
+        language,
+        database,
+        from_listing,
+        from_folder,
+        still_undated,
+        len(errors),
+    )
     if errors:
         raise ExceptionGroup(
             "API enrichment incomplete: " + "; ".join(str(error) for error in errors),
@@ -997,6 +1153,13 @@ async def _complete_harvest(page: Page, root: _Route, language: str, database: s
             return await _harvest(page, root, language, database)
         except _ExpansionFailure as error:
             if attempt == _ATTEMPTS - 1:
+                logger.error(
+                    "Expansion for %s/%s failed after %d attempts: %s",
+                    language,
+                    database,
+                    _ATTEMPTS,
+                    error,
+                )
                 raise
             logger.warning(
                 "Restarting failed stateful expansion for %s/%s: %s",
@@ -1029,7 +1192,16 @@ async def get_pxweb_tables(
     route = _parse_url(url)
     selected_languages = _languages(route, languages)
     selected_databases = _databases(route, database_ids)
+    logger.info(
+        "Discovering PXWeb tables at %s: languages=%s, databases=%s",
+        route.root,
+        selected_languages,
+        "auto-discover from website"
+        if selected_databases is None
+        else selected_databases,
+    )
     if not selected_languages or selected_databases == []:
+        logger.info("Nothing selected; returning no tables")
         return []
     results, failures = [], []
     async with async_playwright() as playwright:
@@ -1050,8 +1222,14 @@ async def get_pxweb_tables(
                     logger.warning("%s", error)
                     continue
                 except Exception as error:
+                    logger.error(
+                        "Discovery for language %s failed: %s", language, error
+                    )
                     failures.append(_failure(f"{language} discovery", error))
                     continue
+                logger.info(
+                    "Language %s: harvesting %d databases", language, len(databases)
+                )
                 for database in databases:
                     api_state = {}
 
@@ -1066,7 +1244,11 @@ async def get_pxweb_tables(
                         return await _complete_harvest(page, root, language, database)
 
                     try:
-                        results.extend(await _in_context(browser, harvest))
+                        found = await _in_context(browser, harvest)
+                        results.extend(found)
+                        logger.info(
+                            "Database %s/%s: %d tables", language, database, len(found)
+                        )
                     except _Unsupported as error:
                         logger.warning("%s", error)
                     except _UnusableDatabase as error:
@@ -1085,11 +1267,23 @@ async def get_pxweb_tables(
                                 },
                             )
                         else:
+                            logger.error(
+                                "Explicit database %s/%s is unusable: %s",
+                                language,
+                                database,
+                                error,
+                            )
                             failures.append(_failure(f"{language}/{database}", error))
                     except Exception as error:
+                        logger.error(
+                            "Database %s/%s failed: %s", language, database, error
+                        )
                         failures.append(_failure(f"{language}/{database}", error))
         finally:
             await browser.close()
+    logger.info(
+        "PXWeb discovery finished: %d tables, %d failures", len(results), len(failures)
+    )
     if failures:
         raise ExceptionGroup("Incomplete PXWeb harvest", failures)
     return sorted(
@@ -1104,6 +1298,15 @@ async def discover_provider(provider: dict) -> AsyncIterator[dict]:
     metadata. This legacy adapter uses web navigation for table discovery.
     The caller owns checkpoints and publication; this function writes no files.
     """
+    logger.info(
+        "Provider %s: listing %d languages x %d configured databases at %s "
+        "(pause %ss between scopes)",
+        provider.get("code"),
+        len(provider["languages"]),
+        len(provider["database_ids"]),
+        provider["base_web_url"],
+        provider.get("rate_limit", 1),
+    )
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(headless=True)
         try:

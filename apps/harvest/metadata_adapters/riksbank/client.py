@@ -16,7 +16,7 @@ import aiohttp
 
 from apps.harvest.metadata_adapters.riksbank.api import ACCEPT_JSON
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("riksbank_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=120)
 USER_AGENT = "nordicintel-metadata-harvest/riksbank"
@@ -72,6 +72,13 @@ class RiksbankClient:
         if key := os.environ.get(KEY_VARIABLE, "").strip():
             self._headers[KEY_HEADER] = key  # never logged
         self.request_count = 0
+        logger.info(
+            "Riksbank client: %.0fs between requests, up to %d attempts, "
+            "subscription key %s",
+            self._interval,
+            self._attempts,
+            "set" if self.keyed else "not set (anonymous, rate limited)",
+        )
 
     @property
     def session(self) -> aiohttp.ClientSession:
@@ -87,6 +94,9 @@ class RiksbankClient:
         return KEY_HEADER in self._headers
 
     async def close(self) -> None:
+        logger.info(
+            "Riksbank client closing after %d HTTP requests", self.request_count
+        )
         if self._owned and self._session is not None:
             await self._session.close()
 
@@ -95,6 +105,7 @@ class RiksbankClient:
         if self._last is not None:
             wait = self._interval - (time.monotonic() - self._last)
             if wait > 0:
+                logger.debug("Pacing: waiting %.1fs before the next request", wait)
                 await asyncio.sleep(wait)
         self._last = time.monotonic()
 
@@ -122,7 +133,9 @@ class RiksbankClient:
                     if response.status == 204 or (
                         missing_ok and response.status == 404
                     ):
-                        logger.info("GET %s: HTTP %d", response.url, response.status)
+                        logger.debug(
+                            "GET %s: HTTP %d (no data)", response.url, response.status
+                        )
                         return None
                     if response.status == 429 or response.status >= 500:
                         wait = _retry_after(response.headers)
@@ -134,8 +147,22 @@ class RiksbankClient:
                     error.status == 429 or error.status >= 500
                 )
                 if wait is not None and wait > MAX_RETRY_AFTER:
+                    logger.warning(
+                        "Retry-After %.0fs for %s exceeds the %.0fs limit; not retrying",
+                        wait,
+                        url,
+                        MAX_RETRY_AFTER,
+                    )
                     transient = False
                 if not transient or attempt == self._attempts:
+                    logger.error(
+                        "GET %s failed after %d of %d attempts (%s: %s)",
+                        url,
+                        attempt,
+                        self._attempts,
+                        type(error).__name__,
+                        "permanent error" if not transient else "retries exhausted",
+                    )
                     raise Unreachable(
                         f"GET {url} {dict(params or {})} failed: "
                         f"{type(error).__name__}: {error}"
@@ -154,6 +181,6 @@ class RiksbankClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("GET %s (%.1fs)", location, time.monotonic() - started)
+            logger.debug("GET %s (%.1fs)", location, time.monotonic() - started)
             return body
         raise AssertionError("unreachable")

@@ -8,7 +8,7 @@ from typing import Any
 
 import aiohttp
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("tillvaxtverket_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=120)
 USER_AGENT = "nordicintel-metadata-harvest/tillvaxtverket"
@@ -44,10 +44,18 @@ class TillvaxtverketClient:
         self._interval = interval
         self._last = 0.0
         self.request_count = 0
+        logger.info(
+            "Client ready: %d attempts per request, %.0fs base retry delay, "
+            "at most one request per %.1fs",
+            attempts,
+            retry_delay,
+            interval,
+        )
 
     @property
     def session(self) -> aiohttp.ClientSession:
         if self._session is None:
+            logger.debug("Opening HTTP session (timeout %ss)", TIMEOUT.total)
             self._session = aiohttp.ClientSession(
                 headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
             )
@@ -55,6 +63,7 @@ class TillvaxtverketClient:
 
     async def close(self) -> None:
         if self._owned and self._session is not None:
+            logger.info("Closing HTTP session after %d requests", self.request_count)
             await self._session.close()
 
     async def get_json(self, url: str, params: Params = None) -> Any:
@@ -70,6 +79,7 @@ class TillvaxtverketClient:
     async def _pace(self) -> None:
         wait = self._last + self._interval - time.monotonic()
         if wait > 0:
+            logger.debug("Pacing: waiting %.2fs before the next request", wait)
             await asyncio.sleep(wait)
         self._last = time.monotonic()
 
@@ -102,6 +112,13 @@ class TillvaxtverketClient:
                     error.status == 429 or error.status >= 500
                 )
                 if not transient or attempt == self._attempts:
+                    logger.error(
+                        "Giving up on %s after %d attempt(s): %s (%s)",
+                        url,
+                        attempt,
+                        type(error).__name__,
+                        "retries exhausted" if transient else "not retryable",
+                    )
                     raise Unreachable(
                         f"GET {url} {query} failed: {type(error).__name__}: {error}"
                     ) from error
@@ -117,7 +134,12 @@ class TillvaxtverketClient:
                 )
                 await asyncio.sleep(delay)
                 continue
-            logger.info("GET %s (%.1fs)", location, time.monotonic() - started)
+            logger.debug(
+                "GET %s (%.1fs, request %d)",
+                location,
+                time.monotonic() - started,
+                self.request_count,
+            )
             return body
         raise AssertionError("unreachable")
 

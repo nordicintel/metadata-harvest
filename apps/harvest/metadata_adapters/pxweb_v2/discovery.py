@@ -1,10 +1,13 @@
 """Complete per-language catalogue discovery, with explicit failure evidence."""
 
+import logging
 from collections.abc import AsyncIterator
 from math import ceil
 
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.validation import validate_table
+
+logger = logging.getLogger("pxweb_v2_logger")
 
 
 def table_record(provider: dict, language: str, table: dict) -> dict:
@@ -28,13 +31,24 @@ async def discover_provider(
                 yield scope
         return
     config_error = None
+    logger.info(
+        "Discovering catalogue of provider %s for languages %s (page size %s)",
+        provider["code"],
+        provider["languages"],
+        provider.get("page_size", 1000),
+    )
     try:
         config = await client.get("config")
         client.configure(config)
         supported = {row["id"] for row in config["languages"]}
+        logger.info("API config loaded; supported languages: %s", sorted(supported))
     except Exception as error:
         config_error = f"{type(error).__name__}: {error}"
         supported = set()
+        logger.error(
+            "API config unavailable (%s); no language scope can be completed",
+            config_error,
+        )
     for language in provider["languages"]:
         scope = {
             "language": language,
@@ -81,6 +95,14 @@ async def discover_provider(
                 if expected is not None and signature != expected:
                     raise ValueError("Catalogue totals changed during pagination")
                 expected = signature
+                logger.debug(
+                    "Catalogue %s page %d/%d: %d rows (total %d tables)",
+                    language,
+                    number,
+                    pages,
+                    len(rows),
+                    total,
+                )
                 for position, table in enumerate(rows):
                     code = table.get("id") if isinstance(table, dict) else None
                     try:
@@ -99,6 +121,15 @@ async def discover_provider(
                             raise ValueError("Wrong table language")
                         scope["records"].append(table_record(provider, language, table))
                     except Exception as error:
+                        logger.debug(
+                            "Rejected catalogue row %s page %d row %d table %r: %s: %s",
+                            language,
+                            number,
+                            position,
+                            code,
+                            type(error).__name__,
+                            error,
+                        )
                         scope["errors"].append(
                             f"{language} page {number} row {position} table {code!r}: "
                             f"{type(error).__name__}: {error}"
@@ -112,5 +143,24 @@ async def discover_provider(
                 raise ValueError("Catalogue count mismatch")
             scope["complete"] = not scope["errors"]
         except Exception as error:
+            logger.error(
+                "Catalogue discovery for %s aborted: %s: %s",
+                language,
+                type(error).__name__,
+                error,
+            )
             scope["errors"].append(f"{type(error).__name__}: {error}")
+        log = logger.info if scope["complete"] else logger.warning
+        log(
+            "Discovery scope %s: complete=%s, %d valid records, %d observed ids, "
+            "%d errors%s",
+            language,
+            scope["complete"],
+            len(scope["records"]),
+            len(scope["observed_ids"]),
+            len(scope["errors"]),
+            ""
+            if scope["complete"]
+            else " (incomplete scope cannot prove any table was removed)",
+        )
         yield scope

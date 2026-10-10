@@ -11,7 +11,7 @@ from playwright.async_api import async_playwright
 
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import _retry_after
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("pxweb_v1_logger")
 _CELL_LIMIT = 10_000
 _STANDARD = {"label", "source", "updated", "note", "link", "href", "extension", "role"}
 
@@ -120,7 +120,7 @@ class _Requests:
             await asyncio.sleep(max(0, self.last + self.interval - loop.time()))
             self.last = loop.time()
             self.count += 1
-            logger.info(
+            logger.debug(
                 "PXWeb metadata request %d: %s %s",
                 self.count,
                 "GET" if payload is None else "POST",
@@ -147,10 +147,23 @@ class _Requests:
                     return {}
                 if response.status == 429 or response.status >= 500:
                     if attempt < 3:
-                        await asyncio.sleep(
-                            _retry_after(response.headers.get("retry-after"), attempt)
+                        delay = _retry_after(
+                            response.headers.get("retry-after"), attempt
                         )
+                        logger.warning(
+                            "PXWeb HTTP %s (attempt %d of 4); retrying in %.1fs: %s",
+                            response.status,
+                            attempt + 1,
+                            delay,
+                            url,
+                        )
+                        await asyncio.sleep(delay)
                         continue
+                    logger.error(
+                        "PXWeb HTTP %s persisted after 4 attempts: %s",
+                        response.status,
+                        url,
+                    )
                 if not response.ok:
                     raise ValueError(
                         f"HTTP {response.status}: {(await response.text())[:200]}"
@@ -169,9 +182,23 @@ class _Requests:
                     self.context = None
                     self.insecure = True
                 elif attempt == 3:
+                    logger.error(
+                        "PXWeb transport error persisted after 4 attempts: %s: %s",
+                        url,
+                        message.splitlines()[0] if message else "unknown",
+                    )
                     raise
                 else:
-                    await asyncio.sleep(_retry_after(None, attempt))
+                    delay = _retry_after(None, attempt)
+                    logger.warning(
+                        "PXWeb transport error (attempt %d of 4); retrying in "
+                        "%.1fs: %s: %s",
+                        attempt + 1,
+                        delay,
+                        url,
+                        message.splitlines()[0] if message else "unknown",
+                    )
+                    await asyncio.sleep(delay)
             finally:
                 if response is not None:
                     await response.dispose()
@@ -482,6 +509,20 @@ async def _generate(requests, table, provider_code):
         and window > 0
     ):
         requests.interval = window / calls
+        logger.debug(
+            "%s: provider allows %s calls per %s s; pacing requests %.2fs apart",
+            url,
+            calls,
+            window,
+            requests.interval,
+        )
+    logger.debug(
+        "%s: cell limit %d (provider maxCells=%s, adapter cap %d)",
+        url,
+        limit,
+        config.get("maxCells", "unset"),
+        _CELL_LIMIT,
+    )
     requests.stage = "GET table metadata"
     metadata = await requests.json(url)
     variables = _variables(metadata)
@@ -512,6 +553,12 @@ async def _generate(requests, table, provider_code):
     for variable in variables:
         if variable.get("values") is None or variable.get("valueTexts") is None:
             code = variable["code"]
+            logger.debug(
+                "%s: variable %s lacks %s; recovering through POST queries",
+                url,
+                code,
+                "values" if variable.get("values") is None else "labels",
+            )
             selections = {
                 item["code"]: item["values"][:1] if item.get("values") else None
                 for item in variables
@@ -542,19 +589,36 @@ async def _generate(requests, table, provider_code):
         if math.prod(map(len, selections.values())) <= limit:
             break
         selections[code] = selections[code][:1]
+    logger.debug(
+        "%s: first coverage POST selects %s (<= %d cells)",
+        url,
+        {code: len(values) for code, values in selections.items()},
+        limit,
+    )
     await fetch(selections)
     for variable in variables:
         code = variable["code"]
         pending = [value for value in variable["values"] if value not in covered[code]]
+        if pending:
+            logger.debug(
+                "%s: %d of %d categories of %s still uncovered; fetching in "
+                "chunks of %d",
+                url,
+                len(pending),
+                len(variable["values"]),
+                code,
+                limit,
+            )
         for start in range(0, len(pending), limit):
             selections = {item["code"]: item["values"][:1] for item in variables}
             selections[code] = pending[start : start + limit]
             await fetch(selections)
     if any(covered[item["code"]] != set(item["values"]) for item in variables):
+        logger.error("%s: category coverage incomplete after all POST queries", url)
         raise ValueError("Incomplete category coverage")
     requests.stage = "assemble metadata"
     result = _assemble(table, provider_code, metadata, samples)
-    logger.info(
+    logger.debug(
         "PXWeb metadata complete: %s; requests=%d categories=%d",
         url,
         requests.count,
@@ -588,11 +652,25 @@ async def get_pxweb_metadata(table: dict, *, provider_code: str) -> dict:
     """
     _input(table, provider_code)
     _config_url(table["api_url"])
+    logger.debug(
+        "Fetching PXWeb metadata for %s/%s/%s (%s)",
+        provider_code,
+        table["language"],
+        table["id"],
+        table["api_url"],
+    )
     async with async_playwright() as playwright:
         requests = _Requests(playwright)
         try:
             return await _generate(requests, deepcopy(table), provider_code)
         except Exception as error:
+            logger.error(
+                "PXWeb metadata for %s failed during %s after %d requests: %s",
+                table["api_url"],
+                requests.stage,
+                requests.count,
+                error,
+            )
             raise RuntimeError(
                 f"PXWeb metadata generation failed during {requests.stage} for {table['api_url']}: {error}"
             ) from error

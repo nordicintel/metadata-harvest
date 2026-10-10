@@ -21,7 +21,7 @@ from apps.harvest.metadata_adapters.sdb.client import (
 )
 from retrieval.data_adapters.sdb import result_field
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("sdb_logger")
 
 
 @dataclass(frozen=True)
@@ -53,23 +53,45 @@ async def probe_results(
         RuntimeError: Result fields cannot be matched to the listed variables.
     """
     names = [str(variable["namn"]) for variable in variables]
+    logger.debug(
+        "%s/%s: probing the result endpoint (first row) against %d listed variables",
+        language,
+        subject,
+        len(names),
+    )
     try:
         first = await client.get(language, subject, "resultat", params={"per_sida": 1})
     except NotFoundError as error:
+        logger.debug("%s/%s: result endpoint answered 404", language, subject)
         raise Unreachable(f"{subject}: result endpoint serves no rows") from error
     rows = list(first["data"])
     if not rows:
+        logger.debug("%s/%s: result endpoint serves no rows", language, subject)
         raise Unreachable(f"{subject}: result endpoint serves no rows")
 
     fields = {result_field(key) for key in rows[0] if key != "varde"}
     unmatched_names = [name for name in names if name not in fields]
     unmatched_fields = sorted(fields - set(names))
     if len(unmatched_names) != len(unmatched_fields) or len(unmatched_names) > 1:
+        logger.debug(  # the caller records and logs the raised error
+            "%s/%s: cannot reconcile listed variables %s with result fields %s",
+            language,
+            subject,
+            unmatched_names,
+            unmatched_fields,
+        )
         raise RuntimeError(
             f"Cannot match SDB variables {unmatched_names} to result fields "
             f"{unmatched_fields}."
         )
     result_dimensions = dict(zip(unmatched_names, unmatched_fields, strict=True))
+    if result_dimensions:
+        logger.info(
+            "%s/%s: result endpoint names variables differently from the listing: %s",
+            language,
+            subject,
+            result_dimensions,
+        )
     added_periods = await _missing_years(
         client, language, subject, categories, result_dimensions, rows
     )
@@ -96,6 +118,11 @@ async def _missing_years(
     }
     codes = listed | observed
     if not listed or not all(code.isdigit() for code in codes):
+        logger.debug(
+            "%s/%s: skipping the missing-year probe; periods are not plain years",
+            language,
+            subject,
+        )
         return []  # periods such as "1987-1989" are not probed
     first_listed = min(int(code) for code in listed)
     last_listed = max(int(code) for code in listed)
@@ -103,6 +130,14 @@ async def _missing_years(
         *range(min(int(code) for code in codes), first_listed),
         *range(last_listed + 1, datetime.now(UTC).year + 1),
     ]
+    logger.debug(
+        "%s/%s: listed years %d-%d; probing %d candidate years outside that range",
+        language,
+        subject,
+        first_listed,
+        last_listed,
+        len(candidates),
+    )
     added = []
     for year in candidates:
         if str(year) not in observed:
@@ -116,10 +151,22 @@ async def _missing_years(
                     params={"per_sida": 1},
                 )
             except NotFoundError:
+                logger.debug("%s/%s: no observations for %s", language, subject, year)
                 continue
+        else:
+            logger.debug(
+                "%s/%s: year %s already seen in the first result row",
+                language,
+                subject,
+                year,
+            )
         added.append(str(year))
     if added:
         logger.info(
-            "%s: %d years have observations but are not listed", subject, len(added)
+            "%s/%s: %d years have observations but are not listed: %s",
+            language,
+            subject,
+            len(added),
+            ", ".join(added),
         )
     return added

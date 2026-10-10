@@ -40,7 +40,7 @@ CONCURRENCY = 4
 _MISSING = re.compile(r"Columns missing in dataset: \[([^\]]*)\]")
 _QUOTED = re.compile(r"'((?:[^'\\]|\\.)*)'|\"((?:[^\"\\]|\\.)*)\"")
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("dataanalys_logger")
 
 
 def query_body(
@@ -187,6 +187,9 @@ async def _fetch(
     async with session.post(url, json=body, headers=ACCEPT_JSON) as response:
         if response.status in (400, 404):
             text = await response.text()
+            logger.warning(
+                "Superset answered HTTP %d for %s: %s", response.status, url, text[:200]
+            )
             if response.status == 404:
                 raise LookupError(f"Superset answered 404 for {url}: {text[:200]}")
             if (missing := missing_columns(text)) is not None:
@@ -276,6 +279,12 @@ async def retrieve(
     url = data_url or DATA_URL
 
     parts = split_selection(selection)
+    logger.debug(
+        "%s: retrieving %s cells in %d request(s)",
+        dataset_code,
+        " x ".join(str(len(codes)) for codes in selection.values()),
+        len(parts),
+    )
     if len(parts) > 1:
         logger.info("%s: selection split into %d requests", dataset_code, len(parts))
     limit = asyncio.Semaphore(CONCURRENCY)
@@ -310,6 +319,13 @@ async def retrieve(
                 status[str(index)] = cell_status
 
     total = math.prod(sizes)
+    logger.debug(
+        "%s: %d of %d cells have a value, %d carry a status",
+        dataset_code,
+        len(value),
+        total,
+        len(status),
+    )
     fragment: dict[str, Any] = {
         "id": names,
         "size": sizes,

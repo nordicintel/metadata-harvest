@@ -40,7 +40,7 @@ _NOT_FOUND = "hittades inte i strukturen"
 _NUMBER = re.compile(r"-?\d+(?:[,.]\d+)?")
 """A measure ``Value``: decimals use a comma (``"59,2072702533887"``), no grouping."""
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("trafa_logger")
 
 
 def api_language(language: str) -> str:
@@ -241,6 +241,14 @@ async def retrieve(
     url = data_url or DATA_URL
 
     parts = split_selection(product, measures, variables, language)
+    logger.debug(
+        "%s (%s): %d measures, %d variables -> %d requests",
+        dataset_code,
+        language,
+        len(measures),
+        len(variables),
+        len(parts),
+    )
     if len(parts) > 1:
         logger.info("%s: selection split into %d requests", dataset_code, len(parts))
     limit = asyncio.Semaphore(CONCURRENCY)

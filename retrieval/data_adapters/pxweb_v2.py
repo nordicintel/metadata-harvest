@@ -1,5 +1,6 @@
 """Live observations through a caller-owned aiohttp session."""
 
+import logging
 from collections.abc import Mapping, Sequence
 from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
@@ -7,6 +8,8 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import aiohttp
 
 from retrieval._selection import retrieve_selection
+
+logger = logging.getLogger("pxweb_v2_logger")
 
 REQUIRED_METADATA = ("/extension/pxweb_v2", "/dimension")
 
@@ -34,6 +37,15 @@ async def retrieve(
         ]
         query.extend([("lang", language), ("outputFormat", "json-stat2")])
         data_url = urlunsplit(url._replace(query=urlencode(query)))
+
+    logger.info(
+        "Retrieving PXWeb v2 observations for %s/%s (%s): %d selected dimensions",
+        provider_code,
+        dataset_code,
+        language,
+        len(selection),
+    )
+    logger.debug("Data URL %s; metadata URL %s", data_url, metadata_url)
 
     def request(part):
         return {
