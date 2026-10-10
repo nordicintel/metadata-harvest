@@ -73,7 +73,6 @@ Organisations are independent entities. Publisher is a relationship to a catalog
 | Tomelilla kommuns öppna data | `tomelilla` | `entrysoft` | `datatomelillase` | https://data.tomelilla.se |
 | Energimarknadsinspektionens öppna data | `ei` | `entrysoft` | `eientryscapenet` | https://ei.entryscape.net |
 | Eskilstuna kommuns öppna data | `eskilstuna` | `entrysoft` | `eskilstunaentryscapenet` | https://eskilstuna.entryscape.net |
-| Falu kommuns öppna data | `falun` | `entrysoft` | `falunentryscapenet` | https://falun.entryscape.net |
 | Haninge kommuns öppna data | `haninge` | `entrysoft` | `haningeentryscapenet` | https://haninge.entryscape.net |
 | Lunds kommuns öppna data | `lund` | `entrysoft` | `kataloglundse` | https://katalog.lund.se |
 | Riksarkivets öppna data | `riksarkivet` | `entrysoft` | `katalogriksarkivetse` | https://katalog.riksarkivet.se |
@@ -82,7 +81,6 @@ Organisations are independent entities. Publisher is a relationship to a catalog
 | Linköpings kommuns öppna data | `linkoping` | `entrysoft` | `linkopingentryscapenet` | https://linkoping.entryscape.net |
 | Västerås stads öppna data | `vasteras` | `entrysoft` | `opendatavasterasse` | https://opendata.vasteras.se |
 | Skatteverkets öppna data | `skatteverket` | `entrysoft` | `skatteverketentryscapenet` | https://skatteverket.entryscape.net |
-| STUNS Energi datakatalog | `stuns` | `entrysoft` | `stunsentryscapenet` | https://stuns.entryscape.net |
 | Transportstyrelsens öppna data | `transportstyrelsen` | `entrysoft` | `transportstyrelsenentryscapenet` | https://transportstyrelsen.entryscape.net |
 | Västra Götalandsregionens öppna data | `vgregion` | `entrysoft` | `vgregionentryscapenet` | https://vgregion.entryscape.net |
 | SMHI | `smhi` | `smhi_emissions` | `smhi` | https://nationellaemissionsdatabasen.smhi.se/api |
