@@ -1,6 +1,6 @@
 # Planned repository structure
 
-Status: implemented and verified on 2026-10-10. See [cutover notes](docs/migrations/repository-structure.md) for ownership decisions and verification.
+Status: implemented and verified on 2026-10-10. See [cutover notes](migrations/repository-structure.md) for ownership decisions and verification.
 
 ## Context and intent
 
