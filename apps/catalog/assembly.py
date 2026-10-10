@@ -111,7 +111,6 @@ def build(
         from apps.catalog.inputs import inputs
         from apps.publication.archives import (
             ASSETS,
-            LEGACY_ASSETS,
             _compress,
             _extract,
             previous_asset,
@@ -156,7 +155,7 @@ def build(
             previous = {}
         for asset, digest in previous.get("assets", {}).items():
             if (
-                asset not in (*ASSETS, *LEGACY_ASSETS)
+                asset not in ASSETS
                 or not (catalog / asset).exists()
                 or _hash(catalog / asset) != digest
             ):

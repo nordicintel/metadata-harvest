@@ -34,7 +34,7 @@ uv build
 ```
 
 Browser tests need `uv run playwright install chromium` (`--with-deps` on Linux).
-Historical archive tests need 7-Zip. `apps/` contains repository applications and
+`apps/` contains repository applications and
 is excluded from installation. Run commands from the checkout using
 `uv run python -m apps.operations.harvest --help`.
 

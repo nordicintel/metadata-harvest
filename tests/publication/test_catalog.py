@@ -41,27 +41,6 @@ def test_streaming_lines_without_extracted_files(tmp_path):
     assert list(tmp_path.iterdir()) == [archive]
 
 
-def test_historical_7zip_stream_is_still_readable(tmp_path):
-    import subprocess
-
-    from apps.publication.archives import open_catalog, previous_asset, sevenzip
-
-    source = tmp_path / "catalog.jsonl"
-    source.write_bytes(b'{"historical":true}\n')
-    archive = tmp_path / "catalog.7z"
-    subprocess.run(
-        [sevenzip(), "a", str(archive), source.name],
-        cwd=tmp_path,
-        check=True,
-        capture_output=True,
-    )
-    with open_catalog(archive) as stream:
-        assert stream.read() == source.read_bytes()
-    assert (
-        previous_asset({"assets": {"catalog.7z": "digest"}}, "catalog") == "catalog.7z"
-    )
-
-
 def test_catalog_import_does_not_load_harvesting():
     import subprocess
     import sys

@@ -46,7 +46,7 @@ uv run python -m apps.operations.catalog publish --data data --output output/cat
 
 The two output streams are `catalog.jsonl.zst` and `codelists.jsonl.zst`: Zstandard
 level 6, checksums, deterministic JSONL and inline contexts. State and coverage reports
-accompany them. Historical `.7z` files remain readable through 7-Zip. Every published
+accompany them. Every published
 file must stay below 100 MiB; development work does not require production publication.
 
 Candidates record input, implementation, profile, matching-rule, configuration,

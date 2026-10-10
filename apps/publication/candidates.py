@@ -6,7 +6,7 @@ from pathlib import Path
 
 from apps.catalog.inputs import _collection_path, inputs
 from apps.paths import CONFIG
-from apps.publication.archives import CATALOG_FILES, LEGACY_ASSETS, read
+from apps.publication.archives import CATALOG_FILES, read
 from apps.publication.artifacts import manifest
 
 
@@ -40,9 +40,7 @@ def promote(data: Path, output: Path, *, config_dir: Path = CONFIG) -> dict:
     data, output = Path(data), Path(output)
     record = verify_candidate(data, output, config_dir=config_dir)
     legacy = [
-        data / "catalog" / name
-        if name in LEGACY_ASSETS
-        else _collection_path(data / "catalog", name)
+        _collection_path(data / "catalog", name)
         for name in record["catalog_baseline"]
         if name not in CATALOG_FILES
     ]

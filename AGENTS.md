@@ -22,7 +22,7 @@ uv build                                    # Build retrieval-only distributions
 uv run python scripts/checks/check_distribution.py # Verify isolated installation
 ```
 
-Use `uv run python -m apps.operations.harvest --help` for harvesting options. After model/configuration changes, run both generators in `scripts/generate/` with `--check`; after schedule changes, run `uv run python -m apps.operations.scheduling sync --check`. Archive tests require 7-Zip; browser work requires Playwright Chromium.
+Use `uv run python -m apps.operations.harvest --help` for harvesting options. After model/configuration changes, run both generators in `scripts/generate/` with `--check`; after schedule changes, run `uv run python -m apps.operations.scheduling sync --check`. Browser work requires Playwright Chromium.
 
 ## Coding Style & Naming Conventions
 

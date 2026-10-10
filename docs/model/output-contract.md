@@ -46,8 +46,7 @@ Invalid identities, membership, category order, hierarchy and unusable retrieval
 ## Accepted collections and publication
 
 Accepted `data/<adapter>/metadata/*.jsonl.gz` collections are grouped by canonical provider and contain multilingual models. Task keys, checkpoints and retries still use original source identities; one failed contribution must not erase a successful sibling. New catalog builds write `catalog.jsonl.zst` (one assembled dataset per line) and
-`codelists.jsonl.zst` (one SKOS scheme per line). Historical 7-Zip output remains
-readable. See [catalog operations](../catalog/README.md) for archive I/O, candidate
+`codelists.jsonl.zst` (one SKOS scheme per line). See [catalog operations](../catalog/README.md) for archive I/O, candidate
 verification and explicit promotion.
 
 Consumers use [distribution retrieval](../retrieval/README.md) or a direct adapter.

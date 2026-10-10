@@ -2,7 +2,7 @@
 
 This relationship-only conversion preserves statistical payloads, ordering and
 portal enrichment. It preserves codelist content and validated reference ranges,
-reusing Zstandard bytes or transcoding legacy 7z without statistical reassembly.
+reusing Zstandard bytes without statistical reassembly.
 """
 
 import argparse

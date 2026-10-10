@@ -62,7 +62,7 @@ contains opt-in provider checks and their report summaries. Run scripts from the
 checkout with `uv run python scripts/<purpose>/<tool>.py`. No old application import paths are supported.
 
 New catalog output uses two deterministic Zstandard level 6 streams with checksums:
-`catalog.jsonl.zst` and `codelists.jsonl.zst`. Historical 7-Zip output remains readable.
+`catalog.jsonl.zst` and `codelists.jsonl.zst`.
 Production promotion validates source/dependency fingerprints and candidate hashes
 before mutation. Moving implementation paths invalidates old candidates; it does
 not regenerate accepted data or production archives.
