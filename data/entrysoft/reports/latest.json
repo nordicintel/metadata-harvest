@@ -1,24 +1,28 @@
 {
-  "run_id": "3592927c3d4445c6bdf6ab01288a9cc9",
-  "status": "success",
+  "run_id": "3fd90dd26ebe4a5bbc3b0b54d55b7dcb",
+  "status": "completed_with_errors",
   "continue": false,
   "interrupted": null,
-  "selection": [
-    "catalogalese",
-    "catalogdiggse"
-  ],
+  "selection": null,
   "counts": {
-    "unchanged": 14,
-    "harvested": 0,
-    "empty": 0,
-    "deferred": 0,
-    "removed": 0,
+    "unchanged": 528,
+    "harvested": 29,
+    "empty": 1,
+    "deferred": 1,
+    "removed": 1,
     "failed": 0,
-    "datasets": 442,
+    "datasets": 441,
     "lists": 3
   },
-  "requests": 14,
-  "deferred_tables": [],
+  "requests": 343,
+  "deferred_tables": [
+    {
+      "table": "catalogborasse/ee2e049d-6e22-409f-bf86-ab4d8e32e03e",
+      "rowcount": 186189,
+      "reason": "source metadata not public (HTTP 401)",
+      "paging_requests": 372
+    }
+  ],
   "dropped_tables": [
     {
       "table_url": "https://catalog.eslov.se/rowstore/dataset/6239e690-de8a-4302-8d49-28ea45dd521f",
@@ -86,5 +90,16 @@
     "accf7b0c-3004-4ec0-9c39-ca8c32b30485",
     "65753bc9-a424-411d-b064-a8af678149dd"
   ],
-  "errors": []
+  "errors": [
+    {
+      "stage": "discovery",
+      "resource": "falunentryscapenet",
+      "error": "RuntimeError: ConnectError: [Errno -2] Name or service not known"
+    },
+    {
+      "stage": "discovery",
+      "resource": "stunsentryscapenet",
+      "error": "RuntimeError: ConnectError: [Errno -2] Name or service not known"
+    }
+  ]
 }
