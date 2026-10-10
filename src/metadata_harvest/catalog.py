@@ -6,20 +6,33 @@ No harvesting imports, source requests or workflow dispatch are permitted here.
 import argparse
 import gzip
 import hashlib
+import io
 import json
 import os
 import shutil
 import subprocess
+from contextlib import contextmanager
 from pathlib import Path, PurePosixPath
 from tempfile import TemporaryDirectory
+
+import zstandard
 
 from metadata_harvest.artifacts import check_collection_sizes, manifest
 from metadata_harvest.processing import content_enrichment, semantic_enrichment
 from metadata_harvest.publication import publish as publish_git
 from metadata_harvest.registry import ADAPTERS
 
-ASSETS = ("catalog.7z", "codelists.7z")
+ASSETS = ("catalog.jsonl.zst", "codelists.jsonl.zst")
+LEGACY_ASSETS = ("catalog.7z", "codelists.7z")
 CATALOG_FILES = {*ASSETS, "state/current.json", "reports/latest.json"}
+
+
+def previous_asset(state: dict, kind: str) -> str:
+    """Resolve an accepted asset from its manifest, including pre-Zstandard output."""
+    for name in (kind + ".jsonl.zst", kind + ".7z"):
+        if name in state.get("assets", {}):
+            return name
+    raise ValueError(f"Missing previous {kind} asset")
 
 
 def sevenzip() -> str:
@@ -33,41 +46,63 @@ def sevenzip() -> str:
         )
         if executable.is_file():
             return str(executable)
-    raise FileNotFoundError("Catalog construction requires 7-Zip (7zz or 7z)")
+    raise FileNotFoundError("Reading legacy .7z catalogs requires 7-Zip (7zz or 7z)")
+
+
+@contextmanager
+def open_catalog(path: Path):
+    """Read decompressed bytes as a bounded-memory stream; no extracted file required."""
+    path = Path(path)
+    if path.suffix == ".zst":
+        with (
+            path.open("rb") as raw,
+            zstandard.ZstdDecompressor().stream_reader(raw) as reader,
+            io.BufferedReader(reader) as buffered,
+        ):
+            yield buffered
+    elif path.suffix == ".7z":
+        with subprocess.Popen(
+            [sevenzip(), "e", "-so", str(path), path.stem + ".jsonl"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        ) as process:
+            try:
+                yield process.stdout
+                if process.stdout.read(1):
+                    # A caller may deliberately stop early; do not drain a large archive.
+                    process.terminate()
+                elif process.wait() != 0:
+                    raise ValueError(f"Cannot decode legacy catalog: {path}")
+            finally:
+                if process.poll() is None:
+                    process.terminate()
+                process.stdout.close()
+    else:
+        raise ValueError(f"Unsupported catalog compression: {path.suffix}")
 
 
 def _extract(archive: Path, target: Path, member: str) -> None:
-    # Stream one explicitly named file; never extract archive paths onto disk.
-    with target.open("wb") as stream:
-        subprocess.run(
-            [sevenzip(), "e", "-so", str(archive), member], stdout=stream, check=True
-        )
+    expected = (
+        archive.name.removesuffix(".zst")
+        if archive.suffix == ".zst"
+        else archive.stem + ".jsonl"
+    )
+    if member != expected:
+        raise ValueError("Unexpected catalog member")
+    with open_catalog(archive) as source, target.open("wb") as stream:
+        shutil.copyfileobj(source, stream, length=1024 * 1024)
 
 
 def _compress(source: Path, archive: Path) -> None:
-    """Create a deterministic LZMA2 archive without filesystem timestamps."""
-    temporary = archive.with_suffix(".7z.tmp")
+    """Create a deterministic Zstandard level 6 stream with a content checksum."""
+    temporary = archive.with_name(archive.name + ".tmp")
     temporary.unlink(missing_ok=True)
     try:
-        subprocess.run(
-            [
-                sevenzip(),
-                "a",
-                "-t7z",
-                "-m0=lzma2",
-                "-mx=7",
-                "-md=64m",
-                "-mmt=2",
-                "-mtc=off",
-                "-mta=off",
-                "-mtm=off",
-                str(temporary.resolve()),
-                source.name,
-            ],
-            cwd=source.parent,
-            check=True,
-            stdout=subprocess.DEVNULL,
-        )
+        with source.open("rb") as incoming, temporary.open("wb") as raw:
+            with zstandard.ZstdCompressor(level=6, write_checksum=True).stream_writer(
+                raw
+            ) as outgoing:
+                shutil.copyfileobj(incoming, outgoing, length=1024 * 1024)
         temporary.replace(archive)
     finally:
         temporary.unlink(missing_ok=True)
@@ -111,7 +146,7 @@ def _archives(
 ) -> dict:
     """Rebuild only changed archives, retaining failed collection byte ranges."""
     members = {}
-    for kind, asset in (("metadata", "catalog.7z"), ("codelists", "codelists.7z")):
+    for kind, asset in (("metadata", ASSETS[0]), ("codelists", ASSETS[1])):
         names = sorted(name for name in selected if f"/{kind}/" in name)
         prior = {
             name: digest
@@ -128,14 +163,21 @@ def _archives(
             continue
         with TemporaryDirectory(prefix=".archive-", dir=output) as temporary:
             directory = Path(temporary)
-            content = directory / (Path(asset).stem + ".jsonl")
+            content = directory / asset.removesuffix(".zst")
             fallback = directory / "previous.jsonl"
             with content.open("wb") as target:
                 for name in names:
                     source, member = selected[name]
                     if member is not None:
                         if not fallback.exists():
-                            _extract(catalog / asset, fallback, content.name)
+                            _extract(
+                                catalog
+                                / previous_asset(
+                                    previous, "catalog" if kind == "metadata" else kind
+                                ),
+                                fallback,
+                                content.name,
+                            )
                         source = fallback
                     members[name] = _append(source, target, member=member)
             _compress(content, output / asset)
@@ -203,7 +245,7 @@ def _check_gzip(path: Path) -> None:
 
 
 def build_legacy(data: Path, output: Path, *, adapters=None) -> dict:
-    """Build two 7z archives; failed inputs retain their previous accepted records."""
+    """Build two Zstandard streams; failed inputs retain previously accepted records."""
     data, output = Path(data), Path(output)
     catalog = data / "catalog"
     if (
@@ -229,7 +271,7 @@ def build_legacy(data: Path, output: Path, *, adapters=None) -> dict:
     accepted = dict(previous["accepted"])
     # Prior archives must match committed state before supplying retained records.
     for name, digest in previous.get("assets", {}).items():
-        if name not in ASSETS:
+        if name not in (*ASSETS, *LEGACY_ASSETS):
             raise ValueError("Unexpected previous catalog asset")
         if not (catalog / name).exists() or _digest(catalog / name) != digest:
             raise ValueError(f"Missing or corrupt previous catalog asset: {name}")
@@ -370,7 +412,9 @@ def promote(data: Path, output: Path) -> dict:
     data, output = Path(data), Path(output)
     record = verify_candidate(data, output)
     legacy = [
-        _collection_path(data / "catalog", name)
+        data / "catalog" / name
+        if name in LEGACY_ASSETS
+        else _collection_path(data / "catalog", name)
         for name in record["catalog_baseline"]
         if name not in CATALOG_FILES
     ]

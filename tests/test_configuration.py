@@ -210,13 +210,13 @@ def test_offline_profile_migration_retains_publication_and_codelist_bytes(tmp_pa
     candidate = tmp_path / "catalog-candidate"
     build(data, candidate, adapters=["pxweb_v2"])
     promote(data, candidate)
-    before = (data / "catalog/codelists.7z").read_bytes()
+    before = (data / "catalog/codelists.jsonl.zst").read_bytes()
     output = tmp_path / "migration"
     summary = migration.convert(data, output)
     assert summary["accepted_datasets"] == summary["published_datasets"] == 1
-    assert (output / "data/catalog/codelists.7z").read_bytes() == before
-    original = json.loads(unpack(data / "catalog/catalog.7z"))
-    migrated = json.loads(unpack(output / "data/catalog/catalog.7z"))
+    assert (output / "data/catalog/codelists.jsonl.zst").read_bytes() == before
+    original = json.loads(unpack(data / "catalog/catalog.jsonl.zst"))
+    migrated = json.loads(unpack(output / "data/catalog/catalog.jsonl.zst"))
     assert migrated["@id"] == original["@id"]
     assert migrated["dcat:distribution"] == original["dcat:distribution"]
     ledger = json.loads(

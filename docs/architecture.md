@@ -51,7 +51,7 @@ discovery is retained explicitly because replacing it would change coverage.
 - `portal.py` owns snapshot import/refresh and conservative matching. Unmatched
   harvested datasets remain included; portal-only datasets are not added.
 - `catalog.py` packages `catalog.jsonl` and `codelists.jsonl` into their respective
-  7z archives and promotes them with catalog state/reports into Git. Catalog builds
+  Zstandard streams and promotes them with catalog state/reports into Git. Catalog builds
   are offline and never dispatch harvesting or portal refresh.
 - `processing/` defines content-enrichment then semantic-enrichment proposals;
   no external lookup, inference rule or AI processor is implemented yet.

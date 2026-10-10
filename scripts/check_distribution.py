@@ -52,6 +52,13 @@ assert not installed.intersection({'httpx', 'playwright', 'jsonschema'})
 from metadata_harvest.configuration import load_configuration
 assert len(load_configuration().adapters) == 12
 assert len(load_configuration().services) == 85
+from metadata_harvest.catalog import open_catalog
+import tempfile, pathlib, zstandard
+with tempfile.TemporaryDirectory() as directory:
+    path = pathlib.Path(directory) / 'catalog.jsonl.zst'
+    path.write_bytes(zstandard.ZstdCompressor(level=6).compress(b'{"ok":true}' + bytes([10])))
+    with open_catalog(path) as stream:
+        assert json.loads(stream.readline()) == {'ok': True}
 assert len(list(r.files('metadata_harvest').joinpath('schemas').iterdir())) >= 4
 print(json.dumps(sorted(e.name for e in entries)))
 """

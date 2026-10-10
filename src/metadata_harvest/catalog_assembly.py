@@ -81,6 +81,7 @@ def dependencies(data: Path) -> dict:
         "accepted.py",
         "quality.py",
         "catalog_assembly.py",
+        "catalog.py",
     ):
         result["code:" + name] = _hash(Path(__file__).parent / name)
     return result
@@ -151,9 +152,11 @@ def _group(name: str) -> str:
 def build(data: Path, output: Path, *, adapters=None) -> dict:
     from metadata_harvest.catalog import (
         ASSETS,
+        LEGACY_ASSETS,
         _compress,
         _extract,
         inputs,
+        previous_asset,
         read,
         write,
     )
@@ -188,7 +191,7 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
         previous = {}
     for asset, digest in previous.get("assets", {}).items():
         if (
-            asset not in ASSETS
+            asset not in (*ASSETS, *LEGACY_ASSETS)
             or not (catalog / asset).exists()
             or _hash(catalog / asset) != digest
         ):
@@ -232,7 +235,9 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
         def previous_range(kind, group):
             if kind not in extracted:
                 path = temp / ("previous-" + kind + ".jsonl")
-                _extract(catalog / (kind + ".7z"), path, kind + ".jsonl")
+                _extract(
+                    catalog / previous_asset(previous, kind), path, kind + ".jsonl"
+                )
                 extracted[kind] = path
             member = previous["groups"][group][kind]
             return (extracted[kind], member["offset"], member["size"], member["sha256"])
@@ -470,10 +475,13 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
                     db.close()
         for kind in ("catalog", "codelists"):
             content = temp / (kind + ".jsonl")
-            if previous.get("content_hashes", {}).get(kind) == _hash(content):
-                shutil.copyfile(catalog / (kind + ".7z"), output / (kind + ".7z"))
+            asset = kind + ".jsonl.zst"
+            if asset in previous.get("assets", {}) and previous.get(
+                "content_hashes", {}
+            ).get(kind) == _hash(content):
+                shutil.copyfile(catalog / asset, output / asset)
             else:
-                _compress(content, output / (kind + ".7z"))
+                _compress(content, output / asset)
         content_hashes = {
             kind: _hash(temp / (kind + ".jsonl")) for kind in ("catalog", "codelists")
         }

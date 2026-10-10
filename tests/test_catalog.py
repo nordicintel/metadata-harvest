@@ -11,13 +11,10 @@ from metadata_harvest.catalog import promote
 
 
 def unpack(path):
-    import subprocess
+    from metadata_harvest.catalog import open_catalog
 
-    from metadata_harvest.catalog import sevenzip
-
-    return subprocess.check_output(
-        [sevenzip(), "e", "-so", str(path), path.stem + ".jsonl"]
-    )
+    with open_catalog(path) as stream:
+        return stream.read()
 
 
 def collection(root, content=b'{"trusted":true}\n'):
@@ -25,6 +22,63 @@ def collection(root, content=b'{"trusted":true}\n'):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(gzip.compress(content, mtime=0))
     return path
+
+
+def test_streaming_lines_without_extracted_files(tmp_path):
+    import io
+
+    from metadata_harvest.catalog import _compress, open_catalog
+
+    source = tmp_path / "catalog.jsonl"
+    source.write_text('{"title":"åäö"}\n{"number":2}\n', encoding="utf-8")
+    archive = tmp_path / "catalog.jsonl.zst"
+    _compress(source, archive)
+    source.unlink()
+    with (
+        open_catalog(archive) as stream,
+        io.TextIOWrapper(stream, encoding="utf-8") as text,
+    ):
+        assert [json.loads(line) for line in text] == [{"title": "åäö"}, {"number": 2}]
+    assert list(tmp_path.iterdir()) == [archive]
+
+
+def test_previous_7z_retains_failed_inputs_and_is_removed_only_at_promotion(tmp_path):
+    import hashlib
+    import subprocess
+
+    from metadata_harvest.catalog import ASSETS, sevenzip
+
+    data, candidate = tmp_path / "data", tmp_path / "candidate"
+    source = collection(data)
+    build(data, candidate)
+    promote(data, candidate)
+    catalog = data / "catalog"
+    state_path = catalog / "state/current.json"
+    state = json.loads(state_path.read_text())
+    old_assets = {}
+    for asset in ASSETS:
+        member = asset.removesuffix(".zst")
+        content = tmp_path / member
+        content.write_bytes(unpack(catalog / asset))
+        old = catalog / member.replace(".jsonl", ".7z")
+        subprocess.run(
+            [sevenzip(), "a", str(old), member],
+            cwd=tmp_path,
+            check=True,
+            capture_output=True,
+        )
+        old_assets[old.name] = hashlib.sha256(old.read_bytes()).hexdigest()
+        (catalog / asset).unlink()
+    state["assets"] = old_assets
+    state_path.write_text(json.dumps(state))
+    source.write_bytes(b"failed update")
+    report = build(data, candidate)
+    assert report["build_counts"]["retained"] == 1
+    assert unpack(candidate / ASSETS[0]) == b'{"trusted":true}\n'
+    assert (catalog / "catalog.7z").exists()
+    promote(data, candidate)
+    assert not list(catalog.glob("*.7z"))
+    assert unpack(catalog / ASSETS[0]) == b'{"trusted":true}\n'
 
 
 def test_offline_trusted_copy_reuse_and_removal(tmp_path, monkeypatch):
@@ -49,7 +103,7 @@ def test_offline_trusted_copy_reuse_and_removal(tmp_path, monkeypatch):
         "semantic_enrichment": "not_configured",
     }
     promote(data, candidate)
-    target = data / "catalog/catalog.7z"
+    target = data / "catalog/catalog.jsonl.zst"
     assert unpack(target) == gzip.decompress(source.read_bytes())
     second = build(data, candidate, adapters=["pxweb_v1"])
     assert second["build_counts"]["reused"] == 1
@@ -65,7 +119,7 @@ def test_corrupt_and_missing_retain_previous_other_collections_advance(tmp_path)
     source = collection(data)
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
-    target = data / "catalog/catalog.7z"
+    target = data / "catalog/catalog.jsonl.zst"
     before = unpack(target)
     source.write_bytes(b"broken gzip")
     other = source.with_name("other.jsonl.gz")
@@ -88,7 +142,7 @@ def test_stale_and_modified_candidates_rejected(tmp_path):
     with pytest.raises(ValueError, match="Stale"):
         promote(data, candidate)
     build(data, candidate, adapters=["pxweb_v1"])
-    (candidate / "catalog.7z").write_bytes(b"tampered")
+    (candidate / "catalog.jsonl.zst").write_bytes(b"tampered")
     with pytest.raises(ValueError, match="Candidate"):
         promote(data, candidate)
 
@@ -201,16 +255,20 @@ def test_combined_assets_separate_dataset_and_codelist_records(tmp_path):
     codes.parent.mkdir()
     codes.write_bytes(gzip.compress(b'{"codelist":{"id":"region"}}\n', mtime=0))
     build(data, candidate, adapters=["pxweb_v1", "pxweb_v2"])
-    assert unpack(candidate / "catalog.7z") == (b'{"dataset":"sv"}\n{"dataset":"en"}\n')
-    assert unpack(candidate / "codelists.7z") == (b'{"codelist":{"id":"region"}}\n')
-    assert sorted(p.name for p in candidate.glob("*.7z")) == [
-        "catalog.7z",
-        "codelists.7z",
+    assert unpack(candidate / "catalog.jsonl.zst") == (
+        b'{"dataset":"sv"}\n{"dataset":"en"}\n'
+    )
+    assert unpack(candidate / "codelists.jsonl.zst") == (
+        b'{"codelist":{"id":"region"}}\n'
+    )
+    assert sorted(p.name for p in candidate.glob("*.zst")) == [
+        "catalog.jsonl.zst",
+        "codelists.jsonl.zst",
     ]
     promote(data, candidate)
-    first = (candidate / "catalog.7z").read_bytes()
+    first = (candidate / "catalog.jsonl.zst").read_bytes()
     build(data, candidate, adapters=["pxweb_v1", "pxweb_v2"])
-    assert (candidate / "catalog.7z").read_bytes() == first
+    assert (candidate / "catalog.jsonl.zst").read_bytes() == first
 
 
 def test_legacy_catalog_migrates_without_losing_failed_input(tmp_path):
@@ -236,7 +294,7 @@ def test_legacy_catalog_migrates_without_losing_failed_input(tmp_path):
     result = build(data, candidate, adapters=["pxweb_v1"])
     assert result["counts"]["retained"] == 1
     promote(data, candidate)
-    assert unpack(data / "catalog/catalog.7z") == (b'{"trusted":true}\n')
+    assert unpack(data / "catalog/catalog.jsonl.zst") == (b'{"trusted":true}\n')
     assert not legacy.exists()
     assert source.read_bytes() == b"broken"
 
@@ -247,7 +305,7 @@ def test_unavailable_previous_asset_blocks_build_instead_of_losing_records(tmp_p
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
     source.write_bytes(b"broken")
-    (data / "catalog/catalog.7z").unlink()
+    (data / "catalog/catalog.jsonl.zst").unlink()
     with pytest.raises(ValueError, match="previous|Previous"):
         build(data, candidate, adapters=["pxweb_v1"])
 
@@ -258,7 +316,7 @@ def test_corrupt_previous_asset_cannot_supply_retained_records(tmp_path):
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
     source.unlink()
-    (data / "catalog/catalog.7z").write_bytes(b"corrupt previous asset")
+    (data / "catalog/catalog.jsonl.zst").write_bytes(b"corrupt previous asset")
     with pytest.raises(ValueError, match="previous|Previous"):
         build(data, candidate, adapters=["pxweb_v1"])
 
@@ -285,7 +343,7 @@ def test_codelist_change_recompresses_only_codelists(tmp_path, monkeypatch):
     codes.write_bytes(gzip.compress(b'{"codelist":1}\n', mtime=0))
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
-    before = (candidate / "catalog.7z").read_bytes()
+    before = (candidate / "catalog.jsonl.zst").read_bytes()
     compressed = []
     compress = catalog._compress
 
@@ -296,9 +354,9 @@ def test_codelist_change_recompresses_only_codelists(tmp_path, monkeypatch):
     monkeypatch.setattr(catalog, "_compress", record)
     codes.write_bytes(gzip.compress(b'{"codelist":2}\n', mtime=0))
     build(data, candidate, adapters=["pxweb_v1"])
-    assert compressed == ["codelists.7z"]
-    assert (candidate / "catalog.7z").read_bytes() == before
-    assert unpack(candidate / "codelists.7z") == b'{"codelist":2}\n'
+    assert compressed == ["codelists.jsonl.zst"]
+    assert (candidate / "catalog.jsonl.zst").read_bytes() == before
+    assert unpack(candidate / "codelists.jsonl.zst") == b'{"codelist":2}\n'
 
 
 def test_identical_inputs_build_identical_archives_in_different_directories(tmp_path):
@@ -307,7 +365,7 @@ def test_identical_inputs_build_identical_archives_in_different_directories(tmp_
     first, second = tmp_path / "first", tmp_path / "second"
     build(data, first, adapters=["pxweb_v1"])
     build(data, second, adapters=["pxweb_v1"])
-    for name in ("catalog.7z", "codelists.7z"):
+    for name in ("catalog.jsonl.zst", "codelists.jsonl.zst"):
         assert (first / name).read_bytes() == (second / name).read_bytes()
 
 
@@ -320,7 +378,7 @@ def test_size_limit_rejects_candidate_without_changing_accepted_catalog(
     source = collection(data)
     build(data, candidate, adapters=["pxweb_v1"])
     promote(data, candidate)
-    before = (data / "catalog/catalog.7z").read_bytes()
+    before = (data / "catalog/catalog.jsonl.zst").read_bytes()
     source.write_bytes(gzip.compress(b'{"changed":true}\n', mtime=0))
     check = catalog.check_collection_sizes
     monkeypatch.setattr(
@@ -328,7 +386,7 @@ def test_size_limit_rejects_candidate_without_changing_accepted_catalog(
     )
     with pytest.raises(ValueError, match="file limit"):
         build(data, candidate, adapters=["pxweb_v1"])
-    assert (data / "catalog/catalog.7z").read_bytes() == before
+    assert (data / "catalog/catalog.jsonl.zst").read_bytes() == before
     assert not (candidate / "result.json").exists()
 
 
@@ -346,29 +404,27 @@ def test_combined_archives_are_committed_with_state_and_reports(tmp_path, monkey
     subprocess.run(["git", "add", "data/catalog"], check=True, capture_output=True)
     tracked = subprocess.check_output(["git", "ls-files"], text=True).splitlines()
     assert tracked == [
-        "data/catalog/catalog.7z",
-        "data/catalog/codelists.7z",
+        "data/catalog/catalog.jsonl.zst",
+        "data/catalog/codelists.jsonl.zst",
         "data/catalog/reports/latest.json",
         "data/catalog/state/current.json",
     ]
 
 
 def test_interrupted_compression_preserves_archive_and_can_retry(tmp_path, monkeypatch):
-    import subprocess
-
     import metadata_harvest.catalog as catalog
 
-    source, archive = tmp_path / "catalog.jsonl", tmp_path / "catalog.7z"
+    source, archive = tmp_path / "catalog.jsonl", tmp_path / "catalog.jsonl.zst"
     source.write_bytes(b'{"dataset":1}\n')
     archive.write_bytes(b"previous archive")
 
-    def fail(args, **kwargs):
-        Path(args[-2]).write_bytes(b"interrupted compression")
-        raise subprocess.CalledProcessError(1, args)
+    def fail(source, target, **kwargs):
+        target.write(b"partial")
+        raise OSError("interrupted compression")
 
     with monkeypatch.context() as patch:
-        patch.setattr(catalog.subprocess, "run", fail)
-        with pytest.raises(subprocess.CalledProcessError):
+        patch.setattr(catalog.shutil, "copyfileobj", fail)
+        with pytest.raises(OSError, match="interrupted"):
             catalog._compress(source, archive)
     assert archive.read_bytes() == b"previous archive"
     assert not list(tmp_path.glob("*.tmp"))

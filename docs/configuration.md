@@ -104,7 +104,7 @@ uv run python scripts/migrate_profile2.py --source data --output output/profile2
 
 This preserves the existing publication enrichment, writes per-record migration
 ledgers and updates only configuration-derived relationships. The two archives
-remain `catalog.7z` and `codelists.7z`; the unchanged codelist archive is reused.
+remain `catalog.jsonl.zst` and `codelists.jsonl.zst`; unchanged Zstandard codelists are reused, and legacy 7z codelists are transcoded without changing their content.
 
 The supplied [StatDCAT-AP 3.0.0 specification](<reference/StatDCAT-AP 3.0.0.html>) is
 stored verbatim with a [hash and provenance](<reference/StatDCAT-AP 3.0.0.provenance.json>).

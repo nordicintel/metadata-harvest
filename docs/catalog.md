@@ -16,7 +16,7 @@ The [publication switch](../catalog.toml) `include_scb_pxweb_v1 = false` removes
 
 ## Build and publish
 
-Install 7-Zip (`7zz` or `7z`; the normal Windows installation is detected).
+Zstandard is included in the Python dependencies. 7-Zip is needed only when reading the existing legacy `.7z` publication.
 
 ```powershell
 uv run python -m metadata_harvest.catalog build
@@ -24,7 +24,7 @@ uv run python -m metadata_harvest.catalog build
 uv run python -m metadata_harvest.catalog publish
 ```
 
-The public files are `catalog.7z` containing `catalog.jsonl` and `codelists.7z` containing `codelists.jsonl`. Models embed a bundled inline context. No release assets or external storage are required. Compression remains LZMA2 level 7, dictionary 64 MiB, two threads, without filesystem timestamps. All files retain the existing 100 MiB gate.
+New production builds produce `catalog.jsonl.zst` and `codelists.jsonl.zst`, each a compressed JSONL stream. Models embed a bundled inline context. No release assets or external storage are required. Compression uses Zstandard level 6 with a content checksum and no timestamps. Consumers can stream JSONL without extracting a temporary file. All files retain the existing 100 MiB gate.
 
 ## Incremental assembly and retention
 
@@ -35,3 +35,40 @@ Every changed input is fully parsed and validated before acceptance. A failed cu
 Previous archives must match their recorded hashes. Candidates carry source, dependency, prior-catalog and output fingerprints; any drift blocks promotion. Publication remains scoped, serialized and non-force-pushed. Reports distinguish matching, ambiguity, filtering, source failures and retained inputs; upstream harvest reports remain visible.
 
 `build_legacy` is an explicit recovery/test path for the previous concatenated contract. It is not the default publication builder.
+
+## Streaming reads
+
+```python
+import io
+import json
+from metadata_harvest.catalog import open_catalog
+
+with open_catalog("catalog.jsonl.zst") as raw:
+    with io.TextIOWrapper(raw, encoding="utf-8") as stream:
+        for line in stream:
+            dataset = json.loads(line)
+```
+
+This is sequential access. Seeking directly to an arbitrary dataset would need a
+separate index and independently compressed frames. `open_catalog` also reads
+legacy `.7z` files through 7-Zip without extracting files onto disk. The internal
+catalog assembler may still use temporary decompressed files for its byte-range
+reuse; consumer streaming does not require those files.
+
+The existing production `.7z` files remain unchanged until a production publication.
+Development trials do not promote or publish catalog assets.
+
+## Level 6 trial, 2026-10-10
+
+The [trial measurements](compression-trial.json) used the existing complete publication,
+without metadata reconstruction, source requests or publication. Both decompressed
+outputs matched the existing state content hashes exactly.
+
+| Stream | Zstandard size | Time including legacy decode and verification |
+| --- | ---: | ---: |
+| Catalog | 78.85 MiB | 18.27 s |
+| Codelists | 55.14 MiB | 14.47 s |
+
+These are single-run measurements on the development machine, not compression-only
+benchmarks. They establish the size of this corpus, not future profile output;
+the production size gate still applies.

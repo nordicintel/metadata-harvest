@@ -26,19 +26,25 @@ def test_catalog_builds_models_reuses_bytes_and_filters_scb(tmp_path, monkeypatc
     source.write_text(json.dumps(record()) + "\n", encoding="utf-8")
     import_snapshot(source, data / "data_eu")
     result = build(data, candidate, adapters=["pxweb_v2"])
-    lines = [json.loads(line) for line in unpack(candidate / "catalog.7z").splitlines()]
+    lines = [
+        json.loads(line)
+        for line in unpack(candidate / "catalog.jsonl.zst").splitlines()
+    ]
     assert len(lines) == 1
     assert len(lines[0]["dcat:distribution"]) == 2
     assert result["counts"]["datasets"] == 1
     promote(data, candidate)
-    before = (data / "catalog/catalog.7z").read_bytes()
+    before = (data / "catalog/catalog.jsonl.zst").read_bytes()
     second = build(data, candidate, adapters=["pxweb_v2"])
     assert second["build_counts"]["reused_groups"] == 1
-    assert (candidate / "catalog.7z").read_bytes() == before
+    assert (candidate / "catalog.jsonl.zst").read_bytes() == before
     config = tmp_path / "catalog.toml"
     config.write_text("include_scb_pxweb_v1 = true\n", encoding="utf-8")
     build(data, candidate, adapters=["pxweb_v2"])
-    lines = [json.loads(line) for line in unpack(candidate / "catalog.7z").splitlines()]
+    lines = [
+        json.loads(line)
+        for line in unpack(candidate / "catalog.jsonl.zst").splitlines()
+    ]
     assert len(lines[0]["dcat:distribution"]) == 3
 
 
@@ -50,11 +56,11 @@ def test_failed_input_retains_group_and_stale_configuration_blocks_promotion(tmp
     write_metadata(data / "pxweb_v2", [legacy()], adapter="pxweb_v2")
     build(data, candidate, adapters=["pxweb_v2"])
     promote(data, candidate)
-    original = unpack(data / "catalog/catalog.7z")
+    original = unpack(data / "catalog/catalog.jsonl.zst")
     next((data / "pxweb_v2/metadata").glob("*.gz")).write_bytes(b"corrupt")
     result = build(data, candidate, adapters=["pxweb_v2"])
     assert result["errors"]
-    assert unpack(candidate / "catalog.7z") == original
+    assert unpack(candidate / "catalog.jsonl.zst") == original
     (tmp_path / "catalog.toml").write_text("include_scb_pxweb_v1 = true\n")
     with pytest.raises(ValueError, match="Stale"):
         promote(data, candidate)
@@ -89,7 +95,8 @@ def test_committed_failed_input_is_restored_while_sibling_update_advances(tmp_pa
     next((data / "pxweb_v2/metadata").glob("*.gz")).write_bytes(b"bad")
     report = build(data, candidate, adapters=["pxweb_v1", "pxweb_v2"])
     models = [
-        json.loads(line) for line in unpack(candidate / "catalog.7z").splitlines()
+        json.loads(line)
+        for line in unpack(candidate / "catalog.jsonl.zst").splitlines()
     ]
     assert len(models) == 2
     assert any(d["dct:title"] == {"sv": ["Updated HVD"]} for d in models)
@@ -163,4 +170,7 @@ def test_previous_profile_reads_and_blob_recovery_do_not_require_production_cuto
     report = build(data, candidate, adapters=["pxweb_v2"])
     assert report["errors"][0]["retained_blob"]
     assert report["build_counts"]["reused_groups"] == 0
-    assert json.loads(unpack(candidate / "catalog.7z"))["ni:profileVersion"] == "2.0.0"
+    assert (
+        json.loads(unpack(candidate / "catalog.jsonl.zst"))["ni:profileVersion"]
+        == "2.0.0"
+    )

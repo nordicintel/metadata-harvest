@@ -33,7 +33,7 @@ The package is not currently published to PyPI.
 ```python
 from metadata_harvest import Dataset, retrieve_distribution
 
-# record is one decoded JSONL entry from catalog.7z.
+# record is one decoded JSONL entry from catalog.jsonl.zst.
 dataset = Dataset.from_jsonld(record)
 distribution = next(d for d in dataset.distributions if d.retrieval is not None)
 selection = {
@@ -50,9 +50,10 @@ ship in this one distribution.
 ## Operations
 
 Accepted adapter results live under `data/<adapter>/`; the shared consumer catalog
-is committed as `data/catalog/catalog.7z`, with reference codes in
-`data/catalog/codelists.7z` and coverage/state alongside them. Each archive
-contains one JSONL file. Catalog construction requires 7-Zip. The catalog reads
+will be written by future production builds as `data/catalog/catalog.jsonl.zst`, with reference codes in
+`data/catalog/codelists.jsonl.zst` and coverage/state alongside them. Each file is
+a compressed JSONL stream. Existing `.7z` publication files remain readable until
+production cutover. Zstandard support is included in the Python package. The catalog reads
 committed accepted files only. Constructing it never starts a harvest, refreshes a
 source, or resumes unfinished harvesting.
 

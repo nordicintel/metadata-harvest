@@ -1,8 +1,8 @@
 """Convert accepted collections and the existing publication once, entirely offline.
 
 This relationship-only conversion preserves statistical payloads, ordering and
-portal enrichment. It reuses the unchanged codelist archive and its validated
-reference ranges rather than rerunning matching or statistical assembly.
+portal enrichment. It preserves codelist content and validated reference ranges,
+reusing Zstandard bytes or transcoding legacy 7z without statistical reassembly.
 """
 
 import argparse
@@ -10,12 +10,13 @@ import gzip
 import hashlib
 import json
 import shutil
-import subprocess
 from copy import deepcopy
 from pathlib import Path
 
+import zstandard
+
 from metadata_harvest.artifacts import check_collection_sizes, manifest
-from metadata_harvest.catalog import _compress, sevenzip
+from metadata_harvest.catalog import ASSETS, _compress, open_catalog, previous_asset
 from metadata_harvest.catalog_assembly import dependencies
 from metadata_harvest.models import Dataset
 from metadata_harvest.profile_migration import (
@@ -171,12 +172,11 @@ def convert(source: Path, output: Path):
         old_state["groups"].items(), key=lambda item: item[1]["catalog"]["offset"]
     )
     old_offset = 0
-    process = subprocess.Popen(
-        [sevenzip(), "e", "-so", str(source / "catalog/catalog.7z"), "catalog.jsonl"],
-        stdout=subprocess.PIPE,
-    )
     content = output / "catalog.jsonl"
     with (
+        open_catalog(
+            source / "catalog" / previous_asset(old_state, "catalog")
+        ) as incoming,
         content.open("wb") as outgoing,
         (audit / "publication.jsonl.gz").open("wb") as raw,
     ):
@@ -191,7 +191,7 @@ def convert(source: Path, output: Path):
                 start = outgoing.tell()
                 findings_count = 0
                 while old_offset < expected_end:
-                    line = process.stdout.readline()
+                    line = incoming.readline()
                     if not line.endswith(b"\n"):
                         raise ValueError("Truncated catalog member")
                     old_offset += len(line)
@@ -218,16 +218,24 @@ def convert(source: Path, output: Path):
                 new_state["groups"][group]["counts"]["quality_findings"] = (
                     findings_count
                 )
-    if process.stdout.read(1) or process.wait() != 0:
-        raise ValueError("Unexpected extra catalog content or archive extraction error")
-    process.stdout.close()
+        if incoming.read(1):
+            raise ValueError("Unexpected extra catalog content")
     print("Compressing converted catalog once", flush=True)
-    _compress(content, published / "catalog.7z")
-    shutil.copyfile(source / "catalog/codelists.7z", published / "codelists.7z")
+    _compress(content, published / ASSETS[0])
+    old_codes = source / "catalog" / previous_asset(old_state, "codelists")
+    if old_codes.suffix == ".zst":
+        shutil.copyfile(old_codes, published / ASSETS[1])
+    else:
+        with (
+            open_catalog(old_codes) as incoming,
+            (published / ASSETS[1]).open("wb") as raw,
+        ):
+            with zstandard.ZstdCompressor(level=6, write_checksum=True).stream_writer(
+                raw
+            ) as outgoing:
+                shutil.copyfileobj(incoming, outgoing, length=1024 * 1024)
     new_state["content_hashes"]["catalog"] = digest(content)
-    new_state["assets"] = {
-        name: digest(published / name) for name in old_state["assets"]
-    }
+    new_state["assets"] = {name: digest(published / name) for name in ASSETS}
     for name, state in new_state["accepted"].items():
         candidate = target / name
         if candidate.exists():
@@ -255,7 +263,7 @@ def convert(source: Path, output: Path):
     report["profile_migration"] = {
         "from": "1.0.0",
         "to": "2.0.0",
-        "codelists": "unchanged archive reused",
+        "codelists": "unchanged contents; legacy compression converted if necessary",
         "reharvest": False,
     }
     for filename, value in [
