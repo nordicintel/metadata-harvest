@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Annotated, Literal, Self
 
 from pydantic import (
+    AliasChoices,
     BaseModel,
     ConfigDict,
     Field,
@@ -15,7 +16,7 @@ from pydantic import (
     model_validator,
 )
 
-PROFILE_VERSION = "1.0.0"
+PROFILE_VERSION = "2.0.0"
 STATDCAT_REVISION = "3.0.0/0ab07dfa6a5c3cf173e7d1c4a0a0f2711078872e"
 NAMESPACE = "https://github.com/nordicintel/metadata-harvest/ns#"
 CONTEXT = {
@@ -55,6 +56,7 @@ CONTEXT = {
             "dcat:endpointDescription",
             "dcat:landingPage",
             "foaf:page",
+            "foaf:homepage",
             "dct:license",
             "dct:conformsTo",
             "skos:inScheme",
@@ -85,6 +87,9 @@ CONTEXT = {
         "@id": "dcat:temporalResolution",
         "@type": "xsd:duration",
     },
+}
+PROFILE1_CONTEXT = {
+    key: value for key, value in CONTEXT.items() if key != "foaf:homepage"
 }
 Text = Annotated[str, Field(strict=True, min_length=1)]
 LanguageMap = dict[str, list[str]]
@@ -148,10 +153,22 @@ class Reference(ExtensibleModel):
 
 class Agent(ExtensibleModel):
     id: str | None = Field(default=None, alias="@id")
-    type: Literal["foaf:Agent"] = Field(default="foaf:Agent", alias="@type")
+    type: Literal["foaf:Agent", "http://www.w3.org/ns/org#Organization"] = Field(
+        default="foaf:Agent", alias="@type"
+    )
     name: LanguageMap = Field(default_factory=dict, alias="foaf:name")
     email: str | None = Field(default=None, alias="foaf:mbox")
-    homepage: list[str] = Field(default_factory=list, alias="foaf:page")
+    homepage: list[str] = Field(default_factory=list, alias="foaf:homepage")
+    identifiers: list[str] = Field(default_factory=list, alias="dct:identifier")
+
+
+class Organisation(Agent):
+    """An organisation may be a publisher, creator or other responsible agent."""
+
+    id: Text = Field(alias="@id")
+    type: Literal["http://www.w3.org/ns/org#Organization"] = Field(
+        default="http://www.w3.org/ns/org#Organization", alias="@type"
+    )
 
 
 class ContactPoint(ExtensibleModel):
@@ -194,6 +211,13 @@ class Concept(ExtensibleModel):
 
 
 class CodeList(ExtensibleModel):
+    @classmethod
+    def from_jsonld(cls, value: dict) -> Self:
+        # Codelist semantics did not change with the profile 2 homepage correction.
+        if value.get("@context") == PROFILE1_CONTEXT:
+            value = {**value, "@context": CONTEXT}
+        return super().from_jsonld(value)
+
     id: Text = Field(alias="@id")
     type: Literal["skos:ConceptScheme"] = Field(
         default="skos:ConceptScheme", alias="@type"
@@ -302,9 +326,16 @@ class DataStructureDefinition(ExtensibleModel):
 
 class SourceIdentity(ExtensibleModel):
     adapter: Text
-    provider_code: Text
+    source_code: Text = Field(
+        validation_alias=AliasChoices("source_code", "provider_code")
+    )
     dataset_code: Text
     language: Text
+
+    @property
+    def provider_code(self) -> str:
+        """Original worker routing alias, retained for one transition release."""
+        return self.source_code
 
 
 class QueryDimension(ExtensibleModel):
@@ -345,6 +376,16 @@ class Catalog(ExtensibleModel):
     type: Literal["dcat:Catalog"] = Field(default="dcat:Catalog", alias="@type")
     title: LanguageMap = Field(default_factory=dict, alias="dct:title")
     publisher: list[Agent] = Field(default_factory=list, alias="dct:publisher")
+    description: LanguageMap = Field(default_factory=dict, alias="dct:description")
+    homepage: list[str] = Field(default_factory=list, alias="foaf:homepage")
+    languages: list[Reference] = Field(default_factory=list, alias="dct:language")
+    datasets: list[Reference] = Field(default_factory=list, alias="dcat:dataset")
+    services: list[Reference] = Field(default_factory=list, alias="dcat:service")
+    catalogs: list[Reference] = Field(default_factory=list, alias="dcat:catalog")
+    has_part: list[Reference] = Field(default_factory=list, alias="dct:hasPart")
+    creators: list[Agent] = Field(default_factory=list, alias="dct:creator")
+    license: list[str] = Field(default_factory=list, alias="dct:license")
+    modified: str | None = Field(default=None, alias="dct:modified")
 
 
 class DataService(ExtensibleModel):
@@ -358,20 +399,15 @@ class DataService(ExtensibleModel):
     endpoint_description: list[str] = Field(
         default_factory=list, alias="dcat:endpointDescription"
     )
-
-    @model_validator(mode="after")
-    def shared_adapter_identity(self):
-        from metadata_harvest.registry import ADAPTERS
-
-        if self.adapter not in ADAPTERS or not ADAPTERS[self.adapter].available:
-            raise ValueError("DataService must name an implemented adapter")
-        if self.id != "urn:nordicintel:service:" + self.adapter:
-            raise ValueError("DataService identity is shared globally per adapter")
-        if self.publisher or self.endpoint_url or self.endpoint_description:
-            raise ValueError(
-                "Provider and endpoint details belong to catalogs/distributions, not shared adapter services"
-            )
-        return self
+    serves_dataset: list[Reference] = Field(
+        default_factory=list, alias="dcat:servesDataset"
+    )
+    documentation: list[str] = Field(default_factory=list, alias="foaf:page")
+    landing_page: list[str] = Field(default_factory=list, alias="dcat:landingPage")
+    contacts: list[ContactPoint] = Field(
+        default_factory=list, alias="dcat:contactPoint"
+    )
+    conforms_to: list[Reference] = Field(default_factory=list, alias="dct:conformsTo")
 
 
 class VocabularyResource(ExtensibleModel):
@@ -467,7 +503,7 @@ class Distribution(DescriptiveResource):
                 self.retrieval.source.adapter
             ]:
                 raise ValueError(
-                    "Retrievable distribution requires its shared adapter service"
+                    "Retrievable distribution requires a service for its adapter"
                 )
             axes = self.retrieval.dimensions
             dimensions = [c.dimension for c in self.structure.components]
@@ -503,7 +539,7 @@ class Dataset(DescriptiveResource):
     catalogs: list[Catalog] = Field(default_factory=list, alias="catalogs")
     id: Text = Field(alias="@id")
     type: Literal["dcat:Dataset"] = Field(default="dcat:Dataset", alias="@type")
-    profile_version: Literal["1.0.0"] = Field(
+    profile_version: Literal["2.0.0"] = Field(
         default=PROFILE_VERSION, alias="ni:profileVersion"
     )
     title: LanguageMap = Field(default_factory=dict, alias="dct:title")

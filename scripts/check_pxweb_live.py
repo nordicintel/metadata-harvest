@@ -14,6 +14,7 @@ from playwright.async_api import async_playwright
 
 import metadata_harvest.adapters.pxweb_v1.discovery as implementation
 from metadata_harvest import get_pxweb_tables
+from metadata_harvest.configuration import providers_for_adapter
 
 _audit = ContextVar("audit", default=None)
 
@@ -189,7 +190,7 @@ def accepted(report):
 
 async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--providers", default="providers.json")
+    parser.add_argument("--providers", default=None)
     parser.add_argument("--output", default="output/compatibility.json")
     parser.add_argument("--provider", action="append")
     parser.add_argument(
@@ -202,7 +203,7 @@ async def main():
     )
     args = parser.parse_args()
     install_audit()
-    providers = json.loads(Path(args.providers).read_text(encoding="utf-8"))
+    providers = providers_for_adapter("pxweb_v1", legacy_path=args.providers)
     selected = [p for p in providers if not args.provider or p["code"] in args.provider]
     if not selected or (
         args.provider and set(args.provider) - {p["code"] for p in providers}

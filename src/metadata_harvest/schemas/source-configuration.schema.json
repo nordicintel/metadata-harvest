@@ -1,0 +1,440 @@
+{
+  "$defs": {
+    "AdapterDefinition": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "properties": {
+        "title": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Title",
+          "type": "object"
+        },
+        "description": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Description",
+          "type": "object"
+        },
+        "uses_catalog_label": {
+          "default": false,
+          "title": "Uses Catalog Label",
+          "type": "boolean"
+        },
+        "endpoint_parameter": {
+          "enum": [
+            "base_url",
+            "base_api_url"
+          ],
+          "title": "Endpoint Parameter",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ParameterDefinition"
+          },
+          "title": "Parameters",
+          "type": "object"
+        },
+        "defaults": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Defaults",
+          "type": "object"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "endpoint_parameter"
+      ],
+      "title": "AdapterDefinition",
+      "type": "object"
+    },
+    "CatalogConfiguration": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "key": {
+          "minLength": 1,
+          "title": "Key",
+          "type": "string"
+        },
+        "title": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Title",
+          "type": "object"
+        },
+        "publisher": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publisher"
+        },
+        "services": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Services",
+          "type": "array"
+        },
+        "description": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Description",
+          "type": "object"
+        },
+        "homepage": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Homepage",
+          "type": "array"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Languages",
+          "type": "array"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/SourceScope"
+          },
+          "title": "Scopes",
+          "type": "object"
+        },
+        "catalogs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Catalogs",
+          "type": "array"
+        },
+        "has_part": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Has Part",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "key",
+        "title"
+      ],
+      "title": "CatalogConfiguration",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "Organisation": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "An organisation may be a publisher, creator or other responsible agent.",
+      "properties": {
+        "ni:additionalAttributes": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "type": "object"
+          },
+          "title": "Ni:Additionalattributes",
+          "type": "object"
+        },
+        "@id": {
+          "minLength": 1,
+          "title": "@Id",
+          "type": "string"
+        },
+        "@type": {
+          "const": "http://www.w3.org/ns/org#Organization",
+          "default": "http://www.w3.org/ns/org#Organization",
+          "title": "@Type",
+          "type": "string"
+        },
+        "foaf:name": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Foaf:Name",
+          "type": "object"
+        },
+        "foaf:mbox": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Foaf:Mbox"
+        },
+        "foaf:homepage": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Foaf:Homepage",
+          "type": "array"
+        },
+        "dct:identifier": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dct:Identifier",
+          "type": "array"
+        }
+      },
+      "required": [
+        "@id"
+      ],
+      "title": "Organisation",
+      "type": "object"
+    },
+    "ParameterDefinition": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "properties": {
+        "type": {
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "ParameterDefinition",
+      "type": "object"
+    },
+    "ServiceBinding": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "adapter": {
+          "minLength": 1,
+          "title": "Adapter",
+          "type": "string"
+        },
+        "source_code": {
+          "minLength": 1,
+          "title": "Source Code",
+          "type": "string"
+        },
+        "endpoint_url": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Endpoint Url",
+          "type": "array"
+        },
+        "publisher": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publisher"
+        },
+        "title": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Title",
+          "type": "object"
+        },
+        "endpoint_description": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Endpoint Description",
+          "type": "array"
+        },
+        "order": {
+          "minimum": 0,
+          "title": "Order",
+          "type": "integer"
+        },
+        "options": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Options",
+          "type": "object"
+        },
+        "identity_namespace": {
+          "minLength": 1,
+          "title": "Identity Namespace",
+          "type": "string"
+        },
+        "discovery_origins": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Discovery Origins",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "adapter",
+        "source_code",
+        "endpoint_url",
+        "order",
+        "identity_namespace"
+      ],
+      "title": "ServiceBinding",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "properties": {
+        "contexts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contexts",
+          "type": "array"
+        },
+        "dataset_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dataset Codes",
+          "type": "array"
+        },
+        "discovery_origins": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Discovery Origins",
+          "type": "array"
+        }
+      },
+      "title": "SourceScope",
+      "type": "object"
+    }
+  },
+  "additionalProperties": {
+    "$ref": "#/$defs/JsonValue"
+  },
+  "properties": {
+    "configuration_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Configuration Version",
+      "type": "integer"
+    },
+    "adapters": {
+      "additionalProperties": {
+        "$ref": "#/$defs/AdapterDefinition"
+      },
+      "title": "Adapters",
+      "type": "object"
+    },
+    "organisations": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Organisation"
+      },
+      "title": "Organisations",
+      "type": "object"
+    },
+    "services": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ServiceBinding"
+      },
+      "title": "Services",
+      "type": "object"
+    },
+    "catalogs": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CatalogConfiguration"
+      },
+      "title": "Catalogs",
+      "type": "object"
+    }
+  },
+  "required": [
+    "adapters",
+    "organisations",
+    "services",
+    "catalogs"
+  ],
+  "title": "SourceConfiguration",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

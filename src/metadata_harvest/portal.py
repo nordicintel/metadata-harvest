@@ -26,7 +26,7 @@ from metadata_harvest.models import (
     Reference,
     VocabularyResource,
 )
-from metadata_harvest.sources import adapter_service, inventory
+from metadata_harvest.sources import inventory, service_for_url
 from metadata_harvest.statdcat import stable_id
 
 SEARCH_URL = "https://data.europa.eu/api/hub/search"
@@ -732,7 +732,7 @@ def enrich(dataset: Dataset, index: PortalIndex) -> Dataset:
         for url in access + downloads:
             adapter = _adapter_for_url(url)
             if adapter and all(s.adapter != adapter for s in services):
-                services.append(adapter_service(adapter))
+                services.append(service_for_url(adapter, url))
         dist = Distribution(
             id=stable_id(
                 "distribution",
@@ -831,6 +831,9 @@ def publication_view(dataset: Dataset, *, include_scb_pxweb_v1=False) -> Dataset
             for d in result.dimensions
             if not isinstance(d, Reference) or d.id in dimensions
         ]
+        used_services = {s.id for d in result.distributions for s in d.services}
+        for catalog in result.catalogs:
+            catalog.services = [s for s in catalog.services if s.id in used_services]
     return result
 
 

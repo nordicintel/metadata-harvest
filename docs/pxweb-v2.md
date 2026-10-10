@@ -1,7 +1,7 @@
 # SCB PXWeb v2 metadata
 
 The importable `metadata_harvest.adapters.pxweb_v2` package targets SCB's
-production API, configured in `providers.pxweb_v2.json`, in Swedish and English.
+production API, configured in `catalogs.json`, in Swedish and English.
 It reads `/config`, all `/tables` pages, full table `/metadata`, and referenced
 `/codelists`. Harvesting never calls observation or saved-query endpoints; the separate retrieval module calls the data endpoint only on demand.
 
@@ -11,9 +11,9 @@ from metadata_harvest.adapters.pxweb_v2 import (
     discover_provider,
     fetch_metadata,
 )
-from metadata_harvest.storage import read
+from metadata_harvest.configuration import providers_for_adapter
 
-provider = read("providers.pxweb_v2.json")[0]
+provider = providers_for_adapter("pxweb_v2")[0]
 async with Client(provider["base_api_url"]) as client:
     async for scope in discover_provider(provider, client=client):
         if not scope["complete"]:
@@ -30,9 +30,8 @@ async with Client(provider["base_api_url"]) as client:
 `data/pxweb_v2/metadata/` contains one deterministic multilingual collection per
 canonical provider, named `<owner>__multilingual__<digest>.jsonl.gz`. Each line is a
 validated StatDCAT dataset with language-tagged metadata and independent retrieval
-distributions. The owner is SCB; its access service is the globally shared
-`pxweb_v2` adapter, alongside the separate `pxweb_v1` service used by SCB's other
-catalogs. Source identity and operational options live in the retrieval binding;
+distributions. The owner is SCB; its access service is the configured SCB v2 API, backed by the shared `pxweb_v2`
+adapter definition. SCB's other API services have their own stable identities. Source identity and operational options live in the retrieval binding;
 standard properties and source extensions preserve the remaining metadata.
 See the [profile and field mapping](output-contract.md).
 

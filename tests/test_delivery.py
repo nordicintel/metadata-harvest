@@ -1,7 +1,6 @@
 """Keep authoritative contracts, documented links and provider registration aligned."""
 
 import importlib
-import json
 import re
 import subprocess
 import sys
@@ -15,6 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_generated_schema_reference_is_current():
     subprocess.run(
         [sys.executable, "scripts/generate_schema_reference.py", "--check"],
+        cwd=ROOT,
+        check=True,
+    )
+    subprocess.run(
+        [sys.executable, "scripts/generate_configuration.py", "--check"],
         cwd=ROOT,
         check=True,
     )
@@ -51,21 +55,10 @@ def test_provider_entry_points_and_placeholders_are_consistent():
     ]
     entries = project["entry-points"]["nordicintel.retrieval"]
     expected = {}
-    for adapter, config in [
-        ("pxweb_v1", "providers.json"),
-        ("pxweb_v2", "providers.pxweb_v2.json"),
-        ("kolada", "providers.kolada.json"),
-        ("uka", "providers.uka.json"),
-        ("sdb", "providers.sdb.json"),
-        ("trafa", "providers.trafa.json"),
-        ("entrysoft", "providers.entrysoft.json"),
-        ("smhi_emissions", "providers.smhi_emissions.json"),
-        ("tillvaxtverket", "providers.tillvaxtverket.json"),
-        ("dataanalys", "providers.dataanalys.json"),
-        ("riksbank", "providers.riksbank.json"),
-        ("forsakringskassan", "providers.forsakringskassan.json"),
-    ]:
-        for provider in json.loads((ROOT / config).read_text(encoding="utf-8")):
+    from metadata_harvest.configuration import load_configuration, providers_for_adapter
+
+    for adapter in load_configuration().adapters:
+        for provider in providers_for_adapter(adapter):
             expected[provider["code"]] = (
                 f"metadata_harvest.adapters.{adapter}.retrieval:retrieve"
             )

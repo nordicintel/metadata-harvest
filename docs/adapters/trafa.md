@@ -4,8 +4,8 @@
 
 Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
 uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
-retain the original source alias, language and scope. Each access service identifies
-this adapter, independently of the owning organisation. See the [profile and field
+retain the original source alias, language and scope. Each access service identifies a concrete API and references its adapter; publisher
+relationships are resolved separately for catalogs, services and datasets. See the [profile and field
 mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
 [typed retrieval](../retrieval-guide.md).
 
@@ -37,7 +37,7 @@ Cite the data as **"Källa: Trafikanalys"**. The documents carry this attributio
   combinations of a product are listed only on its documentation page,
   `https://www.trafa.se/sidor/api-dokumentation/?code=<UniqueId>`. The harvest reads
   that page together with `/structure`. No observations are stored.
-- **Swedish only.** [providers.trafa.json](../../providers.trafa.json) configures
+- **Swedish only.** [catalogs.json](../../catalogs.json) configures
   `sv`. Trafikanalys supplies no real English labels, and every English dataset was
   skipped as untranslated. The ported English path remains available with
   `--language en` after adding `en` to the configuration.

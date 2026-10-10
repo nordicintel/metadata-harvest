@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 from urllib.parse import unquote
 
+from metadata_harvest.configuration import providers_for_adapter
+
 
 def summarize(providers, reports):
     expected = {
@@ -37,7 +39,7 @@ def summarize(providers, reports):
 
 
 if __name__ == "__main__":
-    providers = json.loads(Path("providers.json").read_text(encoding="utf-8"))
+    providers = providers_for_adapter("pxweb_v1")
     reports = [
         json.loads(p.read_text(encoding="utf-8"))
         for p in Path("output/live").glob("*.json")

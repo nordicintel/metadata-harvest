@@ -10,6 +10,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 from metadata_harvest import get_pxweb_metadata, get_pxweb_tables
+from metadata_harvest.configuration import providers_for_adapter
 from metadata_harvest.mapping import source_record
 from metadata_harvest.validation import validate_metadata
 
@@ -162,7 +163,7 @@ if __name__ == "__main__":
         "--limit", type=int, help="Smoke test only; never counts as full acceptance"
     )
     args = parser.parse_args()
-    providers = json.loads(Path("providers.json").read_text(encoding="utf-8"))
+    providers = providers_for_adapter("pxweb_v1")
     provider = next((p for p in providers if p["code"] == args.provider), None)
     if provider is None or (args.limit is not None and args.limit < 1):
         parser.error("Unknown provider or invalid limit")

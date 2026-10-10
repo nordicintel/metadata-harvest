@@ -1,4 +1,7 @@
-# StatDCAT migration execution
+# Historical profile 1 migration: StatDCAT migration execution
+
+This is the historical profile 1 execution record. The shared-service interpretation below is superseded by [profile 2 configuration](configuration.md).
+
 
 Approved scope: replace shared metadata with extensible Pydantic StatDCAT-AP 3.0.0 models; standard properties first, no redundant custom copies; preserve unknown attributes at every level; multilingual datasets; Kolada scope distributions; portal import/refresh/matching; SCB publication gate; coordinate-safe retrieval; two deterministic archives; offline verified cutover.
 

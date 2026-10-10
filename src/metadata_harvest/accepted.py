@@ -10,6 +10,7 @@ from tempfile import TemporaryDirectory
 from urllib.parse import quote, unquote
 
 from metadata_harvest.models import Dataset, HarvestContribution
+from metadata_harvest.profile_migration import read_dataset
 from metadata_harvest.sources import inventory
 from metadata_harvest.statdcat import assemble, convert_dataset, legacy_document
 
@@ -50,11 +51,11 @@ def read_records(path: Path):
 
 
 def load_contributions(directory: Path):
-    """Read new accepted models; old files are supported only during conversion."""
+    """Read accepted profiles explicitly; newly collected worker artifacts stay strict."""
     for path in sorted(Path(directory).glob("*.jsonl*")):
         for document in read_records(path):
             if document.get("@type") == "dcat:Dataset":
-                yield from contribution_documents(Dataset.from_jsonld(document))
+                yield from contribution_documents(read_dataset(document))
             else:
                 yield document
 
@@ -94,9 +95,7 @@ def model_contributions(documents, *, adapter=None):
                         ],
                     )
         elif document.get("@type") == "dcat:Dataset":
-            yield from model_contributions(
-                [Dataset.from_jsonld(document)], adapter=adapter
-            )
+            yield from model_contributions([read_dataset(document)], adapter=adapter)
         else:
             yield convert_dataset(document, adapter=adapter or adapter_for(document))
 

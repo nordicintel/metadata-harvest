@@ -267,7 +267,9 @@ def test_portal_pxweb_query_endpoint_is_access_not_a_file_download():
     distribution = enrich(dataset, PortalIndex([portal])).distributions[-1]
     assert distribution.access_url == [endpoint]
     assert distribution.download_url == []
-    assert distribution.services[0].id == "urn:nordicintel:service:pxweb_v1"
+    assert (
+        distribution.services[0].id == "urn:nordicintel:service:csn:pxweb_v1:statistics"
+    )
 
 
 def test_distinct_dataset_page_fragments_do_not_match():

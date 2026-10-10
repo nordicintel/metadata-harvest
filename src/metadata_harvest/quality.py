@@ -33,6 +33,7 @@ def validate_publication(dataset: Dataset) -> list[dict]:
     ):
         raise ValueError("Unresolved dataset dimension reference")
     findings = []
+    findings.extend(dataset.source_evidence.get("attribution_findings", []))
     for field in ("title", "description", "publisher", "contacts"):
         if not getattr(dataset, field):
             findings.append(
@@ -43,6 +44,15 @@ def validate_publication(dataset: Dataset) -> list[dict]:
                 }
             )
     for distribution in dataset.distributions:
+        for service in distribution.services:
+            if not service.endpoint_url:
+                findings.append(
+                    {
+                        "entity": service.id,
+                        "code": "missing_endpoint",
+                        "severity": "quality",
+                    }
+                )
         for message in distribution.source_evidence.get("diagnostics", []):
             findings.append(
                 {

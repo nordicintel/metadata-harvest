@@ -21,6 +21,7 @@ from metadata_harvest.adapters.pxweb_v1.discovery import (
     _record,
     _retry_after,
 )
+from metadata_harvest.configuration import providers_for_adapter
 
 
 @pytest.mark.parametrize(
@@ -118,7 +119,7 @@ def table(title="Table", date="2026-10-01", route="/pxweb/sv/db/-/t.px/"):
 
 
 def test_matrix():
-    providers = json.loads(Path("providers.json").read_text(encoding="utf-8"))
+    providers = providers_for_adapter("pxweb_v1")
     assert len(providers) == 26
     assert sum(len(p["database_ids"]) for p in providers) == 52
     assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 62

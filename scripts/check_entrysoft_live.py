@@ -15,8 +15,9 @@ from metadata_harvest.adapters.entrysoft.client import Client, Pacer
 from metadata_harvest.adapters.entrysoft.retrieval import REQUIRED_METADATA, retrieve
 from metadata_harvest.adapters.entrysoft.state import collection_store
 from metadata_harvest.adapters.entrysoft.workflow import discover_provider
+from metadata_harvest.configuration import providers_for_adapter
 from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import read, write
+from metadata_harvest.storage import write
 from metadata_harvest.validation import validate_retrieval
 
 PROVIDER = "catalogalese"
@@ -81,15 +82,17 @@ async def check(provider: dict, data: Path) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--provider", default=PROVIDER)
-    parser.add_argument(
-        "--providers", type=Path, default=Path("providers.entrysoft.json")
-    )
+    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument("--data", type=Path, default=Path("data/entrysoft"))
     parser.add_argument(
         "--report", type=Path, default=Path("output/entrysoft-live.json")
     )
     args = parser.parse_args()
-    provider = next(p for p in read(args.providers) if p["code"] == args.provider)
+    provider = next(
+        p
+        for p in providers_for_adapter("entrysoft", legacy_path=args.providers)
+        if p["code"] == args.provider
+    )
     result = asyncio.run(check(provider, args.data))
     write(args.report, result)
     print(json.dumps(result["discovery"], ensure_ascii=False))

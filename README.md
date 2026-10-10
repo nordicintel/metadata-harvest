@@ -1,7 +1,7 @@
 # metadata-harvest
 
 NordicIntel's API integration layer: importable adapters, shared output schemas,
-validation, provider configuration, metadata jobs and on-demand observation retrieval.
+validation, organisation, catalog and service configuration, metadata jobs and on-demand observation retrieval.
 Only currently accessible source content is retained; there is no inactive store,
 metadata history or observation warehouse.
 
@@ -9,7 +9,7 @@ metadata history or observation warehouse.
 
 | Adapter | Configured providers | Capabilities here |
 |---|---|---|
-| [PXWeb v1](docs/pxweb-v1.md) | 26 providers; see [providers.json](providers.json) | Website discovery, complete API metadata, standalone retrieval, resumable daily job |
+| [PXWeb v1](docs/pxweb-v1.md) | 26 providers; see [catalogs.json](catalogs.json) | Website discovery, complete API metadata, standalone retrieval, resumable daily job |
 | [PXWeb v2](docs/pxweb-v2.md) | SCB production API, `sv` and `en` | API discovery, complete metadata, independent codelists, standalone retrieval, daily incremental / Sunday full job |
 | [Kolada](docs/adapters/kolada.md) | `kolada`, Swedish; municipality/groups and OU | Current metadata, targeted incremental refresh, standalone retrieval |
 | [UKÃ„](docs/adapters/uka.md) | `uka`, Swedish; 113 indicators | Current metadata, weekly refresh reusing unchanged indicators, standalone retrieval |
@@ -20,7 +20,7 @@ metadata history or observation warehouse.
 | [Socialstyrelsen analysverktyg](docs/adapters/dataanalys.md) | `socialstyrelsen_analys`, sv; 94 accepted indicators in 6 areas | Current metadata, weekly full rebuild, standalone retrieval |
 | [Riksbank](docs/adapters/riksbank.md) | `riksbank`, en; 42 datasets | Current metadata, weekly full rebuild, standalone retrieval |
 | [FÃ¶rsÃ¤kringskassan](docs/adapters/forsakringskassan.md) | `forsakringskassan`, sv; 182 accepted datasets, 28 tables with undeclared dimensions excluded | Current metadata, weekly incremental (meta.json/texts hashes) and monthly full, standalone retrieval |
-| [EntryScape RowStore](docs/adapters/entrysoft.md) | 49 EntryScape instances; see [providers.entrysoft.json](providers.entrysoft.json) | 442 datasets derived automatically from 531 RowStore tables, monthly budgeted refresh of changed tables, standalone retrieval with aggregation |
+| [EntryScape RowStore](docs/adapters/entrysoft.md) | 49 EntryScape instances; see [catalogs.json](catalogs.json) | 442 datasets derived automatically from 531 RowStore tables, monthly budgeted refresh of changed tables, standalone retrieval with aggregation |
 
 Metadata uses the extensible NordicIntel StatDCAT profile, defined by local Pydantic v2 models. Accepted files contain one multilingual dataset per line, grouped by organisation within each adapter. Distributions retain their independent structure, source identity and retrieval binding. Exactly one shared DataService exists per adapter; organisations can own catalogs using several adapters. See the [complete provider inventory](docs/source-inventory.md).
 
@@ -73,6 +73,7 @@ catalog report; building a catalog never turns incomplete coverage into success.
 
 ## Documentation
 
+- [Configuration and vocabulary](docs/configuration.md)
 - [Architecture and ownership](docs/architecture.md)
 - [Adapter services and canonical owners](docs/source-inventory.md)
 - [Migration verification and preservation audit](docs/statdcat-audit/README.md)

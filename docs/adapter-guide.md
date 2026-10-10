@@ -4,7 +4,7 @@ Start with `registry.py` and the importable PXWeb packages. Registry entries are
 explicit small table, not a plugin system. Placeholder adapters raise
 `NotImplementedError`, are excluded from jobs and have no retrieval entry points.
 
-1. Define adapter-specific provider configuration and complete language-specific
+1. Define adapter-specific organisation, catalog and service configuration and complete language-specific
    discovery; return observed records, scope completeness and explicit failures.
 2. Parse native metadata inside the adapter, then return `list[HarvestContribution]`
    from the public `fetch_metadata` boundary. Validate with the local Pydantic models

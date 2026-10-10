@@ -7,7 +7,6 @@ from dataclasses import dataclass
 class Adapter:
     name: str
     available: bool
-    configuration: str | None = None
     workflow_file: str | None = None
     commands: tuple[str, ...] = ()
     preparation: str | None = None
@@ -17,7 +16,6 @@ ADAPTERS = {
     "pxweb_v1": Adapter(
         "pxweb_v1",
         True,
-        "providers.json",
         "harvest.yml",
         (
             "prepare",
@@ -32,77 +30,66 @@ ADAPTERS = {
     "pxweb_v2": Adapter(
         "pxweb_v2",
         True,
-        "providers.pxweb_v2.json",
         "harvest-pxweb-v2.yml",
         ("run", "collect", "publish", "continue"),
     ),
     "kolada": Adapter(
         "kolada",
         True,
-        "providers.kolada.json",
         "harvest-kolada.yml",
         ("run", "collect", "publish", "continue"),
     ),
     "uka": Adapter(
         "uka",
         True,
-        "providers.uka.json",
         "harvest-uka.yml",
         ("run", "collect", "publish"),
     ),
     "sdb": Adapter(
         "sdb",
         True,
-        "providers.sdb.json",
         "harvest-sdb.yml",
         ("run", "collect", "publish"),
     ),
     "trafa": Adapter(
         "trafa",
         True,
-        "providers.trafa.json",
         "harvest-trafa.yml",
         ("run", "collect", "publish"),
     ),
     "entrysoft": Adapter(
         "entrysoft",
         True,
-        "providers.entrysoft.json",
         "harvest-entrysoft.yml",
         ("run", "collect", "publish"),
     ),
     "smhi_emissions": Adapter(
         "smhi_emissions",
         True,
-        "providers.smhi_emissions.json",
         "harvest-smhi-emissions.yml",
         ("run", "collect", "publish"),
     ),
     "forsakringskassan": Adapter(
         "forsakringskassan",
         True,
-        "providers.forsakringskassan.json",
         "harvest-forsakringskassan.yml",
         ("run", "collect", "publish"),
     ),
     "riksbank": Adapter(
         "riksbank",
         True,
-        "providers.riksbank.json",
         "harvest-riksbank.yml",
         ("run", "collect", "publish"),
     ),
     "dataanalys": Adapter(
         "dataanalys",
         True,
-        "providers.dataanalys.json",
         "harvest-dataanalys.yml",
         ("run", "collect", "publish"),
     ),
     "tillvaxtverket": Adapter(
         "tillvaxtverket",
         True,
-        "providers.tillvaxtverket.json",
         "harvest-tillvaxtverket.yml",
         ("run", "collect", "publish"),
     ),

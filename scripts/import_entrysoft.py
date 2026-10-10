@@ -17,7 +17,8 @@ from pathlib import Path
 from metadata_harvest.adapters.entrysoft.datasets import trim
 from metadata_harvest.adapters.entrysoft.state import load_tables, table_key
 from metadata_harvest.adapters.entrysoft.workflow import markers, publish
-from metadata_harvest.storage import read, write
+from metadata_harvest.configuration import providers_for_adapter
+from metadata_harvest.storage import write
 
 
 def import_results(source: Path, data: Path, providers: list[dict]) -> dict:
@@ -154,13 +155,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
     parser.add_argument("--data", type=Path, default=Path("data/entrysoft"))
-    parser.add_argument(
-        "--providers", type=Path, default=Path("providers.entrysoft.json")
-    )
+    parser.add_argument("--providers", type=Path, default=None)
     args = parser.parse_args()
     if load_tables(args.data):
         raise SystemExit("Refusing to import over existing EntryScape state")
-    counts = import_results(args.source, args.data, read(args.providers))
+    counts = import_results(
+        args.source,
+        args.data,
+        providers_for_adapter("entrysoft", legacy_path=args.providers),
+    )
     print(
         json.dumps(
             {k: v for k, v in counts.items() if k != "dropped"}, ensure_ascii=False

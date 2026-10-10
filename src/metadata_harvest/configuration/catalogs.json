@@ -1,0 +1,2989 @@
+{
+  "configuration_version": 1,
+  "services": {
+    "urn:nordicintel:service:mi:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:mi:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "mi",
+      "endpoint_url": [
+        "https://www.mi.se/PXWeb/api/v1"
+      ],
+      "publisher": "mi",
+      "order": 0,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 0.35,
+        "database_ids": [
+          "Konjunkturlönestatistik"
+        ],
+        "base_web_url": "https://www.mi.se/PXWeb/pxweb"
+      },
+      "identity_namespace": "mi",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:csn:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:csn:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "csn",
+      "endpoint_url": [
+        "https://statistik.csn.se/PXWeb/api/v1"
+      ],
+      "publisher": "csn",
+      "order": 1,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 2,
+        "database_ids": [
+          "CSNstat"
+        ],
+        "base_web_url": "https://statistik.csn.se/PxWeb/pxweb"
+      },
+      "identity_namespace": "csn",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:energi:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:energi:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "energi",
+      "endpoint_url": [
+        "https://pxexternal.energimyndigheten.se/api/v1"
+      ],
+      "publisher": "energi",
+      "order": 2,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 1.3,
+        "database_ids": [
+          "Energimyndighetens_statistikdatabas"
+        ],
+        "base_web_url": "https://pxexternal.energimyndigheten.se/pxweb"
+      },
+      "identity_namespace": "energi",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:fohm:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:fohm:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "fohm",
+      "endpoint_url": [
+        "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1"
+      ],
+      "publisher": "fohm",
+      "order": 3,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 0.35,
+        "database_ids": [
+          "A_Folkhalsodata"
+        ],
+        "base_web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb"
+      },
+      "identity_namespace": "fohm",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:sjv:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:sjv:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "sjv",
+      "endpoint_url": [
+        "https://statistik.sjv.se/PXWeb/api/v1"
+      ],
+      "publisher": "sjv",
+      "order": 4,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 0.5,
+        "database_ids": [
+          "Jordbruksverkets%20statistikdatabas"
+        ],
+        "base_web_url": "https://statistik.sjv.se/PXWeb/pxweb"
+      },
+      "identity_namespace": "sjv",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:konj:pxweb_v1:forecast": {
+      "id": "urn:nordicintel:service:konj:pxweb_v1:forecast",
+      "adapter": "pxweb_v1",
+      "source_code": "konj",
+      "endpoint_url": [
+        "https://prognos.konj.se/PxWeb/api/v1"
+      ],
+      "publisher": "konj",
+      "order": 5,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://prognos.konj.se/PxWeb/pxweb",
+        "database_ids": [
+          "SenastePrognosen",
+          "UrvalAvVariabler",
+          "XLangtidsscenario"
+        ]
+      },
+      "identity_namespace": "konj",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:konj:pxweb_v1:barometer": {
+      "id": "urn:nordicintel:service:konj:pxweb_v1:barometer",
+      "adapter": "pxweb_v1",
+      "source_code": "konjbar",
+      "endpoint_url": [
+        "https://statistik.konj.se/PxWeb/api/v1"
+      ],
+      "publisher": "konj",
+      "order": 6,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.konj.se/PxWeb/pxweb",
+        "database_ids": [
+          "KonjBar"
+        ]
+      },
+      "identity_namespace": "konj",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:lansstyr:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:lansstyr:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "lansstyr",
+      "endpoint_url": [
+        "https://pxweb.lansstyrelsen.se/api/v1"
+      ],
+      "publisher": "lansstyr",
+      "order": 7,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "database_ids": [
+          "Miljotillstandet_i_skogslandskapet"
+        ],
+        "base_web_url": "https://pxweb.lansstyrelsen.se/pxweb"
+      },
+      "identity_namespace": "lansstyr",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:mcf:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:mcf:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "mcf",
+      "endpoint_url": [
+        "https://statistik.mcf.se/PXWeb/api/v1"
+      ],
+      "publisher": "mcf",
+      "order": 8,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 2,
+        "database_ids": [
+          "PxData"
+        ],
+        "base_web_url": "https://statistik.mcf.se/PXWeb/pxweb"
+      },
+      "identity_namespace": "mcf",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:slu:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:slu:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "slu",
+      "endpoint_url": [
+        "https://skogsstatistik.slu.se/api/v1"
+      ],
+      "publisher": "slu",
+      "order": 9,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 1.25,
+        "database_ids": [
+          "OffStat"
+        ],
+        "base_web_url": "https://skogsstatistik.slu.se/pxweb"
+      },
+      "identity_namespace": "slu",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:skog:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:skog:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "skog",
+      "endpoint_url": [
+        "https://pxweb.skogsstyrelsen.se/api/v1"
+      ],
+      "publisher": "skog",
+      "order": 10,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 4.0,
+        "database_ids": [
+          "Skogsstyrelsens%20statistikdatabas"
+        ],
+        "base_web_url": "https://pxweb.skogsstyrelsen.se/pxweb"
+      },
+      "identity_namespace": "skog",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:domstol:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:domstol:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "domstol",
+      "endpoint_url": [
+        "https://pxweb.etjanst.domstol.se/PxWeb/api/v1"
+      ],
+      "publisher": "domstol",
+      "order": 11,
+      "options": {
+        "languages": [
+          "sv",
+          "en"
+        ],
+        "rate_limit": 1.25,
+        "database_ids": [
+          "DOMstat"
+        ],
+        "base_web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb"
+      },
+      "identity_namespace": "domstol",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:linkoping:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:linkoping:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "linkoping",
+      "endpoint_url": [
+        "https://statistik.linkoping.se/pxweb/api/v1"
+      ],
+      "publisher": "linkoping",
+      "order": 12,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.linkoping.se/pxweb/pxweb",
+        "database_ids": [
+          "Basomraden",
+          "Delomraden",
+          "Enkater",
+          "GeoUtskott",
+          "Linkoping",
+          "Omvarld",
+          "Om_mig",
+          "RegSO",
+          "Samlad_planering",
+          "Skolkvalitet",
+          "Sureg14",
+          "SuregSoc"
+        ]
+      },
+      "identity_namespace": "linkoping",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:kulturanalys:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:kulturanalys:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "kulturanalys",
+      "endpoint_url": [
+        "https://statistik.kulturanalys.se/api/v1"
+      ],
+      "publisher": "kulturanalys",
+      "order": 13,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.kulturanalys.se/pxweb",
+        "database_ids": [
+          "Statistikdatabas"
+        ]
+      },
+      "identity_namespace": "kulturanalys",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:ehm:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:ehm:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "ehm",
+      "endpoint_url": [
+        "https://statistik.ehalsomyndigheten.se/api/v1"
+      ],
+      "publisher": "ehm",
+      "order": 14,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.ehalsomyndigheten.se/pxweb",
+        "database_ids": [
+          "Detaljhandel%20med%20l%C3%A4kemedel",
+          "L%C3%A4kemedelsprisindex"
+        ]
+      },
+      "identity_namespace": "ehm",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:tillvaxtanalys:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:tillvaxtanalys:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "tillvaxtanalys",
+      "endpoint_url": [
+        "https://statistik.tillvaxtanalys.se/PxWeb/api/v1"
+      ],
+      "publisher": "tillvaxtanalys",
+      "order": 15,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.tillvaxtanalys.se/PxWeb/pxweb",
+        "database_ids": [
+          "Tillv%C3%A4xtanalys%20statistikdatabas"
+        ]
+      },
+      "identity_namespace": "tillvaxtanalys",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:vgregion:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:vgregion:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "vgregion",
+      "endpoint_url": [
+        "https://pxweb2022.vgregion.se/Pxwebb/api/v1"
+      ],
+      "publisher": "vgregion",
+      "order": 16,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://pxweb2022.vgregion.se/Pxwebb/pxweb",
+        "database_ids": [
+          "Arbetsmarknad%20och%20N%C3%A4ringsliv",
+          "Demografi",
+          "Folkh%C3%A4lsoenk%C3%A4ten%20%28H%C3%A4lsa%20p%C3%A5%20lika%20villkor%29",
+          "Gr%C3%A4nsregional%20statistik%20Norge-Sverige",
+          "Personalstatistik%20V%C3%A4stra%20G%C3%B6talandsregionen"
+        ]
+      },
+      "identity_namespace": "vgregion",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:sundsvall:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:sundsvall:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "sundsvall",
+      "endpoint_url": [
+        "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1"
+      ],
+      "publisher": "sundsvall",
+      "order": 17,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb",
+        "database_ids": [
+          "Sundsvalls_statistikdatabas"
+        ]
+      },
+      "identity_namespace": "sundsvall",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:skolverket:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:skolverket:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "skolverket",
+      "endpoint_url": [
+        "https://statistikdatabasen.skolverket.se/PxWeb/api/v1"
+      ],
+      "publisher": "skolverket",
+      "order": 18,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistikdatabasen.skolverket.se/PxWeb/pxweb",
+        "database_ids": [
+          "Skolverkets_statistikdatabas"
+        ]
+      },
+      "identity_namespace": "skolverket",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:goteborg:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:goteborg:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "goteborg",
+      "endpoint_url": [
+        "https://statistikdatabas.goteborg.se/api/v1"
+      ],
+      "publisher": "goteborg",
+      "order": 19,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistikdatabas.goteborg.se/pxweb",
+        "database_ids": [
+          "1. Göteborg och dess delområden",
+          "2. Socioekonomisk områdesindelning"
+        ]
+      },
+      "identity_namespace": "goteborg",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:karlstad:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:karlstad:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "karlstad",
+      "endpoint_url": [
+        "https://pxweb2.karlstad.se/api/v1"
+      ],
+      "publisher": "karlstad",
+      "order": 20,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://pxweb2.karlstad.se/pxweb",
+        "database_ids": [
+          "Karlstads_kommun"
+        ]
+      },
+      "identity_namespace": "karlstad",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:orebro:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:orebro:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "orebro",
+      "endpoint_url": [
+        "https://statistik.orebro.se/api/v1"
+      ],
+      "publisher": "orebro",
+      "order": 21,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.orebro.se/pxweb",
+        "database_ids": [
+          "Örebro kommuns statistikdatabas"
+        ]
+      },
+      "identity_namespace": "orebro",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:helsingborg:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:helsingborg:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "helsingborg",
+      "endpoint_url": [
+        "https://statistik.helsingborg.se/PxWeb/api/v1"
+      ],
+      "publisher": "helsingborg",
+      "order": 22,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.helsingborg.se/PxWeb/pxweb",
+        "database_ids": [
+          "Helsingborgs stads statistikdatabas"
+        ]
+      },
+      "identity_namespace": "helsingborg",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:norrkoping:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:norrkoping:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "norrkoping",
+      "endpoint_url": [
+        "https://statistik.norrkoping.se/PxWeb/api/v1"
+      ],
+      "publisher": "norrkoping",
+      "order": 23,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.norrkoping.se/PxWeb/pxweb",
+        "database_ids": [
+          "Arbetsmarknad",
+          "Befolkning",
+          "Bilinnehav",
+          "Flyttningar",
+          "Folkhälsa",
+          "Hushållens boende och bostäder",
+          "Inkomster",
+          "Utbildningsnivå"
+        ]
+      },
+      "identity_namespace": "norrkoping",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:skog:pxweb_v1:ska22": {
+      "id": "urn:nordicintel:service:skog:pxweb_v1:ska22",
+      "adapter": "pxweb_v1",
+      "source_code": "skog_ska22",
+      "endpoint_url": [
+        "https://pxwebska.skogsstyrelsen.se/api/v1"
+      ],
+      "publisher": "skog",
+      "order": 24,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://pxwebska.skogsstyrelsen.se/pxweb",
+        "database_ids": [
+          "SKA22"
+        ]
+      },
+      "identity_namespace": "skog",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:scb:pxweb_v1:hvd": {
+      "id": "urn:nordicintel:service:scb:pxweb_v1:hvd",
+      "adapter": "pxweb_v1",
+      "source_code": "scb_hvd",
+      "endpoint_url": [
+        "https://hvduppdrag.scb.se/api/v1"
+      ],
+      "publisher": "scb",
+      "order": 25,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://hvduppdrag.scb.se/pxweb",
+        "database_ids": [
+          "uppdrag"
+        ]
+      },
+      "identity_namespace": "scb",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:scb:pxweb_v2:statistics": {
+      "id": "urn:nordicintel:service:scb:pxweb_v2:statistics",
+      "adapter": "pxweb_v2",
+      "source_code": "scb",
+      "endpoint_url": [
+        "https://statistikdatabasen.scb.se/api/v2"
+      ],
+      "publisher": "scb",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "scb",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:rka:kolada:statistics": {
+      "id": "urn:nordicintel:service:rka:kolada:statistics",
+      "adapter": "kolada",
+      "source_code": "kolada",
+      "endpoint_url": [
+        "https://api.kolada.se/v3"
+      ],
+      "publisher": "rka",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "rka",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:uka:uka:statistics": {
+      "id": "urn:nordicintel:service:uka:uka:statistics",
+      "adapter": "uka",
+      "source_code": "uka",
+      "endpoint_url": [
+        "https://statistik-api.uka.se/api"
+      ],
+      "publisher": "uka",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "uka",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:socialstyrelsen:sdb:statistics": {
+      "id": "urn:nordicintel:service:socialstyrelsen:sdb:statistics",
+      "adapter": "sdb",
+      "source_code": "socialstyrelsen",
+      "endpoint_url": [
+        "https://sdb.socialstyrelsen.se/api/v1"
+      ],
+      "publisher": "socialstyrelsen",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "socialstyrelsen",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:trafa:trafa:statistics": {
+      "id": "urn:nordicintel:service:trafa:trafa:statistics",
+      "adapter": "trafa",
+      "source_code": "trafa",
+      "endpoint_url": [
+        "https://api.trafa.se/api"
+      ],
+      "publisher": "trafa",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "trafa",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:ale:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:ale:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogalese",
+      "endpoint_url": [
+        "https://catalog.ale.se"
+      ],
+      "publisher": "ale",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "ale",
+      "discovery_origins": [
+        "catalogalese",
+        "catalogalese dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:boras:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:boras:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogborasse",
+      "endpoint_url": [
+        "https://catalog.boras.se"
+      ],
+      "publisher": "boras",
+      "order": 1,
+      "options": {},
+      "identity_namespace": "boras",
+      "discovery_origins": [
+        "catalogborasse"
+      ]
+    },
+    "urn:nordicintel:service:digg:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:digg:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogdiggse",
+      "endpoint_url": [
+        "https://catalog.digg.se"
+      ],
+      "publisher": "digg",
+      "order": 2,
+      "options": {},
+      "identity_namespace": "digg",
+      "discovery_origins": [
+        "catalogdiggse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:eslov:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:eslov:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogeslovse",
+      "endpoint_url": [
+        "https://catalog.eslov.se"
+      ],
+      "publisher": "eslov",
+      "order": 3,
+      "options": {},
+      "identity_namespace": "eslov",
+      "discovery_origins": [
+        "catalogeslovse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:essunga:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:essunga:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogessungase",
+      "endpoint_url": [
+        "https://catalog.essunga.se"
+      ],
+      "publisher": "essunga",
+      "order": 4,
+      "options": {},
+      "identity_namespace": "essunga",
+      "discovery_origins": [
+        "catalogessungase dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:falkoping:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:falkoping:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogfalkopingse",
+      "endpoint_url": [
+        "https://catalog.falkoping.se"
+      ],
+      "publisher": "falkoping",
+      "order": 5,
+      "options": {},
+      "identity_namespace": "falkoping",
+      "discovery_origins": [
+        "catalogfalkopingse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:gavle:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:gavle:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloggavlese",
+      "endpoint_url": [
+        "https://catalog.gavle.se"
+      ],
+      "publisher": "gavle",
+      "order": 6,
+      "options": {},
+      "identity_namespace": "gavle",
+      "discovery_origins": [
+        "cataloggavlese dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:goteborg:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:goteborg:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloggoteborgse",
+      "endpoint_url": [
+        "https://catalog.goteborg.se"
+      ],
+      "publisher": "goteborg",
+      "order": 7,
+      "options": {},
+      "identity_namespace": "goteborg",
+      "discovery_origins": [
+        "cataloggoteborgse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:gotene:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:gotene:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloggotenese",
+      "endpoint_url": [
+        "https://catalog.gotene.se"
+      ],
+      "publisher": "gotene",
+      "order": 8,
+      "options": {},
+      "identity_namespace": "gotene",
+      "discovery_origins": [
+        "cataloggotenese dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:grastorp:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:grastorp:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloggrastorpse",
+      "endpoint_url": [
+        "https://catalog.grastorp.se"
+      ],
+      "publisher": "grastorp",
+      "order": 9,
+      "options": {},
+      "identity_namespace": "grastorp",
+      "discovery_origins": [
+        "cataloggrastorpse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:gullspang:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:gullspang:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloggullspangse",
+      "endpoint_url": [
+        "https://catalog.gullspang.se"
+      ],
+      "publisher": "gullspang",
+      "order": 10,
+      "options": {},
+      "identity_namespace": "gullspang",
+      "discovery_origins": [
+        "cataloggullspangse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:harryda:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:harryda:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogharrydase",
+      "endpoint_url": [
+        "https://catalog.harryda.se"
+      ],
+      "publisher": "harryda",
+      "order": 11,
+      "options": {},
+      "identity_namespace": "harryda",
+      "discovery_origins": [
+        "catalogharrydase dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:hjo:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:hjo:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloghjose",
+      "endpoint_url": [
+        "https://catalog.hjo.se"
+      ],
+      "publisher": "hjo",
+      "order": 12,
+      "options": {},
+      "identity_namespace": "hjo",
+      "discovery_origins": [
+        "cataloghjose",
+        "cataloghjose dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:iaf:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:iaf:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogiafse",
+      "endpoint_url": [
+        "https://catalog.iaf.se"
+      ],
+      "publisher": "iaf",
+      "order": 13,
+      "options": {},
+      "identity_namespace": "iaf",
+      "discovery_origins": [
+        "catalogiafse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:karlsborg:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:karlsborg:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogkarlsborgse",
+      "endpoint_url": [
+        "https://catalog.karlsborg.se"
+      ],
+      "publisher": "karlsborg",
+      "order": 14,
+      "options": {},
+      "identity_namespace": "karlsborg",
+      "discovery_origins": [
+        "catalogkarlsborgse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:kungalv:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:kungalv:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogkungalvse",
+      "endpoint_url": [
+        "https://catalog.kungalv.se"
+      ],
+      "publisher": "kungalv",
+      "order": 15,
+      "options": {},
+      "identity_namespace": "kungalv",
+      "discovery_origins": [
+        "catalogkungalvse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:lansstyr:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:lansstyr:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloglansstyrelsense",
+      "endpoint_url": [
+        "https://catalog.lansstyrelsen.se"
+      ],
+      "publisher": "lansstyr",
+      "order": 16,
+      "options": {},
+      "identity_namespace": "lansstyr",
+      "discovery_origins": [
+        "cataloglansstyrelsense",
+        "cataloglansstyrelsense dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:lidkoping:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:lidkoping:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "cataloglidkopingse",
+      "endpoint_url": [
+        "https://catalog.lidkoping.se"
+      ],
+      "publisher": "lidkoping",
+      "order": 17,
+      "options": {},
+      "identity_namespace": "lidkoping",
+      "discovery_origins": [
+        "cataloglidkopingse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:mariestad:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:mariestad:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogmariestadse",
+      "endpoint_url": [
+        "https://catalog.mariestad.se"
+      ],
+      "publisher": "mariestad",
+      "order": 18,
+      "options": {},
+      "identity_namespace": "mariestad",
+      "discovery_origins": [
+        "catalogmariestadse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:molndal:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:molndal:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogmolndalse",
+      "endpoint_url": [
+        "https://catalog.molndal.se"
+      ],
+      "publisher": "molndal",
+      "order": 19,
+      "options": {},
+      "identity_namespace": "molndal",
+      "discovery_origins": [
+        "catalogmolndalse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:raa:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:raa:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalograase",
+      "endpoint_url": [
+        "https://catalog.raa.se"
+      ],
+      "publisher": "raa",
+      "order": 20,
+      "options": {},
+      "identity_namespace": "raa",
+      "discovery_origins": [
+        "catalograase"
+      ]
+    },
+    "urn:nordicintel:service:skara:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:skara:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogskarase",
+      "endpoint_url": [
+        "https://catalog.skara.se"
+      ],
+      "publisher": "skara",
+      "order": 21,
+      "options": {},
+      "identity_namespace": "skara",
+      "discovery_origins": [
+        "catalogskarase",
+        "catalogskarase dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:skr:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:skr:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogsklse",
+      "endpoint_url": [
+        "https://catalog.skl.se"
+      ],
+      "publisher": "skr",
+      "order": 22,
+      "options": {},
+      "identity_namespace": "skr",
+      "discovery_origins": [
+        "catalogsklse",
+        "catalogsklse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:sodertalje:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:sodertalje:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogsodertaljese",
+      "endpoint_url": [
+        "https://catalog.sodertalje.se"
+      ],
+      "publisher": "sodertalje",
+      "order": 23,
+      "options": {},
+      "identity_namespace": "sodertalje",
+      "discovery_origins": [
+        "catalogsodertaljese",
+        "catalogsodertaljese dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:stenungsund:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:stenungsund:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogstenungsundse",
+      "endpoint_url": [
+        "https://catalog.stenungsund.se"
+      ],
+      "publisher": "stenungsund",
+      "order": 24,
+      "options": {},
+      "identity_namespace": "stenungsund",
+      "discovery_origins": [
+        "catalogstenungsundse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:tibro:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:tibro:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogtibrose",
+      "endpoint_url": [
+        "https://catalog.tibro.se"
+      ],
+      "publisher": "tibro",
+      "order": 25,
+      "options": {},
+      "identity_namespace": "tibro",
+      "discovery_origins": [
+        "catalogtibrose dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:tidaholm:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:tidaholm:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogtidaholmse",
+      "endpoint_url": [
+        "https://catalog.tidaholm.se"
+      ],
+      "publisher": "tidaholm",
+      "order": 26,
+      "options": {},
+      "identity_namespace": "tidaholm",
+      "discovery_origins": [
+        "catalogtidaholmse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:tjorn:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:tjorn:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogtjornse",
+      "endpoint_url": [
+        "https://catalog.tjorn.se"
+      ],
+      "publisher": "tjorn",
+      "order": 27,
+      "options": {},
+      "identity_namespace": "tjorn",
+      "discovery_origins": [
+        "catalogtjornse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:toreboda:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:toreboda:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogtorebodase",
+      "endpoint_url": [
+        "https://catalog.toreboda.se"
+      ],
+      "publisher": "toreboda",
+      "order": 28,
+      "options": {},
+      "identity_namespace": "toreboda",
+      "discovery_origins": [
+        "catalogtorebodase dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:trollhattan:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:trollhattan:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogtrollhattanse",
+      "endpoint_url": [
+        "https://catalog.trollhattan.se"
+      ],
+      "publisher": "trollhattan",
+      "order": 29,
+      "options": {},
+      "identity_namespace": "trollhattan",
+      "discovery_origins": [
+        "catalogtrollhattanse dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:upphandlingsmyndigheten:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:upphandlingsmyndigheten:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogupphandlingsmyndighetense",
+      "endpoint_url": [
+        "https://catalog.upphandlingsmyndigheten.se"
+      ],
+      "publisher": "upphandlingsmyndigheten",
+      "order": 30,
+      "options": {},
+      "identity_namespace": "upphandlingsmyndigheten",
+      "discovery_origins": [
+        "catalogupphandlingsmyndighetense dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:vara:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:vara:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "catalogvarase",
+      "endpoint_url": [
+        "https://catalog.vara.se"
+      ],
+      "publisher": "vara",
+      "order": 31,
+      "options": {},
+      "identity_namespace": "vara",
+      "discovery_origins": [
+        "catalogvarase dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:botkyrka:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:botkyrka:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "databotkyrkase",
+      "endpoint_url": [
+        "https://data.botkyrka.se"
+      ],
+      "publisher": "botkyrka",
+      "order": 32,
+      "options": {},
+      "identity_namespace": "botkyrka",
+      "discovery_origins": [
+        "databotkyrkase",
+        "databotkyrkase dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:tomelilla:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:tomelilla:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "datatomelillase",
+      "endpoint_url": [
+        "https://data.tomelilla.se"
+      ],
+      "publisher": "tomelilla",
+      "order": 33,
+      "options": {},
+      "identity_namespace": "tomelilla",
+      "discovery_origins": [
+        "dataportalse datatomelillase",
+        "datatomelillase"
+      ]
+    },
+    "urn:nordicintel:service:ei:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:ei:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "eientryscapenet",
+      "endpoint_url": [
+        "https://ei.entryscape.net"
+      ],
+      "publisher": "ei",
+      "order": 34,
+      "options": {},
+      "identity_namespace": "ei",
+      "discovery_origins": [
+        "dataportalse eientryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:eskilstuna:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:eskilstuna:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "eskilstunaentryscapenet",
+      "endpoint_url": [
+        "https://eskilstuna.entryscape.net"
+      ],
+      "publisher": "eskilstuna",
+      "order": 35,
+      "options": {},
+      "identity_namespace": "eskilstuna",
+      "discovery_origins": [
+        "dataportalse eskilstunaentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:falun:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:falun:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "falunentryscapenet",
+      "endpoint_url": [
+        "https://falun.entryscape.net"
+      ],
+      "publisher": "falun",
+      "order": 36,
+      "options": {},
+      "identity_namespace": "falun",
+      "discovery_origins": [
+        "dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:entryscape:entrysoft:shared-hosting": {
+      "id": "urn:nordicintel:service:entryscape:entrysoft:shared-hosting",
+      "adapter": "entrysoft",
+      "source_code": "freeentryscapecom",
+      "endpoint_url": [
+        "https://free.entryscape.com"
+      ],
+      "publisher": null,
+      "order": 37,
+      "options": {},
+      "identity_namespace": "freeentryscapecom",
+      "discovery_origins": [
+        "dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:haninge:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:haninge:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "haningeentryscapenet",
+      "endpoint_url": [
+        "https://haninge.entryscape.net"
+      ],
+      "publisher": "haninge",
+      "order": 38,
+      "options": {},
+      "identity_namespace": "haninge",
+      "discovery_origins": [
+        "dataportalse haningeentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:lund:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:lund:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "kataloglundse",
+      "endpoint_url": [
+        "https://katalog.lund.se"
+      ],
+      "publisher": "lund",
+      "order": 39,
+      "options": {},
+      "identity_namespace": "lund",
+      "discovery_origins": [
+        "kataloglundse"
+      ]
+    },
+    "urn:nordicintel:service:riksarkivet:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:riksarkivet:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "katalogriksarkivetse",
+      "endpoint_url": [
+        "https://katalog.riksarkivet.se"
+      ],
+      "publisher": "riksarkivet",
+      "order": 40,
+      "options": {},
+      "identity_namespace": "riksarkivet",
+      "discovery_origins": [
+        "katalogriksarkivetse"
+      ]
+    },
+    "urn:nordicintel:service:kronofogden:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:kronofogden:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "kronofogdenentryscapenet",
+      "endpoint_url": [
+        "https://kronofogden.entryscape.net"
+      ],
+      "publisher": "kronofogden",
+      "order": 41,
+      "options": {},
+      "identity_namespace": "kronofogden",
+      "discovery_origins": [
+        "dataportalse kronofogdenentryscapenet",
+        "kronofogdenentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:kungsbacka:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:kungsbacka:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "kungsbackaentryscapenet",
+      "endpoint_url": [
+        "https://kungsbacka.entryscape.net"
+      ],
+      "publisher": "kungsbacka",
+      "order": 42,
+      "options": {},
+      "identity_namespace": "kungsbacka",
+      "discovery_origins": [
+        "dataportalse kungsbackaentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:linkoping:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:linkoping:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "linkopingentryscapenet",
+      "endpoint_url": [
+        "https://linkoping.entryscape.net"
+      ],
+      "publisher": "linkoping",
+      "order": 43,
+      "options": {},
+      "identity_namespace": "linkoping",
+      "discovery_origins": [
+        "linkopingentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:vasteras:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:vasteras:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "opendatavasterasse",
+      "endpoint_url": [
+        "https://opendata.vasteras.se"
+      ],
+      "publisher": "vasteras",
+      "order": 44,
+      "options": {},
+      "identity_namespace": "vasteras",
+      "discovery_origins": [
+        "dataportalse opendatavasterasse",
+        "opendatavasterasse"
+      ]
+    },
+    "urn:nordicintel:service:skatteverket:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:skatteverket:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "skatteverketentryscapenet",
+      "endpoint_url": [
+        "https://skatteverket.entryscape.net"
+      ],
+      "publisher": "skatteverket",
+      "order": 45,
+      "options": {},
+      "identity_namespace": "skatteverket",
+      "discovery_origins": [
+        "dataportalse skatteverketentryscapenet",
+        "skatteverketentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:stuns:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:stuns:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "stunsentryscapenet",
+      "endpoint_url": [
+        "https://stuns.entryscape.net"
+      ],
+      "publisher": "stuns",
+      "order": 46,
+      "options": {},
+      "identity_namespace": "stuns",
+      "discovery_origins": [
+        "dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:transportstyrelsen:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:transportstyrelsen:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "transportstyrelsenentryscapenet",
+      "endpoint_url": [
+        "https://transportstyrelsen.entryscape.net"
+      ],
+      "publisher": "transportstyrelsen",
+      "order": 47,
+      "options": {},
+      "identity_namespace": "transportstyrelsen",
+      "discovery_origins": [
+        "dataportalse transportstyrelsenentryscapenet",
+        "transportstyrelsenentryscapenet"
+      ]
+    },
+    "urn:nordicintel:service:vgregion:entrysoft:open-data": {
+      "id": "urn:nordicintel:service:vgregion:entrysoft:open-data",
+      "adapter": "entrysoft",
+      "source_code": "vgregionentryscapenet",
+      "endpoint_url": [
+        "https://vgregion.entryscape.net"
+      ],
+      "publisher": "vgregion",
+      "order": 48,
+      "options": {},
+      "identity_namespace": "vgregion",
+      "discovery_origins": [
+        "dataportalse"
+      ]
+    },
+    "urn:nordicintel:service:smhi:smhi_emissions:statistics": {
+      "id": "urn:nordicintel:service:smhi:smhi_emissions:statistics",
+      "adapter": "smhi_emissions",
+      "source_code": "smhi",
+      "endpoint_url": [
+        "https://nationellaemissionsdatabasen.smhi.se/api"
+      ],
+      "publisher": "smhi",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "smhi",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:forsakringskassan:forsakringskassan:statistics": {
+      "id": "urn:nordicintel:service:forsakringskassan:forsakringskassan:statistics",
+      "adapter": "forsakringskassan",
+      "source_code": "forsakringskassan",
+      "endpoint_url": [
+        "https://www.forsakringskassan.se/api/sprstatistikrapportera/public/v1"
+      ],
+      "publisher": "forsakringskassan",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "forsakringskassan",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:riksbank:riksbank:statistics": {
+      "id": "urn:nordicintel:service:riksbank:riksbank:statistics",
+      "adapter": "riksbank",
+      "source_code": "riksbank",
+      "endpoint_url": [
+        "https://api.riksbank.se"
+      ],
+      "publisher": "riksbank",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "riksbank",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:socialstyrelsen:dataanalys:analysis": {
+      "id": "urn:nordicintel:service:socialstyrelsen:dataanalys:analysis",
+      "adapter": "dataanalys",
+      "source_code": "socialstyrelsen_analys",
+      "endpoint_url": [
+        "https://dataanalys.socialstyrelsen.se/api/v1"
+      ],
+      "publisher": "socialstyrelsen",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "socialstyrelsen",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:tillvaxtverket:tillvaxtverket:statistics": {
+      "id": "urn:nordicintel:service:tillvaxtverket:tillvaxtverket:statistics",
+      "adapter": "tillvaxtverket",
+      "source_code": "tillvaxtverket",
+      "endpoint_url": [
+        "https://oppnadata.tillvaxtverket.se"
+      ],
+      "publisher": "tillvaxtverket",
+      "order": 0,
+      "options": {},
+      "identity_namespace": "tillvaxtverket",
+      "discovery_origins": []
+    }
+  },
+  "catalogs": {
+    "urn:nordicintel:catalog:mi:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:mi:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Medlingsinstitutet"
+        ]
+      },
+      "publisher": "mi",
+      "services": [
+        "urn:nordicintel:service:mi:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://www.mi.se/PXWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:csn:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:csn:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Centrala studiestödsnämnden (CSN)"
+        ]
+      },
+      "publisher": "csn",
+      "services": [
+        "urn:nordicintel:service:csn:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.csn.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:energi:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:energi:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Energimyndigheten"
+        ]
+      },
+      "publisher": "energi",
+      "services": [
+        "urn:nordicintel:service:energi:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://pxexternal.energimyndigheten.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:fohm:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:fohm:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Folkhälsomyndigheten"
+        ]
+      },
+      "publisher": "fohm",
+      "services": [
+        "urn:nordicintel:service:fohm:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:sjv:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:sjv:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Statens jordbruksverk"
+        ]
+      },
+      "publisher": "sjv",
+      "services": [
+        "urn:nordicintel:service:sjv:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.sjv.se/PXWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:konj:pxweb_v1:forecast": {
+      "id": "urn:nordicintel:catalog:konj:pxweb_v1:forecast",
+      "key": "forecast",
+      "title": {
+        "sv": [
+          "Prognosdatabasen"
+        ]
+      },
+      "publisher": "konj",
+      "services": [
+        "urn:nordicintel:service:konj:pxweb_v1:forecast"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://prognos.konj.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:konj:pxweb_v1:barometer": {
+      "id": "urn:nordicintel:catalog:konj:pxweb_v1:barometer",
+      "key": "barometer",
+      "title": {
+        "sv": [
+          "Konjunkturbarometern"
+        ]
+      },
+      "publisher": "konj",
+      "services": [
+        "urn:nordicintel:service:konj:pxweb_v1:barometer"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://statistik.konj.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:lansstyr:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:lansstyr:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Länsstyrelsernas statistikdatabas"
+        ]
+      },
+      "publisher": "lansstyr",
+      "services": [
+        "urn:nordicintel:service:lansstyr:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://pxweb.lansstyrelsen.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:mcf:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:mcf:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "MCF (Myndigheten för civil beredskap)"
+        ]
+      },
+      "publisher": "mcf",
+      "services": [
+        "urn:nordicintel:service:mcf:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "description": {
+        "sv": [
+          "Statistik för bränder och olyckor.\nEn tjänst från Myndigheten för civilt försvar med syfte att tillgängliggöra statistik om bränder och andra olyckor."
+        ],
+        "en": [
+          "Fire and Accident Statistics.\nA service from the Swedish Civil Defence and Resilience Agency with the aim of making statistics on fires and other accidents accessible."
+        ]
+      },
+      "homepage": [
+        "https://statistik.mcf.se/PXWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:slu:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:slu:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "SLU Riksskogstaxeringen"
+        ]
+      },
+      "publisher": "slu",
+      "services": [
+        "urn:nordicintel:service:slu:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://skogsstatistik.slu.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:skog:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:skog:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Skogsstyrelsen"
+        ]
+      },
+      "publisher": "skog",
+      "services": [
+        "urn:nordicintel:service:skog:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://pxweb.skogsstyrelsen.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:domstol:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:domstol:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Domstolsverket"
+        ]
+      },
+      "publisher": "domstol",
+      "services": [
+        "urn:nordicintel:service:domstol:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ],
+      "homepage": [
+        "https://pxweb.etjanst.domstol.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:linkoping:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:linkoping:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Linköpings kommun"
+        ]
+      },
+      "publisher": "linkoping",
+      "services": [
+        "urn:nordicintel:service:linkoping:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.linkoping.se/pxweb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:kulturanalys:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:kulturanalys:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Myndigheten för kulturanalys"
+        ]
+      },
+      "publisher": "kulturanalys",
+      "services": [
+        "urn:nordicintel:service:kulturanalys:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.kulturanalys.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:ehm:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:ehm:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "E-hälsomyndigheten"
+        ]
+      },
+      "publisher": "ehm",
+      "services": [
+        "urn:nordicintel:service:ehm:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.ehalsomyndigheten.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:tillvaxtanalys:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:tillvaxtanalys:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Tillväxtanalys"
+        ]
+      },
+      "publisher": "tillvaxtanalys",
+      "services": [
+        "urn:nordicintel:service:tillvaxtanalys:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.tillvaxtanalys.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:vgregion:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:vgregion:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Västra Götalandsregionen"
+        ]
+      },
+      "publisher": "vgregion",
+      "services": [
+        "urn:nordicintel:service:vgregion:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://pxweb2022.vgregion.se/Pxwebb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:sundsvall:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:sundsvall:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Sundsvalls kommun"
+        ]
+      },
+      "publisher": "sundsvall",
+      "services": [
+        "urn:nordicintel:service:sundsvall:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:skolverket:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:skolverket:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Skolverket"
+        ]
+      },
+      "publisher": "skolverket",
+      "services": [
+        "urn:nordicintel:service:skolverket:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistikdatabasen.skolverket.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:goteborg:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:goteborg:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Göteborgs Stad"
+        ]
+      },
+      "publisher": "goteborg",
+      "services": [
+        "urn:nordicintel:service:goteborg:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistikdatabas.goteborg.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:karlstad:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:karlstad:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Karlstads kommun"
+        ]
+      },
+      "publisher": "karlstad",
+      "services": [
+        "urn:nordicintel:service:karlstad:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://pxweb2.karlstad.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:orebro:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:orebro:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Örebro kommun"
+        ]
+      },
+      "publisher": "orebro",
+      "services": [
+        "urn:nordicintel:service:orebro:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.orebro.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:helsingborg:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:helsingborg:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Helsingborgs stad"
+        ]
+      },
+      "publisher": "helsingborg",
+      "services": [
+        "urn:nordicintel:service:helsingborg:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.helsingborg.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:norrkoping:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:norrkoping:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Norrköpings kommun"
+        ]
+      },
+      "publisher": "norrkoping",
+      "services": [
+        "urn:nordicintel:service:norrkoping:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.norrkoping.se/PxWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:skog:pxweb_v1:ska22": {
+      "id": "urn:nordicintel:catalog:skog:pxweb_v1:ska22",
+      "key": "ska22",
+      "title": {
+        "sv": [
+          "Skogsstyrelsen SKA22"
+        ]
+      },
+      "publisher": "skog",
+      "services": [
+        "urn:nordicintel:service:skog:pxweb_v1:ska22"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://pxwebska.skogsstyrelsen.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:scb:pxweb_v1:hvd": {
+      "id": "urn:nordicintel:catalog:scb:pxweb_v1:hvd",
+      "key": "hvd",
+      "title": {
+        "sv": [
+          "SCB HVD-uppdrag"
+        ]
+      },
+      "publisher": "scb",
+      "services": [
+        "urn:nordicintel:service:scb:pxweb_v1:hvd"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://hvduppdrag.scb.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:scb:pxweb_v2:statistics": {
+      "id": "urn:nordicintel:catalog:scb:pxweb_v2:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Statistiska centralbyrån"
+        ]
+      },
+      "publisher": "scb",
+      "services": [
+        "urn:nordicintel:service:scb:pxweb_v2:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ]
+    },
+    "urn:nordicintel:catalog:rka:kolada:statistics": {
+      "id": "urn:nordicintel:catalog:rka:kolada:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Rådet för främjande av kommunala analyser"
+        ]
+      },
+      "publisher": "rka",
+      "services": [
+        "urn:nordicintel:service:rka:kolada:statistics"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:uka:uka:statistics": {
+      "id": "urn:nordicintel:catalog:uka:uka:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Universitetskanslersämbetet"
+        ]
+      },
+      "publisher": "uka",
+      "services": [
+        "urn:nordicintel:service:uka:uka:statistics"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:socialstyrelsen:sdb:statistics": {
+      "id": "urn:nordicintel:catalog:socialstyrelsen:sdb:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Socialstyrelsen"
+        ]
+      },
+      "publisher": "socialstyrelsen",
+      "services": [
+        "urn:nordicintel:service:socialstyrelsen:sdb:statistics"
+      ],
+      "languages": [
+        "sv",
+        "en"
+      ]
+    },
+    "urn:nordicintel:catalog:trafa:trafa:statistics": {
+      "id": "urn:nordicintel:catalog:trafa:trafa:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Trafikanalys"
+        ]
+      },
+      "publisher": "trafa",
+      "services": [
+        "urn:nordicintel:service:trafa:trafa:statistics"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:ale:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:ale:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Ale kommuns öppna data"
+        ]
+      },
+      "publisher": "ale",
+      "services": [
+        "urn:nordicintel:service:ale:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:boras:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:boras:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Borås stads öppna data"
+        ]
+      },
+      "publisher": "boras",
+      "services": [
+        "urn:nordicintel:service:boras:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:digg:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:digg:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "DIGG:s datakatalog"
+        ]
+      },
+      "publisher": "digg",
+      "services": [
+        "urn:nordicintel:service:digg:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:eslov:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:eslov:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Eslövs kommuns öppna data"
+        ]
+      },
+      "publisher": "eslov",
+      "services": [
+        "urn:nordicintel:service:eslov:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:essunga:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:essunga:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Essunga kommuns öppna data"
+        ]
+      },
+      "publisher": "essunga",
+      "services": [
+        "urn:nordicintel:service:essunga:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:falkoping:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:falkoping:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Falköpings kommuns öppna data"
+        ]
+      },
+      "publisher": "falkoping",
+      "services": [
+        "urn:nordicintel:service:falkoping:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:gavle:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:gavle:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Gävle kommuns öppna data"
+        ]
+      },
+      "publisher": "gavle",
+      "services": [
+        "urn:nordicintel:service:gavle:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:goteborg:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:goteborg:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Göteborgs Stads öppna data"
+        ]
+      },
+      "publisher": "goteborg",
+      "services": [
+        "urn:nordicintel:service:goteborg:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:gotene:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:gotene:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Götene kommuns öppna data"
+        ]
+      },
+      "publisher": "gotene",
+      "services": [
+        "urn:nordicintel:service:gotene:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:grastorp:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:grastorp:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Grästorps kommuns öppna data"
+        ]
+      },
+      "publisher": "grastorp",
+      "services": [
+        "urn:nordicintel:service:grastorp:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:gullspang:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:gullspang:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Gullspångs kommuns öppna data"
+        ]
+      },
+      "publisher": "gullspang",
+      "services": [
+        "urn:nordicintel:service:gullspang:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:harryda:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:harryda:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Härryda kommuns öppna data"
+        ]
+      },
+      "publisher": "harryda",
+      "services": [
+        "urn:nordicintel:service:harryda:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:hjo:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:hjo:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Hjo kommuns öppna data"
+        ]
+      },
+      "publisher": "hjo",
+      "services": [
+        "urn:nordicintel:service:hjo:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:iaf:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:iaf:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "IAF:s öppna data"
+        ]
+      },
+      "publisher": "iaf",
+      "services": [
+        "urn:nordicintel:service:iaf:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:karlsborg:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:karlsborg:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Karlsborgs kommuns öppna data"
+        ]
+      },
+      "publisher": "karlsborg",
+      "services": [
+        "urn:nordicintel:service:karlsborg:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:kungalv:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:kungalv:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Kungälvs kommuns öppna data"
+        ]
+      },
+      "publisher": "kungalv",
+      "services": [
+        "urn:nordicintel:service:kungalv:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:lansstyr:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:lansstyr:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Länsstyrelsernas datakatalog"
+        ]
+      },
+      "publisher": "lansstyr",
+      "services": [
+        "urn:nordicintel:service:lansstyr:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:lidkoping:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:lidkoping:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Lidköpings kommuns öppna data"
+        ]
+      },
+      "publisher": "lidkoping",
+      "services": [
+        "urn:nordicintel:service:lidkoping:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:mariestad:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:mariestad:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Mariestads kommuns öppna data"
+        ]
+      },
+      "publisher": "mariestad",
+      "services": [
+        "urn:nordicintel:service:mariestad:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:molndal:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:molndal:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Mölndals stads öppna data"
+        ]
+      },
+      "publisher": "molndal",
+      "services": [
+        "urn:nordicintel:service:molndal:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:raa:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:raa:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Riksantikvarieämbetets öppna data"
+        ]
+      },
+      "publisher": "raa",
+      "services": [
+        "urn:nordicintel:service:raa:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:skara:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:skara:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Skara kommuns öppna data"
+        ]
+      },
+      "publisher": "skara",
+      "services": [
+        "urn:nordicintel:service:skara:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:skr:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:skr:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "SKR:s datakatalog"
+        ]
+      },
+      "publisher": "skr",
+      "services": [
+        "urn:nordicintel:service:skr:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:sodertalje:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:sodertalje:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Södertälje kommuns öppna data"
+        ]
+      },
+      "publisher": "sodertalje",
+      "services": [
+        "urn:nordicintel:service:sodertalje:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:stenungsund:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:stenungsund:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Stenungsunds kommuns öppna data"
+        ]
+      },
+      "publisher": "stenungsund",
+      "services": [
+        "urn:nordicintel:service:stenungsund:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:tibro:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:tibro:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Tibro kommuns öppna data"
+        ]
+      },
+      "publisher": "tibro",
+      "services": [
+        "urn:nordicintel:service:tibro:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:tidaholm:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:tidaholm:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Tidaholms kommuns öppna data"
+        ]
+      },
+      "publisher": "tidaholm",
+      "services": [
+        "urn:nordicintel:service:tidaholm:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:tjorn:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:tjorn:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Tjörns kommuns öppna data"
+        ]
+      },
+      "publisher": "tjorn",
+      "services": [
+        "urn:nordicintel:service:tjorn:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:toreboda:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:toreboda:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Töreboda kommuns öppna data"
+        ]
+      },
+      "publisher": "toreboda",
+      "services": [
+        "urn:nordicintel:service:toreboda:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:trollhattan:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:trollhattan:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Trollhättans Stads öppna data"
+        ]
+      },
+      "publisher": "trollhattan",
+      "services": [
+        "urn:nordicintel:service:trollhattan:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:upphandlingsmyndigheten:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:upphandlingsmyndigheten:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Upphandlingsmyndighetens datakatalog"
+        ]
+      },
+      "publisher": "upphandlingsmyndigheten",
+      "services": [
+        "urn:nordicintel:service:upphandlingsmyndigheten:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:vara:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:vara:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Vara kommuns öppna data"
+        ]
+      },
+      "publisher": "vara",
+      "services": [
+        "urn:nordicintel:service:vara:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:botkyrka:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:botkyrka:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Botkyrka kommuns öppna data"
+        ]
+      },
+      "publisher": "botkyrka",
+      "services": [
+        "urn:nordicintel:service:botkyrka:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:tomelilla:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:tomelilla:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Tomelilla kommuns öppna data"
+        ]
+      },
+      "publisher": "tomelilla",
+      "services": [
+        "urn:nordicintel:service:tomelilla:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:ei:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:ei:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Energimarknadsinspektionens öppna data"
+        ]
+      },
+      "publisher": "ei",
+      "services": [
+        "urn:nordicintel:service:ei:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:eskilstuna:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:eskilstuna:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Eskilstuna kommuns öppna data"
+        ]
+      },
+      "publisher": "eskilstuna",
+      "services": [
+        "urn:nordicintel:service:eskilstuna:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:falun:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:falun:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Falu kommuns öppna data"
+        ]
+      },
+      "publisher": "falun",
+      "services": [
+        "urn:nordicintel:service:falun:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:haninge:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:haninge:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Haninge kommuns öppna data"
+        ]
+      },
+      "publisher": "haninge",
+      "services": [
+        "urn:nordicintel:service:haninge:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:lund:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:lund:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Lunds kommuns öppna data"
+        ]
+      },
+      "publisher": "lund",
+      "services": [
+        "urn:nordicintel:service:lund:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:riksarkivet:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:riksarkivet:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Riksarkivets öppna data"
+        ]
+      },
+      "publisher": "riksarkivet",
+      "services": [
+        "urn:nordicintel:service:riksarkivet:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:kronofogden:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:kronofogden:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Kronofogdens öppna data"
+        ]
+      },
+      "publisher": "kronofogden",
+      "services": [
+        "urn:nordicintel:service:kronofogden:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:kungsbacka:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:kungsbacka:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Kungsbacka kommuns öppna data"
+        ]
+      },
+      "publisher": "kungsbacka",
+      "services": [
+        "urn:nordicintel:service:kungsbacka:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:linkoping:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:linkoping:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Linköpings kommuns öppna data"
+        ]
+      },
+      "publisher": "linkoping",
+      "services": [
+        "urn:nordicintel:service:linkoping:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:vasteras:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:vasteras:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Västerås stads öppna data"
+        ]
+      },
+      "publisher": "vasteras",
+      "services": [
+        "urn:nordicintel:service:vasteras:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:skatteverket:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:skatteverket:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Skatteverkets öppna data"
+        ]
+      },
+      "publisher": "skatteverket",
+      "services": [
+        "urn:nordicintel:service:skatteverket:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:stuns:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:stuns:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "STUNS Energi datakatalog"
+        ]
+      },
+      "publisher": "stuns",
+      "services": [
+        "urn:nordicintel:service:stuns:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:transportstyrelsen:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:transportstyrelsen:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Transportstyrelsens öppna data"
+        ]
+      },
+      "publisher": "transportstyrelsen",
+      "services": [
+        "urn:nordicintel:service:transportstyrelsen:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:vgregion:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:vgregion:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Västra Götalandsregionens öppna data"
+        ]
+      },
+      "publisher": "vgregion",
+      "services": [
+        "urn:nordicintel:service:vgregion:entrysoft:open-data"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:smhi:smhi_emissions:statistics": {
+      "id": "urn:nordicintel:catalog:smhi:smhi_emissions:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "SMHI"
+        ]
+      },
+      "publisher": "smhi",
+      "services": [
+        "urn:nordicintel:service:smhi:smhi_emissions:statistics"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:forsakringskassan:forsakringskassan:statistics": {
+      "id": "urn:nordicintel:catalog:forsakringskassan:forsakringskassan:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Försäkringskassan"
+        ]
+      },
+      "publisher": "forsakringskassan",
+      "services": [
+        "urn:nordicintel:service:forsakringskassan:forsakringskassan:statistics"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:riksbank:riksbank:statistics": {
+      "id": "urn:nordicintel:catalog:riksbank:riksbank:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Sveriges riksbank"
+        ]
+      },
+      "publisher": "riksbank",
+      "services": [
+        "urn:nordicintel:service:riksbank:riksbank:statistics"
+      ],
+      "languages": [
+        "en"
+      ]
+    },
+    "urn:nordicintel:catalog:socialstyrelsen:dataanalys:analysis": {
+      "id": "urn:nordicintel:catalog:socialstyrelsen:dataanalys:analysis",
+      "key": "analysis",
+      "title": {
+        "sv": [
+          "Socialstyrelsen"
+        ]
+      },
+      "publisher": "socialstyrelsen",
+      "services": [
+        "urn:nordicintel:service:socialstyrelsen:dataanalys:analysis"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:tillvaxtverket:tillvaxtverket:statistics": {
+      "id": "urn:nordicintel:catalog:tillvaxtverket:tillvaxtverket:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Tillväxtverket"
+        ]
+      },
+      "publisher": "tillvaxtverket",
+      "services": [
+        "urn:nordicintel:service:tillvaxtverket:tillvaxtverket:statistics"
+      ],
+      "languages": [
+        "sv"
+      ]
+    },
+    "urn:nordicintel:catalog:digidel:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:digidel:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Digidel öppna data"
+        ]
+      },
+      "publisher": "digidel",
+      "services": [
+        "urn:nordicintel:service:entryscape:entrysoft:shared-hosting"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "scopes": {
+        "urn:nordicintel:service:entryscape:entrysoft:shared-hosting": {
+          "contexts": [
+            "https://free.entryscape.com/store/640/"
+          ],
+          "dataset_codes": [
+            "4ba0bc31-3601-4e92-81ea-d1ed0bfb5930",
+            "a7c572c8-2146-4285-8947-7f2f378ee120"
+          ],
+          "discovery_origins": [
+            "dataportalse"
+          ]
+        }
+      }
+    },
+    "urn:nordicintel:catalog:klimatbyran:entrysoft:open-data": {
+      "id": "urn:nordicintel:catalog:klimatbyran:entrysoft:open-data",
+      "key": "open-data",
+      "title": {
+        "sv": [
+          "Klimatbyrån öppna data"
+        ]
+      },
+      "publisher": "klimatbyran",
+      "services": [
+        "urn:nordicintel:service:entryscape:entrysoft:shared-hosting"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "scopes": {
+        "urn:nordicintel:service:entryscape:entrysoft:shared-hosting": {
+          "contexts": [
+            "https://free.entryscape.com/store/730/"
+          ],
+          "dataset_codes": [
+            "c15e99a2-c956-4b41-9b1c-79cdf699788e"
+          ],
+          "discovery_origins": [
+            "dataportalse"
+          ]
+        }
+      }
+    }
+  }
+}

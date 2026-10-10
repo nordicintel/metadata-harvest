@@ -15,8 +15,9 @@ from pathlib import Path
 from metadata_harvest.adapters.riksbank.client import RiksbankClient
 from metadata_harvest.adapters.riksbank.retrieval import REQUIRED_METADATA, retrieve
 from metadata_harvest.adapters.riksbank.workflow import build_record, discover_api
+from metadata_harvest.configuration import providers_for_adapter
 from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import read, write
+from metadata_harvest.storage import write
 from metadata_harvest.validation import validate_retrieval
 
 SAMPLES = {"swea": "swea_group_2", "mpd": "mpd_SEQGDPNAYSA", "swestr": "swestr"}
@@ -117,13 +118,13 @@ async def check(provider: dict) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--providers", type=Path, default=Path("providers.riksbank.json")
-    )
+    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument(
         "--report", type=Path, default=Path("output/riksbank-live.json")
     )
     args = parser.parse_args()
-    result = asyncio.run(check(read(args.providers)[0]))
+    result = asyncio.run(
+        check(providers_for_adapter("riksbank", legacy_path=args.providers)[0])
+    )
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

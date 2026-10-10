@@ -1,6 +1,6 @@
 # Integration ownership and architecture
 
-`metadata-harvest` owns API integration code, source selection, provider configuration,
+`metadata-harvest` owns API integration code, source selection, organisation, catalog and service configuration,
 metadata semantics, extensible StatDCAT Pydantic models, observation-result schemas, validation,
 shared file-catalog construction and enrichment interfaces,
 independent harvesting jobs, on-demand retrieval and integration documentation.
@@ -26,9 +26,10 @@ discovery is retained explicitly because replacing it would change coverage.
 - `statdcat.py` converts native metadata into typed contributions and assembles
   multilingual datasets, independent distributions and SKOS codelists.
   `mapping.py`, `validation.py` and `semantics.py` retain native/legacy parsing.
-- `sources.py` separates canonical organisation ownership from operational routing
-  aliases. DataServices identify the 12 adapters, never individual deployments.
-- `accepted.py` persists provider-grouped multilingual collections and reconstructs
+- `configuration.py` validates and resolves the three authoritative configuration files.
+  `sources.py` resolves resource-specific publishers independently of operational routing
+  aliases. Concrete DataServices identify configured APIs and reference shared adapter definitions.
+- `accepted.py` persists multilingual collections under their stable grouping identities and reconstructs
   independent native task records for transition workers.
 - `retrieval.py` assembles protocol responses by coordinates; only the caller's
   `aiohttp` session performs requests, with caller-owned rate limits and retries.

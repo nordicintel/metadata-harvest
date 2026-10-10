@@ -12,8 +12,9 @@ from metadata_harvest.adapters.sdb.client import SdbClient
 from metadata_harvest.adapters.sdb.mapping import time_unit_from_swedish_label
 from metadata_harvest.adapters.sdb.retrieval import REQUIRED_METADATA, retrieve
 from metadata_harvest.adapters.sdb.workflow import fetch_metadata
+from metadata_harvest.configuration import providers_for_adapter
 from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import read, write
+from metadata_harvest.storage import write
 from metadata_harvest.validation import validate_retrieval
 
 SAMPLE = (("sv", "amning"), ("sv", "dodsorsaker"), ("en", "dodsorsaker"))
@@ -86,9 +87,11 @@ async def check(provider: dict) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--providers", type=Path, default=Path("providers.sdb.json"))
+    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument("--report", type=Path, default=Path("output/sdb-live.json"))
     args = parser.parse_args()
-    result = asyncio.run(check(read(args.providers)[0]))
+    result = asyncio.run(
+        check(providers_for_adapter("sdb", legacy_path=args.providers)[0])
+    )
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

@@ -4,8 +4,8 @@
 
 Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
 uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
-retain the original source alias, language and scope. Each access service identifies
-this adapter, independently of the owning organisation. See the [profile and field
+retain the original source alias, language and scope. Each access service identifies a concrete API and references its adapter; publisher
+relationships are resolved separately for catalogs, services and datasets. See the [profile and field
 mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
 [typed retrieval](../retrieval-guide.md).
 
@@ -87,7 +87,7 @@ An indicator is **published** only when both conditions hold:
 1. its value endpoint (totals, export links and the export files) works in this
    run, and
 2. its document was verified, meaning rebuilt or confirmed unchanged, within
-   `max_age_days` (60, set in [providers.uka.json](../../providers.uka.json)).
+   `max_age_days` (60, set in [catalogs.json](../../catalogs.json)).
 
 Otherwise the document is **withheld**: it is removed from the published collection
 but kept in state, and it is restored automatically once both conditions hold

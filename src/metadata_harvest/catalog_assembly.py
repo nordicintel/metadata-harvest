@@ -23,6 +23,7 @@ from metadata_harvest.portal import (
     enrich,
     publication_view,
 )
+from metadata_harvest.profile_migration import read_dataset
 from metadata_harvest.quality import validate_publication
 from metadata_harvest.registry import ADAPTERS
 from metadata_harvest.sources import inventory
@@ -71,13 +72,17 @@ def dependencies(data: Path) -> dict:
         "statdcat.py",
         "portal.py",
         "sources.py",
-        "source-inventory.json",
+        "configuration.py",
+        "configuration/adapters.json",
+        "configuration/organisations.json",
+        "configuration/catalogs.json",
         "profile.json",
+        "profile_migration.py",
         "accepted.py",
         "quality.py",
         "catalog_assembly.py",
     ):
-        result["code:" + name] = _hash(Path(__file__).with_name(name))
+        result["code:" + name] = _hash(Path(__file__).parent / name)
     return result
 
 
@@ -179,7 +184,7 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
             n.startswith(adapter + "/metadata/") for n in previous.get("accepted", {})
         ):
             raise ValueError(f"No accepted metadata coverage for adapter: {adapter}")
-    if previous.get("profile_version") != PROFILE_VERSION:
+    if previous.get("profile_version") not in {"1.0.0", PROFILE_VERSION}:
         previous = {}
     for asset, digest in previous.get("assets", {}).items():
         if (
@@ -280,6 +285,7 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
                 input_hashes = {n: baseline.get(n) for n in names}
                 if (
                     old
+                    and previous.get("profile_version") == PROFILE_VERSION
                     and old["inputs"] == input_hashes
                     and previous.get("rules") == rule_dependencies
                     and "matching_inputs" in old
@@ -325,7 +331,7 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
                     def insert_input(name, raw, db=db, add_code=add_code):
                         for value in _rows(raw):
                             if "/metadata/" in name:
-                                model = Dataset.from_jsonld(value)
+                                model = read_dataset(value)
                                 db.execute(
                                     "INSERT INTO datasets VALUES (?,?)",
                                     (model.id, _json(model.to_jsonld())),
@@ -438,7 +444,10 @@ def build(data: Path, output: Path, *, adapters=None) -> dict:
                         raise ValueError(
                             f"Initial catalog cannot omit invalid input: {error}"
                         ) from error
-                    if previous.get("dependencies") != extra:
+                    if (
+                        previous.get("profile_version") != PROFILE_VERSION
+                        or previous.get("dependencies") != extra
+                    ):
                         raise ValueError(
                             "Cannot apply changed publication rules to unavailable source; restore accepted Git blobs"
                         ) from error

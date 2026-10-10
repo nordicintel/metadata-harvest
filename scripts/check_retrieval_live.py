@@ -12,8 +12,9 @@ from metadata_harvest.adapters.pxweb_v1.discovery import discover_provider
 from metadata_harvest.adapters.pxweb_v1.metadata import get_pxweb_metadata
 from metadata_harvest.adapters.pxweb_v2.client import Client
 from metadata_harvest.adapters.pxweb_v2.metadata import fetch_metadata
+from metadata_harvest.configuration import providers_for_adapter
 from metadata_harvest.semantics import category_codes
-from metadata_harvest.storage import JsonlStore, now, read, write
+from metadata_harvest.storage import JsonlStore, now, write
 from metadata_harvest.validation import validate_metadata, validate_retrieval
 
 
@@ -100,8 +101,8 @@ async def run(output):
             print(json.dumps(item, ensure_ascii=False), flush=True)
             write(output, report)
 
-    await asyncio.gather(*(v1(p) for p in read("providers.json")))
-    provider = read("providers.pxweb_v2.json")[0]
+    await asyncio.gather(*(v1(p) for p in providers_for_adapter("pxweb_v1")))
+    provider = providers_for_adapter("pxweb_v2")[0]
     v2_rows = list(JsonlStore("data/pxweb_v2/table-records").records.values())
     async with Client(provider["base_api_url"]) as client:
         client.configure(await client.get("config"))

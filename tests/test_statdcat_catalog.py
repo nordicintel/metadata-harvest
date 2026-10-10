@@ -120,3 +120,47 @@ def test_unrelated_portal_change_reuses_assembled_owner(tmp_path):
     import_snapshot(source, data / "data_eu")
     report = build(data, candidate, adapters=["pxweb_v2"])
     assert report["build_counts"]["reused_groups"] == 1
+
+
+def test_previous_profile_reads_and_blob_recovery_do_not_require_production_cutover(
+    tmp_path,
+):
+    import gzip
+    import subprocess
+
+    from metadata_harvest.accepted import load_contributions
+    from metadata_harvest.catalog import build, promote
+    from metadata_harvest.models import PROFILE1_CONTEXT, Dataset
+
+    def git(*args):
+        subprocess.run(["git", *args], cwd=tmp_path, check=True, capture_output=True)
+
+    git("init")
+    git("config", "user.name", "Test")
+    git("config", "user.email", "test@example.invalid")
+    data = tmp_path / "data"
+    candidate = tmp_path / "fixture-candidate"
+    write_metadata(data / "pxweb_v2", [legacy()], adapter="pxweb_v2")
+    path = next((data / "pxweb_v2/metadata").glob("*.gz"))
+    previous = json.loads(gzip.decompress(path.read_bytes()))
+    previous["ni:profileVersion"] = "1.0.0"
+    previous["@context"] = PROFILE1_CONTEXT
+    path.write_bytes(gzip.compress((json.dumps(previous) + "\n").encode(), mtime=0))
+    before = path.read_bytes()
+    assert list(load_contributions(path.parent)) == [legacy()]
+    assert path.read_bytes() == before
+    with pytest.raises(ValueError):
+        Dataset.from_jsonld(previous)
+    git("add", "data")
+    git("commit", "-m", "previous-profile accepted input")
+    build(data, candidate, adapters=["pxweb_v2"])
+    promote(data, candidate)
+    state_path = data / "catalog/state/current.json"
+    state = json.loads(state_path.read_text())
+    state["profile_version"] = "1.0.0"
+    state_path.write_text(json.dumps(state))
+    path.write_bytes(b"failed current input")
+    report = build(data, candidate, adapters=["pxweb_v2"])
+    assert report["errors"][0]["retained_blob"]
+    assert report["build_counts"]["reused_groups"] == 0
+    assert json.loads(unpack(candidate / "catalog.7z"))["ni:profileVersion"] == "2.0.0"

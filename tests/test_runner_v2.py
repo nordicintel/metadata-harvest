@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from metadata_harvest import runner
-from metadata_harvest.storage import read
+from metadata_harvest.configuration import providers_for_adapter
 
 
 def test_v2_runner_selects_own_config_data_and_full_mode(monkeypatch, capsys):
@@ -28,7 +28,7 @@ def test_v2_runner_selects_own_config_data_and_full_mode(monkeypatch, capsys):
         sys, "argv", ["runner", "run", "--adapter", "pxweb_v2", "--full"]
     )
     runner.main()
-    assert received["provider"] == read("providers.pxweb_v2.json")[0]
+    assert received["provider"] == providers_for_adapter("pxweb_v2")[0]
     assert received["data"] == Path("data/pxweb_v2")
     assert received["output"] == Path("output/pxweb_v2")
     assert received["full"] is True

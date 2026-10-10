@@ -1,6 +1,6 @@
 # Extensible StatDCAT metadata contract
 
-Local [Pydantic v2 models](../src/metadata_harvest/models.py) define NordicIntel profile **1.0.0**. The independently pinned upstream basis is [StatDCAT-AP 3.0.0](https://semiceu.github.io/StatDCAT-AP/drafts/3.0.0/); its exact commit and document hash are in [profile.json](../src/metadata_harvest/profile.json). This is an extensible profile, not a promise of exact upstream shape conformance.
+Local [Pydantic v2 models](../src/metadata_harvest/models.py) define NordicIntel profile **2.0.0**. The independently pinned upstream basis is [StatDCAT-AP 3.0.0](https://semiceu.github.io/StatDCAT-AP/drafts/3.0.0/); its exact commit and document hash are in [profile.json](../src/metadata_harvest/profile.json). This is an extensible profile, not a promise of exact upstream shape conformance.
 
 Generate JSON Schema and [field documentation](DATASET-METADATA-REFERENCE.md) with `uv run python scripts/generate_schema_reference.py`; CI checks both against the models. The explicitly named legacy schema remains only for native parsing and transition compatibility.
 
@@ -8,9 +8,9 @@ Generate JSON Schema and [field documentation](DATASET-METADATA-REFERENCE.md) wi
 
 A dataset combines language-tagged metadata and independently replaceable source distributions. Kolada municipality and OU contributions share the native KPI dataset identity. Each distribution retains its scope, language, selectable codes, category order, structure and operational options. Conflicting structural versions are not forced into a common shape.
 
-Organisations own catalogs. Every distribution's `dcat:accessService` is one of the **12 globally shared adapter services**. Provider hosts, endpoints and Riksbank API products do not create extra DataServices. [The complete inventory](source-inventory.md) maps every configured deployment and its original routing alias to its canonical owner. Göteborg, Linköping, Västra Götalandsregionen and Länsstyrelserna each own both EntryScape and PXWeb catalogs.
+Organisations can publish catalogs, datasets and services; each resource declares its publisher independently. Every distribution's `dcat:accessService` identifies its concrete configured API service. Twelve shared adapter definitions supply construction defaults. [The complete inventory](source-inventory.md) maps configured catalogs, publishers, services and original routing aliases. Göteborg, Linköping, Västra Götalandsregionen and Länsstyrelserna each publish both EntryScape and PXWeb catalogs.
 
-`ni:retrieval.source` retains the exact original adapter, provider routing alias, dataset identifier and language. Portal matching enriches this identity; it never renames or merges datasets solely because they share a portal entry. Internal URNs preserve opaque codes by reversible percent encoding.
+`ni:retrieval.source` retains the adapter, original routing alias as `source_code`, dataset identifier and language. The `provider_code` Python compatibility property preserves transition callers. Portal matching enriches this identity; it never renames or merges datasets solely because they share a portal entry. Internal URNs preserve opaque codes by reversible percent encoding.
 
 Dataset-level structural properties use references to embedded RDF Data Cube definitions when applicable. Distribution structures remain authoritative. SKOS concept schemes contain category labels, notes, units, coordinates, hierarchies, aggregation mappings and source extensions. `ni:retrieval.dimensions` preserves selectable codes and ordering independently of RDF graph order. Alternate aggregation lists remain descriptive.
 

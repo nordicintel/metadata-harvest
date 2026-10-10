@@ -9,6 +9,13 @@ import subprocess
 from pathlib import Path
 
 from metadata_harvest.adapters.pxweb_v2 import workflow as v2_workflow
+from metadata_harvest.configuration import (
+    activate_configuration,
+    legacy_configuration,
+    load_configuration,
+    providers_for_adapter,
+    use_configuration,
+)
 from metadata_harvest.publication import publish
 from metadata_harvest.registry import ADAPTERS, get_adapter
 from metadata_harvest.storage import read
@@ -88,7 +95,9 @@ def run_simple(args):
         f"metadata_harvest.adapters.{args.adapter}.workflow"
     )
     args.output = args.output or Path("output") / args.adapter
-    providers = read(args.providers)
+    providers = providers_for_adapter(
+        args.adapter, configuration=args.configuration, legacy_path=args.providers
+    )
     if args.command == "run":
         provider = providers if providers_argument == "all" else providers[0]
         result = asyncio.run(
@@ -112,7 +121,7 @@ def outputs(values):
             stream.write("\n".join(lines) + "\n")
 
 
-def main():
+def _main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "command",
@@ -139,7 +148,14 @@ def main():
     parser.add_argument("--max-requests", type=int)
     parser.add_argument("--language", nargs="+", choices=("sv", "en"))
     parser.add_argument("--data", type=Path)
-    parser.add_argument("--providers", type=Path)
+    parser.add_argument(
+        "--providers", type=Path, help="Explicit legacy source-list override"
+    )
+    parser.add_argument(
+        "--config",
+        type=Path,
+        help="Directory containing the three source configuration files",
+    )
     parser.add_argument("--provider")
     parser.add_argument("--run-id")
     parser.add_argument("--wave", type=int, default=0)
@@ -159,7 +175,16 @@ def main():
         parser.error(f"{args.adapter} does not support --full; use its normal refresh")
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
-    args.providers = args.providers or Path(spec.configuration)
+    if args.providers is not None and args.config is not None:
+        parser.error("Use --config or --providers, not both")
+    args.configuration = load_configuration(args.config or Path("."))
+    if args.providers is not None:
+        args.configuration = legacy_configuration(
+            args.configuration,
+            args.adapter,
+            providers_for_adapter(args.adapter, legacy_path=args.providers),
+        )
+    activate_configuration(args.configuration)
     if args.adapter == "kolada":
         from metadata_harvest.adapters.kolada import workflow as kolada_workflow
 
@@ -179,7 +204,11 @@ def main():
                     return
                 result = asyncio.run(
                     kolada_workflow.run(
-                        read(args.providers)[0],
+                        providers_for_adapter(
+                            args.adapter,
+                            configuration=args.configuration,
+                            legacy_path=args.providers,
+                        )[0],
                         args.data,
                         args.output,
                         kpis=args.kpi,
@@ -201,7 +230,9 @@ def main():
         run_simple(args)
         return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
-    providers = read(args.providers)
+    providers = providers_for_adapter(
+        args.adapter, configuration=args.configuration, legacy_path=args.providers
+    )
     if is_v2 and args.command not in {"run", "collect", "publish", "continue"}:
         parser.error("PXWeb v2 uses run, collect, publish and continue")
     if args.command in {"run", "collect"}:
@@ -315,6 +346,11 @@ def main():
             ],
             check=True,
         )
+
+
+def main():
+    with use_configuration():
+        _main()
 
 
 if __name__ == "__main__":

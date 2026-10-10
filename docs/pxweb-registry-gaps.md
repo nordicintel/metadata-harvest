@@ -6,7 +6,7 @@ The v1 provider configuration now contains 26 providers, 52 databases and 62
 language/database scopes. The seven additions below use Swedish only, the existing
 incremental reconciliation and one metadata JSONL per provider/language under
 `data/pxweb_v1/metadata/`. Both manual live-test workflows include them; production
-jobs obtain their provider matrix from `providers.json`.
+jobs obtain their provider matrix from `catalogs.json`.
 
 | Provider code | Source | Discovered tables |
 |---|---|---:|

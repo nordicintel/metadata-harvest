@@ -2,7 +2,7 @@
 
 Generated from [Pydantic models](../src/metadata_harvest/models.py); do not edit by hand.
 
-NordicIntel profile 1.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.
+NordicIntel profile 2.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.
 
 Every source-bearing model accepts JSON-valued extras. Serialization places unfamiliar properties in `ni:additionalAttributes` under the `custom` namespace; adapters use their source namespace. This property is explicitly JSON-valued in the inline JSON-LD context.
 
@@ -21,10 +21,11 @@ Every source-bearing model accepts JSON-valued extras. Serialization places unfa
 | --- | --- | --- |
 | `ni:additionalAttributes` | False | `{"additionalProperties": {"additionalProperties": {"$ref": "#/$defs/JsonValue"}, "type": "object"}, "title": "Ni:Additionalattributes", "type": "object"}` |
 | `@id` | False | `{"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "@Id"}` |
-| `@type` | False | `{"const": "foaf:Agent", "default": "foaf:Agent", "title": "@Type", "type": "string"}` |
+| `@type` | False | `{"default": "foaf:Agent", "enum": ["foaf:Agent", "http://www.w3.org/ns/org#Organization"], "title": "@Type", "type": "string"}` |
 | `foaf:name` | False | `{"additionalProperties": {"items": {"type": "string"}, "type": "array"}, "title": "Foaf:Name", "type": "object"}` |
 | `foaf:mbox` | False | `{"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Foaf:Mbox"}` |
-| `foaf:page` | False | `{"items": {"type": "string"}, "title": "Foaf:Page", "type": "array"}` |
+| `foaf:homepage` | False | `{"items": {"type": "string"}, "title": "Foaf:Homepage", "type": "array"}` |
+| `dct:identifier` | False | `{"items": {"type": "string"}, "title": "Dct:Identifier", "type": "array"}` |
 
 ## Attribute
 
@@ -44,6 +45,16 @@ Every source-bearing model accepts JSON-valued extras. Serialization places unfa
 | `@type` | False | `{"const": "dcat:Catalog", "default": "dcat:Catalog", "title": "@Type", "type": "string"}` |
 | `dct:title` | False | `{"additionalProperties": {"items": {"type": "string"}, "type": "array"}, "title": "Dct:Title", "type": "object"}` |
 | `dct:publisher` | False | `{"items": {"$ref": "#/$defs/Agent"}, "title": "Dct:Publisher", "type": "array"}` |
+| `dct:description` | False | `{"additionalProperties": {"items": {"type": "string"}, "type": "array"}, "title": "Dct:Description", "type": "object"}` |
+| `foaf:homepage` | False | `{"items": {"type": "string"}, "title": "Foaf:Homepage", "type": "array"}` |
+| `dct:language` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dct:Language", "type": "array"}` |
+| `dcat:dataset` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dcat:Dataset", "type": "array"}` |
+| `dcat:service` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dcat:Service", "type": "array"}` |
+| `dcat:catalog` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dcat:Catalog", "type": "array"}` |
+| `dct:hasPart` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dct:Haspart", "type": "array"}` |
+| `dct:creator` | False | `{"items": {"$ref": "#/$defs/Agent"}, "title": "Dct:Creator", "type": "array"}` |
+| `dct:license` | False | `{"items": {"type": "string"}, "title": "Dct:License", "type": "array"}` |
+| `dct:modified` | False | `{"anyOf": [{"type": "string"}, {"type": "null"}], "default": null, "title": "Dct:Modified"}` |
 
 ## CodeList
 
@@ -106,6 +117,11 @@ Every source-bearing model accepts JSON-valued extras. Serialization places unfa
 | `dct:description` | False | `{"additionalProperties": {"items": {"type": "string"}, "type": "array"}, "title": "Dct:Description", "type": "object"}` |
 | `dcat:endpointURL` | False | `{"items": {"type": "string"}, "title": "Dcat:Endpointurl", "type": "array"}` |
 | `dcat:endpointDescription` | False | `{"items": {"type": "string"}, "title": "Dcat:Endpointdescription", "type": "array"}` |
+| `dcat:servesDataset` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dcat:Servesdataset", "type": "array"}` |
+| `foaf:page` | False | `{"items": {"type": "string"}, "title": "Foaf:Page", "type": "array"}` |
+| `dcat:landingPage` | False | `{"items": {"type": "string"}, "title": "Dcat:Landingpage", "type": "array"}` |
+| `dcat:contactPoint` | False | `{"items": {"$ref": "#/$defs/ContactPoint"}, "title": "Dcat:Contactpoint", "type": "array"}` |
+| `dct:conformsTo` | False | `{"items": {"$ref": "#/$defs/Reference"}, "title": "Dct:Conformsto", "type": "array"}` |
 
 ## DataStructureDefinition
 
@@ -144,7 +160,7 @@ Every source-bearing model accepts JSON-valued extras. Serialization places unfa
 | `catalogs` | False | `{"items": {"$ref": "#/$defs/Catalog"}, "title": "Catalogs", "type": "array"}` |
 | `@id` | True | `{"minLength": 1, "title": "@Id", "type": "string"}` |
 | `@type` | False | `{"const": "dcat:Dataset", "default": "dcat:Dataset", "title": "@Type", "type": "string"}` |
-| `ni:profileVersion` | False | `{"const": "1.0.0", "default": "1.0.0", "title": "Ni:Profileversion", "type": "string"}` |
+| `ni:profileVersion` | False | `{"const": "2.0.0", "default": "2.0.0", "title": "Ni:Profileversion", "type": "string"}` |
 | `dct:title` | False | `{"additionalProperties": {"items": {"type": "string"}, "type": "array"}, "title": "Dct:Title", "type": "object"}` |
 | `dct:description` | False | `{"additionalProperties": {"items": {"type": "string"}, "type": "array"}, "title": "Dct:Description", "type": "object"}` |
 | `dct:identifier` | False | `{"items": {"type": "string"}, "title": "Dct:Identifier", "type": "array"}` |
@@ -277,7 +293,7 @@ Every source-bearing model accepts JSON-valued extras. Serialization places unfa
 | --- | --- | --- |
 | `ni:additionalAttributes` | False | `{"additionalProperties": {"additionalProperties": {"$ref": "#/$defs/JsonValue"}, "type": "object"}, "title": "Ni:Additionalattributes", "type": "object"}` |
 | `adapter` | True | `{"minLength": 1, "title": "Adapter", "type": "string"}` |
-| `provider_code` | True | `{"minLength": 1, "title": "Provider Code", "type": "string"}` |
+| `source_code` | True | `{"minLength": 1, "title": "Source Code", "type": "string"}` |
 | `dataset_code` | True | `{"minLength": 1, "title": "Dataset Code", "type": "string"}` |
 | `language` | True | `{"minLength": 1, "title": "Language", "type": "string"}` |
 

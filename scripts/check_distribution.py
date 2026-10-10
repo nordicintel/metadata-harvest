@@ -30,24 +30,13 @@ def check(root: Path):
         assert expected <= {
             Path(n).name for n in archive.getnames() if "/schemas/" in n
         }
-    providers = set()
-    for config in (
-        "providers.json",
-        "providers.pxweb_v2.json",
-        "providers.kolada.json",
-        "providers.uka.json",
-        "providers.sdb.json",
-        "providers.trafa.json",
-        "providers.entrysoft.json",
-        "providers.smhi_emissions.json",
-        "providers.tillvaxtverket.json",
-        "providers.dataanalys.json",
-        "providers.riksbank.json",
-        "providers.forsakringskassan.json",
-    ):
-        providers.update(
-            p["code"] for p in json.loads((root / config).read_text(encoding="utf-8"))
-        )
+    from metadata_harvest.configuration import load_configuration, providers_for_adapter
+
+    providers = {
+        p["code"]
+        for a in load_configuration().adapters
+        for p in providers_for_adapter(a)
+    }
     code = """
 import importlib.metadata as m, importlib.resources as r, json, sys
 entries = m.entry_points(group='nordicintel.retrieval')
@@ -60,6 +49,9 @@ assert Dataset.from_jsonld(sample.to_jsonld()).additional_attributes['custom']['
 assert not any(k.startswith(('httpx', 'playwright', 'jsonschema')) for k in sys.modules)
 installed = {d.metadata['Name'].lower() for d in m.distributions()}
 assert not installed.intersection({'httpx', 'playwright', 'jsonschema'})
+from metadata_harvest.configuration import load_configuration
+assert len(load_configuration().adapters) == 12
+assert len(load_configuration().services) == 85
 assert len(list(r.files('metadata_harvest').joinpath('schemas').iterdir())) >= 4
 print(json.dumps(sorted(e.name for e in entries)))
 """

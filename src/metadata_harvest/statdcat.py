@@ -30,7 +30,7 @@ from metadata_harvest.models import (
     SourceIdentity,
 )
 from metadata_harvest.semantics import category_codes, validate_cube
-from metadata_harvest.sources import deployment, source_entities
+from metadata_harvest.sources import deployment, resolve_source
 
 
 def stable_id(kind: str, *parts: str) -> str:
@@ -413,7 +413,7 @@ def convert_dataset(document: dict, *, adapter: str) -> HarvestContribution:
             ),
             {},
         )
-    catalog, service = source_entities(source, data_url, record)
+    catalogs, service = resolve_source(source, data_url, record, dataset_id=dataset_id)
     distribution = Distribution(
         id=distribution_id,
         modified=document.get("updated"),
@@ -447,7 +447,18 @@ def convert_dataset(document: dict, *, adapter: str) -> HarvestContribution:
             if adapter != "kolada"
             else source.dataset_code.split("/", 1)[-1]
         ],
-        catalogs=[catalog],
+        catalogs=catalogs,
+        source_evidence={
+            "attribution_findings": [
+                {
+                    "distribution": distribution_id,
+                    "code": "catalog_attribution_missing",
+                    "source_code": source.source_code,
+                }
+            ]
+        }
+        if not catalogs
+        else {},
         title=title,
         description=description,
         modified=document.get("updated"),
@@ -730,6 +741,17 @@ def assemble(
     for _identity, parts in sorted(groups.items()):
         base = parts[0].model_copy(deep=True)
         for part in parts[1:]:
+            for key, value in part.source_evidence.items():
+                if key not in base.source_evidence:
+                    base.source_evidence[key] = deepcopy(value)
+                elif isinstance(value, list) and isinstance(
+                    base.source_evidence[key], list
+                ):
+                    base.source_evidence[key] = _union(base.source_evidence[key], value)
+                elif base.source_evidence[key] != value:
+                    base.source_evidence.setdefault(
+                        "conflicting_assertions", []
+                    ).append({"property": key, "value": deepcopy(value)})
             for key in ("title", "description", "notes", "keywords"):
                 _merge_text(getattr(base, key), getattr(part, key))
             for key in (

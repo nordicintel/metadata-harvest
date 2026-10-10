@@ -33,7 +33,7 @@ def artifacts():
         "",
         "Generated from [Pydantic models](../src/metadata_harvest/models.py); do not edit by hand.",
         "",
-        "NordicIntel profile 1.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.",
+        "NordicIntel profile 2.0.0 is based on StatDCAT-AP 3.0.0. Vocabulary aliases are the serialized property names. Descriptive completeness is diagnostic; retrieval identities and structures are validated.",
         "",
         "Every source-bearing model accepts JSON-valued extras. Serialization places unfamiliar properties in `ni:additionalAttributes` under the `custom` namespace; adapters use their source namespace. This property is explicitly JSON-valued in the inline JSON-LD context.",
         "",

@@ -7,6 +7,12 @@ __all__ = [
     "Dataset",
     "Distribution",
     "CodeList",
+    "Organisation",
+    "Catalog",
+    "DataService",
+    "AdapterDefinition",
+    "CatalogConfiguration",
+    "ServiceBinding",
 ]
 
 
@@ -15,7 +21,18 @@ def __getattr__(name):
         from metadata_harvest.retrieval import retrieve_distribution
 
         return retrieve_distribution
-    if name in {"Dataset", "Distribution", "CodeList"}:
+    if name in {"AdapterDefinition", "CatalogConfiguration", "ServiceBinding"}:
+        from metadata_harvest import configuration
+
+        return getattr(configuration, name)
+    if name in {
+        "Dataset",
+        "Distribution",
+        "CodeList",
+        "Organisation",
+        "Catalog",
+        "DataService",
+    }:
         from metadata_harvest import models
 
         return getattr(models, name)

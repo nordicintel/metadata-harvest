@@ -232,13 +232,13 @@ It never splits collections or omits content to pass publication. See the
 
 ## Local execution
 
-The runner defaults to `--adapter pxweb_v1`, `providers.json` and
+The runner defaults to `--adapter pxweb_v1`, `catalogs.json` and
 `data/pxweb_v1/`. V1 commands are `prepare`, `refresh`, `collect-refresh`, `build`,
 `collect-metadata`, `publish` and `continue`. `prepare` prints the next phase
 without writing; worker/collector commands require the run identity and relevant
 provider or artifact inputs. The workflow supplies these values.
 
-Selecting `--adapter pxweb_v2` switches defaults to `providers.pxweb_v2.json`,
+Selecting `--adapter pxweb_v2` switches defaults to `catalogs.json`,
 `data/pxweb_v2/` and `output/pxweb_v2/`. Its commands are `run`, `collect`, `publish`
 and `continue`:
 

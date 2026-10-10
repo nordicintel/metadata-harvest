@@ -4,8 +4,8 @@
 
 Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
 uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
-retain the original source alias, language and scope. Each access service identifies
-this adapter, independently of the owning organisation. See the [profile and field
+retain the original source alias, language and scope. Each access service identifies a concrete API and references its adapter; publisher
+relationships are resolved separately for catalogs, services and datasets. See the [profile and field
 mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
 [typed retrieval](../retrieval-guide.md).
 
@@ -23,7 +23,7 @@ statistics without an API of their own.
   (`sources/entryscape-rowstore/adapter`, commit `f139c99`), whose harvested
   results are the accepted baseline here.
 - One provider per EntryScape instance: 49 providers in
-  [providers.entrysoft.json](../../providers.entrysoft.json), each with its own
+  [catalogs.json](../../catalogs.json), each with its own
   retrieval entry point.
 
 ## Accepted baseline and rate limits

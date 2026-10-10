@@ -28,6 +28,8 @@ from metadata_harvest.adapters.entrysoft.client import (
     Client,
     RateLimited,
 )
+from metadata_harvest.models import SourceIdentity
+from metadata_harvest.sources import catalog_configurations
 
 SEARCH_PATH = "store/search"
 SEARCH_PAGE = 100
@@ -38,6 +40,30 @@ DISTRIBUTION_QUERY = r"rdfType:http\://www.w3.org/ns/dcat#Distribution AND metad
 TABLE_URL = re.compile(
     r"^https?://[^/]+/rowstore/dataset/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
 )
+
+
+def within_catalog_scope(provider: dict, record: dict) -> bool:
+    """A shared host cannot widen its configured catalog/context selection."""
+    source = SourceIdentity(
+        adapter="entrysoft",
+        source_code=provider["code"],
+        dataset_code=record.get("dataset_code", "unknown"),
+        language=record.get("language", "sv"),
+    )
+    binding, catalogs = catalog_configurations(source, record)
+    return binding is None or bool(catalogs)
+
+
+def _in_scope(provider: dict, hit: dict) -> bool:
+    _, properties = _subject(hit, DCAT + "Distribution")
+    urls = [o.get("value", "") for o in _values(properties, DCAT + "accessURL")]
+    return any(
+        within_catalog_scope(
+            provider, {"dataset_code": TABLE_URL.match(url).group(1), "entry": hit}
+        )
+        for url in urls
+        if TABLE_URL.match(url)
+    )
 
 
 async def _search_pass(client: Client, query: str) -> tuple[dict[str, dict], int]:
@@ -167,6 +193,7 @@ async def discover_provider(
     error, passes = None, 0
     try:
         distributions, passes = await search_all(client, DISTRIBUTION_QUERY)
+        distributions = [hit for hit in distributions if _in_scope(provider, hit)]
         referenced = {_parent_dataset(hit) for hit in distributions} - {None}
         datasets = await fetch_datasets(client, referenced)
     except (RateLimited, BudgetExhausted):

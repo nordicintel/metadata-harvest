@@ -37,6 +37,7 @@ from metadata_harvest.adapters.entrysoft.datasets import (
     trim,
 )
 from metadata_harvest.adapters.entrysoft.discovery import discover_provider as discover
+from metadata_harvest.adapters.entrysoft.discovery import within_catalog_scope
 from metadata_harvest.adapters.entrysoft.mapping import to_document
 from metadata_harvest.adapters.entrysoft.state import (
     CURRENT,
@@ -325,7 +326,11 @@ async def run(
             listed = {table_key(r): r for r in scope["records"]}
             if scope["complete"] and wanted is None:
                 for key in [
-                    k for k in tables if k.startswith(code + "/") and k not in listed
+                    k
+                    for k in tables
+                    if k.startswith(code + "/")
+                    and k not in listed
+                    and within_catalog_scope(provider, tables[k].get("record", {}))
                 ]:
                     tables.pop(key)
                     counts["removed"] += 1

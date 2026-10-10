@@ -89,8 +89,11 @@
           "title": "@Id"
         },
         "@type": {
-          "const": "foaf:Agent",
           "default": "foaf:Agent",
+          "enum": [
+            "foaf:Agent",
+            "http://www.w3.org/ns/org#Organization"
+          ],
           "title": "@Type",
           "type": "string"
         },
@@ -116,11 +119,18 @@
           "default": null,
           "title": "Foaf:Mbox"
         },
-        "foaf:page": {
+        "foaf:homepage": {
           "items": {
             "type": "string"
           },
-          "title": "Foaf:Page",
+          "title": "Foaf:Homepage",
+          "type": "array"
+        },
+        "dct:identifier": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dct:Identifier",
           "type": "array"
         }
       },
@@ -212,6 +222,84 @@
           },
           "title": "Dct:Publisher",
           "type": "array"
+        },
+        "dct:description": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Dct:Description",
+          "type": "object"
+        },
+        "foaf:homepage": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Foaf:Homepage",
+          "type": "array"
+        },
+        "dct:language": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dct:Language",
+          "type": "array"
+        },
+        "dcat:dataset": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dcat:Dataset",
+          "type": "array"
+        },
+        "dcat:service": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dcat:Service",
+          "type": "array"
+        },
+        "dcat:catalog": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dcat:Catalog",
+          "type": "array"
+        },
+        "dct:hasPart": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dct:Haspart",
+          "type": "array"
+        },
+        "dct:creator": {
+          "items": {
+            "$ref": "#/$defs/Agent"
+          },
+          "title": "Dct:Creator",
+          "type": "array"
+        },
+        "dct:license": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dct:License",
+          "type": "array"
+        },
+        "dct:modified": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dct:Modified"
         }
       },
       "required": [
@@ -583,6 +671,41 @@
             "type": "string"
           },
           "title": "Dcat:Endpointdescription",
+          "type": "array"
+        },
+        "dcat:servesDataset": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dcat:Servesdataset",
+          "type": "array"
+        },
+        "foaf:page": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Foaf:Page",
+          "type": "array"
+        },
+        "dcat:landingPage": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dcat:Landingpage",
+          "type": "array"
+        },
+        "dcat:contactPoint": {
+          "items": {
+            "$ref": "#/$defs/ContactPoint"
+          },
+          "title": "Dcat:Contactpoint",
+          "type": "array"
+        },
+        "dct:conformsTo": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "Dct:Conformsto",
           "type": "array"
         }
       },
@@ -1310,9 +1433,9 @@
           "title": "Adapter",
           "type": "string"
         },
-        "provider_code": {
+        "source_code": {
           "minLength": 1,
-          "title": "Provider Code",
+          "title": "Source Code",
           "type": "string"
         },
         "dataset_code": {
@@ -1328,7 +1451,7 @@
       },
       "required": [
         "adapter",
-        "provider_code",
+        "source_code",
         "dataset_code",
         "language"
       ],
@@ -1571,8 +1694,8 @@
       "type": "string"
     },
     "ni:profileVersion": {
-      "const": "1.0.0",
-      "default": "1.0.0",
+      "const": "2.0.0",
+      "default": "2.0.0",
       "title": "Ni:Profileversion",
       "type": "string"
     },

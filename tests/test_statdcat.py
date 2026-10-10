@@ -171,8 +171,13 @@ def test_software_services_are_separate_from_scb_owner_and_catalogs():
     assert a.id != b.id
     assert a.distributions[0].services[0].adapter == "pxweb_v2"
     assert b.distributions[0].services[0].adapter == "pxweb_v1"
-    assert a.distributions[0].services[0].id == "urn:nordicintel:service:pxweb_v2"
-    assert b.distributions[0].services[0].id == "urn:nordicintel:service:pxweb_v1"
+    assert (
+        a.distributions[0].services[0].id
+        == "urn:nordicintel:service:scb:pxweb_v2:statistics"
+    )
+    assert (
+        b.distributions[0].services[0].id == "urn:nordicintel:service:scb:pxweb_v1:hvd"
+    )
     assert b.distributions[0].retrieval.source.provider_code == "scb_hvd"
 
 
@@ -258,22 +263,19 @@ def test_codelist_merge_preserves_language_specific_category_order():
 
 
 def test_every_configured_source_has_an_explicit_service_and_owner_disposition():
-    from pathlib import Path
 
+    from metadata_harvest.configuration import providers_for_adapter
     from metadata_harvest.registry import ADAPTERS
     from metadata_harvest.sources import deployment, inventory
 
     configured = set()
-    for adapter, spec in ADAPTERS.items():
-        if spec.configuration:
-            for source in json.loads(
-                Path(spec.configuration).read_text(encoding="utf-8")
-            ):
-                configured.add((adapter, source["code"]))
-                item = deployment(adapter, source["code"])
-                assert item["endpoint"]
-                assert item["software"]
-                assert item["owner"] or item["owner_status"] == "unresolved"
+    for adapter in ADAPTERS:
+        for source in providers_for_adapter(adapter):
+            configured.add((adapter, source["code"]))
+            item = deployment(adapter, source["code"])
+            assert item["endpoint"]
+            assert item["software"]
+            assert item["owner"] or item["owner_status"] == "record_specific"
     assert configured == {(d["adapter"], d["source_code"]) for d in inventory()}
     for a, p, b, q in [
         ("pxweb_v1", "konj", "pxweb_v1", "konjbar"),
@@ -328,12 +330,16 @@ def test_riksbank_api_products_and_pxweb_databases_keep_distinct_catalogs():
         "https://api.riksbank.se/monetary_policy_data/v1/forecasts",
         {},
     )
-    assert swea[1].id == policy[1].id == "urn:nordicintel:service:riksbank"
+    assert (
+        swea[1].id
+        == policy[1].id
+        == "urn:nordicintel:service:riksbank:riksbank:statistics"
+    )
     assert swea[1].to_jsonld() == policy[1].to_jsonld()
     assert swea[0].publisher[0].id == policy[0].publisher[0].id
 
 
-def test_service_identity_and_description_depend_only_on_adapter():
+def test_service_identity_depends_on_binding_and_description_on_adapter():
     from metadata_harvest.models import SourceIdentity
     from metadata_harvest.sources import source_entities
 
@@ -343,10 +349,10 @@ def test_service_identity_and_description_depend_only_on_adapter():
             adapter="pxweb_v1", provider_code=provider, dataset_code="T1", language="sv"
         )
         services.append(source_entities(source, "https://example.org/data", {})[1])
-    assert {s.id for s in services} == {"urn:nordicintel:service:pxweb_v1"}
-    assert len({json.dumps(s.to_jsonld(), sort_keys=True) for s in services}) == 1
-    assert services[0].publisher == []
-    assert services[0].endpoint_url == []
+    assert len({s.id for s in services}) == 5
+    assert len({json.dumps(s.description, sort_keys=True) for s in services}) == 1
+    assert services[0].publisher[0].id == "urn:nordicintel:agent:scb"
+    assert services[0].endpoint_url == ["https://hvduppdrag.scb.se/api/v1"]
 
 
 def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
@@ -407,25 +413,16 @@ def test_compatibility_projection_keeps_descriptive_and_optional_values():
     assert projected == doc
 
 
-def test_service_identity_cannot_expand_to_provider_or_deployment():
-    from metadata_harvest.models import DataService
-    from metadata_harvest.registry import ADAPTERS
-    from metadata_harvest.sources import adapter_service
+def test_services_are_concrete_and_shared_by_distributions_of_that_api():
+    from metadata_harvest.configuration import load_configuration
+    from metadata_harvest.sources import concrete_service
 
     services = [
-        adapter_service(name) for name, spec in ADAPTERS.items() if spec.available
+        concrete_service(binding) for binding in load_configuration().services.values()
     ]
-    assert len({s.id for s in services}) == 12
-    for service in services:
-        assert DataService.from_jsonld(service.to_jsonld()) == service
-    with pytest.raises(ValueError, match="shared globally"):
-        DataService(id="urn:nordicintel:service:scb:pxweb_v1", adapter="pxweb_v1")
-    with pytest.raises(ValueError, match="endpoint details"):
-        DataService(
-            id="urn:nordicintel:service:pxweb_v1",
-            adapter="pxweb_v1",
-            endpoint_url=["https://example.org"],
-        )
+    assert len({s.id for s in services}) == 85
+    assert len({s.adapter for s in services}) == 12
+    assert all(s.endpoint_url for s in services)
 
 
 def test_all_entryscape_owners_use_canonical_organisation_codes():
@@ -454,7 +451,7 @@ def test_all_entryscape_owners_use_canonical_organisation_codes():
         )
         assert catalog.publisher[0].id == "urn:nordicintel:agent:" + owner["code"]
         assert item["source_code"] not in catalog.id
-        assert service.id == "urn:nordicintel:service:entrysoft"
+        assert service.id == item["service_id"]
     both = {item["owner"]["code"] for item in entry if item["owner"]} & {
         item["owner"]["code"] for item in items if item["adapter"] == "pxweb_v1"
     }

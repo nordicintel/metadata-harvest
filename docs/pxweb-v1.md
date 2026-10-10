@@ -2,12 +2,11 @@
 
 The importable `metadata_harvest.adapters.pxweb_v1` package uses website discovery
 and API metadata retrieval. The top-level imports remain supported. Configuration
-is in [`providers.json`](../providers.json); see [provider additions and live evidence](pxweb-registry-gaps.md).
+is in [`catalogs.json`](../catalogs.json); see [provider additions and live evidence](pxweb-registry-gaps.md).
 
 Public `fetch_metadata` returns typed `HarvestContribution` models for shared
 assembly. Accepted collections combine languages per canonical owner; original
-routing aliases and retrieval settings remain distribution-specific. The shared
-`pxweb_v1` DataService is independent of ownership. The SCB main-v1 publication
+routing aliases and retrieval settings remain distribution-specific. Concrete DataServices reference the shared `pxweb_v1` adapter definition. The SCB main-v1 publication
 filter does not remove SCB HVD or other providers. See the [metadata profile](output-contract.md)
 and [owner inventory](source-inventory.md). Discovery dictionaries below remain
 native operational records.
@@ -117,7 +116,7 @@ counters proving that unsolicited direct and redirected browser API requests nev
 reach the server, while explicitly authorized enrichment requests are counted.
 The fixture key is public test data and must never be used for a real service.
 
-The active provider configuration is in `providers.json`:
+The active provider configuration is in `catalogs.json`:
 26 providers, 52 databases, 62 language/database combinations. Run live acceptance
 explicitly (it can take several minutes):
 
