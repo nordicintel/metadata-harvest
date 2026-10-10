@@ -120,6 +120,15 @@ def test_workflow_dispatch_is_one_way_and_before_error_exit():
         )
 
 
+def test_catalog_dispatch_is_skipped_while_a_catalog_run_is_queued():
+    for path in sorted((ROOT / ".github/workflows").glob("*.yml")):
+        content = path.read_text(encoding="utf-8")
+        if "gh workflow run catalog.yml" not in content:
+            continue
+        guard = content.index('IN("requested", "waiting", "pending", "queued")')
+        assert guard < content.index("gh workflow run catalog.yml"), path.name
+
+
 def test_cli_rejects_ignored_source_files(tmp_path, monkeypatch):
     import subprocess
 
