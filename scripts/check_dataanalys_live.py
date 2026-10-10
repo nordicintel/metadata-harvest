@@ -11,12 +11,12 @@ import asyncio
 from datetime import UTC, datetime
 from pathlib import Path
 
-from harvesting.adapters.dataanalys.client import DataanalysClient
-from harvesting.adapters.dataanalys.workflow import discover, fetch_metadata
-from harvesting.storage import write
-from harvesting.validation import validate_retrieval
+from apps.harvest.metadata_adapters.dataanalys.client import DataanalysClient
+from apps.harvest.metadata_adapters.dataanalys.workflow import discover, fetch_metadata
+from apps.harvest.storage import write
+from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
-from retrieval.adapters.dataanalys import REQUIRED_METADATA, retrieve
+from retrieval.data_adapters.dataanalys import REQUIRED_METADATA, retrieve
 
 AREA = "GONV"
 INDICATORS = ("G082", "G013")

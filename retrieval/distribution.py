@@ -237,7 +237,7 @@ async def retrieve_distribution(
             or not set(values) <= available[code]
         ):
             raise ValueError(f"Invalid selection: {code}")
-    module = import_module(f"retrieval.adapters.{adapter}")
+    module = import_module(f"retrieval.data_adapters.{adapter}")
     resolved = {}
     for pointer in module.REQUIRED_METADATA:
         value = metadata

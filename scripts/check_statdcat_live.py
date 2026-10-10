@@ -8,10 +8,10 @@ from pathlib import Path
 
 import aiohttp
 
-from harvesting.accepted import load_contributions, read_records
-from harvesting.models import Dataset
-from harvesting.statdcat import convert_dataset, legacy_document
-from harvesting.validation import validate_retrieval
+from apps.harvest.accepted import load_contributions, read_records
+from apps.harvest.contributions import convert_dataset, legacy_document
+from apps.model.models import Dataset
+from apps.model.validation import validate_retrieval
 from retrieval import retrieve_distribution
 
 
@@ -83,7 +83,7 @@ async def main():
                 else axis.categories[:1]
                 for axis in distribution.retrieval.dimensions
             }
-            mod = importlib.import_module(f"retrieval.adapters.{adapter}")
+            mod = importlib.import_module(f"retrieval.data_adapters.{adapter}")
             metadata = {}
             for pointer in mod.REQUIRED_METADATA:
                 value = old

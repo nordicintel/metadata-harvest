@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from urllib.parse import unquote
 
-from harvesting.configuration import providers_for_adapter
+from apps.configuration import providers_for_adapter
 
 
 def summarize(providers, reports):

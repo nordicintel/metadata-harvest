@@ -8,18 +8,19 @@ from pathlib import Path
 
 import aiohttp
 
-from harvesting.adapters.pxweb_v1.discovery import discover_provider
-from harvesting.adapters.pxweb_v1.metadata import get_pxweb_metadata
-from harvesting.adapters.pxweb_v2.client import Client
-from harvesting.adapters.pxweb_v2.metadata import fetch_metadata
-from harvesting.configuration import providers_for_adapter
-from harvesting.storage import JsonlStore, now, write
-from harvesting.validation import validate_metadata, validate_retrieval
+from apps.configuration import providers_for_adapter
+from apps.harvest.metadata_adapters.pxweb_v1.discovery import discover_provider
+from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
+from apps.harvest.metadata_adapters.pxweb_v2.client import Client
+from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_metadata
+from apps.harvest.storage import JsonlStore, now, write
+from apps.harvest.validation import validate_metadata
+from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
 
 
 async def retrieve(document, adapter, interval):
-    module = importlib.import_module(f"retrieval.adapters.{adapter}")
+    module = importlib.import_module(f"retrieval.data_adapters.{adapter}")
     identity = document["extension"]["nordicintel"]
     metadata = {
         "/dimension": document["dimension"],

@@ -47,7 +47,7 @@ jobs:
         env:
           SCHEDULE_CRON: ${{ github.event.schedule }}
           MANUAL_FULL: ${{ inputs.full }}
-        run: uv run python -m harvesting.scheduling resolve --adapter uka
+        run: uv run python -m apps.operations.scheduling resolve --adapter uka
       - id: run
         env:
           GH_TOKEN: ${{ github.token }}
@@ -56,12 +56,12 @@ jobs:
           args=()
           if [ -n "$INDICATORS" ]; then read -ra ids <<< "$INDICATORS"; args+=(--indicator "${ids[@]}"); fi
           if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
-          uv run python -m harvesting.monitor run --name uka -- python -m harvesting.runner run --adapter uka "${args[@]}"
+          uv run python -m apps.operations.monitor run --name uka -- python -m apps.operations.harvest run --adapter uka "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m apps.operations.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -101,14 +101,14 @@ jobs:
           name: uka-${{ github.run_attempt }}
           path: output/uka/
       - id: collect
-        run: uv run python -m harvesting.runner collect --adapter uka
+        run: uv run python -m apps.operations.harvest collect --adapter uka
       - name: Publish current UKÄ metadata and errors
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m harvesting.runner publish --adapter uka --run-id "$RUN_ID"
+          uv run python -m apps.operations.harvest publish --adapter uka --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -116,7 +116,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run catalog.yml --ref main
       - name: Fail only when a whole scope failed
-        run: uv run python -m harvesting.outcome --adapter uka
+        run: uv run python -m apps.operations.outcome --adapter uka
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

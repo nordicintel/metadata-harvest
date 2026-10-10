@@ -51,12 +51,12 @@ jobs:
           args=()
           if [ -n "$SUBJECTS" ]; then read -ra ids <<< "$SUBJECTS"; args+=(--subject "${ids[@]}"); fi
           if [ -n "$LANGUAGES" ]; then read -ra langs <<< "$LANGUAGES"; args+=(--language "${langs[@]}"); fi
-          uv run python -m harvesting.monitor run --name sdb -- python -m harvesting.runner run --adapter sdb "${args[@]}"
+          uv run python -m apps.operations.monitor run --name sdb -- python -m apps.operations.harvest run --adapter sdb "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m apps.operations.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -96,14 +96,14 @@ jobs:
           name: sdb-${{ github.run_attempt }}
           path: output/sdb/
       - id: collect
-        run: uv run python -m harvesting.runner collect --adapter sdb
+        run: uv run python -m apps.operations.harvest collect --adapter sdb
       - name: Publish current SDB metadata and errors
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m harvesting.runner publish --adapter sdb --run-id "$RUN_ID"
+          uv run python -m apps.operations.harvest publish --adapter sdb --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -111,7 +111,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run catalog.yml --ref main
       - name: Fail only when a whole scope failed
-        run: uv run python -m harvesting.outcome --adapter sdb
+        run: uv run python -m apps.operations.outcome --adapter sdb
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

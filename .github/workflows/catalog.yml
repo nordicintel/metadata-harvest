@@ -29,11 +29,11 @@ jobs:
       - name: Install 7-Zip
         run: sudo apt-get update && sudo apt-get install --yes 7zip
       - name: Build from accepted files only
-        run: uv run python -m harvesting.catalog build
+        run: uv run python -m apps.operations.catalog build
       - name: Publish catalog archives and coverage state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run python -m harvesting.catalog publish
+          uv run python -m apps.operations.catalog publish
       - name: Fail only when an adapter's collections could not be taken
-        run: uv run python -m harvesting.outcome --adapter catalog
+        run: uv run python -m apps.operations.outcome --adapter catalog

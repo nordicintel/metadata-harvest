@@ -35,6 +35,7 @@ from retrieval import retrieve_distribution
 entries = m.entry_points(group='nordicintel.retrieval')
 for entry in entries:
     entry.load()
+assert importlib.util.find_spec('apps') is None
 assert importlib.util.find_spec('harvesting') is None
 assert importlib.util.find_spec('metadata_harvest') is None
 installed = {d.metadata['Name'].lower() for d in m.distributions()}
@@ -59,7 +60,7 @@ session=Session()
 result=asyncio.run(retrieve_distribution(session,distribution,selection={'x':['01']}))
 assert result['value']==[0]
 assert session.calls==[('https://example.org/data?lang=sv&outputFormat=json-stat2',{'json':{'selection':[{'variableCode':'x','valueCodes':['01']}]}})]
-assert not any(k.startswith(('harvesting','metadata_harvest','pydantic','zstandard','httpx','playwright','jsonschema')) for k in sys.modules)
+assert not any(k.startswith(('apps','harvesting','metadata_harvest','pydantic','zstandard','httpx','playwright','jsonschema')) for k in sys.modules)
 print(json.dumps(sorted(e.name for e in entries)))
 """
     with tempfile.TemporaryDirectory(prefix="metadata-wheel-") as temporary:

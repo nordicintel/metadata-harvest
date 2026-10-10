@@ -9,11 +9,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import quote, unquote
 
-from harvesting.adapters.pxweb_v1.discovery import get_pxweb_tables
-from harvesting.adapters.pxweb_v1.metadata import get_pxweb_metadata
-from harvesting.configuration import providers_for_adapter
-from harvesting.mapping import source_record
-from harvesting.validation import validate_metadata
+from apps.configuration import providers_for_adapter
+from apps.harvest.metadata_adapters.pxweb_v1.discovery import get_pxweb_tables
+from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
+from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
+from apps.harvest.validation import validate_metadata
 
 
 class RequestAudit(logging.Handler):
@@ -37,12 +37,12 @@ async def run(provider, output, *, limit=None):
         "started_at": now(),
         "limited": limit is not None,
         "implementation_sha256": hashlib.sha256(
-            Path("harvesting/adapters/pxweb_v1/metadata.py").read_bytes()
+            Path("apps/harvest/metadata_adapters/pxweb_v1/metadata.py").read_bytes()
         ).hexdigest(),
         "combinations": [],
     }
     audit = RequestAudit()
-    logger = logging.getLogger("harvesting.adapters.pxweb_v1.metadata")
+    logger = logging.getLogger("apps.harvest.metadata_adapters.pxweb_v1.metadata")
     logger.setLevel(logging.INFO)
     logger.addHandler(audit)
 

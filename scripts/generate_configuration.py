@@ -4,22 +4,18 @@ import json
 import sys
 from pathlib import Path
 
-from harvesting.configuration import SourceConfiguration, load_configuration
+from apps.configuration import load_configuration
+from apps.model.configuration import SourceConfiguration
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def artifacts():
-    configuration = load_configuration(ROOT)
-    for name in ("adapters.json", "organisations.json", "catalogs.json"):
-        yield (
-            ROOT / "harvesting/configuration" / name,
-            (ROOT / name).read_text(encoding="utf-8"),
-        )
+    configuration = load_configuration(ROOT / "config")
     schema = SourceConfiguration.model_json_schema()
     schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
     yield (
-        ROOT / "harvesting/schemas/source-configuration.schema.json",
+        ROOT / "schemas/source-configuration.schema.json",
         json.dumps(schema, ensure_ascii=False, indent=2) + "\n",
     )
     reference = [
@@ -27,7 +23,7 @@ def artifacts():
         "",
         "Generated from the configuration Pydantic models; do not edit by hand.",
         "",
-        "Configuration fields are internal construction values. Organisation vocabulary aliases are standard RDF properties; published resource mappings are described in [configuration.md](configuration.md). JSON-valued extensions are accepted without changing these models.",
+        "Configuration fields are internal construction values. Organisation vocabulary aliases are standard RDF properties; published resource mappings are described in [configuration guide](README.md). JSON-valued extensions are accepted without changing these models.",
         "",
     ]
     for name, definition in sorted(
@@ -49,11 +45,11 @@ def artifacts():
                 f"| `{field}` | {field in definition.get('required', [])} | `{detail}` |"
             )
         reference.append("")
-    yield ROOT / "docs/configuration-reference.md", "\n".join(reference)
+    yield ROOT / "docs/configuration/reference.md", "\n".join(reference)
     lines = [
         "# Organisation, catalog and concrete service inventory",
         "",
-        "Generated from the three root configuration files; do not edit this inventory directly.",
+        "Generated from the three authoritative configuration files in config/; do not edit this inventory directly.",
         "",
         "Organisations are independent entities. Publisher is a relationship to a catalog or service. The source code is a compatibility routing alias, not an organisation identifier.",
         "",
@@ -72,7 +68,7 @@ def artifacts():
         "Shared hosting retains catalog-specific EntryStore contexts and original discovery origins. Records without supported attribution remain retained with findings; hosts never become invented organisations.",
         "",
     ]
-    yield ROOT / "docs/source-inventory.md", "\n".join(lines)
+    yield ROOT / "docs/configuration/inventory.md", "\n".join(lines)
 
 
 if __name__ == "__main__":

@@ -10,20 +10,19 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from harvesting.adapters.forsakringskassan.api import REPORTS_URL, TEXTS_URL
-from harvesting.adapters.forsakringskassan.client import ForsakringskassanClient
-from harvesting.adapters.forsakringskassan.source import catalogue
-from harvesting.adapters.forsakringskassan.workflow import (
+from apps.harvest.metadata_adapters.forsakringskassan.api import REPORTS_URL, TEXTS_URL
+from apps.harvest.metadata_adapters.forsakringskassan.client import (
+    ForsakringskassanClient,
+)
+from apps.harvest.metadata_adapters.forsakringskassan.source import catalogue
+from apps.harvest.metadata_adapters.forsakringskassan.workflow import (
     check_texts,
     fetch_metadata,
 )
-from harvesting.storage import write
-from harvesting.validation import validate_retrieval
+from apps.harvest.storage import write
+from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
-from retrieval.adapters.forsakringskassan import (
-    REQUIRED_METADATA,
-    retrieve,
-)
+from retrieval.data_adapters.forsakringskassan import REQUIRED_METADATA, retrieve
 
 REPORTS = ("ase-avslutsanledning", "ase-beslut-lan")
 

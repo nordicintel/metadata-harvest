@@ -10,17 +10,14 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from harvesting.adapters.smhi_emissions.api import FILTER_OPTIONS_URL
-from harvesting.adapters.smhi_emissions.client import SmhiClient
-from harvesting.adapters.smhi_emissions.source import parse_filter_options
-from harvesting.adapters.smhi_emissions.workflow import build_substance
-from harvesting.storage import write
-from harvesting.validation import validate_retrieval
+from apps.harvest.metadata_adapters.smhi_emissions.api import FILTER_OPTIONS_URL
+from apps.harvest.metadata_adapters.smhi_emissions.client import SmhiClient
+from apps.harvest.metadata_adapters.smhi_emissions.source import parse_filter_options
+from apps.harvest.metadata_adapters.smhi_emissions.workflow import build_substance
+from apps.harvest.storage import write
+from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
-from retrieval.adapters.smhi_emissions import (
-    REQUIRED_METADATA,
-    retrieve,
-)
+from retrieval.data_adapters.smhi_emissions import REQUIRED_METADATA, retrieve
 
 SUBSTANCES = ("CO2", "NOx")
 REGION, SECTOR = "0180", "4.1"

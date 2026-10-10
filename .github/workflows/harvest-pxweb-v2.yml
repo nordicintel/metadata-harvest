@@ -53,7 +53,7 @@ jobs:
         env:
           SCHEDULE_CRON: ${{ github.event.schedule }}
           MANUAL_FULL: ${{ inputs.full }}
-        run: uv run python -m harvesting.scheduling resolve --adapter pxweb_v2
+        run: uv run python -m apps.operations.scheduling resolve --adapter pxweb_v2
       - id: run
         name: Discover and harvest SCB sv/en
         timeout-minutes: 330
@@ -63,12 +63,12 @@ jobs:
         run: |
           args=()
           if [ "$FULL_REFRESH" = "true" ]; then args+=(--full); fi
-          uv run --extra harvest python -m harvesting.monitor run --name pxweb_v2-scb -- python -m harvesting.runner run --adapter pxweb_v2 "${args[@]}"
+          uv run --extra harvest python -m apps.operations.monitor run --name pxweb_v2-scb -- python -m apps.operations.harvest run --adapter pxweb_v2 "${args[@]}"
       - name: Close interrupted progress check
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m apps.operations.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -110,14 +110,14 @@ jobs:
           name: pxweb-v2-${{ github.run_attempt }}
           path: output/pxweb_v2/
       - id: collect
-        run: uv run --extra harvest python -m harvesting.runner collect --adapter pxweb_v2
+        run: uv run --extra harvest python -m apps.operations.harvest collect --adapter pxweb_v2
       - name: Publish validated SCB output and current status
         env:
           RUN_ID: ${{ steps.collect.outputs.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          uv run --extra harvest python -m harvesting.runner publish --adapter pxweb_v2 --run-id "$RUN_ID"
+          uv run --extra harvest python -m apps.operations.harvest publish --adapter pxweb_v2 --run-id "$RUN_ID"
       - name: Construct catalog from published results
         id: catalog
         continue-on-error: true
@@ -129,9 +129,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ steps.collect.outputs.run_id }}
-        run: uv run --extra harvest python -m harvesting.runner continue --adapter pxweb_v2 --run-id "$RUN_ID"
+        run: uv run --extra harvest python -m apps.operations.harvest continue --adapter pxweb_v2 --run-id "$RUN_ID"
       - name: Fail only when a whole scope failed
-        run: uv run python -m harvesting.outcome --adapter pxweb_v2
+        run: uv run python -m apps.operations.outcome --adapter pxweb_v2
       - name: Report catalog dispatch failure
         if: always() && steps.catalog.outcome == 'failure'
         run: exit 1

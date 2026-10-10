@@ -31,7 +31,7 @@ jobs:
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python -m harvesting.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
+        run: uv run python -m apps.operations.monitor close --conclusion "${{ job.status == 'cancelled' && 'cancelled' || 'failure' }}"
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -50,7 +50,7 @@ jobs:
       - run: uv run --extra harvest playwright install --with-deps chromium
       - run: uv run --extra harvest ruff format --check .
       - run: uv run --extra harvest ruff check .
-      - run: uv run python -m harvesting.scheduling sync --check
+      - run: uv run python -m apps.operations.scheduling sync --check
       - name: Install 7-Zip for catalog tests
         run: sudo apt-get update && sudo apt-get install --yes 7zip
       - run: uv run --extra harvest pytest

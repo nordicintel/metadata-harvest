@@ -8,14 +8,14 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from harvesting.adapters.trafa.api import STRUCTURE_URL
-from harvesting.adapters.trafa.client import TrafaClient
-from harvesting.adapters.trafa.source import product_list
-from harvesting.adapters.trafa.workflow import fetch_metadata
-from harvesting.storage import write
-from harvesting.validation import validate_retrieval
+from apps.harvest.metadata_adapters.trafa.api import STRUCTURE_URL
+from apps.harvest.metadata_adapters.trafa.client import TrafaClient
+from apps.harvest.metadata_adapters.trafa.source import product_list
+from apps.harvest.metadata_adapters.trafa.workflow import fetch_metadata
+from apps.harvest.storage import write
+from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
-from retrieval.adapters.trafa import REQUIRED_METADATA, retrieve
+from retrieval.data_adapters.trafa import REQUIRED_METADATA, retrieve
 
 PRODUCTS = ("T10011", "T10033")
 
