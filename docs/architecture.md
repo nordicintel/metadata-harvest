@@ -17,7 +17,7 @@ modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
 | `apps/migrations/` | Historical profile readers, explicit converters, imports and preservation audits |
 | `apps/operations/` | CLI routing, scheduling, monitoring, progress and outcome reporting |
 | `retrieval/data_adapters/` | Independent consumer observation retrieval implementations |
-| `config/` | Authoritative source inventories, profile declaration, publication settings and schedules |
+| `config/` | Authoritative source inventories, profile declaration, operational settings and schedules |
 | `schemas/` | Generated contracts and labelled supporting schema resources |
 
 Source responses pass native parsing and validation before accepted records advance.

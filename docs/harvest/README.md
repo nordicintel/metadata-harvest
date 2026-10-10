@@ -45,6 +45,8 @@ not a routine response to an unrelated development change.
 After editing it, run `uv run python -m apps.operations.scheduling sync`, then
 `sync --check`, and commit the generated workflow blocks with the configuration.
 Disabling a schedule does not cancel existing jobs or disable manual runs.
+`scheduling.paused = true` in [settings.toml](../../config/settings.toml) blocks
+every scheduled run the same way; sync and commit after changing it too.
 
 ```sh
 uv run python -m apps.operations.monitor status RUN_ID

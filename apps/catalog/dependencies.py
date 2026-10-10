@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import hashlib
 import json
-import tomllib
 from pathlib import Path
 
 from apps.paths import CONFIG, ROOT
+from apps.settings import load as load_settings
 
 
 def _hash(path):
@@ -16,11 +16,7 @@ def _hash(path):
 
 
 def configuration(config_dir: Path = CONFIG) -> tuple[dict, dict]:
-    path = Path(config_dir) / "catalog.toml"
-    config = tomllib.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
-    if type(config.get("include_scb_pxweb_v1", False)) is not bool:
-        raise ValueError("include_scb_pxweb_v1 must be boolean")
-    config.setdefault("include_scb_pxweb_v1", False)
+    config = load_settings(config_dir)["catalog"]
     overrides = Path(config_dir) / "catalog-matches.json"
     matches = (
         json.loads(overrides.read_text(encoding="utf-8")) if overrides.exists() else {}
@@ -29,9 +25,12 @@ def configuration(config_dir: Path = CONFIG) -> tuple[dict, dict]:
 
 
 def dependencies(data: Path, *, config_dir: Path = CONFIG) -> dict:
-    result = {}
+    # Only the catalog section matters; other settings must not force rebuilds.
+    catalog = json.dumps(configuration(config_dir)[0], sort_keys=True)
+    result = {
+        "config:settings.toml[catalog]": hashlib.sha256(catalog.encode()).hexdigest()
+    }
     for name in (
-        "catalog.toml",
         "catalog-matches.json",
         "adapters.json",
         "organisations.json",
@@ -49,6 +48,7 @@ def dependencies(data: Path, *, config_dir: Path = CONFIG) -> dict:
     for name in (
         "configuration.py",
         "paths.py",
+        "settings.py",
         "harvest/contributions.py",
         "harvest/sources.py",
         "harvest/accepted.py",

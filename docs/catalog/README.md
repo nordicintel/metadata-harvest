@@ -32,7 +32,7 @@ metadata and additional distributions enrich matches, with conflicts retained as
 source assertions. Distribution licences remain scoped. Unmatched harvested datasets
 stay included; portal-only datasets are not added.
 
-`include_scb_pxweb_v1` in [catalog.toml](../../config/catalog.toml) filters only SCB's
+`catalog.include_scb_pxweb_v1` in [settings.toml](../../config/settings.toml) filters only SCB's
 main v1 distributions. HVD and other providers remain. Enabling it restores retained
 descriptions at the next build without a source harvest or portal download.
 
