@@ -37,6 +37,9 @@ Open work only: bugs, fixes, features and investigations not yet done.
   ignore the others with the same code.
 - [ ] **kolada** Consider separating municipality and OU tables into distinct
   datasets again instead of one combined dataset — better discoverability.
+- [ ] **catalog** Speed up the catalog build and make it report progress — it
+  runs for 28+ minutes with no logs; idea: rebuild only the files that changed
+  since the last build ([catalog.yml](../.github/workflows/catalog.yml)).
 
 ## Later
 
