@@ -6,7 +6,7 @@ output directory, trims wide columns, writes ``state/tables.jsonl.gz`` and
 publishes the derived collections offline. No request is made: those results
 cost thousands of requests the hosts now refuse.
 
-    uv run --extra harvest python scripts/import_entrysoft.py <rowstore_final> --data data/entrysoft
+    uv run --extra harvest python scripts/migrations/import_entrysoft.py <rowstore_final> --data data/entrysoft
 """
 
 import argparse

@@ -676,7 +676,7 @@ def test_month_precision_and_listing_date_conventions():
 def test_live_comparison_ignores_only_session_uuid():
     import runpy
 
-    compare = runpy.run_path("scripts/check_pxweb_live.py")["comparable"]
+    compare = runpy.run_path("scripts/live/check_pxweb_live.py")["comparable"]
     base = {
         "language": "sv",
         "database_id": "db",

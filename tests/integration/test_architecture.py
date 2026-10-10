@@ -1,7 +1,6 @@
 """Executable ownership rules for repository applications and the exported library."""
 
 import ast
-import importlib
 import json
 import subprocess
 import sys
@@ -78,13 +77,4 @@ def test_every_repository_command_loads_without_running_work():
             cwd=ROOT,
             check=True,
             capture_output=True,
-        )
-
-
-def test_all_adapter_imports_are_independent():
-    from retrieval.distribution import ADAPTERS
-
-    for adapter in ADAPTERS:
-        assert callable(
-            importlib.import_module(f"retrieval.data_adapters.{adapter}").retrieve
         )

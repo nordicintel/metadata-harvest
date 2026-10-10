@@ -136,7 +136,7 @@ Transport errors propagate.
 
 ```powershell
 uv run --extra harvest pytest tests/test_uka_export.py tests/test_uka_source.py tests/test_uka_mapping.py tests/test_uka_client.py tests/test_uka_retrieval.py tests/test_uka_workflow.py
-uv run --extra harvest python scripts/check_uka_live.py
+uv run --extra harvest python scripts/live/check_uka_live.py
 ```
 
 The fixtures are uka-adapter's recorded responses. The live script rebuilds and

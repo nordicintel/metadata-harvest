@@ -4,11 +4,11 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from check_statdcat_live import source
 from pyshacl import validate
 from rdflib import Graph, Namespace
 
 from apps.harvest.contributions import convert_dataset
+from scripts.live.check_statdcat_live import source
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
 shapes = Path("schemas/statdcatap-3.0.0-diagnostic.ttl")

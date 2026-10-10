@@ -26,7 +26,7 @@ jobs:
       - name: Read counters and an individual error before the test worker exits
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run python scripts/check_live_progress.py
+        run: uv run python scripts/checks/check_live_progress.py
       - name: Close interrupted progress check
         if: always()
         env:
@@ -54,7 +54,7 @@ jobs:
       - name: Install 7-Zip for catalog tests
         run: sudo apt-get update && sudo apt-get install --yes 7zip
       - run: uv run --extra harvest pytest
-      - run: uv run --extra harvest python scripts/generate_schema_reference.py --check
-      - run: uv run --extra harvest python scripts/generate_configuration.py --check
+      - run: uv run --extra harvest python scripts/generate/generate_schema_reference.py --check
+      - run: uv run --extra harvest python scripts/generate/generate_configuration.py --check
       - run: uv build
-      - run: uv run --extra harvest python scripts/check_distribution.py
+      - run: uv run --extra harvest python scripts/checks/check_distribution.py

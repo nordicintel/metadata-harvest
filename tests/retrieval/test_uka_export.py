@@ -206,16 +206,10 @@ def test_category_code():
     ],
 )
 def test_parse_value(cell, expected):
-    assert parse_value(cell) == expected
-
-
-def test_parse_value_types():
-    zero, _ = parse_value("0")
-    assert type(zero) is int and zero == 0
-    decimal_zero, _ = parse_value("0,0")
-    assert type(decimal_zero) is float and decimal_zero == 0.0
-    assert type(parse_value("30,5")[0]) is float
-    assert type(parse_value("-51")[0]) is int
+    actual = parse_value(cell)
+    assert actual == expected
+    if expected is not None:
+        assert type(actual[0]) is type(expected[0])
 
 
 # read_export

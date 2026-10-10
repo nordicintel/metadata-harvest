@@ -114,7 +114,7 @@ raise `ValueError`, missing endpoints `LookupError`; upstream errors and cancell
 
 ```powershell
 uv run --extra harvest pytest tests/test_kolada.py tests/test_kolada_workflow.py tests/test_kolada_retrieval.py
-uv run --extra harvest python scripts/check_kolada_live.py
+uv run --extra harvest python scripts/live/check_kolada_live.py
 ```
 
 The opt-in live script checks at most twelve documents across six fixed KPIs and

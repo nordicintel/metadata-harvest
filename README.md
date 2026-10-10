@@ -101,10 +101,10 @@ uv sync --locked --extra harvest
 uv run --extra harvest playwright install chromium
 uv run --extra harvest ruff check .
 uv run --extra harvest ruff format --check .
-uv run --extra harvest python scripts/generate_schema_reference.py --check
+uv run --extra harvest python scripts/generate/generate_schema_reference.py --check
 uv run --extra harvest pytest
 uv build
-uv run --extra harvest python scripts/check_distribution.py
+uv run --extra harvest python scripts/checks/check_distribution.py
 ```
 
 On Linux, browser installation uses `--with-deps`. Deterministic tests are separate

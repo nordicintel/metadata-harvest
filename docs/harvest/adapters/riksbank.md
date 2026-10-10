@@ -214,7 +214,7 @@ fragment = await retrieve(
 
 ```powershell
 uv run --extra harvest pytest tests/riksbank
-uv run --extra harvest python scripts/check_riksbank_live.py
+uv run --extra harvest python scripts/live/check_riksbank_live.py
 ```
 
 The tests use responses recorded from the research samples (see the

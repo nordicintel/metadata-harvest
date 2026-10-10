@@ -228,7 +228,7 @@ fragment = await retrieve(
 
 ```powershell
 uv run --extra harvest pytest tests/forsakringskassan
-uv run --extra harvest python scripts/check_forsakringskassan_live.py
+uv run --extra harvest python scripts/live/check_forsakringskassan_live.py
 ```
 
 The tests use the recorded 2026-10-09 samples (two `meta.json`, the texts excerpt,

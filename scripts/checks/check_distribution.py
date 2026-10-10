@@ -27,7 +27,9 @@ def check(root: Path):
         )
     import tomllib
 
-    project = tomllib.loads((root / "pyproject.toml").read_text())["project"]
+    project = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))[
+        "project"
+    ]
     providers = set(project["entry-points"]["nordicintel.retrieval"])
     code = r"""
 import asyncio, importlib.metadata as m, importlib.util, json, sys
@@ -95,4 +97,4 @@ print(json.dumps(sorted(e.name for e in entries)))
 
 
 if __name__ == "__main__":
-    check(Path(__file__).resolve().parents[1])
+    check(Path(__file__).resolve().parents[2])

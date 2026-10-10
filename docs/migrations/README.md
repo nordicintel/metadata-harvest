@@ -2,7 +2,7 @@
 
 `apps.migrations.profile_reader` reads previous accepted profiles without writes.
 The collections, profile2, entrysoft, audit and verification modules contain
-explicit conversion/import tools. Their script entry points remain under `scripts/`.
+explicit conversion/import tools. Their script entry points remain under `scripts/migrations/`.
 Running ordinary harvesting or catalog commands does not run a corpus migration.
 
 `statdcat-audit/`, `profile2-audit/` and `verification/` contain historical evidence

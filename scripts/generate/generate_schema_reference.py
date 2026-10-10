@@ -2,11 +2,10 @@
 
 import json
 import sys
-from pathlib import Path
 
 from apps.model.models import CodeList, Dataset, HarvestContribution
+from apps.paths import ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
 MODELS = {
     "dataset-metadata": Dataset,
     "codelist": CodeList,

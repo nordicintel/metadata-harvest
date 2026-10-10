@@ -158,7 +158,7 @@ Errors:
 
 ```powershell
 uv run --extra harvest pytest tests/sdb
-uv run --extra harvest python scripts/check_sdb_live.py
+uv run --extra harvest python scripts/live/check_sdb_live.py
 ```
 
 The tests run against an in-process SDB imitation built from sdb-adapter's trimmed

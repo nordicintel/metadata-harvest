@@ -126,7 +126,7 @@ fragment = await retrieve(
 
 ```powershell
 uv run --extra harvest pytest tests/trafa
-uv run --extra harvest python scripts/check_trafa_live.py
+uv run --extra harvest python scripts/live/check_trafa_live.py
 ```
 
 The tests use trafa-adapter's recorded responses for T10011, T10033 and T04010. The

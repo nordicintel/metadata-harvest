@@ -1,8 +1,8 @@
 # Generated profile schemas
 
-`dataset-metadata.schema.json`, `codelist.schema.json` and `harvest-contribution.schema.json` are generated from local Pydantic v2 models. Run `scripts/generate_schema_reference.py` from the repository root. `legacy-dataset-metadata.schema.json` supports native parsing and explicit migration only.
+`dataset-metadata.schema.json`, `codelist.schema.json` and `harvest-contribution.schema.json` are generated from local Pydantic v2 models. Run `scripts/generate/generate_schema_reference.py` from the repository root. `legacy-dataset-metadata.schema.json` supports native parsing and explicit migration only.
 
-`statdcatap-3.0.0-diagnostic.ttl` is the upstream diagnostic shape set pinned by URL, commit and checksum in `../profile.json`. It is used offline by `scripts/check_statdcat_upstream.py`; upstream conformance is not a publication gate.
+`statdcatap-3.0.0-diagnostic.ttl` is the upstream diagnostic shape set pinned by URL, commit and checksum in `../config/profile.json`. It is used offline by `scripts/checks/check_statdcat_upstream.py`; upstream conformance is not a publication gate.
 
 ## Legacy schema provenance
 

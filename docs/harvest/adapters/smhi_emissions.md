@@ -215,7 +215,7 @@ fragment = await retrieve(
 
 ```powershell
 uv run --extra harvest pytest tests/smhi_emissions
-uv run --extra harvest python scripts/check_smhi_emissions_live.py
+uv run --extra harvest python scripts/live/check_smhi_emissions_live.py
 ```
 
 **Test fixtures.**

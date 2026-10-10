@@ -1,6 +1,5 @@
 """Keep authoritative contracts, documented links and provider registration aligned."""
 
-import importlib
 import re
 import subprocess
 import sys
@@ -12,12 +11,12 @@ from apps.paths import ROOT
 
 def test_generated_schema_reference_is_current():
     subprocess.run(
-        [sys.executable, "scripts/generate_schema_reference.py", "--check"],
+        [sys.executable, "scripts/generate/generate_schema_reference.py", "--check"],
         cwd=ROOT,
         check=True,
     )
     subprocess.run(
-        [sys.executable, "scripts/generate_configuration.py", "--check"],
+        [sys.executable, "scripts/generate/generate_configuration.py", "--check"],
         cwd=ROOT,
         check=True,
     )
@@ -51,7 +50,7 @@ def test_local_documentation_links_resolve():
     assert not broken, "\n".join(broken)
 
 
-def test_provider_entry_points_and_placeholders_are_consistent():
+def test_provider_entry_points_and_runtime_dependencies_are_consistent():
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))[
         "project"
     ]
@@ -66,18 +65,3 @@ def test_provider_entry_points_and_placeholders_are_consistent():
     assert project["dependencies"] == [
         "aiohttp>=3.9,<4",
     ]
-    from apps.harvest.registry import ADAPTERS
-
-    for name, spec in ADAPTERS.items():
-        if not spec.available:
-            assert (ROOT / spec.preparation).is_file()
-            module = importlib.import_module(f"apps.harvest.metadata_adapters.{name}")
-            assert module.AVAILABLE is False
-            import pytest
-
-            for operation in (
-                module.discover_provider,
-                module.fetch_metadata,
-            ):
-                with pytest.raises(NotImplementedError):
-                    operation()

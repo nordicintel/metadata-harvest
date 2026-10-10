@@ -88,7 +88,7 @@ and uses the caller's aiohttp session; see the [retrieval guide](../retrieval/RE
 Run **Live PXWeb metadata** manually in GitHub Actions for every web-listed table
 across all configured v1 language/database scopes. It uploads per-table request counts, category
 coverage, timestamps, hashes and failures. Local smoke checks can use
-`uv run --extra harvest python scripts/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
+`uv run --extra harvest python scripts/live/check_metadata_live.py --provider mi --output output/mi-metadata.json --limit 1`;
 limited runs deliberately never count as full acceptance. A failed GET, POST,
 recovery or completeness check raises an error rather than returning a partial
 dataset. Store/rebuild successfully before advancing the processed `published` value.
@@ -121,11 +121,11 @@ The active provider configuration is in `config/catalogs.json`:
 explicitly (it can take several minutes):
 
 ```powershell
-uv run --extra harvest python scripts/check_pxweb_live.py
+uv run --extra harvest python scripts/live/check_pxweb_live.py
 # Optional focused rerun:
-uv run --extra harvest python scripts/check_pxweb_live.py --provider linkoping --output output/linkoping.json
+uv run --extra harvest python scripts/live/check_pxweb_live.py --provider linkoping --output output/linkoping.json
 # Resume an interrupted run without discarding successful checks:
-uv run --extra harvest python scripts/check_pxweb_live.py --resume
+uv run --extra harvest python scripts/live/check_pxweb_live.py --resume
 ```
 
 The runner writes per-combination counts, errors, exact API/web input comparisons,

@@ -2,7 +2,7 @@ import runpy
 
 
 def test_matrix_summary_requires_every_combination_once():
-    summarize = runpy.run_path("scripts/summarize_pxweb_live.py")["summarize"]
+    summarize = runpy.run_path("scripts/live/summarize_pxweb_live.py")["summarize"]
     providers = [{"code": "p", "languages": ["sv"], "database_ids": ["db"]}]
     item = {
         "provider": "p",
@@ -20,7 +20,7 @@ def test_matrix_summary_requires_every_combination_once():
 
 
 def test_hidden_discovery_database_does_not_hide_record_mismatches():
-    accepted = runpy.run_path("scripts/check_pxweb_live.py")["accepted"]
+    accepted = runpy.run_path("scripts/live/check_pxweb_live.py")["accepted"]
     report = {
         "expected_combinations": 1,
         "combinations": [
@@ -46,7 +46,7 @@ def test_hidden_discovery_database_does_not_hide_record_mismatches():
 
 
 def test_metadata_summary_rejects_partial_duplicate_and_failed_coverage():
-    summarize = runpy.run_path("scripts/summarize_metadata_live.py")["summarize"]
+    summarize = runpy.run_path("scripts/live/summarize_metadata_live.py")["summarize"]
     providers = [{"code": "p", "languages": ["sv"], "database_ids": ["db"]}]
     combo = {
         "language": "sv",

@@ -1,13 +1,11 @@
-"""Generate package snapshots, configuration schema and source inventory."""
+"""Generate configuration schema, model reference and source inventory."""
 
 import json
 import sys
-from pathlib import Path
 
 from apps.configuration import load_configuration
 from apps.model.configuration import SourceConfiguration
-
-ROOT = Path(__file__).resolve().parents[1]
+from apps.paths import ROOT
 
 
 def artifacts():

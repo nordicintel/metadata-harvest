@@ -55,8 +55,11 @@ applications, Pydantic or compression dependencies.
 Run `uv sync --locked --extra harvest`, then use `uv run python -m
 apps.operations.harvest --help` for harvesting commands. The other operation modules
 are `catalog`, `portal`, `scheduling`, `monitor` and `outcome`. Scripts delegate
-migration/import work to application functions; live-check scripts remain explicit
-developer tools. No old application import paths are supported.
+migration/import work to application functions. `scripts/migrations/` contains those
+entry points; `scripts/generate/` owns contract and documentation generators,
+`scripts/checks/` contains offline and CI verification tools, and `scripts/live/`
+contains opt-in provider checks and their report summaries. Run scripts from the
+checkout with `uv run python scripts/<purpose>/<tool>.py`. No old application import paths are supported.
 
 New catalog output uses two deterministic Zstandard level 6 streams with checksums:
 `catalog.jsonl.zst` and `codelists.jsonl.zst`. Historical 7-Zip output remains readable.
@@ -68,3 +71,13 @@ Generated contracts and reference documentation are checked by the two generator
 scripts. [Configuration](configuration/README.md), [harvesting](harvest/README.md),
 [catalog](catalog/README.md), [publication](publication/README.md) and
 [retrieval](retrieval/README.md) document the corresponding interfaces.
+
+## Workflows
+
+`checks.yml` verifies development changes. `live-pxweb.yml` and
+`live-metadata.yml` run explicit provider matrices and summarize retained evidence;
+each job installs its own environment. The `harvest*.yml` workflows collect accepted
+metadata, `refresh-portal.yml` refreshes the accepted portal snapshot, and
+`catalog.yml` builds and publishes the shared catalog. Scheduled blocks are generated
+from `config/schedules.toml`; workflow filenames remain execution identities in the
+adapter registry. Publication jobs share the `production-publication` lock.

@@ -28,7 +28,7 @@ statistics without an API of their own.
 
 ## Accepted baseline and rate limits
 
-The baseline was imported with `scripts/import_entrysoft.py` from a harvest that
+The baseline was imported with `scripts/migrations/import_entrysoft.py` from a harvest that
 cost thousands of requests. The hosts now rate-limit us, so **no run repeats that
 harvest**: tables are reharvested only when their catalogue `modified` markers
 change, a table without markers costs one `_limit=1` request to compare its row
@@ -109,7 +109,7 @@ with `REQUIRED_METADATA = ("/id", "/dimension", "/extension/entrysoft")`.
 ```powershell
 uv run --extra harvest python -m apps.operations.harvest run --adapter entrysoft --provider-code catalogalese --max-requests 40
 uv run --extra harvest python -m apps.operations.harvest collect --adapter entrysoft
-uv run --extra harvest python scripts/check_entrysoft_live.py --provider catalogalese   # from a GitHub runner only
+uv run --extra harvest python scripts/live/check_entrysoft_live.py --provider catalogalese   # from a GitHub runner only
 ```
 
 A run fails before any request when three reference hosts' search endpoints do not
@@ -121,7 +121,7 @@ stop a run so that a bug does not repeat across hundreds of tables.
 
 ```powershell
 uv run --extra harvest pytest tests/entrysoft
-uv run --extra harvest python scripts/import_entrysoft.py <rowstore_final> --data <scratch>   # offline: 442 documents, grouping equals the proof of concept
+uv run --extra harvest python scripts/migrations/import_entrysoft.py <rowstore_final> --data <scratch>   # offline: 442 documents, grouping equals the proof of concept
 ```
 
 ## Limitations

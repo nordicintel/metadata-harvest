@@ -67,10 +67,10 @@ are bundled for audit, not runtime input.
 ## Generated artifacts and profile compatibility
 
 ```powershell
-uv run python scripts/generate_configuration.py
-uv run python scripts/generate_schema_reference.py
-uv run python scripts/generate_configuration.py --check
-uv run python scripts/generate_schema_reference.py --check
+uv run python scripts/generate/generate_configuration.py
+uv run python scripts/generate/generate_schema_reference.py
+uv run python scripts/generate/generate_configuration.py --check
+uv run python scripts/generate/generate_schema_reference.py --check
 ```
 
 These commands generate JSON Schema, the source inventory and model documentation.
@@ -98,7 +98,7 @@ context adds IRI typing for organisation and catalog homepages.
 To convert an existing committed profile 1 corpus into a separate candidate:
 
 ```powershell
-uv run python scripts/migrate_profile2.py --source data --output output/profile2-migration
+uv run python scripts/migrations/migrate_profile2.py --source data --output output/profile2-migration
 ```
 
 This preserves the existing publication enrichment, writes per-record migration

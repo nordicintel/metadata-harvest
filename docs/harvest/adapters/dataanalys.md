@@ -292,7 +292,7 @@ fragment = await retrieve(
 
 ```powershell
 uv run --extra harvest pytest tests/dataanalys
-uv run --extra harvest python scripts/check_dataanalys_live.py
+uv run --extra harvest python scripts/live/check_dataanalys_live.py
 ```
 
 - **Tests.** The tests use answers recorded on 2026-10-09 for GONV (G082, G013,

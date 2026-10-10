@@ -1,4 +1,4 @@
-"""Registry isolation, conversion and unavailable adapter boundaries."""
+"""Registry isolation, explicit conversion and accepted source refresh."""
 
 import json
 
@@ -7,7 +7,7 @@ import pytest
 from tests.harvest.test_workflow import dataset, record
 
 
-def test_registry_separates_ready_adapters_from_prepared_placeholders():
+def test_registry_contains_supported_adapters_and_rejects_unknown_names():
     from apps.harvest.registry import ADAPTERS, get_adapter
 
     assert {name for name, spec in ADAPTERS.items() if spec.available} == {
@@ -68,22 +68,8 @@ def test_invalid_conversion_never_creates_a_publishable_candidate(tmp_path):
     assert not target.exists()
 
 
-def test_refresh_listing_does_not_replace_accepted_metadata_title():
-    from apps.harvest.metadata_adapters.pxweb_v1.mapping import (
-        map_metadata,
-        source_record,
-    )
-    from apps.harvest.storage import refresh_identity
-
-    row = record()
-    doc = map_metadata(dataset(row), row, "pxweb_v1")
-    doc["label"] = "Provider metadata title"
-    refresh_identity(doc, {**row, "title": "New catalogue title"})
-    assert doc["label"] == "Provider metadata title"
-    assert source_record(doc)["title"] == "New catalogue title"
-
-
 def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_title():
+    from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
     from apps.harvest.storage import refresh_identity, validate_dataset
 
     row = record()
@@ -103,6 +89,7 @@ def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_ti
     assert shared["source_url"] == moved["web_url"]
     assert shared["paths"] == [[{"id": "N", "label": "New theme"}]]
     assert doc["label"] == "Accepted source title"
+    assert source_record(doc)["title"] == moved["title"]
     assert doc["updated"] == row["published"]
     validate_dataset(doc, moved)
     refresh_identity(doc, {**moved, "category_path": [], "web_url": ""})

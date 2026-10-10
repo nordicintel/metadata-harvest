@@ -2,7 +2,7 @@
 
 Local [Pydantic v2 models](../../apps/model/models.py) define NordicIntel profile **2.0.0**. The independently pinned upstream basis is [StatDCAT-AP 3.0.0](https://semiceu.github.io/StatDCAT-AP/drafts/3.0.0/); its exact commit and document hash are in [profile.json](../../config/profile.json). This is an extensible profile, not a promise of exact upstream shape conformance.
 
-Generate JSON Schema and [field documentation](reference.md) with `uv run python scripts/generate_schema_reference.py`; CI checks both against the models. The explicitly named legacy schema remains only for native parsing and worker representation and explicit historical readers.
+Generate JSON Schema and [field documentation](reference.md) with `uv run python scripts/generate/generate_schema_reference.py`; CI checks both against the models. The explicitly named legacy schema remains only for native parsing and worker representation and explicit historical readers.
 
 ## Identity and structure
 
