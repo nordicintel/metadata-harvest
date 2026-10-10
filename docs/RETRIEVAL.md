@@ -1,23 +1,18 @@
-> Transition reference: this documents the legacy native/observation shape. The authoritative published metadata contract is the [Pydantic StatDCAT profile](output-contract.md); new consumers use typed distributions.
+# Adapter retrieval contract
 
-# Legacy adapter retrieval contract
+Each adapter owns its consumer observation retrieval function in
+`retrieval.adapters.<adapter>`. Call it directly with the arguments below, or use
+`retrieve_distribution(session, distribution, selection=...)` with a compact
+catalog distribution as described in the [retrieval guide](retrieval-guide.md).
+The dispatcher is optional; harvesting does not use it.
 
-An API adapter makes one function separately installable and importable: the live
-service calls it to fetch selected observations for a dataset whose metadata has
-already been harvested. This document is the contract for that function: packaging,
-discovery, inputs, result and errors. [The result schema](../harvesting/schemas/retrieval-result.schema.json)
-validates the returned structure.
-
-New callers use `retrieve_distribution(session, distribution, selection=...)` as
-shown in the [typed retrieval guide](retrieval-guide.md). Dispatch follows the
-distribution adapter, so one owner can expose multiple APIs. The provider entry
-points and metadata pointers below document the compatibility interface retained
-for one transition release, using [legacy native documents](DATASET-METADATA.md).
+[The result schema](../harvesting/schemas/retrieval-result.schema.json) validates
+returned observations. Metadata models remain repository-only.
 
 ## Packaging and discovery
 
 All implemented adapters share the `metadata-harvest` distribution. A plain install, without extras, provides the
-retrieval module. Its runtime dependencies are `aiohttp`, Pydantic v2 and the standard library. Harvesting-only
+retrieval module. Its runtime dependencies are `aiohttp` and the standard library. Harvesting-only
 dependencies belong under the `harvest` extra. The retrieval module never imports
 harvesting modules or harvesting-only dependencies; harvesting code may import
 retrieval code.
@@ -29,7 +24,7 @@ it supports. Distribution, package, module and function names are the adapter's 
 
 ```toml
 [project]
-dependencies = ["aiohttp>=3.9,<4", "pydantic>=2.12,<3"]
+dependencies = ["aiohttp>=3.9,<4"]
 
 [project.optional-dependencies]
 harvest = ["..."]

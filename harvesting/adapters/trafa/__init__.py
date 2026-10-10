@@ -1,4 +1,4 @@
-"""Trafikanalys metadata and retrieval; harvesting imports stay lazy."""
+"""Trafikanalys metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -14,9 +14,3 @@ async def fetch_metadata(record, *, client):
     from harvesting.adapters.trafa.workflow import fetch_metadata as fetch
 
     return as_contributions(await fetch(record, client=client), adapter="trafa")
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.trafa.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

@@ -9,7 +9,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import quote, unquote
 
-from harvesting import get_pxweb_metadata, get_pxweb_tables
+from harvesting.adapters.pxweb_v1.discovery import get_pxweb_tables
+from harvesting.adapters.pxweb_v1.metadata import get_pxweb_metadata
 from harvesting.configuration import providers_for_adapter
 from harvesting.mapping import source_record
 from harvesting.validation import validate_metadata

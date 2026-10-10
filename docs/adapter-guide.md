@@ -12,8 +12,8 @@ explicit small table, not a plugin system. Placeholder adapters raise
 3. Keep complete source change signals in the accepted `source_record`; use shared
    storage and artifact helpers with adapter-owned discovery/reconciliation rules.
 4. Supply typed distribution retrieval bindings and implement standalone async
-   retrieval, importing only base dependencies. `REQUIRED_METADATA` remains a
-   compatibility mechanism for the transition release.
+   retrieval, importing only base dependencies. `REQUIRED_METADATA` declares the operational fields needed by the adapter;
+   the optional catalog dispatcher resolves them internally.
 5. Add fixtures, lifecycle/isolation tests, bounded live checks, complete automated
    acceptance and a subsequent reuse/byte-stability check before claiming readiness.
 6. Deliver provider coverage, source mappings, preparation gaps and verification

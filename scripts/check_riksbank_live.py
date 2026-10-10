@@ -13,12 +13,12 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from harvesting.adapters.riksbank.client import RiksbankClient
-from harvesting.adapters.riksbank.retrieval import REQUIRED_METADATA, retrieve
 from harvesting.adapters.riksbank.workflow import build_record, discover_api
 from harvesting.configuration import providers_for_adapter
-from harvesting.semantics import category_codes
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.riksbank import REQUIRED_METADATA, retrieve
 
 SAMPLES = {"swea": "swea_group_2", "mpd": "mpd_SEQGDPNAYSA", "swestr": "swestr"}
 

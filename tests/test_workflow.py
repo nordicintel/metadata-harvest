@@ -5,8 +5,7 @@ from copy import deepcopy
 import pytest
 from playwright.async_api import async_playwright
 
-from harvesting import get_pxweb_tables
-from harvesting.adapters.pxweb_v1.discovery import _collect_database
+from harvesting.adapters.pxweb_v1.discovery import _collect_database, get_pxweb_tables
 from harvesting.mapping import map_metadata, source_record
 from harvesting.runner import publish
 from harvesting.storage import JsonlStore, filename, group_records, read, write

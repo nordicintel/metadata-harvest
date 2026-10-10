@@ -12,11 +12,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from harvesting.adapters.dataanalys.client import DataanalysClient
-from harvesting.adapters.dataanalys.retrieval import REQUIRED_METADATA, retrieve
 from harvesting.adapters.dataanalys.workflow import discover, fetch_metadata
-from harvesting.semantics import category_codes
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.dataanalys import REQUIRED_METADATA, retrieve
 
 AREA = "GONV"
 INDICATORS = ("G082", "G013")

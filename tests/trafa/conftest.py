@@ -217,7 +217,7 @@ async def retrieve_from(fake: FakeTrafa, selection, *, product="t10011", **kwarg
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from harvesting.adapters.trafa.retrieval import retrieve
+    from retrieval.adapters.trafa import retrieve
 
     app = web.Application()
     app.router.add_get("/api/data", fake.handle)

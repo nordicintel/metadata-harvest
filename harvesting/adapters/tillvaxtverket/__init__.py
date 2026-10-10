@@ -1,4 +1,4 @@
-"""Tillväxtverket open data metadata and retrieval; harvesting imports stay lazy."""
+"""Tillväxtverket open data metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -22,9 +22,3 @@ async def fetch_metadata(record, *, client):
     return as_contributions(
         await fetch(record, client=client), adapter="tillvaxtverket"
     )
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.tillvaxtverket.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

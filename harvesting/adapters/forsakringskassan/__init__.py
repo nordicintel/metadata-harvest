@@ -1,4 +1,4 @@
-"""Försäkringskassan metadata and retrieval; harvesting imports stay lazy."""
+"""Försäkringskassan metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -20,9 +20,3 @@ async def fetch_metadata(record, *, client):
     return as_contributions(
         await fetch(record, client=client), adapter="forsakringskassan"
     )
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.forsakringskassan.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

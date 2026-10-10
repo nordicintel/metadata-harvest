@@ -8,14 +8,14 @@ from aiohttp import web
 from aiohttp.test_utils import TestServer
 
 from harvesting.adapters.entrysoft.mapping import BLANK, to_document
-from harvesting.adapters.entrysoft.retrieval import (
+from harvesting.validation import validate_retrieval
+from retrieval.adapters.entrysoft import (
     MAX_REQUESTS,
     REQUIRED_METADATA,
     filter_value,
     number,
     retrieve,
 )
-from harvesting.validation import validate_retrieval
 from tests.entrysoft.conftest import page
 
 

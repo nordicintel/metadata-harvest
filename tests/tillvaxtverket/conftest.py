@@ -208,7 +208,7 @@ async def retrieve_from(fake: FakeDivePort, selection, **kwargs):
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from harvesting.adapters.tillvaxtverket.retrieval import retrieve
+    from retrieval.adapters.tillvaxtverket import retrieve
 
     app = web.Application()
     app.router.add_get("/api/api/query/inkvartering/data/{name}", fake.handle)

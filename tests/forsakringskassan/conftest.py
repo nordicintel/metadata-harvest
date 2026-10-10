@@ -142,7 +142,7 @@ async def retrieve_from(fake: FakeTables, selection, **kwargs):
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from harvesting.adapters.forsakringskassan.retrieval import retrieve
+    from retrieval.adapters.forsakringskassan import retrieve
 
     app = web.Application()
     app.router.add_get("/v1/{report}/{name}.json", fake.handle)

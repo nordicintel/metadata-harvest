@@ -51,7 +51,7 @@ configuration, accepted collections and publication logic remain repository code
 
 All existing `nordicintel.retrieval` entry-point names are preserved. Consumers of
 old installed Python imports should use `retrieval` or `retrieval.adapters.<adapter>`.
-The repository's typed `harvesting.retrieve_distribution` bridge remains available.
+Retrieval is imported exclusively from `retrieval`; harvesting has no retrieval aliases.
 See [retrieval usage](docs/retrieval-guide.md) and the
 [dependency inventory](docs/retrieval-dependencies.md).
 
@@ -88,7 +88,7 @@ catalog report; building a catalog never turns incomplete coverage into success.
 - [Migration verification and preservation audit](docs/statdcat-audit/README.md)
 - [Output contract and migration](docs/output-contract.md)
 - [Legacy native mapping](docs/DATASET-METADATA.md) and [generated StatDCAT field reference](docs/DATASET-METADATA-REFERENCE.md)
-- [Typed retrieval usage](docs/retrieval-guide.md) and [legacy compatibility contract](docs/RETRIEVAL.md)
+- [Catalog retrieval usage](docs/retrieval-guide.md) and [adapter retrieval contract](docs/RETRIEVAL.md)
 - [Adapter implementation guide](docs/adapter-guide.md)
 - [Jobs, schedules and recovery](docs/harvesting.md)
 - [Catalog assembly and enrichment](docs/catalog.md)

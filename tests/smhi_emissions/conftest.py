@@ -196,7 +196,7 @@ async def retrieve_from(fake: FakeSmhi, selection, *, substance="CO2", **kwargs)
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from harvesting.adapters.smhi_emissions.retrieval import retrieve
+    from retrieval.adapters.smhi_emissions import retrieve
 
     app = web.Application()
     app.router.add_get("/api/getdata/", fake.getdata)

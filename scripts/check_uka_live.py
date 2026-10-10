@@ -12,12 +12,12 @@ from pathlib import Path
 import aiohttp
 
 from harvesting.adapters.uka.client import TIMEOUT, USER_AGENT, UkaClient
-from harvesting.adapters.uka.retrieval import REQUIRED_METADATA, retrieve
 from harvesting.adapters.uka.source import parse_catalogue
 from harvesting.adapters.uka.workflow import fetch_metadata
 from harvesting.configuration import providers_for_adapter
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval.adapters.uka import REQUIRED_METADATA, retrieve
 
 INDICATORS = {"15", "72", "97"}
 

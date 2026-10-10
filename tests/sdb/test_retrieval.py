@@ -7,8 +7,8 @@ from pathlib import Path
 import aiohttp
 import pytest
 
-from harvesting.adapters.sdb import retrieval
-from harvesting.adapters.sdb.retrieval import (
+from retrieval.adapters import sdb as retrieval
+from retrieval.adapters.sdb import (
     chunk_codes,
     parse_value,
     retrieve,

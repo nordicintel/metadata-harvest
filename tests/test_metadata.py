@@ -10,8 +10,12 @@ from pathlib import Path
 
 import pytest
 
-from harvesting import get_pxweb_metadata
-from harvesting.adapters.pxweb_v1.metadata import _generate, _merge, _read_sample
+from harvesting.adapters.pxweb_v1.metadata import (
+    _generate,
+    _merge,
+    _read_sample,
+    get_pxweb_metadata,
+)
 
 
 def table(url="https://example.test/Prefix/api/v1/sv/Database/Folder/T%20%C3%A5.px"):

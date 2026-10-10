@@ -13,13 +13,13 @@ from harvesting.adapters.pxweb_v1.metadata import get_pxweb_metadata
 from harvesting.adapters.pxweb_v2.client import Client
 from harvesting.adapters.pxweb_v2.metadata import fetch_metadata
 from harvesting.configuration import providers_for_adapter
-from harvesting.semantics import category_codes
 from harvesting.storage import JsonlStore, now, write
 from harvesting.validation import validate_metadata, validate_retrieval
+from retrieval._semantics import category_codes
 
 
 async def retrieve(document, adapter, interval):
-    module = importlib.import_module(f"harvesting.adapters.{adapter}.retrieval")
+    module = importlib.import_module(f"retrieval.adapters.{adapter}")
     identity = document["extension"]["nordicintel"]
     metadata = {
         "/dimension": document["dimension"],

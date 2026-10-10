@@ -19,7 +19,7 @@ from aiohttp import web
 )
 def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
     async def run():
-        module = importlib.import_module(f"harvesting.adapters.{adapter}.retrieval")
+        module = importlib.import_module(f"retrieval.adapters.{adapter}")
         requests = []
 
         async def handler(request):
@@ -130,7 +130,7 @@ def test_retrieval_import_does_not_load_harvesting():
         [
             sys.executable,
             "-c",
-            "import json,sys; import harvesting.adapters.pxweb_v1.retrieval; import harvesting.adapters.pxweb_v2.retrieval; print(json.dumps(sorted(sys.modules)))",
+            "import json,sys; import retrieval.adapters.pxweb_v1; import retrieval.adapters.pxweb_v2; print(json.dumps(sorted(sys.modules)))",
         ],
         text=True,
         capture_output=True,
@@ -199,7 +199,7 @@ def test_eliminated_extra_dimension_and_sparse_flags_are_preserved():
 
 
 def test_sundsvall_bootstraps_anonymous_gateway_using_the_callers_session():
-    from harvesting.adapters.pxweb_v1.retrieval import retrieve
+    from retrieval.adapters.pxweb_v1 import retrieve
 
     async def run():
         calls = []

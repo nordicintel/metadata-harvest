@@ -10,12 +10,12 @@ from pathlib import Path
 
 from harvesting.adapters.sdb.client import SdbClient
 from harvesting.adapters.sdb.mapping import time_unit_from_swedish_label
-from harvesting.adapters.sdb.retrieval import REQUIRED_METADATA, retrieve
 from harvesting.adapters.sdb.workflow import fetch_metadata
 from harvesting.configuration import providers_for_adapter
-from harvesting.semantics import category_codes
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.sdb import REQUIRED_METADATA, retrieve
 
 SAMPLE = (("sv", "amning"), ("sv", "dodsorsaker"), ("en", "dodsorsaker"))
 

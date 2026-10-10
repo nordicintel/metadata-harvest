@@ -1,4 +1,4 @@
-"""SMHI Nationella emissionsdatabasen metadata and retrieval; harvesting imports stay lazy."""
+"""SMHI Nationella emissionsdatabasen metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -20,9 +20,3 @@ async def fetch_metadata(record, *, client):
     return as_contributions(
         await fetch(record, client=client), adapter="smhi_emissions"
     )
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.smhi_emissions.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

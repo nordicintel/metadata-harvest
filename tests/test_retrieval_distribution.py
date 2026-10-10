@@ -121,8 +121,13 @@ def test_invalid_selection_fails_before_requests(selection):
         asyncio.run(retrieve_distribution(object(), encoded, selection=selection))
 
 
-def test_repository_forwarders_use_the_same_implementation():
+def test_harvesting_exposes_no_consumer_retrieval():
+    import harvesting
+
+    assert not hasattr(harvesting, "retrieve_distribution")
     for adapter in ADAPTERS:
-        old = importlib.import_module(f"harvesting.adapters.{adapter}.retrieval")
-        new = importlib.import_module(f"retrieval.adapters.{adapter}")
-        assert old is new
+        module = importlib.import_module(f"harvesting.adapters.{adapter}")
+        assert not hasattr(module, "retrieve")
+        assert (
+            importlib.util.find_spec(f"harvesting.adapters.{adapter}.retrieval") is None
+        )

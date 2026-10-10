@@ -3,7 +3,7 @@
 The sole distributed code is the root `retrieval/` folder. The distribution name
 remains `metadata-harvest`; root packaging and one lockfile are retained.
 
-| Adapter | Direct imports | Required compatibility metadata |
+| Adapter | Direct imports | Required adapter metadata |
 |---|---|---|
 | dataanalys | `aiohttp`, `asyncio`, `collections.abc`, `json`, `logging`, `math`, `re`, `typing` | `/id`, `/extension/socialstyrelsen_analys` |
 | entrysoft | `aiohttp`, `collections.abc`, `math`, `re`, `typing` | `/id`, `/dimension`, `/extension/entrysoft` |
@@ -32,10 +32,10 @@ remains `metadata-harvest`; root packaging and one lockfile are retained.
 
 All 85 existing `nordicintel.retrieval` entry-point names in root `pyproject.toml`
 are preserved and target `retrieval.adapters.<adapter>:retrieve`. Routing aliases
-are static compatibility entry points, not a bundled organisation/catalog inventory.
-Compatibility adapter imports forward to the same implementation; internal harvesting
-imports pure helpers directly from their defining modules; typed distribution
-calls serialize with the authoritative repository model before delegation.
+are provider routing entry points, not a bundled organisation/catalog inventory.
+Harvesting imports shared pure helpers directly from their defining modules.
+Retrieval functions are exposed only through `retrieval`; no old forwarding
+modules, adapter wrappers or typed harvesting bridge remain.
 
 ## Verification
 
@@ -58,7 +58,7 @@ resource paths and Actions commands updated together. `uv sync --locked --extra
 harvest` still supplies its environment. All eleven client modules were inspected:
 they implement harvesting transport, retry/pacing and discovery/probe policy, not
 the observation retrieval entry points, and remain in harvesting. Required UKÄ
-export parsing and cube helpers moved into retrieval with forwarding imports.
+export parsing and cube helpers live in retrieval and are imported directly.
 No accepted data, checkpoints or production archives were moved or rebuilt.
 
 ## Ownership rule

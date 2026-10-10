@@ -358,9 +358,9 @@ def test_service_identity_depends_on_binding_and_description_on_adapter():
 def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
     import asyncio
 
-    from harvesting.adapters.pxweb_v1 import retrieval as v1
-    from harvesting.retrieval import retrieve_distribution
     from harvesting.statdcat import convert_dataset
+    from retrieval import retrieve_distribution
+    from retrieval.adapters import pxweb_v1 as v1
 
     doc = legacy(provider="scb_hvd")
     doc["extension"]["pxweb_v1"] = doc["extension"].pop("pxweb_v2")
@@ -374,7 +374,9 @@ def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
     monkeypatch.setattr(v1, "retrieve", retrieve)
     assert asyncio.run(
         retrieve_distribution(
-            object(), distribution, selection={"Region": ["00"], "Tid": ["2021"]}
+            object(),
+            distribution.to_jsonld(),
+            selection={"Region": ["00"], "Tid": ["2021"]},
         )
     ) == {"value": [0]}
     assert calls[0]["provider_code"] == "scb_hvd"
@@ -383,7 +385,7 @@ def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
         asyncio.run(
             retrieve_distribution(
                 object(),
-                distribution,
+                distribution.to_jsonld(),
                 selection={"Region": ["missing"], "Tid": ["2021"]},
             )
         )

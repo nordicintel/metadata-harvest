@@ -6,12 +6,12 @@ import pytest
 
 from harvesting.adapters.smhi_emissions.mapping import build_dataset
 from harvesting.adapters.smhi_emissions.regions import REGIONS
-from harvesting.adapters.smhi_emissions.retrieval import REQUIRED_METADATA
 from harvesting.adapters.smhi_emissions.source import (
     parse_filter_options,
     parse_probe,
 )
 from harvesting.validation import validate_metadata
+from retrieval.adapters.smhi_emissions import REQUIRED_METADATA
 from tests.smhi_emissions.conftest import (
     FILTER_OPTIONS,
     NATIONAL_CO2,

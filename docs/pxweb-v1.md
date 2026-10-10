@@ -12,7 +12,7 @@ and [owner inventory](source-inventory.md). Discovery dictionaries below remain
 native operational records.
 
 ```python
-from harvesting import get_pxweb_tables
+from harvesting.adapters.pxweb_v1.discovery import get_pxweb_tables
 
 records = await get_pxweb_tables(
     "https://example.org/PXWeb/pxweb/",
@@ -61,7 +61,7 @@ retry in a new context using `ignore_https_errors=True`, with a warning.
 ## Complete table metadata
 
 ```python
-from harvesting import get_pxweb_metadata
+from harvesting.adapters.pxweb_v1.metadata import get_pxweb_metadata
 
 dataset = await get_pxweb_metadata(records[0], provider_code="provider-code")
 ```

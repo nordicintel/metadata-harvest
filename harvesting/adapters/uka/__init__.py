@@ -1,4 +1,4 @@
-"""UKÄ metadata and retrieval; harvesting imports stay lazy."""
+"""UKÄ metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -14,9 +14,3 @@ async def fetch_metadata(record, *, client):
     from harvesting.adapters.uka.workflow import fetch_metadata as fetch
 
     return as_contributions(await fetch(record, client=client), adapter="uka")
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.uka.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

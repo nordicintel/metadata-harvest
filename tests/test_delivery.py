@@ -76,7 +76,6 @@ def test_provider_entry_points_and_placeholders_are_consistent():
             for operation in (
                 module.discover_provider,
                 module.fetch_metadata,
-                module.retrieve,
             ):
                 with pytest.raises(NotImplementedError):
                     operation()

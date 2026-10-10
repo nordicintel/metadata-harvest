@@ -293,7 +293,7 @@ def g082() -> dict[str, Any]:
 
 def metadata_of(document: dict[str, Any]) -> dict[str, Any]:
     """Resolve ``REQUIRED_METADATA`` as the service does."""
-    from harvesting.adapters.dataanalys.retrieval import REQUIRED_METADATA
+    from retrieval.adapters.dataanalys import REQUIRED_METADATA
 
     resolved = {}
     for pointer in REQUIRED_METADATA:
@@ -310,7 +310,7 @@ async def retrieve_from(fake: FakeSuperset, document, selection, **overrides):
     from aiohttp import web
     from aiohttp.test_utils import TestServer
 
-    from harvesting.adapters.dataanalys.retrieval import retrieve
+    from retrieval.adapters.dataanalys import retrieve
 
     app = web.Application()
     app.router.add_post("/api/v1/chart/data", fake.handle)

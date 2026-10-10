@@ -52,7 +52,7 @@ Accepted `data/<adapter>/metadata/*.jsonl.gz` collections are grouped by canonic
 | `data/catalog/catalog.7z` | `catalog.jsonl`, one assembled dataset per line |
 | `data/catalog/codelists.7z` | `codelists.jsonl`, one SKOS scheme per line |
 
-Old retrieval entry points remain available for one transition release. New callers use [typed distribution retrieval](retrieval-guide.md), without resolving JSON Pointers.
+Consumers use [catalog distribution retrieval](retrieval-guide.md) or call a retrieval adapter directly. Harvesting exposes no consumer retrieval entry points.
 
 ## Offline migration and recovery
 

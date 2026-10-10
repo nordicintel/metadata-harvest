@@ -12,13 +12,13 @@ from pathlib import Path
 import aiohttp
 
 from harvesting.adapters.entrysoft.client import Client, Pacer
-from harvesting.adapters.entrysoft.retrieval import REQUIRED_METADATA, retrieve
 from harvesting.adapters.entrysoft.state import collection_store
 from harvesting.adapters.entrysoft.workflow import discover_provider
 from harvesting.configuration import providers_for_adapter
-from harvesting.semantics import category_codes
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.entrysoft import REQUIRED_METADATA, retrieve
 
 PROVIDER = "catalogalese"
 

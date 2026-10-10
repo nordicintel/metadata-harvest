@@ -12,15 +12,15 @@ import asyncio
 from pathlib import Path
 
 from harvesting.adapters.tillvaxtverket.client import TillvaxtverketClient
-from harvesting.adapters.tillvaxtverket.retrieval import (
+from harvesting.adapters.tillvaxtverket.source import BY_NAME, DATASETS
+from harvesting.adapters.tillvaxtverket.workflow import _Dataset, fetch_metadata
+from harvesting.storage import write
+from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.tillvaxtverket import (
     REQUIRED_METADATA,
     retrieve,
 )
-from harvesting.adapters.tillvaxtverket.source import BY_NAME, DATASETS
-from harvesting.adapters.tillvaxtverket.workflow import _Dataset, fetch_metadata
-from harvesting.semantics import category_codes
-from harvesting.storage import write
-from harvesting.validation import validate_retrieval
 
 SAMPLE = "GuestNights_Capacity_Revenue_Year"
 

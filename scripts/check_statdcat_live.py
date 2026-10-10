@@ -1,4 +1,4 @@
-"""Bounded live equivalence checks for typed and transition retrieval interfaces."""
+"""Bounded live equivalence checks for direct adapter and catalog retrieval interfaces."""
 
 import asyncio
 import importlib
@@ -10,9 +10,9 @@ import aiohttp
 
 from harvesting.accepted import load_contributions, read_records
 from harvesting.models import Dataset
-from harvesting.retrieval import retrieve_distribution
 from harvesting.statdcat import convert_dataset, legacy_document
 from harvesting.validation import validate_retrieval
+from retrieval import retrieve_distribution
 
 
 class RecordedSession:
@@ -83,7 +83,7 @@ async def main():
                 else axis.categories[:1]
                 for axis in distribution.retrieval.dimensions
             }
-            mod = importlib.import_module(f"harvesting.adapters.{adapter}.retrieval")
+            mod = importlib.import_module(f"retrieval.adapters.{adapter}")
             metadata = {}
             for pointer in mod.REQUIRED_METADATA:
                 value = old
@@ -109,7 +109,7 @@ async def main():
                 session.calls.clear()
                 await asyncio.sleep(1)
                 current = await retrieve_distribution(
-                    session, distribution, selection=selection
+                    session, distribution.to_jsonld(), selection=selection
                 )
                 assert requests == session.calls, "Different HTTP requests"
                 assert current == previous, "Different observation results"

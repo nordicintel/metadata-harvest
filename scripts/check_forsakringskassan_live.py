@@ -12,18 +12,18 @@ from pathlib import Path
 
 from harvesting.adapters.forsakringskassan.api import REPORTS_URL, TEXTS_URL
 from harvesting.adapters.forsakringskassan.client import ForsakringskassanClient
-from harvesting.adapters.forsakringskassan.retrieval import (
-    REQUIRED_METADATA,
-    retrieve,
-)
 from harvesting.adapters.forsakringskassan.source import catalogue
 from harvesting.adapters.forsakringskassan.workflow import (
     check_texts,
     fetch_metadata,
 )
-from harvesting.semantics import category_codes
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.forsakringskassan import (
+    REQUIRED_METADATA,
+    retrieve,
+)
 
 REPORTS = ("ase-avslutsanledning", "ase-beslut-lan")
 

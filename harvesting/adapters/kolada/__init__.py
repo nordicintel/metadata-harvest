@@ -1,4 +1,4 @@
-"""Kolada metadata and retrieval; harvesting imports stay lazy."""
+"""Kolada metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -14,9 +14,3 @@ async def fetch_metadata(record, *, client):
     from harvesting.adapters.kolada.metadata import fetch_metadata as fetch
 
     return as_contributions(await fetch(record, client=client), adapter="kolada")
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.kolada.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

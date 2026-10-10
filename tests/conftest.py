@@ -20,6 +20,6 @@ def independent_harvesting(request, monkeypatch):
     for adapter in ADAPTERS:
         module = importlib.import_module(f"retrieval.adapters.{adapter}")
         monkeypatch.setattr(module, "retrieve", forbidden)
-    for module_name in ("retrieval", "retrieval.distribution", "harvesting.retrieval"):
+    for module_name in ("retrieval", "retrieval.distribution"):
         module = importlib.import_module(module_name)
         monkeypatch.setattr(module, "retrieve_distribution", forbidden)

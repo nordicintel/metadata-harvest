@@ -10,7 +10,6 @@ from pathlib import Path
 import pytest
 from playwright.async_api import async_playwright
 
-from harvesting import get_pxweb_tables
 from harvesting.adapters.pxweb_v1.discovery import (
     _context,
     _databases,
@@ -20,6 +19,7 @@ from harvesting.adapters.pxweb_v1.discovery import (
     _parse_url,
     _record,
     _retry_after,
+    get_pxweb_tables,
 )
 from harvesting.configuration import providers_for_adapter
 

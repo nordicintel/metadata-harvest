@@ -1,4 +1,4 @@
-"""SDB (Socialstyrelsen) metadata and retrieval; harvesting imports stay lazy."""
+"""SDB (Socialstyrelsen) metadata harvesting; harvesting imports stay lazy."""
 
 AVAILABLE = True
 
@@ -14,9 +14,3 @@ async def fetch_metadata(record, *, client):
     from harvesting.adapters.sdb.workflow import fetch_metadata as fetch
 
     return as_contributions(await fetch(record, client=client), adapter="sdb")
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.sdb.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)

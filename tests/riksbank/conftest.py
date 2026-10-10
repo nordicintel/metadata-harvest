@@ -228,7 +228,7 @@ async def retrieve_from(fake: FakeRiksbank, api: str, selection, **overrides):
     import aiohttp
     from aiohttp.test_utils import TestServer
 
-    from harvesting.adapters.riksbank.retrieval import retrieve
+    from retrieval.adapters.riksbank import retrieve
 
     async with TestServer(fake.app()) as server:
         async with aiohttp.ClientSession() as session:

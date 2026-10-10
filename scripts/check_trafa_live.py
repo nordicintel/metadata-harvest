@@ -10,12 +10,12 @@ from pathlib import Path
 
 from harvesting.adapters.trafa.api import STRUCTURE_URL
 from harvesting.adapters.trafa.client import TrafaClient
-from harvesting.adapters.trafa.retrieval import REQUIRED_METADATA, retrieve
 from harvesting.adapters.trafa.source import product_list
 from harvesting.adapters.trafa.workflow import fetch_metadata
-from harvesting.semantics import category_codes
 from harvesting.storage import write
 from harvesting.validation import validate_retrieval
+from retrieval._semantics import category_codes
+from retrieval.adapters.trafa import REQUIRED_METADATA, retrieve
 
 PRODUCTS = ("T10011", "T10033")
 

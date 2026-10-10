@@ -25,14 +25,14 @@ harvesting adapters, with their original clients and operational policy.
 The wheel excludes harvesting, source inventories, Pydantic and compression tools.
 Distribution name: `metadata-harvest`; Python import: `retrieval`.
 All existing `nordicintel.retrieval` entry-point names remain available with their
-adapter-level compatibility arguments; see [the contract](RETRIEVAL.md).
+adapter-level arguments; see [the contract](RETRIEVAL.md).
 
 Repository code lives in root `harvesting/`. After `uv sync --locked --extra harvest`,
 run its commands from the checkout using `uv run python -m harvesting.runner ...`.
-No path environment changes are required. Repository callers may use
-`harvesting.retrieve_distribution` with a Pydantic Distribution; it serializes and
-delegates to the standalone function. Adapter forwarding imports delegate to the
-same retrieval implementation, never a duplicate.
+No path environment changes are required. Repository callers holding a Pydantic
+Distribution pass `distribution.to_jsonld()` to the same public retrieval function.
+There are no retrieval forwarding modules or retrieval exports in `harvesting`.
+
 
 Sessions, pacing, cancellation and retries stay under existing caller/adapter
 policy. Codes retain their original spelling and order. Invalid operational

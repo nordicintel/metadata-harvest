@@ -1,4 +1,4 @@
-"""Riksbank (SWEA, forecasts, SWESTR) metadata and retrieval; harvesting imports
+"""Riksbank (SWEA, forecasts, SWESTR) metadata harvesting; harvesting imports
 stay lazy."""
 
 AVAILABLE = True
@@ -17,9 +17,3 @@ async def fetch_metadata(record, *, client):
     from harvesting.adapters.riksbank.workflow import fetch_metadata as fetch
 
     return as_contributions(await fetch(record, client=client), adapter="riksbank")
-
-
-async def retrieve(session, **kwargs):
-    from harvesting.adapters.riksbank.retrieval import retrieve as fetch
-
-    return await fetch(session, **kwargs)
