@@ -1,7 +1,6 @@
 # Typed distribution retrieval
 
 ```python
-import json
 import aiohttp
 from metadata_harvest import Dataset, retrieve_distribution
 
@@ -26,10 +25,10 @@ The provider entry points and JSON Pointer interface below remain compatibility 
 # Standalone PXWeb retrieval
 
 A plain installation of this one distribution provides both retrieval modules and
-`nordicintel.retrieval` provider entry points using only `aiohttp` and the standard
-library. Install `[harvest]` only for harvesting or schema validation.
+`nordicintel.retrieval` provider entry points with `aiohttp` and Pydantic v2 as base dependencies. Install `[harvest]`
+for harvesting and legacy JSON Schema validation.
 
-The following example consumes an already loaded, same-language published Dataset;
+The following example consumes an already loaded, same-language legacy native document;
 it requests the first base category of every dimension and does not write observations:
 
 ```python

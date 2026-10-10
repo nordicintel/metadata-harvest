@@ -1,6 +1,6 @@
 > Transition reference: this documents the legacy native/observation shape. The authoritative published metadata contract is the [Pydantic StatDCAT profile](output-contract.md); new consumers use typed distributions.
 
-# Adapter retrieval
+# Legacy adapter retrieval contract
 
 An API adapter makes one function separately installable and importable: the live
 service calls it to fetch selected observations for a dataset whose metadata has
@@ -8,14 +8,16 @@ already been harvested. This document is the contract for that function: packagi
 discovery, inputs, result and errors. [The result schema](../src/metadata_harvest/schemas/retrieval-result.schema.json)
 validates the returned structure.
 
-Harvesting interfaces are documented in the adapter guides. Its outputs are the
-[Dataset documents](DATASET-METADATA.md) the service exposes and passes values from.
+New callers use `retrieve_distribution(session, distribution, selection=...)` as
+shown in the [typed retrieval guide](retrieval-guide.md). Dispatch follows the
+distribution adapter, so one owner can expose multiple APIs. The provider entry
+points and metadata pointers below document the compatibility interface retained
+for one transition release, using [legacy native documents](DATASET-METADATA.md).
 
 ## Packaging and discovery
 
 All implemented adapters share the `metadata-harvest` distribution. A plain install, without extras, provides the
-retrieval module. Its runtime dependencies are `aiohttp` with a broad compatible
-range, the standard library, and only what retrieval cannot avoid. Harvesting-only
+retrieval module. Its runtime dependencies are `aiohttp`, Pydantic v2 and the standard library. Harvesting-only
 dependencies belong under the `harvest` extra. The retrieval module never imports
 harvesting modules or harvesting-only dependencies; harvesting code may import
 retrieval code.
@@ -27,7 +29,7 @@ it supports. Distribution, package, module and function names are the adapter's 
 
 ```toml
 [project]
-dependencies = ["aiohttp>=3.9,<4"]
+dependencies = ["aiohttp>=3.9,<4", "pydantic>=2.12,<3"]
 
 [project.optional-dependencies]
 harvest = ["..."]

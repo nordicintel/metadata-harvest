@@ -1,19 +1,34 @@
 # Kolada
 
+## Metadata contract
+
+Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
+uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
+retain the original source alias, language and scope. Each access service identifies
+this adapter, independently of the owning organisation. See the [profile and field
+mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
+[typed retrieval](../retrieval-guide.md).
+
+The native field names, JSON-stat examples and provider entry-point calls below
+describe adapter parsing and transition compatibility, not the published JSON-LD
+shape. Dated acceptance sections record their original verification.
+
 The self-contained `metadata_harvest.adapters.kolada` package implements Swedish
 metadata and on-demand retrieval against [Kolada API v3](https://api.kolada.se/v3/docs).
 There is no runtime dependency on another repository, database or data.eu.
 
 ## Output
 
-`data/kolada/metadata/kolada__sv.jsonl.gz` holds both scopes under provider `kolada`:
-`municipality/{KPI}` and `ou/{KPI}`. Original KPI codes remain in `extension.kolada`.
+`data/kolada/metadata/<owner>__multilingual__<digest>.jsonl.gz` groups by native KPI under owner `rka`. Municipality and OU are separate
+distributions of that KPI; the routing alias remains `kolada`. Each retains its
+original source identity, dimensions, coverage and update/failure state.
 Municipality scope includes municipalities, regions, the national aggregate and the
 44 configured groups. OU scope retains municipality relationships without a geo role.
 
 Dimensions are year, municipality/OU and gender where male/female rows exist,
 including suppressed rows. Total-only datasets omit gender and retrieve T values.
-All metadata has `value: []` and no observation `status`.
+Published metadata contains no observations; the legacy native projection uses
+`value: []` and no observation `status`.
 Native KPI fields, publication details, group memberships and OU parents are retained.
 The complete current reference catalogues live once in `state/current.jsonl.gz`;
 dataset documents retain relevant labels and member IDs, not unrelated members of

@@ -1,5 +1,18 @@
 # Försäkringskassan
 
+## Metadata contract
+
+Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
+uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
+retain the original source alias, language and scope. Each access service identifies
+this adapter, independently of the owning organisation. See the [profile and field
+mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
+[typed retrieval](../retrieval-guide.md).
+
+The native field names, JSON-stat examples and provider entry-point calls below
+describe adapter parsing and transition compatibility, not the published JSON-LD
+shape. Dated acceptance sections record their original verification.
+
 The `metadata_harvest.adapters.forsakringskassan` package implements metadata and
 on-demand retrieval for Försäkringskassan's statistics database
 (*statistikdatabas*), the JSON API behind
@@ -46,7 +59,7 @@ on-demand retrieval for Försäkringskassan's statistics database
 
 ## Output
 
-`data/forsakringskassan/metadata/forsakringskassan__sv.jsonl.gz` holds one
+`data/forsakringskassan/metadata/<owner>__multilingual__<digest>.jsonl.gz` holds one
 metadata-only Dataset per table. `meta.json` lists 210 tables (205 distinct names;
 five names are reused across reports, so the report stays in the code). Excluded
 tables (above) reduce the published count; the first hosted run reports the exact

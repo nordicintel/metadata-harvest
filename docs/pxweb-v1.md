@@ -4,6 +4,14 @@ The importable `metadata_harvest.adapters.pxweb_v1` package uses website discove
 and API metadata retrieval. The top-level imports remain supported. Configuration
 is in [`providers.json`](../providers.json); see [provider additions and live evidence](pxweb-registry-gaps.md).
 
+Public `fetch_metadata` returns typed `HarvestContribution` models for shared
+assembly. Accepted collections combine languages per canonical owner; original
+routing aliases and retrieval settings remain distribution-specific. The shared
+`pxweb_v1` DataService is independent of ownership. The SCB main-v1 publication
+filter does not remove SCB HVD or other providers. See the [metadata profile](output-contract.md)
+and [owner inventory](source-inventory.md). Discovery dictionaries below remain
+native operational records.
+
 ```python
 from metadata_harvest import get_pxweb_tables
 

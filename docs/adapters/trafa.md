@@ -1,5 +1,18 @@
 # Trafikanalys
 
+## Metadata contract
+
+Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
+uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
+retain the original source alias, language and scope. Each access service identifies
+this adapter, independently of the owning organisation. See the [profile and field
+mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
+[typed retrieval](../retrieval-guide.md).
+
+The native field names, JSON-stat examples and provider entry-point calls below
+describe adapter parsing and transition compatibility, not the published JSON-LD
+shape. Dated acceptance sections record their original verification.
+
 The `metadata_harvest.adapters.trafa` package implements metadata and on-demand
 retrieval for the Trafikanalys open data API, `https://api.trafa.se/api`.
 
@@ -32,7 +45,7 @@ Cite the data as **"Källa: Trafikanalys"**. The documents carry this attributio
 
 ## Output
 
-`data/trafa/metadata/trafa__sv.jsonl.gz` holds one Dataset per *maximal API
+`data/trafa/metadata/<owner>__multilingual__<digest>.jsonl.gz` holds one Dataset per *maximal API
 combination* of a product: 457 datasets from 56 products as of October 2026.
 
 - **Identity.** `dataset_code` is `<UniqueId>|<measures>|<variables>`, with the names

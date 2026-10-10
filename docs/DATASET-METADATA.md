@@ -1,10 +1,11 @@
 > Transition reference: this documents the legacy native/observation shape. The authoritative published metadata contract is the [Pydantic StatDCAT profile](output-contract.md); new consumers use typed distributions.
 
-# Dataset metadata and observations
+# Legacy native metadata and observation mapping
 
-[The schema](../src/metadata_harvest/schemas/dataset-metadata.schema.json) defines a JSON-stat2
-Dataset for harvester, scraper and wrapper output, one complete document per
-language. Its definitions are local and require no network access. Standard fields
+[The schema](../src/metadata_harvest/schemas/legacy-dataset-metadata.schema.json) defines a JSON-stat2
+Dataset used by native parsing and transition retrieval, one document per language.
+Published metadata instead uses multilingual StatDCAT datasets; see the
+[field mapping](output-contract.md#field-dispositions). Its definitions are local and require no network access. Standard fields
 follow the [published JSON-stat2 Dataset schema](https://json-stat.org/format/schema/2.0/dataset.json)
 (v1.05, 2025-06-13); this profile adds constraints and namespaced metadata.
 

@@ -47,6 +47,13 @@ table acceptance; independent codelist failures do not block that acceptance gat
 Disabling a schedule does not cancel active jobs or disable manual operations.
 `HARVEST_PARALLEL_PROVIDERS` remains a separate operational control (default 19).
 
+## Portal snapshot refresh
+
+The separate `refresh-portal.yml` workflow runs weekly under the same central
+[schedule configuration](../schedules.toml). It downloads and validates an
+`oppnadata` candidate before replacing the accepted snapshot. Catalog assembly
+uses that committed snapshot offline. See [import and refresh commands](catalog.md).
+
 ## Job outcomes
 
 A harvest or catalog job goes red only when a whole scope failed: a provider or
@@ -154,16 +161,19 @@ into the other adapter's directory.
 
 | Path within the adapter directory | Purpose |
 |---|---|
-| `metadata/` | One deterministic `.jsonl.gz` collection per provider/language |
+| `metadata/` | One deterministic multilingual `.jsonl.gz` collection per canonical provider |
 | `codelists/` (v2) | One `.jsonl.gz` per provider/language; complete native codelist payloads |
 | `table-records/` | One JSONL per provider/language for current discovery state |
 | `reports/refresh.json` | Latest listing result and completeness/errors; overwritten |
 | `reports/harvest.json` | Latest processing result and counts; overwritten |
 | `work/current.json` | Unfinished work only; removed when complete |
 
-Dataset identity is provider + dataset code + language. Collection filenames
-escape identifiers and add a checksum to avoid Windows case collisions. Each
-JSONL line is one dataset document. V1 groups multiple known source locations
+Dataset identity combines canonical provider and native dataset identity; language
+and scope belong to independently tracked source contributions/distributions.
+Metadata filenames are `<owner>__multilingual__<digest>.jsonl.gz`; each JSONL line
+is one typed multilingual dataset. Native task keys and checkpoints retain the
+original routing alias, code and language. Collection filenames escape identifiers
+and add a checksum to avoid Windows case collisions. V1 groups multiple known source locations
 in `paths`, with the newest source timestamp determining the primary endpoint.
 All implemented adapters map to the shared Dataset contract and retain complete source evidence under
 their adapter namespace. See [output mapping](output-contract.md).

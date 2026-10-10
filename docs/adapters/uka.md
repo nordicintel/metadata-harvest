@@ -1,5 +1,18 @@
 # UKÄ
 
+## Metadata contract
+
+Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
+uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
+retain the original source alias, language and scope. Each access service identifies
+this adapter, independently of the owning organisation. See the [profile and field
+mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
+[typed retrieval](../retrieval-guide.md).
+
+The native field names, JSON-stat examples and provider entry-point calls below
+describe adapter parsing and transition compatibility, not the published JSON-LD
+shape. Dated acceptance sections record their original verification.
+
 The `metadata_harvest.adapters.uka` package implements Swedish metadata and
 on-demand retrieval for UKÄ's undocumented statistics indicators API,
 `https://statistik-api.uka.se/api`. It was ported from
@@ -19,7 +32,7 @@ are never downloaded again.
 
 ## Output
 
-`data/uka/metadata/uka__sv.jsonl.gz` holds one Dataset per published catalogue
+`data/uka/metadata/<owner>__multilingual__<digest>.jsonl.gz` holds one Dataset per published catalogue
 indicator. The provider is `uka`, the `dataset_code` is the indicator id, and the
 language is `sv` (UKÄ publishes only Swedish). `state/current.jsonl.gz` holds:
 

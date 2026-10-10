@@ -1,5 +1,18 @@
 # Socialstyrelsen analysverktyg
 
+## Metadata contract
+
+Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
+uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
+retain the original source alias, language and scope. Each access service identifies
+this adapter, independently of the owning organisation. See the [profile and field
+mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
+[typed retrieval](../retrieval-guide.md).
+
+The native field names, JSON-stat examples and provider entry-point calls below
+describe adapter parsing and transition compatibility, not the published JSON-LD
+shape. Dated acceptance sections record their original verification.
+
 The `metadata_harvest.adapters.dataanalys` package implements metadata and on-demand
 retrieval for Socialstyrelsen's analysverktyg, a public Apache Superset instance at
 `https://dataanalys.socialstyrelsen.se` with health-care indicators such as
@@ -67,7 +80,7 @@ retrieval for Socialstyrelsen's analysverktyg, a public Apache Superset instance
 
 ## Output
 
-`data/dataanalys/metadata/socialstyrelsen_analys__sv.jsonl.gz` holds one Dataset per
+`data/dataanalys/metadata/<owner>__multilingual__<digest>.jsonl.gz` holds one Dataset per
 catalogue row. The 2026-10-09 catalogues listed 104 indicators in the six supported
 areas: GONV 25, PS 32, OB 19, LRHST 15, NRTV 10 and NRAA 3. NPS listed 5, but its
 values table is unsupported.

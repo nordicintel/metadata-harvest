@@ -1,7 +1,7 @@
 # Integration ownership and architecture
 
 `metadata-harvest` owns API integration code, source selection, provider configuration,
-metadata semantics, shared Dataset/Provider/Retrieval Result schemas, validation,
+metadata semantics, extensible StatDCAT Pydantic models, observation-result schemas, validation,
 shared file-catalog construction and enrichment interfaces,
 independent harvesting jobs, on-demand retrieval and integration documentation.
 
@@ -20,8 +20,16 @@ discovery is retained explicitly because replacing it would change coverage.
 - `adapters/pxweb_v1/` and `adapters/pxweb_v2/` own source discovery, requests, native
   validation and retrieval protocol construction; v1 database/location assumptions
   do not leak into v2 discovery.
-- `mapping.py`, `validation.py` and `semantics.py` map and validate complete metadata;
-  `schemas/` is the authoritative, offline, packaged schema set.
+- `models.py` is the authoritative Pydantic v2 metadata contract; JSON Schema and
+  field documentation are generated from it. `profile.json` pins upstream StatDCAT
+  and versions the NordicIntel profile separately.
+- `statdcat.py` converts native metadata into typed contributions and assembles
+  multilingual datasets, independent distributions and SKOS codelists.
+  `mapping.py`, `validation.py` and `semantics.py` retain native/legacy parsing.
+- `sources.py` separates canonical organisation ownership from operational routing
+  aliases. DataServices identify the 12 adapters, never individual deployments.
+- `accepted.py` persists provider-grouped multilingual collections and reconstructs
+  independent native task records for transition workers.
 - `retrieval.py` assembles protocol responses by coordinates; only the caller's
   `aiohttp` session performs requests, with caller-owned rate limits and retries.
 - `storage.py` owns deterministic grouped serialization and atomic replacements;
@@ -35,10 +43,15 @@ discovery is retained explicitly because replacing it would change coverage.
 - `runner.py` preserves existing commands and v1 defaults; Actions collectors are
   the only production writers, sharing the `production-publication` collector
   queue. Adapter harvesting queues are independent.
-- `catalog.py` reads committed accepted collections, builds combined Dataset and
-  codelist 7z archives, and promotes them with catalog state/reports into Git.
-  JSONL byte ranges allow failed inputs to retain their prior content.
-  It has no dependency on adapter discovery or harvesting orchestration.
+- `catalog_assembly.py` groups accepted contributions, matches the local portal
+  snapshot, enriches datasets, applies publication filters and validates references.
+  Accepted Git blob identities recover failed current inputs; missing collections
+  do not prove deletion. Fingerprints and verified output ranges support reuse.
+- `portal.py` owns snapshot import/refresh and conservative matching. Unmatched
+  harvested datasets remain included; portal-only datasets are not added.
+- `catalog.py` packages `catalog.jsonl` and `codelists.jsonl` into their respective
+  7z archives and promotes them with catalog state/reports into Git. Catalog builds
+  are offline and never dispatch harvesting or portal refresh.
 - `processing/` defines content-enrichment then semantic-enrichment proposals;
   no external lookup, inference rule or AI processor is implemented yet.
 - `publication.py` owns scoped Git publication for adapters and catalog.
@@ -52,7 +65,8 @@ A source response first passes native validation, then mapping and shared valida
 Only a validated replacement advances the accepted source record. Full current
 listing state remains separate from accepted metadata; transient failures retain
 accepted content. Removal requires complete discovery of the relevant scope.
-No archive is created. Reports replace current reports; completed checkpoints disappear.
+No historical inactive store is created. The current catalog is published as two
+compressed archives. Reports replace current reports; completed checkpoints disappear.
 
 ## Ownership transition
 
@@ -64,8 +78,14 @@ no unrelated job disabled, and no production database moved by this change.
 
 ## One-way data flow
 
-Scheduled or deliberate manual harvesting -> accepted adapter publication ->
-content enrichment placeholder -> semantic enrichment placeholder -> shared catalog.
+Scheduled or manual harvesting -> validated contributions -> accepted multilingual
+collections -> grouping -> portal matching/enrichment -> publication filtering ->
+validation -> JSON-LD serialization -> two compressed archives.
+
+The separate weekly portal refresh validates a candidate before replacing the
+repository-owned snapshot. The default SCB filter removes only the main PXWeb v1
+distributions at publication; accepted descriptions remain available for restoration.
+SCB HVD and other providers are unaffected.
 
 Catalog construction is independently callable. It never makes accepted source
 files fresher, resumes a checkpoint or dispatches a harvester. Identity/categories

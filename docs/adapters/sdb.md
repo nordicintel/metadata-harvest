@@ -1,5 +1,18 @@
 # SDB (Socialstyrelsen)
 
+## Metadata contract
+
+Public `fetch_metadata` returns typed `HarvestContribution` models. Accepted metadata
+uses provider-grouped multilingual StatDCAT datasets; distribution retrieval bindings
+retain the original source alias, language and scope. Each access service identifies
+this adapter, independently of the owning organisation. See the [profile and field
+mapping](../output-contract.md), [owner inventory](../source-inventory.md) and
+[typed retrieval](../retrieval-guide.md).
+
+The native field names, JSON-stat examples and provider entry-point calls below
+describe adapter parsing and transition compatibility, not the published JSON-LD
+shape. Dated acceptance sections record their original verification.
+
 The `metadata_harvest.adapters.sdb` package implements Swedish and English metadata
 and on-demand retrieval for Socialstyrelsen's statistics database API,
 `https://sdb.socialstyrelsen.se/api/v1`.
@@ -12,10 +25,10 @@ and on-demand retrieval for Socialstyrelsen's statistics database API,
 
 ## Output
 
-Each language has its own collection: `data/sdb/metadata/socialstyrelsen__sv.jsonl.gz`
-and `…__en.jsonl.gz`. Each SDB subject is one Dataset, and its `dataset_code` is the
-subject name. Swedish has 15 subjects and English 5. The languages are discovered,
-published and withheld independently.
+Both languages share the collection: `data/sdb/metadata/<owner>__multilingual__<digest>.jsonl.gz`
+with language-specific distributions. Each SDB subject is one dataset; its native
+code is the subject name. Swedish has 15 subjects and English 5. Discovery and
+acceptance remain independent per language, including partial failures.
 
 `state/current.jsonl.gz` holds, for each `<language>/<subject>`:
 

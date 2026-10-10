@@ -74,9 +74,11 @@ catalog report; building a catalog never turns incomplete coverage into success.
 ## Documentation
 
 - [Architecture and ownership](docs/architecture.md)
+- [Adapter services and canonical owners](docs/source-inventory.md)
+- [Migration verification and preservation audit](docs/statdcat-audit/README.md)
 - [Output contract and migration](docs/output-contract.md)
-- [Dataset mapping contract](docs/DATASET-METADATA.md) and [generated field reference](docs/DATASET-METADATA-REFERENCE.md)
-- [Retrieval contract](docs/RETRIEVAL.md) and [usage](docs/retrieval-guide.md)
+- [Legacy native mapping](docs/DATASET-METADATA.md) and [generated StatDCAT field reference](docs/DATASET-METADATA-REFERENCE.md)
+- [Typed retrieval usage](docs/retrieval-guide.md) and [legacy compatibility contract](docs/RETRIEVAL.md)
 - [Adapter implementation guide](docs/adapter-guide.md)
 - [Jobs, schedules and recovery](docs/harvesting.md)
 - [Catalog assembly and enrichment](docs/catalog.md)

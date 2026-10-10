@@ -10,9 +10,7 @@ from metadata_harvest.adapters.pxweb_v2 import (
     Client,
     discover_provider,
     fetch_metadata,
-    fetch_codelist,
 )
-from metadata_harvest.adapters.pxweb_v2.validation import codelist_ids
 from metadata_harvest.storage import read
 
 provider = read("providers.pxweb_v2.json")[0]
@@ -21,27 +19,33 @@ async with Client(provider["base_api_url"]) as client:
         if not scope["complete"]:
             raise RuntimeError(scope["errors"])
         for record in scope["records"]:
-            document = await fetch_metadata(record, client=client)
-            # Production orchestration deduplicates these requests per language.
-            for code in sorted(codelist_ids(document)):
-                codelist = await fetch_codelist(code, record["language"], client=client)
+            contributions = await fetch_metadata(record, client=client)
+            # Validated HarvestContribution instances for shared assembly.
+            for contribution in contributions:
+                dataset = contribution.dataset
 ```
 
 ## Output and ownership
 
-`data/pxweb_v2/metadata/` contains one deterministic gzip-compressed JSONL collection per
-language. Each line is a validated shared Dataset; `extension.nordicintel` owns
-identity. Complete native content is mapped without loss: source extensions and
-the full catalogue record are retained under `extension.pxweb_v2`, with original
-timestamp precision preserved separately from root calendar-date `updated`.
-See the [mapping and migration contract](output-contract.md).
+`data/pxweb_v2/metadata/` contains one deterministic multilingual collection per
+canonical provider, named `<owner>__multilingual__<digest>.jsonl.gz`. Each line is a
+validated StatDCAT dataset with language-tagged metadata and independent retrieval
+distributions. The owner is SCB; its access service is the globally shared
+`pxweb_v2` adapter, alongside the separate `pxweb_v1` service used by SCB's other
+catalogs. Source identity and operational options live in the retrieval binding;
+standard properties and source extensions preserve the remaining metadata.
+See the [profile and field mapping](output-contract.md).
+
+Public `fetch_codelist(code, language, client=...)` returns a typed SKOS scheme.
+Production workers deduplicate native codelist requests per language before
+publication; native caches below are distinct from the final `codelists.7z` output.
 
 `data/pxweb_v2/codelists/` contains one `.jsonl.gz` collection per language. Each line
 has `provider_code`, `language`, and `codelist`, the complete native codelist
 response. Its source ID resolves the references in dimension extensions.
 Codelists are stored once per language, never disguised as statistical datasets.
-The existing collision-safe provider/language filenames are reused in both
-directories with `.jsonl.gz` extensions. Gzip timestamps and filenames are fixed
+Native codelist cache filenames retain provider/language grouping; metadata uses
+canonical-provider multilingual grouping. Gzip timestamps and filenames are fixed
 so unchanged content produces identical compressed bytes; decompression returns
 complete UTF-8 JSONL without truncation. There are no per-table or per-codelist result files.
 
