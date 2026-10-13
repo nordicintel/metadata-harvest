@@ -1,11 +1,11 @@
 {
   "counts": {
     "ambiguous": 0,
-    "codelists": 72567,
-    "datasets": 18502,
-    "distributions": 34368,
+    "codelists": 72521,
+    "datasets": 18492,
+    "distributions": 34348,
     "filtered": 7130,
-    "matched": 13000,
+    "matched": 12990,
     "quality_findings": 14205,
     "unmatched": 5502
   },
@@ -323,12 +323,12 @@
     "pxweb_v1/reports/harvest.json": {
       "counts": {
         "created": 0,
-        "deferred": 0,
+        "deferred": 28,
         "failed": 5,
-        "removed": 0,
-        "reused": 7367,
+        "removed": 10,
+        "reused": 7245,
         "unfinished": 0,
-        "updated": 12
+        "updated": 96
       },
       "errors": [
         {
@@ -367,20 +367,280 @@
           "provider_code": "sjv"
         }
       ],
-      "finished_at": "2026-10-12T09:19:23.751116+00:00",
+      "finished_at": "2026-10-13T09:38:59.092480+00:00",
       "full": false,
-      "refresh_error_count": 0,
+      "refresh_error_count": 29,
       "refresh_report": "refresh.json",
-      "run_id": "20261012T090738.708818Z",
-      "started_at": "2026-10-12T09:08:25.161482+00:00",
+      "run_id": "20261013T092111.498371Z",
+      "started_at": "2026-10-13T09:21:53.484458+00:00",
       "status": "completed_with_errors",
-      "updated_at": "2026-10-12T09:19:23.751116+00:00",
+      "updated_at": "2026-10-13T09:38:59.092480+00:00",
       "wave": 1
     },
     "pxweb_v1/reports/refresh.json": {
-      "error_count": 0,
-      "errors": [],
-      "finished_at": "2026-10-12T09:13:34.762816+00:00",
+      "error_count": 29,
+      "errors": [
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "language": "sv",
+          "message": "Single API enrichment request failed: HTTP 429: https://pxweb.skogsstyrelsen.se/api/v1/sv/Skogsstyrelsens%20statistikdatabas?filter=*&query=*",
+          "provider_code": "skog",
+          "stage": "enrichment"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO0312_02b.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Avverkning/JO0312_02b.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "3_Avverkningens kostnader.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Ekonomi/3_Avverkningens%20kostnader.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "4_ Prisutveckling pa leveransvirke.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Ekonomi/4_%20Prisutveckling%20pa%20leveransvirke.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "01_antal_granbarkborrar_ nyny.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Granbarkborresv%C3%A4rmning/01_antal_granbarkborrar_%20nyny.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "02_andel_nyklackta_granbarkborrar.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Granbarkborresv%C3%A4rmning/02_andel_nyklackta_granbarkborrar.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "Miljomal_04a.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Levande%20skogar__1_Skogsmarkens%20egenskaper%20och%20processer__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/Miljomal_04a.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "Miljomal_04b.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Levande%20skogar__1_Skogsmarkens%20egenskaper%20och%20processer__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/Miljomal_04b.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "Miljomal_31a.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Levande%20skogar__8_Bevarade%20natur-%20och%20kulturmilj%C3%B6v%C3%A4rden/Miljomal_31a.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "Miljomal_33b.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Levande%20skogar__8_Bevarade%20natur-%20och%20kulturmilj%C3%B6v%C3%A4rden/Miljomal_33b.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "Miljomal_33c.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Levande%20skogar__8_Bevarade%20natur-%20och%20kulturmilj%C3%B6v%C3%A4rden/Miljomal_33c.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO1403_3a.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Miljohansyn__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/JO1403_3a.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO1403_3b.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Miljohansyn__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/JO1403_3b.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO1403_8a.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Miljohansyn__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/JO1403_8a.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO1403_8b.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Miljohansyn__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/JO1403_8b.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO1403_8c.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Miljohansyn__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/JO1403_8c.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "JO1403_8d.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Miljohansyn__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/JO1403_8d.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "12 antal virkeskopare per lan.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Strukturstatistik/12%20antal%20virkeskopare%20per%20lan.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "01. [Uppdateras inte] - Ant arsv skogsb region utov.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/01.%20[Uppdateras%20inte]%20-%20Ant%20arsv%20skogsb%20region%20utov.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "02. [Uppdateras inte] - Ant arsv skogsarb smask.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/02.%20[Uppdateras%20inte]%20-%20Ant%20arsv%20skogsarb%20smask.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "03a. [Uppdateras inte] - Ant arsv skogsarb storsk.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/03a.%20[Uppdateras%20inte]%20-%20Ant%20arsv%20skogsarb%20storsk.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "03b. [Uppdateras inte] _gammal.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/03b.%20[Uppdateras%20inte]%20_gammal.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "04 [Uppdateras inte] - Ant arsv skogsarb entrep.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/04%20[Uppdateras%20inte]%20-%20Ant%20arsv%20skogsarb%20entrep.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "05. [Uppdateras inte] - Ant syss storsk anstform kon.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/05.%20[Uppdateras%20inte]%20-%20Ant%20syss%20storsk%20anstform%20kon.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "06a. [Uppdateras inte] - Ant syss storsk ftgform kon.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/06a.%20[Uppdateras%20inte]%20-%20Ant%20syss%20storsk%20ftgform%20kon.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "06b. [Uppdateras inte] -_gammal.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/06b.%20[Uppdateras%20inte]%20-_gammal.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "07. [Uppdateras inte] - Ant syss storsk arbetstid kon.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/07.%20[Uppdateras%20inte]%20-%20Ant%20syss%20storsk%20arbetstid%20kon.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "08. [Uppdateras inte] - Ant syss skogsentr och anst.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/08.%20[Uppdateras%20inte]%20-%20Ant%20syss%20skogsentr%20och%20anst.px/"
+        },
+        {
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "id": "09. [Uppdateras inte] - Ant syss skogsentr arbtid kon.px",
+          "language": "sv",
+          "message": "Unparseable table date: ''",
+          "provider_code": "skog",
+          "stage": "extraction",
+          "url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Sysselsattning__%C3%84ldre%20tabeller%20som%20inte%20uppdateras/09.%20[Uppdateras%20inte]%20-%20Ant%20syss%20skogsentr%20arbtid%20kon.px/"
+        }
+      ],
+      "finished_at": "2026-10-13T09:25:13.476104+00:00",
       "records": [
         {
           "dataset_code": "ABAKD11.px",
@@ -7382,37 +7642,37 @@
           "dataset_code": "BehgymnFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-23"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "BehgymnInk.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-23"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "BehgymnReg.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-23"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "BehgymnRegso.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-03-06"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "BehgymnSocek.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-03-06"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "BehgymnUtb.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-23"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "BotuMan.px",
@@ -8150,19 +8410,19 @@
           "dataset_code": "FortidAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-24"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "FortidFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-24"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "FortidInk.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-24"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "FortidReg.px",
@@ -8174,13 +8434,13 @@
           "dataset_code": "FortidSocek.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-03-11"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "FortidUtb.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2025-10-24"
+          "updated": "2026-10-12"
         },
         {
           "dataset_code": "ForvarvAld.px",
@@ -12944,31 +13204,25 @@
           "dataset_code": "allhaBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-02"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "allhaBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-02"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "allhaBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-02"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "allhaBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "allhaBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-02"
         },
         {
           "dataset_code": "allhalsMHEbaald.px",
@@ -13538,31 +13792,25 @@
           "dataset_code": "funkBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-19"
         },
         {
           "dataset_code": "funkBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-19"
         },
         {
           "dataset_code": "funkBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-19"
         },
         {
           "dataset_code": "funkBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-23"
-        },
-        {
-          "dataset_code": "funkBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "funkned.px",
@@ -13604,31 +13852,25 @@
           "dataset_code": "fysakBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "fysakBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "fysakBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "fysakBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "fysakBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "fysakaald.px",
@@ -13796,31 +14038,25 @@
           "dataset_code": "gronsBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "gronsBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "gronsBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "gronsBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "gronsBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "gronsakdagaald.px",
@@ -13880,31 +14116,25 @@
           "dataset_code": "halbBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "halbBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "halbBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "halbBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "halbBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "hals.px",
@@ -18296,31 +18526,25 @@
           "dataset_code": "laskBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "laskBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "laskBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "laskBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "laskBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "laskaald.px",
@@ -18512,31 +18736,25 @@
           "dataset_code": "mobBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "mobBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "mobBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "mobBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "mobBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "mogelMHEbaald.px",
@@ -18998,31 +19216,25 @@
           "dataset_code": "skosBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "skosBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "skosBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "skosBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "skosBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "snuvaMHEbaald.px",
@@ -19052,31 +19264,25 @@
           "dataset_code": "socrBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "socrBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "socrBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "socrBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "socrBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "solMHEbaald.px",
@@ -19364,31 +19570,25 @@
           "dataset_code": "tillfrBaAld.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "tillfrBaEko.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "tillfrBaFod.px",
           "language": "sv",
           "provider_code": "fohm",
-          "updated": "2026-09-03"
+          "updated": "2024-02-08"
         },
         {
           "dataset_code": "tillfrBaReg.px",
           "language": "sv",
           "provider_code": "fohm",
           "updated": "2024-02-08"
-        },
-        {
-          "dataset_code": "tillfrBaSocek.px",
-          "language": "sv",
-          "provider_code": "fohm",
-          "updated": "2026-09-03"
         },
         {
           "dataset_code": "tillitsamAAld.px",
@@ -34724,7 +34924,7 @@
           "dataset_code": "val17.px",
           "language": "sv",
           "provider_code": "linkoping",
-          "updated": "2022-11-11"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "val17e.px",
@@ -34748,7 +34948,7 @@
           "dataset_code": "val19.px",
           "language": "sv",
           "provider_code": "linkoping",
-          "updated": "2022-11-11"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "val19e.px",
@@ -34886,103 +35086,103 @@
           "dataset_code": "A10",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A10",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A11",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A11",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A12",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A12",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A20",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A20",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A21",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A21",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A22",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A22",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A30",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A30",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A40",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-17T04:00:00"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "A40",
           "language": "sv",
           "provider_code": "mcf",
-          "updated": "2026-10-12"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "B10",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B10",
@@ -34994,7 +35194,7 @@
           "dataset_code": "B11",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B11",
@@ -35006,7 +35206,7 @@
           "dataset_code": "B12",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B12",
@@ -35018,7 +35218,7 @@
           "dataset_code": "B13",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B13",
@@ -35030,7 +35230,7 @@
           "dataset_code": "B14",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B14",
@@ -35042,7 +35242,7 @@
           "dataset_code": "B20",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B20",
@@ -35054,7 +35254,7 @@
           "dataset_code": "B21",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B21",
@@ -35066,7 +35266,7 @@
           "dataset_code": "B22",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B22",
@@ -35078,7 +35278,7 @@
           "dataset_code": "B23",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B23",
@@ -35090,7 +35290,7 @@
           "dataset_code": "B24",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B24",
@@ -35102,7 +35302,7 @@
           "dataset_code": "B30",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B30",
@@ -35114,7 +35314,7 @@
           "dataset_code": "B31",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B31",
@@ -35126,7 +35326,7 @@
           "dataset_code": "B32",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B32",
@@ -35138,7 +35338,7 @@
           "dataset_code": "B33",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B33",
@@ -35150,7 +35350,7 @@
           "dataset_code": "B34",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B34",
@@ -35162,7 +35362,7 @@
           "dataset_code": "B35",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B35",
@@ -35174,7 +35374,7 @@
           "dataset_code": "B36",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B36",
@@ -35186,7 +35386,7 @@
           "dataset_code": "B40",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B40",
@@ -35198,7 +35398,7 @@
           "dataset_code": "B41",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B41",
@@ -35210,7 +35410,7 @@
           "dataset_code": "B42",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B42",
@@ -35222,7 +35422,7 @@
           "dataset_code": "B50",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B50",
@@ -35234,7 +35434,7 @@
           "dataset_code": "B51",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B51",
@@ -35246,7 +35446,7 @@
           "dataset_code": "B52",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B52",
@@ -35258,7 +35458,7 @@
           "dataset_code": "B53",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B53",
@@ -35270,7 +35470,7 @@
           "dataset_code": "B60",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B60",
@@ -35282,7 +35482,7 @@
           "dataset_code": "B61",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B61",
@@ -35294,7 +35494,7 @@
           "dataset_code": "B62",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B62",
@@ -35306,7 +35506,7 @@
           "dataset_code": "B63",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B63",
@@ -35318,7 +35518,7 @@
           "dataset_code": "B70",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B70",
@@ -35330,7 +35530,7 @@
           "dataset_code": "B71",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B71",
@@ -35342,7 +35542,7 @@
           "dataset_code": "B72",
           "language": "en",
           "provider_code": "mcf",
-          "updated": "2026-03-10T08:42:00"
+          "updated": "2026-03-10"
         },
         {
           "dataset_code": "B72",
@@ -39533,12 +39733,6 @@
           "updated": "2021-12-17T14:48:00"
         },
         {
-          "dataset_code": "01. [Uppdateras inte] - Ant arsv skogsb region utov.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T14:48:00"
-        },
-        {
           "dataset_code": "01. [Uppdateras inte] Röjning (1 000 ha) efter ägarklass och region, År 2005-2021.px",
           "language": "en",
           "provider_code": "skog",
@@ -39597,12 +39791,6 @@
           "language": "sv",
           "provider_code": "skog",
           "updated": "2026-02-03"
-        },
-        {
-          "dataset_code": "01_antal_granbarkborrar_ nyny.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2026-09-09T08:41:00"
         },
         {
           "dataset_code": "01_tatortsnara_skog.px",
@@ -39695,12 +39883,6 @@
           "updated": "2021-12-17T14:50:00"
         },
         {
-          "dataset_code": "02. [Uppdateras inte] - Ant arsv skogsarb smask.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T14:50:00"
-        },
-        {
           "dataset_code": "02.px",
           "language": "en",
           "provider_code": "skog",
@@ -39759,12 +39941,6 @@
           "language": "sv",
           "provider_code": "skog",
           "updated": "2026-02-03"
-        },
-        {
-          "dataset_code": "02_andel_nyklackta_granbarkborrar.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2026-09-09T08:41:44"
         },
         {
           "dataset_code": "02_tatortsnara_skog.px",
@@ -39893,20 +40069,8 @@
           "updated": "2021-12-17T15:22:00"
         },
         {
-          "dataset_code": "03a. [Uppdateras inte] - Ant arsv skogsarb storsk.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:22:00"
-        },
-        {
           "dataset_code": "03b. [Uppdateras inte] _gammal.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:28:00"
-        },
-        {
-          "dataset_code": "03b. [Uppdateras inte] _gammal.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2021-12-17T15:28:00"
         },
@@ -39925,12 +40089,6 @@
         {
           "dataset_code": "04 [Uppdateras inte] - Ant arsv skogsarb entrep.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:30:00"
-        },
-        {
-          "dataset_code": "04 [Uppdateras inte] - Ant arsv skogsarb entrep.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2021-12-17T15:30:00"
         },
@@ -40049,12 +40207,6 @@
           "updated": "2021-12-17T15:32:00"
         },
         {
-          "dataset_code": "05. [Uppdateras inte] - Ant syss storsk anstform kon.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:32:00"
-        },
-        {
           "dataset_code": "05.px",
           "language": "en",
           "provider_code": "skog",
@@ -40070,13 +40222,13 @@
           "dataset_code": "05_Areal_anm_ans_per_manad.px",
           "language": "en",
           "provider_code": "skog",
-          "updated": "2026-09-15"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "05_Areal_anm_ans_per_manad.px",
           "language": "sv",
           "provider_code": "skog",
-          "updated": "2026-09-15"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "05_Certifiering_areal_agare.px",
@@ -40154,13 +40306,13 @@
           "dataset_code": "06_Areal_ans_fjall_manad.px",
           "language": "en",
           "provider_code": "skog",
-          "updated": "2026-09-15"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "06_Areal_ans_fjall_manad.px",
           "language": "sv",
           "provider_code": "skog",
-          "updated": "2026-09-15"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "06_Certifiering_areal_typ_av.px",
@@ -40217,32 +40369,14 @@
           "updated": "2021-12-17T15:34:00"
         },
         {
-          "dataset_code": "06a. [Uppdateras inte] - Ant syss storsk ftgform kon.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:34:00"
-        },
-        {
           "dataset_code": "06b. [Uppdateras inte] -_gammal.px",
           "language": "en",
           "provider_code": "skog",
           "updated": "2021-12-17T15:37:00"
         },
         {
-          "dataset_code": "06b. [Uppdateras inte] -_gammal.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:37:00"
-        },
-        {
           "dataset_code": "07. [Uppdateras inte] - Ant syss storsk arbetstid kon.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2021-12-17T16:02:00"
-        },
-        {
-          "dataset_code": "07. [Uppdateras inte] - Ant syss storsk arbetstid kon.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2021-12-17T16:02:00"
         },
@@ -40313,12 +40447,6 @@
           "updated": "2021-12-17T15:42:00"
         },
         {
-          "dataset_code": "08. [Uppdateras inte] - Ant syss skogsentr och anst.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:42:00"
-        },
-        {
           "dataset_code": "08.px",
           "language": "en",
           "provider_code": "skog",
@@ -40385,12 +40513,6 @@
           "updated": "2021-12-17T15:43:00"
         },
         {
-          "dataset_code": "09. [Uppdateras inte] - Ant syss skogsentr arbtid kon.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-17T15:43:00"
-        },
-        {
           "dataset_code": "09.px",
           "language": "en",
           "provider_code": "skog",
@@ -40430,13 +40552,13 @@
           "dataset_code": "09_ackum_areal_anm_per_manad.px",
           "language": "en",
           "provider_code": "skog",
-          "updated": "2026-09-15"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "09_ackum_areal_anm_per_manad.px",
           "language": "sv",
           "provider_code": "skog",
-          "updated": "2026-09-15"
+          "updated": "2026-10-13"
         },
         {
           "dataset_code": "09_tatortsnara_skog.px",
@@ -40553,12 +40675,6 @@
           "updated": "2022-10-18T13:26:00"
         },
         {
-          "dataset_code": "12 antal virkeskopare per lan.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2022-10-18T13:26:00"
-        },
-        {
           "dataset_code": "12_per_kommun.px",
           "language": "en",
           "provider_code": "skog",
@@ -40637,20 +40753,8 @@
           "updated": "2020-08-11T16:01:00"
         },
         {
-          "dataset_code": "3_Avverkningens kostnader.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2020-08-11T16:01:00"
-        },
-        {
           "dataset_code": "4_ Prisutveckling pa leveransvirke.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2023-02-07T15:18:00"
-        },
-        {
-          "dataset_code": "4_ Prisutveckling pa leveransvirke.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2023-02-07T15:18:00"
         },
@@ -41201,12 +41305,6 @@
           "updated": "2023-09-26T09:10:00"
         },
         {
-          "dataset_code": "JO0312_02b.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2023-09-26T09:10:00"
-        },
-        {
           "dataset_code": "JO0312_03.px",
           "language": "en",
           "provider_code": "skog",
@@ -41513,20 +41611,8 @@
           "updated": "2023-12-06T08:42:35"
         },
         {
-          "dataset_code": "JO1403_3a.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2023-12-06T08:42:35"
-        },
-        {
           "dataset_code": "JO1403_3b.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2023-11-21T10:56:04"
-        },
-        {
-          "dataset_code": "JO1403_3b.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2023-11-21T10:56:04"
         },
@@ -41609,20 +41695,8 @@
           "updated": "2021-12-21T09:07:00"
         },
         {
-          "dataset_code": "JO1403_8a.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-21T09:07:00"
-        },
-        {
           "dataset_code": "JO1403_8b.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2021-12-21T09:08:00"
-        },
-        {
-          "dataset_code": "JO1403_8b.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2021-12-21T09:08:00"
         },
@@ -41633,20 +41707,8 @@
           "updated": "2021-12-21T09:08:00"
         },
         {
-          "dataset_code": "JO1403_8c.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2021-12-21T09:08:00"
-        },
-        {
           "dataset_code": "JO1403_8d.px",
           "language": "en",
-          "provider_code": "skog",
-          "updated": "2021-12-21T09:09:00"
-        },
-        {
-          "dataset_code": "JO1403_8d.px",
-          "language": "sv",
           "provider_code": "skog",
           "updated": "2021-12-21T09:09:00"
         },
@@ -41853,18 +41915,6 @@
           "language": "sv",
           "provider_code": "skog",
           "updated": "2026-09-03"
-        },
-        {
-          "dataset_code": "Miljomal_04a.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2026-08-04T12:26:44"
-        },
-        {
-          "dataset_code": "Miljomal_04b.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2024-10-11T09:26:56"
         },
         {
           "dataset_code": "Miljomal_05.px",
@@ -42101,12 +42151,6 @@
           "updated": "2026-09-03"
         },
         {
-          "dataset_code": "Miljomal_31a.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2026-09-03T14:05:51"
-        },
-        {
           "dataset_code": "Miljomal_32a.px",
           "language": "sv",
           "provider_code": "skog",
@@ -42123,18 +42167,6 @@
           "language": "sv",
           "provider_code": "skog",
           "updated": "2024-10-17"
-        },
-        {
-          "dataset_code": "Miljomal_33b.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2024-10-11T08:42:27"
-        },
-        {
-          "dataset_code": "Miljomal_33c.px",
-          "language": "sv",
-          "provider_code": "skog",
-          "updated": "2024-10-11T08:44:13"
         },
         {
           "dataset_code": "Miljomal_34a.px",
@@ -44687,7 +44719,7 @@
           "updated": "2022-04-04"
         }
       ],
-      "run_id": "20261012T090738.708818Z",
+      "run_id": "20261013T092111.498371Z",
       "scopes": [
         {
           "complete": true,
@@ -44750,7 +44782,7 @@
           "database_id": "A_Folkhalsodata",
           "language": "sv",
           "provider_code": "fohm",
-          "record_count": 1704
+          "record_count": 1694
         },
         {
           "complete": true,
@@ -45040,11 +45072,11 @@
           "record_count": 207
         },
         {
-          "complete": true,
+          "complete": false,
           "database_id": "Skogsstyrelsens statistikdatabas",
           "language": "sv",
           "provider_code": "skog",
-          "record_count": 270
+          "record_count": 242
         },
         {
           "complete": true,
@@ -45124,8 +45156,8 @@
           "record_count": 3
         }
       ],
-      "started_at": "2026-10-12T09:08:25.161482+00:00",
-      "successful_records": 7384
+      "started_at": "2026-10-13T09:21:53.484458+00:00",
+      "successful_records": 7346
     },
     "pxweb_v2/reports/harvest.json": {
       "counts": {
