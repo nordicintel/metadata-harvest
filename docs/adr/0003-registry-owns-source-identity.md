@@ -118,7 +118,8 @@ Invariants a caller must know:
   `source_entities`, `service_for_url`, `catalog_configurations`.
 - `apps/migrations/` and `scripts/migrations/` entirely. Accepted collections are
   regenerated from source files, so profile upgrades and renames have no purpose.
-  The audit reports under `docs/migrations/` stay as history.
+  The audit reports under `docs/migrations/` are deleted too (amended by ADR 0004;
+  git history is the record).
 - Every reference to `entrysoft`, in code, tests, state and reports.
 - `legacy_document` and `adapter_for` in parsing, `legacy_configuration`, the
   pxweb_v1-only half of `apps/harvest/storage.py`, and `migrate_storage`.

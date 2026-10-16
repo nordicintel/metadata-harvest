@@ -21,8 +21,9 @@ find and fetch things (`harvest.py`), and how to turn stored responses into data
 - **Provider**: a `ServiceBinding` from the registry (see ADR 0003): one configured
   endpoint for one adapter, with `source_code`, `endpoint_url`, publisher and options.
   Amended 2026-10-16: adapters receive the typed binding, not a dict.
-- **Parse**: read those stored files, offline, and turn them into StatDCAT dataset
-  documents. Happens later, by hand, never inside a harvest run.
+- **Parse**: read those stored files, offline, and turn them into dataset documents
+  in the accepted model (the schema from ADR 0002; until it exists, the JSON-stat2
+  worker document). Happens later, by hand, never inside a harvest run.
 - **Lifecycle**: the shared loop around a harvest run: copy the previous files, ask
   the adapter what exists, fetch each item, retry failures once, decide what is
   published or withheld, write state and reports, and apply the result back.

@@ -31,8 +31,10 @@ not execute migration commands.
 Decisions that change module boundaries are recorded under [docs/adr/](adr/):
 [ADR 0001](adr/0001-harvest-adapter-contract.md) defines the harvest adapter contract,
 [ADR 0002](adr/0002-replace-statdcat-with-own-schema.md) records the move away from
-StatDCAT, and [ADR 0003](adr/0003-registry-owns-source-identity.md) puts source
-identity in a root-level `registry/` module.
+StatDCAT, [ADR 0003](adr/0003-registry-owns-source-identity.md) puts source
+identity in a root-level `registry/` module, and
+[ADR 0004](adr/0004-clean-sweep-before-the-new-schema.md) lists what is deleted,
+moved and kept before the new schema is designed.
 
 ## Dependencies and data flow
 
