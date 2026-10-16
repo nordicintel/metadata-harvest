@@ -1,0 +1,249 @@
+{
+  "key": "socialstyrelsen_analys/LRHST|LRHST01/sv",
+  "identifier": "LRHST|LRHST01",
+  "language": "sv",
+  "updated": 1767139200000.0,
+  "retrieved_at": "2026-10-16T17:17:47.454206+00:00",
+  "responses": {
+    "cube": {
+      "result": [
+        {
+          "cache_key": "233e6a6c874916abe6eba811b6f44f60",
+          "cached_dttm": null,
+          "cache_timeout": 86400,
+          "applied_template_filters": [],
+          "annotation_data": {},
+          "error": null,
+          "is_cached": null,
+          "query": "SELECT TOP 20000 [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Gender] AS [Gender], [Age] AS [Age], [MeasurementPeriod] AS [MeasurementPeriod], [MeasurementPeriodDate] AS [MeasurementPeriodDate] \nFROM (SELECT \n\t  MBusinessKey\n\t  ,MTypeBusinessKey\n      ,[Version]\n      ,GroupKey\n\t  ,MName\n    ,GroupTypeName\n    ,Indelning_typ_desc\n\t  ,Enhet\n\t  ,Kommun\n\t  ,Region\n    ,[GroupName]\n    ,[MeasurementPeriod]\n\t  ,MeasurementPeriodType\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n\t  ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n  \t ,ValueD0\n\t  ,ValueD1\n\t   ,Value\n    ,ValueD3\n    ,ValueD4\n    ,ValueChar\n    ,[Age]\n    ,[Gender]\n\t  ,[numerator] \n\t  ,[denominator]\n\t  ,[cihigh]\n\t  ,[cilow]\n\t  ,StandardizingPop\n\t  ,StandardizingPopName\n\t  ,AgeStandardizedValue\n\t  ,Crude\n\t  ,CrudeCILow\n\t  ,CrudeCIHigh\n    ,[Commentary]\n    ,[DataGenerationDate]\n\tFROM [semantic].[VAI_LRHST_Trends]\n) AS virtual_table \nWHERE [MBusinessKey] IN (N'LRHST01') AND [GroupTypeName] IN (N'Riket', N'Region') GROUP BY [GroupTypeName], [GroupName], [Gender], [Age], [MeasurementPeriod], [MeasurementPeriodDate];\n\n",
+          "status": "success",
+          "stacktrace": null,
+          "rowcount": 13,
+          "sql_rowcount": 13,
+          "from_dttm": null,
+          "to_dttm": null,
+          "label_map": {
+            "GroupTypeName": [
+              "GroupTypeName"
+            ],
+            "GroupName": [
+              "GroupName"
+            ],
+            "Gender": [
+              "Gender"
+            ],
+            "Age": [
+              "Age"
+            ],
+            "MeasurementPeriod": [
+              "MeasurementPeriod"
+            ],
+            "MeasurementPeriodDate": [
+              "MeasurementPeriodDate"
+            ]
+          },
+          "colnames": [
+            "GroupTypeName",
+            "GroupName",
+            "Gender",
+            "Age",
+            "MeasurementPeriod",
+            "MeasurementPeriodDate"
+          ],
+          "indexnames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "coltypes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "data": [
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            }
+          ],
+          "result_format": "json",
+          "applied_filters": [
+            {
+              "column": "MBusinessKey"
+            },
+            {
+              "column": "GroupTypeName"
+            }
+          ],
+          "rejected_filters": []
+        }
+      ]
+    }
+  },
+  "derived": {
+    "row": {
+      "MBusinessKey": "LRHST01",
+      "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/LRHST01_utgifter/\">Utgifter för hälso- och sjukvården per invånare. Kronor per invånare (fast pris)</a></span></div></div>",
+      "DataGenerationDate": 1767139200000.0,
+      "MName": "Utgifter för hälso- och sjukvården per invånare",
+      "Unit": "Kronor per invånare (fast pris)",
+      "AreaName": "Lägesrapporten hälso- och sjukvård",
+      "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/utgifter-for-halso--och-sjukvarden-per-invanare",
+      "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+      "DataSource": "<ul> <li>Hälsoräkenskaperna (HC.0 - HC.7 ”Totala löpande hälso- och sjukvårdsutgifter” samt ”HC.3ADL - därav ADL”), Statistiska centralbyrån.</li> <li>Folkmängd per 31 december per år, Statistiska centralbyrån.</li> <li>Ett konsumtionsprisindex för hälso- och sjukvård för regioner, Statistiska centralbyrån.</li> </ul>",
+      "Description": "Utgifter för hälso- och sjukvården inklusive tandvården per invånare i riket",
+      "DesiredValue": "Ej angett",
+      "InputType": "",
+      "Keywords": "",
+      "MeasurePeriodInterval": "2011-2023"
+    },
+    "columns": {
+      "indicator": "MBusinessKey",
+      "level": "GroupTypeName",
+      "code": "GroupName",
+      "sex": "Gender",
+      "age": "Age",
+      "period": "MeasurementPeriod",
+      "period_date": "MeasurementPeriodDate",
+      "value": "Value",
+      "status": "Commentary"
+    },
+    "area": {
+      "code": "LRHST",
+      "catalogue_id": 158,
+      "catalogue_dataset": "semantic.semantic_VAI_LRHST_Landningssida",
+      "values_id": 163,
+      "values_dataset": "semantic.semantic_VAI_LRHST_Trender"
+    },
+    "link": {
+      "resolution": "href",
+      "dashboard": {
+        "id": 194,
+        "slug": "LRHST01_utgifter",
+        "title": "Utgifter för hälso- och sjukvården per invånare",
+        "published": true,
+        "tags": [
+          "OMR: LRHST",
+          "VAI",
+          "owner:1",
+          "owner:11",
+          "type:dashboard"
+        ]
+      }
+    },
+    "subject_label": "Lägesrapporten hälso- och sjukvård"
+  }
+}

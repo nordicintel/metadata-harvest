@@ -1,0 +1,186 @@
+{
+  "columns": [
+    "MBusinessKey",
+    "HrefIndicatorDashboard",
+    "DataGenerationDate",
+    "MTypeName",
+    "MName",
+    "Unit",
+    "AreaName",
+    "LinkIndicatorDescription",
+    "LinkIndicatorDescriptionTitle",
+    "DataSource",
+    "Description",
+    "DesiredValue",
+    "InputType",
+    "Keywords",
+    "MeasurePeriodInterval"
+  ],
+  "body": {
+    "result": [
+      {
+        "cache_key": "3ce40d0dd9499321911d6f238046887c",
+        "cached_dttm": null,
+        "cache_timeout": 86400,
+        "applied_template_filters": [],
+        "annotation_data": {},
+        "error": null,
+        "is_cached": null,
+        "query": "SELECT TOP 1000 [MBusinessKey] AS [MBusinessKey], [HrefIndicatorDashboard] AS [HrefIndicatorDashboard], [DataGenerationDate] AS [DataGenerationDate], [MTypeName] AS [MTypeName], [MName] AS [MName], [Unit] AS [Unit], [AreaName] AS [AreaName], [LinkIndicatorDescription] AS [LinkIndicatorDescription], [LinkIndicatorDescriptionTitle] AS [LinkIndicatorDescriptionTitle], [DataSource] AS [DataSource], [Description] AS [Description], [DesiredValue] AS [DesiredValue], [InputType] AS [InputType], [Keywords] AS [Keywords], [MeasurePeriodInterval] AS [MeasurePeriodInterval] \nFROM (SELECT \n\t  MBusinessKey\n\t  ,MTypeBusinessKey\n\t  ,MName\n      ,MTypeName\n      ,InputType\n      ,AreaName\n\t  ,[semantic].[HrefIndicatorDashboard](\n                                          'dataanalys.socialstyrelsen.se',\n                                          URLslugDashboardTitle, \n                                          Unit, \n                                          UrlslugDashboard\n    ) as HrefIndicatorDashboard \n    ,[semantic].[LinkAreaDashboard]('dataanalys.socialstyrelsen.se', URLslugStartpageDashboard) as LinkStartPageDashboard\n    ,LinkStartPageDashboardTitle\n    ,Unit\n\t  ,LinkIndicatorDescription\n\t  ,LinkIndicatorDescriptionTitle\n\t  ,LinkAreaDescription\n\t  ,LinkAreaDescriptionTitle\n\t  ,mattenhet_kort\n    ,Description\n    ,DesiredValue\n    ,DataSource\n    ,[Keywords]\n      ,[Aim]\n      ,[NumeratorDefinition]\n      ,[DenominatorDefinition]\n\t  ,[MeasurementPeriodType]\n    ,[FirstYear]\n    ,[LastYear]\n\t  ,MeasurePeriodInterval\n    ,LastValue\n    ,FirstValue\n    ,UnitChangeFirstValue\n    ,UnitChangePreviousValue\n    ,GrowthFirstValue\n    ,GrowthPreviousValue\n    ,[DataGenerationDate]\n  FROM [semantic].[VAI_NRAA_GroupStats_LastObs]\n) AS virtual_table GROUP BY [MBusinessKey], [HrefIndicatorDashboard], [DataGenerationDate], [MTypeName], [MName], [Unit], [AreaName], [LinkIndicatorDescription], [LinkIndicatorDescriptionTitle], [DataSource], [Description], [DesiredValue], [InputType], [Keywords], [MeasurePeriodInterval];\n\n",
+        "status": "success",
+        "stacktrace": null,
+        "rowcount": 3,
+        "sql_rowcount": 3,
+        "from_dttm": null,
+        "to_dttm": null,
+        "label_map": {
+          "MBusinessKey": [
+            "MBusinessKey"
+          ],
+          "HrefIndicatorDashboard": [
+            "HrefIndicatorDashboard"
+          ],
+          "DataGenerationDate": [
+            "DataGenerationDate"
+          ],
+          "MTypeName": [
+            "MTypeName"
+          ],
+          "MName": [
+            "MName"
+          ],
+          "Unit": [
+            "Unit"
+          ],
+          "AreaName": [
+            "AreaName"
+          ],
+          "LinkIndicatorDescription": [
+            "LinkIndicatorDescription"
+          ],
+          "LinkIndicatorDescriptionTitle": [
+            "LinkIndicatorDescriptionTitle"
+          ],
+          "DataSource": [
+            "DataSource"
+          ],
+          "Description": [
+            "Description"
+          ],
+          "DesiredValue": [
+            "DesiredValue"
+          ],
+          "InputType": [
+            "InputType"
+          ],
+          "Keywords": [
+            "Keywords"
+          ],
+          "MeasurePeriodInterval": [
+            "MeasurePeriodInterval"
+          ]
+        },
+        "colnames": [
+          "MBusinessKey",
+          "HrefIndicatorDashboard",
+          "DataGenerationDate",
+          "MTypeName",
+          "MName",
+          "Unit",
+          "AreaName",
+          "LinkIndicatorDescription",
+          "LinkIndicatorDescriptionTitle",
+          "DataSource",
+          "Description",
+          "DesiredValue",
+          "InputType",
+          "Keywords",
+          "MeasurePeriodInterval"
+        ],
+        "indexnames": [
+          0,
+          1,
+          2
+        ],
+        "coltypes": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "data": [
+          {
+            "MBusinessKey": "NRAA_1",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/NRAA_1_Indikatorer_adhd_autism/\">Indikatorer Adhd autism. Procent</a></span></div></div>",
+            "DataGenerationDate": 1770249600000.0,
+            "MTypeName": "Barn och unga med adhd som behandlats med melatonin",
+            "MName": "Barn och unga med adhd som behandlats med melatonin",
+            "Unit": "Procent",
+            "AreaName": "ADHD/Autism i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/barn-och-unga-med-adhd-som-behandlats-med-melatonin",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret, Läkemedelsregistret, Socialstyrelsen. Områdestyper, Boverket.",
+            "Description": "Barn och unga med adhd som behandlats med melatonin",
+            "DesiredValue": null,
+            "InputType": "",
+            "Keywords": null,
+            "MeasurePeriodInterval": "2015-2023"
+          },
+          {
+            "MBusinessKey": "NRAA_2",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/NRAA_2_Indikatorer_adhd_autism/\">Indikatorer Adhd autism. Procent</a></span></div></div>",
+            "DataGenerationDate": 1770249600000.0,
+            "MTypeName": "Övergång från barnsjukvård till vuxensjukvård för personer med adhd",
+            "MName": "Övergång från barnsjukvård till vuxensjukvård för personer med adhd",
+            "Unit": "Procent",
+            "AreaName": "ADHD/Autism i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/overgang-fran-barnsjukvard-till-vuxensjukvard-for-personer-med-adhd",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret, Läkemedelsregistret, Socialstyrelsen. Områdestyper, Boverket.",
+            "Description": "Övergång från barnsjukvård till vuxensjukvård för personer med adhd",
+            "DesiredValue": null,
+            "InputType": "",
+            "Keywords": null,
+            "MeasurePeriodInterval": "2015-2023"
+          },
+          {
+            "MBusinessKey": "NRAA_3",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/NRAA_3_Indikatorer_adhd_autism/\">Indikatorer Adhd autism. Procent</a></span></div></div>",
+            "DataGenerationDate": 1771545600000.0,
+            "MTypeName": "Centralstimulerande adhd-läkemedel upp till ett år till personer med nydiagnostiserad adhd",
+            "MName": "Centralstimulerande adhd-läkemedel upp till ett år till personer med nydiagnostiserad adhd",
+            "Unit": "Procent",
+            "AreaName": "ADHD/Autism i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/centralstimulerande-adhd-lakemedel-upp-till-ett-ar-till-personer-med-nydiagnostiserad-adhd",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret, Läkemedelsregistret, Socialstyrelsen. Områdestyper, Boverket.",
+            "Description": "Andel barn och vuxna med nydiagnostiserad adhd som hämtat ut centralstimulerande läkemedel under 1 års tid",
+            "DesiredValue": null,
+            "InputType": "",
+            "Keywords": null,
+            "MeasurePeriodInterval": "2015-2023"
+          }
+        ],
+        "result_format": "json",
+        "applied_filters": [],
+        "rejected_filters": [
+          {
+            "reason": "not_in_datasource",
+            "column": "GroupTypeName"
+          }
+        ]
+      }
+    ]
+  }
+}

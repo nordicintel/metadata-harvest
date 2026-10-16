@@ -1,0 +1,118 @@
+{
+  "key": "socialstyrelsen_analys/LRHST|PS217/sv",
+  "identifier": "LRHST|PS217",
+  "language": "sv",
+  "updated": 1765756800000.0,
+  "retrieved_at": "2026-10-16T17:17:47.454206+00:00",
+  "responses": {
+    "cube": {
+      "result": [
+        {
+          "cache_key": "0df85b7fc60ff65e9ef1a7691853b7b7",
+          "cached_dttm": null,
+          "cache_timeout": 86400,
+          "applied_template_filters": [],
+          "annotation_data": {},
+          "error": null,
+          "is_cached": null,
+          "query": "SELECT TOP 20000 [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Gender] AS [Gender], [Age] AS [Age], [MeasurementPeriod] AS [MeasurementPeriod], [MeasurementPeriodDate] AS [MeasurementPeriodDate] \nFROM (SELECT \n\t  MBusinessKey\n\t  ,MTypeBusinessKey\n      ,[Version]\n      ,GroupKey\n\t  ,MName\n    ,GroupTypeName\n    ,Indelning_typ_desc\n\t  ,Enhet\n\t  ,Kommun\n\t  ,Region\n    ,[GroupName]\n    ,[MeasurementPeriod]\n\t  ,MeasurementPeriodType\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n\t  ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n  \t ,ValueD0\n\t  ,ValueD1\n\t   ,Value\n    ,ValueD3\n    ,ValueD4\n    ,ValueChar\n    ,[Age]\n    ,[Gender]\n\t  ,[numerator] \n\t  ,[denominator]\n\t  ,[cihigh]\n\t  ,[cilow]\n\t  ,StandardizingPop\n\t  ,StandardizingPopName\n\t  ,AgeStandardizedValue\n\t  ,Crude\n\t  ,CrudeCILow\n\t  ,CrudeCIHigh\n    ,[Commentary]\n    ,[DataGenerationDate]\n\tFROM [semantic].[VAI_LRHST_Trends]\n) AS virtual_table \nWHERE [MBusinessKey] IN (N'PS217') AND [GroupTypeName] IN (N'Riket', N'Region') GROUP BY [GroupTypeName], [GroupName], [Gender], [Age], [MeasurementPeriod], [MeasurementPeriodDate];\n\n",
+          "status": "success",
+          "stacktrace": null,
+          "rowcount": 0,
+          "sql_rowcount": 0,
+          "from_dttm": null,
+          "to_dttm": null,
+          "label_map": {
+            "GroupTypeName": [
+              "GroupTypeName"
+            ],
+            "GroupName": [
+              "GroupName"
+            ],
+            "Gender": [
+              "Gender"
+            ],
+            "Age": [
+              "Age"
+            ],
+            "MeasurementPeriod": [
+              "MeasurementPeriod"
+            ],
+            "MeasurementPeriodDate": [
+              "MeasurementPeriodDate"
+            ]
+          },
+          "colnames": [],
+          "indexnames": [],
+          "coltypes": [],
+          "data": [],
+          "result_format": "json",
+          "applied_filters": [
+            {
+              "column": "MBusinessKey"
+            },
+            {
+              "column": "GroupTypeName"
+            }
+          ],
+          "rejected_filters": []
+        }
+      ]
+    }
+  },
+  "derived": {
+    "row": {
+      "MBusinessKey": "PS217",
+      "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/PS217_antibiotika_ov/\">Förekomst av antibiotikabehandling i öppen vård. Antal per 1 000 invånare</a></span></div></div>",
+      "DataGenerationDate": 1765756800000.0,
+      "MName": "Förekomst av antibiotikabehandling i öppen vård",
+      "Unit": "Antal per 1 000 invånare",
+      "AreaName": "Lägesrapporten hälso- och sjukvård",
+      "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/forekomst-av-antibiotikabehandling-i-oppen-vard",
+      "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+      "DataSource": "Läkemedelsregistret, Socialstyrelsen",
+      "Description": "Antal expedieringar av antibiotika per 1 000 invånare, åldersstandardiserade värden",
+      "DesiredValue": "Lågt",
+      "InputType": "",
+      "Keywords": "",
+      "MeasurePeriodInterval": "2010-2024"
+    },
+    "columns": {
+      "indicator": "MBusinessKey",
+      "level": "GroupTypeName",
+      "code": "GroupName",
+      "sex": "Gender",
+      "age": "Age",
+      "period": "MeasurementPeriod",
+      "period_date": "MeasurementPeriodDate",
+      "value": "Value",
+      "status": "Commentary"
+    },
+    "area": {
+      "code": "LRHST",
+      "catalogue_id": 158,
+      "catalogue_dataset": "semantic.semantic_VAI_LRHST_Landningssida",
+      "values_id": 163,
+      "values_dataset": "semantic.semantic_VAI_LRHST_Trender"
+    },
+    "link": {
+      "resolution": "href",
+      "dashboard": {
+        "id": 145,
+        "slug": "PS217_antibiotika_ov",
+        "title": "Förekomst av antibiotikabehandling i öppen vård",
+        "published": true,
+        "tags": [
+          "OMR: LRHST",
+          "OMR: PS",
+          "VAI",
+          "owner:1",
+          "owner:11",
+          "owner:9",
+          "type:dashboard"
+        ]
+      }
+    },
+    "subject_label": "Lägesrapporten hälso- och sjukvård"
+  }
+}

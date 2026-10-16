@@ -1,0 +1,110 @@
+{
+  "columns": {
+    "indicator": "MBusinessKey",
+    "level": "GroupTypeName",
+    "code": "GroupName",
+    "sex": "Gender",
+    "age": "Age",
+    "period_type": "Measurementperiodtype",
+    "period": "MeasurementPeriod",
+    "period_date": "MeasurementPeriodDate",
+    "value": "Value",
+    "status": "Commentary"
+  },
+  "body": {
+    "result": [
+      {
+        "cache_key": "630db5d754b9adb4b193fd0ce82b747c",
+        "cached_dttm": null,
+        "cache_timeout": 86400,
+        "applied_template_filters": [],
+        "annotation_data": {},
+        "error": null,
+        "is_cached": null,
+        "query": "SELECT TOP 1 [MBusinessKey] AS [MBusinessKey], [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Gender] AS [Gender], [Age] AS [Age], [Measurementperiodtype] AS [Measurementperiodtype], [MeasurementPeriod] AS [MeasurementPeriod], [MeasurementPeriodDate] AS [MeasurementPeriodDate], [Value] AS [Value], [Commentary] AS [Commentary] \nFROM (SELECT \n\t  MBusinessKey\n    ,Version\n\t  ,GroupKey\n\t  ,MTypeBusinessKey\n    ,MTypeName\n\t  ,MName\n    ,GroupTypeName\n    ,Indelning_typ_desc\n\t  ,Enhet\n\t  ,Kommun\n\t  ,Region\n    ,GroupName\n    ,MeasurementPeriod\n\t  ,Measurementperiodtype\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n\t  ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,Age\n    ,Gender\n\t  ,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n  \t,ValueD0\n\t  ,ValueD1\n\t  ,Value\n    ,ValueD3\n    ,ValueD4\n    ,ValueChar\n    ,Numerator\n\t  ,Denominator\n\t  ,CIhigh\n\t  ,CIlow\n\t  ,Crude\n\t  ,CrudeCILow\n\t  ,CrudeCIHigh\n    ,Commentary\n    ,DataGenerationDate\n    ,case when age in ('18 år eller äldre', '17 år eller yngre') then [Value] else Crude end as Value_Crude\n\tFROM [semantic].[VAI_OB_Trends]\n) AS virtual_table GROUP BY [MBusinessKey], [GroupTypeName], [GroupName], [Gender], [Age], [Measurementperiodtype], [MeasurementPeriod], [MeasurementPeriodDate], [Value], [Commentary];\n\n",
+        "status": "success",
+        "stacktrace": null,
+        "rowcount": 1,
+        "sql_rowcount": 1,
+        "from_dttm": null,
+        "to_dttm": null,
+        "label_map": {
+          "MBusinessKey": [
+            "MBusinessKey"
+          ],
+          "GroupTypeName": [
+            "GroupTypeName"
+          ],
+          "GroupName": [
+            "GroupName"
+          ],
+          "Gender": [
+            "Gender"
+          ],
+          "Age": [
+            "Age"
+          ],
+          "Measurementperiodtype": [
+            "Measurementperiodtype"
+          ],
+          "MeasurementPeriod": [
+            "MeasurementPeriod"
+          ],
+          "MeasurementPeriodDate": [
+            "MeasurementPeriodDate"
+          ],
+          "Value": [
+            "Value"
+          ],
+          "Commentary": [
+            "Commentary"
+          ]
+        },
+        "colnames": [
+          "MBusinessKey",
+          "GroupTypeName",
+          "GroupName",
+          "Gender",
+          "Age",
+          "Measurementperiodtype",
+          "MeasurementPeriod",
+          "MeasurementPeriodDate",
+          "Value",
+          "Commentary"
+        ],
+        "indexnames": [
+          0
+        ],
+        "coltypes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          0,
+          1
+        ],
+        "data": [
+          {
+            "MBusinessKey": "OB11",
+            "GroupTypeName": "Region",
+            "GroupName": "Stockholm",
+            "Gender": "Kön, totalt",
+            "Age": "18 år eller äldre",
+            "Measurementperiodtype": "1_ar",
+            "MeasurementPeriod": "2024",
+            "MeasurementPeriodDate": 1735603200000.0,
+            "Value": 2.01,
+            "Commentary": ""
+          }
+        ],
+        "result_format": "json",
+        "applied_filters": [],
+        "rejected_filters": []
+      }
+    ]
+  }
+}

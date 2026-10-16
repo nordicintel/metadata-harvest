@@ -1,0 +1,312 @@
+{
+  "columns": [
+    "MBusinessKey",
+    "HrefIndicatorDashboard",
+    "DataGenerationDate",
+    "MTypeName",
+    "MName",
+    "Unit",
+    "AreaName",
+    "LinkIndicatorDescription",
+    "LinkIndicatorDescriptionTitle",
+    "DataSource",
+    "Description",
+    "DesiredValue",
+    "InputType",
+    "Keywords",
+    "MeasurePeriodInterval"
+  ],
+  "body": {
+    "result": [
+      {
+        "cache_key": "15ab7a3b13c336e25ff6442d929c3583",
+        "cached_dttm": null,
+        "cache_timeout": 86400,
+        "applied_template_filters": [],
+        "annotation_data": {},
+        "error": null,
+        "is_cached": null,
+        "query": "SELECT TOP 1000 [MBusinessKey] AS [MBusinessKey], [HrefIndicatorDashboard] AS [HrefIndicatorDashboard], [DataGenerationDate] AS [DataGenerationDate], [MTypeName] AS [MTypeName], [MName] AS [MName], [Unit] AS [Unit], [AreaName] AS [AreaName], [LinkIndicatorDescription] AS [LinkIndicatorDescription], [LinkIndicatorDescriptionTitle] AS [LinkIndicatorDescriptionTitle], [DataSource] AS [DataSource], [Description] AS [Description], [DesiredValue] AS [DesiredValue], [InputType] AS [InputType], [Keywords] AS [Keywords], [MeasurePeriodInterval] AS [MeasurePeriodInterval] \nFROM (select\n\t  MBusinessKey\n\t  ,MTypeBusinessKey\n\t  ,MName\n      ,MTypeName\n      ,InputType\n      ,AreaName\n\t    ,[semantic].[HrefIndicatorDashboard](\n                                          'dataanalys.socialstyrelsen.se',\n                                          URLslugDashboardTitle, \n                                          Unit, \n                                          UrlslugDashboard\n      ) as HrefIndicatorDashboard \n      ,[semantic].[LinkAreaDashboard]('dataanalys.socialstyrelsen.se', URLslugStartpageDashboard) as LinkStartPageDashboard\n      ,LinkStartPageDashboardTitle\n\t  ,LinkIndicatorDescription\n\t  ,LinkIndicatorDescriptionTitle\n\t  ,LinkAreaDescription\n\t  ,LinkAreaDescriptionTitle\n      ,[Unit]\n\t  \t,mattenhet_kort\n      ,[Description]\n      ,[TypeDescription]\n      ,[DesiredValue]\n      ,[DataSource]\n      ,[Keywords]\n      \t ,[MeasurementPeriodType]\n      ,[FirstYear]\n      ,[LastYear]\n\t    , MeasurePeriodInterval\n      ,[LastValue]\n      ,[FirstValue]\n      ,[PreviousValue]\n      ,[UnitChangeFirstValue]\n      ,[UnitChangePreviousValue]\n      ,[GrowthFirstValue]\n      ,[GrowthPreviousValue]\n      ,[DataGenerationDate]\nfrom [semantic].[VAI_NRTV_GroupStats_LastObs]\n) AS virtual_table GROUP BY [MBusinessKey], [HrefIndicatorDashboard], [DataGenerationDate], [MTypeName], [MName], [Unit], [AreaName], [LinkIndicatorDescription], [LinkIndicatorDescriptionTitle], [DataSource], [Description], [DesiredValue], [InputType], [Keywords], [MeasurePeriodInterval];\n\n",
+        "status": "success",
+        "stacktrace": null,
+        "rowcount": 10,
+        "sql_rowcount": 10,
+        "from_dttm": null,
+        "to_dttm": null,
+        "label_map": {
+          "MBusinessKey": [
+            "MBusinessKey"
+          ],
+          "HrefIndicatorDashboard": [
+            "HrefIndicatorDashboard"
+          ],
+          "DataGenerationDate": [
+            "DataGenerationDate"
+          ],
+          "MTypeName": [
+            "MTypeName"
+          ],
+          "MName": [
+            "MName"
+          ],
+          "Unit": [
+            "Unit"
+          ],
+          "AreaName": [
+            "AreaName"
+          ],
+          "LinkIndicatorDescription": [
+            "LinkIndicatorDescription"
+          ],
+          "LinkIndicatorDescriptionTitle": [
+            "LinkIndicatorDescriptionTitle"
+          ],
+          "DataSource": [
+            "DataSource"
+          ],
+          "Description": [
+            "Description"
+          ],
+          "DesiredValue": [
+            "DesiredValue"
+          ],
+          "InputType": [
+            "InputType"
+          ],
+          "Keywords": [
+            "Keywords"
+          ],
+          "MeasurePeriodInterval": [
+            "MeasurePeriodInterval"
+          ]
+        },
+        "colnames": [
+          "MBusinessKey",
+          "HrefIndicatorDashboard",
+          "DataGenerationDate",
+          "MTypeName",
+          "MName",
+          "Unit",
+          "AreaName",
+          "LinkIndicatorDescription",
+          "LinkIndicatorDescriptionTitle",
+          "DataSource",
+          "Description",
+          "DesiredValue",
+          "InputType",
+          "Keywords",
+          "MeasurePeriodInterval"
+        ],
+        "indexnames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "coltypes": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "data": [
+          {
+            "MBusinessKey": "T1",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T1_debut/\">Debut i psykiatrin med tvångsvård. Procent</a></span></div></div>",
+            "DataGenerationDate": 1763942400000.0,
+            "MTypeName": "Debut i psykiatrin med tvångsvård",
+            "MName": "Debut i psykiatrin med tvångsvård",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/debut-i-psykiatrin-med-tvangsvard",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret, Socialstyrelsen",
+            "Description": "Andel personer som slutenvårdats med LPT utan tidigare kontakt med den specialiserade psykiatriska vården bland personer som slutenvårdats med LPT",
+            "DesiredValue": "Ej angett",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2020-2024"
+          },
+          {
+            "MBusinessKey": "T2",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T2_frekvent/\">Frekventa vårdtillfällen med tvångsvård. Procent</a></span></div></div>",
+            "DataGenerationDate": 1763942400000.0,
+            "MTypeName": "Frekventa vårdtillfällen med tvångsvård",
+            "MName": "Frekventa vårdtillfällen med tvångsvård",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/frekventa-vardtillfallen-med-tvangsvard",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret, Socialstyrelsen",
+            "Description": "Andel personer med frekventa vårdtillfällen med LPT i slutenvården bland personer som vårdats med LPT under samma period.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2020-2024"
+          },
+          {
+            "MBusinessKey": "T3_1_1",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1763683200000.0,
+            "MTypeName": "Dödlighet efter tvångsvård",
+            "MName": "Dödlighet efter tvångsvård (LPT) i suicid inom 6 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-tvangsvard",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LPT. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_1_2",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1763683200000.0,
+            "MTypeName": "Dödlighet efter tvångsvård",
+            "MName": "Dödlighet efter tvångsvård (LPT) i övriga dödsorsaker inom 6 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-tvangsvard",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LPT. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_1_3",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1763683200000.0,
+            "MTypeName": "Dödlighet efter tvångsvård",
+            "MName": "Dödlighet efter tvångsvård (LPT) i suicid mellan 6 och 12 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-tvangsvard",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LPT. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_1_4",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1763683200000.0,
+            "MTypeName": "Dödlighet efter tvångsvård",
+            "MName": "Dödlighet efter tvångsvård (LPT) i övriga dödsorsaker mellan 6 och 12 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-tvangsvard",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LPT. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_2_1",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1764720000000.0,
+            "MTypeName": "Dödlighet efter rättspsykiatrisk vård med LRV",
+            "MName": "Dödlighet efter rättspsykiatrisk vård (LRV) i suicid inom 6 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-rattspsykiatrisk-vard-med-lrv",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LRV. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_2_2",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1764720000000.0,
+            "MTypeName": "Dödlighet efter rättspsykiatrisk vård med LRV",
+            "MName": "Dödlighet efter rättspsykiatrisk vård (LRV) i övriga dödsorsaker inom 6 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-rattspsykiatrisk-vard-med-lrv",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LRV. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_2_3",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1764720000000.0,
+            "MTypeName": "Dödlighet efter rättspsykiatrisk vård med LRV",
+            "MName": "Dödlighet efter rättspsykiatrisk vård (LRV) i suicid mellan 6 och 12 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-rattspsykiatrisk-vard-med-lrv",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LRV. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          },
+          {
+            "MBusinessKey": "T3_2_4",
+            "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/T3_dodlighet/\">Dödlighet efter tvångsvård och LRV. Procent</a></span></div></div>",
+            "DataGenerationDate": 1764720000000.0,
+            "MTypeName": "Dödlighet efter rättspsykiatrisk vård med LRV",
+            "MName": "Dödlighet efter rättspsykiatrisk vård (LRV) i övriga dödsorsaker mellan 6 och 12 månader",
+            "Unit": "Procent",
+            "AreaName": "Tvångsvård i Sverige",
+            "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/dodlighet-efter-rattspsykiatrisk-vard-med-lrv",
+            "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+            "DataSource": "Patientregistret och Dödsorsaksregistret, Socialstyrelsen",
+            "Description": "Andel personer 18 år och äldre som dör inom 6 månader eller mellan 6- 12 månader efter senast avslutad slutenvårdsepisod med LRV. Fördelning efter andel med suicid som dödsorsak och andel med övriga dödsorsaker.",
+            "DesiredValue": "Lågt",
+            "InputType": "",
+            "Keywords": "",
+            "MeasurePeriodInterval": "2016-2023"
+          }
+        ],
+        "result_format": "json",
+        "applied_filters": [],
+        "rejected_filters": [
+          {
+            "reason": "not_in_datasource",
+            "column": "GroupTypeName"
+          }
+        ]
+      }
+    ]
+  }
+}

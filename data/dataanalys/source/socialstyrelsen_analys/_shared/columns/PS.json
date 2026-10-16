@@ -1,0 +1,110 @@
+{
+  "columns": {
+    "indicator": "MBusinessKey",
+    "level": "GroupTypeName",
+    "code": "GroupName",
+    "sex": "Kön",
+    "age": "Ålder",
+    "period_type": "Measurementperiodtype",
+    "period": "Mätperiod",
+    "period_date": "MeasurementPeriodDate",
+    "value": "Värde",
+    "status": "Kommentar"
+  },
+  "body": {
+    "result": [
+      {
+        "cache_key": "d028b33cc2182e81b6c7310d5535ee35",
+        "cached_dttm": null,
+        "cache_timeout": 86400,
+        "applied_template_filters": [],
+        "annotation_data": {},
+        "error": null,
+        "is_cached": null,
+        "query": "SELECT TOP 1 [MBusinessKey] AS [MBusinessKey], [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Kön] AS [Kön], [Ålder] AS [Ålder], [Measurementperiodtype] AS [Measurementperiodtype], [Mätperiod] AS [Mätperiod], [MeasurementPeriodDate] AS [MeasurementPeriodDate], [Värde] AS [Värde], [Kommentar] AS [Kommentar] \nFROM (SELECT \n\t  MBusinessKey\n    ,Version\n\t  ,GroupKey\n\t  ,MTypeBusinessKey\n    ,MTypeName as Namn_MåttTyp\n\t  ,MName as Namn_Mått\n\t\t,GroupTypeName\n\t\t,Indelning_typ_desc\n\t\t,Enhet\n\t\t,Kommun\n\t\t,Region\n    ,GroupName\n    ,MeasurementPeriod as Mätperiod\n\t  ,Measurementperiodtype\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n    ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,Age as Ålder\n    ,Gender as Kön\n  \t,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n    ,ValueD0\n\t  ,ValueD1\n\t  ,Value as Värde\n    ,ValueD3\n    ,ValueD4\n        ,ValueChar\n    ,numerator as Täljare\n\t  ,denominator as Nämnare\n\t  ,cihigh as KI_HögreGräns\n\t  ,cilow as KI_LägreGräns\n\t  ,Quartile1 as Kvartil1\n\t  ,Quartile2 as Median\n\t  ,Quartile3 as Kvartil3\n\t  ,MinValue as MinVärde\n\t  ,Percentile10 as Percentil10\n\t  ,Percentile90 as Percentil90\n\t  ,MaxValue as MaxVärde\n    ,DataGenerationDate\n    ,Commentary as Kommentar\n\tFROM [semantic].[VAI_PS_Trends]\n) AS virtual_table GROUP BY [MBusinessKey], [GroupTypeName], [GroupName], [Kön], [Ålder], [Measurementperiodtype], [Mätperiod], [MeasurementPeriodDate], [Värde], [Kommentar];\n\n",
+        "status": "success",
+        "stacktrace": null,
+        "rowcount": 1,
+        "sql_rowcount": 1,
+        "from_dttm": null,
+        "to_dttm": null,
+        "label_map": {
+          "MBusinessKey": [
+            "MBusinessKey"
+          ],
+          "GroupTypeName": [
+            "GroupTypeName"
+          ],
+          "GroupName": [
+            "GroupName"
+          ],
+          "Kön": [
+            "Kön"
+          ],
+          "Ålder": [
+            "Ålder"
+          ],
+          "Measurementperiodtype": [
+            "Measurementperiodtype"
+          ],
+          "Mätperiod": [
+            "Mätperiod"
+          ],
+          "MeasurementPeriodDate": [
+            "MeasurementPeriodDate"
+          ],
+          "Värde": [
+            "Värde"
+          ],
+          "Kommentar": [
+            "Kommentar"
+          ]
+        },
+        "colnames": [
+          "MBusinessKey",
+          "GroupTypeName",
+          "GroupName",
+          "Kön",
+          "Ålder",
+          "Measurementperiodtype",
+          "Mätperiod",
+          "MeasurementPeriodDate",
+          "Värde",
+          "Kommentar"
+        ],
+        "indexnames": [
+          0
+        ],
+        "coltypes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          0,
+          1
+        ],
+        "data": [
+          {
+            "MBusinessKey": "PS12",
+            "GroupTypeName": "Region",
+            "GroupName": "Norrbotten",
+            "Kön": "Män",
+            "Ålder": "Ålder, totalt",
+            "Measurementperiodtype": "1_ar",
+            "Mätperiod": "2024",
+            "MeasurementPeriodDate": 1735603200000.0,
+            "Värde": 78.26,
+            "Kommentar": ""
+          }
+        ],
+        "result_format": "json",
+        "applied_filters": [],
+        "rejected_filters": []
+      }
+    ]
+  }
+}

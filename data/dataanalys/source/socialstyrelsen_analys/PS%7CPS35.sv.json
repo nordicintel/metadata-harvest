@@ -1,0 +1,799 @@
+{
+  "key": "socialstyrelsen_analys/PS|PS35/sv",
+  "identifier": "PS|PS35",
+  "language": "sv",
+  "updated": 1757980800000.0,
+  "retrieved_at": "2026-10-16T17:17:47.454206+00:00",
+  "responses": {
+    "cube": {
+      "result": [
+        {
+          "cache_key": "78ad12f41a1bbd49d9062c36a4e2c97f",
+          "cached_dttm": null,
+          "cache_timeout": 86400,
+          "applied_template_filters": [],
+          "annotation_data": {},
+          "error": null,
+          "is_cached": null,
+          "query": "SELECT TOP 20000 [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Kön] AS [Kön], [Ålder] AS [Ålder], [Measurementperiodtype] AS [Measurementperiodtype], [Mätperiod] AS [Mätperiod], [MeasurementPeriodDate] AS [MeasurementPeriodDate] \nFROM (SELECT \n\t  MBusinessKey\n    ,Version\n\t  ,GroupKey\n\t  ,MTypeBusinessKey\n    ,MTypeName as Namn_MåttTyp\n\t  ,MName as Namn_Mått\n\t\t,GroupTypeName\n\t\t,Indelning_typ_desc\n\t\t,Enhet\n\t\t,Kommun\n\t\t,Region\n    ,GroupName\n    ,MeasurementPeriod as Mätperiod\n\t  ,Measurementperiodtype\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n    ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,Age as Ålder\n    ,Gender as Kön\n  \t,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n    ,ValueD0\n\t  ,ValueD1\n\t  ,Value as Värde\n    ,ValueD3\n    ,ValueD4\n        ,ValueChar\n    ,numerator as Täljare\n\t  ,denominator as Nämnare\n\t  ,cihigh as KI_HögreGräns\n\t  ,cilow as KI_LägreGräns\n\t  ,Quartile1 as Kvartil1\n\t  ,Quartile2 as Median\n\t  ,Quartile3 as Kvartil3\n\t  ,MinValue as MinVärde\n\t  ,Percentile10 as Percentil10\n\t  ,Percentile90 as Percentil90\n\t  ,MaxValue as MaxVärde\n    ,DataGenerationDate\n    ,Commentary as Kommentar\n\tFROM [semantic].[VAI_PS_Trends]\n) AS virtual_table \nWHERE [MBusinessKey] IN (N'PS35') AND [GroupTypeName] IN (N'Riket', N'Region') GROUP BY [GroupTypeName], [GroupName], [Kön], [Ålder], [Measurementperiodtype], [Mätperiod], [MeasurementPeriodDate];\n\n",
+          "status": "success",
+          "stacktrace": null,
+          "rowcount": 66,
+          "sql_rowcount": 66,
+          "from_dttm": null,
+          "to_dttm": null,
+          "label_map": {
+            "GroupTypeName": [
+              "GroupTypeName"
+            ],
+            "GroupName": [
+              "GroupName"
+            ],
+            "Kön": [
+              "Kön"
+            ],
+            "Ålder": [
+              "Ålder"
+            ],
+            "Measurementperiodtype": [
+              "Measurementperiodtype"
+            ],
+            "Mätperiod": [
+              "Mätperiod"
+            ],
+            "MeasurementPeriodDate": [
+              "MeasurementPeriodDate"
+            ]
+          },
+          "colnames": [
+            "GroupTypeName",
+            "GroupName",
+            "Kön",
+            "Ålder",
+            "Measurementperiodtype",
+            "Mätperiod",
+            "MeasurementPeriodDate"
+          ],
+          "indexnames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "coltypes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "data": [
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Kön": "Kön, totalt",
+              "Ålder": "Ålder, totalt",
+              "Measurementperiodtype": "1_ar",
+              "Mätperiod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            }
+          ],
+          "result_format": "json",
+          "applied_filters": [
+            {
+              "column": "MBusinessKey"
+            },
+            {
+              "column": "GroupTypeName"
+            }
+          ],
+          "rejected_filters": []
+        }
+      ]
+    }
+  },
+  "derived": {
+    "row": {
+      "MBusinessKey": "PS35",
+      "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/PS35_kompetensutvplan_lakemedel/\">Övergripande kompetensutvecklingsplan om läkemedelshantering i kommunerna. Procent</a></span></div></div>",
+      "DataGenerationDate": 1757980800000.0,
+      "MTypeName": "Övergripande kompetensutvecklingsplan om läkemedelshantering i kommunerna",
+      "MName": "Övergripande kompetensutvecklingsplan om läkemedelshantering i kommunerna",
+      "Unit": "Procent",
+      "AreaName": "Patientsäkerhet",
+      "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/overgripande-kompetensutvecklingsplan-om-lakemedelshantering-i-kommunerna",
+      "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+      "DataSource": "Öppna jämförelser. Enkät till kommunal hälso- och sjukvård och socialtjänsten, kommunundersökning.",
+      "Description": "Andel kommuner per län som uppgett att de har styrdokument, antagna i ansvarig nämnd (eller på delegation), om en övergripande kompetensutvecklingsplan för legitimerad personal/omsorgspersonal om läkemedelshantering.",
+      "DesiredValue": "högt",
+      "InputType": "",
+      "Keywords": "Fokusområde 5",
+      "MeasurePeriodInterval": "2023-2025"
+    },
+    "columns": {
+      "indicator": "MBusinessKey",
+      "level": "GroupTypeName",
+      "code": "GroupName",
+      "sex": "Kön",
+      "age": "Ålder",
+      "period_type": "Measurementperiodtype",
+      "period": "Mätperiod",
+      "period_date": "MeasurementPeriodDate",
+      "value": "Värde",
+      "status": "Kommentar"
+    },
+    "area": {
+      "code": "PS",
+      "catalogue_id": 149,
+      "catalogue_dataset": "semantic.semantic_VAI_PS_Landningssida",
+      "values_id": 148,
+      "values_dataset": "semantic.semantic_VAI_PS_Trender"
+    },
+    "link": {
+      "resolution": "href",
+      "dashboard": {
+        "id": 179,
+        "slug": "PS35_kompetensutvplan_lakemedel",
+        "title": "Övergripande kompetensutvecklingsplan om läkemedelshantering i kommunerna",
+        "published": true,
+        "tags": [
+          "OMR: PS",
+          "VAI",
+          "owner:1",
+          "owner:9",
+          "type:dashboard"
+        ]
+      }
+    },
+    "subject_label": "Patientsäkerhet"
+  }
+}

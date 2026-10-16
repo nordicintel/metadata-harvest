@@ -1,0 +1,3104 @@
+{
+  "key": "socialstyrelsen_analys/LRHST|LRHST15/sv",
+  "identifier": "LRHST|LRHST15",
+  "language": "sv",
+  "updated": 1767139200000.0,
+  "retrieved_at": "2026-10-16T17:17:47.454206+00:00",
+  "responses": {
+    "cube": {
+      "result": [
+        {
+          "cache_key": "f0886a7a2db110e6a330529ae92aaa57",
+          "cached_dttm": null,
+          "cache_timeout": 86400,
+          "applied_template_filters": [],
+          "annotation_data": {},
+          "error": null,
+          "is_cached": null,
+          "query": "SELECT TOP 20000 [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Gender] AS [Gender], [Age] AS [Age], [MeasurementPeriod] AS [MeasurementPeriod], [MeasurementPeriodDate] AS [MeasurementPeriodDate] \nFROM (SELECT \n\t  MBusinessKey\n\t  ,MTypeBusinessKey\n      ,[Version]\n      ,GroupKey\n\t  ,MName\n    ,GroupTypeName\n    ,Indelning_typ_desc\n\t  ,Enhet\n\t  ,Kommun\n\t  ,Region\n    ,[GroupName]\n    ,[MeasurementPeriod]\n\t  ,MeasurementPeriodType\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n\t  ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n  \t ,ValueD0\n\t  ,ValueD1\n\t   ,Value\n    ,ValueD3\n    ,ValueD4\n    ,ValueChar\n    ,[Age]\n    ,[Gender]\n\t  ,[numerator] \n\t  ,[denominator]\n\t  ,[cihigh]\n\t  ,[cilow]\n\t  ,StandardizingPop\n\t  ,StandardizingPopName\n\t  ,AgeStandardizedValue\n\t  ,Crude\n\t  ,CrudeCILow\n\t  ,CrudeCIHigh\n    ,[Commentary]\n    ,[DataGenerationDate]\n\tFROM [semantic].[VAI_LRHST_Trends]\n) AS virtual_table \nWHERE [MBusinessKey] IN (N'LRHST15') AND [GroupTypeName] IN (N'Riket', N'Region') GROUP BY [GroupTypeName], [GroupName], [Gender], [Age], [MeasurementPeriod], [MeasurementPeriodDate];\n\n",
+          "status": "success",
+          "stacktrace": null,
+          "rowcount": 330,
+          "sql_rowcount": 330,
+          "from_dttm": null,
+          "to_dttm": null,
+          "label_map": {
+            "GroupTypeName": [
+              "GroupTypeName"
+            ],
+            "GroupName": [
+              "GroupName"
+            ],
+            "Gender": [
+              "Gender"
+            ],
+            "Age": [
+              "Age"
+            ],
+            "MeasurementPeriod": [
+              "MeasurementPeriod"
+            ],
+            "MeasurementPeriodDate": [
+              "MeasurementPeriodDate"
+            ]
+          },
+          "colnames": [
+            "GroupTypeName",
+            "GroupName",
+            "Gender",
+            "Age",
+            "MeasurementPeriod",
+            "MeasurementPeriodDate"
+          ],
+          "indexnames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265,
+            266,
+            267,
+            268,
+            269,
+            270,
+            271,
+            272,
+            273,
+            274,
+            275,
+            276,
+            277,
+            278,
+            279,
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            286,
+            287,
+            288,
+            289,
+            290,
+            291,
+            292,
+            293,
+            294,
+            295,
+            296,
+            297,
+            298,
+            299,
+            300,
+            301,
+            302,
+            303,
+            304,
+            305,
+            306,
+            307,
+            308,
+            309,
+            310,
+            311,
+            312,
+            313,
+            314,
+            315,
+            316,
+            317,
+            318,
+            319,
+            320,
+            321,
+            322,
+            323,
+            324,
+            325,
+            326,
+            327,
+            328,
+            329
+          ],
+          "coltypes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "data": [
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gotland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Gävleborg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jönköping",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Norrbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västerbotten",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västernorrland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västmanland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Örebro",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2010",
+              "MeasurementPeriodDate": 1293753600000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2011",
+              "MeasurementPeriodDate": 1325289600000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2012",
+              "MeasurementPeriodDate": 1356912000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2013",
+              "MeasurementPeriodDate": 1388448000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2014",
+              "MeasurementPeriodDate": 1419984000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2015",
+              "MeasurementPeriodDate": 1451520000000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2016",
+              "MeasurementPeriodDate": 1483142400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2017",
+              "MeasurementPeriodDate": 1514678400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2018",
+              "MeasurementPeriodDate": 1546214400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2019",
+              "MeasurementPeriodDate": 1577750400000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2020",
+              "MeasurementPeriodDate": 1609372800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2021",
+              "MeasurementPeriodDate": 1640908800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2022",
+              "MeasurementPeriodDate": 1672444800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2023",
+              "MeasurementPeriodDate": 1703980800000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "Ålder, totalt",
+              "MeasurementPeriod": "2024",
+              "MeasurementPeriodDate": 1735603200000.0
+            }
+          ],
+          "result_format": "json",
+          "applied_filters": [
+            {
+              "column": "MBusinessKey"
+            },
+            {
+              "column": "GroupTypeName"
+            }
+          ],
+          "rejected_filters": []
+        }
+      ]
+    }
+  },
+  "derived": {
+    "row": {
+      "MBusinessKey": "LRHST15",
+      "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard//\">. </a></span></div></div>",
+      "DataGenerationDate": 1767139200000.0,
+      "MName": "Samlad utveckling för kärnindikatorerna",
+      "Unit": null,
+      "AreaName": "Lägesrapporten hälso- och sjukvård",
+      "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/",
+      "LinkIndicatorDescriptionTitle": "Beskrivning av index",
+      "DataSource": null,
+      "Description": null,
+      "DesiredValue": null,
+      "InputType": "Index",
+      "Keywords": null,
+      "MeasurePeriodInterval": "2010-2024"
+    },
+    "columns": {
+      "indicator": "MBusinessKey",
+      "level": "GroupTypeName",
+      "code": "GroupName",
+      "sex": "Gender",
+      "age": "Age",
+      "period": "MeasurementPeriod",
+      "period_date": "MeasurementPeriodDate",
+      "value": "Value",
+      "status": "Commentary"
+    },
+    "area": {
+      "code": "LRHST",
+      "catalogue_id": 158,
+      "catalogue_dataset": "semantic.semantic_VAI_LRHST_Landningssida",
+      "values_id": 163,
+      "values_dataset": "semantic.semantic_VAI_LRHST_Trender"
+    },
+    "link": {
+      "resolution": "area_overview",
+      "dashboard": {
+        "id": 193,
+        "slug": "lrhst_oversikt",
+        "title": "Översikt - Tillståndet och utvecklingen inom hälso-, sjuk- och tandvården",
+        "published": true,
+        "tags": [
+          "OMR: LRHST",
+          "Start",
+          "VAI",
+          "favorited_by:1",
+          "owner:1",
+          "owner:11",
+          "type:dashboard"
+        ]
+      }
+    },
+    "subject_label": "Lägesrapporten hälso- och sjukvård"
+  }
+}

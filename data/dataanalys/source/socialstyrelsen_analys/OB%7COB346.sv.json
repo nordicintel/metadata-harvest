@@ -1,0 +1,480 @@
+{
+  "key": "socialstyrelsen_analys/OB|OB346/sv",
+  "identifier": "OB|OB346",
+  "language": "sv",
+  "updated": 1778630400000.0,
+  "retrieved_at": "2026-10-16T17:17:47.454206+00:00",
+  "responses": {
+    "cube": {
+      "result": [
+        {
+          "cache_key": "3deffe8d37de57333488d2c482c8f242",
+          "cached_dttm": null,
+          "cache_timeout": 86400,
+          "applied_template_filters": [],
+          "annotation_data": {},
+          "error": null,
+          "is_cached": null,
+          "query": "SELECT TOP 20000 [GroupTypeName] AS [GroupTypeName], [GroupName] AS [GroupName], [Gender] AS [Gender], [Age] AS [Age], [Measurementperiodtype] AS [Measurementperiodtype], [MeasurementPeriod] AS [MeasurementPeriod], [MeasurementPeriodDate] AS [MeasurementPeriodDate] \nFROM (SELECT \n\t  MBusinessKey\n    ,Version\n\t  ,GroupKey\n\t  ,MTypeBusinessKey\n    ,MTypeName\n\t  ,MName\n    ,GroupTypeName\n    ,Indelning_typ_desc\n\t  ,Enhet\n\t  ,Kommun\n\t  ,Region\n    ,GroupName\n    ,MeasurementPeriod\n\t  ,Measurementperiodtype\n\t  ,MeasurementPeriodDate\n\t  ,PeriodStartYear\n\t  ,PeriodStartQuarter\n\t  ,IsLastPeriod\n\t  ,LastPeriodFilterFlag\n    ,Age\n    ,Gender\n\t  ,concat(GroupName, '; ', Age, '; ', Gender) as LegendBase\n  \t,ValueD0\n\t  ,ValueD1\n\t  ,Value\n    ,ValueD3\n    ,ValueD4\n    ,ValueChar\n    ,Numerator\n\t  ,Denominator\n\t  ,CIhigh\n\t  ,CIlow\n\t  ,Crude\n\t  ,CrudeCILow\n\t  ,CrudeCIHigh\n    ,Commentary\n    ,DataGenerationDate\n    ,case when age in ('18 år eller äldre', '17 år eller yngre') then [Value] else Crude end as Value_Crude\n\tFROM [semantic].[VAI_OB_Trends]\n) AS virtual_table \nWHERE [MBusinessKey] IN (N'OB346') AND [GroupTypeName] IN (N'Riket', N'Region') GROUP BY [GroupTypeName], [GroupName], [Gender], [Age], [Measurementperiodtype], [MeasurementPeriod], [MeasurementPeriodDate];\n\n",
+          "status": "success",
+          "stacktrace": null,
+          "rowcount": 34,
+          "sql_rowcount": 34,
+          "from_dttm": null,
+          "to_dttm": null,
+          "label_map": {
+            "GroupTypeName": [
+              "GroupTypeName"
+            ],
+            "GroupName": [
+              "GroupName"
+            ],
+            "Gender": [
+              "Gender"
+            ],
+            "Age": [
+              "Age"
+            ],
+            "Measurementperiodtype": [
+              "Measurementperiodtype"
+            ],
+            "MeasurementPeriod": [
+              "MeasurementPeriod"
+            ],
+            "MeasurementPeriodDate": [
+              "MeasurementPeriodDate"
+            ]
+          },
+          "colnames": [
+            "GroupTypeName",
+            "GroupName",
+            "Gender",
+            "Age",
+            "Measurementperiodtype",
+            "MeasurementPeriod",
+            "MeasurementPeriodDate"
+          ],
+          "indexnames": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "coltypes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "data": [
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Blekinge",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Dalarna",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Halland",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Jämtland",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kalmar",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Kronoberg",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Skåne",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Stockholm",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Södermanland",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Uppsala",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Värmland",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Västra Götaland",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Region",
+              "GroupName": "Östergötland",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "18-29 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "30-39 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "40-49 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "50-59 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "60-69 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kvinnor",
+              "Age": "70 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "18-29 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "30-39 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "40-49 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "50-59 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "60-69 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Kön, totalt",
+              "Age": "70 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "18 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "18-29 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "30-39 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "40-49 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "50-59 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "60-69 år",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            },
+            {
+              "GroupTypeName": "Riket",
+              "GroupName": "Riket",
+              "Gender": "Män",
+              "Age": "70 år eller äldre",
+              "Measurementperiodtype": "1_ar",
+              "MeasurementPeriod": "2025",
+              "MeasurementPeriodDate": 1767139200000.0
+            }
+          ],
+          "result_format": "json",
+          "applied_filters": [
+            {
+              "column": "MBusinessKey"
+            },
+            {
+              "column": "GroupTypeName"
+            }
+          ],
+          "rejected_filters": []
+        }
+      ]
+    }
+  },
+  "derived": {
+    "row": {
+      "MBusinessKey": "OB346",
+      "HrefIndicatorDashboard": "<div style=\"display:flex; align-items:center;\"><div style=\"display:flex; flex-direction:column;\"><span style=\"font-weight:800; font-size:14px; font-color:#005892;\"><a href=\"https://dataanalys.socialstyrelsen.se/superset/dashboard/OB_Lakemedel_vuxna/\">Läkemedelsbehandling vid obesitas bland vuxna. Antal per 100 000</a></span></div></div>",
+      "DataGenerationDate": 1778630400000.0,
+      "MTypeName": "Läkemedelsbehandling vid obesitas bland vuxna",
+      "MName": "Läkemedelsbehandling vid obesitas bland vuxna, fentermin/topiramat",
+      "Unit": "Antal per 100 000",
+      "AreaName": "Obesitas i Sverige",
+      "LinkIndicatorDescription": "https://www.socialstyrelsen.se/statistik-och-data/indikatorer/indikatorbibliotek/lakemedelsbehandling-vid-obesitas-bland-vuxna",
+      "LinkIndicatorDescriptionTitle": "Indikatorbeskrivning",
+      "DataSource": "Läkemedelsregistret (LMED), Socialstyrelsen. Befolkningsstatistik från Statistiska Centralbyrån (SCB).",
+      "Description": "Antal per 100 000 i befolkningen, 18 år och äldre, som hämtat ut ett läkemedel för obesitas på recept vid minst 1 tillfälle under ett kalenderår.",
+      "DesiredValue": "Högt",
+      "InputType": "",
+      "Keywords": "",
+      "MeasurePeriodInterval": "2025-2025"
+    },
+    "columns": {
+      "indicator": "MBusinessKey",
+      "level": "GroupTypeName",
+      "code": "GroupName",
+      "sex": "Gender",
+      "age": "Age",
+      "period_type": "Measurementperiodtype",
+      "period": "MeasurementPeriod",
+      "period_date": "MeasurementPeriodDate",
+      "value": "Value",
+      "status": "Commentary"
+    },
+    "area": {
+      "code": "OB",
+      "catalogue_id": 162,
+      "catalogue_dataset": "semantic.semantic_VAI_OB_Landningssida",
+      "values_id": 161,
+      "values_dataset": "semantic.semantic_VAI_OB_Trender"
+    },
+    "link": {
+      "resolution": "href",
+      "dashboard": {
+        "id": 204,
+        "slug": "OB_Lakemedel_vuxna",
+        "title": "Läkemedelsbehandling vid obesitas bland vuxna",
+        "published": true,
+        "tags": [
+          "OMR: OB",
+          "VAI",
+          "owner:1",
+          "owner:10",
+          "owner:16",
+          "type:dashboard"
+        ]
+      }
+    },
+    "subject_label": "Obesitas i Sverige"
+  }
+}
