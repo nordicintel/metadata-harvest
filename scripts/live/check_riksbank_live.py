@@ -1,27 +1,29 @@
 """Opt-in live sample of the Riksbank APIs; never a corpus scan.
 
-Ten requests, paced at the provider's 15 s interval (about three minutes):
-SWEA ``/Groups`` and ``/Series`` with group 2's latest observations, the forecast
-catalogue and policy rounds with one series' latest vintage, and the latest SWESTR
-fixing. Each of the three documents is built and validated, then one small recent
+Runs the adapter for one dataset of each API into a temporary directory, paced
+at the provider's 15 s interval (about three minutes): the catalogues plus one
+probe each. Each document is parsed and validated, then one small recent
 selection is retrieved from it. Observations are counted, never saved.
 """
 
 import argparse
 import asyncio
+import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 
 import registry
+from apps.harvest.metadata_adapters.riksbank import parse
 from apps.harvest.metadata_adapters.riksbank.client import RiksbankClient
-from apps.harvest.metadata_adapters.riksbank.workflow import build_record, discover_api
+from apps.harvest.metadata_adapters.riksbank.harvest import ADAPTER
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write
-from registry import ServiceBinding
+from harvest import lifecycle
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.riksbank import REQUIRED_METADATA, retrieve
-from schema.validation import validate_retrieval
+from schema.validation import validate_metadata, validate_retrieval
 
-SAMPLES = {"swea": "swea_group_2", "mpd": "mpd_SEQGDPNAYSA", "swestr": "swestr"}
+SAMPLES = ("swea_group_2", "mpd_SEQGDPNAYSA", "swestr")
 
 
 class PacedRetrievalSession:
@@ -64,22 +66,33 @@ def recent_selection(document: dict) -> dict:
     return selection
 
 
-async def check(binding: ServiceBinding) -> dict:
-    report = []
+async def check(root: Path) -> dict:
+    binding = registry.load().bindings(ADAPTER.name)[0]
     client = RiksbankClient(binding.options)
     try:
-        for api, code in SAMPLES.items():
-            item = {"api": api, "dataset": code}
+        result = await lifecycle.run(
+            ADAPTER,
+            binding,
+            root / "data",
+            root / "out",
+            selection={"subjects": list(SAMPLES)},
+            client=client,
+        )
+        store = SourceStore(root / "out/source", ADAPTER.name)
+        state = lifecycle.load_state(root / "out", ADAPTER.collection)
+        report = []
+        for key, document in sorted(parse.documents(store, state, [binding])):
+            item = {"dataset": key}
             try:
-                listing = await discover_api(client, api)
-                record = next(r for r in listing.records if r["dataset_code"] == code)
-                document = await build_record(client, record)
+                if isinstance(document, Exception):
+                    raise document
+                validate_metadata(document, adapter=ADAPTER.name)
                 selection = recent_selection(document)
                 shared = document["extension"]["nordicintel"]
-                result = await retrieve(
+                fragment = await retrieve(
                     PacedRetrievalSession(client),
-                    provider_code="riksbank",
-                    dataset_code=code,
+                    provider_code=shared["provider_code"],
+                    dataset_code=shared["dataset_code"],
                     language="en",
                     selection=selection,
                     data_url=shared["data_url"],
@@ -89,21 +102,19 @@ async def check(binding: ServiceBinding) -> dict:
                         REQUIRED_METADATA[1]: document["extension"]["riksbank"],
                     },
                 )
-                validate_retrieval(result, selection=selection)
+                validate_retrieval(fragment, selection=selection)
                 item.update(
-                    listed=len(listing.records),
-                    listing_problems=[str(p[0]) for p in listing.problems],
                     size=document["size"],
                     first_period=shared.get("first_period"),
                     last_period=shared.get("last_period"),
                     selection=selection,
                     metadata_validation="passed",
-                    returned_values=len(result["value"]),
+                    returned_values=len(fragment["value"]),
                     status="passed",
                 )
             except Exception as error:
                 item.update(status="failed", error=f"{type(error).__name__}: {error}")
-            print(f"{item['status']}: {api} {code}", flush=True)
+            print(f"{item['status']}: {key}", flush=True)
             report.append(item)
     finally:
         await client.close()
@@ -112,6 +123,7 @@ async def check(binding: ServiceBinding) -> dict:
         "verification": "bounded sample only",
         "requests": client.request_count,
         "subscription_key": client.keyed,
+        "run": {k: result[k] for k in ("status", "counts", "errors")},
         "documents": report,
         "observations_saved": False,
     }
@@ -123,6 +135,7 @@ if __name__ == "__main__":
         "--report", type=Path, default=Path("output/riksbank-live.json")
     )
     args = parser.parse_args()
-    result = asyncio.run(check(registry.load().bindings("riksbank")[0]))
+    with tempfile.TemporaryDirectory(prefix="riksbank-live-") as temporary:
+        result = asyncio.run(check(Path(temporary)))
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

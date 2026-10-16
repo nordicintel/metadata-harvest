@@ -30,6 +30,9 @@ from urllib.parse import urlencode
 
 import pytest
 
+from apps.harvest.metadata_adapters.riksbank.client import Unreachable
+from tests.support.binding import binding
+
 FIXTURES = Path("tests/fixtures/riksbank")
 RECORDED: dict[str, Any] = json.loads(
     (FIXTURES / "riksbank.json").read_text(encoding="utf-8")
@@ -70,6 +73,46 @@ class RecordedClient:
         if key not in self.responses:
             raise LookupError(f"not recorded: {key}")
         return copy.deepcopy(self.responses[key])
+
+
+class Source(RecordedClient):
+    """Recorded answers; failing or unrecorded requests are unreachable, like
+    ``RiksbankClient`` after its retries."""
+
+    async def get_json(self, url, params=None, *, missing_ok=False):
+        try:
+            return await super().get_json(url, params, missing_ok=missing_ok)
+        except (TimeoutError, LookupError) as error:
+            raise Unreachable(str(error)) from error
+
+
+PROVIDER = binding("riksbank", "riksbank", languages=["en"], retry_cooldown_seconds=0)
+ALL = {
+    "en/swea_group_2",
+    "en/swea_group_130",
+    "en/swea_group_151",
+    "en/swea_group_155",
+    "en/mpd_SEQGDPNAYSA",
+    "en/mpd_SEMCPIFNAYNA",
+    "en/mpd_SEAWAGNAYCA",
+    "en/swestr",
+}
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    import asyncio
+
+    from apps.harvest.metadata_adapters.riksbank.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result
 
 
 @pytest.fixture

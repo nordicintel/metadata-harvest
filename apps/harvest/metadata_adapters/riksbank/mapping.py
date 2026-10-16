@@ -23,7 +23,7 @@ from collections.abc import Mapping, Sequence
 from datetime import date, timedelta
 from typing import Any
 
-from apps.harvest.metadata_adapters.riksbank.api import (
+from apps.harvest.metadata_adapters.riksbank.client import (
     MPD_FORECASTS,
     MPD_SERIES_IDS,
     PAGES,

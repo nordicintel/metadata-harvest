@@ -16,7 +16,7 @@ from apps.paths import ROOT
     [
         ("forsakringskassan", ["reports", "texts"], "reports/#0"),
         ("dataanalys", ["charts", "dashboards"], "charts/2541"),
-        ("riksbank", ["swea", "mpd", "swestr"], "swea/series.0"),
+        ("riksbank", ["*/swea", "*/mpd", "*/swestr"], "swea/series.0"),
         ("tillvaxtverket", [], "Nope"),
     ],
 )
@@ -125,7 +125,7 @@ def test_only_a_whole_adapter_failure_fails():
         },
         "riksbank": {
             "counts": {"unchanged": 34},
-            "errors": [{"stage": "discovery", "resource": "swea"}],
+            "errors": [{"stage": "endpoint", "resource": "*/swea"}],
         },
     }
     for adapter, report in partial.items():
@@ -140,7 +140,7 @@ def test_only_a_whole_adapter_failure_fails():
         "riksbank": {
             "counts": {"unchanged": 0, "withheld": 42},
             "errors": [
-                {"stage": "discovery", "resource": api}
+                {"stage": "endpoint", "resource": f"*/{api}"}
                 for api in ("swea", "mpd", "swestr")
             ],
         },

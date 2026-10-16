@@ -2,12 +2,12 @@
 
 from collections.abc import Iterator
 
+from apps.harvest.metadata_adapters.riksbank.client import PROVIDER_CODE
 from apps.harvest.metadata_adapters.riksbank.mapping import (
     build_mpd,
     build_swea_group,
     build_swestr,
 )
-from apps.harvest.metadata_adapters.riksbank.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key
 from registry import ServiceBinding
 

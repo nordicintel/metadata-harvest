@@ -481,7 +481,6 @@ async def run(
                 if await _fetch(this, task, working, failures) == "dropped":
                     settled.discard(task.key)
         for name, (scope, keys) in listed.items():
-            settled.update(this.known(name))
             if scope.complete and not this.bounded:
                 for key in sorted(this.known(name) - keys):
                     settled.discard(key)

@@ -13,11 +13,6 @@ import apps.operations.harvest as runner
     "adapter,flags,expected",
     [
         (
-            "riksbank",
-            ["--subject", "swestr"],
-            {"subjects": ["swestr"], "languages": None},
-        ),
-        (
             "dataanalys",
             ["--subject", "GONV", "--indicator", "G082"],
             {"areas": ["GONV"], "indicators": ["G082"], "languages": None},
@@ -102,6 +97,11 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
             "trafa",
             ["--product", "T10011", "--language", "sv"],
             {"products": ["T10011"], "languages": ["sv"]},
+        ),
+        (
+            "riksbank",
+            ["--subject", "swestr"],
+            {"subjects": ["swestr"], "languages": None},
         ),
     ],
 )

@@ -53,11 +53,6 @@ SIMPLE_ADAPTERS = {
         lambda a: {"subjects": a.subject, "languages": a.language, "full": a.full},
         lambda b: {"languages": b.options["languages"]},
     ),
-    "riksbank": (
-        "single",
-        lambda a: {"subjects": a.subject, "languages": a.language},
-        lambda b: {"languages": b.options["languages"]},
-    ),
     "dataanalys": (
         "single",
         lambda a: {

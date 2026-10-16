@@ -86,8 +86,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return _scoped(
             report, discovery_resources=("reports", "texts"), endpoint_prefix="*/"
         )
-    if adapter == "riksbank":
-        return _scoped(report, discovery_resources=("swea", "mpd", "swestr"))
     if adapter == "dataanalys":
         return _scoped(
             report, discovery_resources=("charts", "dashboards"), endpoint_prefix="*/"

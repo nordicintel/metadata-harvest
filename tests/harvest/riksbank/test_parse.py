@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from tests.harvest.riksbank.test_workflow import PROVIDER, Source, execute
+from tests.support.riksbank import PROVIDER, Source, execute
 
 GOLDEN = Path("tests/fixtures/riksbank/accepted")
 
