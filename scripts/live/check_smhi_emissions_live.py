@@ -1,51 +1,56 @@
 """Opt-in live sample of Nationella emissionsdatabasen; never a corpus scan.
 
-Reads ``getfilteroptions/`` once, rebuilds and validates two substances' documents
-(one national probe each), then retrieves one small selection: Stockholm kommun,
-one Transporter subsector, the newest year. Four requests at one per second; no
-observations are saved.
+Runs the adapter for two substances into a temporary directory (the tree and one
+national probe each), parses the stored files into documents, then retrieves one
+small selection: Stockholm kommun, one Transporter subsector, the newest year.
+Four requests at one per second; no observations are saved.
 """
 
 import argparse
 import asyncio
+import tempfile
 from pathlib import Path
 
-from apps.harvest.metadata_adapters.smhi_emissions.api import FILTER_OPTIONS_URL
+import registry
+from apps.harvest.metadata_adapters.smhi_emissions import parse
 from apps.harvest.metadata_adapters.smhi_emissions.client import SmhiClient
-from apps.harvest.metadata_adapters.smhi_emissions.source import parse_filter_options
-from apps.harvest.metadata_adapters.smhi_emissions.workflow import build_substance
+from apps.harvest.metadata_adapters.smhi_emissions.harvest import ADAPTER
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write
+from harvest import lifecycle
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.smhi_emissions import REQUIRED_METADATA, retrieve
-from schema.validation import validate_retrieval
+from schema.validation import validate_metadata, validate_retrieval
 
 SUBSTANCES = ("CO2", "NOx")
 REGION, SECTOR = "0180", "4.1"
 
 
-async def check() -> dict:
-    report = []
+async def check(root: Path) -> dict:
+    binding = registry.load().bindings(ADAPTER.name)[0]
     client = SmhiClient()
     try:
-        options = parse_filter_options(await client.get_json(FILTER_OPTIONS_URL))
-        listing = {
-            "substances": len(options.substances),
-            "sectors": len(options.sectors),
-            "subsectors": sum(len(s.subsectors) for s in options.sectors),
-            "complete": options.complete,
-            "problems": [f"{r}: {e}" for r, e in options.problems],
-            "quarantined": options.quarantined,
-        }
-        for number, code in enumerate(SUBSTANCES):
-            item = {"substance": code}
+        result = await lifecycle.run(
+            ADAPTER,
+            binding,
+            root / "data",
+            root / "out",
+            selection={"subjects": list(SUBSTANCES)},
+            client=client,
+        )
+        store = SourceStore(root / "out/source", ADAPTER.name)
+        state = lifecycle.load_state(root / "out", ADAPTER.collection)
+        report = []
+        for number, (key, document) in enumerate(
+            sorted(parse.documents(store, state, [binding]))
+        ):
+            item = {"key": key}
             try:
-                document, submission = await build_substance(
-                    client, options.substances[code], options
-                )
+                if isinstance(document, Exception):
+                    raise document
+                validate_metadata(document, adapter=ADAPTER.name)
                 shared = document["extension"]["nordicintel"]
                 item.update(
-                    dataset=shared["dataset_code"],
-                    submission=submission,
                     years=category_codes(document["dimension"]["Tid"]["category"]),
                     size=document["size"],
                     metadata_validation="passed",
@@ -55,12 +60,12 @@ async def check() -> dict:
                         "Region": [REGION],
                         "Sektor": [SECTOR],
                         "Tid": item["years"][-1:],
-                        "ContentsCode": [code],
+                        "ContentsCode": [shared["dataset_code"].split("_", 1)[1]],
                     }
                     await asyncio.sleep(1)  # the client's pace, for the caller session
-                    result = await retrieve(
+                    fragment = await retrieve(
                         client.session,
-                        provider_code="smhi",
+                        provider_code=shared["provider_code"],
                         dataset_code=shared["dataset_code"],
                         language="sv",
                         selection=selection,
@@ -73,23 +78,23 @@ async def check() -> dict:
                             ],
                         },
                     )
-                    validate_retrieval(result, selection=selection)
+                    validate_retrieval(fragment, selection=selection)
                     item.update(
                         selection=selection,
-                        returned_values=len(result["value"]),
+                        returned_values=len(fragment["value"]),
                         retrieval_validation="passed",
                     )
                 item["status"] = "passed"
             except Exception as error:
                 item.update(status="failed", error=f"{type(error).__name__}: {error}")
-            print(f"{item['status']}: {code}", flush=True)
+            print(f"{item['status']}: {key}", flush=True)
             report.append(item)
     finally:
         await client.close()
     return {
         "verification": "bounded sample only",
         "requests": client.request_count + 1,
-        "listing": listing,
+        "run": {k: result[k] for k in ("status", "counts", "errors")},
         "documents": report,
         "observations_saved": False,
     }
@@ -101,6 +106,7 @@ if __name__ == "__main__":
         "--report", type=Path, default=Path("output/smhi_emissions-live.json")
     )
     args = parser.parse_args()
-    result = asyncio.run(check())
+    with tempfile.TemporaryDirectory(prefix="smhi-live-") as temporary:
+        result = asyncio.run(check(Path(temporary)))
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

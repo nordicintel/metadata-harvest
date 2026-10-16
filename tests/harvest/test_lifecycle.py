@@ -209,7 +209,7 @@ def test_scope_failure_keeps_its_known_items_and_is_reported(tmp_path):
     assert result["errors"][0]["resource"] == "*/listing"
     assert result["errors"][0]["stage"] == "endpoint"
     assert result["withheld"] == ["sv/a"] and "toy/a/sv" in entries(tmp_path)
-    assert TOY.scope_failures(result) == []  # an endpoint failure is not discovery
+    assert TOY.scope_failures(result) == ["*/listing"]
 
 
 def test_dropped_item_is_forgotten_and_counted(tmp_path):

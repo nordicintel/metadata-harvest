@@ -14,6 +14,7 @@ import json
 import os
 from pathlib import Path
 
+from apps.harvest.metadata_adapters import load
 from apps.harvest.storage import read
 
 REPORTS = {
@@ -68,6 +69,9 @@ def _scoped(report: dict, *, discovery_resources=(), endpoint_prefix=None) -> li
 
 def scope_failures(adapter: str, report: dict) -> list[str]:
     """Whole scopes that failed, as the report records them; empty means green."""
+    module = load(adapter) if adapter in REPORTS else None
+    if module is not None:
+        return module.ADAPTER.scope_failures(report)
     if adapter in ("pxweb_v1", "pxweb_v2"):
         return _incomplete_scopes(report)
     if adapter == "kolada":
@@ -84,8 +88,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         if interrupted and "budget" not in interrupted:
             failures.append(f"run: {interrupted}")
         return failures
-    if adapter == "smhi_emissions":
-        return _scoped(report, discovery_resources=("filteroptions",))
     if adapter == "forsakringskassan":
         return _scoped(
             report, discovery_resources=("reports", "texts"), endpoint_prefix="*/"

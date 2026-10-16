@@ -13,11 +13,6 @@ import apps.operations.harvest as runner
     "adapter,flags,expected",
     [
         (
-            "smhi_emissions",
-            ["--subject", "CO2"],
-            {"subjects": ["CO2"], "languages": None},
-        ),
-        (
             "riksbank",
             ["--subject", "swestr"],
             {"subjects": ["swestr"], "languages": None},
@@ -87,3 +82,38 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
     monkeypatch.setattr(sys, "argv", ["runner", "run", "--adapter", adapter, "--full"])
     with pytest.raises(SystemExit, match="2"):
         runner.main()
+
+
+@pytest.mark.parametrize(
+    "adapter,flags,expected",
+    [
+        (
+            "smhi_emissions",
+            ["--subject", "CO2"],
+            {"subjects": ["CO2"], "languages": None},
+        ),
+    ],
+)
+def test_lifecycle_adapters_run_and_collect_through_the_cli(
+    monkeypatch, adapter, flags, expected
+):
+    calls = []
+    result = {"run_id": "r", "status": "success", "continue": False, "counts": {}}
+
+    async def run(spec, binding, data, output, *, selection):
+        calls.append((spec.name, binding.adapter, data, output, selection))
+        return result
+
+    def collect(spec, data, output):
+        calls.append((spec.name, data, output))
+        return result
+
+    monkeypatch.setattr(runner.lifecycle, "run", run)
+    monkeypatch.setattr(runner.lifecycle, "collect", collect)
+    monkeypatch.setattr(sys, "argv", ["runner", "run", "--adapter", adapter, *flags])
+    runner.main()
+    data, output = Path("data") / adapter, Path("output") / adapter
+    assert calls.pop() == (adapter, adapter, data, output, expected)
+    monkeypatch.setattr(sys, "argv", ["runner", "collect", "--adapter", adapter])
+    runner.main()
+    assert calls.pop() == (adapter, data, output)

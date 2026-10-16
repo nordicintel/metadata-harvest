@@ -26,11 +26,13 @@ from urllib.parse import urlencode
 
 import pytest
 
-from apps.harvest.metadata_adapters.smhi_emissions.api import (
+from apps.harvest.metadata_adapters.smhi_emissions.client import (
     DATA_URL,
     FILTER_OPTIONS_URL,
+    Unreachable,
     probe_parameters,
 )
+from tests.support.binding import binding
 
 FIXTURES = Path("tests/fixtures/smhi_emissions")
 
@@ -109,6 +111,36 @@ class RecordedClient:
     @property
     def tree(self) -> list[dict[str, Any]]:
         return self.responses[fixture_key(FILTER_OPTIONS_URL)]
+
+
+class Source(RecordedClient):
+    """Recorded answers; failing or unrecorded requests are unreachable, like
+    ``SmhiClient`` after its retries."""
+
+    def _answer(self, url, params):
+        try:
+            return super()._answer(url, params)
+        except (TimeoutError, LookupError) as error:
+            raise Unreachable(str(error)) from error
+
+
+PROVIDER = binding("smhi_emissions", "smhi", languages=["sv"], retry_cooldown_seconds=0)
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    import asyncio
+
+    from apps.harvest.metadata_adapters.smhi_emissions.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result
 
 
 @pytest.fixture

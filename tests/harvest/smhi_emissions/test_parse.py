@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from tests.harvest.smhi_emissions.test_workflow import PROVIDER, Source, execute
+from tests.support.smhi_emissions import PROVIDER, Source, execute
 
 GOLDEN = Path("tests/fixtures/smhi_emissions/accepted")
 

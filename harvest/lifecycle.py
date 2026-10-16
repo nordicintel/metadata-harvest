@@ -118,7 +118,8 @@ class Adapter:
     scope_failures: Callable[[dict], list[str]] = lambda report: [
         e["resource"]
         for e in report.get("errors") or []
-        if e.get("stage") == "discovery" and "Unknown" not in str(e.get("error"))
+        if str(e.get("resource")).startswith("*/")
+        and "Unknown" not in str(e.get("error"))
     ]
     """Whole scopes that failed in a run, read from its report."""
 
@@ -199,6 +200,11 @@ class Run:
             self.counts["removed"] += 1
         if self.adapter.forget is not None:
             self.adapter.forget(self, key)
+
+
+def _normal(value):
+    """The value as it reads back from JSON (tuples become lists)."""
+    return json.loads(json.dumps(value, ensure_ascii=False))
 
 
 def state_key(stored: str) -> str:
@@ -391,8 +397,8 @@ async def _fetch(run: Run, task: Task, working: dict, failures: dict) -> str:
     failures.pop(key, None)
     unchanged = (
         stored is not None
-        and stored["responses"] == result.responses
-        and (result.derived is None or stored.get("derived") == result.derived)
+        and stored["responses"] == _normal(result.responses)
+        and (result.derived is None or stored.get("derived") == _normal(result.derived))
     )
     run.counts["unchanged" if unchanged else "rebuilt"] += 1
     info.update(verified_at=run.stamp, error=None, **result.info)

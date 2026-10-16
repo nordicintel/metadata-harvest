@@ -63,11 +63,6 @@ SIMPLE_ADAPTERS = {
         lambda b: {"languages": b.options["languages"]},
     ),
     "entryscape": ("all", _entryscape_options, lambda b: {}),
-    "smhi_emissions": (
-        "single",
-        lambda a: {"subjects": a.subject, "languages": a.language},
-        lambda b: {"languages": b.options["languages"]},
-    ),
     "forsakringskassan": (
         "single",
         lambda a: {"subjects": a.subject, "languages": a.language, "full": a.full},

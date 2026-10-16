@@ -2,13 +2,13 @@
 
 from collections.abc import Iterator
 
+from apps.harvest.metadata_adapters.smhi_emissions.client import PROVIDER_CODE
 from apps.harvest.metadata_adapters.smhi_emissions.mapping import build_dataset
 from apps.harvest.metadata_adapters.smhi_emissions.source import (
     Substance,
     parse_filter_options,
     parse_probe,
 )
-from apps.harvest.metadata_adapters.smhi_emissions.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
 from registry import ServiceBinding
 from retrieval.data_adapters.smhi_emissions import DATASET_PREFIX

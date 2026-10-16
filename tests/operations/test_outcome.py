@@ -71,7 +71,11 @@ def test_individual_errors_do_not_fail_any_adapter():
                 {"stage": "endpoint", "resource": "sv/emissionsdatabasen_NOx"},
                 {"stage": "metadata", "resource": "sv/emissionsdatabasen_CO2"},
                 {"stage": "discovery", "resource": "filteroptions/4.1/3"},
-                {"stage": "discovery", "resource": "*/XYZ"},
+                {
+                    "stage": "discovery",
+                    "resource": "*/XYZ",
+                    "error": "LookupError: Unknown SMHI substance",
+                },
             ]
         },
     }
@@ -93,7 +97,7 @@ def test_whole_scope_failures_fail():
             "interrupted": None,
         },
         "smhi_emissions": {
-            "errors": [{"stage": "discovery", "resource": "filteroptions"}]
+            "errors": [{"stage": "endpoint", "resource": "*/filteroptions"}]
         },
     }
     for adapter, report in failing.items():

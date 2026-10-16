@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from apps.harvest.metadata_adapters.smhi_emissions.api import (
+from apps.harvest.metadata_adapters.smhi_emissions.client import (
     DATA_URL,
     DOC_URL,
     FILTER_OPTIONS_URL,
