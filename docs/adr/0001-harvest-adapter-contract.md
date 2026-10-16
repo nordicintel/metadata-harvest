@@ -18,6 +18,9 @@ find and fetch things (`harvest.py`), and how to turn stored responses into data
   `apps/harvest/metadata_adapters/`. Examples: `sdb`, `trafa`, `kolada`.
 - **Harvest**: fetch responses from a provider's API and store them as files, as
   received, under `data/<adapter>/source/`. No interpretation happens here.
+- **Provider**: a `ServiceBinding` from the registry (see ADR 0003): one configured
+  endpoint for one adapter, with `source_code`, `endpoint_url`, publisher and options.
+  Amended 2026-10-16: adapters receive the typed binding, not a dict.
 - **Parse**: read those stored files, offline, and turn them into StatDCAT dataset
   documents. Happens later, by hand, never inside a harvest run.
 - **Lifecycle**: the shared loop around a harvest run: copy the previous files, ask
@@ -97,7 +100,7 @@ lifecycle has to know about.
 
 ```python
 class Client:
-    def __init__(self, provider: dict): ...
+    def __init__(self, provider: ServiceBinding): ...
     async def get(self, *parts, **params): ...   # whatever the provider needs
     async def close(self) -> None: ...
 ```
@@ -119,7 +122,7 @@ class Sdb:
     options = ("subjects", "languages")   # CLI selection arguments this adapter accepts
     default_languages = ("sv", "en")
 
-    def client(self, provider: dict) -> Client: ...
+    def client(self, provider: ServiceBinding) -> Client: ...
 
     async def discover(self, run: lc.Run) -> AsyncIterator[lc.Scope]:
         """Yield each scope with the tasks it lists. Raising aborts the run."""
@@ -175,9 +178,13 @@ Unchanged from today. Two functions, called by `apps/parsing/build.py`:
 
 ```python
 def withheld_keys(state: dict) -> set[str]: ...
-def documents(store: SourceStore, state: dict, providers: list[dict], *, portal=None)
+def documents(store: SourceStore, state: dict, providers: list[ServiceBinding], *, portal=None)
     -> Iterator[tuple[str, dict | Exception]]: ...
 ```
+
+Each document names its identity as `source_code`, dataset code and language. The
+registry mints the stable ID from those with one rule for every adapter (ADR 0003);
+`parse.py` has no identity hook.
 
 ### What the lifecycle owns
 
