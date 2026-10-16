@@ -2,8 +2,11 @@
 
 Every run lists the KPI catalogue and reference tables, scans all cells added or
 deleted since the last completed refresh, folds additions into saved coverage and
-rescans KPIs with deletions from scratch. Only affected KPI scopes are rebuilt and
-validated; failures stay pending for the next run and never erase accepted data.
+rescans KPIs with deletions from scratch. Only affected KPI scopes are refreshed;
+failures stay pending for the next run and never erase accepted data. Each scope's
+envelope holds its KPI row and, as derived data, the coverage distilled from the
+value cells (which are never stored) and the dates the mapping needs; the four
+listings are stored as shared source files. Documents are built later by ``parse``.
 """
 
 import logging
@@ -17,7 +20,6 @@ from uuid import uuid4
 from apps.harvest.metadata_adapters.kolada import coverage as cov
 from apps.harvest.metadata_adapters.kolada.client import BudgetExpired, KoladaClient
 from apps.harvest.metadata_adapters.kolada.metadata import (
-    build_dataset,
     context_digest,
     context_for,
     load_municipalities,
@@ -25,15 +27,16 @@ from apps.harvest.metadata_adapters.kolada.metadata import (
     updated_for,
     years_for,
 )
+from apps.harvest.metadata_adapters.kolada.parse import stored_key
 from apps.harvest.metadata_adapters.kolada.state import (
-    COLLECTION,
+    PROVIDER_CODE,
+    REPORT,
     STATE,
-    load_documents,
     load_state,
     save,
 )
-from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
+from apps.harvest.source_store import Rejected, SourceStore, harvest_manifest
+from apps.harvest.storage import now, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
@@ -41,6 +44,10 @@ logger = logging.getLogger("kolada_logger")
 
 SCOPES = ("municipality", "ou")
 LISTINGS = ("ou", "municipality_groups", "kpi_groups")
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
 
 
 async def discover_provider(provider: dict, *, client=None) -> dict:
@@ -105,20 +112,24 @@ async def run(
         raise ValueError("Worker output must be separate from published data")
     if not (data / STATE).exists():
         raise ValueError("Kolada current state is missing from the checkout")
-    baseline = manifest(data)
-    state, documents = load_state(data), load_documents(data)
+    baseline = harvest_manifest(data)
+    if any(not _allowed_path(relative) for relative in baseline):
+        raise ValueError("Unexpected file in published Kolada data")
+    state = load_state(data)
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         dest = output / relative
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(data / relative, dest)
+    store = SourceStore(output / "source", PROVIDER_CODE)
+    stamp = now()
     today = (clock or datetime.now(UTC)).date()
     run_id = uuid4().hex
     selected = set(kpis) if kpis else None
     restricted = selected is not None or scope is not None
     logger.info(
         "Kolada refresh %s: kpis=%s scope=%s refreshed=%s; %d KPIs, %d scopes, "
-        "%d pending, %d accepted documents",
+        "%d pending, %d stored scopes",
         run_id,
         sorted(selected) if selected else "all",
         scope or "all",
@@ -126,7 +137,7 @@ async def run(
         len(state["kpis"]),
         len(state["scopes"]),
         len(state["pending"]),
-        len(documents),
+        len(store.entries()),
     )
     connection = client or KoladaClient(provider)
     if isinstance(connection, KoladaClient):
@@ -156,13 +167,16 @@ async def run(
     def drop(code):
         state["scopes"].pop(code, None)
         state["pending"].pop(code, None)
-        if documents.pop(code, None) is not None:
+        if store.get(stored_key(code)) is not None:
+            store.remove(stored_key(code))
             counts["removed"] += 1
 
     try:
         progress.update(current="kpi", operation="catalogue")
         try:
-            native = catalogue(await connection.listing("kpi"), len(state["kpis"]))
+            kpi_rows = await connection.listing("kpi")
+            native = catalogue(kpi_rows, len(state["kpis"]))
+            store.put_shared(PROVIDER_CODE, "kpi.json", kpi_rows, retrieved_at=stamp)
         except BudgetExpired:
             raise
         except Exception as error:
@@ -187,6 +201,10 @@ async def run(
                 ) or len({r["id"] for r in rows}) != len(rows):
                     raise ValueError(f"Malformed/duplicate {name} catalogue")
                 state["references"][name] = reference_rows(rows)
+                if rows:
+                    store.put_shared(
+                        PROVIDER_CODE, f"{name}.json", rows, retrieved_at=stamp
+                    )
             except BudgetExpired:
                 raise
             except Exception as error:
@@ -256,16 +274,15 @@ async def run(
                     state["scopes"][code] = {"coverage": {}, "empty": False}
                     state["pending"][code] = "rescan"
                     continue
-                document = documents.get(code)
-                if document is None:
+                envelope = store.get(stored_key(code))
+                if envelope is None:
                     if not entry["empty"] and code not in state["pending"]:
                         state["pending"][code] = (
                             "rebuild" if entry["coverage"].get("years") else "rescan"
                         )
                     continue
-                saved = document["extension"]["kolada"]
                 context = context_for(kpi, kind, entry["coverage"], references)
-                if saved["source_record"] != kpi or saved.get(
+                if envelope["responses"]["kpi"] != kpi or envelope["derived"].get(
                     "references_digest"
                 ) != context_digest(context):
                     state["pending"].setdefault(code, "rebuild")
@@ -273,9 +290,12 @@ async def run(
             state["refreshed"] = today.isoformat()
 
         tasks = [code for code in sorted(state["pending"]) if chosen(code)]
-        counts["reused"] = sum(chosen(c) and c not in tasks for c in documents)
+        stored_codes = [
+            key.split("/", 1)[1].rsplit("/", 1)[0] for key in store.entries()
+        ]
+        counts["reused"] = sum(chosen(c) and c not in tasks for c in stored_codes)
         logger.info(
-            "Rebuilding %d scopes (%d rescans); %d documents reused",
+            "Refreshing %d scopes (%d rescans); %d stored scopes reused",
             len(tasks),
             sum(state["pending"][c] == "rescan" for c in tasks),
             counts["reused"],
@@ -295,28 +315,27 @@ async def run(
                     entry["coverage"] = cov.rebuild(kind, records, entities=inventory)
                 years = entry["coverage"].get("years") or []
                 if years:
-                    replacement = build_dataset(
-                        kpi,
-                        kind,
-                        entry["coverage"],
-                        references,
-                        updated=updated_for(
-                            kpi,
-                            years[-1],
-                            today,
-                            references.get("portal_modified", {}).get(identifier),
-                        ),
+                    context = context_for(kpi, kind, entry["coverage"], references)
+                    store.put(
+                        stored_key(code),
+                        responses={"kpi": kpi},
+                        derived={
+                            "coverage": entry["coverage"],
+                            "updated": updated_for(kpi, years[-1], today),
+                            "references_digest": context_digest(context),
+                        },
+                        updated=kpi.get("publication_date"),
+                        retrieved_at=stamp,
                     )
-                    validate_metadata(replacement, adapter="kolada")
-                    documents[code] = replacement
                     counts["updated"] += 1
-                elif documents.pop(code, None) is not None:
+                elif store.get(stored_key(code)) is not None:
+                    store.remove(stored_key(code))
                     counts["removed"] += 1
                 entry["empty"] = not years
                 state["pending"].pop(code)
             except BudgetExpired:
                 raise
-            except Exception as error:
+            except (Rejected, Exception) as error:
                 fail("metadata", code, error)
                 counts["failed"] += 1
             progress.update(processed=position + 1, failed=counts["failed"])
@@ -326,7 +345,8 @@ async def run(
     finally:
         if client is None:
             await connection.close()
-    save(output, state, documents)
+    store.save()
+    save(output, state)
     status = (
         "completed_with_errors" if errors else "running" if incomplete else "success"
     )
@@ -348,7 +368,7 @@ async def run(
         "refreshed": state["refreshed"],
         "selection": {"kpis": sorted(selected) if selected else None, "scope": scope},
     }
-    write(output / "reports/latest.json", result)
+    write(output / REPORT, result)
     check_collection_sizes(output)
     result.update(base_manifest=baseline, manifest=manifest(output))
     write(output / "result.json", result)
@@ -360,11 +380,11 @@ def collect(data: Path, output: Path) -> dict:
     """Verify current artifact bytes and baseline, never revalidate trusted datasets."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
-    if manifest(data) != result["base_manifest"]:
+    if harvest_manifest(data) != result["base_manifest"]:
         raise ValueError("Stale Kolada artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("Kolada artifact checksum mismatch")
-    if set(result["manifest"]) - {COLLECTION, STATE, "reports/latest.json"}:
+    if not all(_allowed_path(relative) for relative in result["manifest"]):
         raise ValueError("Unexpected Kolada artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -373,5 +393,8 @@ def collect(data: Path, output: Path) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
     (data / "work/current.json").unlink(missing_ok=True)
     return result

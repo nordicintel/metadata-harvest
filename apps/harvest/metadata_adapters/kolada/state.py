@@ -1,16 +1,16 @@
-"""Compact current Kolada state and deterministic collections, without validation scans."""
+"""Compact current Kolada state next to the per-scope source files."""
 
 import gzip
 import json
 from pathlib import Path
 
-from apps.harvest.accepted import collection_name, contribution_documents
-from apps.harvest.accepted import write_metadata as write_accepted_metadata
 from apps.harvest.storage import write_jsonl
-from apps.model.models import Dataset
 
-COLLECTION = "metadata/" + collection_name("kolada")
 STATE = "state/current.jsonl.gz"
+REPORT = "reports/latest.json"
+PROVIDER_CODE = "kolada"
+EMPTY_STATE = {"kpis": {}, "references": {}, "scopes": {}, "pending": {}}
+TASKS = {"data": "rescan", "metadata": "rebuild"}
 
 
 def records(path: Path):
@@ -18,22 +18,7 @@ def records(path: Path):
         opener = gzip.open if path.suffix == ".gz" else open
         with opener(path, "rt", encoding="utf-8") as stream:
             for line in stream:
-                value = json.loads(line)
-                if value.get("@type") == "dcat:Dataset":
-                    yield from contribution_documents(Dataset.from_jsonld(value))
-                else:
-                    yield value
-
-
-def load_documents(root: Path) -> dict:
-    return {
-        d["extension"]["nordicintel"]["dataset_code"]: d
-        for d in records(Path(root) / COLLECTION)
-    }
-
-
-EMPTY_STATE = {"kpis": {}, "references": {}, "scopes": {}, "pending": {}}
-TASKS = {"data": "rescan", "metadata": "rebuild"}
+                yield json.loads(line)
 
 
 def normalize(state: dict) -> dict:
@@ -60,11 +45,5 @@ def load_state(root: Path) -> dict:
     return normalize(next(records(Path(root) / STATE), {}))
 
 
-def save(
-    root: Path, state: dict, documents: dict, *, write_metadata: bool = True
-) -> None:
-    if write_metadata:
-        write_accepted_metadata(
-            Path(root), documents.values(), adapter="kolada", empty_providers=["kolada"]
-        )
+def save(root: Path, state: dict) -> None:
     write_jsonl(Path(root) / STATE, [state])

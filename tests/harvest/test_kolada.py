@@ -14,13 +14,16 @@ from apps.harvest.metadata_adapters.kolada.metadata import (
     updated_for,
     years_for,
 )
-from apps.harvest.metadata_adapters.kolada.state import (
-    load_documents,
-    load_state,
-    normalize,
-)
+from apps.harvest.metadata_adapters.kolada.state import load_state, normalize
 from apps.harvest.validation import validate_metadata
 from tests.support.kolada_fixture import initial_state as import_seed
+from tests.support.parsing import documents
+
+
+def load_documents(root):
+    """Parsed documents keyed ``<scope>/<kpi>``."""
+    parsed = documents("kolada", root, [{"code": "kolada"}])
+    return {key.split("/", 1)[1]: document for key, document in parsed.items()}
 
 
 def cell(kpi, period, entity, gender="T", deleted=False):
@@ -251,11 +254,9 @@ def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeyp
     assert "geo" not in docs["ou/N1"]["role"]
     assert "Portal title" not in json.dumps(docs)
     assert load_state(target)["refreshed"] == "2026-10-08"
-    before = (target / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
+    before = (target / "source/manifest.json").read_bytes()
     import_seed(seed_source, target)
-    assert (
-        target / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz"
-    ).read_bytes() == before
+    assert (target / "source/manifest.json").read_bytes() == before
 
 
 def test_sample_mapping_preserves_suppressed_gender_and_group(seed_source, tmp_path):

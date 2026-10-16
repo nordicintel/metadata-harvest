@@ -6,14 +6,17 @@ from datetime import UTC, datetime
 import pytest
 
 from apps.harvest.metadata_adapters.kolada.client import BudgetExpired
-from apps.harvest.metadata_adapters.kolada.state import load_documents, load_state
+from apps.harvest.metadata_adapters.kolada.parse import stored_key
+from apps.harvest.metadata_adapters.kolada.state import load_state
 from apps.harvest.metadata_adapters.kolada.workflow import collect, run
-from tests.harvest.test_kolada import cell
+from tests.harvest.test_kolada import cell, load_documents
 from tests.harvest.test_kolada import seed_source as source_fixture
 from tests.support.kolada_fixture import initial_state as import_seed
+from tests.support.kolada_fixture import store_of
 
 seed_source = source_fixture
 CLOCK = datetime(2026, 10, 9, 8, tzinfo=UTC)
+MANIFEST = "source/manifest.json"
 
 
 class Source:
@@ -60,12 +63,8 @@ def execute(source, data, output, **options):
 def test_unchanged_reuses_seed_and_advances_refresh(seed_source, tmp_path, monkeypatch):
     data = tmp_path / "data"
     import_seed(seed_source, data)
-    before = (data / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
+    before = (data / MANIFEST).read_bytes()
     source = Source(load_state(data))
-    monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.kolada.workflow.validate_metadata",
-        lambda *a, **k: pytest.fail("Unchanged seed validation forbidden"),
-    )
     result = execute(source, data, tmp_path / "output")
     assert result["status"] == "success"
     assert result["counts"] == {
@@ -80,10 +79,7 @@ def test_unchanged_reuses_seed_and_advances_refresh(seed_source, tmp_path, monke
         ("municipality", 356, 1970, 2028, "2026-10-07"),
         ("ou", 1, 2003, 2026, "2026-10-07"),
     ]
-    assert (
-        before
-        == (data / "metadata/rka__multilingual__2e4e3dbc2836.jsonl.gz").read_bytes()
-    )
+    assert before == (data / MANIFEST).read_bytes()
     assert load_state(data)["refreshed"] == "2026-10-09"
     assert not (data / "work/current.json").exists()
 
@@ -177,6 +173,7 @@ def test_catalogue_removal_deletes_and_new_kpi_is_rescanned(seed_source, tmp_pat
     assert result["counts"]["updated"] == 1
     assert source.scans == ["municipality/N2"]
     assert set(load_documents(data)) == {"municipality/N2"}
+    assert set(store_of(data).entries()) == {stored_key("municipality/N2")}
     assert set(load_state(data)["scopes"]) == {"municipality/N2"}
     assert "N1" not in load_state(data)["kpis"]
 
@@ -250,14 +247,14 @@ def test_stale_artifact_rejected(seed_source, tmp_path):
         collect(data, tmp_path / "output")
 
 
-def test_missing_document_rebuilds_from_saved_coverage(seed_source, tmp_path):
-    from apps.harvest.metadata_adapters.kolada.state import save
-
+def test_missing_manifest_entry_is_rebuilt_from_saved_coverage(seed_source, tmp_path):
     data = tmp_path / "data"
     import_seed(seed_source, data)
-    state, documents = load_state(data), load_documents(data)
-    expected = documents.pop("municipality/N1")
-    save(data, state, documents)
+    state = load_state(data)
+    expected = load_documents(data)["municipality/N1"]
+    store = store_of(data)
+    store.remove(stored_key("municipality/N1"))
+    store.save()
     source = Source(state)
     result = execute(source, data, tmp_path / "output")
     assert result["counts"]["updated"] == 1
