@@ -1,0 +1,46 @@
+{
+  "key": "forsakringskassan/ase-belopp/ASEAntalMottagareBeloppAld/sv",
+  "identifier": "ase-belopp/ASEAntalMottagareBeloppAld",
+  "language": "sv",
+  "updated": null,
+  "retrieved_at": "2026-10-16T17:17:45.509365+00:00",
+  "responses": {
+    "listing": {
+      "report": "ase-belopp",
+      "area": "fn",
+      "group": "ase"
+    },
+    "probe": [
+      {
+        "dimensions": {
+          "ar": "2025",
+          "kon_kod": "ALL",
+          "row_nr": "1",
+          "aldersklass_kod": "ALL"
+        },
+        "observations": {
+          "antal": {
+            "rojd": false,
+            "value": 13969.0
+          },
+          "belopp": {
+            "rojd": false,
+            "value": 31155594.0
+          }
+        }
+      }
+    ]
+  },
+  "derived": {
+    "table": {
+      "key": "uppdelning_alder",
+      "label": "Ålder",
+      "name": "ASEAntalMottagareBeloppAld",
+      "dimensions": [
+        "ar",
+        "kon_kod",
+        "aldersklass_kod"
+      ]
+    }
+  }
+}

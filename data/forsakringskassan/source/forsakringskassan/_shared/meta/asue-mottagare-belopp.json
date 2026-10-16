@@ -1,0 +1,269 @@
+{
+  "area": "asueee",
+  "diagram": [
+    {
+      "default": true,
+      "type": "line",
+      "xAxis": {
+        "column": [
+          "ar"
+        ],
+        "type": "year"
+      }
+    },
+    {
+      "default": false,
+      "type": "bar",
+      "xAxis": {
+        "column": [
+          "ar"
+        ],
+        "type": "year"
+      }
+    }
+  ],
+  "filter": {
+    "order": [
+      "@matt",
+      "ar",
+      "kon_kod",
+      "@uppdelning",
+      "delforman_kod",
+      "alder_kod"
+    ],
+    "uppdelning": [
+      {
+        "key": "delforman_kod",
+        "label": "Ersättning",
+        "selected": true,
+        "table": "ASUEEASUEAntalBeloppDelforman"
+      },
+      {
+        "key": "alder_kod",
+        "label": "Ålder",
+        "selected": false,
+        "table": "ASUEEASUEAntalBeloppAlder"
+      }
+    ],
+    "matt": [
+      {
+        "key": "antal",
+        "label": "Antal mottagare",
+        "selected": true
+      },
+      {
+        "key": "belopp",
+        "label": "Belopp i 1000-tal kr",
+        "selected": false
+      }
+    ],
+    "dimension": [
+      {
+        "key": "ar",
+        "label": "År",
+        "values": [
+          {
+            "key": "2025",
+            "label": "2025",
+            "selected": true
+          },
+          {
+            "key": "2024",
+            "label": "2024",
+            "selected": true
+          },
+          {
+            "key": "2023",
+            "label": "2023",
+            "selected": true
+          },
+          {
+            "key": "2022",
+            "label": "2022",
+            "selected": true
+          },
+          {
+            "key": "2021",
+            "label": "2021",
+            "selected": true
+          },
+          {
+            "key": "2020",
+            "label": "2020",
+            "selected": true
+          },
+          {
+            "key": "2019",
+            "label": "2019",
+            "selected": true
+          },
+          {
+            "key": "2018",
+            "label": "2018",
+            "selected": true
+          },
+          {
+            "key": "2017",
+            "label": "2017",
+            "selected": true
+          },
+          {
+            "key": "2016",
+            "label": "2016",
+            "selected": true
+          },
+          {
+            "key": "2015",
+            "label": "2015",
+            "selected": true
+          },
+          {
+            "key": "2014",
+            "label": "2014",
+            "selected": true
+          },
+          {
+            "key": "2013",
+            "label": "2013",
+            "selected": true
+          },
+          {
+            "key": "2012",
+            "label": "2012",
+            "selected": true
+          },
+          {
+            "key": "2011",
+            "label": "2011",
+            "selected": true
+          },
+          {
+            "key": "2010",
+            "label": "2010",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "key": "kon_kod",
+        "label": "Kön",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Kvinnor och män",
+            "selected": true
+          },
+          {
+            "key": "K",
+            "label": "Kvinnor",
+            "selected": true
+          },
+          {
+            "key": "M",
+            "label": "Män",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "group": "delforman_kod",
+        "key": "delforman_kod",
+        "label": "Ersättning",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga ersättningar",
+            "selected": true
+          },
+          {
+            "key": "63",
+            "label": "Aktivitetsstöd"
+          },
+          {
+            "key": "67",
+            "label": "Utvecklingsersättning"
+          }
+        ]
+      },
+      {
+        "group": "alder_kod",
+        "key": "alder_kod",
+        "label": "Ålder",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga åldrar",
+            "selected": true
+          },
+          {
+            "key": "-19",
+            "label": "-19 år"
+          },
+          {
+            "key": "20-24",
+            "label": "20-24 år"
+          },
+          {
+            "key": "25-29",
+            "label": "25-29 år"
+          },
+          {
+            "key": "30-34",
+            "label": "30-34 år"
+          },
+          {
+            "key": "35-39",
+            "label": "35-39 år"
+          },
+          {
+            "key": "40-44",
+            "label": "40-44 år"
+          },
+          {
+            "key": "45-49",
+            "label": "45-49 år"
+          },
+          {
+            "key": "50-54",
+            "label": "50-54 år"
+          },
+          {
+            "key": "55-59",
+            "label": "55-59 år"
+          },
+          {
+            "key": "60-",
+            "label": "60+ år"
+          }
+        ]
+      }
+    ],
+    "pivot": "kon_kod"
+  },
+  "forman": "asueee",
+  "key": "asue-mottagare-belopp",
+  "revision": 0,
+  "table": {
+    "order": [
+      "ar",
+      "delforman_kod",
+      "alder_kod",
+      "kon_kod",
+      "antal",
+      "belopp"
+    ],
+    "columns": [
+      {
+        "format": "numeric",
+        "key": "antal",
+        "label": "Antal mottagare"
+      },
+      {
+        "format": "numeric",
+        "key": "belopp",
+        "label": "Belopp i 1000-tal kr"
+      }
+    ]
+  },
+  "version": "5"
+}

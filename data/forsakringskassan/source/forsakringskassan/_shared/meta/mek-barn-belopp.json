@@ -1,0 +1,1122 @@
+{
+  "area": "fn",
+  "diagram": [
+    {
+      "default": true,
+      "type": "line",
+      "xAxis": {
+        "column": [
+          "ar",
+          "manad"
+        ],
+        "type": "month"
+      }
+    },
+    {
+      "default": false,
+      "type": "bar",
+      "xAxis": {
+        "column": [
+          "ar",
+          "manad"
+        ],
+        "type": "month"
+      }
+    }
+  ],
+  "filter": {
+    "order": [
+      "@matt",
+      "ar",
+      "manad",
+      "kon_kod",
+      "niva",
+      "@uppdelning",
+      "lan_kod",
+      "antal_barn",
+      "aldersklass_kod",
+      "diagnoskapitel_kod",
+      "diagnoskod3",
+      "fordelning"
+    ],
+    "uppdelning": [
+      {
+        "key": "uppdelning_lan",
+        "label": "Län",
+        "selected": true,
+        "table": "MEKAntalBarnBeloppManadLan"
+      },
+      {
+        "key": "uppdelning_barn",
+        "label": "Antal barn med merkostnadsersättning i familjen",
+        "selected": false,
+        "table": "MEKAntalBarnBeloppManadBarn"
+      },
+      {
+        "key": "uppdelning_alder",
+        "label": "Ålder",
+        "selected": false,
+        "table": "MEKAntalBarnBeloppManadAld"
+      },
+      {
+        "key": "diagnoskapitel_kod",
+        "label": "Diagnos",
+        "selected": false,
+        "table": "MEKAntalBarnBeloppManadDiag"
+      },
+      {
+        "key": "uppdelning_fordelning",
+        "label": "Fördelning av utbetalning mellan föräldrar",
+        "selected": false,
+        "table": "MEKAntalBarnBeloppManadFord"
+      }
+    ],
+    "matt": [
+      {
+        "key": "antal",
+        "label": "Antal barn",
+        "selected": true
+      },
+      {
+        "key": "belopp",
+        "label": "Belopp i 1000-tal kr",
+        "selected": false
+      }
+    ],
+    "dimension": [
+      {
+        "key": "ar",
+        "label": "År",
+        "values": [
+          {
+            "key": "2026",
+            "label": "2026",
+            "selected": true
+          },
+          {
+            "key": "2025",
+            "label": "2025",
+            "selected": true
+          },
+          {
+            "key": "2024",
+            "label": "2024",
+            "selected": true
+          },
+          {
+            "key": "2023",
+            "label": "2023",
+            "selected": true
+          },
+          {
+            "key": "2022",
+            "label": "2022",
+            "selected": true
+          },
+          {
+            "key": "2021",
+            "label": "2021",
+            "selected": true
+          },
+          {
+            "key": "2020",
+            "label": "2020",
+            "selected": true
+          },
+          {
+            "key": "2019",
+            "label": "2019",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "key": "manad",
+        "label": "Månad",
+        "values": [
+          {
+            "key": "01",
+            "label": "Januari",
+            "selected": true
+          },
+          {
+            "key": "02",
+            "label": "Februari",
+            "selected": true
+          },
+          {
+            "key": "03",
+            "label": "Mars",
+            "selected": true
+          },
+          {
+            "key": "04",
+            "label": "April",
+            "selected": true
+          },
+          {
+            "key": "05",
+            "label": "Maj",
+            "selected": true
+          },
+          {
+            "key": "06",
+            "label": "Juni",
+            "selected": true
+          },
+          {
+            "key": "07",
+            "label": "Juli",
+            "selected": true
+          },
+          {
+            "key": "08",
+            "label": "Augusti",
+            "selected": true
+          },
+          {
+            "key": "09",
+            "label": "September",
+            "selected": true
+          },
+          {
+            "key": "10",
+            "label": "Oktober",
+            "selected": true
+          },
+          {
+            "key": "11",
+            "label": "November",
+            "selected": true
+          },
+          {
+            "key": "12",
+            "label": "December",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "key": "kon_kod",
+        "label": "Kön",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Flickor och pojkar",
+            "selected": true
+          },
+          {
+            "key": "K",
+            "label": "Flickor",
+            "selected": true
+          },
+          {
+            "key": "M",
+            "label": "Pojkar",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "key": "niva",
+        "label": "Nivå",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga nivåer",
+            "selected": true
+          },
+          {
+            "key": "030",
+            "label": "Nivå 30 %"
+          },
+          {
+            "key": "040",
+            "label": "Nivå 40 %"
+          },
+          {
+            "key": "050",
+            "label": "Nivå 50 %"
+          },
+          {
+            "key": "060",
+            "label": "Nivå 60 %"
+          },
+          {
+            "key": "070",
+            "label": "Nivå 70 %"
+          },
+          {
+            "key": "123",
+            "label": "Nivå mer än 70 %"
+          }
+        ]
+      },
+      {
+        "group": "uppdelning_lan",
+        "key": "lan_kod",
+        "label": "Län",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Riket",
+            "selected": true
+          },
+          {
+            "key": "01",
+            "label": "01 Stockholms län"
+          },
+          {
+            "key": "03",
+            "label": "03 Uppsala län"
+          },
+          {
+            "key": "04",
+            "label": "04 Södermanlands län"
+          },
+          {
+            "key": "05",
+            "label": "05 Östergötlands län"
+          },
+          {
+            "key": "06",
+            "label": "06 Jönköpings län"
+          },
+          {
+            "key": "07",
+            "label": "07 Kronobergs län"
+          },
+          {
+            "key": "08",
+            "label": "08 Kalmar län"
+          },
+          {
+            "key": "09",
+            "label": "09 Gotlands län"
+          },
+          {
+            "key": "10",
+            "label": "10 Blekinge län"
+          },
+          {
+            "key": "12",
+            "label": "12 Skåne län"
+          },
+          {
+            "key": "13",
+            "label": "13 Hallands län"
+          },
+          {
+            "key": "14",
+            "label": "14 Västra Götalands län"
+          },
+          {
+            "key": "17",
+            "label": "17 Värmlands län"
+          },
+          {
+            "key": "18",
+            "label": "18 Örebro län"
+          },
+          {
+            "key": "19",
+            "label": "19 Västmanlands län"
+          },
+          {
+            "key": "20",
+            "label": "20 Dalarnas län"
+          },
+          {
+            "key": "21",
+            "label": "21 Gävleborgs län"
+          },
+          {
+            "key": "22",
+            "label": "22 Västernorrlands län"
+          },
+          {
+            "key": "23",
+            "label": "23 Jämtlands län"
+          },
+          {
+            "key": "24",
+            "label": "24 Västerbottens län"
+          },
+          {
+            "key": "25",
+            "label": "25 Norrbottens län"
+          }
+        ]
+      },
+      {
+        "group": "uppdelning_alder",
+        "key": "aldersklass_kod",
+        "label": "Ålder",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga åldrar",
+            "selected": true
+          },
+          {
+            "key": "000",
+            "label": "0 år"
+          },
+          {
+            "key": "001",
+            "label": "1 år"
+          },
+          {
+            "key": "002",
+            "label": "2 år"
+          },
+          {
+            "key": "003",
+            "label": "3 år"
+          },
+          {
+            "key": "004",
+            "label": "4 år"
+          },
+          {
+            "key": "005",
+            "label": "5 år"
+          },
+          {
+            "key": "006",
+            "label": "6 år"
+          },
+          {
+            "key": "007",
+            "label": "7 år"
+          },
+          {
+            "key": "008",
+            "label": "8 år"
+          },
+          {
+            "key": "009",
+            "label": "9 år"
+          },
+          {
+            "key": "010",
+            "label": "10 år"
+          },
+          {
+            "key": "011",
+            "label": "11 år"
+          },
+          {
+            "key": "012",
+            "label": "12 år"
+          },
+          {
+            "key": "013",
+            "label": "13 år"
+          },
+          {
+            "key": "014",
+            "label": "14 år"
+          },
+          {
+            "key": "015",
+            "label": "15 år"
+          },
+          {
+            "key": "016",
+            "label": "16 år"
+          },
+          {
+            "key": "017",
+            "label": "17 år"
+          },
+          {
+            "key": "018",
+            "label": "18 år"
+          },
+          {
+            "key": "019",
+            "label": "19-21 år"
+          }
+        ]
+      },
+      {
+        "group": "uppdelning_barn",
+        "key": "antal_barn",
+        "label": "Antal barn med merkostnadsersättning i familjen",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga, 1+ barn med merkostnadsersättning i familjen",
+            "selected": true
+          },
+          {
+            "key": "001",
+            "label": "1 barn"
+          },
+          {
+            "key": "002",
+            "label": "2+ barn"
+          }
+        ]
+      },
+      {
+        "group": "diagnoskapitel_kod",
+        "key": "diagnoskapitel_kod",
+        "label": "Diagnoskapitel",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga diagnoskapitel",
+            "selected": true,
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_ALL",
+                  "label": "Samtliga diagnoser",
+                  "selected": true,
+                  "table": "Samtliga diagnoser",
+                  "tag": "Samtliga diagnoser"
+                }
+              ]
+            },
+            "tag": "Samtliga diagnoser"
+          },
+          {
+            "key": "A00-B99",
+            "label": "A00-B99 Vissa infektionssjukdomar och parasitsjukdomar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_A00-B99",
+                  "label": "Samtliga diagnoser A00-B99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser A00-B99",
+                  "tag": "A00-B99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "C00-D48",
+            "label": "C00-D48 Tumörer",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_C00-D48",
+                  "label": "Samtliga diagnoser C00-D48",
+                  "selected": true,
+                  "table": "Samtliga diagnoser C00-D48",
+                  "tag": "C00-D48: samtliga diagnoser"
+                },
+                {
+                  "key": "C91",
+                  "label": "C91 Lymfatisk leukemi",
+                  "selected": false
+                },
+                {
+                  "key": "ovrC00-D48",
+                  "label": "Övriga diagnoser C00-D48",
+                  "selected": false,
+                  "tag": "C00-D48: övriga diagnoser C00-D48"
+                }
+              ]
+            }
+          },
+          {
+            "key": "D50-D89",
+            "label": "D50-D89 Sjukdomar i blod och blodbildande organ samt vissa rubbningar i immunsystemet",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_D50-D89",
+                  "label": "Samtliga diagnoser D50-D89",
+                  "selected": false,
+                  "table": "Samtliga diagnoser D50-D89",
+                  "tag": "D50-D89: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "E00-E90",
+            "label": "E00-E90 Endokrina sjukdomar, nutritionsrubbningar och ämnesomsättningssjukdomar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_E00-E90",
+                  "label": "Samtliga diagnoser E00-E90",
+                  "selected": true,
+                  "table": "Samtliga diagnoser E00-E90",
+                  "tag": "E00-E90: samtliga diagnoser"
+                },
+                {
+                  "key": "E10",
+                  "label": "E10 Diabetes mellitus typ 1",
+                  "selected": false
+                },
+                {
+                  "key": "E66",
+                  "label": "E66 Fetma",
+                  "selected": false
+                },
+                {
+                  "key": "E84",
+                  "label": "E84 Cystisk fibros",
+                  "selected": false
+                },
+                {
+                  "key": "ovrE00-E90",
+                  "label": "Övriga diagnoser E00-E90",
+                  "selected": false,
+                  "tag": "E00-E90: övriga diagnoser E00-E90"
+                }
+              ]
+            }
+          },
+          {
+            "key": "F00-F99",
+            "label": "F00-F99 Psykiska sjukdomar och syndrom samt beteendestörningar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_F00-F99",
+                  "label": "Samtliga diagnoser F00-F99",
+                  "selected": true,
+                  "table": "Samtliga diagnoser F00-F99",
+                  "tag": "F00-F99: samtliga diagnoser"
+                },
+                {
+                  "key": "F70",
+                  "label": "F70 Lindrig psykisk utvecklingsstörning",
+                  "selected": false
+                },
+                {
+                  "key": "F71",
+                  "label": "F71 Medelsvår psykisk utvecklingsstörning",
+                  "selected": false
+                },
+                {
+                  "key": "F72",
+                  "label": "F72 Svår psykisk utvecklingsstörning",
+                  "selected": false
+                },
+                {
+                  "key": "F79",
+                  "label": "F79 Ospecificerad psykisk utvecklingsstörning",
+                  "selected": false
+                },
+                {
+                  "key": "F84",
+                  "label": "F84 Genomgripande utvecklingsstörningar",
+                  "selected": false
+                },
+                {
+                  "key": "F90",
+                  "label": "F90 Hyperaktivitetsstörningar",
+                  "selected": false
+                },
+                {
+                  "key": "ovrF00-F99",
+                  "label": "Övriga diagnoser F00-F99",
+                  "selected": false,
+                  "tag": "F00-F99: övriga diagnoser F00-F99"
+                }
+              ]
+            }
+          },
+          {
+            "key": "G00-G99",
+            "label": "G00-G99 Sjukdomar i nervsystemet",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_G00-G99",
+                  "label": "Samtliga diagnoser G00-G99",
+                  "selected": true,
+                  "table": "Samtliga diagnoser G00-G99",
+                  "tag": "G00-G99: samtliga diagnoser"
+                },
+                {
+                  "key": "G40",
+                  "label": "G40 Epilepsi",
+                  "selected": false
+                },
+                {
+                  "key": "G71",
+                  "label": "G71 Primära muskelsjukdomar",
+                  "selected": false
+                },
+                {
+                  "key": "G80",
+                  "label": "G80 Cerebral pares",
+                  "selected": false
+                },
+                {
+                  "key": "ovrG00-G99",
+                  "label": "Övriga diagnoser G00-G99",
+                  "selected": false,
+                  "tag": "G00-G99: övriga diagnoser G00-G99"
+                }
+              ]
+            }
+          },
+          {
+            "key": "H00-H59",
+            "label": "H00-H59 Sjukdomar i ögat och närliggande organ",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_H00-H59",
+                  "label": "Samtliga diagnoser H00-H59",
+                  "selected": false,
+                  "table": "Samtliga diagnoser H00-H59",
+                  "tag": "H00-H59: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "H60-H95",
+            "label": "H60-H95 Sjukdomar i örat och mastoidutskottet",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_H60-H95",
+                  "label": "Samtliga diagnoser H60-H95",
+                  "selected": true,
+                  "table": "Samtliga diagnoser H60-H95",
+                  "tag": "H60-H95: samtliga diagnoser"
+                },
+                {
+                  "key": "H90",
+                  "label": "H90 Ledningshinder och sensorineural hörselnedsättning",
+                  "selected": false
+                },
+                {
+                  "key": "ovrH60-H95",
+                  "label": "Övriga diagnoser H60-H95",
+                  "selected": false,
+                  "tag": "H60-H95: övriga diagnoser H60-H95"
+                }
+              ]
+            }
+          },
+          {
+            "key": "I00-I99",
+            "label": "I00-I99 Cirkulationsorganens sjukdomar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_I00-I99",
+                  "label": "Samtliga diagnoser I00-I99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser I00-I99",
+                  "tag": "I00-I99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "J00-J99",
+            "label": "J00-J99 Andningsorganens sjukdomar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_J00-J99",
+                  "label": "Samtliga diagnoser J00-J99",
+                  "selected": true,
+                  "table": "Samtliga diagnoser J00-J99",
+                  "tag": "J00-J99: samtliga diagnoser"
+                },
+                {
+                  "key": "J45",
+                  "label": "J45 Astma",
+                  "selected": false
+                },
+                {
+                  "key": "ovrJ00-J99",
+                  "label": "Övriga diagnoser J00-J99",
+                  "selected": false,
+                  "tag": "J00-J99: övriga diagnoser J00-J99"
+                }
+              ]
+            }
+          },
+          {
+            "key": "K00-K93",
+            "label": "K00-K93 Matsmältningsorganens sjukdomar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_K00-K93",
+                  "label": "Samtliga diagnoser K00-K93",
+                  "selected": false,
+                  "table": "Samtliga diagnoser K00-K93",
+                  "tag": "K00-K93: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "L00-L99",
+            "label": "L00-L99 Hudens och underhudens sjukdomar",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_L00-L99",
+                  "label": "Samtliga diagnoser L00-L99",
+                  "selected": true,
+                  "table": "Samtliga diagnoser L00-L99",
+                  "tag": "L00-L99: samtliga diagnoser"
+                },
+                {
+                  "key": "L20",
+                  "label": "L20 Atopiskt eksem (böjveckseksem)",
+                  "selected": false
+                },
+                {
+                  "key": "L63",
+                  "label": "L63 Alopecia areata (fläckformigt håravfall)",
+                  "selected": false
+                },
+                {
+                  "key": "ovrL00-L99",
+                  "label": "Övriga diagnoser L00-L99",
+                  "selected": false,
+                  "tag": "L00-L99: övriga diagnoser L00-L99"
+                }
+              ]
+            }
+          },
+          {
+            "key": "M00-M99",
+            "label": "M00-M99 Sjukdomar i muskuloskeletala systemet och bindväven",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_M00-M99",
+                  "label": "Samtliga diagnoser M00-M99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser M00-M99",
+                  "tag": "M00-M99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "N00-N99",
+            "label": "N00-N99 Sjukdomar i urin- och könsorganen",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_N00-N99",
+                  "label": "Samtliga diagnoser N00-N99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser N00-N99",
+                  "tag": "N00-N99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "O00-O99",
+            "label": "O00-O99 Graviditet, förlossning och barnsängstid",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_O00-O99",
+                  "label": "Samtliga diagnoser O00-O99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser O00-O99",
+                  "tag": "O00-O99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "P00-P96",
+            "label": "P00-P96 Vissa perinatala tillstånd",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_P00-P96",
+                  "label": "Samtliga diagnoser P00-P96",
+                  "selected": false,
+                  "table": "Samtliga diagnoser P00-P96",
+                  "tag": "P00-P96: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "Q00-Q99",
+            "label": "Q00-Q99 Medfödda missbildningar, deformiteter och kromosomavvikelser",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_Q00-Q99",
+                  "label": "Samtliga diagnoser Q00-Q99",
+                  "selected": true,
+                  "table": "Samtliga diagnoser Q00-Q99",
+                  "tag": "Q00-Q99: samtliga diagnoser"
+                },
+                {
+                  "key": "Q80",
+                  "label": "Q80 Medfödd iktyos",
+                  "selected": false
+                },
+                {
+                  "key": "Q87",
+                  "label": "Q87 Andra specificerade medfödda missbildningssyndrom som engagerar multipla organsystem",
+                  "selected": false
+                },
+                {
+                  "key": "Q90",
+                  "label": "Q90 Downs syndrom",
+                  "selected": false
+                },
+                {
+                  "key": "Q93",
+                  "label": "Q93 Autosomala monosomier och deletioner som ej klassificeras på annan plats",
+                  "selected": false
+                },
+                {
+                  "key": "Q99",
+                  "label": "Q99 Andra kromosomavvikelser som ej klassificeras på annan plats",
+                  "selected": false
+                },
+                {
+                  "key": "ovrQ00-Q99",
+                  "label": "Övriga diagnoser Q00-Q99",
+                  "selected": false,
+                  "tag": "Q00-Q99: övriga diagnoser Q00-Q99"
+                }
+              ]
+            }
+          },
+          {
+            "key": "R00-R99",
+            "label": "R00-R99 Symtom, sjukdomstecken och onormala kliniska fynd och laboratoriefynd som ej klassificeras annorstädes",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_R00-R99",
+                  "label": "Samtliga diagnoser R00-R99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser R00-R99",
+                  "tag": "R00-R99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "S00-T98",
+            "label": "S00-T98 Skador, förgiftningar och vissa andra följder av yttre orsaker",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_S00-T98",
+                  "label": "Samtliga diagnoser S00-T98",
+                  "selected": false,
+                  "table": "Samtliga diagnoser S00-T98",
+                  "tag": "S00-T98: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "U00-U99",
+            "label": "U00-U99 Koder för särskilda ändamål",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_U00-U99",
+                  "label": "Samtliga diagnoser U00-U99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser U00-U99",
+                  "tag": "U00-U99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "V01-Y98",
+            "label": "V01-Y98 Yttre orsaker till sjukdom och död",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_V01-Y98",
+                  "label": "Samtliga diagnoser V01-Y98",
+                  "selected": false,
+                  "table": "Samtliga diagnoser V01-Y98",
+                  "tag": "V01-Y98: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "Z00-Z99",
+            "label": "Z00-Z99 Faktorer av betydelse för hälsotillståndet och för kontakter med hälso- och sjukvården",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_Z00-Z99",
+                  "label": "Samtliga diagnoser Z00-Z99",
+                  "selected": false,
+                  "table": "Samtliga diagnoser Z00-Z99",
+                  "tag": "Z00-Z99: samtliga diagnoser"
+                }
+              ]
+            }
+          },
+          {
+            "key": "-000",
+            "label": "-000 Saknas/Okänd",
+            "subdimension": {
+              "key": "diagnoskod3",
+              "label": "Diagnoskod",
+              "values": [
+                {
+                  "key": "ALL_-000",
+                  "label": "Samtliga diagnoser -000 Saknas/Okänd",
+                  "selected": false,
+                  "table": "Samtliga diagnoser -000 Saknas/Okänd",
+                  "tag": "-000: samtliga diagnoser"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "group": "uppdelning_fordelning",
+        "key": "fordelning",
+        "label": "Fördelning av utbetalning mellan föräldrar",
+        "values": [
+          {
+            "key": "ALL",
+            "label": "Samtliga typer av fördelning mellan föräldrar",
+            "selected": true
+          },
+          {
+            "key": "k100",
+            "label": "Kvinnor får 100 % av utbetalningen",
+            "selected": true
+          },
+          {
+            "key": "kmer",
+            "label": "Kvinnor får större andel av utbetalningen",
+            "selected": true
+          },
+          {
+            "key": "5050",
+            "label": "Föräldrar delar lika",
+            "selected": true
+          },
+          {
+            "key": "mmer",
+            "label": "Män får större andel av utbetalningen",
+            "selected": true
+          },
+          {
+            "key": "m100",
+            "label": "Män får 100 % av utbetalningen",
+            "selected": true
+          }
+        ]
+      }
+    ],
+    "computed": [
+      {
+        "data": "${ar} ${manad}",
+        "key": "tidsperiod",
+        "label": "Tidsperiod"
+      }
+    ],
+    "pivot": "kon_kod"
+  },
+  "forman": "mek",
+  "key": "mek-barn-belopp",
+  "official": true,
+  "revision": 0,
+  "table": {
+    "order": [
+      "tidsperiod",
+      "kon_kod",
+      "lan_kod",
+      "aldersklass_kod",
+      "diagnoskapitel_kod",
+      "diagnoskod3",
+      "niva",
+      "fordelning",
+      "antal_barn",
+      "antal",
+      "belopp"
+    ],
+    "columns": [
+      {
+        "format": "string",
+        "key": "manad",
+        "label": "Månad"
+      },
+      {
+        "format": "numeric",
+        "key": "antal",
+        "label": "Antal barn"
+      },
+      {
+        "format": "numeric",
+        "key": "belopp",
+        "label": "Belopp i 1000-tal kr"
+      }
+    ]
+  },
+  "version": "5"
+}

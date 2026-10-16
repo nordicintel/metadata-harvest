@@ -1,0 +1,52 @@
+{
+  "key": "forsakringskassan/sa-bestand-manad/SAbestandmanadbeltyp/sv",
+  "identifier": "sa-bestand-manad/SAbestandmanadbeltyp",
+  "language": "sv",
+  "updated": null,
+  "retrieved_at": "2026-10-16T17:17:45.509365+00:00",
+  "responses": {
+    "listing": {
+      "report": "sa-bestand-manad",
+      "area": "sjuk",
+      "group": "sa"
+    },
+    "probe": [
+      {
+        "dimensions": {
+          "beloppstyp": "ALL",
+          "manad": "01",
+          "ar": "2026",
+          "kon_kod": "ALL",
+          "row_nr": "12673",
+          "lan_kod2": "ALL",
+          "delforman": "ALL"
+        },
+        "observations": {
+          "antal": {
+            "rojd": false,
+            "value": 248929.0
+          },
+          "belopp": {
+            "rojd": false,
+            "value": 3312473.0
+          }
+        }
+      }
+    ]
+  },
+  "derived": {
+    "table": {
+      "key": "beltyp",
+      "label": "Län och beloppstyp",
+      "name": "SAbestandmanadbeltyp",
+      "dimensions": [
+        "delforman",
+        "ar",
+        "manad",
+        "kon_kod",
+        "lan_kod2",
+        "beloppstyp"
+      ]
+    }
+  }
+}

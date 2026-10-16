@@ -1,0 +1,258 @@
+{
+  "area": "bf",
+  "diagram": [
+    {
+      "default": true,
+      "type": "line",
+      "xAxis": {
+        "column": [
+          "fod_ar",
+          "fod_manad"
+        ],
+        "type": "month"
+      }
+    },
+    {
+      "default": false,
+      "type": "bar",
+      "xAxis": {
+        "column": [
+          "fod_ar",
+          "fod_manad"
+        ],
+        "type": "month"
+      }
+    }
+  ],
+  "filter": {
+    "order": [
+      "@matt",
+      "fod_ar",
+      "fod_manad",
+      "@uppdelning"
+    ],
+    "uppdelning": [
+      {
+        "key": "Inga",
+        "label": "Inga",
+        "selected": true,
+        "table": "BABJamstallhetTab1"
+      }
+    ],
+    "matt": [
+      {
+        "key": "andel",
+        "label": "Andel barn vars föräldrar har ändrat från delat till helt efter gemensam ansökan",
+        "selected": true
+      },
+      {
+        "key": "antal_barn_pv",
+        "label": "Antal barn vars föräldrar har eller har haft delat barnbidrag",
+        "selected": false
+      },
+      {
+        "key": "antal_barn_av",
+        "label": "Antal barn vars föräldrar har ändrat från delat till helt efter gemensam ansökan(innan 3 månader)",
+        "selected": false
+      },
+      {
+        "key": "antal_av_mott_k",
+        "label": "Antal barn med mamman som bidragsmottagare efter ändringen",
+        "selected": false
+      },
+      {
+        "key": "antal_av_mott_m",
+        "label": "Antal barn med pappan som bidragsmottagare efter ändringen",
+        "selected": false
+      }
+    ],
+    "dimension": [
+      {
+        "key": "fod_ar",
+        "label": "Födelseår",
+        "values": [
+          {
+            "key": "2025",
+            "label": "2025",
+            "selected": true
+          },
+          {
+            "key": "2024",
+            "label": "2024",
+            "selected": true
+          },
+          {
+            "key": "2023",
+            "label": "2023",
+            "selected": true
+          },
+          {
+            "key": "2022",
+            "label": "2022",
+            "selected": true
+          },
+          {
+            "key": "2021",
+            "label": "2021",
+            "selected": true
+          },
+          {
+            "key": "2020",
+            "label": "2020",
+            "selected": true
+          },
+          {
+            "key": "2019",
+            "label": "2019",
+            "selected": true
+          },
+          {
+            "key": "2018",
+            "label": "2018",
+            "selected": true
+          },
+          {
+            "key": "2017",
+            "label": "2017",
+            "selected": true
+          },
+          {
+            "key": "2016",
+            "label": "2016",
+            "selected": true
+          },
+          {
+            "key": "2015",
+            "label": "2015",
+            "selected": true
+          },
+          {
+            "key": "2014",
+            "label": "2014",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "key": "fod_manad",
+        "label": "Födelsemånad",
+        "values": [
+          {
+            "key": "01",
+            "label": "Januari",
+            "selected": true
+          },
+          {
+            "key": "02",
+            "label": "Februari",
+            "selected": true
+          },
+          {
+            "key": "03",
+            "label": "Mars",
+            "selected": true
+          },
+          {
+            "key": "04",
+            "label": "April",
+            "selected": true
+          },
+          {
+            "key": "05",
+            "label": "Maj",
+            "selected": true
+          },
+          {
+            "key": "06",
+            "label": "Juni",
+            "selected": true
+          },
+          {
+            "key": "07",
+            "label": "Juli",
+            "selected": true
+          },
+          {
+            "key": "08",
+            "label": "Augusti",
+            "selected": true
+          },
+          {
+            "key": "09",
+            "label": "September",
+            "selected": true
+          },
+          {
+            "key": "10",
+            "label": "Oktober",
+            "selected": true
+          },
+          {
+            "key": "11",
+            "label": "November",
+            "selected": true
+          },
+          {
+            "key": "12",
+            "label": "December",
+            "selected": true
+          }
+        ]
+      }
+    ],
+    "computed": [
+      {
+        "data": "${fod_ar} ${fod_manad}",
+        "key": "tidsperiod",
+        "label": "Barnets födelseår och månad"
+      }
+    ]
+  },
+  "forman": "bab",
+  "key": "bab-dela",
+  "official": true,
+  "revision": 0,
+  "table": {
+    "order": [
+      "tidsperiod",
+      "antal_barn_pv",
+      "antal_barn_av",
+      "andel",
+      "antal_av_mott_k",
+      "antal_av_mott_m"
+    ],
+    "columns": [
+      {
+        "format": "numeric",
+        "key": "antal_barn_pv",
+        "label": "Antal barn vars föräldrar har eller har haft delat barnbidrag"
+      },
+      {
+        "format": "numeric",
+        "key": "antal_barn_av",
+        "label": "Antal barn vars föräldrar har ändrat från delat till helt efter gemensam ansökan(innan 3 månader)"
+      },
+      {
+        "format": "numeric",
+        "key": "andel",
+        "label": "Andel barn vars föräldrar har ändrat från delat till helt efter gemensam ansökan"
+      },
+      {
+        "format": "numeric",
+        "key": "antal_av_mott_k",
+        "label": "Antal barn med mamman som bidragsmottagare efter ändringen"
+      },
+      {
+        "format": "numeric",
+        "key": "antal_av_mott_m",
+        "label": "Antal barn med pappan som bidragsmottagare efter ändringen"
+      },
+      {
+        "format": "string",
+        "key": "fod_manad",
+        "label": "Födelsemånad"
+      }
+    ]
+  },
+  "version": "5"
+}
