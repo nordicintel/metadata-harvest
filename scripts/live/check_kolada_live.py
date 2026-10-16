@@ -1,30 +1,57 @@
-"""Opt-in live sample: six KPIs, at most twelve documents; never a corpus scan."""
+"""Opt-in live sample: six KPIs, at most twelve documents; never a corpus scan.
+
+Runs the adapter for the sampled KPIs from an empty state into a temporary
+directory (the listings and one rescan per KPI scope), parses the stored files into
+documents (validated), then retrieves each one's newest year for one area and
+checks the fragment.
+"""
 
 import argparse
 import asyncio
+import tempfile
 from pathlib import Path
 
 import aiohttp
 
-from apps.harvest.metadata_adapters.kolada.state import COLLECTION, records
+import registry
+from apps.harvest.metadata_adapters.kolada import parse
+from apps.harvest.metadata_adapters.kolada.client import KoladaClient
+from apps.harvest.metadata_adapters.kolada.harvest import ADAPTER, load_state
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write
+from harvest import lifecycle
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.kolada import REQUIRED_METADATA, retrieve
 from schema.validation import validate_metadata, validate_retrieval
 
-KPIS = {"N00003", "N78110", "N78111", "U30750", "U60495", "N26527"}
+KPIS = ("N00003", "N78110", "N78111", "U30750", "U60495", "N26527")
 
 
 async def check(root: Path) -> dict:
-    sample = [
-        d
-        for d in records(root / COLLECTION)
-        if d["extension"]["kolada"]["kpi_id"] in KPIS
-    ]
-    if len(sample) > 12 or {d["extension"]["kolada"]["kpi_id"] for d in sample} != KPIS:
-        raise ValueError("Expected six KPIs and at most twelve documents")
-    for document in sample:
-        validate_metadata(document, adapter="kolada")
+    binding = registry.load().bindings(ADAPTER.name)[0]
+    client = KoladaClient(binding.options, base_url=binding.endpoint_url)
+    try:
+        result = await lifecycle.run(
+            ADAPTER,
+            binding,
+            root / "data",
+            root / "out",
+            selection={"kpis": list(KPIS)},
+            client=client,
+        )
+    finally:
+        await client.close()
+    store = SourceStore(root / "out/source", ADAPTER.name)
+    documents = []
+    for _key, document in sorted(
+        parse.documents(store, load_state(root / "out"), [binding])
+    ):
+        if isinstance(document, Exception):
+            raise document
+        validate_metadata(document, adapter=ADAPTER.name)
+        documents.append(document)
+    if len(documents) > 12:
+        raise ValueError("Expected at most twelve documents")
     slots = asyncio.Semaphore(4)
     async with aiohttp.ClientSession(
         timeout=aiohttp.ClientTimeout(total=20)
@@ -53,9 +80,9 @@ async def check(root: Path) -> dict:
             await asyncio.sleep(ordinal * 0.225)
             try:
                 async with slots:
-                    result = await retrieve(
+                    fragment = await retrieve(
                         session,
-                        provider_code="kolada",
+                        provider_code=shared["provider_code"],
                         dataset_code=shared["dataset_code"],
                         language="sv",
                         selection=selection,
@@ -66,10 +93,10 @@ async def check(root: Path) -> dict:
                             REQUIRED_METADATA[1]: native,
                         },
                     )
-                validate_retrieval(result, selection=selection)
+                validate_retrieval(fragment, selection=selection)
                 entry.update(
-                    returned_values=len(result["value"]),
-                    returned_flags=len(result.get("status", {})),
+                    returned_values=len(fragment["value"]),
+                    returned_flags=len(fragment.get("status", {})),
                     status="passed",
                 )
             except Exception as error:
@@ -78,10 +105,11 @@ async def check(root: Path) -> dict:
             return entry
 
         report = await asyncio.gather(
-            *(probe(document, i) for i, document in enumerate(sample))
+            *(probe(document, i) for i, document in enumerate(documents))
         )
     return {
         "verification": "bounded sample only",
+        "run": {k: result[k] for k in ("status", "counts", "errors")},
         "documents": report,
         "observations_saved": False,
     }
@@ -89,9 +117,9 @@ async def check(root: Path) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data", type=Path, default=Path("data/kolada"))
     parser.add_argument("--report", type=Path, default=Path("output/kolada-live.json"))
     args = parser.parse_args()
-    result = asyncio.run(check(args.data))
+    with tempfile.TemporaryDirectory(prefix="kolada-live-") as temporary:
+        result = asyncio.run(check(Path(temporary)))
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

@@ -9,32 +9,19 @@ import pytest
 
 from apps.harvest.metadata_adapters.kolada import coverage as cov
 from apps.harvest.metadata_adapters.kolada.client import BudgetExpired, KoladaClient
-from apps.harvest.metadata_adapters.kolada.metadata import (
+from apps.harvest.metadata_adapters.kolada.harvest import load_state, normalize
+from apps.harvest.metadata_adapters.kolada.mapping import (
     build_dataset,
     updated_for,
     years_for,
 )
-from apps.harvest.metadata_adapters.kolada.state import load_state, normalize
 from schema.validation import validate_metadata
-from tests.support.binding import binding
-from tests.support.kolada_fixture import initial_state as import_seed
-from tests.support.parsing import documents
-
-
-def load_documents(root):
-    """Parsed documents keyed ``<scope>/<kpi>``."""
-    parsed = documents("kolada", root, [binding("kolada", "kolada")])
-    return {key.split("/", 1)[1]: document for key, document in parsed.items()}
-
-
-def cell(kpi, period, entity, gender="T", deleted=False):
-    return {
-        "kpi": kpi,
-        "period": period,
-        "entity": entity,
-        "gender": gender,
-        "deleted": deleted,
-    }
+from tests.support.kolada import (  # noqa: F401
+    cell,
+    load_documents,
+    seed_source,  # noqa: F401  (fixture)
+)
+from tests.support.kolada import initial_state as import_seed
 
 
 def run_client(handler, coroutine):
@@ -206,41 +193,7 @@ def test_normalize_reduces_legacy_state():
     assert normalize({})["refreshed"] is None
 
 
-@pytest.fixture
-def seed_source(tmp_path):
-    source = tmp_path / "snapshot"
-    source.mkdir()
-    files = {
-        "kpi.json": [
-            {
-                "id": "N1",
-                "title": "Test",
-                "description": "Källa: SCB.",
-                "has_ou_data": True,
-                "title_en": "Portal title",
-            }
-        ],
-        "ou.json": [{"id": "O1", "title": "Unit", "municipality": "0180"}],
-        "kpi_groups.json": [],
-        "municipality_groups.json": [],
-    }
-    for name, value in files.items():
-        (source / name).write_text(json.dumps(value), encoding="utf-8")
-    coverage = {
-        "years": [2025],
-        "genders": ["T"],
-        "municipality_ids": ["0180"],
-        "municipality_group_ids": [],
-    }
-    (source / "municipality_coverage.jsonl").write_text(json.dumps(coverage) + "\n")
-    (source / "ou_coverage.jsonl").write_text(
-        json.dumps({"years": [2025], "genders": ["M", "K", "T"], "ou_ids": ["O1"]})
-        + "\n"
-    )
-    return source
-
-
-def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeypatch):
+def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeypatch):  # noqa: F811
     monkeypatch.setattr(
         "schema.validation.validate_metadata",
         lambda *a, **k: pytest.fail("Seed validation forbidden"),
@@ -260,7 +213,7 @@ def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeyp
     assert (target / "source/manifest.json").read_bytes() == before
 
 
-def test_sample_mapping_preserves_suppressed_gender_and_group(seed_source, tmp_path):
+def test_sample_mapping_preserves_suppressed_gender_and_group(seed_source, tmp_path):  # noqa: F811
     target = tmp_path / "data"
     import_seed(seed_source, target)
     for document in load_documents(target).values():

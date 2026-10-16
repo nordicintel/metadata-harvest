@@ -141,28 +141,6 @@ def main():
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
     args.registry = registry.load(args.config)
-    if args.adapter == "kolada":
-        from apps.harvest.metadata_adapters.kolada import workflow as kolada_workflow
-
-        if args.full:
-            parser.error("Kolada uses targeted incremental refreshes, not --full")
-        if args.command in {"run", "collect"}:
-            args.output = args.output or Path("output/kolada")
-            if args.command == "run":
-                result = asyncio.run(
-                    kolada_workflow.run(
-                        args.registry.bindings("kolada")[0],
-                        args.data,
-                        args.output,
-                        kpis=args.kpi,
-                        scope=args.scope,
-                        budget_seconds=args.budget_seconds,
-                    )
-                )
-            else:
-                result = kolada_workflow.collect(args.data, args.output)
-            outputs({k: result[k] for k in ("run_id", "status", "counts")})
-            return
     module = load(args.adapter)
     if module is not None and args.command in {"run", "collect"}:
         run_adapter(args, module.ADAPTER)

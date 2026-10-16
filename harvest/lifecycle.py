@@ -109,8 +109,10 @@ class Adapter:
     provider_code: str
     workflow_file: str
     client: Callable[[ServiceBinding], object]
-    discover: Callable[[Run], Awaitable[list[Scope]]]
-    fetch: Callable[[Run, Task], Awaitable[Stored | Kept | Dropped]]
+    discover: Callable[[Run], Awaitable[list[Scope]]] | None = None
+    fetch: Callable[[Run, Task], Awaitable[Stored | Kept | Dropped]] | None = None
+    run: Callable[..., Awaitable[dict]] | None = None
+    """An adapter with a loop of its own; it uses :func:`prepare` and :func:`finish`."""
     options: dict[str, str] = field(default_factory=dict)
     """CLI flag to selection name, for example ``{"subject": "subjects"}``."""
     languages: tuple[str, ...] = ("sv",)
@@ -172,7 +174,7 @@ class Run:
         return any(
             value
             for name, value in self.selection.items()
-            if name not in ("languages", "full")
+            if name not in ("languages", "full", "budget_seconds")
         )
 
     def stored_key(self, key: str) -> str:
@@ -434,6 +436,10 @@ async def run(
     clock: datetime | None = None,
 ) -> dict:
     """Discover, fetch each item, retry once, settle, and write the worker output."""
+    if adapter.run is not None:
+        return await adapter.run(
+            binding, data, output, selection=selection, client=client, clock=clock
+        )
     this = prepare(
         adapter, binding, data, output, selection=selection, client=client, clock=clock
     )

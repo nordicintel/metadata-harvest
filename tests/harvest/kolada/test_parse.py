@@ -2,15 +2,16 @@
 
 from pathlib import Path
 
-from tests.harvest.test_kolada import seed_source as source_fixture
-from tests.support.binding import binding
-from tests.support.kolada_fixture import initial_state
+from tests.support.kolada import (
+    PROVIDER,
+    initial_state,
+    seed_source,  # noqa: F401  (fixture)
+)
 
-seed_source = source_fixture
 GOLDEN = Path("tests/fixtures/kolada/accepted")
 
 
-def test_parse_reproduces_previous_collection_bytes(seed_source, tmp_path):
+def test_parse_reproduces_previous_collection_bytes(seed_source, tmp_path):  # noqa: F811
     from apps.parsing.build import build
 
     root = tmp_path / "data" / "kolada"
@@ -19,7 +20,7 @@ def test_parse_reproduces_previous_collection_bytes(seed_source, tmp_path):
         "kolada",
         tmp_path / "data",
         tmp_path / "out",
-        bindings=[binding("kolada", "kolada")],
+        bindings=[PROVIDER],
     )
     assert result["status"] == "success", result["errors"]
     golden = next(GOLDEN.glob("*.jsonl.gz"))

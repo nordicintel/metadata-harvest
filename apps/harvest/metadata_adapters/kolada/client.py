@@ -9,7 +9,9 @@ from time import monotonic
 
 import httpx
 
-from apps.harvest.metadata_adapters.kolada.metadata import BASE_URL, SCOPES
+PROVIDER_CODE = "kolada"
+BASE_URL = "https://api.kolada.se/v3"
+SCOPES = {"municipality": "data", "ou": "oudata"}
 
 logger = logging.getLogger("kolada_logger")
 

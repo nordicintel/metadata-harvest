@@ -1,25 +1,30 @@
-"""Incremental orchestration: one change scan, then per-KPI rebuilds or rescans.
+"""Incremental Kolada refresh: one change scan, then per-KPI rebuilds or rescans.
 
-Every run lists the KPI catalogue and reference tables, scans all cells added or
-deleted since the last completed refresh, folds additions into saved coverage and
-rescans KPIs with deletions from scratch. Only affected KPI scopes are refreshed;
-failures stay pending for the next run and never erase accepted data. Each scope's
-envelope holds its KPI row and, as derived data, the coverage distilled from the
-value cells (which are never stored) and the dates the mapping needs; the four
-listings are stored as shared source files. Documents are built later by ``parse``.
+Kolada does not fit the fetch-and-settle loop: every run lists the KPI catalogue
+and reference tables, scans all cells added or deleted since the last completed
+refresh, folds additions into saved coverage and rescans KPIs with deletions from
+scratch under a request budget. Only affected KPI scopes are refreshed; failures
+stay pending for the next run and never erase stored data. Each scope's envelope
+holds its KPI row and, as derived data, the coverage distilled from the value
+cells (which are never stored) and the dates the mapping needs; the four listings
+are stored as shared source files. The adapter keeps this loop and uses the
+lifecycle's disk-handling half.
 """
 
-import logging
-import shutil
+import gzip
+import json
 from collections import defaultdict
-from datetime import UTC, date, datetime, timedelta
+from datetime import date, timedelta
 from pathlib import Path
 from time import monotonic
-from uuid import uuid4
 
 from apps.harvest.metadata_adapters.kolada import coverage as cov
-from apps.harvest.metadata_adapters.kolada.client import BudgetExpired, KoladaClient
-from apps.harvest.metadata_adapters.kolada.metadata import (
+from apps.harvest.metadata_adapters.kolada.client import (
+    PROVIDER_CODE,
+    BudgetExpired,
+    KoladaClient,
+)
+from apps.harvest.metadata_adapters.kolada.mapping import (
     context_digest,
     context_for,
     load_municipalities,
@@ -28,41 +33,42 @@ from apps.harvest.metadata_adapters.kolada.metadata import (
     years_for,
 )
 from apps.harvest.metadata_adapters.kolada.parse import stored_key
-from apps.harvest.metadata_adapters.kolada.state import (
-    PROVIDER_CODE,
-    REPORT,
-    STATE,
-    load_state,
-    save,
-)
-from apps.harvest.source_store import SourceStore, harvest_manifest
-from apps.harvest.storage import now, read, write
-from apps.operations.progress import Progress
-from apps.publication.artifacts import check_collection_sizes, manifest
+from harvest import lifecycle
+from harvest.lifecycle import Adapter, Run
 from registry import ServiceBinding
-
-logger = logging.getLogger("kolada_logger")
 
 SCOPES = ("municipality", "ou")
 LISTINGS = ("ou", "municipality_groups", "kpi_groups")
+EMPTY_STATE = {"kpis": {}, "references": {}, "scopes": {}, "pending": {}}
+TASKS = {"data": "rescan", "metadata": "rebuild"}
 
 
-def _allowed_path(relative: str) -> bool:
-    return relative in {STATE, REPORT} or relative.startswith("source/")
+def normalize(state: dict) -> dict:
+    """Reduce earlier per-scope probe markers to coverage plus a refresh date."""
+    state = {**EMPTY_STATE, **state}
+    stamps = []
+    for code, entry in list(state["scopes"].items()):
+        for key in ("checked_at", "data_checked_at", "coverage_at"):
+            if entry.get(key):
+                stamps.append(entry[key][:10])
+        state["scopes"][code] = {
+            "coverage": entry.get("coverage") or {},
+            "empty": bool(entry.get("empty")),
+        }
+    if "refreshed" not in state:
+        state["refreshed"] = min(stamps) if stamps else None
+    state["pending"] = {
+        code: TASKS.get(task, task) for code, task in state["pending"].items()
+    }
+    return state
 
 
-async def discover_provider(binding: ServiceBinding, *, client=None) -> dict:
-    """Return fully paginated native listings using an injectable connection."""
-    connection = client or KoladaClient(binding.options, base_url=binding.endpoint_url)
-    try:
-        listings = {"municipality": list(load_municipalities().values())}
-        for name in ("kpi", *LISTINGS):
-            listings[name] = await connection.listing(name)
-            logger.info("Discovered %d %s rows", len(listings[name]), name)
-        return listings
-    finally:
-        if client is None:
-            await connection.close()
+def load_state(root: Path) -> dict:
+    path = Path(root) / lifecycle.STATE
+    if not path.exists():
+        return normalize({})
+    with gzip.open(path, "rt", encoding="utf-8") as stream:
+        return normalize(json.loads(stream.readline()))
 
 
 def catalogue(rows, known: int) -> dict:
@@ -96,42 +102,36 @@ async def run(
     data: Path,
     output: Path,
     *,
+    selection: dict | None = None,
     client=None,
     clock=None,
-    kpis=None,
-    scope=None,
-    budget_seconds=19200,
 ) -> dict:
-    """Refresh accepted Kolada metadata from the change feed.
+    """Refresh stored Kolada metadata from the change feed.
 
-    The KPI/scope restriction bounds the rebuild work; the refresh marker only
-    advances after an unrestricted, complete change scan. A run always finishes
-    or leaves pending work for the next scheduled run.
+    ``selection`` may hold ``kpis`` (KPI ids), ``scope`` (``municipality`` or
+    ``ou``) and ``budget_seconds``. A KPI/scope restriction bounds the rebuild work;
+    the refresh marker only advances after an unrestricted, complete change scan.
+    A run always finishes or leaves pending work for the next scheduled run.
     """
-    data, output = Path(data), Path(output)
-    if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
-        raise ValueError("Worker output must be separate from published data")
-    if not (data / STATE).exists():
-        raise ValueError("Kolada current state is missing from the checkout")
-    baseline = harvest_manifest(data)
-    if any(not _allowed_path(relative) for relative in baseline):
-        raise ValueError("Unexpected file in published Kolada data")
-    state = load_state(data)
-    output.mkdir(parents=True, exist_ok=True)
-    for relative in baseline:
-        dest = output / relative
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(data / relative, dest)
-    store = SourceStore(output / "source", PROVIDER_CODE)
-    stamp = now()
-    today = (clock or datetime.now(UTC)).date()
-    run_id = uuid4().hex
-    selected = set(kpis) if kpis else None
+    this: Run = lifecycle.prepare(
+        ADAPTER, binding, data, output, selection=selection, client=client, clock=clock
+    )
+    this.state = normalize(this.state)
+    state, store, connection = this.state, this.store, this.client
+    today = this.now.date()
+    selected = set(this.selection.get("kpis") or ()) or None
+    scope = this.selection.get("scope")
     restricted = selected is not None or scope is not None
-    logger.info(
-        "Kolada refresh %s: kpis=%s scope=%s refreshed=%s; %d KPIs, %d scopes, "
+    if isinstance(connection, KoladaClient):
+        connection.deadline = monotonic() + (
+            this.selection.get("budget_seconds") or 19_200
+        )
+    this.counts = {"updated": 0, "removed": 0, "failed": 0, "reused": 0, "checked": 0}
+    counts = this.counts
+    incomplete = False
+    this.log.info(
+        "Kolada refresh: kpis=%s scope=%s refreshed=%s; %d KPIs, %d scopes, "
         "%d pending, %d stored scopes",
-        run_id,
         sorted(selected) if selected else "all",
         scope or "all",
         state["refreshed"],
@@ -140,30 +140,12 @@ async def run(
         len(state["pending"]),
         len(store.entries()),
     )
-    connection = client or KoladaClient(binding.options, base_url=binding.endpoint_url)
-    if isinstance(connection, KoladaClient):
-        connection.deadline = monotonic() + budget_seconds
-    progress = Progress("kolada", "kolada")
-    progress.update(phase="discovery", run_id=run_id)
-    counts = {"updated": 0, "removed": 0, "failed": 0, "reused": 0, "checked": 0}
-    errors = []
-    incomplete = False
 
     def chosen(code):
         kind, identifier = code.split("/", 1)
         return (selected is None or identifier in selected) and (
             scope is None or kind == scope
         )
-
-    def fail(stage, resource, error):
-        entry = {
-            "stage": stage,
-            "resource": resource,
-            "error": f"{type(error).__name__}: {error}",
-        }
-        errors.append(entry)
-        logger.error("Recorded %s failure for %s: %s", stage, resource, entry["error"])
-        progress.error(stage, resource, "sv", entry["error"])
 
     def drop(code):
         state["scopes"].pop(code, None)
@@ -173,15 +155,17 @@ async def run(
             counts["removed"] += 1
 
     try:
-        progress.update(current="kpi", operation="catalogue")
+        this.progress.update(current="kpi", operation="catalogue")
         try:
             kpi_rows = await connection.listing("kpi")
             native = catalogue(kpi_rows, len(state["kpis"]))
-            store.put_shared(PROVIDER_CODE, "kpi.json", kpi_rows, retrieved_at=stamp)
+            store.put_shared(
+                PROVIDER_CODE, "kpi.json", kpi_rows, retrieved_at=this.stamp
+            )
         except BudgetExpired:
             raise
         except Exception as error:
-            fail("discovery", "kpi", error)
+            this.fail("discovery", "kpi", error)
             native = None
         if native is not None:
             for identifier in sorted(set(state["kpis"]) - set(native)):
@@ -190,12 +174,11 @@ async def run(
                         drop(f"{kind}/{identifier}")
                 if not any(c.endswith("/" + identifier) for c in state["scopes"]):
                     state["kpis"].pop(identifier)
-                    logger.info("KPI %s left the catalogue; removed", identifier)
             state["kpis"].update(native)
         state["references"]["municipality"] = load_municipalities()
         for name in LISTINGS:
             try:
-                progress.update(current=name, operation="catalogue")
+                this.progress.update(current=name, operation="catalogue")
                 rows = await connection.listing(name)
                 if any(
                     not isinstance(row.get("id"), str) or not row["id"] for row in rows
@@ -204,18 +187,18 @@ async def run(
                 state["references"][name] = reference_rows(rows)
                 if rows:
                     store.put_shared(
-                        PROVIDER_CODE, f"{name}.json", rows, retrieved_at=stamp
+                        PROVIDER_CODE, f"{name}.json", rows, retrieved_at=this.stamp
                     )
             except BudgetExpired:
                 raise
             except Exception as error:
-                fail("discovery", name, error)
+                this.fail("discovery", name, error)
                 state["references"].setdefault(name, {})
         references = state["references"]
         inventory = set(references["municipality"])
 
         # Change scan: additions fold into coverage, deletions force a rescan.
-        progress.update(phase="changes")
+        this.progress.update(phase="changes")
         scanned = {}
         from_date = scan_start(state["refreshed"])
         for kind in SCOPES:
@@ -230,14 +213,14 @@ async def run(
             if not ids:
                 continue
             try:
-                progress.update(current=kind, operation="change scan")
+                this.progress.update(current=kind, operation="change scan")
                 records = await connection.changed_records(
                     kind, ids, years_for(kind, today), from_date
                 )
             except BudgetExpired:
                 raise
             except Exception as error:
-                fail("changes", kind, error)
+                this.fail("changes", kind, error)
                 continue
             scanned[kind] = defaultdict(list)
             for record in records:
@@ -295,17 +278,17 @@ async def run(
             key.split("/", 1)[1].rsplit("/", 1)[0] for key in store.entries()
         ]
         counts["reused"] = sum(chosen(c) and c not in tasks for c in stored_codes)
-        logger.info(
+        this.log.info(
             "Refreshing %d scopes (%d rescans); %d stored scopes reused",
             len(tasks),
             sum(state["pending"][c] == "rescan" for c in tasks),
             counts["reused"],
         )
-        progress.update(phase="metadata", total=len(tasks), processed=0)
+        this.progress.update(phase="metadata", total=len(tasks), processed=0)
         for position, code in enumerate(tasks):
             kind, identifier = code.split("/", 1)
             task = state["pending"][code]
-            progress.update(current=code, operation=task)
+            this.progress.update(current=code, operation=task)
             entry = state["scopes"][code]
             kpi = state["kpis"][identifier]
             try:
@@ -326,7 +309,7 @@ async def run(
                             "references_digest": context_digest(context),
                         },
                         updated=kpi.get("publication_date"),
-                        retrieved_at=stamp,
+                        retrieved_at=this.stamp,
                     )
                     counts["updated"] += 1
                 elif store.get(stored_key(code)) is not None:
@@ -337,65 +320,39 @@ async def run(
             except BudgetExpired:
                 raise
             except Exception as error:
-                fail("metadata", code, error)
+                this.fail("metadata", code, error)
                 counts["failed"] += 1
-            progress.update(processed=position + 1, failed=counts["failed"])
+            this.progress.update(processed=position + 1, failed=counts["failed"])
     except BudgetExpired:
         incomplete = True
-        logger.warning("Request budget expired; pending work waits for the next run")
+        this.log.warning("Request budget expired; pending work waits for the next run")
     finally:
         if client is None:
             await connection.close()
-    store.save()
-    save(output, state)
     status = (
-        "completed_with_errors" if errors else "running" if incomplete else "success"
+        "completed_with_errors"
+        if this.errors
+        else "running"
+        if incomplete
+        else "success"
     )
-    logger.info(
-        "Run %s finished: status=%s counts=%s errors=%d pending=%d requests=%s",
-        run_id,
-        status,
-        counts,
-        len(errors),
-        len(state["pending"]),
-        getattr(connection, "requests", "n/a"),
+    return lifecycle.finish(
+        this, status=status, pending=len(state["pending"]), refreshed=state["refreshed"]
     )
-    result = {
-        "run_id": run_id,
-        "status": status,
-        "counts": counts,
-        "errors": errors,
-        "pending": len(state["pending"]),
-        "refreshed": state["refreshed"],
-        "selection": {"kpis": sorted(selected) if selected else None, "scope": scope},
-    }
-    write(output / REPORT, result)
-    check_collection_sizes(output)
-    result.update(base_manifest=baseline, manifest=manifest(output))
-    write(output / "result.json", result)
-    progress.update(phase="finished", result_status=status, current=None)
-    return result
 
 
-def collect(data: Path, output: Path) -> dict:
-    """Verify current artifact bytes and baseline, never revalidate trusted datasets."""
-    data, output = Path(data), Path(output)
-    result = read(output / "result.json")
-    if harvest_manifest(data) != result["base_manifest"]:
-        raise ValueError("Stale Kolada artifact: published baseline changed")
-    if manifest(output) != result["manifest"]:
-        raise ValueError("Kolada artifact checksum mismatch")
-    if not all(_allowed_path(relative) for relative in result["manifest"]):
-        raise ValueError("Unexpected Kolada artifact path")
-    check_collection_sizes(output)
-    for relative in result["manifest"]:
-        target = data / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        temporary = target.with_name(f".{uuid4().hex}.tmp")
-        shutil.copyfile(output / relative, temporary)
-        temporary.replace(target)
-    for relative in harvest_manifest(data):
-        if relative.startswith("source/") and relative not in result["manifest"]:
-            (data / relative).unlink()
-    (data / "work/current.json").unlink(missing_ok=True)
-    return result
+ADAPTER = Adapter(
+    name="kolada",
+    provider_code=PROVIDER_CODE,
+    workflow_file="harvest-kolada.yml",
+    client=lambda binding: KoladaClient(binding.options, base_url=binding.endpoint_url),
+    run=run,
+    options={"kpi": "kpis", "scope": "scope", "budget-seconds": "budget_seconds"},
+    languages=("sv",),
+    collection="scopes",
+    scope_failures=lambda report: [
+        e["resource"]
+        for e in report.get("errors") or []
+        if e.get("stage") == "discovery" and e.get("resource") == "kpi"
+    ],
+)

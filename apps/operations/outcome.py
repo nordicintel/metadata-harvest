@@ -74,8 +74,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return module.ADAPTER.scope_failures(report)
     if adapter in ("pxweb_v1", "pxweb_v2"):
         return _incomplete_scopes(report)
-    if adapter == "kolada":
-        return _discovery(report, resource=lambda r: r == "kpi")
     if adapter == "entryscape":
         failures = _discovery(report)
         interrupted = report.get("interrupted") or ""

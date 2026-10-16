@@ -2,12 +2,12 @@
 
 from collections.abc import Iterator
 
-from apps.harvest.metadata_adapters.kolada.metadata import (
+from apps.harvest.metadata_adapters.kolada.client import PROVIDER_CODE
+from apps.harvest.metadata_adapters.kolada.mapping import (
     build_dataset,
     load_municipalities,
     reference_rows,
 )
-from apps.harvest.metadata_adapters.kolada.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
 from registry import ServiceBinding
 

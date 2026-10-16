@@ -7,10 +7,10 @@ import re
 from datetime import date
 from pathlib import Path
 
+from apps.harvest.metadata_adapters.kolada.client import BASE_URL, SCOPES
+
 logger = logging.getLogger("kolada_logger")
 
-BASE_URL = "https://api.kolada.se/v3"
-SCOPES = {"municipality": "data", "ou": "oudata"}
 GENDERS = {"m": "Män", "k": "Kvinnor", "t": "Totalt"}
 MUNICIPALITIES = Path(__file__).with_name("municipalities.json")
 FIRST_YEAR = {"municipality": 1970, "ou": 2003}
@@ -204,24 +204,3 @@ def build_dataset(
     if source:
         result["source"] = source[1].split(". ")[0].rstrip(".")
     return result
-
-
-async def fetch_metadata(record: dict, *, client) -> dict | None:
-    """Rescan one KPI scope and map its current coverage; values are discarded."""
-    from apps.harvest.metadata_adapters.kolada.coverage import rebuild
-
-    scope, kpi, today = record["scope"], record["kpi"], record["today"]
-    records = await client.scope_records(scope, kpi["id"], years_for(scope, today))
-    coverage = rebuild(
-        scope, records, entities=set(record["references"]["municipality"])
-    )
-    if not coverage["years"]:
-        logger.info("No data for %s/%s; no metadata produced", scope, kpi["id"])
-        return None
-    return build_dataset(
-        kpi,
-        scope,
-        coverage,
-        record["references"],
-        updated=updated_for(kpi, coverage["years"][-1], today),
-    )
