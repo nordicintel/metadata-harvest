@@ -40,3 +40,7 @@ come from `config/schedules.toml`, not a hard-coded weekly rule.
 [StatDCAT mapping](../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../retrieval/README.md) defines consumer calls and results.
 Historical live/fixture receipts are indexed under [migration evidence](../migrations/README.md).
+
+## Stored source data
+
+Each table's envelope holds the native metadata body and its catalogue record; codelists and table records keep their grouped files.

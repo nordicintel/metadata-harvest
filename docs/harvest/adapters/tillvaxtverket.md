@@ -38,3 +38,7 @@ source questions. Do not manufacture units or aggregation behavior.
 [StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.
 Historical live/fixture receipts are indexed under [migration evidence](../../migrations/README.md).
+
+## Stored source data
+
+Each dataset's envelope holds the column, load-date, region, dimension and period responses with the label file as a companion; the data.europa.eu description is applied by `parse` from the accepted portal snapshot.

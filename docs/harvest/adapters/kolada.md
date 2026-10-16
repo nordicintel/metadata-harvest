@@ -52,3 +52,7 @@ and transport errors propagate.
 [StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.
 Historical live/fixture receipts are indexed under [migration evidence](../../migrations/README.md).
+
+## Stored source data
+
+Each scope's envelope holds its KPI row; the coverage distilled from value cells, the computed `updated` date and the references digest are `derived`. The four listings are shared source files.

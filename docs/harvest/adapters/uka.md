@@ -34,3 +34,7 @@ probes do not call the consumer retrieval function.
 [StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.
 Historical live/fixture receipts are indexed under [migration evidence](../../migrations/README.md).
+
+## Stored source data
+
+Each indicator's envelope holds the catalogue row, totals and per-period export links as responses; the per-period scan summary the mapping consumes is kept as `derived.scan`. Export files are never stored.

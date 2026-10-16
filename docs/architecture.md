@@ -9,7 +9,7 @@ modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
 | --- | --- |
 | `apps/model/` | Extensible StatDCAT Pydantic models, JSON-LD vocabulary, pure normalization and composition, repository validation |
 | `apps/configuration.py` | Load authoritative configuration, validate supported adapters and resolve execution settings |
-| `apps/harvest/` | Metadata collection, accepted contributions, worker persistence and source identity resolution |
+| `apps/harvest/` | Metadata collection into per-dataset source files with a manifest, worker persistence and source identity resolution |
 | `apps/harvest/metadata_adapters/` | Twelve adapters with their native clients, parsing, discovery, coverage probes, retry and pacing policy |
 | `apps/parsing/` | Offline, unscheduled conversion of harvested source files into accepted StatDCAT collections |
 | `apps/catalog/` | Offline grouping, matching, enrichment, filtering, quality findings, fingerprints and candidate construction |
@@ -21,11 +21,12 @@ modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
 | `config/` | Authoritative source inventories, profile declaration, operational settings and schedules |
 | `schemas/` | Generated contracts and labelled supporting schema resources |
 
-Source responses pass native parsing and validation before accepted records advance.
-Failed updates preserve accepted contributions; complete discovery is required to
-establish removal. Checkpoints retain existing task identities and collection names.
-The worker representation is still used internally; its conversion lives in harvesting.
-Historical profile readers do not execute migration commands.
+Harvests store source responses as received (`data/<adapter>/source/`, indexed by
+`manifest.json`) with simple safety nets only; parsing builds the worker
+representation and converts it to accepted StatDCAT collections offline. Failed
+updates preserve stored source entries; complete discovery is required to establish
+removal. Checkpoints retain existing task identities. Historical profile readers do
+not execute migration commands.
 
 ## Dependencies and data flow
 
@@ -78,9 +79,10 @@ scripts. [Configuration](configuration/README.md), [harvesting](harvest/README.m
 
 `checks.yml` verifies development changes. `live-pxweb.yml` and
 `live-metadata.yml` run explicit provider matrices and summarize retained evidence;
-each job installs its own environment. The `harvest*.yml` workflows collect accepted
-metadata, `refresh-portal.yml` refreshes the accepted portal snapshot, and
-`catalog.yml` builds and publishes the shared catalog. Scheduled blocks are generated
+each job installs its own environment. The `harvest*.yml` workflows collect source
+files, `refresh-portal.yml` refreshes the accepted portal snapshot, and `catalog.yml`
+builds and publishes the shared catalog on explicit dispatch only, after a manual
+`parsing` run regenerated the accepted collections. Scheduled blocks are generated
 from `config/schedules.toml`; workflow filenames remain execution identities in the
 adapter registry. Publication jobs share the `production-publication` lock.
 

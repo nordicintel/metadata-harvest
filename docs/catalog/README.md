@@ -1,8 +1,10 @@
 # Catalog construction and publication
 
 The pipeline is offline: accepted contributions → grouping → portal matching →
-enrichment → SCB filtering → validation → deterministic JSON-LD. Building never
-starts a harvest, downloads a snapshot or promotes production output.
+enrichment → SCB filtering → validation → deterministic JSON-LD. Accepted
+contributions come from `apps.operations.parsing apply` (see
+[parsing](../parsing/README.md)); building never starts a harvest or a parse,
+downloads a snapshot or promotes production output.
 
 ## Portal input
 

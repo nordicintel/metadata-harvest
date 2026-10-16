@@ -83,29 +83,19 @@ def test_cli_rejects_uncommitted_source_results(tmp_path, monkeypatch):
         verify_published(Path("data"), ["pxweb_v1"])
 
 
-def test_workflow_dispatch_is_one_way_and_before_error_exit():
+def test_catalog_runs_only_on_explicit_dispatch():
     root = ROOT
     catalog = (root / ".github/workflows/catalog.yml").read_text()
     assert "apps.operations.harvest" not in catalog
+    assert "apps.operations.parsing" not in catalog
     assert "gh workflow run" not in catalog
     assert "schedule:" not in catalog
-    for name in ("harvest.yml", "harvest-pxweb-v2.yml", "harvest-kolada.yml"):
-        content = (root / ".github/workflows" / name).read_text()
-        assert content.index("gh workflow run catalog.yml") > content.rindex(
-            "apps.operations.harvest publish"
-        )
-        assert content.index("gh workflow run catalog.yml") < content.index(
-            "apps.operations.outcome --adapter"
-        )
-
-
-def test_catalog_dispatch_is_skipped_while_a_catalog_run_is_queued():
-    for path in sorted((ROOT / ".github/workflows").glob("*.yml")):
-        content = path.read_text(encoding="utf-8")
-        if "gh workflow run catalog.yml" not in content:
+    for path in sorted((root / ".github/workflows").glob("*.yml")):
+        if path.name == "catalog.yml":
             continue
-        guard = content.index('IN("requested", "waiting", "pending", "queued")')
-        assert guard < content.index("gh workflow run catalog.yml"), path.name
+        assert "gh workflow run catalog.yml" not in path.read_text(encoding="utf-8"), (
+            path.name
+        )
 
 
 def test_cli_rejects_ignored_source_files(tmp_path, monkeypatch):

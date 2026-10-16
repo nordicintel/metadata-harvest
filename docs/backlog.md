@@ -20,20 +20,6 @@ Open work only: bugs, fixes, features and investigations not yet done.
 
 ## Now
 
-- [ ] **harvest** Separate harvesting from parsing and catalog building — top
-  priority. Harvests only retrieve source data, with no more interpretation than
-  refresh logic needs: no StatDCAT conversion and no combining with data.europa.eu
-  or Dataportalen DCAT-AP records. StatDCAT parsing and catalog building become a
-  separate module that is not scheduled, run only for large-scale testing or
-  production, which is a long way off. This was missed when StatDCAT was
-  implemented and again in the codebase restructure
-  ([architecture](architecture.md)).
-- [ ] **harvest** Store harvests as one file (or more when needed) per
-  dataset/table instead of combined collections, implemented together with the
-  harvest/parsing separation — deterministic names and locations make it simple
-  to find and replace only what a refresh changes; combining waits for catalog
-  building. Add a small JSON manifest per adapter listing each identifier, its
-  file location(s) and last update date for refresh checks.
 
 ## Next
 

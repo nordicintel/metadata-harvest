@@ -123,23 +123,18 @@ def test_workflows_have_unique_keys_and_valid_step_shapes():
     )
 
 
-def test_catalog_dispatch_failure_does_not_suppress_continuation():
+def test_harvest_workflows_never_dispatch_the_catalog():
     import yaml
 
-    for name in ("harvest.yml", "harvest-pxweb-v2.yml", "harvest-kolada.yml"):
-        workflow = yaml.load(
-            (ROOT / ".github/workflows" / name).read_text(), Loader=yaml.BaseLoader
-        )
-        steps = next(
-            job["steps"]
-            for job in workflow["jobs"].values()
-            if any(step.get("id") == "catalog" for step in job.get("steps", []))
-        )
-        trigger = next(step for step in steps if step.get("id") == "catalog")
-        assert trigger["continue-on-error"] == "true"
-        assert steps[-1]["if"] == "always() && steps.catalog.outcome == 'failure'"
+    for path in sorted((ROOT / ".github/workflows").glob("harvest*.yml")):
+        content = path.read_text(encoding="utf-8")
+        assert "catalog.yml" not in content, path.name
+        workflow = yaml.load(content, Loader=yaml.BaseLoader)
+        steps = [
+            step for job in workflow["jobs"].values() for step in job.get("steps", [])
+        ]
+        assert not any(step.get("id") == "catalog" for step in steps), path.name
         # Only the PXWeb v1 job continues across waves; the others finish in one run.
         assert any(
-            step.get("name") == "Continue unfinished work"
-            for step in steps[steps.index(trigger) + 1 : -1]
-        ) == (name == "harvest.yml")
+            step.get("name") == "Continue unfinished work" for step in steps
+        ) == (path.name == "harvest.yml")

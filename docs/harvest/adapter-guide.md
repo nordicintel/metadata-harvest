@@ -10,8 +10,13 @@ its clients, discovery, parsing, coverage probes and operational policy.
    [three inventories](../configuration/README.md). Preserve routing aliases and
    dataset/distribution identities independently of attribution.
 2. Discover native records with explicit scope completeness and individual errors.
-   Parse source responses inside the adapter; public `fetch_metadata` returns
-   `list[HarvestContribution]`, validated at the transformation boundary.
+   `workflow.run` stores responses as received through `apps.harvest.source_store`
+   (safety nets: successful response, non-empty, JSON-serialisable) and never calls
+   `mapping`; `parse.py` provides `documents(store, state, providers, *,
+   portal=None)` yielding `(key, document | exception)` and `withheld_keys(state)`.
+   Keep anything derived from observations under the envelope's `derived` key.
+   The public `fetch_metadata` builds in memory and returns
+   `list[HarvestContribution]` for live checks only.
 3. Preserve source change signals and unfamiliar attributes. Use standard properties
    where they fit; see the [StatDCAT field mapping](../model/output-contract.md).
 4. Keep metadata inference and observation probes here. Put consumer request/response

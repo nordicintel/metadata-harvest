@@ -41,3 +41,7 @@ pair inference is heuristic and large deferred tables require a deliberate budge
 [StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.
 Historical live/fixture receipts are indexed under [migration evidence](../../migrations/README.md).
+
+## Stored source data
+
+Each table's envelope holds its discovery record; the trimmed structure document the dataset rules read is `derived.document`. Datasets are grouped by `parse`, not by the harvest.

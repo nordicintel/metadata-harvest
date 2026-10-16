@@ -43,3 +43,7 @@ establish complete source acceptance; exact options are in each script's `--help
 [StatDCAT mapping](../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../retrieval/README.md) defines consumer calls and results.
 Historical live/fixture receipts are indexed under [migration evidence](../migrations/README.md).
+
+## Stored source data
+
+Each table's envelope holds the GET metadata and listing row as responses, and the POST samples stripped of observations, the queries, any recovered variables and the variant-location checks as `derived`. Other listed locations stay paths only when their variables match.

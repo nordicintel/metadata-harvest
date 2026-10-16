@@ -251,16 +251,6 @@ jobs:
           name: harvest-checkpoint-${{ github.run_attempt }}
           path: data/pxweb_v1/
           retention-days: 7
-      - name: Construct catalog from published results
-        id: catalog
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # A queued catalog run checks out main only when it starts, after this push.
-          waiting=$(gh run list --workflow catalog.yml --json status --jq '[.[] | select(.status | IN("requested", "waiting", "pending", "queued"))] | length')
-          if [ "$waiting" -gt 0 ]; then echo "A queued catalog run will include this publication"; exit 0; fi
-          gh workflow run catalog.yml --ref main
       - name: Continue unfinished work
         if: success() && needs.build.result == 'success' && steps.collect.outputs.continue == 'true'
         env:
@@ -269,6 +259,3 @@ jobs:
         run: uv run --extra harvest python -m apps.operations.harvest continue --run-id "$RUN_ID"
       - name: Fail only when the whole adapter failed
         run: uv run python -m apps.operations.outcome --adapter pxweb_v1
-      - name: Report catalog dispatch failure
-        if: always() && steps.catalog.outcome == 'failure'
-        run: exit 1

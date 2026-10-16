@@ -1,9 +1,11 @@
 # Metadata harvesting
 
-Harvesting adapters own discovery, native parsing, observation probes needed to
-infer metadata, retries, pacing and checkpoints. They return typed contributions;
-accepted collections contain multilingual StatDCAT datasets with independent source
-distributions. Consumer retrieval is separate; see [architecture](../architecture.md).
+Harvesting adapters own discovery, the observation probes needed to infer
+metadata, retries, pacing and checkpoints. They store source responses as received,
+one envelope per dataset or table plus shared listings, indexed by a per-adapter
+manifest; [parsing](../parsing/README.md) turns those files into the accepted
+StatDCAT collections later. Consumer retrieval is separate; see
+[architecture](../architecture.md).
 
 ## Run and collect
 
@@ -21,10 +23,16 @@ separate refresh/build worker and collector commands. Use adapter help and workf
 arguments rather than constructing run identities by hand. Use a fresh output
 directory for each new worker invocation; only PXWeb v1 continues across waves.
 
-Accepted metadata is `data/<adapter>/metadata/<owner>__multilingual__<digest>.jsonl.gz`.
-State, reports and unfinished work are adapter-owned. Reports distinguish failures
-from reused or newly accepted records; observation probes do not create an
-observation warehouse.
+Source files are `data/<adapter>/source/<provider>/<dataset>.<lang>.json` (plus
+`_shared/` listings and text companions) with `data/<adapter>/source/manifest.json`
+listing each entry's files, the source's own `updated` signal and `retrieved_at`.
+A missing manifest entry means fetch. Accepted metadata,
+`data/<adapter>/metadata/<owner>__multilingual__<digest>.jsonl.gz`, is written by
+`apps.operations.parsing`, never by a harvest. State, reports and unfinished work
+are adapter-owned. Reports distinguish failures from reused or newly stored entries;
+observation probes do not create an observation warehouse: where the per-dataset
+source data are observations (Kolada, EntryScape, PXWeb v1 samples, UKÄ exports)
+the envelope keeps a declared `derived` summary instead.
 
 ## Failure and recovery
 
@@ -68,10 +76,10 @@ can stop workers while preserving snapshots; cancellation prevents automatic
 continuation and collector publication.
 
 Whole-scope failures fail jobs; individual resource errors can produce
-`completed_with_errors` with accepted successes retained. Inspect the report rather
+`completed_with_errors` with stored successes retained. Inspect the report rather
 than equating a green job with complete coverage. Collection workflows serialize
-production publication and may dispatch the offline catalog afterward; catalog
-failure does not require another harvest.
+production publication; the catalog is not dispatched by harvests (run `parsing`,
+then `catalog.yml`, explicitly).
 
 ## Adapter behavior
 
