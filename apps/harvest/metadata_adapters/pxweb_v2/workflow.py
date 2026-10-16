@@ -3,7 +3,10 @@
 A run lists both language catalogues, fetches metadata only for tables whose
 catalogue entry changed (or everything in full mode), fetches referenced codelists
 once, and writes the candidate exactly once at the end. Work left over when the
-time budget runs out is reported as failed and picked up by the next run.
+time budget runs out is reported as failed and picked up by the next run. Native
+table metadata is stored as one source file per table and language with the
+catalogue record it belongs to; codelists and table records keep their grouped
+files. Documents are built later by ``parse``.
 """
 
 import logging
@@ -18,18 +21,18 @@ from uuid import uuid4
 import httpx
 
 from apps.harvest.artifacts import report_status
-from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.discovery import discover_provider
 from apps.harvest.metadata_adapters.pxweb_v2.metadata import (
     fetch_codelist,
-    fetch_metadata,
+    fetch_source,
 )
 from apps.harvest.metadata_adapters.pxweb_v2.validation import (
     codelist_ids,
     validate_codelist,
     validate_metadata,
 )
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
 from apps.harvest.storage import JsonlStore, filename, now, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import manifest
@@ -37,6 +40,22 @@ from apps.publication.artifacts import manifest
 logger = logging.getLogger("pxweb_v2_logger")
 
 REMOVED_CODELIST = "Codelist confirmed removed at the source (HTTP 404)"
+ADAPTER = "pxweb_v2"
+
+
+def entry_key(row: dict) -> str:
+    return source_key(row["provider_code"], row["dataset_code"], row["language"])
+
+
+def names_of(store: SourceStore) -> dict[str, str]:
+    """Task filename -> store key, from the stored catalogue records."""
+    return {
+        filename(store.get(key)["responses"]["table"]): key for key in store.entries()
+    }
+
+
+def stored_table(store: SourceStore, key: str) -> dict:
+    return store.get(key)["responses"]["table"]
 
 
 def code_identity(document: dict) -> dict:
@@ -53,9 +72,9 @@ def code_key(code: str, language: str) -> str:
     )
 
 
-def load_stores(root: Path) -> tuple[JsonlStore, JsonlStore, JsonlStore]:
+def load_stores(root: Path) -> tuple[SourceStore, JsonlStore, JsonlStore]:
     return (
-        JsonlStore(root / "metadata", compressed=True),
+        SourceStore(root / "source", ADAPTER),
         JsonlStore(root / "codelists", identify=code_identity, compressed=True),
         JsonlStore(root / "table-records"),
     )
@@ -70,21 +89,24 @@ def validate_provider(provider: dict) -> None:
         raise ValueError("The v2 job currently supports only SCB sv/en")
 
 
-def _referenced(metadata: JsonlStore) -> set[str]:
-    return {
-        code_key(code, source_record(doc)["language"])
-        for doc in metadata.records.values()
-        for code in codelist_ids(doc)
-    }
+def _referenced(store: SourceStore) -> set[str]:
+    referenced = set()
+    for key in store.entries():
+        envelope = store.get(key)
+        language = envelope["responses"]["table"]["language"]
+        for code in codelist_ids(envelope["responses"]["metadata"]):
+            referenced.add(code_key(code, language))
+    return referenced
 
 
-def _write_candidate(output, metadata, codes, listings, state, base):
+def _write_candidate(output, store, codes, listings, state, base):
     """Write every store once, then the reports; the manifest certifies the set."""
-    required = _referenced(metadata)
+    required = _referenced(store)
     codes.records = {k: v for k, v in codes.records.items() if k in required}
-    for store in (metadata, codes, listings):
-        store.directory = output / store.directory.name
-        store.save()
+    for grouped in (codes, listings):
+        grouped.directory = output / grouped.directory.name
+        grouped.save()
+    store.save()
     counts = {**state["counts"], "created": 0, "updated": 0, "failed": 0}
     errors = list(state["discovery_errors"])
     code_errors = {
@@ -187,16 +209,19 @@ async def run(
     deadline = time.monotonic() + budget_seconds
     progress = Progress("pxweb_v2", provider["code"])
     progress.update(phase="loading", full=full)
-    base = manifest(data)
-    metadata, codes, listings = load_stores(data)
+    base = harvest_manifest(data)
+    if (data / "source").exists():
+        shutil.copytree(data / "source", output / "source")
+    _, codes, listings = load_stores(data)
+    store = SourceStore(output / "source", ADAPTER)
     logger.info(
-        "Published state loaded: %d metadata documents, %d codelists, %d table records",
-        len(metadata.records),
+        "Published state loaded: %d stored tables, %d codelists, %d table records",
+        len(store.entries()),
         len(codes.records),
         len(listings.records),
     )
-    for store in (metadata, codes, listings):
-        store._legacy.clear()
+    for grouped in (codes, listings):
+        grouped._legacy.clear()
     previous_report = data / "reports/harvest.json"
     report = read(previous_report) if previous_report.exists() else {}
     failed = {e.get("filename") for e in report.get("errors", []) if e.get("filename")}
@@ -267,12 +292,14 @@ async def run(
         removed_before = state["counts"]["removed"]
         selection = Counter()
         if scope["complete"]:
-            for name in set(metadata.records) | set(listings.records):
-                previous = listings.records.get(name) or source_record(
-                    metadata.records[name]
+            stored = names_of(store)
+            for name in set(stored) | set(listings.records):
+                previous = listings.records.get(name) or stored_table(
+                    store, stored[name]
                 )
                 if previous["language"] == language and name not in current:
-                    if metadata.records.pop(name, None) is not None:
+                    if name in stored:
+                        store.remove(stored.pop(name))
                         state["counts"]["removed"] += 1
                     listings.records.pop(name, None)
             logger.info(
@@ -289,7 +316,7 @@ async def run(
             )
         for name, row in current.items():
             listings.records[name] = row
-            saved = metadata.records.get(name)
+            saved = store.get(entry_key(row))
             reusable = False
             needs_codes = False
             reason = (
@@ -303,8 +330,8 @@ async def run(
             )
             if saved is not None and not full and name not in failed:
                 try:
-                    validate_metadata(saved, row)
-                    reusable = source_record(saved) == row
+                    validate_metadata(saved["responses"]["metadata"], row)
+                    reusable = saved["responses"]["table"] == row
                     if not reusable:
                         reason = "catalogue entry changed"
                 except (ValueError, KeyError, TypeError) as error:
@@ -316,7 +343,7 @@ async def run(
                         error,
                     )
             if reusable:
-                for code in codelist_ids(saved):
+                for code in codelist_ids(saved["responses"]["metadata"]):
                     key = code_key(code, language)
                     if key in dead_codes:
                         continue
@@ -386,13 +413,18 @@ async def run(
             current=row["dataset_code"], language=language, operation="metadata"
         )
         try:
-            document = (
-                metadata.records[name]
-                if task["kind"] == "reused"
-                else await fetch_metadata(row, client=client)
-            )
-            metadata.records[name] = document
-            listings.records[name] = deepcopy(source_record(document))
+            if task["kind"] == "reused":
+                current = stored_table(store, entry_key(row))
+            else:
+                body, current = await fetch_source(row, client=client)
+                store.put(
+                    entry_key(row),
+                    responses={"metadata": body, "table": current},
+                    derived={"max_cells": getattr(client, "max_cells", None)},
+                    updated=current["catalogue"]["updated"],
+                    retrieved_at=now(),
+                )
+            listings.records[name] = deepcopy(current)
             task["status"] = "success"
         except Exception as error:
             # A 404 during a catalogue race is confirmed against the table endpoint.
@@ -413,7 +445,8 @@ async def run(
                             row["dataset_code"],
                             confirmation.response.status_code,
                         )
-                        if metadata.records.pop(name, None) is not None:
+                        if store.get(entry_key(row)) is not None:
+                            store.remove(entry_key(row))
                             state["counts"]["removed"] += 1
                         listings.records.pop(name, None)
                         state["removed_tables"].append(name)
@@ -441,9 +474,9 @@ async def run(
         succeeded += task["status"] == "success"
         failed_count += task["status"] == "failed"
         progress.update(succeeded=succeeded, failed=failed_count)
-        document = metadata.records.get(name)
-        if document is not None:
-            for code in sorted(codelist_ids(document)):
+        entry = store.get(entry_key(row))
+        if entry is not None:
+            for code in sorted(codelist_ids(entry["responses"]["metadata"])):
                 key = code_key(code, language)
                 if key in state["code_errors"] or key in state["refreshed_codes"]:
                     continue
@@ -540,15 +573,16 @@ async def run(
         state["counts"]["codelists_fetched"],
     )
     progress.update(phase="writing", current=None)
-    result = _write_candidate(output, metadata, codes, listings, state, base)
+    result = _write_candidate(output, store, codes, listings, state, base)
     progress.update(
         phase="finished", result_status=result["status"], final_counts=result["counts"]
     )
     return result
 
 
-def _validate_reconciliation(result, output, metadata, codes, listings, previous):
+def _validate_reconciliation(result, output, store, codes, listings, previous):
     """Independently check removal evidence and status before publishing any file."""
+    names, previous_names = names_of(store), names_of(previous)
     report = read(output / "reports/harvest.json")
     if any(result.get(k) != value for k, value in report.items()):
         raise ValueError("Harvest report differs from worker result")
@@ -566,8 +600,8 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
     confirmed = set(result["removed_tables"])
     if not confirmed.issubset(failed):
         raise ValueError("Confirmed removals lack source-error evidence")
-    for name in set(previous.records) - set(metadata.records):
-        saved = source_record(previous.records[name])
+    for name in set(previous_names) - set(names):
+        saved = stored_table(previous, previous_names[name])
         scope = scopes[saved["language"]]
         if name not in confirmed and (
             not scope["complete"]
@@ -578,7 +612,7 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
     for name, row in listings.records.items():
         if row["provider_code"] != "scb" or row["language"] not in scopes:
             raise ValueError("Unexpected listing identity")
-        if name not in metadata.records and name not in failed:
+        if name not in names and name not in failed:
             raise ValueError(
                 "Listing has neither accepted metadata nor a reported failure"
             )
@@ -602,7 +636,7 @@ def _validate_reconciliation(result, output, metadata, codes, listings, previous
             }
             if expected != actual:
                 raise ValueError("Complete discovery scope does not match listings")
-    referenced = _referenced(metadata)
+    referenced = _referenced(store)
     code_errors = {
         e["codelist_key"] for e in result["errors"] if e["stage"] == "codelist"
     }
@@ -619,7 +653,7 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
     """Validate the entire artifact before applying it; Git publishes all files together."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
-    if result["run_id"] != run_id or manifest(data) != result["base"]:
+    if result["run_id"] != run_id or harvest_manifest(data) != result["base"]:
         raise ValueError("Stale worker artifact or changed published state")
     if manifest(output) != result["manifest"]:
         raise ValueError("Worker artifact content does not match its manifest")
@@ -627,36 +661,49 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
     for relative in result["manifest"]:
         path = Path(relative)
         allowed = (
-            len(path.parts) == 2
-            and path.parts[0] in {"metadata", "codelists", "table-records"}
-            and (
-                path.name.endswith(".jsonl.gz")
-                if path.parts[0] != "table-records"
-                else path.suffix == ".jsonl"
+            (
+                len(path.parts) == 2
+                and path.parts[0] in {"codelists", "table-records"}
+                and (
+                    path.name.endswith(".jsonl.gz")
+                    if path.parts[0] != "table-records"
+                    else path.suffix == ".jsonl"
+                )
             )
-        ) or relative in {"reports/refresh.json", "reports/harvest.json"}
+            or relative == "source/manifest.json"
+            or (
+                len(path.parts) == 3
+                and path.parts[:2] == ("source", "scb")
+                and path.suffix == ".json"
+            )
+            or relative in {"reports/refresh.json", "reports/harvest.json"}
+        )
         if not allowed:
             raise ValueError(f"Unexpected artifact path: {relative}")
         if (output / relative).stat().st_size >= 100 * 1024 * 1024:
             raise ValueError(
                 f"Collection exceeds GitHub's 100 MiB limit: {relative}; no content was omitted or split"
             )
-    metadata, codes, listings = load_stores(output)
+    store, codes, listings = load_stores(output)
     failed = {e.get("filename") for e in result["errors"]}
-    previous = JsonlStore(data / "metadata")
-    _validate_reconciliation(result, output, metadata, codes, listings, previous)
-    for name, doc in metadata.records.items():
-        saved = source_record(doc)
+    previous = SourceStore(data / "source", ADAPTER)
+    _validate_reconciliation(result, output, store, codes, listings, previous)
+    names = names_of(store)
+    for name, key in names.items():
+        envelope = store.get(key)
+        saved = envelope["responses"]["table"]
         if saved["provider_code"] != "scb" or saved["language"] not in {"sv", "en"}:
             raise ValueError("Unexpected metadata identity")
-        if name in failed and previous.records.get(name) == doc:
+        if entry_key(saved) != key:
+            raise ValueError("Stored source identity mismatch")
+        if name in failed and previous.get(key) == envelope:
             continue
-        validate_metadata(doc, saved)
+        validate_metadata(envelope["responses"]["metadata"], saved)
         if name not in listings.records or listings.records[name] != saved:
-            # A failed replacement may retain the old document beside a new listing.
-            if previous.records.get(name) != doc:
+            # A failed replacement may retain the old entry beside a new listing.
+            if previous.get(key) != envelope:
                 raise ValueError("Metadata does not match accepted listing")
-        for code in codelist_ids(doc):
+        for code in codelist_ids(envelope["responses"]["metadata"]):
             key = code_key(code, saved["language"])
             if key in codes.records:
                 validate_codelist(
@@ -671,17 +718,18 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
         validate_codelist(
             document["codelist"], document["codelist"]["id"], document["language"]
         )
+    previous_entries = set(previous.entries())
     logger.info(
-        "Applying candidate: metadata +%d new, %d changed, -%d removed",
-        len(set(metadata.records) - set(previous.records)),
+        "Applying candidate: stored tables +%d new, %d changed, -%d removed",
+        len(set(store.entries()) - previous_entries),
         sum(
             1
-            for name, doc in metadata.records.items()
-            if name in previous.records and previous.records[name] != doc
+            for key in store.entries()
+            if key in previous_entries and previous.get(key) != store.get(key)
         ),
-        len(set(previous.records) - set(metadata.records)),
+        len(previous_entries - set(store.entries())),
     )
-    for incoming in (metadata, codes, listings):
+    for incoming in (codes, listings):
         target = JsonlStore(
             data / incoming.directory.name,
             identify=incoming.identify,
@@ -689,11 +737,21 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
         )
         target.records = incoming.records
         target.save()
+    for relative in result["manifest"]:
+        if relative.startswith("source/"):
+            target = data / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            temporary = target.with_name(f".{uuid4().hex}.tmp")
+            shutil.copyfile(output / relative, temporary)
+            temporary.replace(target)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
     for relative in ("reports/refresh.json", "reports/harvest.json"):
         write(data / relative, read(output / relative))
     (data / "work/current.json").unlink(missing_ok=True)
     shutil.rmtree(data / "work", ignore_errors=True)
-    if manifest(data) != result["manifest"]:
+    if harvest_manifest(data) != result["manifest"]:
         raise ValueError(
             "Collected state differs from validated artifact; do not publish"
         )

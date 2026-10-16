@@ -16,11 +16,23 @@ logger = logging.getLogger("pxweb_v2_logger")
 
 
 async def fetch_metadata(record: dict, *, client: Client | None = None) -> dict:
-    """Fetch full categories, retrying one catalogue/metadata update race."""
+    """Fetch and map one table's metadata (typed boundary and live checks)."""
     if client is None:
         async with Client(record["base_api_url"]) as owned:
             owned.configure(await owned.get("config"))
             return await fetch_metadata(record, client=owned)
+    dataset, current = await fetch_source(record, client=client)
+    return map_metadata(
+        dataset, current, "pxweb_v2", max_cells=getattr(client, "max_cells", None)
+    )
+
+
+async def fetch_source(record: dict, *, client: Client) -> tuple[dict, dict]:
+    """Fetch full categories, retrying one catalogue/metadata update race.
+
+    Returns the native metadata body as received and the catalogue record it
+    belongs to (re-read when the table changed during the harvest).
+    """
     current = deepcopy(record)
     endpoint = f"tables/{quote(record['dataset_code'], safe='')}"
     for attempt in range(2):
@@ -64,9 +76,7 @@ async def fetch_metadata(record: dict, *, client: Client | None = None) -> dict:
             record["dataset_code"],
             current["catalogue"]["updated"],
         )
-        return map_metadata(
-            dataset, current, "pxweb_v2", max_cells=getattr(client, "max_cells", None)
-        )
+        return dataset, current
     logger.warning(
         "Table %s/%s changed again after re-reading its catalogue entry; giving up",
         record["language"],

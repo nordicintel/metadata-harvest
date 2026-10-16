@@ -6,6 +6,7 @@ import json
 import httpx
 import pytest
 
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import JsonlStore, read
 from tests.harvest.test_pxweb_v2 import (
     CONFIG,
@@ -15,6 +16,7 @@ from tests.harvest.test_pxweb_v2 import (
     metadata,
     table,
 )
+from tests.support.parsing import documents
 
 
 class Source:
@@ -79,7 +81,18 @@ def harvest(source, root, output, **kwargs):
 
 
 def metadata_bytes(root):
-    return {p.name: p.read_bytes() for p in (root / "metadata").glob("*.jsonl.gz")}
+    return {
+        p.relative_to(root).as_posix(): p.read_bytes()
+        for p in (root / "source").rglob("*.json")
+    }
+
+
+def parsed(root):
+    return documents("pxweb_v2", root, [PROVIDER])
+
+
+def store(root):
+    return SourceStore(root / "source", "pxweb_v2")
 
 
 def test_live_progress_exposes_individual_errors_before_harvest_finishes(
@@ -126,10 +139,12 @@ def test_full_incremental_and_silent_change_refresh(tmp_path):
     initial = harvest(source, root, tmp_path / "first", full=True)
     assert initial["status"] == "success"
     assert initial["counts"]["created"] == 2
-    assert len(list((root / "metadata").glob("*.jsonl.gz"))) == 1
+    assert set(store(root).entries()) == {"scb/T1/sv", "scb/EN1/en"}
+    assert set(store(root).get("scb/T1/sv")["responses"]) == {"metadata", "table"}
+    assert store(root).get("scb/T1/sv")["updated"] == table()["updated"]
+    assert not (root / "metadata").exists()
     assert {
-        doc["extension"]["nordicintel"]["language"]
-        for doc in JsonlStore(root / "metadata").records.values()
+        doc["extension"]["nordicintel"]["language"] for doc in parsed(root).values()
     } == {"sv", "en"}
     assert len(list((root / "codelists").glob("*.jsonl.gz"))) == 2
     assert not (root / "work/current.json").exists()
@@ -145,9 +160,7 @@ def test_full_incremental_and_silent_change_refresh(tmp_path):
     source.label = "Corrected upstream without timestamp"
     full = harvest(source, root, tmp_path / "third", full=True)
     assert full["counts"]["updated"] == 2
-    assert {doc["label"] for doc in JsonlStore(root / "metadata").records.values()} == {
-        source.label
-    }
+    assert {doc["label"] for doc in parsed(root).values()} == {source.label}
     assert sorted(p.name for p in (root / "reports").iterdir()) == [
         "harvest.json",
         "refresh.json",
@@ -166,9 +179,9 @@ def test_removal_and_partial_discovery_are_language_isolated(tmp_path):
     assert result["status"] == "completed_with_errors"
     assert result["counts"]["removed"] == 1
     assert [
-        doc["extension"]["nordicintel"]["language"]
-        for doc in JsonlStore(root / "metadata").records.values()
+        doc["extension"]["nordicintel"]["language"] for doc in parsed(root).values()
     ] == ["en"]
+    assert list(store(root).entries()) == ["scb/EN1/en"]
     assert len(list((root / "codelists").glob("*.jsonl.gz"))) == 1
     assert (sibling / "sentinel").read_text() == "unchanged"
 
@@ -216,7 +229,7 @@ def test_codelist_failure_accepts_table_and_retries_only_dependency(tmp_path):
     assert result["counts"]["created"] == 2
     assert result["counts"]["failed"] == 0
     assert result["counts"]["codelists_failed"] == 1
-    assert len(JsonlStore(root / "metadata").records) == 2
+    assert len(parsed(root)) == 2
     assert result["errors"][0]["stage"] == "codelist"
     before = metadata_bytes(root)
     source.fail_codes.clear()
@@ -238,9 +251,7 @@ def test_failed_codelist_does_not_block_changed_table_metadata(tmp_path):
     assert result["counts"]["updated"] == 2
     assert result["counts"]["failed"] == 0
     assert result["counts"]["codelists_failed"] == 1
-    assert {doc["label"] for doc in JsonlStore(root / "metadata").records.values()} == {
-        source.label
-    }
+    assert {doc["label"] for doc in parsed(root).values()} == {source.label}
 
 
 def test_dependency_retry_reuses_other_valid_codelists(tmp_path):
@@ -285,7 +296,7 @@ def test_metadata_failure_still_retries_missing_dependency_of_retained_table(tmp
     result = harvest(source, root, tmp_path / "second", full=True)
     assert result["counts"]["failed"] == 1
     assert result["counts"]["codelists_failed"] == 1
-    assert len(JsonlStore(root / "metadata").records) == 2
+    assert len(parsed(root)) == 2
     source.fail_codes.clear()
     result = harvest(source, root, tmp_path / "third", full=True)
     assert result["counts"]["failed"] == 1
@@ -300,7 +311,7 @@ def test_incomplete_discovery_keeps_unresolved_dependency_visible(tmp_path):
     result = harvest(source, root, tmp_path / "second")
     assert result["status"] == "completed_with_errors"
     assert result["counts"]["codelists_failed"] == 1
-    assert len(JsonlStore(root / "metadata").records) == 2
+    assert len(parsed(root)) == 2
 
 
 @pytest.mark.parametrize("resource", ["metadata", "codelist"])
@@ -341,7 +352,7 @@ def test_collector_rejects_tampered_metadata_without_writing(tmp_path):
             return await run(PROVIDER, root, output, client=client)
 
     result = asyncio.run(execute())
-    target = next((output / "metadata").glob("*.jsonl.gz"))
+    target = next((output / "source" / "scb").glob("*.json"))
     target.write_text("{}\n")
     with pytest.raises(ValueError):
         collect(root, output, result["run_id"])
@@ -363,7 +374,7 @@ def test_confirmed_removed_codelist_payload_is_deleted_and_reported(tmp_path):
     assert result["status"] == "completed_with_errors"
     assert result["counts"]["failed"] == 0
     assert result["counts"]["codelists_failed"] == 1
-    assert len(JsonlStore(root / "metadata").records) == 2
+    assert len(parsed(root)) == 2
     codes = JsonlStore(
         root / "codelists",
         identify=lambda d: {
@@ -393,13 +404,10 @@ def test_collector_rejects_unsupported_language_deletion_even_with_valid_manifes
 
     result = asyncio.run(execute())
     candidate = output
-    metadata = JsonlStore(candidate / "metadata", compressed=True)
-    metadata.records = {
-        key: doc
-        for key, doc in metadata.records.items()
-        if doc["extension"]["nordicintel"]["language"] != "en"
-    }
-    metadata.save()
+    tampered = SourceStore(candidate / "source", "pxweb_v2")
+    for key in [k for k in tampered.entries() if k.endswith("/en")]:
+        tampered.remove(key)
+    tampered.save()
     for folder in ("codelists", "table-records"):
         next((candidate / folder).glob("*__en__*.jsonl*")).unlink()
     result["manifest"] = workflow.manifest(candidate)
@@ -416,12 +424,21 @@ def test_bad_listing_row_preserves_old_table_and_publishes_good_siblings(tmp_pat
     result = harvest(source, root, tmp_path / "second")
     assert result["status"] == "completed_with_errors"
     assert result["counts"]["removed"] == 0
-    documents = JsonlStore(root / "metadata").records.values()
-    assert {d["extension"]["nordicintel"]["dataset_code"] for d in documents} == {
-        "T1",
-        "later",
-        "EN1",
-    }
+    assert {
+        d["extension"]["nordicintel"]["dataset_code"] for d in parsed(root).values()
+    } == {"T1", "later", "EN1"}
+
+
+def test_missing_manifest_entry_is_fetched(tmp_path):
+    import shutil
+
+    source, root = Source(), tmp_path / "data"
+    harvest(source, root, tmp_path / "first")
+    shutil.rmtree(root / "source")  # listings remain; the source entries are gone
+    source.requests.clear()
+    result = harvest(source, root, tmp_path / "second")
+    assert result["counts"]["created"] == 2 and result["counts"]["reused"] == 0
+    assert sum(path.endswith("/metadata") for path, _ in source.requests) == 2
 
 
 def test_stale_artifact_is_rejected_and_budget_exhaustion_fails_remaining(tmp_path):
