@@ -183,3 +183,20 @@ def test_harvest_manifest_excludes_metadata(tmp_path):
     (tmp_path / "state/current.jsonl.gz").write_bytes(b"2")
     (tmp_path / "result.json").write_bytes(b"3")
     assert list(harvest_manifest(tmp_path)) == ["state/current.jsonl.gz"]
+
+
+def test_unchanged_put_keeps_retrieved_at_and_bytes(tmp_path):
+    store = _store(tmp_path)
+    key = source_key("trafa", "t1", "sv")
+    store.put(key, responses={"probe": {"a": 1}}, updated=None, retrieved_at=STAMP)
+    store.save()
+    before = (tmp_path / "source/manifest.json").read_bytes()
+    again = _store(tmp_path)
+    again.put(key, responses={"probe": {"a": 1}}, updated=None, retrieved_at="later")
+    again.save()
+    assert (tmp_path / "source/manifest.json").read_bytes() == before
+    assert again.get(key)["retrieved_at"] == STAMP
+    again.put(key, responses={"probe": {"a": 2}}, updated=None, retrieved_at="later")
+    again.save()
+    assert again.get(key)["retrieved_at"] == "later"
+    assert again.entries()[key]["retrieved_at"] == "later"

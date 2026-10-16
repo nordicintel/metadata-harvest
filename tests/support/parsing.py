@@ -10,18 +10,17 @@ from apps.parsing.build import load_state
 
 def documents(
     adapter: str,
-    data: Path,
+    root: Path,
     providers: list[dict] | None = None,
     *,
     portal: Path | None = None,
     include_withheld: bool = False,
 ) -> dict[str, dict]:
-    """Parsed worker documents keyed ``<language>/<dataset_code>``.
+    """Parsed worker documents of ``root`` (``data/<adapter>``) keyed ``<language>/<dataset_code>``.
 
     Mapping failures raise so a test sees the cause instead of a missing key.
     """
-    data = Path(data)
-    root = data if data.name == adapter else data / adapter
+    root = Path(root)
     module = importlib.import_module(f"apps.harvest.metadata_adapters.{adapter}.parse")
     store = SourceStore(root / "source", adapter)
     state = load_state(root)

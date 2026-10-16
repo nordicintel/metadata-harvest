@@ -66,6 +66,12 @@ def _check(name: str, body) -> None:
         raise Rejected(f"Unserialisable response for {name}: {error}") from error
 
 
+def _read_text(path: Path) -> str:
+    """Read exactly what was written, without newline translation."""
+    with path.open("r", encoding="utf-8", newline="") as stream:
+        return stream.read()
+
+
 def _write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{uuid4().hex}.tmp")
@@ -115,7 +121,7 @@ class SourceStore:
             return None
         if relative.endswith(".json"):
             return json.loads(path.read_text(encoding="utf-8"))
-        return path.read_text(encoding="utf-8")
+        return _read_text(path)
 
     def read_file(self, relative: str):
         return self._read(relative)
@@ -143,6 +149,18 @@ class SourceStore:
                 raise Rejected(f"Empty companion file {name} for {key}")
         _check(key, {"derived": derived or {}, "updated": updated})
         provider, code, language = split_key(key)
+        previous = self.get(key)
+        if (
+            previous is not None
+            and previous["responses"] == responses
+            and previous["derived"] == (derived or {})
+            and previous["updated"] == updated
+            and all(
+                self._read(relative) == text
+                for relative, text in self._companions(key, files)
+            )
+        ):
+            retrieved_at = previous["retrieved_at"]
         envelope = {
             "key": key,
             "identifier": code,
@@ -155,8 +173,7 @@ class SourceStore:
         main = f"{provider}/{source_filename(code, language)}"
         paths = [main]
         self._pending[main] = envelope
-        for part, text in sorted((files or {}).items()):
-            relative = f"{provider}/{source_filename(code, language, part=part)}"
+        for relative, text in self._companions(key, files):
             self._pending[relative] = text
             paths.append(relative)
         self.manifest["entries"][key] = {
@@ -164,6 +181,14 @@ class SourceStore:
             "updated": updated,
             "retrieved_at": retrieved_at,
         }
+
+    @staticmethod
+    def _companions(key: str, files: dict[str, str] | None) -> list[tuple[str, str]]:
+        provider, code, language = split_key(key)
+        return [
+            (f"{provider}/{source_filename(code, language, part=part)}", text)
+            for part, text in sorted((files or {}).items())
+        ]
 
     def remove(self, key: str) -> None:
         entry = self.manifest["entries"].pop(key, None)
@@ -190,7 +215,7 @@ class SourceStore:
                     raise ValueError(f"Source file failed verification: {relative}")
             else:
                 _write_text(path, body)
-                if path.read_text(encoding="utf-8") != body:
+                if _read_text(path) != body:
                     raise ValueError(f"Source file failed verification: {relative}")
         manifest = {
             "adapter": self.adapter,
