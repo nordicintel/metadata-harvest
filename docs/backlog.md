@@ -44,10 +44,6 @@ Open work only: bugs, fixes, features and investigations not yet done.
 
 - [ ] **harvest** Re-evaluate tables previously dismissed as incompatible with
   JSON-stat2 — after the switch to StatDCAT they may now qualify for inclusion.
-- [ ] **pxweb_v1** Fix tables found at multiple paths with different variables
-  (e.g. Energimyndigheten) — record multiple paths only when variables match;
-  otherwise keep the most recently published/updated instance as canonical and
-  ignore the others with the same code.
 - [ ] **kolada** Consider separating municipality and OU tables into distinct
   datasets again instead of one combined dataset — better discoverability.
 - [ ] **catalog** Speed up the catalog build — runs take ~14 minutes, ~12 of

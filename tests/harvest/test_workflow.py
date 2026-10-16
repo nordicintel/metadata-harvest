@@ -1,6 +1,7 @@
 import asyncio
 import subprocess
 from copy import deepcopy
+from pathlib import Path
 
 import pytest
 from playwright.async_api import async_playwright
@@ -9,18 +10,23 @@ from apps.harvest.metadata_adapters.pxweb_v1.discovery import (
     _collect_database,
     get_pxweb_tables,
 )
-from apps.harvest.metadata_adapters.pxweb_v1.mapping import map_metadata, source_record
+from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
+from apps.harvest.metadata_adapters.pxweb_v1.metadata import assemble_document
 from apps.harvest.metadata_adapters.pxweb_v1.workflow import (
     build_provider,
     collect_metadata,
     collect_refresh,
     prepare,
+    stored_key,
 )
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import JsonlStore, filename, group_records, read, write
 from apps.operations.harvest import publish
 from tests.harvest.test_pxweb import website as website
+from tests.support.parsing import documents
 
 PROVIDER = {"code": "p", "languages": ["sv"], "database_ids": ["db"], "rate_limit": 0}
+FETCH = "apps.harvest.metadata_adapters.pxweb_v1.workflow.get_pxweb_source"
 
 
 def test_adapter_discovers_selected_provider_scopes(website):
@@ -84,32 +90,78 @@ def scope(rows, *, complete=True, observed=None, invalid=None):
     }
 
 
-def dataset(row):
-    native = {
-        "version": "2.0",
-        "class": "dataset",
-        "label": row["title"],
-        "updated": row["published"],
-        "id": ["Year"],
-        "size": [1],
-        "dimension": {
-            "Year": {"category": {"index": ["2026"], "label": {"2026": "2026"}}}
+def raw(row):
+    """Source data as the worker stores it: GET metadata, no POST samples needed."""
+    return {
+        "responses": {
+            "metadata": {
+                "title": row["title"],
+                "variables": [
+                    {
+                        "code": "Year",
+                        "text": "Year",
+                        "values": ["2026"],
+                        "valueTexts": ["2026"],
+                        "time": True,
+                    }
+                ],
+            },
+            "table": deepcopy(row),
         },
-        "value": [],
-        "extension": {"metadata_harvest": deepcopy(row)},
+        "derived": {"samples": [], "queries": []},
     }
-    return map_metadata(native, row, "pxweb_v1")
 
 
-def seed(data, row):
+def dataset(row):
+    return assemble_document(row, "p", raw(row))
+
+
+def store(data):
+    return SourceStore(Path(data) / "source", "pxweb_v1")
+
+
+def parsed(data):
+    """Parsed documents keyed by task filename."""
+    found = documents("pxweb_v1", data, [PROVIDER])
+    return {filename(d["extension"]["nordicintel"]): d for d in found.values()}
+
+
+def seed(data, row, *, listing=True):
     grouped = group_records([row])[0]
-    listings = JsonlStore(data / "table-records")
-    listings.records[filename(grouped)] = grouped
-    listings.save()
-    metadata = JsonlStore(data / "metadata")
-    metadata.records[filename(grouped)] = dataset(grouped)
-    metadata.save()
+    if listing:
+        listings = JsonlStore(data / "table-records")
+        listings.records[filename(grouped)] = grouped
+        listings.save()
+    source = store(data)
+    source.put(
+        stored_key(grouped),
+        responses=raw(grouped)["responses"],
+        derived=raw(grouped)["derived"],
+        updated=grouped["published"],
+        retrieved_at="2026-10-01T00:00:00+00:00",
+    )
+    source.save()
     return grouped
+
+
+def test_missing_manifest_entry_is_fetched(tmp_path):
+    row = group_records([record()])[0]
+    listings = JsonlStore(tmp_path / "table-records")
+    listings.records[filename(row)] = row
+    listings.save()
+    state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
+    assert state["counts"]["reused"] == 0
+    assert [task["kind"] for task in state["tasks"]] == ["created"]
+    assert state["layout"] == 2
+
+
+def test_prepare_refuses_pre_layout_checkpoint(tmp_path):
+    collect_refresh(tmp_path, [PROVIDER], [scope([record()])], "run")
+    state = read(tmp_path / "work/current.json")
+    del state["layout"]
+    write(tmp_path / "work/current.json", state)
+    with pytest.raises(ValueError, match="predates"):
+        prepare(tmp_path, [PROVIDER])
 
 
 def test_group_paths_one_identity_and_filesystem_safe_filename():
@@ -131,10 +183,7 @@ def test_refresh_queues_missing_and_changed_and_reuses_unchanged(tmp_path):
     )
     assert state["counts"]["reused"] == 1
     assert {task["kind"] for task in state["tasks"]} == {"created", "updated"}
-    assert (
-        JsonlStore(tmp_path / "metadata").records[filename(changed)]["updated"]
-        == "2026-10-01"
-    )
+    assert parsed(tmp_path)[filename(changed)]["updated"] == "2026-10-01"
     report = read(tmp_path / "reports/refresh.json")
     assert set(report["records"][0]) == {
         "provider_code",
@@ -148,9 +197,9 @@ def test_confirmed_absence_deletes_without_archive_and_return_requires_fetch(tmp
     row = seed(tmp_path, record())
     state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
     assert state["counts"]["removed"] == 1
-    assert not JsonlStore(tmp_path / "metadata").records
+    assert not store(tmp_path).entries()
     assert not JsonlStore(tmp_path / "table-records").records
-    assert not (tmp_path / "metadata/inactive").exists()
+    assert not (tmp_path / "metadata").exists()
     state = collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
     assert state["counts"]["reused"] == 0
     assert [task["kind"] for task in state["tasks"]] == ["created"]
@@ -165,7 +214,7 @@ def test_completed_metadata_without_listing_record_still_reconciles(tmp_path):
     assert state["counts"]["removed"] == 0
     state = collect_refresh(tmp_path, [PROVIDER], [scope([])], "run")
     assert state["counts"]["removed"] == 1
-    assert filename(row) not in JsonlStore(tmp_path / "metadata").records
+    assert stored_key(row) not in store(tmp_path).entries()
 
 
 @pytest.mark.parametrize(
@@ -176,12 +225,12 @@ def test_missing_job_failed_scope_or_invalid_observed_table_cannot_confirm_remov
     tmp_path, result
 ):
     row = seed(tmp_path, record())
-    original = JsonlStore(tmp_path / "metadata").records[filename(row)]
+    original = store(tmp_path).get(stored_key(row))
     state = collect_refresh(
         tmp_path, [PROVIDER], [] if result is None else [result], "run"
     )
     assert state["counts"]["removed"] == 0
-    assert JsonlStore(tmp_path / "metadata").records[filename(row)] == original
+    assert store(tmp_path).get(stored_key(row)) == original
 
 
 def test_successful_row_from_incomplete_scope_is_saved(tmp_path):
@@ -222,11 +271,9 @@ def test_provider_failures_are_isolated_and_old_metadata_survives(
     async def fetch(row, **kwargs):
         if row["id"] == "bad":
             raise RuntimeError("provider failed")
-        return dataset(row)
+        return raw(row)
 
-    monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.pxweb_v1.workflow.get_pxweb_metadata", fetch
-    )
+    monkeypatch.setattr(FETCH, fetch)
     result = asyncio.run(
         build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "artifact")
     )
@@ -234,10 +281,7 @@ def test_provider_failures_are_isolated_and_old_metadata_survives(
     final = collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
     assert final["status"] == "completed_with_errors"
     assert final["counts"]["created"] == 1 and final["counts"]["failed"] == 1
-    assert (
-        JsonlStore(tmp_path / "metadata").records[filename(old)]["updated"]
-        == "2026-10-01"
-    )
+    assert parsed(tmp_path)[filename(old)]["updated"] == "2026-10-01"
     next_state = collect_refresh(
         tmp_path, [PROVIDER], [scope([updated, record("good")])], "run"
     )
@@ -266,13 +310,13 @@ def test_deadline_checkpoints_remaining_work_and_resume_skips_refresh(
     }
 
 
-def test_legacy_checkpoint_and_artifact_migrate_without_losing_metadata(tmp_path):
+def test_legacy_listing_file_and_source_artifact_collect_without_loss(tmp_path):
     row = group_records([record()])[0]
-    # A worker and work list created before the deployment are still readable.
+    # A legacy per-table listing file is still readable; the artifact is a store.
     write(tmp_path / "table-records" / filename(row), row)
     collect_refresh(tmp_path, [PROVIDER], [scope([row])], "run")
     artifact = tmp_path / "artifact"
-    write(artifact / "metadata" / filename(row), dataset(row))
+    seed(artifact, row, listing=False)
     write(
         artifact / "result.json",
         {
@@ -285,31 +329,62 @@ def test_legacy_checkpoint_and_artifact_migrate_without_losing_metadata(tmp_path
     )
     result = collect_metadata(tmp_path, [artifact / "result.json"], "run", 1)
     assert result["status"] == "success"
-    assert JsonlStore(tmp_path / "metadata").records[filename(row)] == dataset(row)
-    assert len(list((tmp_path / "metadata").glob("*.jsonl.gz"))) == 1
-    assert not list((tmp_path / "metadata").glob("*.json"))
+    assert parsed(tmp_path)[filename(row)] == dataset(row)
+    assert store(tmp_path).get(stored_key(row))["retrieved_at"] == (
+        "2026-10-01T00:00:00+00:00"
+    )
     assert not list((tmp_path / "table-records").glob("*.json"))
 
 
-def test_legacy_file_reuse_preserves_metadata_title_with_updated_listing(tmp_path):
-    row = group_records([record()])[0]
-    write(tmp_path / "table-records" / filename(row), row)
-    write(tmp_path / "metadata" / filename(row), dataset(row))
+def test_reuse_refreshes_listing_context_at_parse_without_refetching(tmp_path):
+    row = seed(tmp_path, record())
     current = {**row, "title": "Corrected listing title"}
     result = collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
     assert result["counts"]["reused"] == 1
     assert not result["tasks"]
-    saved = JsonlStore(tmp_path / "metadata").records[filename(row)]
+    saved = parsed(tmp_path)[filename(row)]
     assert saved["label"] == row["title"]
     assert source_record(saved)["title"] == "Corrected listing title"
     assert saved["updated"] == row["published"]
-    original = {
-        p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl.gz")
-    }
+    original = {p.name: p.read_bytes() for p in (tmp_path / "source").rglob("*.json")}
     collect_refresh(tmp_path, [PROVIDER], [scope([current])], "run")
     assert {
-        p.name: p.read_bytes() for p in (tmp_path / "metadata").glob("*.jsonl.gz")
+        p.name: p.read_bytes() for p in (tmp_path / "source").rglob("*.json")
     } == original
+
+
+def test_other_path_with_different_variables_is_a_variant_not_a_path(tmp_path):
+    canonical = record(path="/New", date="2026-10-01")
+    archive = record(path="/Archive", date="2020-01-01")
+    grouped = group_records([canonical, archive])[0]
+    assert len(grouped["paths"]) == 2
+    listings = JsonlStore(tmp_path / "table-records")
+    listings.records[filename(grouped)] = grouped
+    listings.save()
+    source = raw(grouped)
+    source["responses"]["variants"] = {
+        "db/Archive": {"title": "Old", "variables": [{"code": "Region"}]}
+    }
+    source["derived"]["paths"] = [
+        {
+            "location": "db/Archive",
+            "database_id": "db",
+            "path": "/Archive",
+            "api_url": archive["api_url"],
+            "match": False,
+        }
+    ]
+    assert source_record(assemble_document(grouped, "p", source))["paths"] == [
+        {k: v for k, v in grouped["paths"][1].items()}
+    ]
+    assert (
+        len(
+            assemble_document(grouped, "p", source)["extension"]["nordicintel"].get(
+                "paths", []
+            )
+        )
+        <= 1
+    )
 
 
 def test_unserializable_dataset_does_not_poison_later_worker_results(
@@ -320,21 +395,21 @@ def test_unserializable_dataset_does_not_poison_later_worker_results(
     )
 
     async def fetch(row, **kwargs):
-        result = dataset(row)
+        result = raw(row)
         if row["id"] == "bad":
-            result["extension"]["invalid"] = float("nan")
+            result["responses"]["metadata"]["invalid"] = float("nan")
         return result
 
-    monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.pxweb_v1.workflow.get_pxweb_metadata", fetch
-    )
+    monkeypatch.setattr(FETCH, fetch)
     artifact = tmp_path / "artifact"
     result = asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, artifact))
     assert [outcome["status"] for outcome in result["outcomes"]] == [
         "failed",
         "success",
     ]
-    assert list(JsonlStore(artifact / "metadata").records) == [filename(record("good"))]
+    assert list(SourceStore(artifact / "source", "pxweb_v1").entries()) == [
+        stored_key(record("good"))
+    ]
 
 
 def test_no_progress_cannot_create_infinite_continuations(tmp_path):
@@ -508,11 +583,11 @@ def test_adapter_output_directories_are_independent(tmp_path):
     other = tmp_path / "pxweb_v2"
     row = seed(v1, record())
     seed(other, record())
-    original = {p.relative_to(other): p.read_bytes() for p in other.rglob("*.jsonl")}
+    original = {p.relative_to(other): p.read_bytes() for p in other.rglob("*.json*")}
     collect_refresh(v1, [PROVIDER], [scope([])], "run")
-    assert filename(row) not in JsonlStore(v1 / "metadata").records
+    assert stored_key(row) not in store(v1).entries()
     assert {
-        p.relative_to(other): p.read_bytes() for p in other.rglob("*.jsonl")
+        p.relative_to(other): p.read_bytes() for p in other.rglob("*.json*")
     } == original
 
 
@@ -534,9 +609,7 @@ def test_failed_full_refresh_retries_unchanged_table_after_incomplete_discovery(
     async def failed(*args, **kwargs):
         raise RuntimeError("temporary provider failure")
 
-    monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.pxweb_v1.workflow.get_pxweb_metadata", failed
-    )
+    monkeypatch.setattr(FETCH, failed)
     asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "artifact"))
     collect_metadata(tmp_path, [tmp_path / "artifact/result.json"], "run", 1)
     # A later failed listing must not erase unfinished replacement failures.
@@ -551,11 +624,9 @@ def test_failed_full_refresh_retries_unchanged_table_after_incomplete_discovery(
     assert [task["kind"] for task in state["tasks"]] == ["updated"]
 
     async def succeeded(row, **kwargs):
-        return dataset(row)
+        return raw(row)
 
-    monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.pxweb_v1.workflow.get_pxweb_metadata", succeeded
-    )
+    monkeypatch.setattr(FETCH, succeeded)
     asyncio.run(build_provider(tmp_path, PROVIDER, "run", 1, tmp_path / "retry"))
     final = collect_metadata(tmp_path, [tmp_path / "retry/result.json"], "run", 1)
     assert final["status"] == "success" and final["counts"]["failed"] == 0

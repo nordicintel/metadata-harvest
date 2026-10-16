@@ -1,4 +1,11 @@
-"""Refresh, reconciliation and provider workers; collectors are the only writers."""
+"""Refresh, reconciliation and provider workers; collectors are the only writers.
+
+Workers store each table's source data (GET metadata, POST samples stripped of
+observations, the listing row and variant locations' metadata) in a per-task source
+store; collectors move it into ``data/pxweb_v1/source``. Documents are built later
+by ``parse``. Checkpoints written before this layout carry no ``layout`` and are
+refused when they still have pending work.
+"""
 
 import asyncio
 import logging
@@ -8,8 +15,11 @@ from urllib.parse import unquote
 
 from apps.harvest.artifacts import checkpoint_path, report_status
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import discover_provider
-from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
-from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
+from apps.harvest.metadata_adapters.pxweb_v1.metadata import (
+    get_pxweb_source,
+    validate_raw,
+)
+from apps.harvest.source_store import Rejected, SourceStore, source_key
 from apps.harvest.storage import (
     JsonlStore,
     filename,
@@ -18,9 +28,7 @@ from apps.harvest.storage import (
     location,
     now,
     read,
-    refresh_identity,
     timestamp,
-    validate_dataset,
     write,
 )
 from apps.operations.progress import Progress
@@ -28,6 +36,15 @@ from apps.publication.artifacts import check_collection_sizes
 
 logger = logging.getLogger("pxweb_v1_logger")
 _PROGRESS_EVERY = 25
+LAYOUT = 2
+"""Checkpoint layout: 2 = per-table source files; older checkpoints are refused."""
+ADAPTER = "pxweb_v1"
+
+
+def stored_key(record) -> str:
+    """The source-store key of a listing row or task identity."""
+    provider, code, language = identity(record)
+    return source_key(provider, code, language)
 
 
 def prepare(data, providers):
@@ -39,6 +56,15 @@ def prepare(data, providers):
         "found" if state else "absent",
     )
     if state and any(task["status"] == "pending" for task in state["tasks"]):
+        if state.get("layout") != LAYOUT:
+            logger.error(
+                "Checkpoint run %s predates the per-table source layout",
+                state["run_id"],
+            )
+            raise ValueError(
+                "Checkpoint predates per-dataset source layout; finish or discard "
+                "the run before upgrading"
+            )
         codes = sorted(
             {
                 task["provider_code"]
@@ -300,19 +326,21 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
         )
     grouped = {identity(row): row for row in group_records(fresh)}
     listings = JsonlStore(data / "table-records")
-    active = JsonlStore(data / "metadata", compressed=True)
+    store = SourceStore(data / "source", ADAPTER)
     previous = {identity(row): row for row in listings.records.values()}
     previous_names = set(listings.records)
-    known = dict(active.records)
-    for name, document in known.items():
+    known = {}
+    for key in store.entries():
+        saved = store.get(key)["responses"]["table"]
+        name = filename(saved)
+        if stored_key(saved) != key:
+            raise ValueError(f"Stored source identity mismatch: {key}")
+        known[name] = key
         if name not in previous_names:
-            saved = source_record(document)
-            if filename(saved) != name:
-                raise ValueError(f"Saved metadata identity mismatch: {name}")
             previous.setdefault(identity(saved), saved)
     logger.info(
         "Candidate set: %d freshly listed rows -> %d distinct tables; %d "
-        "previously known tables (%d listings, %d saved metadata documents)",
+        "previously known tables (%d listings, %d stored source entries)",
         len(fresh),
         len(grouped),
         len(previous),
@@ -342,8 +370,8 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
                 logger.debug(
                     "Removing %s: no longer listed in any complete scope", name
                 )
-                if name in active.records:
-                    del active.records[name]
+                if name in known:
+                    store.remove(known.pop(name))
                     counts["removed"] += 1
                 listings.records.pop(name, None)
             else:
@@ -378,15 +406,6 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
                 if timestamp(new["published"]) <= timestamp(old["published"]):
                     new = {**old, "paths": new["paths"]}
                     listings.records[name] = new
-                    if name in active.records:
-                        completed = active.records[name]
-                        if (
-                            source_record(completed).get("published")
-                            == new["published"]
-                        ):
-                            completed = refresh_identity(completed, new)
-                            validate_dataset(completed, new)
-                            active.records[name] = completed
                     continue
         listings.records[name] = new
         verified.append(
@@ -397,24 +416,19 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
                 "updated": new["published"],
             }
         )
-        existing = None
-        reason = "no saved metadata"
-        if name in active.records:
+        reason = "no stored source"
+        if name in known:
             try:
-                existing = active.records[name]
-                if identity(source_record(existing)) != key:
-                    raise ValueError("Saved metadata identity mismatch")
+                existing = store.get(known[name])
+                validate_raw(existing, new)
                 if (
                     not full
                     and name not in previous_failures
-                    and source_record(existing).get("published") == new["published"]
+                    and existing["updated"] == new["published"]
                 ):
-                    existing = refresh_identity(existing, new)
-                    validate_dataset(existing, new)
-                    active.records[name] = existing
                     counts["reused"] += 1
                     logger.debug(
-                        "%s: reuse saved metadata, published %s unchanged",
+                        "%s: reuse stored source, published %s unchanged",
                         name,
                         new["published"],
                     )
@@ -427,9 +441,9 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
                     else "published date changed"
                 )
             except (ValueError, KeyError, TypeError) as error:
-                reason = "saved metadata invalid"
+                reason = "stored source invalid"
                 logger.warning(
-                    "%s: saved metadata unusable (%s); re-fetching", name, error
+                    "%s: stored source unusable (%s); re-fetching", name, error
                 )
                 errors.append(
                     {
@@ -447,7 +461,7 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
                 "filename": name,
                 "provider_code": key[0],
                 "status": "pending",
-                "kind": "updated" if name in active.records else "created",
+                "kind": "updated" if name in known else "created",
             }
         )
     started_at = min(
@@ -496,10 +510,11 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
     )
     refresh_name = "refresh.json"
     listings.save()
-    active.save()
+    store.save()
     write(data / "reports" / refresh_name, report)
     state = {
         "run_id": run_id,
+        "layout": LAYOUT,
         "stage": "metadata",
         "full": full,
         "deferred_failures": [
@@ -555,7 +570,7 @@ async def build_provider(
     }
     write(output / "result.json", result)
     listings = JsonlStore(data / "table-records")
-    completed = JsonlStore(output / "metadata", compressed=True)
+    completed = SourceStore(output / "source", ADAPTER)
     deadline = time.monotonic() + budget_seconds
     mine = [
         task
@@ -607,22 +622,22 @@ async def build_provider(
                 api_url=record["api_url"],
             )
             async with asyncio.timeout(900):
-                dataset = await get_pxweb_metadata(
-                    record, provider_code=provider["code"]
-                )
-            validate_dataset(dataset, record)
-            previous = completed.records.get(task["filename"])
-            completed.records[task["filename"]] = dataset
+                raw = await get_pxweb_source(record)
+            validate_raw(raw, record)
             try:
+                completed.put(
+                    stored_key(record),
+                    responses=raw["responses"],
+                    derived=raw["derived"],
+                    updated=record["published"],
+                    retrieved_at=now(),
+                )
                 completed.save()
             except Exception:
-                if previous is None:
-                    completed.records.pop(task["filename"])
-                else:
-                    completed.records[task["filename"]] = previous
+                completed = SourceStore(output / "source", ADAPTER)  # drop pending
                 raise
             outcome["status"] = "success"
-        except Exception as error:
+        except (Rejected, Exception) as error:
             outcome.update(status="failed", error=f"{type(error).__name__}: {error}")
             logger.error(
                 "Build %s: %s failed, recorded and continuing: %s",
@@ -687,7 +702,7 @@ def collect_metadata(data, result_paths, run_id, wave):
     if (state["run_id"], state["wave"]) != (run_id, wave):
         raise ValueError("Stale metadata collector")
     listings = JsonlStore(data / "table-records")
-    active = JsonlStore(data / "metadata", compressed=True)
+    active = SourceStore(data / "source", ADAPTER)
     tasks = {task["filename"]: task for task in state["tasks"]}
     seen, providers = set(), set()
     progress = 0
@@ -710,7 +725,7 @@ def collect_metadata(data, result_paths, run_id, wave):
         ) or result["provider_code"] in providers:
             raise ValueError("Duplicate or stale metadata artifact")
         providers.add(result["provider_code"])
-        completed = JsonlStore(path.parent / "metadata")
+        completed = SourceStore(path.parent / "source", ADAPTER)
         for outcome in result["outcomes"]:
             name = outcome["filename"]
             task = tasks.get(name)
@@ -728,9 +743,17 @@ def collect_metadata(data, result_paths, run_id, wave):
                 record = listings.records[name]
                 if filename(record) != name:
                     raise ValueError("Unsafe artifact filename")
-                dataset = completed.records[name]
-                validate_dataset(dataset, record)
-                active.records[name] = dataset
+                envelope = completed.get(stored_key(record))
+                if envelope is None:
+                    raise ValueError("Artifact lacks the stored source entry")
+                validate_raw(envelope, record)
+                active.put(
+                    stored_key(record),
+                    responses=envelope["responses"],
+                    derived=envelope["derived"],
+                    updated=record["published"],
+                    retrieved_at=envelope["retrieved_at"],
+                )
             task.update(outcome)
             progress += 1
         logger.info(

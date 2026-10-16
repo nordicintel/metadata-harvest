@@ -14,7 +14,10 @@ from apps.harvest.metadata_adapters.pxweb_v1.metadata import (
     _generate,
     _merge,
     _read_sample,
+    assemble_document,
+    fetch_raw,
     get_pxweb_metadata,
+    validate_raw,
 )
 
 
@@ -120,6 +123,51 @@ class Provider:
             "category": {"unit": {"all": {"base": "People"}}},
         }
         return self.mutate(sample)
+
+
+def test_stored_source_rebuilds_the_same_document_as_one_pass():
+    provider = Provider()
+    raw = asyncio.run(fetch_raw(provider, table()))
+    assert set(raw["responses"]) == {"metadata", "table", "config"}
+    assert raw["responses"]["metadata"] == metadata()  # as received, unrecovered
+    assert all("value" not in sample for sample in raw["derived"]["samples"])
+    assert len(raw["derived"]["queries"]) == len(raw["derived"]["samples"])
+    json.dumps(raw, allow_nan=False)  # storable
+    validate_raw(raw, {**table(), "provider_code": "p", "dataset_code": table()["id"]})
+    assert assemble_document(table(), "p", raw) == asyncio.run(
+        _generate(Provider(), table(), "p")
+    )
+
+
+def test_other_locations_are_checked_and_only_matching_ones_stay_paths():
+    class Variants(Provider):
+        async def json(self, url, payload=None, **kwargs):
+            if payload is None and "/Other/" in url:
+                body = metadata()
+                body["variables"].append(
+                    {"code": "Extra", "values": ["x"], "valueTexts": ["x"]}
+                )
+                return body
+            return await super().json(url, payload, **kwargs)
+
+    listed = table()
+    same = dict(
+        listed, path="/Same", api_url=listed["api_url"].replace("Folder", "Same")
+    )
+    other = dict(
+        listed, path="/Other", api_url=listed["api_url"].replace("Folder", "Other")
+    )
+    listed["paths"] = [
+        {k: v for k, v in place.items() if k not in {"id", "title", "language"}}
+        for place in (listed, same, other)
+    ]
+    raw = asyncio.run(fetch_raw(Variants(), listed))
+    checks = {c["location"] for c in raw["derived"]["paths"] if c["match"]}
+    assert checks == {"Database/Same"}
+    assert set(raw["responses"]["variants"]) == {"Database/Same", "Database/Other"}
+    document = assemble_document(listed, "p", raw)
+    record = document["extension"]["pxweb_v1"]["source_record"]
+    assert [place["path"] for place in record["paths"]] == ["/Folder", "/Same"]
 
 
 def test_full_coverage_preserves_metadata_and_precedence_without_observations():

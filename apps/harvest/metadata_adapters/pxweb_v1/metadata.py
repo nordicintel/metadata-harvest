@@ -509,7 +509,77 @@ def _assemble(table, provider_code, metadata, samples):
     return result
 
 
-async def _generate(requests, table, provider_code):
+def location_key(place) -> str:
+    """``<database_id><path>`` of a listing location."""
+    return f"{place['database_id']}{place['path']}"
+
+
+def listed_paths(table, checks) -> dict:
+    """The table with only the locations whose variables matched the canonical
+    one (the canonical location itself always stays)."""
+    if not checks or "paths" not in table:
+        return table
+    matched = {c["location"] for c in checks if c.get("match") is True}
+    primary = location_key(table)
+    paths = [
+        place
+        for place in table["paths"]
+        if location_key(place) == primary or location_key(place) in matched
+    ]
+    return {**table, "paths": paths}
+
+
+async def _variants(requests, table, variables):
+    """GET the metadata of each other listed location and compare variable codes.
+
+    A table code found at several paths is one dataset only when every location
+    describes the same variables; otherwise the most recently published location
+    stays canonical and the others are kept as variants, not as paths.
+    """
+    primary = location_key(table)
+    codes = {variable["code"] for variable in variables}
+    checks, bodies = [], {}
+    for place in table.get("paths", []):
+        location = location_key(place)
+        if location == primary:
+            continue
+        check = {
+            "location": location,
+            "database_id": place["database_id"],
+            "path": place["path"],
+            "api_url": place["api_url"],
+        }
+        requests.stage = f"GET variant metadata {location}"
+        try:
+            body = await requests.json(place["api_url"])
+            other = {variable["code"] for variable in _variables(body)}
+        except Exception as error:  # noqa: BLE001 - recorded per location
+            check.update(match=None, error=f"{type(error).__name__}: {error}")
+        else:
+            bodies[location] = body
+            check["match"] = other == codes
+            if not check["match"]:
+                logger.info(
+                    "%s: location %s lists variables %s, canonical %s; kept as a "
+                    "variant, not a path",
+                    table["api_url"],
+                    location,
+                    sorted(other),
+                    sorted(codes),
+                )
+        checks.append(check)
+    return checks, bodies
+
+
+async def fetch_raw(requests, table):
+    """Fetch everything a table's document is built from, without building it.
+
+    Returns ``{"responses", "derived"}``: the provider configuration, the GET
+    metadata as received, the listing row and any variant locations' metadata as
+    responses; the category-covering POST samples stripped of observations, the
+    queries that produced them, the metadata after variable recovery (when it
+    differs from the GET body) and the variant checks as derived data.
+    """
     url = table["api_url"]
     requests.stage = "provider configuration"
     config = await requests.json(_config_url(url), optional=True)
@@ -543,8 +613,9 @@ async def _generate(requests, table, provider_code):
     )
     requests.stage = "GET table metadata"
     metadata = await requests.json(url)
+    original = deepcopy(metadata)
     variables = _variables(metadata)
-    samples = []
+    samples, queries = [], []
     covered = {variable["code"]: set() for variable in variables}
 
     async def fetch(selections, *, recovery=None):
@@ -556,6 +627,7 @@ async def _generate(requests, table, provider_code):
             for entry in payload["query"]:
                 if entry["code"] != recovery and selections[entry["code"]] is None:
                     entry["selection"] = {"filter": "top", "values": ["1"]}
+        queries.append(deepcopy(payload))
         sample = await _post(requests, url, payload)
         clean, coordinates = _read_sample(sample, variables, selections, limit)
         if recovery and any(
@@ -634,16 +706,36 @@ async def _generate(requests, table, provider_code):
     if any(covered[item["code"]] != set(item["values"]) for item in variables):
         logger.error("%s: category coverage incomplete after all POST queries", url)
         raise ValueError("Incomplete category coverage")
-    requests.stage = "assemble metadata"
-    result = _assemble(table, provider_code, metadata, samples)
+    checks, variant_bodies = await _variants(requests, table, variables)
     logger.debug(
-        "PXWeb metadata complete: %s; requests=%d categories=%d",
+        "PXWeb source complete: %s; requests=%d categories=%d variants=%d",
         url,
         requests.count,
         sum(map(len, covered.values())),
+        len(checks),
     )
+    responses = {"metadata": original, "table": deepcopy(table)}
+    if config:
+        responses["config"] = config
+    if variant_bodies:
+        responses["variants"] = variant_bodies
+    derived = {"samples": samples, "queries": queries}
+    if metadata != original:
+        derived["recovered"] = metadata
+    if checks:
+        derived["paths"] = checks
+    return {"responses": responses, "derived": derived}
+
+
+def assemble_document(table, provider_code, raw):
+    """Build the metadata-only document from fetched (or stored) source data."""
     from apps.harvest.metadata_adapters.pxweb_v1.mapping import map_metadata
 
+    responses, derived = raw["responses"], raw["derived"]
+    table = listed_paths(deepcopy(table), derived.get("paths"))
+    metadata = deepcopy(derived.get("recovered") or responses["metadata"])
+    config = responses.get("config") or {}
+    result = _assemble(table, provider_code, metadata, derived["samples"])
     record = {
         **deepcopy(table),
         "provider_code": provider_code,
@@ -652,6 +744,56 @@ async def _generate(requests, table, provider_code):
     return map_metadata(
         result, record, "pxweb_v1", max_cells=config.get("maxCells", _CELL_LIMIT)
     )
+
+
+async def _generate(requests, table, provider_code):
+    return assemble_document(table, provider_code, await fetch_raw(requests, table))
+
+
+def validate_raw(raw, record) -> None:
+    """Reject stored source data that does not belong to ``record`` or cannot
+    describe a table's complete variables."""
+    responses, derived = raw["responses"], raw["derived"]
+    table = responses["table"]
+    if (
+        table.get("id") != record.get("dataset_code", record.get("id"))
+        or table.get("language") != record.get("language")
+        or table.get("provider_code", record.get("provider_code"))
+        != record.get("provider_code")
+    ):
+        raise ValueError("Stored source identity mismatch")
+    _variables(derived.get("recovered") or responses["metadata"], complete=True)
+    if not isinstance(derived.get("samples"), list):
+        raise ValueError("Stored source lacks its POST samples")
+
+
+async def get_pxweb_source(table: dict) -> dict:
+    """Fetch one table's source data (see :func:`fetch_raw`) through Playwright.
+
+    Raises:
+        ValueError: Invalid input or malformed metadata.
+        RuntimeError: Retrieval failed; includes the table endpoint and stage.
+    """
+    provider_code = table.get("provider_code") or "provider"
+    _input(table, provider_code)
+    _config_url(table["api_url"])
+    async with async_playwright() as playwright:
+        requests = _Requests(playwright)
+        try:
+            return await fetch_raw(requests, deepcopy(table))
+        except Exception as error:
+            logger.error(
+                "PXWeb source for %s failed during %s after %d requests: %s",
+                table["api_url"],
+                requests.stage,
+                requests.count,
+                error,
+            )
+            raise RuntimeError(
+                f"PXWeb metadata generation failed during {requests.stage} for {table['api_url']}: {error}"
+            ) from error
+        finally:
+            await requests.close()
 
 
 async def get_pxweb_metadata(table: dict, *, provider_code: str) -> dict:
