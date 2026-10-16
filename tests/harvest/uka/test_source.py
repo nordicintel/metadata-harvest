@@ -13,7 +13,7 @@ from apps.harvest.metadata_adapters.uka.source import (
     plain_text,
     totals_url,
 )
-from tests.support.uka_support import RECORDED
+from tests.support.uka import RECORDED
 
 RESPONSES = RECORDED["responses"]
 CATALOGUE = RESPONSES["/api/indicators"]

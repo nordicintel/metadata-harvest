@@ -13,7 +13,7 @@ from apps.harvest.metadata_adapters.uka.source import (
     parse_totals,
 )
 from schema.validation import validate_metadata
-from tests.support.uka_support import RECORDED, UKA, export_text
+from tests.support.uka import RECORDED, UKA, export_text
 
 ENTRIES = {
     entry.id: entry

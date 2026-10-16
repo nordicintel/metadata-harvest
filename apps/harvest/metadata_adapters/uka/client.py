@@ -9,6 +9,7 @@ from typing import Any
 import aiohttp
 
 from apps.harvest.metadata_adapters.uka.source import CATALOGUE_URL, totals_url
+from harvest.lifecycle import Unreachable as _Unreachable
 from retrieval._uka_export import API_ROOT, EXPORT_PARAMS, NO_PERIOD_ERROR
 
 logger = logging.getLogger("uka_logger")
@@ -17,7 +18,7 @@ TIMEOUT = aiohttp.ClientTimeout(total=600, sock_connect=30, sock_read=120)
 USER_AGENT = "nordicintel-metadata-harvest/uka"
 
 
-class Unreachable(Exception):
+class Unreachable(_Unreachable):
     """UKÄ did not serve a resource retrieval depends on, after every retry."""
 
 

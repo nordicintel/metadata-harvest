@@ -15,7 +15,7 @@ from retrieval._uka_export import (
     parse_value,
     read_export,
 )
-from tests.support.uka_support import FIXTURES, RECORDED, UKA
+from tests.support.uka import FIXTURES, RECORDED, UKA
 
 
 def raw_export(indicator: int, period: str) -> str:

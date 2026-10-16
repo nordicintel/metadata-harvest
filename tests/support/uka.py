@@ -18,6 +18,9 @@ import aiohttp
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 
+from apps.harvest.metadata_adapters.uka.client import ExportFile, Unreachable
+from tests.support.binding import binding
+
 FIXTURES = Path("tests/fixtures") / "uka"
 RECORDED: dict[str, Any] = json.loads(
     (FIXTURES / "uka.json").read_text(encoding="utf-8")
@@ -135,3 +138,79 @@ def run_with_uka(fake: FakeUka, test: Callable[[RoutedSession], Awaitable[Any]])
             await server.close()
 
     return asyncio.run(main())
+
+
+PROVIDER = binding("uka", "uka", retry_cooldown_seconds=0)
+
+
+def link_key(indicator, period):
+    query = urlencode(
+        sorted({"export": "all", "export_type": "csv", "year": period}.items())
+    )
+    return f"/api/totals/{indicator}?{query}"
+
+
+class Source:
+    """In-memory UKÄ answering like UkaClient from the recordings."""
+
+    def __init__(self, ids=(67, 72)):
+        responses = RECORDED["responses"]
+        self.body = {
+            group: [item for item in items if item["id"] in ids]
+            for group, items in responses["/api/indicators"].items()
+        }
+        self.body = {group: items for group, items in self.body.items() if items}
+        self.totals_bodies = {i: responses[f"/api/totals/{i}"] for i in ids}
+        self.links = {}
+        for i in ids:
+            for item in self.totals_bodies[i]["yearly_totals"]["totals"]:
+                period = str(item["year"]).strip()
+                self.links[(i, period)] = responses[link_key(i, period)]["url"]
+        self.files = {}
+        for path, entry in RECORDED["files"].items():
+            text = export_text(entry["file"].removesuffix(".gz"))
+            self.files[UKA + path] = (text, entry["last_modified"])
+        self.down = set()
+        self.catalogue_error = None
+        self.downloads, self.heads, self.totals_calls = [], [], []
+
+    async def catalogue(self):
+        if self.catalogue_error:
+            raise self.catalogue_error
+        return copy.deepcopy(self.body)
+
+    async def totals(self, indicator):
+        self.totals_calls.append(indicator)
+        if indicator in self.down:
+            raise Unreachable(f"totals {indicator} timed out")
+        return copy.deepcopy(self.totals_bodies[indicator])
+
+    async def export_link(self, indicator, period):
+        if indicator in self.down:
+            raise Unreachable("link timed out")
+        return self.links.get((indicator, period))
+
+    async def export(self, url):
+        self.downloads.append(url)
+        if url not in self.files:
+            return None
+        text, modified = self.files[url]
+        return ExportFile(url, text, modified)
+
+    async def available(self, url):
+        self.heads.append(url)
+        return url in self.files
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    from apps.harvest.metadata_adapters.uka.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result

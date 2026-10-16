@@ -47,11 +47,6 @@ def _entryscape_options(args):
 # whole list, the run() keyword arguments taken from the parsed CLI arguments, and
 # the collect() keyword arguments taken from the first configured binding.
 SIMPLE_ADAPTERS = {
-    "uka": (
-        "single",
-        lambda a: {"indicators": a.indicator, "full": a.full},
-        lambda b: {},
-    ),
     "trafa": (
         "single",
         lambda a: {"products": a.product, "languages": a.language},

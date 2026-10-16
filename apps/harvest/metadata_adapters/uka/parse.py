@@ -4,21 +4,19 @@ from collections.abc import Iterator
 
 from apps.harvest.metadata_adapters.uka.mapping import Scan, build_dataset
 from apps.harvest.metadata_adapters.uka.source import parse_catalogue, parse_totals
-from apps.harvest.metadata_adapters.uka.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key
 from registry import ServiceBinding
 
-
-def stored_key(code: str) -> str:
-    return source_key(PROVIDER_CODE, str(code), "sv")
+PROVIDER_CODE = "uka"
 
 
 def withheld_keys(state: dict) -> set[str]:
-    return {
-        stored_key(code)
-        for code, info in state.get("indicators", {}).items()
-        if info.get("status") == "withheld"
-    }
+    result = set()
+    for key, info in state.get("indicators", {}).items():
+        if info.get("status") == "withheld":
+            language, code = key.split("/", 1)
+            result.add(source_key(PROVIDER_CODE, code, language))
+    return result
 
 
 def document_from(responses: dict, derived: dict) -> dict:

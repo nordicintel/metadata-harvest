@@ -78,8 +78,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return _discovery(report, resource=lambda r: r == "kpi")
     if adapter == "trafa":
         return _scoped(report, discovery_resources=("products",), endpoint_prefix="*/")
-    if adapter == "uka":
-        return []  # the catalogue failing raises; indicator failures are individual
     if adapter == "entryscape":
         failures = _discovery(report)
         interrupted = report.get("interrupted") or ""

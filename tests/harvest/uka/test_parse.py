@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from tests.harvest.test_uka_workflow import PROVIDER, Source, execute
+from tests.support.uka import PROVIDER, Source, execute
 
 GOLDEN = Path("tests/fixtures/uka/accepted")
 

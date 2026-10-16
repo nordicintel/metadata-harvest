@@ -11,7 +11,7 @@ import pytest
 
 from retrieval.data_adapters.uka import export_request, retrieve
 from schema.validation import validate_retrieval
-from tests.support.uka_support import (
+from tests.support.uka import (
     FIXTURES,
     UKA,
     FakeUka,

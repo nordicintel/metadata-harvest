@@ -56,8 +56,12 @@ def test_individual_errors_do_not_fail_any_adapter():
         "kolada": {"errors": [{"stage": "metadata", "resource": "ou/N1"}]},
         "uka": {
             "errors": [
-                {"stage": "endpoint", "resource": "97"},
-                {"stage": "discovery", "resource": "999"},
+                {"stage": "endpoint", "resource": "sv/97"},
+                {
+                    "stage": "discovery",
+                    "resource": "*/999",
+                    "error": "LookupError: Unknown UKÄ indicator",
+                },
             ]
         },
         "sdb": {"errors": [{"stage": "metadata", "resource": "sv/amning"}]},
