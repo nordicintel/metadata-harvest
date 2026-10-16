@@ -396,7 +396,9 @@ class _Harvester:
         try:
             describable = parse_cube(rows, columns) is not None
         except ValueError as error:  # stored anyway; parse reports it
-            logger.warning("%s|%s: dimension rows not understood: %s", area.code, code, error)
+            logger.warning(
+                "%s|%s: dimension rows not understood: %s", area.code, code, error
+            )
             describable = True
         if not describable:
             logger.info(

@@ -12,6 +12,7 @@ logger = logging.getLogger("dataanalys_logger")
 
 STATE = "state/current.jsonl.gz"
 REPORT = "reports/latest.json"
+__all__ = ["PROVIDER_CODE", "REPORT", "STATE", "load_state", "save"]
 
 
 def load_state(root: Path) -> dict:
