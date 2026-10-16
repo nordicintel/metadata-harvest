@@ -11,23 +11,26 @@ from pathlib import Path
 
 import aiohttp
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.uka.client import TIMEOUT, USER_AGENT, UkaClient
 from apps.harvest.metadata_adapters.uka.source import parse_catalogue
 from apps.harvest.metadata_adapters.uka.workflow import fetch_metadata
 from apps.harvest.storage import write
 from apps.model.validation import validate_retrieval
+from registry import ServiceBinding
 from retrieval.data_adapters.uka import REQUIRED_METADATA, retrieve
 
 INDICATORS = {"15", "72", "97"}
 
 
-async def check(provider: dict) -> dict:
+async def check(binding: ServiceBinding) -> dict:
     report = []
     async with aiohttp.ClientSession(
         headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
     ) as session:
-        client = UkaClient(provider, session=session)
+        client = UkaClient(
+            binding.options, base_url=binding.endpoint_url, session=session
+        )
         entries = [
             e
             for e in parse_catalogue(await client.catalogue())
@@ -74,11 +77,8 @@ async def check(provider: dict) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument("--report", type=Path, default=Path("output/uka-live.json"))
     args = parser.parse_args()
-    result = asyncio.run(
-        check(providers_for_adapter("uka", legacy_path=args.providers)[0])
-    )
+    result = asyncio.run(check(registry.load().bindings("uka")[0]))
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

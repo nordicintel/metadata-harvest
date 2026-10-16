@@ -39,7 +39,6 @@ from apps.harvest.metadata_adapters.entryscape.datasets import MAPPING_VERSION, 
 from apps.harvest.metadata_adapters.entryscape.discovery import (
     discover_provider as discover,
 )
-from apps.harvest.metadata_adapters.entryscape.discovery import within_catalog_scope
 from apps.harvest.metadata_adapters.entryscape.parse import stored_key
 from apps.harvest.metadata_adapters.entryscape.state import (
     CURRENT,
@@ -57,6 +56,7 @@ from apps.harvest.source_store import SourceStore, harvest_manifest
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("entryscape_logger")
 
@@ -135,12 +135,12 @@ def publish(tables: dict, current: dict, store: SourceStore, output: Path) -> No
     save_current(output, current)
 
 
-async def discover_provider(provider: dict, *, client=None) -> dict:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> dict:
     """The provider's single-language discovery scope."""
-    logger.debug("Discovering provider %s on its own", provider["code"])
-    connection = client or Client(provider["base_url"])
+    logger.debug("Discovering provider %s on its own", binding.source_code)
+    connection = client or Client(binding.endpoint_url)
     try:
-        async for scope in discover(provider, client=connection):
+        async for scope in discover(binding, client=connection):
             return scope
     finally:
         if client is None:
@@ -160,7 +160,7 @@ async def fetch_metadata(record: dict, *, client) -> dict:
 
 
 async def run(
-    providers: list[dict],
+    bindings: list[ServiceBinding],
     data: Path,
     output: Path,
     *,
@@ -199,8 +199,8 @@ async def run(
     strategies = Counter()
     done = 0
     wanted = set(selected) if selected else None
-    chosen = [p for p in providers if wanted is None or p["code"] in wanted]
-    for code in sorted((wanted or set()) - {p["code"] for p in providers}):
+    chosen = [b for b in bindings if wanted is None or b.source_code in wanted]
+    for code in sorted((wanted or set()) - {b.source_code for b in bindings}):
         logger.warning("Requested provider %r is not configured; skipping it", code)
         errors.append(
             {"stage": "discovery", "resource": code, "error": "Unknown provider"}
@@ -210,7 +210,7 @@ async def run(
         "max_requests=%d, max_paging_requests=%d, requests_per_second=%.2f, "
         "preflight=%s",
         len(chosen),
-        len(providers),
+        len(bindings),
         ", ".join(sorted(wanted)) if wanted else "all",
         max_requests,
         max_paging_requests,
@@ -370,8 +370,8 @@ async def run(
             logger.info("Preflight skipped")
         table_errors = 0
         progress.update(phase="metadata", total=len(chosen), processed=0)
-        for position, provider in enumerate(chosen, start=1):
-            code = provider["code"]
+        for position, binding in enumerate(chosen, start=1):
+            code = binding.source_code
             progress.update(current=code, operation="discovery")
             logger.info(
                 "[%d/%d] Provider %s: discovering tables (%d/%d requests spent)",
@@ -385,9 +385,9 @@ async def run(
             decisions = Counter()
             try:
                 scope = await call(
-                    provider["base_url"],
-                    lambda client, provider=provider: discover_provider(
-                        provider, client=client
+                    binding.endpoint_url,
+                    lambda client, binding=binding: discover_provider(
+                        binding, client=client
                     ),
                 )
             except Blocked:
@@ -406,7 +406,7 @@ async def run(
                 for text in scope["errors"]:
                     fail("discovery", code, RuntimeError(text))
                 if any("Connect" in e and not unresolvable(e) for e in scope["errors"]):
-                    raise Blocked(f"{provider['base_url']}: {scope['errors']}")
+                    raise Blocked(f"{binding.endpoint_url}: {scope['errors']}")
             current["providers"][code] = {
                 "checked_at": stamp,
                 "complete": scope["complete"],
@@ -425,11 +425,7 @@ async def run(
             )
             if scope["complete"] and wanted is None:
                 for key in [
-                    k
-                    for k in tables
-                    if k.startswith(code + "/")
-                    and k not in listed
-                    and within_catalog_scope(provider, _discovery(store, tables[k]))
+                    k for k in tables if k.startswith(code + "/") and k not in listed
                 ]:
                     tables.pop(key)
                     store.remove(stored_key(tables_key(key)))

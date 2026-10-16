@@ -9,18 +9,19 @@ from pathlib import Path
 import pytest
 
 from apps.harvest.source_store import SourceStore, source_key
+from tests.support.binding import binding
 from tests.support.worker_document import legacy
 
 ADAPTER = "pxweb_v2"
-PROVIDERS = [{"code": "scb"}]
+BINDINGS = [binding("pxweb_v2", "scb")]
 STAMP = "2026-10-16T05:00:00+00:00"
 
 
 def fake_parse(monkeypatch, *, failing=(), withheld=()):
     """Register a parse module whose documents come from the stored envelope."""
 
-    def documents(store, state, providers, *, portal=None):
-        assert providers == PROVIDERS
+    def documents(store, state, bindings, *, portal=None):
+        assert bindings == BINDINGS
         for key in store.entries():
             envelope = store.get(key)
             if key in failing:
@@ -70,7 +71,7 @@ def test_build_writes_collection_and_report(tmp_path, monkeypatch):
 
     fake_parse(monkeypatch)
     seed(tmp_path / "data", "T1", "T2")
-    result = build(ADAPTER, tmp_path / "data", tmp_path / "out", providers=PROVIDERS)
+    result = build(ADAPTER, tmp_path / "data", tmp_path / "out", bindings=BINDINGS)
     assert result["status"] == "success"
     assert result["counts"] == {"parsed": 2, "failed": 0, "withheld": 0}
     assert {
@@ -95,7 +96,7 @@ def test_build_reports_failed_documents_and_writes_siblings(tmp_path, monkeypatc
 
     fake_parse(monkeypatch, failing={"scb/T2/sv"})
     seed(tmp_path / "data", "T1", "T2")
-    result = build(ADAPTER, tmp_path / "data", tmp_path / "out", providers=PROVIDERS)
+    result = build(ADAPTER, tmp_path / "data", tmp_path / "out", bindings=BINDINGS)
     assert result["status"] == "completed_with_errors"
     assert result["counts"] == {"parsed": 1, "failed": 1, "withheld": 0}
     assert result["errors"] == [
@@ -121,7 +122,7 @@ def test_build_skips_withheld_entries_and_rejects_invalid_documents(
         "scb/T3/sv", responses={"document": broken}, updated=None, retrieved_at=STAMP
     )
     store.save()
-    result = build(ADAPTER, tmp_path / "data", tmp_path / "out", providers=PROVIDERS)
+    result = build(ADAPTER, tmp_path / "data", tmp_path / "out", bindings=BINDINGS)
     assert result["counts"] == {"parsed": 1, "failed": 1, "withheld": 1}
     assert result["errors"][0]["key"] == "scb/T3/sv"
     assert [
@@ -140,7 +141,7 @@ def test_apply_refuses_changed_baseline_then_replaces(tmp_path, monkeypatch):
     metadata.mkdir(parents=True)
     stale = metadata / "old__multilingual__000000000000.jsonl.gz"
     stale.write_bytes(gzip.compress(b""))
-    build(ADAPTER, data, out, providers=PROVIDERS)
+    build(ADAPTER, data, out, bindings=BINDINGS)
     (metadata / "intruder.jsonl.gz").write_bytes(b"x")
     with pytest.raises(ValueError, match="changed since"):
         apply(ADAPTER, data, out)
@@ -161,14 +162,14 @@ def test_apply_refuses_empty_or_shrinking_source(tmp_path, monkeypatch):
     fake_parse(monkeypatch)
     data, out = tmp_path / "data", tmp_path / "out"
     seed(data, "T1", "T2")
-    build(ADAPTER, data, out, providers=PROVIDERS)
+    build(ADAPTER, data, out, bindings=BINDINGS)
     apply(ADAPTER, data, out)
     assert len(collection(data / ADAPTER)) == 2
 
     store = SourceStore(data / ADAPTER / "source", ADAPTER)
     store.remove("scb/T2/sv")
     store.save()
-    result = build(ADAPTER, data, out, providers=PROVIDERS)
+    result = build(ADAPTER, data, out, bindings=BINDINGS)
     assert result["committed_datasets"] == 2 and result["counts"]["parsed"] == 1
     with pytest.raises(ValueError, match="allow-shrink"):
         apply(ADAPTER, data, out)
@@ -178,7 +179,7 @@ def test_apply_refuses_empty_or_shrinking_source(tmp_path, monkeypatch):
 
     store.remove("scb/T1/sv")
     store.save()
-    build(ADAPTER, data, out, providers=PROVIDERS)
+    build(ADAPTER, data, out, bindings=BINDINGS)
     with pytest.raises(ValueError, match="no source entries"):
         apply(ADAPTER, data, out, allow_shrink=True)
     assert len(collection(data / ADAPTER)) == 1
@@ -199,7 +200,7 @@ def test_cli_build_all_iterates_available_adapters(tmp_path, monkeypatch):
         sys, "argv", ["parsing", "build", "--all", "--output", str(tmp_path)]
     )
     cli.main()
-    from apps.harvest.registry import ADAPTERS
+    from apps.harvest.metadata_adapters import ADAPTERS
 
-    assert [c[0] for c in calls] == [k for k, v in ADAPTERS.items() if v.available]
+    assert [c[0] for c in calls] == list(ADAPTERS)
     assert calls[0][1] == tmp_path / calls[0][0]

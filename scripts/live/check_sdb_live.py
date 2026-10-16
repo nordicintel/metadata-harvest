@@ -8,21 +8,22 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.sdb.client import SdbClient
 from apps.harvest.metadata_adapters.sdb.mapping import time_unit_from_swedish_label
 from apps.harvest.metadata_adapters.sdb.workflow import fetch_metadata
 from apps.harvest.storage import write
 from apps.model.validation import validate_retrieval
+from registry import ServiceBinding
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.sdb import REQUIRED_METADATA, retrieve
 
 SAMPLE = (("sv", "amning"), ("sv", "dodsorsaker"), ("en", "dodsorsaker"))
 
 
-async def check(provider: dict) -> dict:
+async def check(binding: ServiceBinding) -> dict:
     report = []
-    client = SdbClient(provider)
+    client = SdbClient(binding.options, base_url=binding.endpoint_url)
     try:
         listings = {
             language: {row["namn"]: row for row in await client.get(language)}
@@ -87,11 +88,8 @@ async def check(provider: dict) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument("--report", type=Path, default=Path("output/sdb-live.json"))
     args = parser.parse_args()
-    result = asyncio.run(
-        check(providers_for_adapter("sdb", legacy_path=args.providers)[0])
-    )
+    result = asyncio.run(check(registry.load().bindings("sdb")[0]))
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

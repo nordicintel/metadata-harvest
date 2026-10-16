@@ -9,6 +9,7 @@ from apps.harvest.metadata_adapters.riksbank.mapping import (
 )
 from apps.harvest.metadata_adapters.riksbank.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key
+from registry import ServiceBinding
 
 SHARED_NAMES = {
     "swea": ("swea_groups.json", "swea_series.json"),
@@ -36,7 +37,7 @@ def document_from(record: dict, responses: dict) -> dict:
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     for key in sorted(store.entries()):
         try:

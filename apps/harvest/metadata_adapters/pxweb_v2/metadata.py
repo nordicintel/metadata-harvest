@@ -61,10 +61,8 @@ async def fetch_source(record: dict, *, client: Client) -> tuple[dict, dict]:
             ):
                 raise ValueError("Rediscovered table identity mismatch")
             current = table_record(
-                {
-                    "code": record["provider_code"],
-                    "base_api_url": record["base_api_url"],
-                },
+                record["provider_code"],
+                record["base_api_url"],
                 record["language"],
                 table,
             )

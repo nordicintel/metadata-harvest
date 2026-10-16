@@ -64,7 +64,7 @@ class DataanalysClient:
 
     def __init__(
         self,
-        provider: Mapping[str, Any] | None = None,
+        options: Mapping[str, Any] | None = None,
         *,
         session: aiohttp.ClientSession | None = None,
         attempts: int = 4,
@@ -72,7 +72,7 @@ class DataanalysClient:
         interval: float | None = None,
     ) -> None:
         self._interval = (
-            float((provider or {}).get("request_interval_seconds", 1.0))
+            float((options or {}).get("request_interval_seconds", 1.0))
             if interval is None
             else interval
         )

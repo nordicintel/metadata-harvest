@@ -29,8 +29,7 @@ from apps.harvest.metadata_adapters.entryscape.client import (
     Client,
     RateLimited,
 )
-from apps.harvest.sources import catalog_configurations
-from apps.model.models import SourceIdentity
+from registry import ServiceBinding
 
 logger = logging.getLogger("entryscape_logger")
 
@@ -43,30 +42,6 @@ DISTRIBUTION_QUERY = r"rdfType:http\://www.w3.org/ns/dcat#Distribution AND metad
 TABLE_URL = re.compile(
     r"^https?://[^/]+/rowstore/dataset/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"
 )
-
-
-def within_catalog_scope(provider: dict, record: dict) -> bool:
-    """A shared host cannot widen its configured catalog/context selection."""
-    source = SourceIdentity(
-        adapter="entryscape",
-        source_code=provider["code"],
-        dataset_code=record.get("dataset_code", "unknown"),
-        language=record.get("language", "sv"),
-    )
-    binding, catalogs = catalog_configurations(source, record)
-    return binding is None or bool(catalogs)
-
-
-def _in_scope(provider: dict, hit: dict) -> bool:
-    _, properties = _subject(hit, DCAT + "Distribution")
-    urls = [o.get("value", "") for o in _values(properties, DCAT + "accessURL")]
-    return any(
-        within_catalog_scope(
-            provider, {"dataset_code": TABLE_URL.match(url).group(1), "entry": hit}
-        )
-        for url in urls
-        if TABLE_URL.match(url)
-    )
 
 
 async def _search_pass(client: Client, query: str) -> tuple[dict[str, dict], int]:
@@ -227,7 +202,7 @@ def _parent_dataset(hit: dict) -> str | None:
 
 
 async def discover_provider(
-    provider: dict, *, client: Client | None = None
+    binding: ServiceBinding, *, client: Client | None = None
 ) -> AsyncIterator[dict]:
     """Yield one scope per configured language; only complete scopes prove absence.
 
@@ -235,26 +210,25 @@ async def discover_provider(
     ``{"code": "catalogalese", "base_url": "https://catalog.ale.se", "languages": ["sv"]}``.
     """
     if client is None:
-        async with Client(provider["base_url"]) as owned:
-            async for scope in discover_provider(provider, client=owned):
+        async with Client(binding.endpoint_url) as owned:
+            async for scope in discover_provider(binding, client=owned):
                 yield scope
         return
     distributions = datasets = None
     error, passes = None, 0
     logger.info(
         "Discovering RowStore tables on %s (%s, languages %s)",
-        provider["base_url"],
-        provider["code"],
-        ", ".join(provider["languages"]),
+        binding.endpoint_url,
+        binding.source_code,
+        ", ".join(binding.options["languages"]),
     )
     try:
         distributions, passes = await search_all(client, DISTRIBUTION_QUERY)
         found = len(distributions)
-        distributions = [hit for hit in distributions if _in_scope(provider, hit)]
         logger.info(
             "%s: %d RowStore distributions found in %d search pass(es); "
             "%d within the configured catalog scope, %d excluded",
-            provider["code"],
+            binding.source_code,
             found,
             passes,
             len(distributions),
@@ -264,14 +238,14 @@ async def discover_provider(
         datasets = await fetch_datasets(client, referenced)
     except (RateLimited, BudgetExhausted) as limit:
         logger.warning(
-            "Discovery on %s stopped by run limit: %s", provider["code"], limit
+            "Discovery on %s stopped by run limit: %s", binding.source_code, limit
         )
         raise  # the run's limits stop everything, not just this instance
     except Exception as failure:
         error = f"{type(failure).__name__}: {failure}"
-        logger.error("Discovery on %s failed: %s", provider["code"], error)
+        logger.error("Discovery on %s failed: %s", binding.source_code, error)
 
-    for language in provider["languages"]:
+    for language in binding.options["languages"]:
         scope = {
             "language": language,
             "complete": False,
@@ -283,7 +257,7 @@ async def discover_provider(
         if error:
             logger.warning(
                 "%s [%s]: scope is incomplete, so absent tables prove nothing",
-                provider["code"],
+                binding.source_code,
                 language,
             )
             scope["errors"].append(error)
@@ -311,10 +285,10 @@ async def discover_provider(
                 distribution_modified = _first(properties, DCTERMS + "modified")
                 dataset_modified = _first(dataset, DCTERMS + "modified")
                 by_table[code] = {
-                    "provider_code": provider["code"],
+                    "provider_code": binding.source_code,
                     "dataset_code": code,
                     "language": language,
-                    "base_url": provider["base_url"],
+                    "base_url": binding.endpoint_url,
                     "table_url": table_url,
                     "title": _pick(_texts(dataset, DCTERMS + "title"), language)
                     or _pick(_texts(properties, DCTERMS + "title"), language),
@@ -342,7 +316,7 @@ async def discover_provider(
         logger.info(
             "%s [%s]: %d distinct tables discovered (%d listed more than once, "
             "%d distributions without a table URL)",
-            provider["code"],
+            binding.source_code,
             language,
             len(by_table),
             sum(1 for r in by_table.values() if len(r["paths"]) > 1),

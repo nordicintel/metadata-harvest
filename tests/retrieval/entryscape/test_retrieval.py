@@ -16,6 +16,7 @@ from retrieval.data_adapters.entryscape import (
     number,
     retrieve,
 )
+from tests.support.binding import binding
 from tests.support.entryscape import page
 
 
@@ -109,7 +110,9 @@ def run_with_server(test):
         app.router.add_get("/rowstore/dataset/{code}", handle)
         async with TestServer(app) as server:
             url = str(server.make_url("")).rstrip("/")
-            document = to_document(dataset_record(url), {"code": "ex", "label": "Ex"})
+            document = to_document(
+                dataset_record(url), binding("entryscape", "ex", label="Ex")
+            )
             metadata = {
                 "/id": document["id"],
                 "/dimension": document["dimension"],

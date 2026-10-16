@@ -13,8 +13,7 @@
 | Track open bugs, features and investigations | [Backlog](backlog.md) |
 
 Adapter-specific scope, source quirks and limitations are linked from the harvesting
-guide. Configuration and model details are generated: [source inventory](configuration/inventory.md),
-[configuration fields](configuration/reference.md), and [metadata fields](model/reference.md).
+guide. The [service inventory](configuration/inventory.md) is generated from `config/`.
 
 ## Maintaining this baseline
 

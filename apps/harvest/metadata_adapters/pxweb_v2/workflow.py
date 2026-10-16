@@ -41,6 +41,7 @@ from apps.harvest.source_store import (
 from apps.harvest.storage import JsonlStore, filename, now, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("pxweb_v2_logger")
 
@@ -94,11 +95,12 @@ def load_stores(root: Path) -> tuple[SourceStore, JsonlStore, JsonlStore]:
     )
 
 
-def validate_provider(provider: dict) -> None:
+def validate_binding(binding: ServiceBinding) -> None:
+    languages = binding.options.get("languages", [])
     if (
-        provider["code"] != "scb"
-        or set(provider["languages"]) != {"sv", "en"}
-        or len(provider["languages"]) != 2
+        binding.source_code != "scb"
+        or set(languages) != {"sv", "en"}
+        or len(languages) != 2
     ):
         raise ValueError("The v2 job currently supports only SCB sv/en")
 
@@ -184,7 +186,7 @@ def _write_candidate(output, store, codes, listings, state, base):
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: str | Path,
     output: str | Path,
     *,
@@ -193,7 +195,7 @@ async def run(
     client: Client | None = None,
 ) -> dict:
     """Build a complete candidate artifact; only collect() changes published data."""
-    validate_provider(provider)
+    validate_binding(binding)
     data, output = Path(data), Path(output)
     if (
         data.resolve() == output.resolve()
@@ -204,9 +206,9 @@ async def run(
     if output.exists() and any(output.iterdir()):
         raise ValueError("Worker output must be empty")
     if client is None:
-        async with Client(provider["base_api_url"]) as owned:
+        async with Client(binding.endpoint_url) as owned:
             return await run(
-                provider,
+                binding,
                 data,
                 output,
                 full=full,
@@ -215,13 +217,13 @@ async def run(
             )
     logger.info(
         "PXWeb v2 run starting: provider=%s languages=%s mode=%s budget=%.0fs",
-        provider["code"],
-        provider["languages"],
+        binding.source_code,
+        binding.options["languages"],
         "full" if full else "refresh",
         budget_seconds,
     )
     deadline = time.monotonic() + budget_seconds
-    progress = Progress("pxweb_v2", provider["code"])
+    progress = Progress("pxweb_v2", binding.source_code)
     progress.update(phase="loading", full=full)
     base = harvest_manifest(data)
     if (data / "source").exists():
@@ -249,7 +251,7 @@ async def run(
     state = {
         "run_id": uuid4().hex,
         "full": full,
-        "provider": provider,
+        "provider": binding.source_code,
         "started_at": now(),
         "tasks": {},
         "scopes": [],
@@ -275,7 +277,7 @@ async def run(
         len(dead_codes),
     )
     progress.update(phase="discovery")
-    async for scope in discover_provider(provider, client=client):
+    async for scope in discover_provider(binding, client=client):
         language = scope["language"]
         progress.update(
             language=language,
@@ -287,7 +289,7 @@ async def run(
                 "tables",
                 language,
                 error,
-                url=provider["base_api_url"] + "/tables",
+                url=binding.endpoint_url + "/tables",
             )
         state["scopes"].append(
             {
@@ -483,7 +485,7 @@ async def run(
                 row["dataset_code"],
                 language,
                 task["error"],
-                url=f"{provider['base_api_url']}/tables/{quote(row['dataset_code'], safe='')}/metadata",
+                url=f"{binding.endpoint_url}/tables/{quote(row['dataset_code'], safe='')}/metadata",
             )
         succeeded += task["status"] == "success"
         failed_count += task["status"] == "failed"
@@ -555,7 +557,7 @@ async def run(
                         code,
                         language,
                         f"{type(error).__name__}: {error}",
-                        url=f"{provider['base_api_url']}/codelists/{quote(code, safe='')}",
+                        url=f"{binding.endpoint_url}/codelists/{quote(code, safe='')}",
                         table=row["dataset_code"],
                     )
                     continue
@@ -671,7 +673,8 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
         raise ValueError("Stale worker artifact or changed published state")
     if manifest(output) != result["manifest"]:
         raise ValueError("Worker artifact content does not match its manifest")
-    validate_provider(result["provider"])
+    if result["provider"] != "scb":
+        raise ValueError("The v2 job currently supports only SCB")
     for relative in result["manifest"]:
         path = Path(relative)
         allowed = (

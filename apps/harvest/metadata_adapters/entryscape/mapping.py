@@ -16,6 +16,7 @@ from apps.harvest.metadata_adapters.entryscape.datasets import (
     PART_DIMENSION,
 )
 from apps.harvest.validation import validate_metadata
+from registry import ServiceBinding
 
 logger = logging.getLogger("entryscape_logger")
 
@@ -89,7 +90,7 @@ def _metadata_url(record: dict) -> str | None:
     return None
 
 
-def to_document(dataset: dict, provider: dict) -> dict:
+def to_document(dataset: dict, binding: ServiceBinding) -> dict:
     """The validated metadata-only Dataset document for one dataset record."""
     ids, sizes, dimensions, filters, time_ids = [], [], {}, {}, []
     for spec in dataset["dimensions"]:
@@ -165,7 +166,7 @@ def to_document(dataset: dict, provider: dict) -> dict:
         "version": "2.0",
         "class": "dataset",
         "label": dataset["title"] or dataset["dataset_code"],
-        "source": provider.get("label") or dataset["provider_code"],
+        "source": binding.label or dataset["provider_code"],
         "note": notes,
         "id": ids,
         "size": sizes,

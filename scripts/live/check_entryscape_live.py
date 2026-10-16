@@ -11,23 +11,24 @@ from pathlib import Path
 
 import aiohttp
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.entryscape.client import Client, Pacer
 from apps.harvest.metadata_adapters.entryscape.parse import published_documents
 from apps.harvest.metadata_adapters.entryscape.workflow import discover_provider
 from apps.harvest.storage import write
 from apps.model.validation import validate_retrieval
+from registry import ServiceBinding
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.entryscape import REQUIRED_METADATA, retrieve
 
 PROVIDER = "catalogalese"
 
 
-async def check(provider: dict, data: Path) -> dict:
-    report = {"provider": provider["code"]}
+async def check(binding: ServiceBinding, data: Path) -> dict:
+    report = {"provider": binding.source_code}
     pacer = Pacer(1.0, budget=12, max_throttles=1)
-    async with Client(provider["base_url"], pacer=pacer) as client:
-        scope = await discover_provider(provider, client=client)
+    async with Client(binding.endpoint_url, pacer=pacer) as client:
+        scope = await discover_provider(binding, client=client)
         report["discovery"] = {
             "complete": scope["complete"],
             "tables": len(scope["records"]),
@@ -82,16 +83,15 @@ async def check(provider: dict, data: Path) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--provider", default=PROVIDER)
-    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument("--data", type=Path, default=Path("data/entryscape"))
     parser.add_argument(
         "--report", type=Path, default=Path("output/entryscape-live.json")
     )
     args = parser.parse_args()
     provider = next(
-        p
-        for p in providers_for_adapter("entryscape", legacy_path=args.providers)
-        if p["code"] == args.provider
+        b
+        for b in registry.load().bindings("entryscape")
+        if b.source_code == args.provider
     )
     result = asyncio.run(check(provider, args.data))
     write(args.report, result)

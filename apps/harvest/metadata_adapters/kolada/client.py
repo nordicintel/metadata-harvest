@@ -63,10 +63,11 @@ class BudgetExpired(TimeoutError):
 class KoladaClient:
     """Shared limiter over at most four concurrent requests."""
 
-    def __init__(self, provider: dict, *, http=None):
-        self.base = provider.get("base_url", BASE_URL).rstrip("/")
-        self.delay = provider.get("rate_limit", 0.225)
-        self.timeout = provider.get("timeout", 150)
+    def __init__(self, options: dict | None = None, *, base_url=BASE_URL, http=None):
+        options = options or {}
+        self.base = base_url.rstrip("/")
+        self.delay = options.get("rate_limit", 0.225)
+        self.timeout = options.get("timeout", 150)
         self.http = http or httpx.AsyncClient(timeout=self.timeout)
         self.owned = http is None
         self.lock = asyncio.Lock()

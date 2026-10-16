@@ -10,6 +10,7 @@ from apps.harvest.metadata_adapters.smhi_emissions.source import (
 )
 from apps.harvest.metadata_adapters.smhi_emissions.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
+from registry import ServiceBinding
 from retrieval.data_adapters.smhi_emissions import DATASET_PREFIX
 
 
@@ -23,7 +24,7 @@ def withheld_keys(state: dict) -> set[str]:
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     tree = store.get_shared(PROVIDER_CODE, "filteroptions.json")
     try:

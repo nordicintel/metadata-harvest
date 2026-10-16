@@ -39,6 +39,7 @@ from apps.harvest.source_store import SourceStore, harvest_manifest
 from apps.harvest.storage import now, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("kolada_logger")
 
@@ -50,9 +51,9 @@ def _allowed_path(relative: str) -> bool:
     return relative in {STATE, REPORT} or relative.startswith("source/")
 
 
-async def discover_provider(provider: dict, *, client=None) -> dict:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> dict:
     """Return fully paginated native listings using an injectable connection."""
-    connection = client or KoladaClient(provider)
+    connection = client or KoladaClient(binding.options, base_url=binding.endpoint_url)
     try:
         listings = {"municipality": list(load_municipalities().values())}
         for name in ("kpi", *LISTINGS):
@@ -91,7 +92,7 @@ def scan_start(refreshed: str | None) -> str | None:
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: Path,
     output: Path,
     *,
@@ -139,7 +140,7 @@ async def run(
         len(state["pending"]),
         len(store.entries()),
     )
-    connection = client or KoladaClient(provider)
+    connection = client or KoladaClient(binding.options, base_url=binding.endpoint_url)
     if isinstance(connection, KoladaClient):
         connection.deadline = monotonic() + budget_seconds
     progress = Progress("kolada", "kolada")

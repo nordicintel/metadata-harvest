@@ -15,6 +15,7 @@ from apps.harvest.metadata_adapters.forsakringskassan.source import (
 )
 from apps.harvest.metadata_adapters.forsakringskassan.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
+from registry import ServiceBinding
 
 
 def meta_name(report: str) -> str:
@@ -56,7 +57,7 @@ def document_from(envelope: dict, report: Report, meta: dict, texts: dict) -> di
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     texts = store.get_shared(PROVIDER_CODE, "texts.json")
     by_report: dict[str, list[str]] = {}

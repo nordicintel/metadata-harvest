@@ -35,13 +35,14 @@ class SdbClient:
 
     def __init__(
         self,
-        provider: dict | None = None,
+        options: dict | None = None,
         *,
+        base_url: str = API_ROOT,
         session: aiohttp.ClientSession | None = None,
         attempts: int = 3,
         retry_delay: float = 2.0,
     ) -> None:
-        self._api_root = (provider or {}).get("base_url", API_ROOT).rstrip("/")
+        self._api_root = base_url.rstrip("/")
         self._session = session
         self._owned = session is None
         self._attempts = attempts

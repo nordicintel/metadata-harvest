@@ -8,25 +8,30 @@ import os
 import subprocess
 from pathlib import Path
 
-from apps.configuration import (
-    activate_configuration,
-    legacy_configuration,
-    load_configuration,
-    providers_for_adapter,
-    use_configuration,
-)
+import registry
 from apps.harvest.logs import configure as configure_logging
+from apps.harvest.metadata_adapters import ADAPTERS, workflow_file
 from apps.harvest.metadata_adapters.pxweb_v1.workflow import (
     build_provider,
     collect_metadata,
     collect_refresh,
     prepare,
+    provider_row,
     refresh_provider,
 )
 from apps.harvest.metadata_adapters.pxweb_v2 import workflow as v2_workflow
-from apps.harvest.registry import ADAPTERS, get_adapter
 from apps.harvest.storage import read
 from apps.publication.git import publish
+
+PXWEB_V1_COMMANDS = (
+    "prepare",
+    "refresh",
+    "collect-refresh",
+    "build",
+    "collect-metadata",
+    "publish",
+    "continue",
+)
 
 
 def _entryscape_options(args):
@@ -37,40 +42,40 @@ def _entryscape_options(args):
 
 
 # Single-worker adapters sharing the run/collect/publish lifecycle. Each entry maps
-# the adapter name to: whether run() takes the first configured provider or the
+# the adapter name to: whether run() takes the first configured binding or the
 # whole list, the run() keyword arguments taken from the parsed CLI arguments, and
-# the collect() keyword arguments taken from the first configured provider.
+# the collect() keyword arguments taken from the first configured binding.
 SIMPLE_ADAPTERS = {
     "uka": (
         "single",
         lambda a: {"indicators": a.indicator, "full": a.full},
-        lambda p: {},
+        lambda b: {},
     ),
     "sdb": (
         "single",
         lambda a: {"subjects": a.subject, "languages": a.language},
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
     "trafa": (
         "single",
         lambda a: {"products": a.product, "languages": a.language},
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
-    "entryscape": ("all", _entryscape_options, lambda p: {}),
+    "entryscape": ("all", _entryscape_options, lambda b: {}),
     "smhi_emissions": (
         "single",
         lambda a: {"subjects": a.subject, "languages": a.language},
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
     "forsakringskassan": (
         "single",
         lambda a: {"subjects": a.subject, "languages": a.language, "full": a.full},
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
     "riksbank": (
         "single",
         lambda a: {"subjects": a.subject, "languages": a.language},
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
     "dataanalys": (
         "single",
@@ -79,34 +84,32 @@ SIMPLE_ADAPTERS = {
             "indicators": a.indicator,
             "languages": a.language,
         },
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
     "tillvaxtverket": (
         "single",
         lambda a: {"products": a.product, "languages": a.language},
-        lambda p: {"languages": p["languages"]},
+        lambda b: {"languages": b.options["languages"]},
     ),
 }
 
 
 def run_simple(args):
     """Run or collect one single-worker adapter and print its outcome."""
-    providers_argument, run_options, collect_options = SIMPLE_ADAPTERS[args.adapter]
+    bindings_argument, run_options, collect_options = SIMPLE_ADAPTERS[args.adapter]
     workflow = importlib.import_module(
         f"apps.harvest.metadata_adapters.{args.adapter}.workflow"
     )
     args.output = args.output or Path("output") / args.adapter
-    providers = providers_for_adapter(
-        args.adapter, configuration=args.configuration, legacy_path=args.providers
-    )
+    bindings = args.registry.bindings(args.adapter)
     if args.command == "run":
-        provider = providers if providers_argument == "all" else providers[0]
+        binding = bindings if bindings_argument == "all" else bindings[0]
         result = asyncio.run(
-            workflow.run(provider, args.data, args.output, **run_options(args))
+            workflow.run(binding, args.data, args.output, **run_options(args))
         )
     else:
         result = workflow.collect(
-            args.data, args.output, **collect_options(providers[0])
+            args.data, args.output, **collect_options(bindings[0])
         )
     outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
 
@@ -122,22 +125,9 @@ def outputs(values):
             stream.write("\n".join(lines) + "\n")
 
 
-def _main():
+def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "command",
-        choices=[
-            "prepare",
-            "refresh",
-            "collect-refresh",
-            "build",
-            "collect-metadata",
-            "publish",
-            "continue",
-            "run",
-            "collect",
-        ],
-    )
+    parser.add_argument("command", choices=[*PXWEB_V1_COMMANDS, "run", "collect"])
     parser.add_argument("--adapter", choices=list(ADAPTERS), default="pxweb_v1")
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--kpi", nargs="+")
@@ -149,9 +139,6 @@ def _main():
     parser.add_argument("--max-requests", type=int)
     parser.add_argument("--language", nargs="+", choices=("sv", "en"))
     parser.add_argument("--data", type=Path)
-    parser.add_argument(
-        "--providers", type=Path, help="Explicit legacy source-list override"
-    )
     parser.add_argument(
         "--config",
         type=Path,
@@ -165,9 +152,10 @@ def _main():
     parser.add_argument("--budget-seconds", type=float, default=19_200)
     args = parser.parse_args()
     configure_logging()
-    spec = get_adapter(args.adapter)
-    if args.command not in spec.commands:
-        parser.error(f"{args.adapter} supports {spec.commands}")
+    is_v1 = args.adapter == "pxweb_v1"
+    commands = PXWEB_V1_COMMANDS if is_v1 else ("run", "collect", "publish")
+    if args.command not in commands:
+        parser.error(f"{args.adapter} supports {commands}")
     if args.full and args.adapter in {
         "smhi_emissions",
         "riksbank",
@@ -177,16 +165,7 @@ def _main():
         parser.error(f"{args.adapter} does not support --full; use its normal refresh")
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
-    if args.providers is not None and args.config is not None:
-        parser.error("Use --config or --providers, not both")
-    args.configuration = load_configuration(args.config)
-    if args.providers is not None:
-        args.configuration = legacy_configuration(
-            args.configuration,
-            args.adapter,
-            providers_for_adapter(args.adapter, legacy_path=args.providers),
-        )
-    activate_configuration(args.configuration)
+    args.registry = registry.load(args.config)
     if args.adapter == "kolada":
         from apps.harvest.metadata_adapters.kolada import workflow as kolada_workflow
 
@@ -197,11 +176,7 @@ def _main():
             if args.command == "run":
                 result = asyncio.run(
                     kolada_workflow.run(
-                        providers_for_adapter(
-                            args.adapter,
-                            configuration=args.configuration,
-                            legacy_path=args.providers,
-                        )[0],
+                        args.registry.bindings("kolada")[0],
                         args.data,
                         args.output,
                         kpis=args.kpi,
@@ -217,18 +192,16 @@ def _main():
         run_simple(args)
         return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
-    providers = providers_for_adapter(
-        args.adapter, configuration=args.configuration, legacy_path=args.providers
-    )
+    bindings = args.registry.bindings(args.adapter)
     if is_v2 and args.command not in {"run", "collect", "publish"}:
         parser.error("PXWeb v2 uses run, collect and publish")
     if args.command in {"run", "collect"}:
-        if not is_v2 or len(providers) != 1:
+        if not is_v2 or len(bindings) != 1:
             parser.error("run/collect require the SCB-only pxweb_v2 configuration")
         if args.command == "run":
             result = asyncio.run(
                 v2_workflow.run(
-                    providers[0],
+                    bindings[0],
                     args.data,
                     args.output,
                     full=args.full,
@@ -242,6 +215,7 @@ def _main():
             )
         outputs({k: result[k] for k in ("run_id", "status", "counts")})
         return
+    providers = [provider_row(binding) for binding in bindings]
     if args.command == "prepare":
         plan = prepare(args.data, providers)
         if (
@@ -311,7 +285,7 @@ def _main():
                 "gh",
                 "workflow",
                 "run",
-                spec.workflow_file,
+                workflow_file("pxweb_v1"),
                 "--ref",
                 "main",
                 "-f",
@@ -319,11 +293,6 @@ def _main():
             ],
             check=True,
         )
-
-
-def main():
-    with use_configuration():
-        _main()
 
 
 if __name__ == "__main__":

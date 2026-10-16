@@ -57,6 +57,7 @@ from apps.harvest.source_store import (
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("trafa_logger")
 
@@ -187,7 +188,7 @@ class _Product:
         )
 
 
-async def discover_provider(provider: dict, *, client=None) -> list[dict]:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> list[dict]:
     """The current product list."""
     connection = client or TrafaClient()
     try:
@@ -221,7 +222,7 @@ async def fetch_metadata(record: dict, *, client) -> list[dict]:
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: Path,
     output: Path,
     *,
@@ -234,7 +235,7 @@ async def run(
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
-    configured = list(provider.get("languages", LANGUAGES))
+    configured = list(binding.options.get("languages", LANGUAGES))
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured):
         raise ValueError(f"Unconfigured Trafikanalys languages: {selected_languages}")
@@ -256,8 +257,8 @@ async def run(
         (withheld if status == "withheld" else published)[key] = True
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
-    max_age = timedelta(days=provider.get("max_age_days", 60))
-    cooldown = provider.get("retry_cooldown_seconds", 60)
+    max_age = timedelta(days=binding.options.get("max_age_days", 60))
+    cooldown = binding.options.get("retry_cooldown_seconds", 60)
     connection = client or TrafaClient()
     progress = Progress("trafa", PROVIDER_CODE)
     counts = dict.fromkeys(COUNTS, 0)

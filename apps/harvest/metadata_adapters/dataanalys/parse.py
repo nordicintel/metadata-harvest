@@ -13,6 +13,7 @@ from apps.harvest.metadata_adapters.dataanalys.source import (
 )
 from apps.harvest.metadata_adapters.dataanalys.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key
+from registry import ServiceBinding
 
 
 def withheld_keys(state: dict) -> set[str]:
@@ -67,7 +68,7 @@ def document_from(identifier: str, responses: dict, derived: dict) -> dict:
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     for key in sorted(store.entries()):
         try:

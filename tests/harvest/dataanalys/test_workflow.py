@@ -241,7 +241,7 @@ def test_unreadable_cube_is_stored_and_fails_at_parse(data, tmp_path):
 
     assert result["status"] == "success"  # the harvest stores what was returned
     assert result["counts"]["removed"] == 0
-    parsed = build("dataanalys", data.parent, tmp_path / "parsed", providers=[PROVIDER])
+    parsed = build("dataanalys", data.parent, tmp_path / "parsed", bindings=[PROVIDER])
     assert [e["key"] for e in parsed["errors"]] == [stored_key("sv/GONV|G200")]
     assert parsed["counts"]["parsed"] == 6
 
@@ -462,7 +462,7 @@ def test_indicator_without_riket_or_region_rows_is_stored_not_dismissed(data, tm
     assert result["counts"]["out_of_scope"] == 1
     assert result["counts"]["removed"] == 0
     assert store(data).get(stored_key("sv/NRAA|NRAA_2"))["responses"]["cube"]
-    parsed = build("dataanalys", data.parent, tmp_path / "parsed", providers=[PROVIDER])
+    parsed = build("dataanalys", data.parent, tmp_path / "parsed", bindings=[PROVIDER])
     assert [e["key"] for e in parsed["errors"]] == [stored_key("sv/NRAA|NRAA_2")]
     assert "out of scope" in parsed["errors"][0]["error"]
     assert parsed["counts"]["parsed"] == 6

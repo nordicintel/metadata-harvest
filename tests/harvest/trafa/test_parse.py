@@ -13,7 +13,7 @@ def test_parse_reproduces_previous_collection_bytes(tmp_path):
 
     root = tmp_path / "data" / "trafa"
     execute(Source(), root, tmp_path / "bootstrap")
-    result = build("trafa", tmp_path / "data", tmp_path / "out", providers=[PROVIDER])
+    result = build("trafa", tmp_path / "data", tmp_path / "out", bindings=[PROVIDER])
     assert result["status"] == "success", result["errors"]
     golden = next(GOLDEN.glob("*.jsonl.gz"))
     produced = tmp_path / "out/metadata" / golden.name
@@ -34,7 +34,7 @@ def test_parse_reports_probe_errors_for_one_dataset_and_keeps_siblings(tmp_path)
         retrieved_at="2026-10-16T00:00:00+00:00",
     )
     store.save()
-    result = build("trafa", tmp_path / "data", tmp_path / "out", providers=[PROVIDER])
+    result = build("trafa", tmp_path / "data", tmp_path / "out", bindings=[PROVIDER])
     assert result["status"] == "completed_with_errors"
     assert [e["key"] for e in result["errors"]] == [key]
     assert result["counts"]["parsed"] == len(store.entries()) - 1

@@ -80,6 +80,7 @@ from apps.harvest.source_store import (
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("dataanalys_logger")
 
@@ -446,10 +447,10 @@ class _Harvester:
         return overview.title if overview and overview.title else area.code
 
 
-async def discover_provider(provider: dict, *, client=None) -> Discovery:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> Discovery:
     """The current chart and dashboard listings, interpreted."""
     logger.info("Discovering the current analysverktyg listings")
-    connection = client or DataanalysClient(provider)
+    connection = client or DataanalysClient(binding.options)
     try:
         return await discover(connection)
     finally:
@@ -490,7 +491,7 @@ async def fetch_metadata(record: dict, *, client) -> list[dict]:
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: Path,
     output: Path,
     *,
@@ -509,7 +510,7 @@ async def run(
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
-    configured = list(provider.get("languages", LANGUAGES))
+    configured = list(binding.options.get("languages", LANGUAGES))
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured) or set(configured) - set(LANGUAGES):
         raise ValueError(f"Unsupported analysverktyg languages: {selected_languages}")
@@ -541,9 +542,9 @@ async def run(
     )
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
-    max_age = timedelta(days=provider.get("max_age_days", 60))
-    cooldown = provider.get("retry_cooldown_seconds", 60)
-    connection = client or DataanalysClient(provider)
+    max_age = timedelta(days=binding.options.get("max_age_days", 60))
+    cooldown = binding.options.get("retry_cooldown_seconds", 60)
+    connection = client or DataanalysClient(binding.options)
     progress = Progress(ADAPTER, PROVIDER_CODE)
     counts = dict.fromkeys(COUNTS, 0)
     errors: list[dict] = []
@@ -567,7 +568,7 @@ async def run(
         selected_languages,
         max_age.days,
         cooldown,
-        provider.get("request_interval_seconds", 1.0),
+        binding.options.get("request_interval_seconds", 1.0),
     )
 
     def matches(key: str) -> bool:

@@ -15,6 +15,7 @@ from apps.harvest.metadata_adapters.smhi_emissions.state import (
     load_state,
 )
 from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.binding import binding
 from tests.support.parsing import documents
 from tests.support.smhi_emissions import (
     RecordedClient,
@@ -24,7 +25,7 @@ from tests.support.smhi_emissions import (
 )
 
 NOW = datetime(2026, 11, 3, 7, 30, tzinfo=UTC)
-PROVIDER = {"code": "smhi", "languages": ["sv"], "retry_cooldown_seconds": 0}
+PROVIDER = binding("smhi_emissions", "smhi", languages=["sv"], retry_cooldown_seconds=0)
 LISTING = fixture_key(FILTER_OPTIONS_URL)
 MANIFEST = "source/manifest.json"
 
@@ -164,7 +165,7 @@ def test_unknown_sector_label_is_stored_and_fails_at_parse(data, tmp_path):
         "Koldioxid (CO2)"
     ]["Rymdfart"]
     parsed = build(
-        "smhi_emissions", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+        "smhi_emissions", data.parent, tmp_path / "parsed", bindings=[PROVIDER]
     )
     assert [e["key"] for e in parsed["errors"]] == [stored_key("CO2")]
     assert "Rymdfart" in parsed["errors"][0]["error"]
@@ -376,7 +377,7 @@ def test_english_is_not_configurable(tmp_path):
     with pytest.raises(ValueError, match="Swedish only"):
         asyncio.run(
             run(
-                {**PROVIDER, "languages": ["sv", "en"]},
+                binding("smhi_emissions", "smhi", languages=["sv", "en"]),
                 tmp_path / "data",
                 tmp_path / "out",
                 client=Source(),

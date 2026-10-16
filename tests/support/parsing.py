@@ -3,15 +3,15 @@
 import importlib
 from pathlib import Path
 
-from apps.configuration import providers_for_adapter
 from apps.harvest.source_store import SourceStore
 from apps.parsing.build import load_state
+from registry import ServiceBinding
 
 
 def documents(
     adapter: str,
     root: Path,
-    providers: list[dict] | None = None,
+    bindings: list[ServiceBinding],
     *,
     portal: Path | None = None,
     include_withheld: bool = False,
@@ -24,10 +24,9 @@ def documents(
     module = importlib.import_module(f"apps.harvest.metadata_adapters.{adapter}.parse")
     store = SourceStore(root / "source", adapter)
     state = load_state(root)
-    providers = providers if providers is not None else providers_for_adapter(adapter)
     withheld = set(module.withheld_keys(state))
     result = {}
-    for key, item in module.documents(store, state, providers, portal=portal):
+    for key, item in module.documents(store, state, bindings, portal=portal):
         if key in withheld and not include_withheld:
             continue
         if isinstance(item, Exception):

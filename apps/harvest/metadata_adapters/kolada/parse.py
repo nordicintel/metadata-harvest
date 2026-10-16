@@ -9,6 +9,7 @@ from apps.harvest.metadata_adapters.kolada.metadata import (
 )
 from apps.harvest.metadata_adapters.kolada.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
+from registry import ServiceBinding
 
 LISTINGS = ("ou", "municipality_groups", "kpi_groups")
 
@@ -43,7 +44,7 @@ def document_from(code: str, envelope: dict, references: dict) -> dict:
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     try:
         references = references_from(store)

@@ -18,7 +18,7 @@ def test_parse_reproduces_previous_collection_bytes_with_portal_snapshot(tmp_pat
         "tillvaxtverket",
         tmp_path / "data",
         tmp_path / "out",
-        providers=[PROVIDER],
+        bindings=[PROVIDER],
         portal=portal,
     )
     assert result["status"] == "success", result["errors"]
@@ -38,7 +38,7 @@ def test_parse_without_a_snapshot_record_falls_back_to_the_dataset_name(tmp_path
         "tillvaxtverket",
         tmp_path / "data",
         tmp_path / "out",
-        providers=[PROVIDER],
+        bindings=[PROVIDER],
         portal=portal,
     )
     assert result["status"] == "success", result["errors"]

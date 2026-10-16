@@ -11,6 +11,7 @@ from apps.harvest.metadata_adapters.trafa.source import (
 )
 from apps.harvest.metadata_adapters.trafa.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
+from registry import ServiceBinding
 
 
 def withheld_keys(state: dict) -> set[str]:
@@ -55,7 +56,7 @@ def _document(envelope: dict, combination, swedish, english) -> dict:
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     listing = store.get_shared(PROVIDER_CODE, "products.json")
     entries = {e["unique_id"]: e for e in product_list(listing)} if listing else {}

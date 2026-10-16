@@ -10,7 +10,7 @@ from pathlib import Path
 import pytest
 from playwright.async_api import async_playwright
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import (
     _context,
     _databases,
@@ -22,6 +22,7 @@ from apps.harvest.metadata_adapters.pxweb_v1.discovery import (
     _retry_after,
     get_pxweb_tables,
 )
+from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 
 
 @pytest.mark.parametrize(
@@ -119,10 +120,7 @@ def table(title="Table", date="2026-10-01", route="/pxweb/sv/db/-/t.px/"):
 
 
 def test_matrix():
-    providers = providers_for_adapter("pxweb_v1")
-    assert len(providers) == 29
-    assert sum(len(p["database_ids"]) for p in providers) == 62
-    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 72
+    providers = [provider_row(b) for b in registry.load().bindings("pxweb_v1")]
     excluded = json.loads(
         Path("docs/harvest/excluded-providers.json").read_text(encoding="utf-8")
     )

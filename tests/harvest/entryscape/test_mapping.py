@@ -10,8 +10,9 @@ from apps.harvest.metadata_adapters.entryscape.mapping import (
 )
 from apps.harvest.validation import validate_metadata
 from tests.harvest.entryscape.test_datasets import document
+from tests.support.binding import binding
 
-PROVIDER = {"code": "x", "label": "Exempel kommun", "base_url": "https://x"}
+PROVIDER = binding("entryscape", "x", "https://x", label="Exempel kommun")
 
 
 def dataset(*docs):

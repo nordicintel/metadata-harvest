@@ -5,7 +5,7 @@ Parsing is manual and unscheduled: ``build`` reads ``data/<adapter>/source`` and
 into ``extension.nordicintel``, validates them and writes them as accepted
 collections. ``apply``
 replaces the committed collections only when they are unchanged since the build.
-Each adapter's ``parse`` module provides ``documents(store, state, providers, *,
+Each adapter's ``parse`` module provides ``documents(store, state, bindings, *,
 portal=None)`` yielding ``(key, document | Exception)`` pairs and
 ``withheld_keys(state)``.
 """
@@ -18,13 +18,13 @@ import shutil
 from pathlib import Path
 from uuid import uuid4
 
-from apps.configuration import providers_for_adapter
 from apps.harvest.artifacts import report_status
 from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import read, write
 from apps.harvest.validation import validate_metadata
 from apps.parsing.accepted import write_metadata
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("parsing_logger")
 
@@ -61,7 +61,7 @@ def build(
     data: Path,
     output: Path,
     *,
-    providers: list[dict] | None = None,
+    bindings: list[ServiceBinding],
     portal: Path | None = None,
 ) -> dict:
     """Parse one adapter's source files into ``output/metadata`` and report."""
@@ -69,14 +69,13 @@ def build(
     root = data / adapter
     if root.resolve() == output.resolve() or root.resolve() in output.resolve().parents:
         raise ValueError("Parse output must be separate from published data")
-    providers = providers if providers is not None else providers_for_adapter(adapter)
     module = importlib.import_module(f"apps.harvest.metadata_adapters.{adapter}.parse")
     store = SourceStore(root / "source", adapter)
     state = load_state(root)
     withheld = set(module.withheld_keys(state))
     documents, errors = [], []
     counts = {"parsed": 0, "failed": 0, "withheld": 0}
-    for key, item in module.documents(store, state, providers, portal=portal):
+    for key, item in module.documents(store, state, bindings, portal=portal):
         if key in withheld:
             counts["withheld"] += 1
             continue
@@ -101,7 +100,7 @@ def build(
         shutil.rmtree(output)
     output.mkdir(parents=True)
     written = write_metadata(
-        output, documents, empty_providers=[provider["code"] for provider in providers]
+        output, documents, empty_providers=[binding.source_code for binding in bindings]
     )
     result = {
         "adapter": adapter,

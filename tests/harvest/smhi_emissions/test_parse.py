@@ -13,7 +13,7 @@ def test_parse_reproduces_previous_collection_bytes(tmp_path):
     root = tmp_path / "data" / "smhi_emissions"
     execute(Source(), root, tmp_path / "bootstrap")
     result = build(
-        "smhi_emissions", tmp_path / "data", tmp_path / "out", providers=[PROVIDER]
+        "smhi_emissions", tmp_path / "data", tmp_path / "out", bindings=[PROVIDER]
     )
     assert result["status"] == "success", result["errors"]
     golden = next(GOLDEN.glob("*.jsonl.gz"))

@@ -13,8 +13,9 @@ from uuid import UUID
 from playwright.async_api import async_playwright
 
 import apps.harvest.metadata_adapters.pxweb_v1.discovery as implementation
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import get_pxweb_tables
+from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 
 _audit = ContextVar("audit", default=None)
 
@@ -190,7 +191,6 @@ def accepted(report):
 
 async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--providers", default=None)
     parser.add_argument("--output", default="output/compatibility.json")
     parser.add_argument("--provider", action="append")
     parser.add_argument(
@@ -203,7 +203,7 @@ async def main():
     )
     args = parser.parse_args()
     install_audit()
-    providers = providers_for_adapter("pxweb_v1", legacy_path=args.providers)
+    providers = [provider_row(b) for b in registry.load().bindings("pxweb_v1")]
     selected = [p for p in providers if not args.provider or p["code"] in args.provider]
     if not selected or (
         args.provider and set(args.provider) - {p["code"] for p in providers}

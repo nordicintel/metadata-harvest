@@ -8,11 +8,12 @@ import pytest
 from apps.harvest.metadata_adapters.trafa.client import Unreachable
 from apps.harvest.metadata_adapters.trafa.state import load_state
 from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.binding import binding
 from tests.support.parsing import documents
 from tests.support.trafa import RecordedClient, fixture_key
 
 NOW = datetime(2026, 10, 12, 6, tzinfo=UTC)
-PROVIDER = {"code": "trafa", "languages": ["sv"], "retry_cooldown_seconds": 0}
+PROVIDER = binding("trafa", "trafa", languages=["sv"], retry_cooldown_seconds=0)
 PRODUCTS = "https://api.trafa.se/api/structure"
 DOCS = "https://www.trafa.se/sidor/api-dokumentation/"
 MANIFEST = "source/manifest.json"

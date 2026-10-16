@@ -10,11 +10,12 @@ import pytest
 from apps.harvest.metadata_adapters.uka.client import ExportFile, Unreachable
 from apps.harvest.metadata_adapters.uka.state import load_state
 from apps.harvest.source_store import SourceStore, harvest_manifest
+from tests.support.binding import binding
 from tests.support.parsing import documents
 from tests.support.uka_support import RECORDED, UKA, export_text
 
 NOW = datetime(2026, 10, 12, 5, tzinfo=UTC)
-PROVIDER = {"code": "uka", "retry_cooldown_seconds": 0}
+PROVIDER = binding("uka", "uka", retry_cooldown_seconds=0)
 MANIFEST = "source/manifest.json"
 
 

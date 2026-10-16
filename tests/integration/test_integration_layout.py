@@ -1,14 +1,13 @@
 """Registry isolation, explicit conversion and accepted source refresh."""
 
-import pytest
-
+from apps.paths import ROOT
 from tests.harvest.test_workflow import dataset, record
 
 
-def test_registry_contains_supported_adapters_and_rejects_unknown_names():
-    from apps.harvest.registry import ADAPTERS, get_adapter
+def test_every_adapter_has_a_folder():
+    from apps.harvest.metadata_adapters import ADAPTERS
 
-    assert {name for name, spec in ADAPTERS.items() if spec.available} == {
+    assert set(ADAPTERS) == {
         "pxweb_v1",
         "pxweb_v2",
         "kolada",
@@ -22,9 +21,8 @@ def test_registry_contains_supported_adapters_and_rejects_unknown_names():
         "riksbank",
         "forsakringskassan",
     }
-    assert all(spec.available for spec in ADAPTERS.values())
-    with pytest.raises(ValueError):
-        get_adapter("../outside")
+    for name in ADAPTERS:
+        assert (ROOT / "apps/harvest/metadata_adapters" / name / "parse.py").is_file()
 
 
 def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_title():

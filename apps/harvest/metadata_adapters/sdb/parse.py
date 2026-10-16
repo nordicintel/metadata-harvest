@@ -11,6 +11,7 @@ from apps.harvest.metadata_adapters.sdb.mapping import (
 from apps.harvest.metadata_adapters.sdb.probe import reconcile
 from apps.harvest.metadata_adapters.sdb.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
+from registry import ServiceBinding
 
 
 def probe_name(subject: str) -> str:
@@ -44,7 +45,7 @@ def document_from(
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     swedish = store.get_shared(PROVIDER_CODE, "listing.sv.json") or []
     time_units = {

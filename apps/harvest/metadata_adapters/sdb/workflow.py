@@ -44,6 +44,7 @@ from apps.harvest.source_store import (
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("sdb_logger")
 
@@ -153,13 +154,13 @@ async def build_subject(client, row: dict, language: str, time_unit, probes: dic
     return document_from(row, language, time_unit, responses, probes[row["namn"]])
 
 
-async def discover_provider(provider: dict, *, client=None) -> dict:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> dict:
     """Each configured language's subject listing."""
-    connection = client or SdbClient(provider)
+    connection = client or SdbClient(binding.options, base_url=binding.endpoint_url)
     try:
         listings = {
             language: await connection.get(language)
-            for language in provider.get("languages", LANGUAGES)
+            for language in binding.options.get("languages", LANGUAGES)
         }
         logger.info(
             "Discovered SDB subject listings: %s",
@@ -181,7 +182,7 @@ async def fetch_metadata(record: dict, *, client) -> dict:
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: Path,
     output: Path,
     *,
@@ -194,7 +195,7 @@ async def run(
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
-    configured = list(provider.get("languages", LANGUAGES))
+    configured = list(binding.options.get("languages", LANGUAGES))
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured):
         raise ValueError(f"Unconfigured SDB languages: {selected_languages}")
@@ -224,9 +225,9 @@ async def run(
     )
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
-    max_age = timedelta(days=provider.get("max_age_days", 60))
-    cooldown = provider.get("retry_cooldown_seconds", 60)
-    connection = client or SdbClient(provider)
+    max_age = timedelta(days=binding.options.get("max_age_days", 60))
+    cooldown = binding.options.get("retry_cooldown_seconds", 60)
+    connection = client or SdbClient(binding.options, base_url=binding.endpoint_url)
     progress = Progress("sdb", PROVIDER_CODE)
     counts = dict.fromkeys(COUNTS, 0)
     errors = []

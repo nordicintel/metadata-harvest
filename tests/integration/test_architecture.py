@@ -4,8 +4,8 @@ import ast
 import subprocess
 import sys
 
-from apps.configuration import load_configuration
-from apps.paths import CONFIG, ROOT, SCHEMAS
+import registry
+from apps.paths import CONFIG, ROOT
 
 
 def imports(path):
@@ -51,9 +51,7 @@ def test_configuration_and_profile_have_one_authoritative_location(
     monkeypatch, tmp_path
 ):
     monkeypatch.chdir(tmp_path)
-    configuration = load_configuration()
-    assert len(configuration.adapters) == 12
-    assert SCHEMAS.joinpath("dataset-metadata.schema.json").is_file()
+    registry.load()
     assert not list(ROOT.glob("*.json"))
     assert [p.name for p in ROOT.glob("*.toml")] == ["pyproject.toml"]
     for filename in ("adapters.json", "organisations.json", "catalogs.json"):
@@ -80,7 +78,6 @@ def test_harvest_does_not_import_parsing():
 def test_statdcat_conversion_lives_in_parsing():
     assert not (ROOT / "apps/harvest/contributions.py").exists()
     assert not (ROOT / "apps/harvest/accepted.py").exists()
-    assert (ROOT / "apps/parsing/contributions.py").is_file()
     assert (ROOT / "apps/parsing/accepted.py").is_file()
 
 

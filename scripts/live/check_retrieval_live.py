@@ -8,9 +8,10 @@ from pathlib import Path
 
 import aiohttp
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import discover_provider
 from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
+from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_metadata
 from apps.harvest.storage import JsonlStore, now, write
@@ -102,12 +103,13 @@ async def run(output):
             print(json.dumps(item, ensure_ascii=False), flush=True)
             write(output, report)
 
-    await asyncio.gather(*(v1(p) for p in providers_for_adapter("pxweb_v1")))
-    provider = providers_for_adapter("pxweb_v2")[0]
+    loaded = registry.load()
+    await asyncio.gather(*(v1(provider_row(b)) for b in loaded.bindings("pxweb_v1")))
+    binding = loaded.bindings("pxweb_v2")[0]
     v2_rows = list(JsonlStore("data/pxweb_v2/table-records").records.values())
-    async with Client(provider["base_api_url"]) as client:
+    async with Client(binding.endpoint_url) as client:
         client.configure(await client.get("config"))
-        for language in provider["languages"]:
+        for language in binding.options["languages"]:
             item = {"adapter": "pxweb_v2", "provider_code": "scb", "language": language}
             report["checks"].append(item)
             try:

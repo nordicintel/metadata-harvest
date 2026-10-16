@@ -8,7 +8,7 @@ import tomllib
 from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from apps.harvest.registry import ADAPTERS
+from apps.harvest.metadata_adapters import ADAPTERS, workflow_file
 from apps.paths import ROOT
 from apps.settings import load as load_settings
 
@@ -46,7 +46,7 @@ def load(path: Path) -> dict:
         raise ValueError(
             "Invalid IANA schedule timezone; install harvest extras"
         ) from error
-    expected = {k for k, v in ADAPTERS.items() if v.available}
+    expected = set(ADAPTERS)
     if set(config.get("adapters", {})) != expected:
         raise ValueError(
             "Schedule config must name every implemented adapter exactly once"
@@ -112,9 +112,7 @@ def sync(root: Path, *, check=False) -> list[str]:
     changed = []
     for adapter, item in {**config["adapters"], **config.get("snapshots", {})}.items():
         filename = (
-            "refresh-portal.yml"
-            if adapter == "oppnadata"
-            else ADAPTERS[adapter].workflow_file
+            "refresh-portal.yml" if adapter == "oppnadata" else workflow_file(adapter)
         )
         path = root / ".github/workflows" / filename
         original = path.read_text(encoding="utf-8")

@@ -6,36 +6,39 @@ from math import ceil
 
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.validation import validate_table
+from registry import ServiceBinding
 
 logger = logging.getLogger("pxweb_v2_logger")
 
 
-def table_record(provider: dict, language: str, table: dict) -> dict:
+def table_record(
+    provider_code: str, base_api_url: str, language: str, table: dict
+) -> dict:
     validate_table(table)
     return {
-        "provider_code": provider["code"],
+        "provider_code": provider_code,
         "dataset_code": table["id"],
         "language": language,
-        "base_api_url": provider["base_api_url"],
+        "base_api_url": base_api_url,
         "catalogue": {k: v for k, v in table.items() if k != "language"},
     }
 
 
 async def discover_provider(
-    provider: dict, *, client: Client | None = None
+    binding: ServiceBinding, *, client: Client | None = None
 ) -> AsyncIterator[dict]:
     """Yield one scope per configured language; only complete scopes prove absence."""
     if client is None:
-        async with Client(provider["base_api_url"]) as owned:
-            async for scope in discover_provider(provider, client=owned):
+        async with Client(binding.endpoint_url) as owned:
+            async for scope in discover_provider(binding, client=owned):
                 yield scope
         return
     config_error = None
     logger.info(
         "Discovering catalogue of provider %s for languages %s (page size %s)",
-        provider["code"],
-        provider["languages"],
-        provider.get("page_size", 1000),
+        binding.source_code,
+        binding.options["languages"],
+        binding.options.get("page_size", 1000),
     )
     try:
         config = await client.get("config")
@@ -49,7 +52,7 @@ async def discover_provider(
             "API config unavailable (%s); no language scope can be completed",
             config_error,
         )
-    for language in provider["languages"]:
+    for language in binding.options["languages"]:
         scope = {
             "language": language,
             "complete": False,
@@ -71,7 +74,7 @@ async def discover_provider(
                     lang=language,
                     includeDiscontinued="true",
                     pageNumber=number,
-                    pageSize=provider.get("page_size", 1000),
+                    pageSize=binding.options.get("page_size", 1000),
                 )
                 page, rows = payload.get("page"), payload.get("tables")
                 if (
@@ -119,7 +122,14 @@ async def discover_provider(
                         seen.add(code)
                         if table.get("language", language) != language:
                             raise ValueError("Wrong table language")
-                        scope["records"].append(table_record(provider, language, table))
+                        scope["records"].append(
+                            table_record(
+                                binding.source_code,
+                                binding.endpoint_url,
+                                language,
+                                table,
+                            )
+                        )
                     except Exception as error:
                         logger.debug(
                             "Rejected catalogue row %s page %d row %d table %r: %s: %s",

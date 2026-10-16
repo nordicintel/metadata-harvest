@@ -50,6 +50,7 @@ from apps.harvest.source_store import SourceStore, harvest_manifest
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 
 logger = logging.getLogger("uka_logger")
 
@@ -298,9 +299,9 @@ async def refresh(
     return "rebuilt", payload, {**signal, "skipped_periods": skipped}
 
 
-async def discover_provider(provider: dict, *, client=None) -> list[dict]:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> list[dict]:
     """The current catalogue rows."""
-    connection = client or UkaClient(provider)
+    connection = client or UkaClient(binding.options, base_url=binding.endpoint_url)
     try:
         entries = parse_catalogue(await connection.catalogue())
         logger.info("Discovery: catalogue lists %d indicators", len(entries))
@@ -329,7 +330,7 @@ async def fetch_metadata(record: dict, *, client) -> dict:
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: Path,
     output: Path,
     *,
@@ -376,15 +377,15 @@ async def run(
     )
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
-    max_age = timedelta(days=provider.get("max_age_days", 60))
-    cooldown = provider.get("retry_cooldown_seconds", 60)
+    max_age = timedelta(days=binding.options.get("max_age_days", 60))
+    cooldown = binding.options.get("retry_cooldown_seconds", 60)
     logger.info(
         "Effective options: max_age_days=%s, retry_cooldown_seconds=%s, concurrency=%s",
         max_age.days,
         cooldown,
-        provider.get("concurrency", 2),
+        binding.options.get("concurrency", 2),
     )
-    connection = client or UkaClient(provider)
+    connection = client or UkaClient(binding.options, base_url=binding.endpoint_url)
     progress = Progress("uka", "uka")
     counts = dict.fromkeys(COUNTS, 0)
     errors = []

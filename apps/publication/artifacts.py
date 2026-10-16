@@ -3,7 +3,7 @@
 import hashlib
 from pathlib import Path
 
-from apps.harvest.registry import ADAPTERS
+from apps.harvest.metadata_adapters import ADAPTERS
 
 
 def manifest(root: Path) -> dict:
@@ -22,7 +22,7 @@ def publication_directory(root: Path, data: Path) -> str:
     """Limit Git publication to one implemented adapter or the shared catalog."""
     relative = data.resolve().relative_to(root.resolve()).as_posix()
     if relative not in {"data/catalog", "data/data_eu"} | {
-        f"data/{name}" for name, spec in ADAPTERS.items() if spec.available
+        f"data/{name}" for name in ADAPTERS
     }:
         raise ValueError("Publication requires a configured adapter data directory")
     return relative

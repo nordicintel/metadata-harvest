@@ -59,7 +59,7 @@ def test_every_adapter_module_uses_its_deterministic_logger():
     import re
     from pathlib import Path
 
-    from apps.harvest.registry import ADAPTERS
+    from apps.harvest.metadata_adapters import ADAPTERS
 
     for adapter in ADAPTERS:
         assert logs.adapter_logger(adapter).name == f"{adapter}_logger"

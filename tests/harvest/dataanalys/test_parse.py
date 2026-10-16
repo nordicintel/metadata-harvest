@@ -14,7 +14,7 @@ def test_parse_reproduces_previous_collection_bytes(tmp_path):
     root = tmp_path / "data" / "dataanalys"
     execute(RecordedClient(), root, tmp_path / "bootstrap")
     result = build(
-        "dataanalys", tmp_path / "data", tmp_path / "out", providers=[PROVIDER]
+        "dataanalys", tmp_path / "data", tmp_path / "out", bindings=[PROVIDER]
     )
     assert result["status"] == "success", result["errors"]
     golden = next(GOLDEN.glob("*.jsonl.gz"))

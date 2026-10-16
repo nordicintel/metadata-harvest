@@ -50,14 +50,14 @@ class RiksbankClient:
 
     def __init__(
         self,
-        provider: Mapping[str, Any] | None = None,
+        options: Mapping[str, Any] | None = None,
         *,
         session: aiohttp.ClientSession | None = None,
         attempts: int = 4,
         retry_delay: float = 15.0,
         interval: float | None = None,
     ) -> None:
-        provider = provider or {}
+        options = options or {}
         self._session = session
         self._owned = session is None
         self._attempts = attempts
@@ -65,7 +65,7 @@ class RiksbankClient:
         self._interval = float(
             interval
             if interval is not None
-            else provider.get("request_interval_seconds", REQUEST_INTERVAL)
+            else options.get("request_interval_seconds", REQUEST_INTERVAL)
         )
         self._last: float | None = None
         self._headers = dict(ACCEPT_JSON)

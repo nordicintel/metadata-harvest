@@ -8,6 +8,7 @@ from apps.harvest.metadata_adapters.entryscape.datasets import build_datasets
 from apps.harvest.metadata_adapters.entryscape.mapping import to_document
 from apps.harvest.source_store import SourceStore, source_key
 from apps.harvest.storage import document_identity, filename
+from registry import ServiceBinding
 
 logger = logging.getLogger("entryscape_logger")
 
@@ -31,13 +32,13 @@ def table_documents(store: SourceStore) -> list[dict]:
     return documents
 
 
-def rebuild(documents: list[dict], providers: list[dict]) -> tuple[dict, dict]:
+def rebuild(documents: list[dict], bindings: list[ServiceBinding]) -> tuple[dict, dict]:
     """Group table structure documents into datasets and map the cubes.
 
     Returns the documents keyed by collection filename and a summary with the
     dropped tables and list-only datasets.
     """
-    by_code = {p["code"]: p for p in providers}
+    by_code = {b.source_code: b for b in bindings}
     logger.info("Grouping %d table structures into datasets", len(documents))
     datasets, dropped = build_datasets(documents)
     by_url = {d["extension"]["metadata_harvest"]["table_url"]: d for d in documents}
@@ -67,18 +68,18 @@ def rebuild(documents: list[dict], providers: list[dict]) -> tuple[dict, dict]:
     return mapped, {"dropped": dropped, "lists": lists, "datasets": len(mapped)}
 
 
-def published_documents(root: Path, providers: list[dict]) -> list[dict]:
+def published_documents(root: Path, bindings: list[ServiceBinding]) -> list[dict]:
     """The dataset documents of ``data/entryscape`` (live checks, migrations)."""
     store = SourceStore(Path(root) / "source", "entryscape")
-    mapped, _ = rebuild(table_documents(store), providers)
+    mapped, _ = rebuild(table_documents(store), bindings)
     return list(mapped.values())
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     try:
-        mapped, _ = rebuild(table_documents(store), providers)
+        mapped, _ = rebuild(table_documents(store), bindings)
     except Exception as error:
         for key in sorted(store.entries()):
             yield key, error

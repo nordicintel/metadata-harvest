@@ -16,7 +16,7 @@ def test_parse_reproduces_previous_collection_bytes(source, tmp_path):
     root = tmp_path / "data" / "entryscape"
     execute(source, root, tmp_path / "bootstrap")
     result = build(
-        "entryscape", tmp_path / "data", tmp_path / "out", providers=PROVIDERS
+        "entryscape", tmp_path / "data", tmp_path / "out", bindings=PROVIDERS
     )
     assert result["status"] == "success", result["errors"]
     for golden in sorted(GOLDEN.glob("*.jsonl.gz")):
@@ -34,7 +34,7 @@ def test_regrouping_needs_no_requests(source, tmp_path, monkeypatch):
     monkeypatch.setattr(datasets, "MAPPING_VERSION", 99)
     source.calls.clear()
     result = build(
-        "entryscape", tmp_path / "data", tmp_path / "out", providers=PROVIDERS
+        "entryscape", tmp_path / "data", tmp_path / "out", bindings=PROVIDERS
     )
     assert result["status"] == "success"
     assert source.calls == []

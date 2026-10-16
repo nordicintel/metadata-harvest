@@ -12,6 +12,7 @@ from apps.harvest.metadata_adapters.tillvaxtverket.state import (
     load_state,
 )
 from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.binding import binding
 from tests.support.parsing import documents
 from tests.support.tillvaxtverket import (
     RecordedClient,
@@ -22,7 +23,9 @@ from tests.support.tillvaxtverket import (
 )
 
 NOW = datetime(2026, 10, 12, 5, 45, tzinfo=UTC)
-PROVIDER = {"code": "tillvaxtverket", "languages": ["sv"], "retry_cooldown_seconds": 0}
+PROVIDER = binding(
+    "tillvaxtverket", "tillvaxtverket", languages=["sv"], retry_cooldown_seconds=0
+)
 NAMES = [spec.name for spec in source.DATASETS]
 YEAR = "GuestNights_Country_Year"
 REVENUE = "GuestNights_Capacity_Revenue_Year"
@@ -201,7 +204,7 @@ def test_changed_columns_are_stored_and_fail_at_parse_before_valid_siblings(
     assert result["status"] == "success"
     assert result["counts"]["rebuilt"] == 1 and result["counts"]["unchanged"] == 5
     parsed = build(
-        "tillvaxtverket", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+        "tillvaxtverket", data.parent, tmp_path / "parsed", bindings=[PROVIDER]
     )
     assert [e["key"] for e in parsed["errors"]] == [stored_key(first)]
     assert "NY_KOLUMN" in parsed["errors"][0]["error"]
@@ -265,7 +268,7 @@ def test_conflicting_duplicates_are_stored_and_fail_at_parse(data, tmp_path):
     result = execute(client, data, tmp_path / "duplicate")
     assert result["status"] == "success"
     parsed = build(
-        "tillvaxtverket", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+        "tillvaxtverket", data.parent, tmp_path / "parsed", bindings=[PROVIDER]
     )
     assert [e["key"] for e in parsed["errors"]] == [stored_key(YEAR)]
     assert "Conflict" in parsed["errors"][0]["error"]

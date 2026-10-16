@@ -14,6 +14,7 @@ from apps.harvest.metadata_adapters.entryscape.state import (
     load_tables,
 )
 from apps.harvest.source_store import SourceStore
+from tests.support.binding import binding
 from tests.support.entryscape import page
 from tests.support.parsing import documents
 
@@ -22,18 +23,20 @@ DCAT = "http://www.w3.org/ns/dcat#"
 DCTERMS = "http://purl.org/dc/terms/"
 RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
 PROVIDERS = [
-    {
-        "code": "alpha",
-        "label": "Alpha kommun",
-        "base_url": "https://alpha.example",
-        "languages": ["sv"],
-    },
-    {
-        "code": "beta",
-        "label": "Beta kommun",
-        "base_url": "https://beta.example",
-        "languages": ["sv"],
-    },
+    binding(
+        "entryscape",
+        "alpha",
+        "https://alpha.example",
+        label="Alpha kommun",
+        languages=["sv"],
+    ),
+    binding(
+        "entryscape",
+        "beta",
+        "https://beta.example",
+        label="Beta kommun",
+        languages=["sv"],
+    ),
 ]
 
 

@@ -68,19 +68,11 @@ are bundled for audit, not runtime input.
 
 ```powershell
 uv run python scripts/generate/generate_configuration.py
-uv run python scripts/generate/generate_schema_reference.py
 uv run python scripts/generate/generate_configuration.py --check
-uv run python scripts/generate/generate_schema_reference.py --check
 ```
 
-These commands generate JSON Schema, the source inventory and model documentation.
-CI checks for drift. Edit the files in `config/` and the Pydantic models. No packaged
-configuration copies are generated. The old provider schema is only a routing compatibility
-envelope; it is not an organisation contract.
-
-The generated [configuration field reference](reference.md) defines
-construction fields; the [metadata reference](../model/reference.md)
-lists standard vocabulary aliases and NordicIntel (`ni:`) extensions.
+These commands generate the service inventory; CI checks for drift. Edit the files in
+`config/`; `schema/source-configuration.schema.json` describes their shape.
 
 Worker artifacts are plain JSON; nothing rewrites accepted production files.
 

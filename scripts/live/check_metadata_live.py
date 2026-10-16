@@ -9,10 +9,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import quote, unquote
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import get_pxweb_tables
 from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
 from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
+from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 from apps.harvest.validation import validate_metadata
 
 
@@ -164,7 +165,7 @@ if __name__ == "__main__":
         "--limit", type=int, help="Smoke test only; never counts as full acceptance"
     )
     args = parser.parse_args()
-    providers = providers_for_adapter("pxweb_v1")
+    providers = [provider_row(b) for b in registry.load().bindings("pxweb_v1")]
     provider = next((p for p in providers if p["code"] == args.provider), None)
     if provider is None or (args.limit is not None and args.limit < 1):
         parser.error("Unknown provider or invalid limit")

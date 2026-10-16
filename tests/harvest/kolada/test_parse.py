@@ -3,6 +3,7 @@
 from pathlib import Path
 
 from tests.harvest.test_kolada import seed_source as source_fixture
+from tests.support.binding import binding
 from tests.support.kolada_fixture import initial_state
 
 seed_source = source_fixture
@@ -15,7 +16,10 @@ def test_parse_reproduces_previous_collection_bytes(seed_source, tmp_path):
     root = tmp_path / "data" / "kolada"
     initial_state(seed_source, root)
     result = build(
-        "kolada", tmp_path / "data", tmp_path / "out", providers=[{"code": "kolada"}]
+        "kolada",
+        tmp_path / "data",
+        tmp_path / "out",
+        bindings=[binding("kolada", "kolada")],
     )
     assert result["status"] == "success", result["errors"]
     golden = next(GOLDEN.glob("*.jsonl.gz"))

@@ -12,11 +12,12 @@ import asyncio
 from datetime import UTC, datetime
 from pathlib import Path
 
-from apps.configuration import providers_for_adapter
+import registry
 from apps.harvest.metadata_adapters.riksbank.client import RiksbankClient
 from apps.harvest.metadata_adapters.riksbank.workflow import build_record, discover_api
 from apps.harvest.storage import write
 from apps.model.validation import validate_retrieval
+from registry import ServiceBinding
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.riksbank import REQUIRED_METADATA, retrieve
 
@@ -63,9 +64,9 @@ def recent_selection(document: dict) -> dict:
     return selection
 
 
-async def check(provider: dict) -> dict:
+async def check(binding: ServiceBinding) -> dict:
     report = []
-    client = RiksbankClient(provider)
+    client = RiksbankClient(binding.options)
     try:
         for api, code in SAMPLES.items():
             item = {"api": api, "dataset": code}
@@ -118,13 +119,10 @@ async def check(provider: dict) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--providers", type=Path, default=None)
     parser.add_argument(
         "--report", type=Path, default=Path("output/riksbank-live.json")
     )
     args = parser.parse_args()
-    result = asyncio.run(
-        check(providers_for_adapter("riksbank", legacy_path=args.providers)[0])
-    )
+    result = asyncio.run(check(registry.load().bindings("riksbank")[0]))
     write(args.report, result)
     raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

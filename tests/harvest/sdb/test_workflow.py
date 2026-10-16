@@ -10,18 +10,17 @@ import pytest
 from apps.harvest.metadata_adapters.sdb.client import SdbClient, Unreachable
 from apps.harvest.metadata_adapters.sdb.state import PROVIDER_CODE, load_state
 from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.binding import binding
 from tests.support.parsing import documents
 
 SDB_DATA = json.loads(
     (Path("tests/fixtures/sdb") / "sdb.json").read_text(encoding="utf-8")
 )
 NOW = datetime(2026, 10, 12, 5, tzinfo=UTC)
-PROVIDER = {
-    "code": "socialstyrelsen",
-    "languages": ["sv", "en"],
-    "retry_cooldown_seconds": 0,
-}
-LANGUAGES = PROVIDER["languages"]
+PROVIDER = binding(
+    "sdb", "socialstyrelsen", languages=["sv", "en"], retry_cooldown_seconds=0
+)
+LANGUAGES = PROVIDER.options["languages"]
 MANIFEST = "source/manifest.json"
 
 
@@ -46,7 +45,7 @@ def start(sdb, data, output, *, clock=NOW, **options):
     from apps.harvest.metadata_adapters.sdb.workflow import run
 
     async def main():
-        client = SdbClient({"base_url": sdb.api_root}, retry_delay=0)
+        client = SdbClient(base_url=sdb.api_root, retry_delay=0)
         try:
             return await run(
                 PROVIDER, data, output, client=client, clock=clock, **options

@@ -34,12 +34,23 @@ from apps.harvest.storage import (
 )
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes
+from registry import ServiceBinding
 
 logger = logging.getLogger("pxweb_v1_logger")
 _PROGRESS_EVERY = 25
 LAYOUT = 2
 """Checkpoint layout: 2 = per-table source files; older checkpoints are refused."""
 ADAPTER = "pxweb_v1"
+
+
+def provider_row(binding: ServiceBinding) -> dict:
+    """The provider dictionary this adapter works with, from its binding."""
+    return {
+        "code": binding.source_code,
+        "base_api_url": binding.endpoint_url,
+        "label": binding.label,
+        **binding.options,
+    }
 
 
 def stored_key(record) -> str:

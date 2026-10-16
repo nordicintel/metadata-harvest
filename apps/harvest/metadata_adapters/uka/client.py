@@ -37,23 +37,24 @@ class UkaClient:
 
     def __init__(
         self,
-        provider: dict | None = None,
+        options: dict | None = None,
         *,
+        base_url: str = API_ROOT,
         session: aiohttp.ClientSession | None = None,
         attempts: int = 4,
         retry_delay: float = 2.0,
     ) -> None:
-        provider = provider or {}
-        self.base_url = provider.get("base_url", API_ROOT)
+        options = options or {}
+        self.base_url = base_url
         self._session = session
         self._owned = session is None
         self._attempts = attempts
         self._retry_delay = retry_delay
-        self._limit = asyncio.Semaphore(int(provider.get("concurrency", 2)))
+        self._limit = asyncio.Semaphore(int(options.get("concurrency", 2)))
         logger.debug(
             "UKÄ client: base_url=%s, concurrency=%s, attempts=%d, retry_delay=%.1fs",
             self.base_url,
-            provider.get("concurrency", 2),
+            options.get("concurrency", 2),
             attempts,
             retry_delay,
         )

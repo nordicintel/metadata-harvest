@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source configuration",
+  "description": "The three configuration files under config/: adapters.json, organisations.json and catalogs.json. Cross-references between them are checked by registry.load.",
+  "$defs": {
+    "language_map": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string", "minLength": 1 },
+        "minItems": 1
+      }
+    },
+    "adapters": {
+      "type": "object",
+      "properties": {
+        "configuration_version": { "const": 1 },
+        "adapters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "title": { "$ref": "#/$defs/language_map" },
+              "description": { "$ref": "#/$defs/language_map" },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "enum": ["string", "number", "integer", "boolean", "array", "object"]
+                    },
+                    "required": { "type": "boolean" },
+                    "description": { "type": "string" }
+                  },
+                  "required": ["type"],
+                  "additionalProperties": false
+                }
+              },
+              "defaults": { "type": "object" }
+            },
+            "required": ["title", "description"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["configuration_version", "adapters"],
+      "additionalProperties": false
+    },
+    "organisations": {
+      "type": "object",
+      "properties": {
+        "configuration_version": { "const": 1 },
+        "organisations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "name": { "$ref": "#/$defs/language_map" }
+            },
+            "required": ["id", "name"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["configuration_version", "organisations"],
+      "additionalProperties": false
+    },
+    "catalogs": {
+      "type": "object",
+      "properties": {
+        "configuration_version": { "const": 1 },
+        "services": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "adapter": { "type": "string", "minLength": 1 },
+              "source_code": { "type": "string", "minLength": 1 },
+              "endpoint_url": { "type": "string", "pattern": "^https?://[^/]+" },
+              "publisher": { "type": ["string", "null"] },
+              "order": { "type": "integer", "minimum": 0 },
+              "options": { "type": "object" }
+            },
+            "required": ["id", "adapter", "source_code", "endpoint_url", "order"],
+            "additionalProperties": false
+          }
+        },
+        "catalogs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "key": { "type": "string", "minLength": 1 },
+              "title": { "$ref": "#/$defs/language_map" },
+              "publisher": { "type": ["string", "null"] },
+              "services": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "description": { "$ref": "#/$defs/language_map" },
+              "homepage": { "type": "array", "items": { "type": "string" } },
+              "languages": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["id", "key", "title", "services"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["configuration_version", "services", "catalogs"],
+      "additionalProperties": false
+    }
+  }
+}

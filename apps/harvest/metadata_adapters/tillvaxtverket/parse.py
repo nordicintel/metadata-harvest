@@ -24,6 +24,7 @@ from apps.harvest.metadata_adapters.tillvaxtverket.source import (
 )
 from apps.harvest.metadata_adapters.tillvaxtverket.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
+from registry import ServiceBinding
 
 LABELS = "labels.csv"
 
@@ -67,7 +68,7 @@ def document_from(spec: Spec, responses: dict, labels, dcat_body) -> dict:
 
 
 def documents(
-    store: SourceStore, state: dict, providers: list[dict], *, portal=None
+    store: SourceStore, state: dict, bindings: list[ServiceBinding], *, portal=None
 ) -> Iterator[tuple[str, dict | Exception]]:
     try:
         portal_index = portal_records(portal)

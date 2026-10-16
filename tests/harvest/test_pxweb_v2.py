@@ -6,12 +6,15 @@ from copy import deepcopy
 import httpx
 import pytest
 
-PROVIDER = {
-    "code": "scb",
-    "base_api_url": "https://example.test/api/v2",
-    "languages": ["sv", "en"],
-    "page_size": 2,
-}
+from tests.support.binding import binding
+
+PROVIDER = binding(
+    "pxweb_v2",
+    "scb",
+    "https://example.test/api/v2",
+    languages=["sv", "en"],
+    page_size=2,
+)
 CONFIG = {
     "languages": [{"id": "sv"}, {"id": "en"}],
     "maxCallsPerTimeWindow": 30,
@@ -39,7 +42,7 @@ def record(code="T1", language="sv"):
         "provider_code": "scb",
         "dataset_code": code,
         "language": language,
-        "base_api_url": PROVIDER["base_api_url"],
+        "base_api_url": PROVIDER.endpoint_url,
         "catalogue": table(code),
     }
 
@@ -96,7 +99,7 @@ def client_for(handler):
 
     clock = Time()
     return Client(
-        PROVIDER["base_api_url"],
+        PROVIDER.endpoint_url,
         transport=httpx.MockTransport(handler),
         clock=clock.now,
         sleep=clock.sleep,
@@ -116,7 +119,7 @@ def test_client_paces_requests_and_retries_under_stricter_config():
 
     async def run():
         async with Client(
-            PROVIDER["base_api_url"],
+            PROVIDER.endpoint_url,
             transport=httpx.MockTransport(handler),
             clock=clock.now,
             sleep=clock.sleep,

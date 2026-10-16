@@ -5,7 +5,8 @@ import os
 from pathlib import Path
 from urllib.parse import unquote
 
-from apps.configuration import providers_for_adapter
+import registry
+from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 
 
 def summarize(providers, reports):
@@ -46,7 +47,7 @@ def summarize(providers, reports):
 
 
 if __name__ == "__main__":
-    providers = providers_for_adapter("pxweb_v1")
+    providers = [provider_row(b) for b in registry.load().bindings("pxweb_v1")]
     reports = [
         json.loads(p.read_text(encoding="utf-8"))
         for p in Path("output/metadata-live").glob("*.json")

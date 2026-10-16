@@ -16,13 +16,14 @@ from apps.harvest.metadata_adapters.kolada.metadata import (
 )
 from apps.harvest.metadata_adapters.kolada.state import load_state, normalize
 from apps.harvest.validation import validate_metadata
+from tests.support.binding import binding
 from tests.support.kolada_fixture import initial_state as import_seed
 from tests.support.parsing import documents
 
 
 def load_documents(root):
     """Parsed documents keyed ``<scope>/<kpi>``."""
-    parsed = documents("kolada", root, [{"code": "kolada"}])
+    parsed = documents("kolada", root, [binding("kolada", "kolada")])
     return {key.split("/", 1)[1]: document for key, document in parsed.items()}
 
 

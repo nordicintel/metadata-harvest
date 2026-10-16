@@ -33,6 +33,7 @@ from apps.harvest.metadata_adapters.dataanalys.client import (
     RequestRejected,
     Unreachable,
 )
+from tests.support.binding import binding
 
 FIXTURES = Path("tests/fixtures/dataanalys")
 RECORDED: dict[str, Any] = json.loads(
@@ -44,12 +45,13 @@ SYNTHETIC: dict[str, Any] = json.loads(
 VALUES: dict[str, Any] = json.loads(
     (FIXTURES / "values.json").read_text(encoding="utf-8")
 )
-PROVIDER = {
-    "code": "socialstyrelsen_analys",
-    "languages": ["sv"],
-    "max_age_days": 60,
-    "retry_cooldown_seconds": 0,
-}
+PROVIDER = binding(
+    "dataanalys",
+    "socialstyrelsen_analys",
+    languages=["sv"],
+    max_age_days=60,
+    retry_cooldown_seconds=0,
+)
 AREA_IDS = {"GONV": (160, 159), "NRAA": (165, 164), "LRHST": (158, 163)}
 """Catalogue and values datasource ids."""
 

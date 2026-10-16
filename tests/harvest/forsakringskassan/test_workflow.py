@@ -16,16 +16,18 @@ from apps.harvest.metadata_adapters.forsakringskassan.state import (
     load_state,
 )
 from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.binding import binding
 from tests.support.forsakringskassan import RecordedClient
 from tests.support.parsing import documents
 
 NOW = datetime(2026, 10, 13, 5, tzinfo=UTC)
-PROVIDER = {
-    "code": "forsakringskassan",
-    "languages": ["sv"],
-    "retry_cooldown_seconds": 0,
-    "max_age_days": 60,
-}
+PROVIDER = binding(
+    "forsakringskassan",
+    "forsakringskassan",
+    languages=["sv"],
+    retry_cooldown_seconds=0,
+    max_age_days=60,
+)
 ALL_KEYS = {
     "sv/ase-avslutsanledning/ASEAvslutsanledning",
     "sv/ase-beslut-lan/ASEBeslutKon",
@@ -206,7 +208,7 @@ def test_texts_without_a_report_name_are_stored_and_fail_at_parse(data, tmp_path
     result = execute(source, data, tmp_path / "bad")
     assert result["status"] == "success"  # the harvest stores what was returned
     parsed = build(
-        "forsakringskassan", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+        "forsakringskassan", data.parent, tmp_path / "parsed", bindings=[PROVIDER]
     )
     assert [e["key"] for e in parsed["errors"]] == [
         stored_key("sv/ase-avslutsanledning/ASEAvslutsanledning")

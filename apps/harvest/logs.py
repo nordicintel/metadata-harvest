@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 import sys
 
-from apps.harvest.registry import ADAPTERS
+from apps.harvest.metadata_adapters import ADAPTERS
 from apps.settings import load as load_settings
 
 # Repository modules log under their package name; every metadata adapter instead

@@ -12,7 +12,7 @@ def test_parse_reproduces_previous_collection_bytes(tmp_path):
 
     root = tmp_path / "data" / "uka"
     execute(Source(), root, tmp_path / "bootstrap")
-    result = build("uka", tmp_path / "data", tmp_path / "out", providers=[PROVIDER])
+    result = build("uka", tmp_path / "data", tmp_path / "out", bindings=[PROVIDER])
     assert result["status"] == "success", result["errors"]
     golden = next(GOLDEN.glob("*.jsonl.gz"))
     assert (tmp_path / "out/metadata" / golden.name).read_bytes() == (

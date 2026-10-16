@@ -11,11 +11,12 @@ import pytest
 from apps.harvest.metadata_adapters.riksbank.client import Unreachable
 from apps.harvest.metadata_adapters.riksbank.state import PROVIDER_CODE, load_state
 from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.binding import binding
 from tests.support.parsing import documents
 from tests.support.riksbank import API, RecordedClient, fixture_key
 
 NOW = datetime(2026, 10, 12, 5, 15, tzinfo=UTC)
-PROVIDER = {"code": "riksbank", "languages": ["en"], "retry_cooldown_seconds": 0}
+PROVIDER = binding("riksbank", "riksbank", languages=["en"], retry_cooldown_seconds=0)
 GROUPS = fixture_key(f"{API}/swea/v1/Groups")
 SERIES = fixture_key(f"{API}/swea/v1/Series")
 MPD = f"{API}/monetary_policy_data/v1/forecasts"

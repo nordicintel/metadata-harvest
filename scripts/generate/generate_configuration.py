@@ -1,71 +1,29 @@
-"""Generate configuration schema, model reference and source inventory."""
+"""Generate the service inventory from the registry; --check verifies it is current."""
 
-import json
 import sys
 
-from apps.configuration import load_configuration
-from apps.model.configuration import SourceConfiguration
+import registry
 from apps.paths import ROOT
 
 
 def artifacts():
-    configuration = load_configuration(ROOT / "config")
-    schema = SourceConfiguration.model_json_schema()
-    schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
-    yield (
-        ROOT / "schemas/source-configuration.schema.json",
-        json.dumps(schema, ensure_ascii=False, indent=2) + "\n",
-    )
-    reference = [
-        "# Configuration model reference",
-        "",
-        "Generated from the configuration Pydantic models; do not edit by hand.",
-        "",
-        "Configuration fields are internal construction values. Organisation vocabulary aliases are standard RDF properties; published resource mappings are described in [configuration guide](README.md). JSON-valued extensions are accepted without changing these models.",
-        "",
-    ]
-    for name, definition in sorted(
-        {"SourceConfiguration": schema, **schema.get("$defs", {})}.items()
-    ):
-        if not definition.get("properties"):
-            continue
-        reference += [
-            f"## {name}",
-            "",
-            "| Field | Required | Definition |",
-            "| --- | --- | --- |",
-        ]
-        for field, item in definition["properties"].items():
-            detail = json.dumps(item, ensure_ascii=False, sort_keys=True).replace(
-                "|", "&#124;"
-            )
-            reference.append(
-                f"| `{field}` | {field in definition.get('required', [])} | `{detail}` |"
-            )
-        reference.append("")
-    yield ROOT / "docs/configuration/reference.md", "\n".join(reference)
+    loaded = registry.load()
     lines = [
-        "# Organisation, catalog and concrete service inventory",
+        "# Service inventory",
         "",
-        "Generated from the three authoritative configuration files in config/; do not edit this inventory directly.",
+        "Generated from the three configuration files in config/; do not edit by hand.",
         "",
-        "Organisations are independent entities. Publisher is a relationship to a catalog or service. The source code is a compatibility routing alias, not an organisation identifier.",
-        "",
-        "| Catalog | Publisher | Adapter | Source alias | Service endpoint |",
-        "| --- | --- | --- | --- | --- |",
+        "| Owner | Adapter | Source code | Endpoint |",
+        "| --- | --- | --- | --- |",
     ]
-    for catalog in configuration.catalogs.values():
-        for identity in catalog.services:
-            service = configuration.services[identity]
-            label = next(iter(catalog.title.values()))[0]
+    for adapter in loaded.adapters:
+        for binding in loaded.bindings(adapter):
+            owner = loaded.owner(binding)
             lines.append(
-                f"| {label} | `{catalog.publisher or ''}` | `{service.adapter}` | `{service.source_code}` | {service.endpoint_url[0]} |"
+                f"| {next(iter(owner.name.values()))[0] if owner else ''} | "
+                f"`{binding.adapter}` | `{binding.source_code}` | {binding.endpoint_url} |"
             )
-    lines += [
-        "",
-        "Shared hosting retains catalog-specific EntryStore contexts and original discovery origins. Records without supported attribution remain retained with findings; hosts never become invented organisations.",
-        "",
-    ]
+    lines.append("")
     yield ROOT / "docs/configuration/inventory.md", "\n".join(lines)
 
 

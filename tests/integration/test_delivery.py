@@ -11,11 +11,6 @@ from apps.paths import ROOT
 
 def test_generated_schema_reference_is_current():
     subprocess.run(
-        [sys.executable, "scripts/generate/generate_schema_reference.py", "--check"],
-        cwd=ROOT,
-        check=True,
-    )
-    subprocess.run(
         [sys.executable, "scripts/generate/generate_configuration.py", "--check"],
         cwd=ROOT,
         check=True,
@@ -56,11 +51,14 @@ def test_provider_entry_points_and_runtime_dependencies_are_consistent():
     ]
     entries = project["entry-points"]["nordicintel.retrieval"]
     expected = {}
-    from apps.configuration import load_configuration, providers_for_adapter
+    import registry
 
-    for adapter in load_configuration().adapters:
-        for provider in providers_for_adapter(adapter):
-            expected[provider["code"]] = f"retrieval.data_adapters.{adapter}:retrieve"
+    loaded = registry.load()
+    for adapter in loaded.adapters:
+        for binding in loaded.bindings(adapter):
+            expected[binding.source_code] = (
+                f"retrieval.data_adapters.{adapter}:retrieve"
+            )
     assert entries == expected
     assert project["dependencies"] == [
         "aiohttp>=3.9,<4",

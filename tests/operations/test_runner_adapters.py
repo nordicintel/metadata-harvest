@@ -69,11 +69,11 @@ def test_run_and_collect_use_adapter_configuration(
     assert data == Path("data") / adapter
     assert output == Path("output") / adapter
     assert options == expected
-    assert provider["languages"]
+    assert provider.options["languages"]
 
     monkeypatch.setattr(sys, "argv", ["runner", "collect", "--adapter", adapter])
     runner.main()
-    assert calls.pop() == (data, output, {"languages": provider["languages"]})
+    assert calls.pop() == (data, output, {"languages": provider.options["languages"]})
 
 
 @pytest.mark.parametrize(

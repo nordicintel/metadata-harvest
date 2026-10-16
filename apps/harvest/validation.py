@@ -1,7 +1,6 @@
 """Offline shared schema and semantic validation; requires the harvest extra."""
 
-from apps.model.models import Dataset
-from apps.model.validation import _check, validate_model
+from apps.model.validation import _check
 from retrieval._semantics import validate_cube
 
 
@@ -12,11 +11,6 @@ def validate_provider(document: dict) -> None:
 
 def validate_dataset(document: dict, *, adapter: str | None = None) -> None:
     """Validate shared Dataset structure and cross-field relationships."""
-    if isinstance(document, Dataset):
-        return
-    if document.get("@type") == "dcat:Dataset":
-        validate_model(document)
-        return
     _check("legacy-dataset-metadata", document)
     validate_cube(document)
     provider = document["extension"]["nordicintel"]["provider_code"]
@@ -55,7 +49,5 @@ def validate_dataset(document: dict, *, adapter: str | None = None) -> None:
 def validate_metadata(document: dict, *, adapter: str | None = None) -> None:
     """Require full metadata and no observations or observation flags."""
     validate_dataset(document, adapter=adapter)
-    if isinstance(document, Dataset) or document.get("@type") == "dcat:Dataset":
-        return
     if document["value"] != [] or "status" in document:
         raise ValueError("Harvest output must be metadata-only")

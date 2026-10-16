@@ -56,6 +56,7 @@ from apps.harvest.source_store import (
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
+from registry import ServiceBinding
 from retrieval.data_adapters.smhi_emissions import DATASET_PREFIX
 
 ADAPTER = "smhi_emissions"
@@ -103,7 +104,7 @@ async def build_substance(client, substance: Substance, options: FilterOptions):
     return build_dataset(substance, options, probe), probe.submission
 
 
-async def discover_provider(provider: dict, *, client=None) -> list[dict]:
+async def discover_provider(binding: ServiceBinding, *, client=None) -> list[dict]:
     """The current substances, as ``{"code", "substance_id", "long_name"}``."""
     connection = client or SmhiClient()
     try:
@@ -175,7 +176,7 @@ def _select(options: FilterOptions, subjects) -> tuple[list[str], list[str]]:
 
 
 async def run(
-    provider: dict,
+    binding: ServiceBinding,
     data: Path,
     output: Path,
     *,
@@ -188,7 +189,7 @@ async def run(
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
-    configured = list(provider.get("languages", LANGUAGES))
+    configured = list(binding.options.get("languages", LANGUAGES))
     if set(configured) - set(LANGUAGES):
         raise ValueError(f"SMHI emissions publishes Swedish only, not {configured}")
     selected_languages = list(languages or configured)
@@ -212,8 +213,8 @@ async def run(
         (withheld if status == "withheld" else published)[key] = True
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
-    max_age = timedelta(days=provider.get("max_age_days", 60))
-    cooldown = provider.get("retry_cooldown_seconds", 60)
+    max_age = timedelta(days=binding.options.get("max_age_days", 60))
+    cooldown = binding.options.get("retry_cooldown_seconds", 60)
     logger.info(
         "Starting %s full rebuild: subjects=%s languages=%s max_age_days=%s "
         "retry_cooldown=%ss; the adapter has no refresh mode, every selected "
