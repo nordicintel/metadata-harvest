@@ -9,8 +9,10 @@ then a full scan, deferred beyond ``max_paging_requests``). One pacer spaces
 every request across all hosts; the second HTTP 429 or an exhausted budget
 stops the run, keeping every finished table for the next one.
 
-Publication is offline: the dataset rules regroup every accepted table structure
-on each run, so nothing is requested to apply a rule change.
+Each harvested table's envelope holds its discovery record and, as derived data,
+the trimmed structure document the dataset rules read (the rows themselves are
+never stored). Dataset grouping and mapping happen later in ``parse``, so nothing
+is requested to apply a rule change.
 """
 
 import logging
@@ -33,22 +35,17 @@ from apps.harvest.metadata_adapters.entryscape.client import (
     Pacer,
     RateLimited,
 )
-from apps.harvest.metadata_adapters.entryscape.datasets import (
-    MAPPING_VERSION,
-    build_datasets,
-    trim,
-)
+from apps.harvest.metadata_adapters.entryscape.datasets import MAPPING_VERSION, trim
 from apps.harvest.metadata_adapters.entryscape.discovery import (
     discover_provider as discover,
 )
 from apps.harvest.metadata_adapters.entryscape.discovery import within_catalog_scope
-from apps.harvest.metadata_adapters.entryscape.mapping import to_document
+from apps.harvest.metadata_adapters.entryscape.parse import stored_key
 from apps.harvest.metadata_adapters.entryscape.state import (
     CURRENT,
+    PROVIDER_CODE,
     REPORT,
     TABLES,
-    collection_store,
-    harvested_documents,
     load_current,
     load_tables,
     save_current,
@@ -56,7 +53,8 @@ from apps.harvest.metadata_adapters.entryscape.state import (
     table_key,
 )
 from apps.harvest.metadata_adapters.entryscape.tables import table_document
-from apps.harvest.storage import document_identity, filename, read, write
+from apps.harvest.source_store import Rejected, SourceStore, harvest_manifest
+from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
@@ -81,9 +79,11 @@ COUNTS = (
     "deferred",
     "removed",
     "failed",
-    "datasets",
-    "lists",
 )
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {TABLES, CURRENT, REPORT} or relative.startswith("source/")
 
 
 class Blocked(RuntimeError):
@@ -110,64 +110,29 @@ def default_client(base_url: str, pacer: Pacer) -> Client:
     return Client(base_url, pacer=pacer)
 
 
-def rebuild(tables: dict, providers: list[dict]) -> tuple[dict, dict]:
-    """Group every accepted table structure into datasets and map them.
-
-    Returns the documents keyed by collection filename and a summary with the
-    dropped tables and list-only datasets.
-    """
-    by_code = {p["code"]: p for p in providers}
-    documents = harvested_documents(tables)
-    logger.info(
-        "Rebuilding datasets offline from %d accepted table structures "
-        "(of %d known tables)",
-        len(documents),
-        len(tables),
-    )
-    datasets, dropped = build_datasets(documents)
-    by_url = {d["extension"]["metadata_harvest"]["table_url"]: d for d in documents}
-    mapped, lists = {}, []
-    for dataset in datasets:
-        members = [by_url[url] for url in dataset["tables"]]
-        dataset["records"] = [m["extension"]["metadata_harvest"] for m in members]
-        dataset["cells_unique"] = all(
-            m["extension"]["rowstore"].get("dimension_key_unique_in_sample", False)
-            for m in members
-        )
-        if dataset["kind"] != "cube":
-            lists.append(dataset["dataset_code"])
-            logger.debug(
-                "Dataset %s has no dimension; kept as a list-only dataset, "
-                "not published",
-                dataset["dataset_code"],
-            )
-            continue
-        document = to_document(dataset, by_code.get(dataset["provider_code"], {}))
-        mapped[filename(document_identity(document))] = document
-    logger.info(
-        "Mapped %d cube datasets (%d list-only datasets not published)",
-        len(mapped),
-        len(lists),
-    )
-    return mapped, {"dropped": dropped, "lists": lists, "datasets": len(mapped)}
+def tables_key(key: str) -> dict:
+    """A record-like identity from a ``<provider>/<dataset_code>`` table key."""
+    provider_code, dataset_code = key.split("/", 1)
+    return {"provider_code": provider_code, "dataset_code": dataset_code}
 
 
-def publish(tables: dict, current: dict, providers: list[dict], output: Path) -> dict:
-    """Write the derived collections and state into ``output``."""
-    documents, summary = rebuild(tables, providers)
-    store = collection_store(output)
-    store.records = documents
+def _discovery(store: SourceStore, entry: dict) -> dict:
+    envelope = store.get(stored_key(entry))
+    return envelope["responses"]["discovery"] if envelope else {}
+
+
+def publish(tables: dict, current: dict, store: SourceStore, output: Path) -> None:
+    """Write the source files and state into ``output``."""
     store.save()
     logger.info(
-        "Wrote %d dataset documents and state for %d tables to %s",
-        len(documents),
+        "Wrote %d stored tables and state for %d known tables to %s",
+        len(store.entries()),
         len(tables),
         output,
     )
-    current.update(mapping_version=MAPPING_VERSION, dropped=summary["dropped"])
+    current.update(mapping_version=MAPPING_VERSION)
     save_tables(output, tables)
     save_current(output, current)
-    return summary
 
 
 async def discover_provider(provider: dict, *, client=None) -> dict:
@@ -211,13 +176,16 @@ async def run(
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
-    baseline = manifest(data) if data.exists() else {}
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
+        raise ValueError("Unexpected file in published EntryScape data")
     tables, current = load_tables(data), load_current(data)
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         target = output / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", PROVIDER_CODE)
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     factory = client_factory or default_client
@@ -270,8 +238,8 @@ async def run(
         )
     if current.get("mapping_version") not in (None, MAPPING_VERSION):
         logger.info(
-            "Mapping version changed (%s -> %s); datasets are regrouped offline "
-            "from accepted tables without any request",
+            "Mapping version changed (%s -> %s); datasets are regrouped by parse "
+            "from stored tables without any request",
             current.get("mapping_version"),
             MAPPING_VERSION,
         )
@@ -309,10 +277,8 @@ async def run(
             "key": key,
             "provider_code": record["provider_code"],
             "dataset_code": record["dataset_code"],
-            "record": record,
             "markers": markers(record),
             "harvested_at": stamp,
-            "document": None,
         }
         try:
             structure = await call(
@@ -328,6 +294,7 @@ async def run(
             )
         except EmptyTable:
             entry.update(status="empty", rowcount=0)
+            store.remove(stored_key(record))
             counts["empty"] += 1
             logger.debug("%s: empty table (0 rows), recorded", key)
         except NeedsPaging as deferral:
@@ -353,12 +320,18 @@ async def run(
                 deferral.reason,
             )
         else:
+            store.put(
+                stored_key(record),
+                responses={"discovery": record},
+                derived={"document": trim(table_document(record, structure))},
+                updated=record.get("published"),
+                retrieved_at=stamp,
+            )
             entry.update(
                 status="ok",
                 rowcount=structure["rowcount"],
                 strategy=structure["strategy"],
                 requests=structure["requests"],
-                document=trim(table_document(record, structure)),
             )
             counts["harvested"] += 1
             strategies[structure["strategy"]] += 1
@@ -456,9 +429,10 @@ async def run(
                     for k in tables
                     if k.startswith(code + "/")
                     and k not in listed
-                    and within_catalog_scope(provider, tables[k].get("record", {}))
+                    and within_catalog_scope(provider, _discovery(store, tables[k]))
                 ]:
                     tables.pop(key)
+                    store.remove(stored_key(tables_key(key)))
                     counts["removed"] += 1
                     logger.debug("%s: no longer listed by the provider; removed", key)
                 if counts["removed"] > before["removed"]:
@@ -486,6 +460,12 @@ async def run(
                     "empty",
                     "deferred",
                 )
+                if (
+                    settled
+                    and previous["status"] == "ok"
+                    and (store.get(stored_key(record)) is None)
+                ):
+                    settled = False  # harvested before the source files existed
                 why = (
                     "new table"
                     if previous is None
@@ -542,23 +522,21 @@ async def run(
                     await harvest(record)
                 except Blocked:
                     raise
-                except Exception as error:
+                except (Rejected, Exception) as error:
                     tables[key] = {
                         "key": key,
                         "provider_code": record["provider_code"],
                         "dataset_code": record["dataset_code"],
-                        "record": record,
                         "markers": markers(record),
                         "harvested_at": stamp,
                         "status": "error",
                         "error": fail("metadata", key, error),
-                        "document": (previous or {}).get("document"),
                     }
                     counts["failed"] += 1
                     table_errors += 1
                     logger.warning(
-                        "%s: failure recorded (%d/%d tolerated); previous document "
-                        "is kept",
+                        "%s: failure recorded (%d/%d tolerated); the stored source "
+                        "entry is kept",
                         key,
                         table_errors,
                         MAX_TABLE_ERRORS,
@@ -597,8 +575,7 @@ async def run(
         fail("run", "budget", error)
     progress.update(failed=counts["failed"])
 
-    summary = publish(tables, current, providers, output)
-    counts["datasets"], counts["lists"] = summary["datasets"], len(summary["lists"])
+    publish(tables, current, store, output)
     status = "completed_with_errors" if errors else "success"
     result = {
         "run_id": uuid4().hex,
@@ -609,8 +586,6 @@ async def run(
         "counts": counts,
         "requests": requests,
         "deferred_tables": deferred,
-        "dropped_tables": summary["dropped"],
-        "list_datasets": summary["lists"],
         "errors": errors,
     }
     write(output / REPORT, result)
@@ -651,16 +626,14 @@ def collect(data: Path, output: Path) -> dict:
         result.get("status"),
         len(result["manifest"]),
     )
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         logger.error("Published baseline changed since the run started; refusing")
         raise ValueError("Stale EntryScape artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         logger.error("Artifact checksums do not match its manifest; refusing")
         raise ValueError("EntryScape artifact checksum mismatch")
     for relative in result["manifest"]:
-        if relative not in {TABLES, CURRENT, REPORT} and not (
-            relative.startswith("metadata/") and relative.endswith(".jsonl.gz")
-        ):
+        if not _allowed_path(relative):
             raise ValueError(f"Unexpected EntryScape artifact path: {relative}")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -671,15 +644,12 @@ def collect(data: Path, output: Path) -> dict:
         temporary.replace(target)
         logger.debug("Applied %s", relative)
     removed = 0
-    for stale in (
-        (data / "metadata").glob("*.jsonl.gz") if (data / "metadata").exists() else []
-    ):
-        if f"metadata/{stale.name}" not in result["manifest"]:
-            stale.unlink()
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
             removed += 1
-            logger.debug("Removed stale collection %s", stale.name)
     logger.info(
-        "Collected %d files into %s, removed %d stale collections",
+        "Collected %d files into %s, removed %d stale source files",
         len(result["manifest"]),
         data,
         removed,

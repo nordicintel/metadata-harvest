@@ -132,11 +132,12 @@ def compare(data: Path, poc_datasets: Path) -> list[str]:
             dataset = json.loads(line)
             if dataset["kind"] == "cube":
                 expected[tuple(sorted(dataset["tables"]))] = dataset
-    from apps.harvest.metadata_adapters.entryscape.state import collection_store
+    from apps.configuration import providers_for_adapter
+    from apps.harvest.metadata_adapters.entryscape.parse import published_documents
 
     published = {
         tuple(sorted(d["extension"]["entryscape"]["tables"])): d
-        for d in collection_store(data).records.values()
+        for d in published_documents(data, providers_for_adapter("entryscape"))
     }
     problems = []
     for tables in sorted(set(expected) ^ set(published)):

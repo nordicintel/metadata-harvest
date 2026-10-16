@@ -1,9 +1,9 @@
-"""Accepted RowStore table structures, run state and per-provider collections.
+"""Run state and per-table harvest records next to the per-table source files.
 
-``state/tables.jsonl.gz`` holds one record per discovered table: its discovery
-record, harvest state (status, markers, row count, cost) and, for harvested
-tables, the trimmed structure document the dataset rules read. The published
-collections are derived from it on every run, so they are never edited directly.
+``state/tables.jsonl.gz`` holds one record per discovered table: its harvest
+state (status, markers, row count, cost). The discovery record and the trimmed
+structure document live in the table's source file; datasets are grouped from
+those by ``parse``, so nothing published is edited directly.
 """
 
 import gzip
@@ -11,7 +11,7 @@ import json
 import logging
 from pathlib import Path
 
-from apps.harvest.storage import JsonlStore, write_jsonl
+from apps.harvest.storage import write_jsonl
 
 logger = logging.getLogger("entryscape_logger")
 
@@ -19,6 +19,9 @@ TABLES = "state/tables.jsonl.gz"
 CURRENT = "state/current.jsonl.gz"
 REPORT = "reports/latest.json"
 LANGUAGE = "sv"
+PROVIDER_CODE = "entryscape"
+MOVED_FIELDS = ("record", "document")
+"""Fields earlier state rows carried; they now live in the source files."""
 
 
 def table_key(record: dict) -> str:
@@ -33,7 +36,11 @@ def records(path: Path):
 
 
 def load_tables(root: Path) -> dict:
-    tables = {entry["key"]: entry for entry in records(Path(root) / TABLES)}
+    tables = {}
+    for entry in records(Path(root) / TABLES):
+        for field in MOVED_FIELDS:
+            entry.pop(field, None)
+        tables[entry["key"]] = entry
     logger.debug("Loaded %d known tables from %s", len(tables), Path(root) / TABLES)
     return tables
 
@@ -53,13 +60,3 @@ def load_current(root: Path) -> dict:
 
 def save_current(root: Path, current: dict) -> None:
     write_jsonl(Path(root) / CURRENT, [current])
-
-
-def harvested_documents(tables: dict) -> list[dict]:
-    """The structure documents of every harvested table, in key order."""
-    return [tables[k]["document"] for k in sorted(tables) if tables[k].get("document")]
-
-
-def collection_store(root: Path) -> JsonlStore:
-    """Published documents grouped per provider; identity-keyed, deterministic."""
-    return JsonlStore(Path(root) / "metadata", compressed=True)

@@ -13,7 +13,7 @@ import aiohttp
 
 from apps.configuration import providers_for_adapter
 from apps.harvest.metadata_adapters.entryscape.client import Client, Pacer
-from apps.harvest.metadata_adapters.entryscape.state import collection_store
+from apps.harvest.metadata_adapters.entryscape.parse import published_documents
 from apps.harvest.metadata_adapters.entryscape.workflow import discover_provider
 from apps.harvest.storage import write
 from apps.model.validation import validate_retrieval
@@ -36,7 +36,7 @@ async def check(provider: dict, data: Path) -> dict:
         }
     documents = [
         d
-        for d in collection_store(data).records.values()
+        for d in published_documents(data, [provider])
         if d["extension"]["nordicintel"]["provider_code"] == provider["code"]
     ]
     documents.sort(key=lambda d: d["extension"]["entryscape"]["rowcount"])

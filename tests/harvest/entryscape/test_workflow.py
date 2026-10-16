@@ -10,11 +10,12 @@ import pytest
 
 from apps.harvest.metadata_adapters.entryscape.client import Client
 from apps.harvest.metadata_adapters.entryscape.state import (
-    collection_store,
     load_current,
     load_tables,
 )
+from apps.harvest.source_store import SourceStore
 from tests.support.entryscape import page
+from tests.support.parsing import documents
 
 NOW = datetime(2026, 11, 1, 6, tzinfo=UTC)
 DCAT = "http://www.w3.org/ns/dcat#"
@@ -180,46 +181,79 @@ def table_calls(fake):
     return [c for c in fake.calls if "/rowstore/" in c]
 
 
+def published(data):
+    return list(documents("entryscape", data, PROVIDERS).values())
+
+
+def store(data):
+    return SourceStore(data / "source", "entryscape")
+
+
+def source_bytes(data):
+    return {
+        p.relative_to(data).as_posix(): p.read_bytes()
+        for p in (data / "source").rglob("*.json")
+    }
+
+
 @pytest.fixture
 def data(source, tmp_path):
-    root = tmp_path / "data"
+    root = tmp_path / "data" / "entryscape"
     result = execute(source, root, tmp_path / "bootstrap")
     assert result["status"] == "success", result["errors"]
-    assert result["counts"]["harvested"] == 3 and result["counts"]["datasets"] == 2
+    assert result["counts"]["harvested"] == 3 and len(published(root)) == 2
     source.calls.clear()
     return root
 
 
-def test_bootstrap_publishes_merged_and_single_datasets(data):
+def test_bootstrap_stores_tables_and_parse_groups_datasets(data):
     from apps.harvest.validation import validate_metadata
 
-    documents = list(collection_store(data).records.values())
-    for document in documents:
+    parsed = published(data)
+    for document in parsed:
         validate_metadata(document, adapter="entryscape")
-    codes = {d["extension"]["nordicintel"]["dataset_code"] for d in documents}
+    codes = {d["extension"]["nordicintel"]["dataset_code"] for d in parsed}
     assert codes == {"alpha:befolkning", UUID_C}
-    merged = next(d for d in documents if d["id"][0] == "part")
+    merged = next(d for d in parsed if d["id"][0] == "part")
     assert list(merged["dimension"]["part"]["category"]["index"]) == ["2023", "2024"]
     assert set(load_tables(data)) == {
         f"alpha/{UUID_A}",
         f"alpha/{UUID_B}",
         f"beta/{UUID_C}",
     }
+    assert set(store(data).entries()) == {
+        f"alpha/{UUID_A}/sv",
+        f"alpha/{UUID_B}/sv",
+        f"beta/{UUID_C}/sv",
+    }
+    envelope = store(data).get(f"alpha/{UUID_A}/sv")
+    assert envelope["responses"]["discovery"]["title"] == "Befolkning 2023"
+    assert envelope["derived"]["document"]["class"] == "dataset"
+    table = load_tables(data)[f"alpha/{UUID_A}"]
+    assert "document" not in table and "record" not in table
     assert load_current(data)["providers"]["alpha"]["complete"] is True
+    assert not (data / "metadata").exists()
 
 
 def test_unchanged_tables_cost_nothing_and_markerless_tables_one_request(
     source, data, tmp_path
 ):
-    before = {p.name: p.read_bytes() for p in (data / "metadata").glob("*.jsonl.gz")}
+    before = source_bytes(data)
     result = execute(source, data, tmp_path / "rerun")
     assert result["counts"]["unchanged"] == 3 and result["counts"]["harvested"] == 0
     assert table_calls(source) == [
         f"alpha.example/rowstore/dataset/{UUID_B}"
     ]  # no markers: row count
-    assert {
-        p.name: p.read_bytes() for p in (data / "metadata").glob("*.jsonl.gz")
-    } == before
+    assert source_bytes(data) == before
+
+
+def test_missing_manifest_entry_is_fetched(source, data, tmp_path):
+    import shutil
+
+    shutil.rmtree(data / "source")  # state says ok, but the source files are gone
+    result = execute(source, data, tmp_path / "refetch")
+    assert result["counts"]["harvested"] == 3 and result["counts"]["unchanged"] == 0
+    assert len(store(data).entries()) == 3
 
 
 def test_changed_marker_and_changed_rowcount_reharvest(source, data, tmp_path):
@@ -248,14 +282,14 @@ def test_discovery_failure_keeps_tables_and_complete_discovery_removes(
     result = execute(source, data, tmp_path / "removed")
     assert result["counts"]["removed"] == 1
     assert f"beta/{UUID_C}" not in load_tables(data)
-    assert {
-        d["extension"]["nordicintel"]["dataset_code"]
-        for d in collection_store(data).records.values()
-    } == {"alpha:befolkning"}
+    assert f"beta/{UUID_C}/sv" not in store(data).entries()
+    assert {d["extension"]["nordicintel"]["dataset_code"] for d in published(data)} == {
+        "alpha:befolkning"
+    }
 
 
 def test_budget_stop_keeps_finished_work(source, tmp_path):
-    data = tmp_path / "data"
+    data = tmp_path / "data" / "entryscape"
     result = execute(source, data, tmp_path / "budget", max_requests=4)
     assert result["interrupted"] and result["status"] == "completed_with_errors"
     assert 0 < result["counts"]["harvested"] < 3
