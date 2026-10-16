@@ -53,4 +53,4 @@ No labels: the backlog section (`Ideas`, `Next`, `Now`) is the triage state. See
 
 ### Domain docs
 
-Single-context: `CONTEXT.md` at the repo root and ADRs under `docs/adr/`. See `docs/agents/domain.md`.
+Single document: `docs/clean-sweep.md` states the direction and the inventory. See `docs/agents/domain.md`.

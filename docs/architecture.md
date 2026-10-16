@@ -28,13 +28,8 @@ updates preserve stored source entries; complete discovery is required to establ
 removal. Checkpoints retain existing task identities. Historical profile readers do
 not execute migration commands.
 
-Decisions that change module boundaries are recorded under [docs/adr/](adr/):
-[ADR 0001](adr/0001-harvest-adapter-contract.md) defines the harvest adapter contract,
-[ADR 0002](adr/0002-replace-statdcat-with-own-schema.md) records the move away from
-StatDCAT, [ADR 0003](adr/0003-registry-owns-source-identity.md) puts source
-identity in a root-level `registry/` module, and
-[ADR 0004](adr/0004-clean-sweep-before-the-new-schema.md) lists what is deleted,
-moved and kept before the new schema is designed.
+The direction and the full inventory of what is removed and kept are in
+[docs/clean-sweep.md](clean-sweep.md).
 
 ## Dependencies and data flow
 
