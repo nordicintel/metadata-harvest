@@ -12,6 +12,9 @@ from urllib.parse import urlencode
 
 import pytest
 
+from apps.harvest.metadata_adapters.trafa.client import Unreachable
+from tests.support.binding import binding
+
 FIXTURES = Path("tests/fixtures/trafa")
 RECORDED: dict[str, Any] = json.loads(
     (FIXTURES / "trafa.json").read_text(encoding="utf-8")
@@ -50,6 +53,36 @@ class RecordedClient:
 
     async def get_text(self, url: str, params: dict[str, str] | None = None) -> str:
         return self._answer(url, params)
+
+
+class Source(RecordedClient):
+    """Recorded answers; failing or unrecorded requests are unreachable, like
+    ``TrafaClient`` after its retries."""
+
+    def _answer(self, url, params):
+        try:
+            return super()._answer(url, params)
+        except (TimeoutError, LookupError) as error:
+            raise Unreachable(str(error)) from error
+
+
+PROVIDER = binding("trafa", "trafa", languages=["sv"], retry_cooldown_seconds=0)
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    import asyncio
+
+    from apps.harvest.metadata_adapters.trafa.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result
 
 
 @pytest.fixture

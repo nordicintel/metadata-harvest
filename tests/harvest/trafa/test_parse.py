@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from apps.harvest.source_store import SourceStore
-from tests.harvest.trafa.test_workflow import PROVIDER, Source, execute
+from tests.support.trafa import PROVIDER, Source, execute
 
 GOLDEN = Path("tests/fixtures/trafa/accepted")
 

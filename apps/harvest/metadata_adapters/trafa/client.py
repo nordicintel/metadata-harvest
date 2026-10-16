@@ -5,18 +5,53 @@ import logging
 import time
 from collections.abc import Mapping
 from typing import Any
+from urllib.parse import urlencode
 
 import aiohttp
 
-from apps.harvest.metadata_adapters.trafa.api import ACCEPT_JSON
+from harvest.lifecycle import Unreachable as _Unreachable
+from retrieval.data_adapters.trafa import (
+    ACCEPT_JSON,
+    API_ROOT,
+    DATA_URL,
+    MEASURE_DIMENSION,
+    PROVIDER_CODE,
+    api_language,
+)
 
 logger = logging.getLogger("trafa_logger")
 
 TIMEOUT = aiohttp.ClientTimeout(total=60)
 USER_AGENT = "nordicintel-metadata-harvest/trafa"
 
+__all__ = [
+    "ACCEPT_JSON",
+    "API_ROOT",
+    "DATA_URL",
+    "DOCUMENTATION_URL",
+    "MEASURE_DIMENSION",
+    "PROVIDER_CODE",
+    "STRUCTURE_URL",
+    "api_language",
+    "documentation_url",
+    "structure_url",
+]
 
-class Unreachable(Exception):
+STRUCTURE_URL = f"{API_ROOT}/structure"
+DOCUMENTATION_URL = "https://www.trafa.se/sidor/api-dokumentation/"
+
+
+def structure_url(product: str, language: str) -> str:
+    """Return the ``/structure`` URL describing one product in ``language``."""
+    return f"{STRUCTURE_URL}?{urlencode({'query': product, 'lang': api_language(language)})}"
+
+
+def documentation_url(product_id: str) -> str:
+    """Return the per-product API documentation page for a product ``UniqueId``."""
+    return f"{DOCUMENTATION_URL}?{urlencode({'code': product_id})}"
+
+
+class Unreachable(_Unreachable):
     """Trafikanalys did not answer a request, after every retry."""
 
 

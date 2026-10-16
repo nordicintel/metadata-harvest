@@ -488,6 +488,14 @@ async def run(
                     failures.pop(key, None)
                     this.remove(key)
                     this.log.debug("%s: removed, %s no longer lists it", key, name)
+        if not this.bounded:  # keys of scopes the provider no longer lists at all
+            names = {s.name for s in scopes} | {"*"}
+            for key in sorted(this.known()):
+                if adapter.scope_of(key) not in names:
+                    settled.discard(key)
+                    failures.pop(key, None)
+                    this.remove(key)
+                    this.log.debug("%s: removed, its scope is no longer listed", key)
         for resource, (stage, error) in sorted(failures.items()):
             entry = this.fail(stage, resource, error)
             this.counts["failed"] += 1

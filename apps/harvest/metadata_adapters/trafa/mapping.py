@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
-from apps.harvest.metadata_adapters.trafa.api import (
+from apps.harvest.metadata_adapters.trafa.client import (
     DATA_URL,
     MEASURE_DIMENSION,
     PROVIDER_CODE,

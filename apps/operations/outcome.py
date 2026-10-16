@@ -76,8 +76,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return _incomplete_scopes(report)
     if adapter == "kolada":
         return _discovery(report, resource=lambda r: r == "kpi")
-    if adapter == "trafa":
-        return _scoped(report, discovery_resources=("products",), endpoint_prefix="*/")
     if adapter == "entryscape":
         failures = _discovery(report)
         interrupted = report.get("interrupted") or ""

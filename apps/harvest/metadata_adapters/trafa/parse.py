@@ -2,6 +2,7 @@
 
 from collections.abc import Iterator
 
+from apps.harvest.metadata_adapters.trafa.client import PROVIDER_CODE
 from apps.harvest.metadata_adapters.trafa.mapping import build_dataset, parse_probe
 from apps.harvest.metadata_adapters.trafa.source import (
     parse_combinations,
@@ -9,7 +10,6 @@ from apps.harvest.metadata_adapters.trafa.source import (
     product_list,
     select_combinations,
 )
-from apps.harvest.metadata_adapters.trafa.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
 from registry import ServiceBinding
 

@@ -47,11 +47,6 @@ def _entryscape_options(args):
 # whole list, the run() keyword arguments taken from the parsed CLI arguments, and
 # the collect() keyword arguments taken from the first configured binding.
 SIMPLE_ADAPTERS = {
-    "trafa": (
-        "single",
-        lambda a: {"products": a.product, "languages": a.language},
-        lambda b: {"languages": b.options["languages"]},
-    ),
     "entryscape": ("all", _entryscape_options, lambda b: {}),
     "forsakringskassan": (
         "single",

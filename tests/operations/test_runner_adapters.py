@@ -98,6 +98,11 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
             ["--indicator", "67", "--full"],
             {"indicators": ["67"], "full": True, "languages": None},
         ),
+        (
+            "trafa",
+            ["--product", "T10011", "--language", "sv"],
+            {"products": ["T10011"], "languages": ["sv"]},
+        ),
     ],
 )
 def test_lifecycle_adapters_run_and_collect_through_the_cli(
