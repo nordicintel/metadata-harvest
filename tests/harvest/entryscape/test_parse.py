@@ -2,15 +2,16 @@
 
 from pathlib import Path
 
-from tests.harvest.entryscape.test_workflow import PROVIDERS, execute
-from tests.harvest.entryscape.test_workflow import source as source_fixture
-
-source = source_fixture
+from tests.support.entryscape import (
+    PROVIDERS,
+    execute,
+    source,  # noqa: F401  (fixture)
+)
 
 GOLDEN = Path("tests/fixtures/entryscape/accepted")
 
 
-def test_parse_reproduces_previous_collection_bytes(source, tmp_path):
+def test_parse_reproduces_previous_collection_bytes(source, tmp_path):  # noqa: F811
     from apps.parsing.build import build
 
     root = tmp_path / "data" / "entryscape"
@@ -25,7 +26,7 @@ def test_parse_reproduces_previous_collection_bytes(source, tmp_path):
         ), golden.name
 
 
-def test_regrouping_needs_no_requests(source, tmp_path, monkeypatch):
+def test_regrouping_needs_no_requests(source, tmp_path, monkeypatch):  # noqa: F811
     from apps.harvest.metadata_adapters.entryscape import datasets
     from apps.parsing.build import build
 

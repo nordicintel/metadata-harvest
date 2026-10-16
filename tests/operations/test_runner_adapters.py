@@ -1,6 +1,5 @@
 """New adapters are reachable through the same CLI used by hosted jobs."""
 
-import importlib
 import sys
 from pathlib import Path
 
@@ -10,54 +9,13 @@ import apps.operations.harvest as runner
 
 
 @pytest.mark.parametrize(
-    "adapter,flags,expected",
-    [],
-)
-def test_run_and_collect_use_adapter_configuration(
-    monkeypatch, adapter, flags, expected
-):
-    workflow = importlib.import_module(
-        f"apps.harvest.metadata_adapters.{adapter}.workflow"
-    )
-    calls = []
-    result = {
-        "run_id": "test-run",
-        "status": "success",
-        "continue": False,
-        "counts": {},
-    }
-
-    async def run(provider, data, output, **kwargs):
-        calls.append((provider, data, output, kwargs))
-        return result
-
-    def collect(data, output, **kwargs):
-        calls.append((data, output, kwargs))
-        return result
-
-    monkeypatch.setattr(workflow, "run", run)
-    monkeypatch.setattr(workflow, "collect", collect)
-    monkeypatch.setattr(sys, "argv", ["runner", "run", "--adapter", adapter, *flags])
-    runner.main()
-    provider, data, output, options = calls.pop()
-    assert data == Path("data") / adapter
-    assert output == Path("output") / adapter
-    assert options == expected
-    assert provider.options["languages"]
-
-    monkeypatch.setattr(sys, "argv", ["runner", "collect", "--adapter", adapter])
-    runner.main()
-    assert calls.pop() == (data, output, {"languages": provider.options["languages"]})
-
-
-@pytest.mark.parametrize(
-    "adapter", ["smhi_emissions", "riksbank", "dataanalys", "tillvaxtverket"]
+    "adapter", ["smhi_emissions", "riksbank", "dataanalys", "tillvaxtverket", "kolada"]
 )
 def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, adapter):
-    def unexpected_run(args):
+    async def unexpected_run(*args, **kwargs):
         pytest.fail("Unsupported full mode reached the worker")
 
-    monkeypatch.setattr(runner, "run_simple", unexpected_run)
+    monkeypatch.setattr(runner.lifecycle, "run", unexpected_run)
     monkeypatch.setattr(sys, "argv", ["runner", "run", "--adapter", adapter, "--full"])
     with pytest.raises(SystemExit, match="2"):
         runner.main()
@@ -107,6 +65,11 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
             ["--kpi", "N1", "--scope", "ou"],
             {"kpis": ["N1"], "scope": "ou", "budget_seconds": 19200, "languages": None},
         ),
+        (
+            "entryscape",
+            ["--provider-code", "catalogalese", "--max-requests", "40"],
+            {"selected": ["catalogalese"], "max_requests": 40, "languages": None},
+        ),
     ],
 )
 def test_lifecycle_adapters_run_and_collect_through_the_cli(
@@ -116,7 +79,8 @@ def test_lifecycle_adapters_run_and_collect_through_the_cli(
     result = {"run_id": "r", "status": "success", "continue": False, "counts": {}}
 
     async def run(spec, binding, data, output, *, selection):
-        calls.append((spec.name, binding.adapter, data, output, selection))
+        adapter_name = binding[0].adapter if spec.many else binding.adapter
+        calls.append((spec.name, adapter_name, data, output, selection))
         return result
 
     def collect(spec, data, output):

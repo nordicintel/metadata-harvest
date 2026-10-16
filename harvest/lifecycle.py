@@ -113,6 +113,8 @@ class Adapter:
     fetch: Callable[[Run, Task], Awaitable[Stored | Kept | Dropped]] | None = None
     run: Callable[..., Awaitable[dict]] | None = None
     """An adapter with a loop of its own; it uses :func:`prepare` and :func:`finish`."""
+    many: bool = False
+    """Whether ``run`` takes every configured binding instead of one."""
     options: dict[str, str] = field(default_factory=dict)
     """CLI flag to selection name, for example ``{"subject": "subjects"}``."""
     languages: tuple[str, ...] = ("sv",)

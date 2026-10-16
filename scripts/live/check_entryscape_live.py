@@ -1,22 +1,25 @@
 """Opt-in live sample: one EntryScape instance's discovery and two retrievals.
 
-Spends at most about ten requests. Run it from a GitHub runner, never from a
-host the EntryScape instances already block.
+Runs the adapter for one provider into a temporary directory under a budget of
+twelve requests, parses the stored tables into datasets, then retrieves two small
+selections. Run it from a GitHub runner, never from a host the EntryScape
+instances already block.
 """
 
 import argparse
 import asyncio
 import json
+import tempfile
 from pathlib import Path
 
 import aiohttp
 
 import registry
-from apps.harvest.metadata_adapters.entryscape.client import Client, Pacer
-from apps.harvest.metadata_adapters.entryscape.parse import published_documents
-from apps.harvest.metadata_adapters.entryscape.workflow import discover_provider
+from apps.harvest.metadata_adapters.entryscape import parse
+from apps.harvest.metadata_adapters.entryscape.harvest import ADAPTER
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write
-from registry import ServiceBinding
+from harvest import lifecycle
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.entryscape import REQUIRED_METADATA, retrieve
 from schema.validation import validate_retrieval
@@ -24,21 +27,25 @@ from schema.validation import validate_retrieval
 PROVIDER = "catalogalese"
 
 
-async def check(binding: ServiceBinding, data: Path) -> dict:
-    report = {"provider": binding.source_code}
-    pacer = Pacer(1.0, budget=12, max_throttles=1)
-    async with Client(binding.endpoint_url, pacer=pacer) as client:
-        scope = await discover_provider(binding, client=client)
-        report["discovery"] = {
-            "complete": scope["complete"],
-            "tables": len(scope["records"]),
-            "errors": scope["errors"],
-            "requests": client.requests,
-        }
+async def check(provider: str, root: Path) -> dict:
+    bindings = registry.load().bindings(ADAPTER.name)
+    result = await lifecycle.run(
+        ADAPTER,
+        bindings,
+        root / "data",
+        root / "out",
+        selection={"selected": [provider], "max_requests": 12, "preflight": False},
+    )
+    report = {
+        "provider": provider,
+        "run": {k: result[k] for k in ("status", "counts", "errors", "requests")},
+    }
+    store = SourceStore(root / "out/source", ADAPTER.name)
+    state = lifecycle.load_state(root / "out", ADAPTER.collection)
     documents = [
         d
-        for d in published_documents(data, [provider])
-        if d["extension"]["nordicintel"]["provider_code"] == provider["code"]
+        for _, d in parse.documents(store, state, bindings)
+        if not isinstance(d, Exception)
     ]
     documents.sort(key=lambda d: d["extension"]["entryscape"]["rowcount"])
     report["retrievals"] = []
@@ -83,17 +90,12 @@ async def check(binding: ServiceBinding, data: Path) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--provider", default=PROVIDER)
-    parser.add_argument("--data", type=Path, default=Path("data/entryscape"))
     parser.add_argument(
         "--report", type=Path, default=Path("output/entryscape-live.json")
     )
     args = parser.parse_args()
-    provider = next(
-        b
-        for b in registry.load().bindings("entryscape")
-        if b.source_code == args.provider
-    )
-    result = asyncio.run(check(provider, args.data))
+    with tempfile.TemporaryDirectory(prefix="entryscape-live-") as temporary:
+        result = asyncio.run(check(args.provider, Path(temporary)))
     write(args.report, result)
-    print(json.dumps(result["discovery"], ensure_ascii=False))
+    print(json.dumps(result["run"], ensure_ascii=False))
     raise SystemExit(any(r["status"] != "passed" for r in result["retrievals"]))

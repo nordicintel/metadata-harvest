@@ -2,7 +2,6 @@
 
 import argparse
 import asyncio
-import importlib
 import json
 import os
 import subprocess
@@ -35,22 +34,6 @@ PXWEB_V1_COMMANDS = (
 )
 
 
-def _entryscape_options(args):
-    options = {"selected": args.provider_code}
-    if args.max_requests:
-        options["max_requests"] = args.max_requests
-    return options
-
-
-# Single-worker adapters sharing the run/collect/publish lifecycle. Each entry maps
-# the adapter name to: whether run() takes the first configured binding or the
-# whole list, the run() keyword arguments taken from the parsed CLI arguments, and
-# the collect() keyword arguments taken from the first configured binding.
-SIMPLE_ADAPTERS = {
-    "entryscape": ("all", _entryscape_options, lambda b: {}),
-}
-
-
 def run_adapter(args, adapter):
     """Run or collect one adapter through the shared lifecycle."""
     args.output = args.output or Path("output") / adapter.name
@@ -60,32 +43,13 @@ def run_adapter(args, adapter):
             for flag, name in adapter.options.items()
         }
         selection["languages"] = args.language
-        binding = args.registry.bindings(args.adapter)[0]
+        bindings = args.registry.bindings(args.adapter)
+        binding = bindings if adapter.many else bindings[0]
         result = asyncio.run(
             lifecycle.run(adapter, binding, args.data, args.output, selection=selection)
         )
     else:
         result = lifecycle.collect(adapter, args.data, args.output)
-    outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
-
-
-def run_simple(args):
-    """Run or collect one single-worker adapter and print its outcome."""
-    bindings_argument, run_options, collect_options = SIMPLE_ADAPTERS[args.adapter]
-    workflow = importlib.import_module(
-        f"apps.harvest.metadata_adapters.{args.adapter}.workflow"
-    )
-    args.output = args.output or Path("output") / args.adapter
-    bindings = args.registry.bindings(args.adapter)
-    if args.command == "run":
-        binding = bindings if bindings_argument == "all" else bindings[0]
-        result = asyncio.run(
-            workflow.run(binding, args.data, args.output, **run_options(args))
-        )
-    else:
-        result = workflow.collect(
-            args.data, args.output, **collect_options(bindings[0])
-        )
     outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
 
 
@@ -131,22 +95,14 @@ def main():
     commands = PXWEB_V1_COMMANDS if is_v1 else ("run", "collect", "publish")
     if args.command not in commands:
         parser.error(f"{args.adapter} supports {commands}")
-    if args.full and args.adapter in {
-        "smhi_emissions",
-        "riksbank",
-        "dataanalys",
-        "tillvaxtverket",
-    }:
+    module = load(args.adapter)
+    if args.full and module is not None and "full" not in module.ADAPTER.options:
         parser.error(f"{args.adapter} does not support --full; use its normal refresh")
     is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
     args.registry = registry.load(args.config)
-    module = load(args.adapter)
     if module is not None and args.command in {"run", "collect"}:
         run_adapter(args, module.ADAPTER)
-        return
-    if args.adapter in SIMPLE_ADAPTERS and args.command in {"run", "collect"}:
-        run_simple(args)
         return
     args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
     bindings = args.registry.bindings(args.adapter)

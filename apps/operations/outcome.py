@@ -74,12 +74,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return module.ADAPTER.scope_failures(report)
     if adapter in ("pxweb_v1", "pxweb_v2"):
         return _incomplete_scopes(report)
-    if adapter == "entryscape":
-        failures = _discovery(report)
-        interrupted = report.get("interrupted") or ""
-        if interrupted and "budget" not in interrupted:
-            failures.append(f"run: {interrupted}")
-        return failures
     raise ValueError(f"Unknown adapter: {adapter}")
 
 
