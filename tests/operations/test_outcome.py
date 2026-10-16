@@ -90,7 +90,7 @@ def test_whole_scope_failures_fail():
         },
         "pxweb_v2": {"scopes": [{"language": "en", "complete": False}]},
         "kolada": {"errors": [{"stage": "discovery", "resource": "kpi"}]},
-        "sdb": {"errors": [{"stage": "discovery", "resource": "en"}]},
+        "sdb": {"errors": [{"stage": "endpoint", "resource": "*/en"}]},
         "trafa": {"errors": [{"stage": "endpoint", "resource": "*/T10011"}]},
         "entryscape": {
             "errors": [{"stage": "discovery", "resource": "catalogalese"}],

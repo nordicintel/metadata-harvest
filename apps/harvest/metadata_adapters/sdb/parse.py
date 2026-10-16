@@ -4,12 +4,12 @@ from collections.abc import Iterator
 from urllib.parse import quote
 
 from apps.harvest.metadata_adapters.sdb.mapping import (
+    PROVIDER_CODE,
     Subject,
     build_dataset,
     time_unit_from_swedish_label,
 )
 from apps.harvest.metadata_adapters.sdb.probe import reconcile
-from apps.harvest.metadata_adapters.sdb.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
 from registry import ServiceBinding
 

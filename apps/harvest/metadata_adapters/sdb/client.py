@@ -9,6 +9,7 @@ from urllib.parse import quote
 
 import aiohttp
 
+from harvest.lifecycle import Unreachable as _Unreachable
 from retrieval.data_adapters.sdb import API_ROOT
 
 logger = logging.getLogger("sdb_logger")
@@ -17,7 +18,7 @@ TIMEOUT = aiohttp.ClientTimeout(total=300, sock_connect=30, sock_read=120)
 USER_AGENT = "nordicintel-metadata-harvest/sdb"
 
 
-class Unreachable(Exception):
+class Unreachable(_Unreachable):
     """SDB did not serve a resource retrieval depends on, after every retry."""
 
 

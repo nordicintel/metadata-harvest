@@ -16,6 +16,7 @@ import pytest
 from aiohttp import web
 
 from schema.validation import validate_retrieval
+from tests.support.binding import binding
 
 FIXTURES = Path("tests/fixtures/sdb")
 SDB_DATA = json.loads((FIXTURES / "sdb.json").read_text(encoding="utf-8"))
@@ -169,6 +170,41 @@ class RunningSdb:
         self._loop.close()
 
 
+PROVIDER = binding(
+    "sdb", "socialstyrelsen", languages=["sv", "en"], retry_cooldown_seconds=0
+)
+
+
+def first_codes_row(subject: str, **overrides) -> dict:
+    """A result row using each variable's first category code."""
+    row = {}
+    for variable in SDB_DATA["variables"]["sv"][subject]:
+        name = variable["namn"]
+        key = "ar" if name == "ar" else f"{name}Id"
+        row[key] = SDB_DATA["categories"]["sv"][subject][name][0]["id"]
+    return {**row, **overrides, "varde": "1"}
+
+
+def execute(sdb: "RunningSdb", data, output, **selection) -> dict:
+    """Run the adapter against the running imitation and collect into ``data``."""
+    from apps.harvest.metadata_adapters.sdb.client import SdbClient
+    from apps.harvest.metadata_adapters.sdb.harvest import ADAPTER
+    from harvest import lifecycle
+
+    async def main():
+        client = SdbClient(base_url=sdb.api_root, retry_delay=0)
+        try:
+            return await lifecycle.run(
+                ADAPTER, PROVIDER, data, output, selection=selection, client=client
+            )
+        finally:
+            await client.close()
+
+    result = asyncio.run(main())
+    lifecycle.collect(ADAPTER, data, output)
+    return result
+
+
 @pytest.fixture
 def sdb() -> Iterator[RunningSdb]:
     running = RunningSdb(FakeSdb())
@@ -177,6 +213,13 @@ def sdb() -> Iterator[RunningSdb]:
         yield running
     finally:
         running.stop()
+
+
+@pytest.fixture
+def seeded(sdb):
+    for subject in SDB_DATA["variables"]["sv"]:
+        sdb.fake.rows[subject] = [first_codes_row(subject)]
+    return sdb
 
 
 @pytest.fixture(scope="session")

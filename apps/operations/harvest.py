@@ -52,11 +52,6 @@ SIMPLE_ADAPTERS = {
         lambda a: {"indicators": a.indicator, "full": a.full},
         lambda b: {},
     ),
-    "sdb": (
-        "single",
-        lambda a: {"subjects": a.subject, "languages": a.language},
-        lambda b: {"languages": b.options["languages"]},
-    ),
     "trafa": (
         "single",
         lambda a: {"products": a.product, "languages": a.language},

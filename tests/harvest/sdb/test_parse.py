@@ -2,9 +2,9 @@
 
 from pathlib import Path
 
-from apps.harvest.metadata_adapters.sdb.state import PROVIDER_CODE
+from apps.harvest.metadata_adapters.sdb.mapping import PROVIDER_CODE
 from apps.harvest.source_store import source_key
-from tests.harvest.sdb.test_workflow import (
+from tests.support.sdb import (
     PROVIDER,
     execute,
     first_codes_row,
