@@ -10,7 +10,7 @@ from pathlib import Path
 
 import registry
 from apps.harvest.logs import configure as configure_logging
-from apps.harvest.metadata_adapters import ADAPTERS, workflow_file
+from apps.harvest.metadata_adapters import ADAPTERS, load, workflow_file
 from apps.harvest.metadata_adapters.pxweb_v1.workflow import (
     build_provider,
     collect_metadata,
@@ -22,6 +22,7 @@ from apps.harvest.metadata_adapters.pxweb_v1.workflow import (
 from apps.harvest.metadata_adapters.pxweb_v2 import workflow as v2_workflow
 from apps.harvest.storage import read
 from apps.publication.git import publish
+from harvest import lifecycle
 
 PXWEB_V1_COMMANDS = (
     "prepare",
@@ -92,6 +93,24 @@ SIMPLE_ADAPTERS = {
         lambda b: {"languages": b.options["languages"]},
     ),
 }
+
+
+def run_adapter(args, adapter):
+    """Run or collect one adapter through the shared lifecycle."""
+    args.output = args.output or Path("output") / adapter.name
+    if args.command == "run":
+        selection = {
+            name: getattr(args, flag.replace("-", "_"))
+            for flag, name in adapter.options.items()
+        }
+        selection["languages"] = args.language
+        binding = args.registry.bindings(args.adapter)[0]
+        result = asyncio.run(
+            lifecycle.run(adapter, binding, args.data, args.output, selection=selection)
+        )
+    else:
+        result = lifecycle.collect(adapter, args.data, args.output)
+    outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
 
 
 def run_simple(args):
@@ -188,6 +207,10 @@ def main():
                 result = kolada_workflow.collect(args.data, args.output)
             outputs({k: result[k] for k in ("run_id", "status", "counts")})
             return
+    module = load(args.adapter)
+    if module is not None and args.command in {"run", "collect"}:
+        run_adapter(args, module.ADAPTER)
+        return
     if args.adapter in SIMPLE_ADAPTERS and args.command in {"run", "collect"}:
         run_simple(args)
         return
