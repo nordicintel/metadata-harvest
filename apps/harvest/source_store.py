@@ -4,8 +4,8 @@ A harvest persists only what the source returned: one envelope per dataset and
 language, text companions when a response is not JSON, and shared files for
 responses several datasets depend on. ``manifest.json`` indexes every entry with
 its files, the source's own last-update signal (stored verbatim) and the retrieval
-time, which is what refresh logic compares. Parsing into StatDCAT happens later,
-outside the harvest, from these files.
+time, which is what refresh logic compares. Parsing happens later, outside the
+harvest, from these files.
 """
 
 import hashlib

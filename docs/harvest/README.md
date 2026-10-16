@@ -1,85 +1,64 @@
 # Metadata harvesting
 
-Harvesting adapters own discovery, the observation probes needed to infer
-metadata, retries, pacing and checkpoints. They store source responses as received,
-one envelope per dataset or table plus shared listings, indexed by a per-adapter
-manifest; [parsing](../parsing/README.md) turns those files into the accepted
-StatDCAT collections later. Consumer retrieval is separate; see
-[architecture](../architecture.md).
+A harvest stores provider responses as received: one envelope per dataset and
+language plus shared listings under `data/<adapter>/source/`, indexed by
+`manifest.json`. [Parsing](../parsing/README.md) turns those files into worker
+documents later. Consumer retrieval is separate; see [architecture](../architecture.md).
 
 ## Run and collect
 
-After `uv sync --locked --extra harvest`, inspect the selected adapter's arguments:
+After `uv sync --locked --extra harvest`:
 
 ```sh
 uv run python -m apps.operations.harvest --help
-uv run python -m apps.operations.harvest run --adapter pxweb_v2 --data output/scratch-data --output output/pxweb-v2
-uv run python -m apps.operations.harvest collect --adapter pxweb_v2 --data output/scratch-data --output output/pxweb-v2
+uv run python -m apps.operations.harvest run --adapter trafa --data output/scratch-data --output output/trafa
+uv run python -m apps.operations.harvest collect --adapter trafa --data output/scratch-data --output output/trafa
 ```
 
-`run` contacts sources and writes worker output; `collect` validates and applies it
-locally; `publish` commits/pushes the selected production scope. PXWeb v1 instead has
-separate refresh/build worker and collector commands. Use adapter help and workflow
-arguments rather than constructing run identities by hand. Use a fresh output
-directory for each new worker invocation; only PXWeb v1 continues across waves.
+`run` contacts the provider and writes a worker output; `collect` verifies it
+against the unchanged published baseline and applies it; `publish` commits and
+pushes the selected `data/<adapter>` scope. Each adapter declares the selection
+flags it accepts (`--subject`, `--product`, `--indicator`, `--kpi`, `--scope`,
+`--provider-code`, `--max-requests`, `--language`, `--full`); a selection bounds
+the run and removes nothing. PXWeb v1 instead has separate refresh/build worker
+and collector commands and continues across waves through its checkpoint.
 
-Source files are `data/<adapter>/source/<provider>/<dataset>.<lang>.json` (plus
-`_shared/` listings and text companions) with `data/<adapter>/source/manifest.json`
-listing each entry's files, the source's own `updated` signal and `retrieved_at`.
-A missing manifest entry means fetch. Accepted metadata,
-`data/<adapter>/metadata/<owner>__multilingual__<digest>.jsonl.gz`, is written by
-`apps.operations.parsing`, never by a harvest. State, reports and unfinished work
-are adapter-owned. Reports distinguish failures from reused or newly stored entries;
-observation probes do not create an observation warehouse: where the per-dataset
-source data are observations (Kolada, EntryScape, PXWeb v1 samples, UKÄ exports)
-the envelope keeps a declared `derived` summary instead.
+The lifecycle writes `source/`, `manifest.json`, `state/current.jsonl.gz`,
+`reports/latest.json` and `result.json`. State, reports and unfinished work are
+adapter-owned. Where the per-dataset source data are observations (Kolada,
+EntryScape, PXWeb v1 samples, UKÄ exports) the envelope keeps a declared `derived`
+summary instead of the rows.
 
 ## Failure and recovery
 
-Failed replacements retain accepted contributions independently. Incomplete discovery
-or a missing worker is not deletion evidence. Only verified absence within a complete
-scope authorizes removal. Some adapters use [currentness checks](../../apps/harvest/currency.py):
-unreachable or stale documents are withheld in state and restored when eligible;
-this is different from deleting their accepted evidence.
+A failed fetch keeps the stored source entry. An endpoint that does not answer is
+retried once after the configured cooldown; an item whose endpoint stays down, or
+that was not verified within `max_age_days`, is withheld in state and skipped by
+parsing until it answers again (the rule is in
+[currency.py](../../apps/harvest/currency.py)). Only a complete discovery in an
+unbounded run removes an item. A whole-scope failure (a listing, a product, an
+API) is reported once and keeps that scope's known items.
 
-Resume unfinished PXWeb v1 work through its checkpoint. Recover cancelled-worker
-artifacts and validate them against their original baseline before collection;
-do not bypass stale-artifact checks. Full refresh is an explicit adapter operation,
-not a routine response to an unrelated development change.
+Recover cancelled-worker artifacts and validate them against their original
+baseline before collection; do not bypass stale-artifact checks.
 
 ## Scheduling and monitoring
 
-[schedules.toml](../../config/schedules.toml) owns timezone, enablement and run modes.
-After editing it, run `uv run python -m apps.operations.scheduling sync`, then
-`sync --check`, and commit the generated workflow blocks with the configuration.
-Disabling a schedule does not cancel existing jobs or disable manual runs.
-`scheduling.paused = true` in [settings.toml](../../config/settings.toml) blocks
-every scheduled run the same way; sync and commit after changing it too.
-`logging.level` in the same file sets the log level shared by every metadata
-adapter and the catalog build (`DEBUG`, `INFO`, `WARNING`, `ERROR`, or `OFF` to
-silence them); the harvest and catalog entry points install one stderr handler so
-log lines appear in workflow run output, with stage timings at `INFO`. Each adapter
-logs under its own `<adapter>_logger` name, so lines are attributable per adapter.
+[schedules.toml](../../config/schedules.toml) owns timezone, enablement and run
+modes. After editing it, run `uv run python -m apps.operations.scheduling sync`,
+then `sync --check`, and commit the generated workflow blocks. `scheduling.paused`
+and `logging.level` live in [settings.toml](../../config/settings.toml); every
+adapter logs under its own `<adapter>_logger` name.
 
 ```sh
 uv run python -m apps.operations.monitor status RUN_ID
 uv run python -m apps.operations.monitor status RUN_ID --errors
-uv run python -m apps.operations.monitor status RUN_ID --worker WORKER --error 1
-uv run python -m apps.operations.outcome --adapter pxweb_v2
+uv run python -m apps.operations.outcome --adapter trafa
 ```
 
-Actions workers publish counters and individual errors through a supervised GitHub
-check before and during source requests. `reported_at` is the heartbeat;
-`updated_at` is the last worker event. A heartbeat alone does not establish progress.
-The inspector marks stale or ended unfinished checks explicitly. Telemetry failures
-can stop workers while preserving snapshots; cancellation prevents automatic
-continuation and collector publication.
-
-Whole-scope failures fail jobs; individual resource errors can produce
-`completed_with_errors` with stored successes retained. Inspect the report rather
-than equating a green job with complete coverage. Collection workflows serialize
-production publication; the catalog is not dispatched by harvests (run `parsing`,
-then `catalog.yml`, explicitly).
+Workers publish counters and individual errors through a supervised GitHub check
+while they run. Whole-scope failures fail jobs; individual resource errors produce
+`completed_with_errors` with stored successes retained.
 
 ## Adapter behavior
 
@@ -91,7 +70,7 @@ then `catalog.yml`, explicitly).
 | UKÄ | [Transient period exports](adapters/uka.md) |
 | SDB | [Subjects, languages and result-field reconciliation](adapters/sdb.md) |
 | Trafikanalys | [Product combinations and HTML discovery](adapters/trafa.md) |
-| EntryScape RowStore | [Scoped discovery and budgeted refresh](adapters/entryscape.md) |
+| EntryScape RowStore | [Budgeted refresh over many hosts](adapters/entryscape.md) |
 | SMHI emissions | [Substances, sectors and region mappings](adapters/smhi_emissions.md) |
 | Försäkringskassan | [Reports, tables and undeclared dimensions](adapters/forsakringskassan.md) |
 | Socialstyrelsen analysverktyg | [Superset indicator/area scope](adapters/dataanalys.md) |

@@ -1,7 +1,7 @@
 # metadata-harvest
 
-NordicIntel metadata harvesting and offline StatDCAT catalog construction, with a
-standalone Python library for retrieving observations from twelve adapter types.
+NordicIntel metadata harvesting from Swedish statistics providers, with a
+standalone Python library for retrieving observations through twelve adapters.
 
 ## Retrieve observations
 
@@ -11,13 +11,13 @@ name `metadata-harvest`. Its only third-party runtime dependency is `aiohttp`.
 ```python
 from retrieval import retrieve_distribution
 
-# record is decoded catalog JSONL; session is a caller-owned aiohttp session.
-distribution = next(d for d in record["dcat:distribution"] if d.get("ni:retrieval"))
+# document is one decoded line of data/<adapter>/metadata/*.jsonl.gz;
+# session is a caller-owned aiohttp session.
 selection = {
-    axis["code"]: axis["categories"][:1]
-    for axis in distribution["ni:retrieval"]["dimensions"]
+    code: list(axis["category"]["index"])[:1]
+    for code, axis in document["dimension"].items()
 }
-result = await retrieve_distribution(session, distribution, selection=selection)
+result = await retrieve_distribution(session, document, selection=selection)
 ```
 
 See [retrieval usage](docs/retrieval/README.md) for selections, direct adapter calls,
@@ -38,9 +38,8 @@ Browser tests need `uv run playwright install chromium` (`--with-deps` on Linux)
 is excluded from installation. Run commands from the checkout using
 `uv run python -m apps.operations.harvest --help`.
 
-Accepted metadata lives in `data/<adapter>/`. Catalog construction consumes it
-offline, enriching matches from the local portal snapshot while retaining unmatched
-datasets. Building a candidate and promoting production output are separate actions.
+Harvests store provider responses under `data/<adapter>/source/`; a manual parse
+builds the accepted collections under `data/<adapter>/metadata/` from them.
 
 Start with the [documentation index](docs/README.md),
 [architecture](docs/architecture.md), or [source inventory](docs/configuration/inventory.md).

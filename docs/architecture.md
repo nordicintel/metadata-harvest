@@ -1,103 +1,65 @@
 # Repository architecture
 
-Only `retrieval/` is installed by the `metadata-harvest` distribution. The `apps/`
-modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
+Only `retrieval/` is installed by the `metadata-harvest` distribution. Everything
+else runs from this checkout with one root `pyproject.toml` and `uv.lock`. The
+direction and the inventory of what the clean sweep removed are in
+[clean-sweep.md](clean-sweep.md).
 
 ## Ownership
 
 | Location | Responsibility |
 | --- | --- |
-| `apps/configuration.py` | Load authoritative configuration, validate supported adapters and resolve execution settings |
-| `apps/harvest/` | Metadata collection into per-dataset source files with a manifest, worker persistence and source identity resolution |
-| `apps/harvest/metadata_adapters/` | Twelve adapters with their native clients, parsing, discovery, coverage probes, retry and pacing policy |
-| `apps/parsing/` | Offline, unscheduled conversion of harvested source files into accepted StatDCAT collections |
-| `apps/catalog/` | Offline grouping, matching, enrichment, filtering, quality findings, fingerprints and candidate construction |
-| `apps/portal/` | Import, refresh and validate the accepted oppnadata snapshot |
-| `apps/publication/` | Streaming archives, integrity and size checks, explicit promotion and scoped Git publication |
-| `apps/migrations/` | Historical profile readers, explicit converters, imports and preservation audits |
+| `registry/` | Load the three files under `config/` once, validate them, hand out service bindings and owner organisations |
+| `harvest/lifecycle.py` | The loop around a harvest run: worker output, baseline copy, source store, state, retry, published or withheld, reports, `collect` |
+| `apps/harvest/` | The source store, the publication rule (`currency.py`), logging, artifacts and storage helpers |
+| `apps/harvest/metadata_adapters/<name>/` | One provider integration: `client.py`, `harvest.py` (`ADAPTER`), `parse.py`, optional `mapping.py` and private modules |
+| `apps/parsing/` | Manual build and apply of accepted collections (worker documents) from source files |
+| `apps/portal/` | Import, refresh and validate the accepted data.europa.eu snapshot |
+| `apps/publication/` | Manifests, size checks and scoped Git publication |
 | `apps/operations/` | CLI routing, scheduling, monitoring, progress and outcome reporting |
-| `retrieval/data_adapters/` | Independent consumer observation retrieval implementations |
-| `config/` | Authoritative source inventories, profile declaration, operational settings and schedules |
-| `schema/` | Schema seeds: the worker-document schema, the configuration schema, merge and validation helpers |
+| `retrieval/` | The installable library: consumer observation retrieval per adapter |
+| `config/` | Adapters, organisations, services and catalogs, settings and schedules |
+| `schema/` | Schema seeds for the coming model: the worker-document schema, the configuration schema, merge and validation helpers |
 
-Harvests store source responses as received (`data/<adapter>/source/`, indexed by
-`manifest.json`) with simple safety nets only; parsing builds the worker
-representation and converts it to accepted StatDCAT collections offline. Failed
-updates preserve stored source entries; complete discovery is required to establish
-removal. Checkpoints retain existing task identities. Historical profile readers do
-not execute migration commands.
-
-The direction and the full inventory of what is removed and kept are in
-[docs/clean-sweep.md](clean-sweep.md).
-
-## Dependencies and data flow
+## Data flow
 
 ```text
-model + configuration -> harvest -> source files + manifest
-source files + manifest -> parsing -> accepted contributions
-portal -> accepted portal snapshot
-accepted contributions + accepted snapshot -> catalog candidate
-catalog candidate -> explicit publication -> production artifacts
+config/ -> registry -> ServiceBinding
+ServiceBinding + adapter -> lifecycle run -> data/<adapter>/source + manifest + state + reports
+source files -> parsing build/apply -> data/<adapter>/metadata (worker documents)
+portal -> data/data_eu (snapshot read by the Tillväxtverket parse)
 operations -> application commands
 retrieval -> aiohttp + standard library + its pure helpers
 ```
 
-Model composition is pure and shared by accepted persistence and catalog assembly.
-Model validators never load source inventories or perform network/persistence work.
-Catalog construction never starts a harvest, refreshes a portal snapshot or promotes
-production output. Archive utilities may write temporary candidate streams without
-publishing them. Configuration paths resolve from the checkout, independently of
-where candidate data is stored.
+Harvesting stores provider responses exactly as received. Parsing reads them later,
+offline, and produces worker documents. A harvest never touches `metadata/`; a parse
+never contacts a provider. Consumer retrieval owns protocol requests and observation
+responses; harvesting may import identical pure helpers from `retrieval/` but never
+its consumer functions, and the library never imports repository code.
 
-Consumer retrieval owns protocol requests and observation responses. Harvesting
-owns metadata inference and coverage probes even when they fetch observations.
-Harvesting can use identical pure helpers from retrieval, but cannot invoke its
-consumer functions. The optional distribution dispatcher never imports repository
-applications, Pydantic or compression dependencies.
+Eight adapters run on the lifecycle's fetch-and-settle loop (dataanalys,
+forsakringskassan, riksbank, sdb, smhi_emissions, tillvaxtverket, trafa, uka).
+Kolada, EntryScape and PXWeb v2 keep loops of their own and use the lifecycle's
+disk-handling half. PXWeb v1 keeps its multi-job pipeline.
 
-## Commands and resources
+## Commands and workflows
 
-Run `uv sync --locked --extra harvest`, then use `uv run python -m
-apps.operations.harvest --help` for harvesting commands. The other operation modules
-are `catalog`, `portal`, `scheduling`, `monitor` and `outcome`. Scripts delegate
-migration/import work to application functions. `scripts/migrations/` contains those
-entry points; `scripts/generate/` owns contract and documentation generators,
-`scripts/checks/` contains offline and CI verification tools, and `scripts/live/`
-contains opt-in provider checks and their report summaries. Run scripts from the
-checkout with `uv run python scripts/<purpose>/<tool>.py`. No old application import paths are supported.
-
-New catalog output uses two deterministic Zstandard level 6 streams with checksums:
-`catalog.jsonl.zst` and `codelists.jsonl.zst`.
-Production promotion validates source/dependency fingerprints and candidate hashes
-before mutation. Moving implementation paths invalidates old candidates; it does
-not regenerate accepted data or production archives.
-
-Generated contracts and reference documentation are checked by the two generator
-scripts. [Configuration](configuration/README.md), [harvesting](harvest/README.md),
-and
-[retrieval](retrieval/README.md) document the corresponding interfaces.
-
-## Workflows
-
-`checks.yml` verifies development changes. `live-pxweb.yml` and
-`live-metadata.yml` run explicit provider matrices and summarize retained evidence;
-each job installs its own environment. The `harvest*.yml` workflows collect source
-files, `refresh-portal.yml` refreshes the accepted portal snapshot, and `catalog.yml`
-builds and publishes the shared catalog on explicit dispatch only, after a manual
-`parsing` run regenerated the accepted collections. Scheduled blocks are generated
-from `config/schedules.toml`; workflow filenames remain execution identities in the
-adapter registry. Publication jobs share the `production-publication` lock.
-
-## Command routing
-
-Run `uv run python -m apps.operations.<module> --help` from the checkout.
+Run `uv sync --locked --extra harvest`, then `uv run python -m apps.operations.<module>
+--help`.
 
 | Module | Role |
 | --- | --- |
-| `harvest` | Adapter workers, collection and scoped publication |
-| `parsing` | Manual build/apply of accepted collections from source files |
-| `catalog` | Offline candidate build and explicit production promotion |
+| `harvest` | `run`, `collect` and `publish` for every adapter; the PXWeb v1 pipeline commands |
+| `parsing` | Manual `build`, `apply` and `publish` of accepted collections |
 | `portal` | Accepted snapshot import, refresh and publication |
 | `scheduling` | Resolve schedules and synchronize workflow blocks |
 | `monitor` | Live progress and individual error inspection |
-| `outcome` | Report failure status for the selected scope |
+| `outcome` | Report failure status for the selected adapter |
+
+`checks.yml` runs lint, the fast tests, the generator check, the build and the
+distribution check on every push; `slow-tests.yml` runs the full suite nightly. The
+`harvest*.yml` workflows collect source files and `refresh-portal.yml` refreshes
+the portal snapshot; their scheduled blocks are generated from
+`config/schedules.toml`. `live-*.yml` run opt-in provider checks. Scripts live under
+`scripts/{checks,generate,live}/` and run with `uv run python scripts/<purpose>/<tool>.py`.

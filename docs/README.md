@@ -5,9 +5,11 @@
 | Task | Guide |
 | --- | --- |
 | Understand module ownership and dependencies | [Architecture](architecture.md) |
-| Retrieve observations from catalog distributions | [Retrieval](retrieval/README.md) |
-| Configure organisations, catalogs and concrete services | [Configuration](configuration/README.md) |
-| Run, resume and monitor metadata collection | [Harvesting](harvest/README.md) |
+| Retrieve observations from worker documents | [Retrieval](retrieval/README.md) |
+| Configure organisations, services and catalogs | [Configuration](configuration/README.md) |
+| Run, collect and monitor harvests | [Harvesting](harvest/README.md) |
+| Build accepted collections from source files | [Parsing](parsing/README.md) |
+| Where the repository is going and what the sweep removed | [Clean sweep](clean-sweep.md) |
 | Add or change a metadata adapter | [Adapter implementation](harvest/adapter-guide.md) |
 | Track open bugs, features and investigations | [Backlog](backlog.md) |
 
@@ -22,7 +24,5 @@ Update guides with the implementation. Open work lives only in the [backlog](bac
 use Git history for completed plans and delivery narratives instead of adding
 another status document.
 
-Generated references are changed through their generators. Supplied standards,
-discovery evidence and migration ledgers retain their original bytes. Historical
-receipts describe their recorded run, not current live coverage. Local ignored
+Generated references are changed through their generators. Local ignored
 `docs/api/` research is outside this maintained baseline.

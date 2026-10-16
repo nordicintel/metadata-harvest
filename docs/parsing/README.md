@@ -1,9 +1,8 @@
 # Parsing source files into accepted collections
 
-Harvests store what sources return; parsing turns those files into the accepted
-StatDCAT collections that the catalog reads. Parsing is manual and unscheduled: it
-runs for large-scale testing or before a production catalog build, never from a
-harvest workflow.
+Harvests store what providers return; parsing turns those files into worker
+documents, the accepted collections under `data/<adapter>/metadata/`. Parsing is
+manual and unscheduled: it never runs from a harvest workflow.
 
 ## Source layout
 
@@ -16,16 +15,8 @@ data/<adapter>/source/<provider>/_shared/<name>                             shar
 
 The manifest lists every entry (`<provider>/<dataset code>/<lang>`) with its files,
 the source's own update signal stored verbatim as `updated`, and `retrieved_at`.
-Refresh logic compares against the manifest; a missing entry means fetch.
-
-An envelope holds `responses` (bodies as received) and `derived`. `derived` exists
-only where the per-dataset source data are observations and cannot be stored:
-Kolada coverage, EntryScape trimmed table structure, PXWeb v1 samples stripped of
-`value`/`status`, and UKÄ per-period scan summaries. Everything else is raw.
-
-Harvests store a body only when the client returned it successfully, it is not
-empty, and it serialises as JSON without NaN. There is no mapping check at harvest
-time: a source regression replaces the stored file and parsing reports the failure.
+An envelope holds `responses` (bodies as received) and `derived`, which exists only
+where the per-dataset source data are observations that cannot be stored.
 
 ## Commands
 
@@ -36,19 +27,12 @@ uv run python -m apps.operations.parsing publish --adapter trafa        # scoped
 uv run python -m apps.operations.parsing build --all
 ```
 
-`build` validates every document, writes `metadata/*.jsonl.gz` through the same
-assembly as before, and reports per-key failures in `reports/parse.json` without
-dropping siblings. `apply` refuses when the committed collections changed since the
-build, when the adapter has no source entries yet, and when fewer datasets parsed
-than the committed collections hold (pass `--allow-shrink` to accept a real
-reduction). During the cutover each adapter's `source/` fills up over its first
-full harvests; compare `source_entries` and `committed_datasets` in the build
-report before applying. Tillväxtverket's data.europa.eu descriptions come from the offline portal
-snapshot (`--portal`, default `data/data_eu`).
-
-## Adapter contract
-
-Each `apps/harvest/metadata_adapters/<adapter>/parse.py` provides
-`documents(store, state, providers, *, portal=None)` yielding `(key, document)` or
-`(key, exception)` per manifest entry, and `withheld_keys(state)` for entries whose
-endpoint was unavailable or stale and must not be published.
+`build` asks the adapter's `parse.documents` for every entry, stamps the adapter
+name into `extension.nordicintel`, validates each document, writes one
+deterministic `metadata/<provider>__<digest>.jsonl.gz` per provider and reports
+per-key failures in `reports/parse.json` without dropping siblings. Withheld
+entries are skipped. `apply` refuses when the committed collections changed since
+the build, when the adapter has no source entries yet, and when fewer datasets
+parsed than the committed collections hold (pass `--allow-shrink` to accept a real
+reduction). Tillväxtverket's data.europa.eu descriptions come from the offline
+portal snapshot (`--portal`, default `data/data_eu`).

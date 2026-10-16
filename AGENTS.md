@@ -3,9 +3,9 @@
 ## Project Structure & Module Organization
 
 - `retrieval/` is the only installable library; consumer implementations live in `retrieval/data_adapters/`. Its runtime dependencies are its own modules, `aiohttp`, and the standard library.
-- `apps/` contains repository applications: model, harvest, catalog, portal, publication, migrations, and operations. Harvesting owns metadata collection, probes, retries, and checkpoints.
+- `harvest/lifecycle.py` owns the loop around a harvest run; `apps/` contains the applications: harvest (the adapters and the source store), parsing, portal, publication, and operations. `registry/` loads the configuration.
 - `config/` holds authoritative inventories and settings; `registry/` loads them. `schema/` holds the schema seeds (the worker-document schema and validators).
-- `data/` contains accepted metadata and production artifacts. `docs/` and `tests/` follow application responsibilities. Developer scripts are grouped under `scripts/{checks,generate,live,migrations}/`.
+- `data/` contains harvested source files and accepted collections. `docs/` and `tests/` follow application responsibilities. Developer scripts are grouped under `scripts/{checks,generate,live}/`.
 - Before changing module boundaries, read [architecture guidance](docs/architecture.md). Keep pure model helpers independent of workflows and persistence.
 
 ## Build, Test, and Development Commands
@@ -23,7 +23,7 @@ uv build                                    # Build retrieval-only distributions
 uv run python scripts/checks/check_distribution.py # Verify isolated installation
 ```
 
-Use `uv run python -m apps.operations.harvest --help` for harvesting options. After model/configuration changes, run both generators in `scripts/generate/` with `--check`; after schedule changes, run `uv run python -m apps.operations.scheduling sync --check`. Browser work requires Playwright Chromium.
+Use `uv run python -m apps.operations.harvest --help` for harvesting options. After configuration changes, run `scripts/generate/generate_configuration.py --check`; after schedule changes, run `uv run python -m apps.operations.scheduling sync --check`. Browser work requires Playwright Chromium.
 
 ## Coding Style & Naming Conventions
 

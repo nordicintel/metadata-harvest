@@ -4,20 +4,19 @@
 namespace, requiring Python 3.13+ and `aiohttp`. Repository applications, Pydantic,
 inventories, compression and harvesting clients are excluded.
 
-## Catalog distributions
+## Worker documents
 
 ```python
 from retrieval import retrieve_distribution
 
-result = await retrieve_distribution(session, distribution, selection=selection)
+result = await retrieve_distribution(session, document, selection=selection)
 ```
 
-Pass a decoded member of a catalog record's `dcat:distribution` list with
-`ni:retrieval`. The dispatcher reads its source binding, selectable dimensions,
-structure, access URL and operational options; a nested distribution needs no
-separate context. It accepts profile 1 `provider_code` and profile 2 `source_code`
-identities without migration or remote context resolution. Repository callers with
-a Pydantic Distribution pass `distribution.to_jsonld()`.
+Pass a decoded worker document: one line of an accepted collection under
+`data/<adapter>/metadata/`. The dispatcher reads the adapter, provider, dataset
+code, language and URLs from `extension.nordicintel`, the selectable categories from
+`dimension`, and the adapter's operational metadata from the document's own
+extension namespace.
 
 `selection` maps dimension codes to nonempty, duplicate-free sequences of string
 category codes. Preserve spelling and leading zeroes. The dispatcher checks codes
@@ -47,9 +46,8 @@ result = await retrieve(
 ```
 
 Direct calls require the adapter-specific pointer-keyed `metadata` dictionary listed
-by that module's `REQUIRED_METADATA`. These keys describe an internal worker
-projection, not paths in published StatDCAT. Catalog consumers should use the
-dispatcher, which constructs this projection internally. Existing
+by that module's `REQUIRED_METADATA`; the pointers address the worker document.
+Consumers with a document should use the dispatcher, which resolves them. The
 `nordicintel.retrieval` entry points target the same direct functions.
 
 | Implementations | Runtime support |
@@ -58,7 +56,7 @@ dispatcher, which constructs this projection internally. Existing
 | `kolada` | `_semantics`: category ordering and cube validation |
 | `uka` | `_uka_export`: CSV parsing and protocol constants |
 | `dataanalys`, `entryscape`, `forsakringskassan`, `riksbank`, `sdb`, `smhi_emissions`, `tillvaxtverket`, `trafa` | Adapter-local request/response code, standard library and `aiohttp` |
-| `distribution` | Operational projection/validation, `_semantics`, explicit adapter lookup |
+| `distribution` | Document validation, selection checks, explicit adapter lookup |
 
 Harvesting may import identical pure helpers; consumer functions never import
 repository workflows. Exact required fields and request caps live beside each
@@ -67,7 +65,7 @@ adapter implementation, avoiding a second hand-maintained operational schema.
 ## Result
 
 Returns `id`, `size`, `dimension` (category indices), `value`, and optional `status`.
-Labels, units and descriptive metadata come from the catalog. Dimension order follows
+Labels, units and descriptive metadata come from the worker document. Dimension order follows
 `id`; category indices define order explicitly; the last dimension varies fastest.
 
 - `id`, dimension keys and requested axes agree; `size` matches category counts.

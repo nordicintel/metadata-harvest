@@ -1,58 +1,64 @@
 # Implementing a metadata adapter
 
-Start with `apps/harvest/registry.py` and the closest implemented adapter under
-`apps/harvest/metadata_adapters/`. Registry entries are explicit; each adapter owns
-its clients, discovery, parsing, coverage probes and operational policy.
+A new adapter is written by copying the shape, not another adapter. One folder:
 
-## Boundaries
+```text
+apps/harvest/metadata_adapters/<name>/
+├── __init__.py      empty
+├── client.py        HTTP calls to the provider: URLs, parameters, decoding
+├── harvest.py       ADAPTER: how to discover what exists and fetch one item
+├── parse.py         documents() and withheld_keys(): source files -> documents
+└── mapping.py       optional: pure functions shared by harvest.py and parse.py
+```
 
-1. Configure verified organisations, concrete services and catalogs through the
-   [three inventories](../configuration/README.md). Preserve routing aliases and
-   dataset/distribution identities independently of attribution.
-2. Discover native records with explicit scope completeness and individual errors.
-   `workflow.run` stores responses as received through `apps.harvest.source_store`
-   (safety nets: successful response, non-empty, JSON-serialisable) and never calls
-   `mapping`; `parse.py` provides `documents(store, state, providers, *,
-   portal=None)` yielding `(key, document | exception)` and `withheld_keys(state)`.
-   Keep anything derived from observations under the envelope's `derived` key.
-3. Preserve source change signals and unfamiliar attributes.
-4. Keep metadata inference and observation probes here. Put consumer request/response
-   implementation in `retrieval/data_adapters/`; harvesting must not call the
-   consumer dispatcher. Only genuinely identical pure helpers may be shared.
+Adapters may add private modules for their own use. Nothing outside the folder
+imports them, except the live check scripts, which may also import `client.py` and
+`ADAPTER`. Add the name to `ADAPTERS` in `apps/harvest/metadata_adapters/__init__.py`,
+a definition to `config/adapters.json`, a service binding to `config/catalogs.json`,
+a schedule and a `harvest-<name>.yml` workflow.
 
-## Active worker representation
+## The adapter object
 
-Parsing produces worker documents validated by the
-[tabular schema](../../schema/tabular.schema.json), a JSON-stat
-representation: `id` orders dimensions, `size`
-gives category counts, and `value: []` means metadata only. Original routing identity
-and URLs live in `extension.nordicintel`; adapter evidence uses its own namespace.
-Category extras belong to the enclosing dimension's namespace. Preserve codes,
-labels, units, notes, hierarchy, role and elimination settings. Conversion must
-preserve source values without duplicating successfully mapped fields.
+`harvest.py` exposes one `harvest.lifecycle.Adapter` named `ADAPTER` with:
 
-## Failure and persistence
+- `name`, `provider_code`, `workflow_file`, the state `collection` name, extra
+  `counts`, the CLI `options` it accepts (flag to selection name, for example
+  `{"subject": "subjects"}`) and its `languages`;
+- `client(binding)`, a factory for the provider client (`client.py`);
+- `discover(run)`, returning scopes (`Scope(name, load)`) whose `load()` lists the
+  scope's tasks (`Task(key, item)`), storing shared source files through `run.store`;
+- `fetch(run, task)`, returning `Stored(responses, derived, updated, files, info)`,
+  `Kept()` when the adapter's own change signal proves the stored entry current, or
+  `Dropped(count)` when the item must go;
+- optionally `forget(run, key)` for companion files, `scope_of(key)` for the scope a
+  known key belongs to, and `scope_failures(report)` for the outcome check.
 
-Isolate failure per resource or discovery scope; process valid siblings after a bad
-row. Incomplete pagination, malformed rows and conflicting identities block absence
-inference. Scope keys and caches by source, language and complete native path.
-Keep previous accepted contributions on replacement failure; retry failures even
-when the listing timestamp is unchanged. Codelist failure must not reject valid
-table metadata. Propagate cancellation and never turn a failed request into empty
-successful output.
+A key is `<language>/<code>`. Raising `Unreachable` (the client's subclass of
+`harvest.lifecycle.Unreachable`) is an endpoint failure, retried once after the
+cooldown and then withheld; any other exception is a metadata failure that keeps
+the stored entry published while it is fresh. The lifecycle owns everything else.
+An adapter whose provider does not fit the loop sets `run` (and `collect`) on the
+object instead and uses `lifecycle.prepare` and `lifecycle.finish`.
 
-Use shared atomic persistence and artifact verification. Keep retry/pacing policy
-inside the adapter. Publish successes with explicit unresolved errors; reject stale
-artifacts, unsafe paths, identity mismatches and hash failures. Report phase, counters
-and structured errors through `Progress`, outside accepted metadata.
+## Parsing
 
-## Verification and integration
+`parse.py` provides `documents(store, state, bindings, *, portal=None)` yielding
+`(key, document | exception)` for every source entry, and `withheld_keys(state)`.
+Documents are worker documents validated by the
+[tabular schema](../../schema/tabular.schema.json): `id` orders dimensions, `size`
+gives category counts, `value: []` means metadata only, routing identity and URLs
+live in `extension.nordicintel`, adapter evidence under its own namespace. Preserve
+codes, labels, units, notes, hierarchy, role and elimination settings.
 
-Fixtures should cover malformed rows before valid siblings, incomplete scopes,
-failed-update retention, retry, language/source isolation, cancellation and independent
-codelist errors. Retrieval fixtures should execute actual adapter requests and
-compare dispatcher behavior. Run affected checks; use bounded live checks only when
-source compatibility needs verification, and label them separately.
+Keep metadata inference and observation probes in the adapter. Consumer
+request/response code goes in `retrieval/data_adapters/`; harvesting must not call
+the consumer dispatcher.
 
-Register workflows and central schedules together. See [harvesting operations](README.md)
-for continuation, monitoring and collection.
+## Tests
+
+Each adapter has `tests/harvest/<name>/` with `test_harvest.py` (a discover test, a
+fetch test and one end-to-end run that collects, parses and compares the golden
+under `tests/fixtures/<name>/accepted/`), `test_parse.py` and `test_mapping.py`.
+Recorded responses and fixtures live in `tests/support/<name>.py`. No test asserts
+production inventory counts. The lifecycle itself is tested once, with a toy
+adapter, in `tests/harvest/test_lifecycle.py`.

@@ -65,10 +65,32 @@ def test_harvest_does_not_import_parsing():
             assert not name.startswith("apps.parsing"), (path, name)
 
 
-def test_statdcat_conversion_lives_in_parsing():
-    assert not (ROOT / "apps/harvest/contributions.py").exists()
-    assert not (ROOT / "apps/harvest/accepted.py").exists()
-    assert (ROOT / "apps/parsing/accepted.py").is_file()
+PUBLIC = {"__init__", "client", "harvest", "parse", "mapping"}
+
+
+def test_adapter_folders_keep_the_shape_and_private_modules_stay_inside():
+    from apps.harvest.metadata_adapters import ADAPTERS
+
+    folders = ROOT / "apps/harvest/metadata_adapters"
+    private = {}
+    for name in ADAPTERS:
+        if name == "pxweb_v1":  # keeps its multi-job pipeline shape
+            continue
+        modules = {p.stem for p in (folders / name).glob("*.py")}
+        assert {"__init__", "client", "harvest", "parse"} <= modules, name
+        assert (folders / name / "__init__.py").read_text(encoding="utf-8") == ""
+        private[name] = modules - PUBLIC
+    for directory in ("apps", "retrieval", "scripts", "registry", "schema", "harvest"):
+        for path in (ROOT / directory).rglob("*.py"):
+            for imported in imports(path):
+                for name, modules in private.items():
+                    prefix = f"apps.harvest.metadata_adapters.{name}."
+                    if (
+                        imported.startswith(prefix)
+                        and imported[len(prefix) :] in modules
+                    ):
+                        inside = folders / name in path.parents
+                        assert inside or directory == "scripts", (path, imported)
 
 
 def test_every_repository_command_loads_without_running_work():

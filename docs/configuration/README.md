@@ -1,78 +1,38 @@
 # Source configuration
 
-Edit these three authoritative files together:
+Edit these three files together; `registry.load()` reads them once, validates each
+against [source-configuration.schema.json](../../schema/source-configuration.schema.json)
+and checks the cross-references.
 
 | File | Definition |
 | --- | --- |
-| [adapters.json](../../config/adapters.json) | Twelve adapter definitions, supported construction parameters and operational defaults |
-| [organisations.json](../../config/organisations.json) | Organisation identities, multilingual names, identifiers and organisation metadata |
-| [catalogs.json](../../config/catalogs.json) | Catalogs and concrete service bindings, referencing organisations and adapters |
+| [adapters.json](../../config/adapters.json) | Twelve adapter definitions: title, description, option parameters and defaults |
+| [organisations.json](../../config/organisations.json) | Organisation codes with their identity and multilingual name |
+| [catalogs.json](../../config/catalogs.json) | Service bindings (adapter, source code, endpoint, publisher, order, options) and the catalogs that list them |
 
-An organisation is an entity. Publisher is its role with respect to a catalog,
-dataset or service. Those roles are independent: a catalog publisher is not
-automatically the publisher of every dataset, or the operator of a hosting service.
-Organisation models use the W3C Organization class, an Agent subtype.
+The registry answers two questions: `bindings(adapter)` gives the adapter's
+`ServiceBinding`s in configured order, with the adapter defaults overlaid by the
+binding's own options (including `0`, `False` and empty lists), and `owner(binding)`
+gives the publishing organisation. A binding's `label` is the title of the one
+catalog listing it, or the endpoint host when the service is shared. Nothing else is
+derived: no URL recognition, no identifier minting, no aliases, no sub-catalogs.
 
-Catalogs list services through `dcat:service` and datasets through `dcat:dataset`
-(the dataset's inline `catalogs` context supplies the reverse relationship).
-Distributions reference concrete services through `dcat:accessService`. A service
-has its own stable identity, `dcat:endpointURL`, applicable `dct:publisher` and
-`dcat:servesDataset` relationships, plus the typed `ni:adapter` connection.
-
-For example, SCB's PXWeb v2 and HVD v1 services reference `scb` and different adapter
-definitions. Göteborg's EntryScape and PXWeb catalogs reference `goteborg` and
-separate concrete services. One service binding may appear in multiple catalogs.
-
-## Loading and changing configuration
-
-`load_configuration(directory)` validates all three files and their references.
-Without a directory it reads `config/` relative to this checkout. Installed retrieval
-does not load source configuration. `--config DIRECTORY` selects another complete
-configuration; `--providers FILE` explicitly imports an existing legacy list.
-The two command options are mutually exclusive.
-
-`providers_for_adapter(adapter, configuration=...)` supplies existing workers
-with their established dictionaries. Adapter defaults are overridden by explicit
-binding options, including `0`, `False` and empty lists. Source ordering is explicit.
-Unknown JSON-compatible options remain available to adapters. Validators do not
-perform discovery, network requests or persistence.
-
-Use `source_code` for routing aliases, `organisation` for entities, `publisher`
-for a resource-specific relationship, and catalog/service identifiers for those
-resources. Existing `provider_code` selectors, checkpoint keys and retrieval entry
-points remain compatibility aliases. `SourceIdentity.provider_code` exposes the
-same value as `source_code`; profile 2 serializes `source_code`.
+Adapters, parsing and the CLI receive bindings, never dictionaries. `--config
+DIRECTORY` selects another complete configuration directory; without it commands
+read `config/` relative to this checkout. The installed retrieval library loads no
+configuration.
 
 When adding a source, reference an existing organisation or add its verified
-identity, select an adapter and supply its endpoint/options in a service binding,
-then reference that binding from the actual catalog. Do not derive organisations
-from hostnames. The `identity_namespace` preserves minted dataset/distribution IDs;
-it is not an attribution statement.
+identity, select an adapter and supply its endpoint and options in a service
+binding, then list that binding from the catalog it belongs to. Do not derive
+organisations from hostnames. Organisations will later be defined in and matched
+against the `nordicintel/organisations` repository.
 
-## EntryScape provenance and scope
+## Generated artifacts
 
-Catalog scopes retain EntryStore context URLs, known dataset codes and discovery
-origins. Digidel and Klimatbyrån share `free.entryscape.com` but have distinct
-catalogs and organisation references. Their original discovery origin was
-`dataportalse`; this does not make the aggregator their dataset publisher.
-
-Discovery filters shared-host results by those scopes. A complete scoped discovery
-cannot delete accepted tables outside that scope. Previously accepted records
-without sufficient attribution are retained with findings. Their host never
-becomes an invented organisation or an unowned-catalog configuration category.
-The original [host evidence](../reference/entryscape-origins/rowstore_hosts.csv) and
-[dataset publisher evidence](../reference/entryscape-origins/data_eu_rowstore_datasets.csv)
-are bundled for audit, not runtime input.
-
-## Generated artifacts and profile compatibility
-
-```powershell
+```sh
 uv run python scripts/generate/generate_configuration.py
 uv run python scripts/generate/generate_configuration.py --check
 ```
 
-These commands generate the service inventory; CI checks for drift. Edit the files in
-`config/`; `schema/source-configuration.schema.json` describes their shape.
-
-Worker artifacts are plain JSON; nothing rewrites accepted production files.
-
+These commands generate the [service inventory](inventory.md); CI checks for drift.

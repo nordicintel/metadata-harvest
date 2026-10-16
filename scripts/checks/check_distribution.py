@@ -38,6 +38,9 @@ entries = m.entry_points(group='nordicintel.retrieval')
 for entry in entries:
     entry.load()
 assert importlib.util.find_spec('apps') is None
+assert importlib.util.find_spec('harvest') is None
+assert importlib.util.find_spec('registry') is None
+assert importlib.util.find_spec('schema') is None
 assert importlib.util.find_spec('harvesting') is None
 assert importlib.util.find_spec('metadata_harvest') is None
 installed = {d.metadata['Name'].lower() for d in m.distributions()}

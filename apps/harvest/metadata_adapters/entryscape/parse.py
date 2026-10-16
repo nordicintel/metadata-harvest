@@ -69,7 +69,7 @@ def rebuild(documents: list[dict], bindings: list[ServiceBinding]) -> tuple[dict
 
 
 def published_documents(root: Path, bindings: list[ServiceBinding]) -> list[dict]:
-    """The dataset documents of ``data/entryscape`` (live checks, migrations)."""
+    """The dataset documents of ``data/entryscape`` (live checks)."""
     store = SourceStore(Path(root) / "source", "entryscape")
     mapped, _ = rebuild(table_documents(store), bindings)
     return list(mapped.values())
