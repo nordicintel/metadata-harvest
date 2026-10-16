@@ -353,15 +353,12 @@ def test_duplicates_are_quarantined(data, tmp_path):
     key = "sv/ase-avslutsanledning/ASEAvslutsanledning"
     assert after[key] == before[key]  # quarantined by discovery: meta not refetched
     key = "sv/ase-beslut-lan/ASEBeslutLan"
-    # Quarantined in meta.json: parsed from its stored table definition against the
-    # current meta.json, so only the source record it carries differs.
+    # Quarantined in meta.json: still parsed, from its stored table definition
+    # against the current meta.json (whose hash, table list and single-table
+    # labelling it now reflects); its structure is unchanged.
     changed, kept = after[key], before[key]
-    records = [
-        d["extension"]["forsakringskassan"].pop("source_record")
-        for d in (changed, kept)
-    ]
-    assert records[0]["meta_sha256"] != records[1]["meta_sha256"]
-    assert changed == kept
+    assert changed["id"] == kept["id"] and changed["dimension"] == kept["dimension"]
+    assert changed["extension"]["nordicintel"] == kept["extension"]["nordicintel"]
     assert result["counts"]["rebuilt"] == 1  # the sibling ASEBeslutKon (meta changed)
 
 

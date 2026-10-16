@@ -1,20 +1,23 @@
 """Weekly Riksbank refresh with independent API, row and dataset failures.
 
 The Riksbank publishes no ETag, Last-Modified or metadata timestamp, and a full
-run is under 60 requests, so every run rebuilds every dataset; an identical
-rebuild keeps its accepted bytes. Discovery reads four catalogue responses: SWEA
-``/Groups`` and ``/Series``, and the forecast API's ``series_ids`` and
-``policy_rounds``. Each dataset then makes one small probe, which is its endpoint
-check: the group's latest observations, the series' latest-round vintage, or the
-latest SWESTR fixing (the SWESTR probe is also its discovery). Requests are paced
-at ``request_interval_seconds`` (15 s), so a full run takes about 12 minutes.
+run is under 60 requests, so every run refetches every dataset; an identical probe
+keeps its stored bytes. Discovery reads four catalogue responses: SWEA ``/Groups``
+and ``/Series``, and the forecast API's ``series_ids`` and ``policy_rounds``, all
+stored as shared source files. Each dataset then makes one small probe, which is
+its endpoint check and its stored response: the group's latest observations, the
+series' latest-round vintage, or the latest SWESTR fixing (the SWESTR probe is
+also its discovery). The discovery record a dataset was built from is kept as
+derived data so parsing needs no catalogue re-read. Requests are paced at
+``request_interval_seconds`` (15 s), so a full run takes about 12 minutes.
 
 The three APIs (``swea``, ``mpd``, ``swestr``) are independent discovery scopes: a
 failed scope is reported with that resource name and keeps its datasets, while the
 others continue; only when every attempted scope fails does the run raise and
 publish nothing. A dataset is published only while its endpoint works and its
-document was verified within ``max_age_days``; otherwise its last good document is
-withheld in state. Only a complete discovery in an unbounded run proves removal.
+entry was verified within ``max_age_days``; otherwise it is withheld in state while
+its source files remain. Only a complete discovery in an unbounded run proves
+removal. Documents are built later by ``parse``.
 """
 
 import asyncio
@@ -37,12 +40,8 @@ from apps.harvest.metadata_adapters.riksbank.api import (
     latest_by_group_url,
 )
 from apps.harvest.metadata_adapters.riksbank.client import RiksbankClient, Unreachable
-from apps.harvest.metadata_adapters.riksbank.mapping import (
-    MAPPING_VERSION,
-    build_mpd,
-    build_swea_group,
-    build_swestr,
-)
+from apps.harvest.metadata_adapters.riksbank.mapping import MAPPING_VERSION
+from apps.harvest.metadata_adapters.riksbank.parse import document_from
 from apps.harvest.metadata_adapters.riksbank.source import (
     Listing,
     mpd_listing,
@@ -53,13 +52,17 @@ from apps.harvest.metadata_adapters.riksbank.state import (
     PROVIDER_CODE,
     REPORT,
     STATE,
-    collection,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import (
+    Rejected,
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 from retrieval.data_adapters.riksbank import api_of
@@ -71,6 +74,45 @@ logger = logging.getLogger("riksbank_logger")
 PROGRESS_EVERY = 10
 """Log a progress line after this many built datasets."""
 COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
+SHARED = {
+    "swea": {GROUPS_URL: "swea_groups.json", SERIES_URL: "swea_series.json"},
+    "mpd": {
+        MPD_SERIES_IDS: "mpd_series_ids.json",
+        MPD_POLICY_ROUNDS: "mpd_policy_rounds.json",
+    },
+    "swestr": {SWESTR_LATEST_URL: "swestr_latest.json"},
+}
+"""Catalogue URLs and the shared source file each is stored as."""
+
+
+def stored_key(key: str) -> str:
+    """The source-store key of a ``<language>/<dataset_code>`` state key."""
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def state_key(key: str) -> str:
+    _, code, language = split_key(key)
+    return f"{language}/{code}"
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
+
+
+def _updated(record: dict, responses: dict):
+    """The source's own latest date, read from the probe without interpretation."""
+    if record["api"] == "swea":
+        dates = [
+            row.get("date")
+            for row in responses["latest"]
+            if isinstance(row, dict) and isinstance(row.get("date"), str)
+        ]
+        return max(dates) if dates else None
+    if record["api"] == "mpd":
+        return record["policy_rounds"][-1]
+    latest = responses["latest"]
+    return latest.get("date") if isinstance(latest, dict) else None
 
 
 async def _request(client, url, params=None, **kwargs):
@@ -94,24 +136,33 @@ def _probe_url(record):
     return SWESTR_LATEST_URL
 
 
-async def discover_api(client, api: str) -> Listing:
-    """Read one API's catalogue; raises when the whole scope cannot be read."""
+async def discover_api(client, api: str, bodies: dict | None = None) -> Listing:
+    """Read one API's catalogue; raises when the whole scope cannot be read.
+
+    ``bodies`` receives each catalogue response keyed by its shared file name.
+    """
     logger.debug("Reading the %s catalogue", api)
+    bodies = {} if bodies is None else bodies
+
+    async def get(url):
+        bodies[SHARED[api][url]] = body = await _request(client, url)
+        return body
+
     if api == "swea":
-        groups = await _request(client, GROUPS_URL)
-        return swea_listing(groups, await _request(client, SERIES_URL))
+        groups = await get(GROUPS_URL)
+        return swea_listing(groups, await get(SERIES_URL))
     if api == "mpd":
-        series = await _request(client, MPD_SERIES_IDS)
-        return mpd_listing(series, await _request(client, MPD_POLICY_ROUNDS))
-    return swestr_listing(await _request(client, SWESTR_LATEST_URL))
+        series = await get(MPD_SERIES_IDS)
+        return mpd_listing(series, await get(MPD_POLICY_ROUNDS))
+    return swestr_listing(await get(SWESTR_LATEST_URL))
 
 
-async def build_record(client, record: dict) -> dict:
-    """Probe one dataset's endpoint, then build and validate its document.
+async def probe_record(client, record: dict) -> dict:
+    """Probe one dataset's endpoint and return its source responses.
 
     Raises:
         Unreachable: The probe failed (an endpoint failure).
-        Exception: Any other error is a metadata failure.
+        ValueError: The probe answered that the resource does not exist.
     """
     if record["api"] == "swea":
         group_id = record["group"]["groupId"]
@@ -119,8 +170,8 @@ async def build_record(client, record: dict) -> dict:
         latest = await client.get_json(latest_by_group_url(group_id))
         if latest is None:
             raise ValueError(f"no latest observations for SWEA group {group_id}")
-        document = build_swea_group(record, latest)
-    elif record["api"] == "mpd":
+        return {"latest": latest}
+    if record["api"] == "mpd":
         series_id = record["series"]["series_id"]
         latest_round = record["policy_rounds"][-1]
         logger.debug(
@@ -133,13 +184,14 @@ async def build_record(client, record: dict) -> dict:
         )
         if probe is None:
             raise ValueError(f"no {latest_round} vintage of {series_id}")
-        document = build_mpd(record, probe)
-    else:  # discovery already read the latest fixing
-        logger.debug("SWESTR needs no probe: discovery already read the latest fixing")
-        document = build_swestr(record["latest"])
-    validate_metadata(document, adapter=PROVIDER_CODE)
-    logger.debug("Validated the %s document", record["dataset_code"])
-    return document
+        return {"vintage": probe}
+    logger.debug("SWESTR needs no probe: discovery already read the latest fixing")
+    return {"latest": record["latest"]}
+
+
+async def build_record(client, record: dict) -> dict:
+    """Probe one dataset and build its document in memory (typed boundary)."""
+    return document_from(record, await probe_record(client, record))
 
 
 async def discover_provider(provider: dict, *, client=None) -> list[dict]:
@@ -203,7 +255,7 @@ async def run(
     subjects=None,
     languages=None,
 ) -> dict:
-    """Rebuild every (or each selected) dataset into a separate worker output.
+    """Refetch every (or each selected) dataset into a separate worker output.
 
     Args:
         subjects: Optional dataset codes (``swea_group_2``, ``mpd_SEQGDPNAYSA``,
@@ -218,15 +270,24 @@ async def run(
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured) or set(configured) - set(LANGUAGES):
         raise ValueError(f"Unconfigured Riksbank languages: {selected_languages}")
-    allowed = {STATE, REPORT, *(collection(language) for language in configured)}
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - allowed:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published Riksbank data")
     state = load_state(data)
-    published = load_documents(data, configured)
-    withheld = state["withheld"]
+    output.mkdir(parents=True, exist_ok=True)
+    for relative in baseline:
+        target = output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", PROVIDER_CODE)
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        key = state_key(stored)
+        status = state["datasets"].get(key, {}).get("status")
+        (withheld if status == "withheld" else published)[key] = True
     logger.info(
-        "Loaded published baseline from %s: %d files, %d published documents, "
+        "Loaded published baseline from %s: %d files, %d published entries, "
         "%d withheld, state for %d datasets (state mapping version %s, current %s)",
         data,
         len(baseline),
@@ -236,11 +297,6 @@ async def run(
         state.get("mapping_version"),
         MAPPING_VERSION,
     )
-    output.mkdir(parents=True, exist_ok=True)
-    for relative in baseline:
-        target = output / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(data / relative, target)
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -337,13 +393,10 @@ async def run(
             return True
         if code.startswith("swea_group_") and code[11:] in wanted:
             return True
-        accepted = published.get(key) or withheld.get(key)
-        if accepted is None:
+        envelope = store.get(stored_key(key))
+        if envelope is None:
             return code.startswith("mpd_") and code[4:].casefold() in wanted
-        categories = accepted.get("dimension", {}).get("Series", {}).get("category", {})
-        return any(
-            series.casefold() in wanted for series in categories.get("index", [])
-        )
+        return bool(_aliases(envelope["derived"]["record"]) & wanted)
 
     working: dict[str, bool] = {}
     failures: dict[str, tuple[str, Exception]] = {}
@@ -357,9 +410,9 @@ async def run(
     async def build(record: dict) -> bool:
         """Rebuild one dataset in every language; True on an endpoint failure."""
         endpoint_failed = False
-        document = None
+        responses = None
         try:
-            document = await build_record(connection, record)
+            responses = await probe_record(connection, record)
             outcome = None
         except Unreachable as error:
             outcome, endpoint_failed = ("endpoint", error), True
@@ -372,8 +425,8 @@ async def run(
         except Exception as error:  # the probe answered: endpoint works
             outcome = ("metadata", error)
             logger.error(
-                "%s: probe answered but the document could not be built (%s: %s); "
-                "the last good document stays published while it is still fresh",
+                "%s: probe answered without the resource (%s: %s); the stored "
+                "source entry stays published while it is still fresh",
                 record["dataset_code"],
                 type(error).__name__,
                 error,
@@ -382,6 +435,18 @@ async def run(
             settled.add(key)
             info = state["datasets"].setdefault(key, {})
             info["checked_at"] = stamp
+            if outcome is None:
+                stored = store.get(stored_key(key))
+                try:
+                    store.put(
+                        stored_key(key),
+                        responses=responses,
+                        derived={"record": record},
+                        updated=_updated(record, responses),
+                        retrieved_at=stamp,
+                    )
+                except Rejected as error:
+                    outcome = ("metadata", error)
             if outcome is not None:
                 working[key] = outcome[0] == "metadata"
                 failures[key] = outcome
@@ -389,19 +454,23 @@ async def run(
                 continue
             failures.pop(key, None)
             working[key] = True
-            accepted = published.get(key) or withheld.get(key)
-            counts["unchanged" if document == accepted else "rebuilt"] += 1
+            unchanged = (
+                stored is not None
+                and stored["responses"] == responses
+                and stored["derived"].get("record") == record
+            )
+            counts["unchanged" if unchanged else "rebuilt"] += 1
             logger.debug(
                 "%s: %s",
                 key,
-                "identical to the accepted document, keeping it"
-                if document == accepted
-                else "new document"
-                if accepted is None
-                else "document changed, replacing the accepted one",
+                "identical to the stored entry, keeping it"
+                if unchanged
+                else "new source entry"
+                if stored is None
+                else "responses changed, replacing the stored entry",
             )
             info.update(verified_at=stamp, mapping_version=MAPPING_VERSION, error=None)
-            (withheld if key in withheld else published)[key] = document
+            (withheld if key in withheld else published)[key] = True
         processed = counts["rebuilt"] + counts["unchanged"] + len(failures)
         progress.update(
             processed=processed,
@@ -420,8 +489,9 @@ async def run(
     async def harvest(api: str) -> tuple[bool, list[dict]]:
         """Discover one API; return (discovery endpoint failed, records to build)."""
         progress.update(phase="discovery", current=api)
+        bodies: dict = {}
         try:
-            listing = await discover_api(connection, api)
+            listing = await discover_api(connection, api, bodies)
         except Exception as error:
             logger.error(
                 "Discovery of the %s API failed (%s: %s); %s",
@@ -462,6 +532,8 @@ async def run(
             scopes[api] = "failed"
             return isinstance(error, Unreachable), []
         failures.pop(api, None)
+        for name, body in bodies.items():
+            store.put_shared(PROVIDER_CODE, name, body, retrieved_at=stamp)
         scopes[api] = "complete" if listing.complete else "incomplete"
         for resource, error in listing.problems:
             fail("discovery", resource, error)
@@ -505,6 +577,7 @@ async def run(
             for key in gone:
                 settled.discard(key)
                 state["datasets"].pop(key, None)
+                store.remove(stored_key(key))
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
                 logger.warning(
@@ -614,7 +687,8 @@ async def run(
             await connection.close()
 
     state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published, configured)
+    store.save()
+    save(output, state)
     status = report_status(pending=0, errors=errors)
     result = {
         "run_id": uuid4().hex,
@@ -665,12 +739,13 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         len(result["manifest"]),
         data,
     )
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         raise ValueError("Stale Riksbank artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("Riksbank artifact checksum mismatch")
-    allowed = {STATE, REPORT, *(collection(language) for language in languages)}
-    if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         raise ValueError("Unexpected Riksbank artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -680,5 +755,8 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
         logger.debug("Applied %s", relative)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
     logger.info("Collected %d files into %s", len(result["manifest"]), data)
     return result

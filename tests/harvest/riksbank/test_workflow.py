@@ -9,11 +9,9 @@ from pathlib import Path
 import pytest
 
 from apps.harvest.metadata_adapters.riksbank.client import Unreachable
-from apps.harvest.metadata_adapters.riksbank.state import (
-    collection,
-    load_documents,
-    load_state,
-)
+from apps.harvest.metadata_adapters.riksbank.state import PROVIDER_CODE, load_state
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.parsing import documents
 from tests.support.riksbank import API, RecordedClient, fixture_key
 
 NOW = datetime(2026, 10, 12, 5, 15, tzinfo=UTC)
@@ -64,8 +62,26 @@ def execute(source, data, output, **options):
     return result
 
 
-def published(data):
-    return load_documents(data, ["en"])
+def published(data, *, include_withheld=False):
+    return documents("riksbank", data, [PROVIDER], include_withheld=include_withheld)
+
+
+def stored_key(key):
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def store(data):
+    return SourceStore(data / "source", "riksbank")
+
+
+def stable(data):
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
+
+
+MANIFEST = "source/manifest.json"
 
 
 @pytest.fixture(scope="module")
@@ -73,35 +89,58 @@ def bootstrapped(tmp_path_factory):
     """One bootstrap per module; each test gets a copy of its published data."""
     root = tmp_path_factory.mktemp("bootstrap")
     source = Source()
-    result = execute(source, root / "data", root / "output")
+    result = execute(source, root / "data" / "riksbank", root / "output")
     assert result["status"] == "success", result["errors"]
-    assert result["counts"]["rebuilt"] == len(published(root / "data")) == 8
+    assert (
+        result["counts"]["rebuilt"] == len(published(root / "data" / "riksbank")) == 8
+    )
     assert result["requests"] == source.request_count == 12
-    return root / "data"
+    return root / "data" / "riksbank"
 
 
 @pytest.fixture
 def data(bootstrapped, tmp_path):
-    return Path(shutil.copytree(bootstrapped, tmp_path / "data"))
+    return Path(shutil.copytree(bootstrapped, tmp_path / "data" / "riksbank"))
 
 
-def test_bootstrap_publishes_valid_documents(data):
+def test_bootstrap_stores_catalogues_and_probes(data):
     from apps.harvest.validation import validate_metadata
 
-    documents = published(data)
-    assert set(documents) == ALL
-    for document in documents.values():
+    parsed = published(data)
+    assert set(parsed) == ALL
+    for document in parsed.values():
         validate_metadata(document, adapter="riksbank")
         assert document["value"] == []
         assert document["extension"]["riksbank"]["api"] in {"swea", "mpd", "swestr"}
+    shared = set(store(data).manifest["shared"])
+    assert {
+        f"{PROVIDER_CODE}/_shared/{name}"
+        for name in (
+            "swea_groups.json",
+            "swea_series.json",
+            "mpd_series_ids.json",
+            "mpd_policy_rounds.json",
+            "swestr_latest.json",
+        )
+    } <= shared
+    swea = store(data).get(stored_key("en/swea_group_2"))
+    assert set(swea["responses"]) == {"latest"} and swea["derived"]["record"]["api"]
+    mpd = store(data).get(stored_key("en/mpd_SEQGDPNAYSA"))
+    assert set(mpd["responses"]) == {"vintage"}
+    assert mpd["updated"] == mpd["derived"]["record"]["policy_rounds"][-1]
+    assert store(data).get(stored_key("en/swestr"))["responses"]["latest"]["date"]
+    assert "withheld" not in load_state(data)
+    assert not (data / "metadata").exists()
 
 
 def test_rerun_is_byte_identical_and_unchanged(data, tmp_path):
-    before = (data / collection("en")).read_bytes()
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
     result = execute(Source(), data, tmp_path / "rerun")
     assert result["counts"]["rebuilt"] == 0
     assert result["counts"]["unchanged"] == 8
-    assert (data / collection("en")).read_bytes() == before
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
 
 
 def test_failing_probe_is_withheld_then_restored(data, tmp_path):
@@ -116,7 +155,8 @@ def test_failing_probe_is_withheld_then_restored(data, tmp_path):
     assert source.requests.count(LATEST_2) == 2  # retried once after the cooldown
     assert result["counts"]["withheld"] == 1
     assert "en/swea_group_2" not in published(data)
-    assert load_state(data)["withheld"]["en/swea_group_2"] == before
+    assert load_state(data)["datasets"]["en/swea_group_2"]["status"] == "withheld"
+    assert published(data, include_withheld=True)["en/swea_group_2"] == before
 
     result = execute(Source(), data, tmp_path / "back")
     assert result["counts"]["restored"] == 1
@@ -161,6 +201,8 @@ def test_one_failing_api_keeps_the_others(data, tmp_path):
     assert result["apis"] == {"swea": "failed", "mpd": "complete", "swestr": "complete"}
     assert result["counts"]["unchanged"] == 4 and result["counts"]["withheld"] == 4
     assert set(published(data)) == {k for k in ALL if "swea_" not in k}
+    assert store(data).get_shared(PROVIDER_CODE, "swea_groups.json") is not None
+    assert store(data).get(stored_key("en/swea_group_2")) is not None
 
     from apps.operations.outcome import _discovery
 
@@ -176,7 +218,7 @@ def test_swestr_failure_is_its_discovery_scope(data, tmp_path):
     assert [(e["stage"], e["resource"]) for e in result["errors"]] == [
         ("discovery", "swestr")
     ]
-    assert "en/swestr" in load_state(data)["withheld"]
+    assert load_state(data)["datasets"]["en/swestr"]["status"] == "withheld"
     assert result["counts"]["unchanged"] == 7
 
 
@@ -208,17 +250,17 @@ def test_metadata_failure_expires_after_max_age(data, tmp_path):
 
     execute(source, data, tmp_path / "expired", clock=NOW + timedelta(days=61))
     assert "en/mpd_SEAWAGNAYCA" not in published(data)
-    assert "en/mpd_SEAWAGNAYCA" in load_state(data)["withheld"]
+    assert load_state(data)["datasets"]["en/mpd_SEAWAGNAYCA"]["status"] == "withheld"
 
 
 def test_every_api_failing_raises_and_publishes_nothing(data, tmp_path):
     source = Source()
     source.failing = {GROUPS, SERIES_IDS, SWESTR}
-    before = (data / collection("en")).read_bytes()
+    before = harvest_manifest(data)
     with pytest.raises(Unreachable):
         start(source, data, tmp_path / "out")
     assert not (tmp_path / "out" / "result.json").exists()
-    assert (data / collection("en")).read_bytes() == before
+    assert harvest_manifest(data) == before
 
 
 def test_group_missing_from_listing_is_removed_only_by_unbounded_run(data, tmp_path):
@@ -234,6 +276,7 @@ def test_group_missing_from_listing_is_removed_only_by_unbounded_run(data, tmp_p
     assert result["counts"]["removed"] == 1
     assert "en/swea_group_155" not in published(data)
     assert "en/swea_group_155" not in load_state(data)["datasets"]
+    assert stored_key("en/swea_group_155") not in store(data).entries()
 
 
 def test_bounded_run_touches_only_selected(data, tmp_path):
@@ -284,7 +327,7 @@ def test_discovery_failure_resolves_previously_accepted_series_alias(
     )
     assert result["status"] == "completed_with_errors"
     assert key not in published(data)
-    assert load_state(data)["withheld"][key] == before
+    assert published(data, include_withheld=True)[key] == before
     assert result["counts"]["withheld"] == 1
 
 
