@@ -1,12 +1,13 @@
 """Weekly SDB refresh with independent subject and language failures.
 
 SDB publishes no modification dates and a full harvest is about 200 requests, so
-every run rebuilds every subject in every language; an identical rebuild keeps its
-accepted bytes. The result probe's first-row request is each subject's endpoint
-check. A subject is published only while that endpoint works and its document was
-verified within ``max_age_days``; otherwise its last good document is withheld in
-state and restored automatically when both hold again. Only a complete listing in
-an unbounded run proves a subject's removal from that language.
+every run refetches every subject in every language; identical responses keep
+their stored bytes. The result probe's first-row request is each subject's endpoint
+check; its bodies are stored once per subject as a shared probe file. A subject is
+published only while that endpoint works and its responses were obtained within
+``max_age_days``; otherwise it is withheld in state while its source files remain.
+Only a complete listing in an unbounded run proves a subject's removal from that
+language. Documents are built later by ``parse``.
 """
 
 import asyncio
@@ -23,24 +24,24 @@ from apps.harvest.metadata_adapters.sdb.client import (
     SdbClient,
     Unreachable,
 )
-from apps.harvest.metadata_adapters.sdb.mapping import (
-    MAPPING_VERSION,
-    Subject,
-    build_dataset,
-    time_unit_from_swedish_label,
-)
-from apps.harvest.metadata_adapters.sdb.probe import probe_results
+from apps.harvest.metadata_adapters.sdb.mapping import time_unit_from_swedish_label
+from apps.harvest.metadata_adapters.sdb.parse import document_from, probe_name
+from apps.harvest.metadata_adapters.sdb.probe import fetch_probe
 from apps.harvest.metadata_adapters.sdb.state import (
     PROVIDER_CODE,
     REPORT,
     STATE,
-    collection,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import (
+    Rejected,
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
@@ -50,6 +51,21 @@ LANGUAGES = ("sv", "en")
 PROGRESS_EVERY = 25
 LISTED_LIMIT = 20
 COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
+
+
+def stored_key(key: str) -> str:
+    """The source-store key of a ``<language>/<subject>`` state key."""
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def state_key(key: str) -> str:
+    _, code, language = split_key(key)
+    return f"{language}/{code}"
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
 
 
 def _listed(keys) -> str:
@@ -87,8 +103,12 @@ def listing_rows(body, problems: list) -> tuple[list[dict], bool]:
     return rows, complete
 
 
-async def build_subject(client, row: dict, language: str, time_unit, probes: dict):
-    """Fetch, probe, build and validate one subject's document in ``language``."""
+async def fetch_subject(client, row: dict, language: str, probes: dict) -> dict:
+    """Fetch one subject's responses in ``language``; probe once per subject.
+
+    Returns the envelope responses ``{"variables", "categories", "resultat",
+    "listing_row"}``; ``probes[code]`` holds the shared raw probe afterwards.
+    """
     code = row["namn"]
     try:
         variables = await client.get(language, code)
@@ -110,27 +130,27 @@ async def build_subject(client, row: dict, language: str, time_unit, probes: dic
                 language,
                 code,
             )
-            await client.get(language, code, "resultat", params={"per_sida": 1})
+            first = await client.get(language, code, "resultat", params={"per_sida": 1})
         else:
-            probes[code] = await probe_results(
+            probes[code] = await fetch_probe(
                 client, language, code, variables, categories
             )
+            first = probes[code]["first"]
     except NotFoundError as error:
         logger.warning("%s/%s: SDB answered 404: %s", language, code, error)
         raise Unreachable(str(error)) from error
-    probe = probes[code]
-    document = build_dataset(
-        Subject(code, row["text"].strip(), time_unit),
-        language,
-        variables,
-        categories,
-        result_dimensions=probe.result_dimensions,
-        added_periods=probe.added_periods,
-        source_record=row,
-    )
-    validate_metadata(document, adapter="sdb")
-    logger.debug("%s/%s: document built and validated", language, code)
-    return document
+    return {
+        "variables": variables,
+        "categories": categories,
+        "resultat": first,
+        "listing_row": row,
+    }
+
+
+async def build_subject(client, row: dict, language: str, time_unit, probes: dict):
+    """Fetch and build one subject's document in memory (typed boundary only)."""
+    responses = await fetch_subject(client, row, language, probes)
+    return document_from(row, language, time_unit, responses, probes[row["namn"]])
 
 
 async def discover_provider(provider: dict, *, client=None) -> dict:
@@ -170,7 +190,7 @@ async def run(
     subjects=None,
     languages=None,
 ) -> dict:
-    """Rebuild every (or each selected) subject into a separate worker output."""
+    """Refetch every (or each selected) subject into a separate worker output."""
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
@@ -178,26 +198,30 @@ async def run(
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured):
         raise ValueError(f"Unconfigured SDB languages: {selected_languages}")
-    allowed = {STATE, REPORT, *(collection(language) for language in configured)}
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - allowed:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published SDB data")
     state = load_state(data)
-    published = load_documents(data, configured)
-    withheld = state["withheld"]
+    output.mkdir(parents=True, exist_ok=True)
+    for relative in baseline:
+        target = output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", "sdb")
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        key = state_key(stored)
+        status = state["subjects"].get(key, {}).get("status")
+        (withheld if status == "withheld" else published)[key] = True
     logger.info(
-        "Baseline: %d published documents, %d withheld, %d tracked subjects "
+        "Baseline: %d published entries, %d withheld, %d tracked subjects "
         "across %d files",
         len(published),
         len(withheld),
         len(state["subjects"]),
         len(baseline),
     )
-    output.mkdir(parents=True, exist_ok=True)
-    for relative in baseline:
-        target = output / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(data / relative, target)
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -210,8 +234,8 @@ async def run(
     logger.info(
         "SDB run starting: %s; languages=%s (configured %s); subjects=%s; "
         "max_age_days=%s; retry_cooldown_seconds=%s; SDB publishes no modification "
-        "dates, so every selected subject is rebuilt and compared with its accepted "
-        "document",
+        "dates, so every selected subject is refetched and compared with its stored "
+        "responses",
         "filtered rebuild" if wanted else "full rebuild",
         selected_languages,
         configured,
@@ -219,13 +243,6 @@ async def run(
         max_age.days,
         cooldown,
     )
-    if state.get("mapping_version") != MAPPING_VERSION:
-        logger.info(
-            "Mapping version changed (%s -> %s); rebuilt documents may differ from "
-            "accepted ones",
-            state.get("mapping_version"),
-            MAPPING_VERSION,
-        )
 
     def fail(stage, resource, error):
         entry = {
@@ -246,7 +263,8 @@ async def run(
     try:
         progress.update(phase="discovery", current="sv")
         problems = []
-        swedish, sv_complete = listing_rows(await connection.get("sv"), problems)
+        swedish_body = await connection.get("sv")
+        swedish, sv_complete = listing_rows(swedish_body, problems)
         for resource, error in problems:
             fail("discovery", f"sv/{resource}", error)
         logger.info(
@@ -259,6 +277,9 @@ async def run(
         if not swedish:
             logger.error("SDB lists no Swedish subjects; aborting the run")
             raise ValueError("SDB lists no Swedish subjects")
+        store.put_shared(
+            PROVIDER_CODE, "listing.sv.json", swedish_body, retrieved_at=stamp
+        )
         time_units = {
             row["namn"]: time_unit_from_swedish_label(row["text"]) for row in swedish
         }
@@ -277,9 +298,17 @@ async def run(
                 problems = []
                 try:
                     progress.update(current=language)
-                    rows, complete = listing_rows(
-                        await connection.get(language), problems
-                    )
+                    body = await connection.get(language)
+                    rows, complete = listing_rows(body, problems)
+                    try:
+                        store.put_shared(
+                            PROVIDER_CODE,
+                            f"listing.{language}.json",
+                            body,
+                            retrieved_at=stamp,
+                        )
+                    except Rejected:
+                        logger.warning("%s listing is empty; not stored", language)
                 except (Unreachable, NotFoundError, ValueError) as error:
                     fail("discovery", language, error)
                     unavailable = known(language)
@@ -312,6 +341,7 @@ async def run(
                 gone = sorted(known(language) - listed)
                 for key in gone:
                     state["subjects"].pop(key, None)
+                    store.remove(stored_key(key))
                     if (
                         published.pop(key, None) or withheld.pop(key, None)
                     ) is not None:
@@ -377,9 +407,7 @@ async def run(
                 info = state["subjects"].setdefault(key, {})
                 info["checked_at"] = stamp
                 try:
-                    document = await build_subject(
-                        connection, row, language, time_units.get(row["namn"]), probes
-                    )
+                    responses = await fetch_subject(connection, row, language, probes)
                 except Unreachable as error:
                     working[key] = False
                     failures[key] = ("endpoint", error)
@@ -394,44 +422,45 @@ async def run(
                         else "giving up for this run",
                     )
                     continue
-                except Exception as error:
-                    failures[key] = ("metadata", error)
-                    try:  # a mapping failure keeps a working endpoint published
-                        await connection.get(
-                            language, row["namn"], "resultat", params={"per_sida": 1}
+                working[key] = True  # the result endpoint answered
+                stored = store.get(stored_key(key))
+                try:
+                    store.put(
+                        stored_key(key),
+                        responses=responses,
+                        updated=None,
+                        retrieved_at=stamp,
+                    )
+                    if probes[row["namn"]]["language"] == language:
+                        store.put_shared(
+                            PROVIDER_CODE,
+                            probe_name(row["namn"]),
+                            probes[row["namn"]],
+                            retrieved_at=stamp,
                         )
-                        working[key] = True
-                    except Exception:
-                        working[key] = False
+                except Rejected as error:
+                    failures[key] = ("metadata", error)
                     logger.warning(
-                        "%s: metadata failure on attempt %d/2 (%s: %s); result "
-                        "endpoint %s, so the last accepted document is %s; not "
-                        "retried",
+                        "%s: response not storable (%s); the endpoint answered, so "
+                        "any stored source entry stays as it is",
                         key,
-                        attempt,
-                        type(error).__name__,
                         error,
-                        "still works" if working[key] else "also fails",
-                        "kept" if working[key] else "withheld if one exists",
                     )
                     continue
                 failures.pop(key, None)
-                working[key] = True
-                accepted = published.get(key) or withheld.get(key)
-                counts["unchanged" if document == accepted else "rebuilt"] += 1
+                unchanged = stored is not None and stored["responses"] == responses
+                counts["unchanged" if unchanged else "rebuilt"] += 1
                 logger.debug(
                     "%s: %s",
                     key,
-                    "identical to the accepted document; kept"
-                    if document == accepted
-                    else "new document accepted"
-                    if accepted is None
-                    else "differs from the accepted document; replaced",
+                    "identical to the stored responses; kept"
+                    if unchanged
+                    else "new source entry stored"
+                    if stored is None
+                    else "differs from the stored responses; replaced",
                 )
-                info.update(
-                    verified_at=stamp, mapping_version=MAPPING_VERSION, error=None
-                )
-                (withheld if key in withheld else published)[key] = document
+                info.update(verified_at=stamp, error=None)
+                (withheld if key in withheld else published)[key] = True
                 progress.update(
                     processed=counts["rebuilt"] + counts["unchanged"],
                     succeeded=counts["rebuilt"] + counts["unchanged"],
@@ -470,7 +499,7 @@ async def run(
         previously_withheld = set(withheld)
         logger.info(
             "Settling publication for %d checked subjects: published only while the "
-            "endpoint works and the document was verified within %d days",
+            "endpoint works and the responses were obtained within %d days",
             len(settled),
             max_age.days,
         )
@@ -488,7 +517,7 @@ async def run(
         restored = sorted(previously_withheld - set(withheld))
         for key in newly_withheld:
             logger.warning(
-                "%s: withheld (%s); the last accepted document is kept in state",
+                "%s: withheld (%s); its source files are kept",
                 key,
                 state["subjects"][key].get("withheld_reason"),
             )
@@ -506,8 +535,8 @@ async def run(
         if client is None:
             await connection.close()
 
-    state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published, configured)
+    store.save()
+    save(output, state)
     status = report_status(pending=0, errors=errors)
     logger.info("Report status %s with %d recorded errors", status, len(errors))
     result = {
@@ -556,18 +585,15 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         result.get("run_id"),
         result.get("status"),
     )
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         logger.error("Refusing artifact: the published baseline changed since the run")
         raise ValueError("Stale SDB artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         logger.error("Refusing artifact: output files do not match the manifest")
         raise ValueError("SDB artifact checksum mismatch")
-    allowed = {STATE, REPORT, *(collection(language) for language in languages)}
-    if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
-        logger.error(
-            "Refusing artifact: unexpected paths %s",
-            sorted(set(result["manifest"]) - allowed),
-        )
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         raise ValueError("Unexpected SDB artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -577,5 +603,9 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
         logger.debug("Applied %s", relative)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
+            logger.debug("Removed %s", relative)
     logger.info("Applied %d SDB artifact files to %s", len(result["manifest"]), data)
     return result

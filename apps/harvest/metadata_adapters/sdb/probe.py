@@ -37,20 +37,72 @@ class ResultProbe:
     added_periods: list[str] = field(default_factory=list)
 
 
-async def probe_results(
+def _result_dimensions(
+    names: Sequence[str], rows: Sequence[Mapping[str, Any]]
+) -> dict[str, str]:
+    """Listed variables mapped to differing result field names.
+
+    Raises:
+        RuntimeError: Result fields cannot be matched to the listed variables.
+    """
+    fields = {result_field(key) for key in rows[0] if key != "varde"}
+    unmatched_names = [name for name in names if name not in fields]
+    unmatched_fields = sorted(fields - set(names))
+    if len(unmatched_names) != len(unmatched_fields) or len(unmatched_names) > 1:
+        raise RuntimeError(
+            f"Cannot match SDB variables {unmatched_names} to result fields "
+            f"{unmatched_fields}."
+        )
+    return dict(zip(unmatched_names, unmatched_fields, strict=True))
+
+
+def _year_plan(
+    categories: Mapping[str, Sequence[Mapping[str, Any]]],
+    ar_field: str,
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    today_year: int,
+) -> tuple[list[int], set[str]]:
+    """Candidate years outside the listed range, and years seen in the first row."""
+    if "ar" not in categories:
+        return [], set()
+    listed = {str(category["id"]) for category in categories["ar"]}
+    observed = {
+        str(value)
+        for row in rows
+        for key, value in row.items()
+        if result_field(key) == ar_field
+    }
+    codes = listed | observed
+    if not listed or not all(code.isdigit() for code in codes):
+        return [], observed  # periods such as "1987-1989" are not probed
+    first_listed = min(int(code) for code in listed)
+    last_listed = max(int(code) for code in listed)
+    candidates = [
+        *range(min(int(code) for code in codes), first_listed),
+        *range(last_listed + 1, today_year + 1),
+    ]
+    return candidates, observed
+
+
+async def fetch_probe(
     client: SdbClient,
     language: str,
     subject: str,
     variables: Sequence[Mapping[str, Any]],
     categories: Mapping[str, Sequence[Mapping[str, Any]]],
-) -> ResultProbe:
-    """Sample a subject's first result row and reconcile it with the listing.
+) -> dict[str, Any]:
+    """Sample the result endpoint and probe unlisted years; return the raw bodies.
 
-    The first row request is also the subject's endpoint health check.
+    The first row request is also the subject's endpoint health check. The result
+    is ``{"language", "first", "years", "candidates"}``: ``years`` maps each
+    requested candidate year to its body, or ``None`` for HTTP 404; years already
+    seen in the first row are not requested. Reconciliation with the listing
+    happens in :func:`reconcile`; when result fields cannot be matched no years
+    are probed and ``reconcile`` reports the mismatch.
 
     Raises:
         Unreachable: The result endpoint fails or serves no observations.
-        RuntimeError: Result fields cannot be matched to the listed variables.
     """
     names = [str(variable["namn"]) for variable in variables]
     logger.debug(
@@ -68,105 +120,74 @@ async def probe_results(
     if not rows:
         logger.debug("%s/%s: result endpoint serves no rows", language, subject)
         raise Unreachable(f"{subject}: result endpoint serves no rows")
-
-    fields = {result_field(key) for key in rows[0] if key != "varde"}
-    unmatched_names = [name for name in names if name not in fields]
-    unmatched_fields = sorted(fields - set(names))
-    if len(unmatched_names) != len(unmatched_fields) or len(unmatched_names) > 1:
-        logger.debug(  # the caller records and logs the raised error
-            "%s/%s: cannot reconcile listed variables %s with result fields %s",
-            language,
-            subject,
-            unmatched_names,
-            unmatched_fields,
-        )
-        raise RuntimeError(
-            f"Cannot match SDB variables {unmatched_names} to result fields "
-            f"{unmatched_fields}."
-        )
-    result_dimensions = dict(zip(unmatched_names, unmatched_fields, strict=True))
-    if result_dimensions:
-        logger.info(
-            "%s/%s: result endpoint names variables differently from the listing: %s",
-            language,
-            subject,
-            result_dimensions,
-        )
-    added_periods = await _missing_years(
-        client, language, subject, categories, result_dimensions, rows
+    raw = {"language": language, "first": first, "years": {}, "candidates": []}
+    try:
+        result_dimensions = _result_dimensions(names, rows)
+    except RuntimeError as error:
+        logger.warning("%s/%s: %s; unlisted years not probed", language, subject, error)
+        return raw
+    ar_field = result_dimensions.get("ar", "ar")
+    candidates, observed = _year_plan(
+        categories, ar_field, rows, today_year=datetime.now(UTC).year
     )
-    return ResultProbe(result_dimensions, added_periods)
+    raw["candidates"] = candidates
+    logger.debug(
+        "%s/%s: probing %d candidate years outside the listed range",
+        language,
+        subject,
+        len(candidates),
+    )
+    for year in candidates:
+        if str(year) in observed:
+            continue
+        try:
+            raw["years"][str(year)] = await client.get(
+                language,
+                subject,
+                "resultat",
+                ar_field,
+                str(year),
+                params={"per_sida": 1},
+            )
+        except NotFoundError:
+            logger.debug("%s/%s: no observations for %s", language, subject, year)
+            raw["years"][str(year)] = None
+    return raw
 
 
-async def _missing_years(
+def reconcile(
+    raw: Mapping[str, Any],
+    variables: Sequence[Mapping[str, Any]],
+    categories: Mapping[str, Sequence[Mapping[str, Any]]],
+) -> ResultProbe:
+    """Reconcile stored probe bodies with the listing, without any request.
+
+    Raises:
+        RuntimeError: Result fields cannot be matched to the listed variables.
+    """
+    names = [str(variable["namn"]) for variable in variables]
+    rows = list(raw["first"]["data"])
+    result_dimensions = _result_dimensions(names, rows)
+    ar_field = result_dimensions.get("ar", "ar")
+    _, observed = _year_plan(categories, ar_field, rows, today_year=0)
+    added = [
+        str(year)
+        for year in raw.get("candidates", [])
+        if str(year) in observed or raw["years"].get(str(year)) is not None
+    ]
+    return ResultProbe(result_dimensions, added)
+
+
+async def probe_results(
     client: SdbClient,
     language: str,
     subject: str,
+    variables: Sequence[Mapping[str, Any]],
     categories: Mapping[str, Sequence[Mapping[str, Any]]],
-    result_dimensions: Mapping[str, str],
-    rows: Sequence[Mapping[str, Any]],
-) -> list[str]:
-    if "ar" not in categories:
-        return []
-    ar_field = result_dimensions.get("ar", "ar")
-    listed = {str(category["id"]) for category in categories["ar"]}
-    observed = {
-        str(value)
-        for row in rows
-        for key, value in row.items()
-        if result_field(key) == ar_field
-    }
-    codes = listed | observed
-    if not listed or not all(code.isdigit() for code in codes):
-        logger.debug(
-            "%s/%s: skipping the missing-year probe; periods are not plain years",
-            language,
-            subject,
-        )
-        return []  # periods such as "1987-1989" are not probed
-    first_listed = min(int(code) for code in listed)
-    last_listed = max(int(code) for code in listed)
-    candidates = [
-        *range(min(int(code) for code in codes), first_listed),
-        *range(last_listed + 1, datetime.now(UTC).year + 1),
-    ]
-    logger.debug(
-        "%s/%s: listed years %d-%d; probing %d candidate years outside that range",
-        language,
-        subject,
-        first_listed,
-        last_listed,
-        len(candidates),
+) -> ResultProbe:
+    """Fetch and reconcile in one step (typed boundary and live checks)."""
+    return reconcile(
+        await fetch_probe(client, language, subject, variables, categories),
+        variables,
+        categories,
     )
-    added = []
-    for year in candidates:
-        if str(year) not in observed:
-            try:
-                await client.get(
-                    language,
-                    subject,
-                    "resultat",
-                    ar_field,
-                    str(year),
-                    params={"per_sida": 1},
-                )
-            except NotFoundError:
-                logger.debug("%s/%s: no observations for %s", language, subject, year)
-                continue
-        else:
-            logger.debug(
-                "%s/%s: year %s already seen in the first result row",
-                language,
-                subject,
-                year,
-            )
-        added.append(str(year))
-    if added:
-        logger.info(
-            "%s/%s: %d years have observations but are not listed: %s",
-            language,
-            subject,
-            len(added),
-            ", ".join(added),
-        )
-    return added

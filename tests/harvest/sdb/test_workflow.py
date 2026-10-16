@@ -8,11 +8,9 @@ from pathlib import Path
 import pytest
 
 from apps.harvest.metadata_adapters.sdb.client import SdbClient, Unreachable
-from apps.harvest.metadata_adapters.sdb.state import (
-    collection,
-    load_documents,
-    load_state,
-)
+from apps.harvest.metadata_adapters.sdb.state import PROVIDER_CODE, load_state
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.parsing import documents
 
 SDB_DATA = json.loads(
     (Path("tests/fixtures/sdb") / "sdb.json").read_text(encoding="utf-8")
@@ -24,6 +22,7 @@ PROVIDER = {
     "retry_cooldown_seconds": 0,
 }
 LANGUAGES = PROVIDER["languages"]
+MANIFEST = "source/manifest.json"
 
 
 def first_codes_row(subject: str, **overrides) -> dict:
@@ -66,20 +65,34 @@ def execute(sdb, data, output, **options):
     return result
 
 
+def load_documents(data):
+    return documents("sdb", data, [PROVIDER])
+
+
 def published(data):
-    return set(load_documents(data, LANGUAGES))
+    return set(load_documents(data))
+
+
+def store(data):
+    return SourceStore(data / "source", "sdb")
+
+
+def stable(data):
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
 
 
 @pytest.fixture
 def data(seeded, tmp_path):
-    root = tmp_path / "data"
+    root = tmp_path / "data" / "sdb"
     result = execute(seeded, root, tmp_path / "bootstrap")
     assert result["status"] == "success"
     assert result["counts"]["rebuilt"] == 4
     return root
 
 
-def test_bootstrap_publishes_both_languages(data):
+def test_bootstrap_stores_raw_responses_for_both_languages(data):
     from apps.harvest.validation import validate_metadata
 
     assert published(data) == {
@@ -88,22 +101,41 @@ def test_bootstrap_publishes_both_languages(data):
         "sv/drgstatistikislutenvard",
         "en/dodsorsaker",
     }
-    for document in load_documents(data, LANGUAGES).values():
+    for document in load_documents(data).values():
         validate_metadata(document, adapter="sdb")
         assert document["extension"]["socialstyrelsen"]["source_record"]["namn"]
-    english = load_documents(data, ["en"])["en/dodsorsaker"]
+    english = load_documents(data)["en/dodsorsaker"]
     assert english["extension"]["nordicintel"]["time_unit"] == "annual"
-    assert (data / collection("en")).exists()
+    envelope = store(data).get(source_key(PROVIDER_CODE, "dodsorsaker", "en"))
+    assert set(envelope["responses"]) == {
+        "variables",
+        "categories",
+        "resultat",
+        "listing_row",
+    }
+    assert envelope["responses"]["listing_row"]["namn"] == "dodsorsaker"
+    shared = store(data).manifest["shared"]
+    assert {f"{PROVIDER_CODE}/_shared/listing.{lang}.json" for lang in LANGUAGES} <= (
+        set(shared)
+    )
+    assert not (data / "metadata").exists()
+
+
+def test_probe_is_shared_between_languages(data):
+    probe = store(data).get_shared(PROVIDER_CODE, "probe/dodsorsaker.json")
+    assert probe["language"] == "sv"
+    assert probe["first"]["data"]
+    assert set(probe) == {"language", "first", "years", "candidates"}
 
 
 def test_rerun_is_byte_identical_and_unchanged(seeded, data, tmp_path):
-    before = {lang: (data / collection(lang)).read_bytes() for lang in LANGUAGES}
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
     result = execute(seeded, data, tmp_path / "rerun")
     assert result["counts"]["unchanged"] == 4
     assert result["counts"]["rebuilt"] == 0
-    assert {lang: (data / collection(lang)).read_bytes() for lang in LANGUAGES} == (
-        before
-    )
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
 
 
 def test_english_listing_failure_withholds_only_english(seeded, data, tmp_path):
@@ -115,7 +147,10 @@ def test_english_listing_failure_withholds_only_english(seeded, data, tmp_path):
         "sv/dodsorsaker",
         "sv/drgstatistikislutenvard",
     }
-    assert set(load_state(data)["withheld"]) == {"en/dodsorsaker"}
+    state = load_state(data)
+    assert "withheld" not in state
+    assert state["subjects"]["en/dodsorsaker"]["status"] == "withheld"
+    assert store(data).get(source_key(PROVIDER_CODE, "dodsorsaker", "en"))
 
     seeded.fake.failing_paths.clear()
     result = execute(seeded, data, tmp_path / "en-back")
@@ -124,41 +159,25 @@ def test_english_listing_failure_withholds_only_english(seeded, data, tmp_path):
 
 
 def test_failing_result_endpoint_is_withheld_then_restored(seeded, data, tmp_path):
-    before = load_documents(data, LANGUAGES)["sv/amning"]
+    before = load_documents(data)["sv/amning"]
     seeded.fake.failing_paths.add("/api/v1/sv/amning/resultat")
     seeded.fake.requests.clear()
     result = execute(seeded, data, tmp_path / "down")
     assert result["counts"]["withheld"] == 1
     assert "sv/amning" not in published(data)
     state = load_state(data)
-    assert state["withheld"]["sv/amning"] == before
+    assert state["subjects"]["sv/amning"]["status"] == "withheld"
     assert state["subjects"]["sv/amning"]["error"]["stage"] == "endpoint"
+    assert documents("sdb", data, [PROVIDER], include_withheld=True)["sv/amning"] == (
+        before
+    )
     probes = seeded.fake.requests.count("/api/v1/sv/amning/resultat?per_sida=1")
     assert probes == 6  # three attempts, then one end-of-run retry pass
 
     seeded.fake.failing_paths.clear()
     result = execute(seeded, data, tmp_path / "back")
     assert result["counts"]["restored"] == 1
-    assert load_documents(data, LANGUAGES)["sv/amning"] == before
-
-
-def test_mapping_failure_keeps_document_until_stale(seeded, data, tmp_path):
-    before = load_documents(data, LANGUAGES)["sv/amning"]
-    seeded.fake.result_names["amning"] = {"variabel": "grupp", "alder": "age"}
-    row = first_codes_row("amning")
-    row["gruppId"] = row.pop("variabelId")
-    row["ageId"] = row.pop("alderId")
-    seeded.fake.rows["amning"] = [row]
-
-    result = execute(seeded, data, tmp_path / "broken")
-    assert result["errors"][0]["stage"] == "metadata"
-    assert "Cannot match SDB variables" in result["errors"][0]["error"]
-    assert load_documents(data, LANGUAGES)["sv/amning"] == before
-
-    execute(seeded, data, tmp_path / "stale", clock=NOW + timedelta(days=61))
-    assert "sv/amning" not in published(data)
-    info = load_state(data)["subjects"]["sv/amning"]
-    assert (info["status"], info["withheld_reason"]) == ("withheld", "stale")
+    assert load_documents(data)["sv/amning"] == before
 
 
 def test_removal_requires_a_complete_listing(seeded, data, tmp_path):
@@ -174,15 +193,16 @@ def test_removal_requires_a_complete_listing(seeded, data, tmp_path):
     assert result["counts"]["removed"] == 1
     assert "sv/amning" not in published(data)
     assert "sv/amning" not in load_state(data)["subjects"]
+    assert source_key(PROVIDER_CODE, "amning", "sv") not in store(data).entries()
     assert "en/dodsorsaker" in published(data)
 
 
 def test_swedish_listing_failure_publishes_nothing(seeded, data, tmp_path):
     seeded.fake.failing_paths.add("/api/v1/sv")
-    before = (data / collection("sv")).read_bytes()
+    before = harvest_manifest(data)
     with pytest.raises(Unreachable):
         start(seeded, data, tmp_path / "out")
-    assert (data / collection("sv")).read_bytes() == before
+    assert harvest_manifest(data) == before
 
 
 def test_bounded_run_touches_only_selected(seeded, data, tmp_path):
@@ -204,6 +224,7 @@ def test_bounded_run_touches_only_selected(seeded, data, tmp_path):
     assert state["sv/dodsorsaker"]["checked_at"] == NOW.isoformat()
     assert state["en/dodsorsaker"]["checked_at"] == NOW.isoformat()
     assert len(published(data)) == 4
+    assert store(data).get_shared(PROVIDER_CODE, "listing.en.json")
 
 
 def test_renamed_result_fields_and_unlisted_years(seeded, tmp_path):
@@ -216,9 +237,13 @@ def test_renamed_result_fields_and_unlisted_years(seeded, tmp_path):
         row["gruppId"] = row.pop("variabelId")
         rows.append(row)
     seeded.fake.rows["amning"] = rows
-    data = tmp_path / "data"
+    data = tmp_path / "data" / "sdb"
     execute(seeded, data, tmp_path / "out", subjects=["amning"], languages=["sv"])
-    document = load_documents(data, LANGUAGES)["sv/amning"]
+    probe = store(data).get_shared(PROVIDER_CODE, "probe/amning.json")
+    assert probe["years"][str(first - 1)] is None
+    assert str(first - 2) not in probe["years"]  # observed in the first row
+    assert probe["candidates"][:2] == [first - 2, first - 1]
+    document = load_documents(data)["sv/amning"]
     native = document["extension"]["socialstyrelsen"]
     assert native["result_dimensions"] == {"variabel": "grupp"}
     assert document["dimension"]["ar"]["category"]["index"][0] == str(first - 2)
