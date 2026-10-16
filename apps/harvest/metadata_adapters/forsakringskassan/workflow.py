@@ -3,18 +3,20 @@
 Försäkringskassan publishes no modification date, ``ETag`` or ``Last-Modified``
 (``meta.revision`` is 0 everywhere), so the change signal is a hash: of each
 report's ``meta.json`` and of the text entries its documents use. Every run reads
-``/reports``, the texts (once) and every selected report's ``meta.json``; an
-incremental run rebuilds only reports whose hashes changed or whose last build was
-incomplete, and a full run rebuilds every report. An identical rebuild keeps its
-accepted bytes and counts ``unchanged``.
+``/reports``, the texts (once) and every selected report's ``meta.json``, storing
+them as shared source files; an incremental run refetches only reports whose
+hashes changed or whose last pass was incomplete, and a full run refetches every
+report. Each table's envelope holds its catalogue row and, for tables with
+undeclared columns, the one-row probe; unchanged hashes count ``unchanged``.
 
 A report's ``meta.json`` is the endpoint check of its tables. A table is published
-only while that endpoint works and its document was verified (rebuilt, or confirmed
-unchanged by its hashes) within ``max_age_days``; otherwise its last good document
-is withheld in state. When the texts fail, no document is rebuilt or verified and
-the failure is reported once as a dependency (``discovery``/``texts``). Only a
-complete ``/reports`` listing in an unbounded run removes a report, and only a
-parsed ``meta.json`` in an unbounded run removes one of its tables.
+only while that endpoint works and its entry was verified (refetched, or confirmed
+unchanged by its hashes) within ``max_age_days``; otherwise it is withheld in state
+while its source files remain. When the texts fail, no entry is refetched or
+verified and the failure is reported once as a dependency (``discovery``/``texts``).
+Only a complete ``/reports`` listing in an unbounded run removes a report, and only
+a parsed ``meta.json`` in an unbounded run removes one of its tables. Documents are
+built later by ``parse``.
 """
 
 import asyncio
@@ -41,7 +43,11 @@ from apps.harvest.metadata_adapters.forsakringskassan.client import (
 from apps.harvest.metadata_adapters.forsakringskassan.mapping import (
     LANGUAGE,
     MAPPING_VERSION,
-    build_dataset,
+)
+from apps.harvest.metadata_adapters.forsakringskassan.parse import (
+    document_from,
+    meta_name,
+    table_record,
 )
 from apps.harvest.metadata_adapters.forsakringskassan.source import (
     Listed,
@@ -58,13 +64,17 @@ from apps.harvest.metadata_adapters.forsakringskassan.state import (
     PROVIDER_CODE,
     REPORT,
     STATE,
-    collection,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import (
+    Rejected,
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 from retrieval.data_adapters.forsakringskassan import query_string
@@ -86,6 +96,21 @@ COUNTS = (
 def report_of(key: str) -> str:
     """The report of a ``<language>/<report>/<Table>`` key."""
     return key.split("/", 2)[1]
+
+
+def stored_key(key: str) -> str:
+    """The source-store key of a ``<language>/<report>/<Table>`` state key."""
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def state_key(key: str) -> str:
+    _, code, language = split_key(key)
+    return f"{language}/{code}"
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
 
 
 def _names(values, limit: int = 10) -> str:
@@ -125,7 +150,7 @@ def rebuild_reasons(
     if duplicates:
         reasons.append(f"duplicate tables {list(duplicates)}")
     if missing:
-        reasons.append("tables without a stored document")
+        reasons.append("tables without a stored source entry")
     return reasons
 
 
@@ -138,26 +163,19 @@ def check_texts(body: Any) -> dict:
     return body
 
 
-async def build_table(
-    client,
-    report: Report,
-    table: Table,
-    listed: Listed,
-    texts: dict,
-    *,
-    meta_sha256: str,
-    texts_sha256: str,
+async def fetch_table(
+    client, report: Report, table: Table, listed: Listed
 ) -> tuple[dict | None, list[str]]:
-    """Build and validate one table's document.
-
-    When ``meta.json`` lists a column it does not describe (such as ``kommun_kod``),
-    a one-row probe of the table shows whether its rows carry it. Such a table
-    cannot be described completely and returns ``(None, undeclared keys)``.
+    """Fetch one table's source responses: its catalogue row and, when
+    ``meta.json`` lists a column it does not describe (such as ``kommun_kod``), a
+    one-row probe showing whether its rows carry it. Such a table cannot be
+    described completely and returns ``(None, undeclared keys)``.
 
     Raises:
         Unreachable: The probe request failed.
-        ValueError: The probe was inconclusive or the document is invalid.
+        ValueError: The probe was inconclusive.
     """
+    responses = {"listing": listed.record()}
     if report.undeclared:
         logger.debug(
             "Table %s/%s: meta.json lists undeclared columns %s; probing one row",
@@ -179,16 +197,8 @@ async def build_table(
         logger.debug(
             "Table %s/%s: probe found no undeclared dimensions", report.key, table.name
         )
-    document = build_dataset(
-        report,
-        table,
-        listed,
-        texts,
-        meta_sha256=meta_sha256,
-        texts_sha256=texts_sha256,
-    )
-    validate_metadata(document, adapter=PROVIDER_CODE)
-    return document, []
+        responses["probe"] = rows
+    return responses, []
 
 
 async def discover_provider(provider: dict, *, client=None) -> list[dict]:
@@ -207,7 +217,8 @@ async def discover_provider(provider: dict, *, client=None) -> list[dict]:
 
 
 async def fetch_metadata(record: dict, *, client, texts: dict | None = None) -> list:
-    """Build and validate every table document of one catalogue record."""
+    """Build every table document of one catalogue record in memory (typed
+    boundary only)."""
     listed = Listed(record["report"], record["area"], record["group"])
     texts = texts or check_texts(await client.get_json(TEXTS_URL))
     meta = await client.get_json(meta_url(listed.report))
@@ -219,17 +230,14 @@ async def fetch_metadata(record: dict, *, client, texts: dict | None = None) -> 
     )
     documents = []
     for table in report.tables:
-        document, _ = await build_table(
-            client,
-            report,
-            table,
-            listed,
-            texts,
-            meta_sha256=fingerprint(meta),
-            texts_sha256=fingerprint(text_entries(texts, report)),
-        )
-        if document is not None:
-            documents.append(document)
+        responses, _ = await fetch_table(client, report, table, listed)
+        if responses is not None:
+            envelope = {
+                "identifier": f"{listed.report}/{table.name}",
+                "responses": responses,
+                "derived": {"table": table_record(table)},
+            }
+            documents.append(document_from(envelope, report, meta, texts))
     logger.debug(
         "Report %s: %d of %d tables built",
         listed.report,
@@ -263,18 +271,22 @@ async def run(
     selected_languages = list(languages or configured)
     if set(configured) - set(LANGUAGES) or set(selected_languages) - set(configured):
         raise ValueError(f"Försäkringskassan supports only Swedish: {configured}")
-    allowed = {STATE, REPORT, *(collection(language) for language in configured)}
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - allowed:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published Försäkringskassan data")
     state = load_state(data)
-    published = load_documents(data, configured)
-    withheld = state["withheld"]
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         target = output / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", PROVIDER_CODE)
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        key = state_key(stored)
+        status = state["datasets"].get(key, {}).get("status")
+        (withheld if status == "withheld" else published)[key] = True
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -352,6 +364,7 @@ async def run(
     def remove(key):
         logger.debug("Removing %s from published, withheld and state", key)
         state["datasets"].pop(key, None)
+        store.remove(stored_key(key))
         if (published.pop(key, None) or withheld.pop(key, None)) is not None:
             counts["removed"] += 1
 
@@ -360,9 +373,8 @@ async def run(
         logger.info("Discovery: reading the report catalogue from %s", REPORTS_URL)
         try:
             problems: list = []
-            listed, complete = catalogue(
-                await connection.get_json(REPORTS_URL), problems
-            )
+            reports_body = await connection.get_json(REPORTS_URL)
+            listed, complete = catalogue(reports_body, problems)
             if not listed:
                 raise ValueError("Försäkringskassan lists no reports")
         except Exception as error:
@@ -380,6 +392,9 @@ async def run(
         )
         for resource, error in problems:
             fail("discovery", f"reports/{resource}", error)
+        store.put_shared(
+            PROVIDER_CODE, "reports.json", reports_body, retrieved_at=stamp
+        )
         by_report = {item.report: item for item in listed}
 
         progress.update(current="texts")
@@ -387,6 +402,7 @@ async def run(
         try:
             texts = check_texts(await connection.get_json(TEXTS_URL))
             logger.info("Texts loaded: %d entries", len(texts))
+            store.put_shared(PROVIDER_CODE, "texts.json", texts, retrieved_at=stamp)
         except (Unreachable, ValueError) as error:
             texts = None
             logger.warning(
@@ -407,6 +423,7 @@ async def run(
                 for report in sorted(set(state["reports"]) - set(by_report)):
                     logger.info("Report %s is no longer listed: state dropped", report)
                     state["reports"].pop(report)
+                    store.remove_shared(PROVIDER_CODE, meta_name(report))
                 if counts["removed"] > removed_before:
                     logger.info(
                         "Removed %d documents of reports no longer listed",
@@ -487,6 +504,14 @@ async def run(
                 state["reports"].setdefault(name, {})["complete"] = False
                 return False
             meta_sha256 = fingerprint(meta)
+            try:
+                store.put_shared(
+                    PROVIDER_CODE, meta_name(name), meta, retrieved_at=stamp
+                )
+            except Rejected as error:
+                failures[f"*/{name}"] = ("metadata", error)
+                state["reports"].setdefault(name, {})["complete"] = False
+                return False
             current = {f"{LANGUAGE}/{name}/{t.name}": t for t in report.tables}
             for table_name in report.duplicate_tables:  # quarantined
                 logger.warning(
@@ -537,8 +562,7 @@ async def run(
                 and accepted.get("mapping_version") == MAPPING_VERSION
                 and not report.duplicate_tables
                 and all(
-                    f"{LANGUAGE}/{name}/{t.name}" in published
-                    or f"{LANGUAGE}/{name}/{t.name}" in withheld
+                    store.get(stored_key(f"{LANGUAGE}/{name}/{t.name}")) is not None
                     for t in tables
                 )
             ):
@@ -571,8 +595,7 @@ async def run(
                 [
                     t.name
                     for t in tables
-                    if f"{LANGUAGE}/{name}/{t.name}" not in published
-                    and f"{LANGUAGE}/{name}/{t.name}" not in withheld
+                    if store.get(stored_key(f"{LANGUAGE}/{name}/{t.name}")) is None
                 ],
             )
             tallies["rebuilt"] += 1
@@ -590,14 +613,8 @@ async def run(
                 progress.update(current=key)
                 info = check(key)
                 try:
-                    document, extra = await build_table(
-                        connection,
-                        report,
-                        table,
-                        item,
-                        texts,
-                        meta_sha256=meta_sha256,
-                        texts_sha256=texts_sha256,
+                    responses, extra = await fetch_table(
+                        connection, report, table, item
                     )
                 except Unreachable as error:
                     logger.warning(
@@ -612,8 +629,8 @@ async def run(
                     continue
                 except Exception as error:  # meta.json answered: endpoint works
                     logger.warning(
-                        "Table %s: could not be built (%s: %s); endpoint works, last "
-                        "document kept",
+                        "Table %s: probe inconclusive (%s: %s); endpoint works, "
+                        "stored entry kept",
                         key,
                         type(error).__name__,
                         error,
@@ -624,7 +641,7 @@ async def run(
                     continue
                 failures.pop(key, None)
                 working[key] = True
-                if document is None:
+                if responses is None:
                     found[table.name] = extra
                     undeclared[f"{name}/{table.name}"] = extra
                     settled.discard(key)
@@ -632,16 +649,38 @@ async def run(
                     built["excluded"] += 1
                     remove(key)
                     continue
-                previous_document = published.get(key) or withheld.get(key)
+                stored = store.get(stored_key(key))
+                try:
+                    store.put(
+                        stored_key(key),
+                        responses=responses,
+                        derived={"table": table_record(table)},
+                        updated=None,
+                        retrieved_at=stamp,
+                    )
+                except Rejected as error:
+                    working[key], failures[key] = True, ("metadata", error)
+                    complete_build = False
+                    built["failed"] += 1
+                    continue
+                signals_unchanged = (
+                    accepted.get("meta_sha256") == meta_sha256
+                    and accepted.get("texts_sha256") == texts_sha256
+                    and accepted.get("mapping_version") == MAPPING_VERSION
+                )
                 outcomes[key] = (
-                    "unchanged" if document == previous_document else "rebuilt"
+                    "unchanged"
+                    if signals_unchanged
+                    and stored is not None
+                    and stored["responses"] == responses
+                    else "rebuilt"
                 )
                 built[outcomes[key]] += 1
                 logger.debug("Table %s: %s", key, outcomes[key])
                 info.update(
                     verified_at=stamp, mapping_version=MAPPING_VERSION, error=None
                 )
-                (withheld if key in withheld else published)[key] = document
+                (withheld if key in withheld else published)[key] = True
             state["reports"][name] = {
                 "meta_sha256": meta_sha256,
                 "texts_sha256": texts_sha256,
@@ -770,7 +809,8 @@ async def run(
             await connection.close()
 
     state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published, configured)
+    store.save()
+    save(output, state)
     status = report_status(pending=0, errors=errors)
     result = {
         "run_id": uuid4().hex,
@@ -817,14 +857,15 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     logger.info(
         "Collecting artifact %s (run status %s) into %s", output, result["status"], data
     )
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         logger.error("Artifact rejected: the published baseline changed since the run")
         raise ValueError("Stale Försäkringskassan artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         logger.error("Artifact rejected: checksum mismatch")
         raise ValueError("Försäkringskassan artifact checksum mismatch")
-    allowed = {STATE, REPORT, *(collection(language) for language in languages)}
-    if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         logger.error(
             "Artifact rejected: unexpected paths %s", sorted(result["manifest"])
         )
@@ -836,5 +877,8 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         temporary = target.with_name(f".{uuid4().hex}.tmp")
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
     logger.info("Collected %d files into %s", len(result["manifest"]), data)
     return result

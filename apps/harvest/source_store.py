@@ -201,9 +201,17 @@ class SourceStore:
     def get_shared(self, provider_code: str, name: str):
         return self._read(f"{provider_code}/{SHARED}/{name}")
 
+    def remove_shared(self, provider_code: str, name: str) -> None:
+        relative = f"{provider_code}/{SHARED}/{name}"
+        self.manifest["shared"].pop(relative, None)
+        self._pending.pop(relative, None)
+
     def put_shared(self, provider_code: str, name: str, body, *, retrieved_at: str):
         body = _check(f"{provider_code}/{name}", body)
         relative = f"{provider_code}/{SHARED}/{name}"
+        previous = self.manifest["shared"].get(relative)
+        if previous is not None and self._read(relative) == body:
+            retrieved_at = previous["retrieved_at"]
         self._pending[relative] = body
         self.manifest["shared"][relative] = {"retrieved_at": retrieved_at}
 

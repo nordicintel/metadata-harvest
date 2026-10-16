@@ -225,3 +225,19 @@ def test_put_normalises_tuples_to_json_lists(tmp_path):
         retrieved_at="later",
     )
     assert again.get(key)["retrieved_at"] == STAMP
+
+
+def test_unchanged_shared_body_keeps_retrieved_at(tmp_path):
+    store = _store(tmp_path)
+    store.put_shared("trafa", "products.json", [{"id": 1}], retrieved_at=STAMP)
+    store.save()
+    before = (tmp_path / "source/manifest.json").read_bytes()
+    again = _store(tmp_path)
+    again.put_shared("trafa", "products.json", [{"id": 1}], retrieved_at="later")
+    again.save()
+    assert (tmp_path / "source/manifest.json").read_bytes() == before
+    again.put_shared("trafa", "products.json", [{"id": 2}], retrieved_at="later")
+    again.save()
+    assert again.manifest["shared"]["trafa/_shared/products.json"] == {
+        "retrieved_at": "later"
+    }

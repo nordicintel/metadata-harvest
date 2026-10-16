@@ -12,11 +12,12 @@ from apps.harvest.metadata_adapters.forsakringskassan.api import (
 )
 from apps.harvest.metadata_adapters.forsakringskassan.client import Unreachable
 from apps.harvest.metadata_adapters.forsakringskassan.state import (
-    collection,
-    load_documents,
+    PROVIDER_CODE,
     load_state,
 )
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
 from tests.support.forsakringskassan import RecordedClient
+from tests.support.parsing import documents
 
 NOW = datetime(2026, 10, 13, 5, tzinfo=UTC)
 PROVIDER = {
@@ -50,29 +51,64 @@ def execute(source, data, output, **options):
     return result
 
 
-def published(data):
-    return load_documents(data, ["sv"])
+def published(data, *, include_withheld=False):
+    return documents(
+        "forsakringskassan", data, [PROVIDER], include_withheld=include_withheld
+    )
+
+
+def stored_key(key):
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def store(data):
+    return SourceStore(data / "source", "forsakringskassan")
+
+
+def stable(data):
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
+
+
+MANIFEST = "source/manifest.json"
 
 
 @pytest.fixture
 def data(tmp_path):
-    root = tmp_path / "data"
+    root = tmp_path / "data" / "forsakringskassan"
     result = execute(RecordedClient(), root, tmp_path / "bootstrap")
     assert result["status"] == "success", result["errors"]
     assert result["counts"]["rebuilt"] == 5
     return root
 
 
-def test_bootstrap_publishes_valid_documents(data, tmp_path):
+def test_bootstrap_stores_listing_rows_meta_and_probes(data, tmp_path):
     from apps.harvest.validation import validate_metadata
 
-    documents = published(data)
-    assert set(documents) == ALL_KEYS
-    for document in documents.values():
+    parsed = published(data)
+    assert set(parsed) == ALL_KEYS
+    for document in parsed.values():
         validate_metadata(document, adapter="forsakringskassan")
     report = load_state(data)["reports"]
     assert report["syn-kommun"]["undeclared"] == {"SynKommunLan": ["kommun_kod"]}
     assert len(report["ase-beslut-lan"]["meta_sha256"]) == 64
+    assert "withheld" not in load_state(data)
+    plain = store(data).get(stored_key("sv/ase-beslut-lan/ASEBeslutLan"))
+    assert set(plain["responses"]) == {"listing"}
+    assert plain["responses"]["listing"]["report"] == "ase-beslut-lan"
+    assert plain["derived"]["table"]["name"] == "ASEBeslutLan"
+    probed = store(data).get(stored_key("sv/syn-kommun/SynKommunKon"))
+    assert set(probed["responses"]) == {"listing", "probe"}
+    shared = set(store(data).manifest["shared"])
+    assert {
+        f"{PROVIDER_CODE}/_shared/reports.json",
+        f"{PROVIDER_CODE}/_shared/texts.json",
+        f"{PROVIDER_CODE}/_shared/meta/ase-beslut-lan.json",
+    } <= shared
+    assert stored_key("sv/syn-kommun/SynKommunLan") not in store(data).entries()
+    assert not (data / "metadata").exists()
 
 
 def test_undeclared_dimension_table_is_excluded_not_failed(tmp_path):
@@ -85,25 +121,27 @@ def test_undeclared_dimension_table_is_excluded_not_failed(tmp_path):
 
 
 def test_rerun_is_byte_identical_and_skips_unchanged_reports(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
     source = RecordedClient()
     result = execute(source, data, tmp_path / "rerun")
     assert result["counts"]["rebuilt"] == 0
     assert result["counts"]["unchanged"] == 5
     assert result["counts"]["excluded"] == 1
-    assert (data / collection("sv")).read_bytes() == before
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
     # /reports, texts and four meta.json: no probes for unchanged reports.
     assert source.request_count == 6
 
 
 def test_full_run_rebuilds_everything_byte_identically(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
+    before = stable(data)
     source = RecordedClient()
     result = execute(source, data, tmp_path / "full", full=True)
     assert result["counts"]["unchanged"] == 5 and result["counts"]["rebuilt"] == 0
     assert source.request_count == 8  # plus the two syn-kommun probes
     assert result["selection"]["full"] is True
-    assert (data / collection("sv")).read_bytes() == before
+    assert stable(data) == before
 
 
 def test_changed_meta_rebuilds_only_its_report(data, tmp_path):
@@ -117,6 +155,8 @@ def test_changed_meta_rebuilds_only_its_report(data, tmp_path):
     assert result["counts"]["rebuilt"] == 1 and result["counts"]["unchanged"] == 4
     document = published(data)["sv/ase-avslutsanledning/ASEAvslutsanledning"]
     assert document["extension"]["nordicintel"]["last_period"] == "2026"
+    stored = store(data).get_shared(PROVIDER_CODE, "meta/ase-avslutsanledning.json")
+    assert stored["filter"]["dimension"][0]["values"][0]["key"] == "2026"
 
 
 def test_changed_texts_rebuild_only_affected_reports(data, tmp_path):
@@ -142,7 +182,10 @@ def test_failing_meta_is_retried_withheld_then_restored(data, tmp_path):
     assert source.requests.count(f"GET {meta_url('ase-beslut-lan')}") == 2  # retried
     assert result["counts"]["withheld"] == 2
     assert not any("/ase-beslut-lan/" in key for key in published(data))
-    assert {k: load_state(data)["withheld"][k] for k in before} == before
+    state = load_state(data)["datasets"]
+    assert {state[k]["status"] for k in before} == {"withheld"}
+    kept = published(data, include_withheld=True)
+    assert {k: kept[k] for k in before} == before
     assert len(published(data)) == 3  # siblings still published
 
     result = execute(RecordedClient(), data, tmp_path / "back")
@@ -152,25 +195,31 @@ def test_failing_meta_is_retried_withheld_then_restored(data, tmp_path):
     )
 
 
-def test_failing_table_keeps_last_document_and_siblings(data, tmp_path):
+def test_texts_without_a_report_name_are_stored_and_fail_at_parse(data, tmp_path):
+    from apps.parsing.build import build
+
     before = published(data)
     source = RecordedClient()
     texts = source.body(TEXTS_URL)
     del texts["MEKA.report.ase-avslutsanledning"]
     source.respond(TEXTS_URL, texts)
     result = execute(source, data, tmp_path / "bad")
-    assert [(e["stage"], e["resource"]) for e in result["errors"]] == [
-        ("metadata", "sv/ase-avslutsanledning/ASEAvslutsanledning")
+    assert result["status"] == "success"  # the harvest stores what was returned
+    parsed = build(
+        "forsakringskassan", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+    )
+    assert [e["key"] for e in parsed["errors"]] == [
+        stored_key("sv/ase-avslutsanledning/ASEAvslutsanledning")
     ]
-    assert published(data) == before  # kept, still published
-    assert not load_state(data)["reports"]["ase-avslutsanledning"]["complete"]
+    assert parsed["counts"]["parsed"] == 4
 
     result = execute(RecordedClient(), data, tmp_path / "fixed")
-    assert result["errors"] == [] and result["counts"]["unchanged"] == 5
+    assert result["errors"] == []
+    assert published(data) == before
 
 
 def test_texts_failure_is_a_dependency_failure(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
+    before = stable(data)
     source = RecordedClient()
     source.fail(TEXTS_URL)
     result = execute(source, data, tmp_path / "texts-down")
@@ -178,7 +227,7 @@ def test_texts_failure_is_a_dependency_failure(data, tmp_path):
         ("discovery", "texts")
     ]
     assert result["counts"]["rebuilt"] == result["counts"]["unchanged"] == 0
-    assert (data / collection("sv")).read_bytes() == before
+    assert stable(data) == before
 
     later = NOW + timedelta(days=61)
     result = execute(source, data, tmp_path / "texts-stale", clock=later)
@@ -204,12 +253,12 @@ def test_malformed_listing_row_before_valid_rows(data, tmp_path):
 
 
 def test_listing_failure_raises_and_publishes_nothing(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
+    before = harvest_manifest(data)
     source = RecordedClient()
     source.fail(REPORTS_URL)
     with pytest.raises(Unreachable):
         start(source, data, tmp_path / "out")
-    assert (data / collection("sv")).read_bytes() == before
+    assert harvest_manifest(data) == before
     source = RecordedClient()
     source.respond(REPORTS_URL, {"error": "maintenance"})
     with pytest.raises(ValueError):
@@ -236,6 +285,8 @@ def test_removal_only_in_unbounded_run(data, tmp_path):
         "sv/ase-beslut-lan/ASEBeslutLan",
     }
     assert "syn-alias" not in load_state(data)["reports"]
+    assert stored_key("sv/syn-alias/SynAliasLan") not in store(data).entries()
+    assert store(data).get_shared(PROVIDER_CODE, "meta/syn-alias.json") is None
 
 
 def test_bounded_run_touches_only_selected(data, tmp_path):
@@ -299,11 +350,18 @@ def test_duplicates_are_quarantined(data, tmp_path):
     assert f"GET {meta_url('ase-avslutsanledning')}" not in source.requests
     after = published(data)
     assert set(after) == set(before)  # nothing removed
-    for key in (
-        "sv/ase-avslutsanledning/ASEAvslutsanledning",
-        "sv/ase-beslut-lan/ASEBeslutLan",
-    ):
-        assert after[key] == before[key]  # quarantined: not replaced
+    key = "sv/ase-avslutsanledning/ASEAvslutsanledning"
+    assert after[key] == before[key]  # quarantined by discovery: meta not refetched
+    key = "sv/ase-beslut-lan/ASEBeslutLan"
+    # Quarantined in meta.json: parsed from its stored table definition against the
+    # current meta.json, so only the source record it carries differs.
+    changed, kept = after[key], before[key]
+    records = [
+        d["extension"]["forsakringskassan"].pop("source_record")
+        for d in (changed, kept)
+    ]
+    assert records[0]["meta_sha256"] != records[1]["meta_sha256"]
+    assert changed == kept
     assert result["counts"]["rebuilt"] == 1  # the sibling ASEBeslutKon (meta changed)
 
 
