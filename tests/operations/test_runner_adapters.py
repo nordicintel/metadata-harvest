@@ -23,11 +23,6 @@ import apps.operations.harvest as runner
             {"areas": ["GONV"], "indicators": ["G082"], "languages": None},
         ),
         (
-            "tillvaxtverket",
-            ["--product", "GuestNights_Country_Year"],
-            {"products": ["GuestNights_Country_Year"], "languages": None},
-        ),
-        (
             "forsakringskassan",
             ["--subject", "ase-beslut-lan", "--full"],
             {"subjects": ["ase-beslut-lan"], "full": True, "languages": None},
@@ -93,6 +88,11 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
             {"subjects": ["CO2"], "languages": None},
         ),
         ("sdb", ["--subject", "amning"], {"subjects": ["amning"], "languages": None}),
+        (
+            "tillvaxtverket",
+            ["--product", "GuestNights_Country_Year"],
+            {"products": ["GuestNights_Country_Year"], "languages": None},
+        ),
     ],
 )
 def test_lifecycle_adapters_run_and_collect_through_the_cli(

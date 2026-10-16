@@ -1,104 +1,95 @@
 """Opt-in live sample of Tillväxtverket open data; never a corpus scan.
 
-Probes the change signal (columns/rowCount and distinct LOAD_DATE) of all six
-registered datasets, rebuilds and validates one dataset (its distinct-value
-queries, label file and data.europa.eu record), then retrieves one small
-filtered selection from it. About 21 requests at one per second. The report
-holds counts only; no observations are saved.
+Runs the adapter for one registered dataset into a temporary directory (its change
+signal, distinct-value queries and label file), parses the stored files into a
+document (validated), then retrieves one small filtered selection from it. About
+ten requests at one per second; no observations are saved.
 """
 
 import argparse
 import asyncio
+import tempfile
 from pathlib import Path
 
+import registry
+from apps.harvest.metadata_adapters.tillvaxtverket import parse
 from apps.harvest.metadata_adapters.tillvaxtverket.client import TillvaxtverketClient
-from apps.harvest.metadata_adapters.tillvaxtverket.source import BY_NAME, DATASETS
-from apps.harvest.metadata_adapters.tillvaxtverket.workflow import (
-    _Dataset,
-    fetch_metadata,
-)
+from apps.harvest.metadata_adapters.tillvaxtverket.harvest import ADAPTER
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write
+from harvest import lifecycle
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.tillvaxtverket import REQUIRED_METADATA, retrieve
-from schema.validation import validate_retrieval
+from schema.validation import validate_metadata, validate_retrieval
 
 SAMPLE = "GuestNights_Capacity_Revenue_Year"
 
 
-async def check() -> dict:
-    probes, report = [], {}
+async def check(root: Path) -> dict:
+    binding = registry.load().bindings(ADAPTER.name)[0]
     client = TillvaxtverketClient()
     try:
-        for spec in DATASETS:
-            item = {"dataset": spec.dataset_code}
+        result = await lifecycle.run(
+            ADAPTER,
+            binding,
+            root / "data",
+            root / "out",
+            selection={"products": [SAMPLE]},
+            client=client,
+        )
+        store = SourceStore(root / "out/source", ADAPTER.name)
+        state = lifecycle.load_state(root / "out", ADAPTER.collection)
+        report = []
+        for key, document in sorted(parse.documents(store, state, [binding])):
+            item = {"dataset": key}
             try:
-                probe = await _Dataset(client, spec).probe()
+                if isinstance(document, Exception):
+                    raise document
+                validate_metadata(document, adapter=ADAPTER.name)
+                periods = category_codes(document["dimension"]["Tid"]["category"])
+                selection = {
+                    "Region": ["riket", "lan:01"],
+                    "Anlaggningstyp": ["Camping", "Hotell"],
+                    "Tid": periods[-2:],
+                    "ContentsCode": ["ANTAL_GASTNATTER", "LOGIINTAKT"],
+                }
+                shared = document["extension"]["nordicintel"]
+                fragment = await retrieve(
+                    client.session,
+                    provider_code=shared["provider_code"],
+                    dataset_code=shared["dataset_code"],
+                    language="sv",
+                    selection=selection,
+                    data_url=shared["data_url"],
+                    metadata_url=shared["metadata_url"],
+                    metadata={
+                        REQUIRED_METADATA[0]: document["id"],
+                        REQUIRED_METADATA[1]: document["extension"]["tillvaxtverket"],
+                    },
+                )
+                validate_retrieval(fragment, selection=selection)
+                values = fragment["value"]
+                if not values:
+                    raise RuntimeError("no values returned for the sample selection")
                 item.update(
                     status="passed",
-                    row_count=probe.row_count,
-                    load_dates=list(probe.load_dates),
-                    updated=probe.updated,
+                    metadata_validation="passed",
+                    label=document["label"],
+                    size=dict(zip(document["id"], document["size"], strict=True)),
+                    selection=selection,
+                    returned_values=len(values),
                 )
             except Exception as error:
                 item.update(status="failed", error=f"{type(error).__name__}: {error}")
-            print(f"{item['status']}: probe {spec.name}", flush=True)
-            probes.append(item)
-
-        spec = BY_NAME[SAMPLE]
-        item = {"dataset": spec.dataset_code}
-        try:
-            document = await fetch_metadata(spec, client=client)
-            dimensions = document["dimension"]
-            periods = category_codes(dimensions["Tid"]["category"])
-            selection = {
-                "Region": ["riket", "lan:01"],
-                "Anlaggningstyp": ["Camping", "Hotell"],
-                "Tid": periods[-2:],
-                "ContentsCode": ["ANTAL_GASTNATTER", "LOGIINTAKT"],
-            }
-            shared = document["extension"]["nordicintel"]
-            result = await retrieve(
-                client.session,
-                provider_code="tillvaxtverket",
-                dataset_code=shared["dataset_code"],
-                language="sv",
-                selection=selection,
-                data_url=shared["data_url"],
-                metadata_url=shared["metadata_url"],
-                metadata={
-                    REQUIRED_METADATA[0]: document["id"],
-                    REQUIRED_METADATA[1]: document["extension"]["tillvaxtverket"],
-                },
-            )
-            validate_retrieval(result, selection=selection)
-            values = result["value"]
-            if not values:
-                raise RuntimeError("no values returned for the sample selection")
-            item.update(
-                status="passed",
-                metadata_validation="passed",
-                label=document["label"],
-                size=dict(zip(document["id"], document["size"], strict=True)),
-                official_statistics=shared.get("official_statistics"),
-                selection=selection,
-                returned_values=len(values),
-                null_values=sum(
-                    v is None
-                    for v in (values if isinstance(values, list) else values.values())
-                ),
-                statuses=sorted(set((result.get("status") or {}).values())),
-            )
-        except Exception as error:
-            item.update(status="failed", error=f"{type(error).__name__}: {error}")
-        print(f"{item['status']}: rebuild and retrieve {SAMPLE}", flush=True)
-        report = item
+            print(f"{item['status']}: {key}", flush=True)
+            report.append(item)
     finally:
         await client.close()
     return {
         "verification": "bounded sample only",
         "harvest_requests": client.request_count,
-        "probes": probes,
-        "documents": [report],
+        "run": {k: result[k] for k in ("status", "counts", "errors")},
+        "documents": report,
         "observations_saved": False,
     }
 
@@ -109,8 +100,7 @@ if __name__ == "__main__":
         "--report", type=Path, default=Path("output/tillvaxtverket-live.json")
     )
     args = parser.parse_args()
-    result = asyncio.run(check())
+    with tempfile.TemporaryDirectory(prefix="tillvaxtverket-live-") as temporary:
+        result = asyncio.run(check(Path(temporary)))
     write(args.report, result)
-    raise SystemExit(
-        any(d["status"] != "passed" for d in [*result["probes"], *result["documents"]])
-    )
+    raise SystemExit(any(d["status"] != "passed" for d in result["documents"]))

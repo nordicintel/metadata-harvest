@@ -7,7 +7,10 @@ The data.europa.eu description comes from the accepted portal snapshot
 from collections.abc import Iterator
 from pathlib import Path
 
-from apps.harvest.metadata_adapters.tillvaxtverket.api import dcat_id
+from apps.harvest.metadata_adapters.tillvaxtverket.client import (
+    PROVIDER_CODE,
+    dcat_id,
+)
 from apps.harvest.metadata_adapters.tillvaxtverket.mapping import (
     apply_dcat,
     build_cube,
@@ -22,7 +25,6 @@ from apps.harvest.metadata_adapters.tillvaxtverket.source import (
     parse_probe,
     parse_regions,
 )
-from apps.harvest.metadata_adapters.tillvaxtverket.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
 from registry import ServiceBinding
 

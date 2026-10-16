@@ -19,6 +19,10 @@ from urllib.parse import urlencode
 
 import pytest
 
+from apps.harvest.metadata_adapters.tillvaxtverket.client import Unreachable
+from apps.harvest.metadata_adapters.tillvaxtverket.source import DATASETS
+from tests.support.binding import binding
+
 FIXTURES = Path("tests/fixtures/tillvaxtverket")
 RECORDED: dict[str, Any] = {
     key: entry["body"]
@@ -103,6 +107,39 @@ class RecordedClient:
 
     async def get_text(self, url: str, params=None, *, encoding=None) -> str:
         return self._answer(url, params)
+
+
+class Source(RecordedClient):
+    """Recorded answers; failing or unrecorded requests are unreachable, like
+    ``TillvaxtverketClient`` after its retries."""
+
+    def _answer(self, url, params):
+        try:
+            return super()._answer(url, params)
+        except (TimeoutError, LookupError) as error:
+            raise Unreachable(str(error)) from error
+
+
+PROVIDER = binding(
+    "tillvaxtverket", "tillvaxtverket", languages=["sv"], retry_cooldown_seconds=0
+)
+NAMES = [spec.name for spec in DATASETS]
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    import asyncio
+
+    from apps.harvest.metadata_adapters.tillvaxtverket.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result
 
 
 @pytest.fixture

@@ -96,8 +96,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return _scoped(
             report, discovery_resources=("charts", "dashboards"), endpoint_prefix="*/"
         )
-    if adapter == "tillvaxtverket":
-        return []  # Every configured source endpoint is an individual dataset.
     raise ValueError(f"Unknown adapter: {adapter}")
 
 

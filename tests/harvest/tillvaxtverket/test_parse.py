@@ -2,8 +2,13 @@
 
 from pathlib import Path
 
-from tests.harvest.tillvaxtverket.test_workflow import NAMES, PROVIDER, Source, execute
-from tests.support.tillvaxtverket import snapshot_from
+from tests.support.tillvaxtverket import (
+    NAMES,
+    PROVIDER,
+    Source,
+    execute,
+    snapshot_from,
+)
 
 GOLDEN = Path("tests/fixtures/tillvaxtverket/accepted")
 

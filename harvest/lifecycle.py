@@ -88,6 +88,14 @@ class Stored:
 
 
 @dataclass
+class Kept:
+    """The stored entry is unchanged by the adapter's own change signal; nothing
+    is written and the item counts as unchanged."""
+
+    info: dict = field(default_factory=dict)
+
+
+@dataclass
 class Dropped:
     """The task has no item to store; the key and its files are removed."""
 
@@ -102,7 +110,7 @@ class Adapter:
     workflow_file: str
     client: Callable[[ServiceBinding], object]
     discover: Callable[[Run], Awaitable[list[Scope]]]
-    fetch: Callable[[Run, Task], Awaitable[Stored | Dropped]]
+    fetch: Callable[[Run, Task], Awaitable[Stored | Kept | Dropped]]
     options: dict[str, str] = field(default_factory=dict)
     """CLI flag to selection name, for example ``{"subject": "subjects"}``."""
     languages: tuple[str, ...] = ("sv",)
@@ -371,6 +379,12 @@ async def _fetch(run: Run, task: Task, working: dict, failures: dict) -> str:
         run.log.warning("%s: %s: %s", key, type(error).__name__, error)
         return "done"
     working[key] = True
+    if isinstance(result, Kept):
+        failures.pop(key, None)
+        run.counts["unchanged"] += 1
+        info.update(verified_at=run.stamp, error=None, **result.info)
+        (run.withheld if key in run.withheld else run.published)[key] = True
+        return "done"
     if isinstance(result, Dropped):
         run.counts[result.count] += 1
         run.records.pop(key, None)

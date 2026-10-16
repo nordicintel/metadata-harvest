@@ -77,11 +77,6 @@ SIMPLE_ADAPTERS = {
         },
         lambda b: {"languages": b.options["languages"]},
     ),
-    "tillvaxtverket": (
-        "single",
-        lambda a: {"products": a.product, "languages": a.language},
-        lambda b: {"languages": b.options["languages"]},
-    ),
 }
 
 

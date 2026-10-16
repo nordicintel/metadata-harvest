@@ -30,10 +30,10 @@ PORTAL = snapshot_from(Path(tempfile.mkdtemp()) / "data_eu", list(BY_NAME))
 
 
 def build(name, client=None):
-    from apps.harvest.metadata_adapters.tillvaxtverket.workflow import fetch_metadata
+    from apps.harvest.metadata_adapters.tillvaxtverket.harvest import build_document
 
     return asyncio.run(
-        fetch_metadata(BY_NAME[name], client=client or RecordedClient(), portal=PORTAL)
+        build_document(client or RecordedClient(), BY_NAME[name], portal=PORTAL)
     )
 
 

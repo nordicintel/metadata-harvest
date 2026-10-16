@@ -12,7 +12,7 @@ import logging
 import re
 from typing import Any
 
-from apps.harvest.metadata_adapters.tillvaxtverket.api import (
+from apps.harvest.metadata_adapters.tillvaxtverket.client import (
     API_DOCUMENTATION_URL,
     MEASURE_DIMENSION,
     PROVIDER_CODE,
