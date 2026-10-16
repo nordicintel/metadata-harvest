@@ -1,12 +1,10 @@
 """Executable ownership rules for repository applications and the exported library."""
 
 import ast
-import json
 import subprocess
 import sys
 
 from apps.configuration import load_configuration
-from apps.model import vocabulary
 from apps.paths import CONFIG, ROOT, SCHEMAS
 
 
@@ -61,13 +59,6 @@ def test_configuration_and_profile_have_one_authoritative_location(
     for filename in ("adapters.json", "organisations.json", "catalogs.json"):
         assert CONFIG.joinpath(filename).is_file()
         assert not list((ROOT / "apps").rglob(filename))
-    profile = json.loads(CONFIG.joinpath("profile.json").read_text(encoding="utf-8"))
-    assert profile["version"] == vocabulary.PROFILE_VERSION
-    assert (
-        vocabulary.STATDCAT_REVISION
-        == profile["upstream_version"] + "/" + profile["upstream_commit"]
-    )
-    assert profile["namespace"] == vocabulary.NAMESPACE
 
 
 def module_imports(path):

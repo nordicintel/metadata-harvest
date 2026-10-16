@@ -101,7 +101,7 @@ def test_profile_upgrade_keeps_payloads_ids_and_unattributed_records():
     from apps.migrations.profile_reader import read_dataset, upgrade_document
     from apps.model.vocabulary import PROFILE1_CONTEXT
     from apps.parsing.contributions import convert_dataset, legacy_document
-    from tests.model.test_statdcat import legacy
+    from tests.support.worker_document import legacy
 
     native = legacy()
     current = convert_dataset(native, adapter="pxweb_v2").dataset.to_jsonld()
@@ -142,7 +142,7 @@ def test_profile_upgrade_keeps_payloads_ids_and_unattributed_records():
 def test_unattributed_refresh_preserves_findings_across_languages():
     from apps.model.composition import assemble
     from apps.parsing.contributions import convert_dataset
-    from tests.model.test_statdcat import legacy
+    from tests.support.worker_document import legacy
 
     contributions = []
     for language in ("sv", "en"):
@@ -202,8 +202,8 @@ def test_offline_profile_migration_retains_publication_and_codelist_bytes(tmp_pa
     from apps.catalog.assembly import build
     from apps.parsing.accepted import write_metadata
     from apps.publication.candidates import promote
-    from tests.model.test_statdcat import legacy
     from tests.publication.test_catalog import unpack
+    from tests.support.worker_document import legacy
 
     spec = spec_from_file_location("migrate_profile2", "apps/migrations/profile2.py")
     migration = module_from_spec(spec)

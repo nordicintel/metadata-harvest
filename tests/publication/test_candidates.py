@@ -8,7 +8,7 @@ from apps.catalog.assembly import build
 from apps.parsing.accepted import write_metadata
 from apps.paths import CONFIG
 from apps.publication.candidates import promote, verify_candidate
-from tests.model.test_statdcat import legacy
+from tests.support.worker_document import legacy
 
 
 def candidate(tmp_path):

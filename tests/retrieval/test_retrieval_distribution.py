@@ -9,7 +9,7 @@ import pytest
 from apps.parsing.contributions import convert_dataset, legacy_document
 from retrieval import retrieve_distribution
 from retrieval.distribution import ADAPTERS
-from tests.model.test_statdcat import legacy
+from tests.support.worker_document import legacy
 
 
 @pytest.mark.parametrize("adapter", sorted(ADAPTERS))

@@ -554,10 +554,7 @@ def test_publish_rebases_unrelated_main_push_without_force(tmp_path, monkeypatch
     monkeypatch.chdir(first)
     publish("harvest")
     assert (first / "README.md").read_text() == "unrelated update"
-    assert read(first / "data/pxweb_v1/result.json") == {
-        "saved": True,
-        "profile_version": "2.0.0",
-    }
+    assert read(first / "data/pxweb_v1/result.json") == {"saved": True}
     (first / "README.md").write_text("unrelated staged edit")
     git(first, "add", "README.md")
     with pytest.raises(RuntimeError, match="unrelated staged"):

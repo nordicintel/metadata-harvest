@@ -7,8 +7,8 @@ import pytest
 
 from apps.parsing.accepted import write_metadata
 from apps.paths import CONFIG
-from tests.model.test_statdcat import legacy
 from tests.publication.test_catalog import unpack
+from tests.support.worker_document import legacy
 
 
 def test_catalog_builds_models_reuses_bytes_and_filters_scb(tmp_path, monkeypatch):

@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 from apps.harvest.source_store import SourceStore, source_key
-from tests.model.test_statdcat import legacy
+from tests.support.worker_document import legacy
 
 ADAPTER = "pxweb_v2"
 PROVIDERS = [{"code": "scb"}]

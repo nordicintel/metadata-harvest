@@ -5,7 +5,7 @@ from copy import deepcopy
 
 import pytest
 
-from tests.model.test_statdcat import legacy
+from tests.support.worker_document import legacy
 
 
 def record(identifier="T1", publisher="Statistiska centralbyrån", url=None):

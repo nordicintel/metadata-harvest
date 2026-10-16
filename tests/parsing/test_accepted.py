@@ -3,7 +3,7 @@
 import gzip
 import json
 
-from tests.model.test_statdcat import legacy
+from tests.support.worker_document import legacy
 
 
 def test_accepted_collection_combines_languages_and_round_trips_task_records(tmp_path):

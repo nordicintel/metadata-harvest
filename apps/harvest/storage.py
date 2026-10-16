@@ -15,8 +15,6 @@ from apps.harvest.metadata_adapters.pxweb_v1.mapping import (
     source_record,
     v1_listing_fields,
 )
-from apps.harvest.validation import validate_metadata
-from apps.model.vocabulary import PROFILE_VERSION
 
 
 def now():
@@ -79,19 +77,11 @@ def filename(record):
 
 
 def read(path):
-    value = json.loads(Path(path).read_text(encoding="utf-8"))
-    if (
-        Path(path).name == "result.json"
-        and value.get("profile_version") != PROFILE_VERSION
-    ):
-        raise ValueError("Incompatible legacy worker artifact; run the current worker")
-    return value
+    return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
 def write(path, value):
     path = Path(path)
-    if path.name == "result.json":
-        value["profile_version"] = PROFILE_VERSION
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{uuid4().hex}.tmp")
     try:
@@ -140,25 +130,6 @@ def group_records(records):
         ]
         result.append(grouped)
     return result
-
-
-def validate_dataset(dataset, record):
-    validate_metadata(dataset, adapter="pxweb_v1")
-    saved = source_record(dataset, "pxweb_v1")
-    if (
-        identity(saved) != identity(record)
-        or saved.get("published") != record["published"]
-    ):
-        raise ValueError("Metadata identity or accepted source timestamp mismatch")
-    shared = dataset["extension"]["nordicintel"]
-    expected = v1_listing_fields(record)
-    if any(
-        shared.get(k) != expected.get(k)
-        for k in ("data_url", "metadata_url", "source_url", "paths")
-    ):
-        raise ValueError("Canonical routes or paths disagree with source listing")
-    if saved.get("paths") != record.get("paths"):
-        raise ValueError("Metadata has lost table locations")
 
 
 def refresh_identity(dataset, record):
@@ -299,16 +270,3 @@ class JsonlStore:
         finally:
             for temporary in staged.values():
                 temporary.unlink(missing_ok=True)
-
-
-def migrate_storage(data: str | Path) -> dict[str, int]:
-    """Losslessly compact existing corpus files without contacting providers."""
-    counts = {}
-    for folder in ("table-records",):
-        store = JsonlStore(Path(data) / folder)
-        original = store.records
-        store.save()
-        if JsonlStore(store.directory).records != original:
-            raise ValueError(f"Migration verification failed: {folder}")
-        counts[folder] = len(original)
-    return counts

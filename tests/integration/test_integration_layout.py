@@ -70,7 +70,7 @@ def test_invalid_conversion_never_creates_a_publishable_candidate(tmp_path):
 
 def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_title():
     from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
-    from apps.harvest.storage import refresh_identity, validate_dataset
+    from apps.harvest.storage import refresh_identity
 
     row = record()
     doc = dataset(row)
@@ -91,6 +91,5 @@ def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_ti
     assert doc["label"] == "Accepted source title"
     assert source_record(doc)["title"] == moved["title"]
     assert doc["updated"] == row["published"]
-    validate_dataset(doc, moved)
     refresh_identity(doc, {**moved, "category_path": [], "web_url": ""})
     assert "paths" not in shared and "source_url" not in shared
