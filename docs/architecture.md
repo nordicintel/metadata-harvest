@@ -75,7 +75,7 @@ not regenerate accepted data or production archives.
 
 Generated contracts and reference documentation are checked by the two generator
 scripts. [Configuration](configuration/README.md), [harvesting](harvest/README.md),
-[catalog](catalog/README.md), and
+and
 [retrieval](retrieval/README.md) document the corresponding interfaces.
 
 ## Workflows

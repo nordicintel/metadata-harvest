@@ -1,7 +1,5 @@
 """Registry isolation, explicit conversion and accepted source refresh."""
 
-import json
-
 import pytest
 
 from tests.harvest.test_workflow import dataset, record
@@ -27,45 +25,6 @@ def test_registry_contains_supported_adapters_and_rejects_unknown_names():
     assert all(spec.available for spec in ADAPTERS.values())
     with pytest.raises(ValueError):
         get_adapter("../outside")
-
-
-def test_conversion_is_staged_and_preserves_sources_and_identity(tmp_path):
-    from apps.harvest.storage import JsonlStore, filename
-    from apps.migrations.collections import convert_collections
-
-    source, target = tmp_path / "source", tmp_path / "candidate"
-    old = JsonlStore(source / "metadata")
-    row = record()
-    old.records[filename(row)] = dataset(row)
-    old.save()
-    before = {p.name: p.read_bytes() for p in (source / "metadata").iterdir()}
-    result = convert_collections(source, target, adapter="pxweb_v1")
-    assert result["records"] == 1
-    assert not (
-        target / "reports/conversion.json"
-    ).exists()  # Evidence is returned, not added to production state.
-    assert {p.name: p.read_bytes() for p in (source / "metadata").iterdir()} == before
-    assert len(list((target / "metadata").glob("*.jsonl.gz"))) == 1
-    assert not list((target / "metadata").glob("*.jsonl"))
-    doc = next(iter(JsonlStore(target / "metadata").records.values()))
-    assert doc["extension"]["nordicintel"]["dataset_code"] == row["dataset_code"]
-    assert doc["id"] == dataset(row)["id"]
-    with pytest.raises(FileExistsError):
-        convert_collections(source, target, adapter="pxweb_v1")
-
-
-def test_invalid_conversion_never_creates_a_publishable_candidate(tmp_path):
-    from apps.migrations.collections import convert_collections
-
-    root = tmp_path / "source" / "metadata"
-    root.mkdir(parents=True)
-    doc = dataset(record())
-    doc["size"] = [55]
-    (root / "source.jsonl").write_text(json.dumps(doc) + "\n", encoding="utf-8")
-    target = tmp_path / "candidate"
-    with pytest.raises(ValueError):
-        convert_collections(root.parent, target, adapter="pxweb_v1")
-    assert not target.exists()
 
 
 def test_listing_refresh_updates_canonical_routes_and_paths_without_replacing_title():

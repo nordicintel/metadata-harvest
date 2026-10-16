@@ -10,8 +10,6 @@
 | Understand published metadata and field mappings | [StatDCAT contract](model/output-contract.md) |
 | Run, resume and monitor metadata collection | [Harvesting](harvest/README.md) |
 | Add or change a metadata adapter | [Adapter implementation](harvest/adapter-guide.md) |
-| Build a catalog, refresh its portal input or publish | [Catalog operations](catalog/README.md) |
-| Read old profiles or inspect preservation evidence | [Migrations and evidence](migrations/README.md) |
 | Track open bugs, features and investigations | [Backlog](backlog.md) |
 
 Adapter-specific scope, source quirks and limitations are linked from the harvesting

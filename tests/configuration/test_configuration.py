@@ -97,48 +97,6 @@ def test_shared_host_keeps_catalog_publishers_and_discovery_scope_separate():
     )
 
 
-def test_profile_upgrade_keeps_payloads_ids_and_unattributed_records():
-    from apps.migrations.profile_reader import read_dataset, upgrade_document
-    from apps.model.vocabulary import PROFILE1_CONTEXT
-    from apps.parsing.contributions import convert_dataset, legacy_document
-    from tests.support.worker_document import legacy
-
-    native = legacy()
-    current = convert_dataset(native, adapter="pxweb_v2").dataset.to_jsonld()
-    previous = json.loads(json.dumps(current))
-    previous["ni:profileVersion"] = "1.0.0"
-    previous["@context"] = PROFILE1_CONTEXT
-    previous["dct:publisher"] = [
-        {
-            "@type": "foaf:Agent",
-            "foaf:name": {"sv": ["Publisher"]},
-            "foaf:page": ["https://example.org/"],
-        }
-    ]
-    dist = previous["dcat:distribution"][0]
-    dist["ni:retrieval"]["source"]["provider_code"] = dist["ni:retrieval"][
-        "source"
-    ].pop("source_code")
-    dist["dcat:accessService"][0]["@id"] = "urn:nordicintel:service:pxweb_v2"
-    dist.setdefault("ni:additionalAttributes", {})["custom"] = {
-        "unfamiliar": {"empty": [], "zero": 0}
-    }
-    upgraded, ledger = upgrade_document(previous)
-    assert upgraded["@id"] == previous["@id"]
-    assert upgraded["dcat:distribution"][0]["ni:structure"] == dist["ni:structure"]
-    assert (
-        upgraded["dcat:distribution"][0]["ni:additionalAttributes"]
-        == dist["ni:additionalAttributes"]
-    )
-    parsed = read_dataset(previous)
-    assert parsed.profile_version == "2.0.0"
-    assert parsed.publisher[0].homepage == ["https://example.org/"]
-    assert not parsed.publisher[0].additional_attributes
-    assert ledger["services"][0]["old"] == ["urn:nordicintel:service:pxweb_v2"]
-    restored = legacy_document(parsed.distributions[0], parsed)
-    assert restored == native
-
-
 def test_unattributed_refresh_preserves_findings_across_languages():
     from apps.model.composition import assemble
     from apps.parsing.contributions import convert_dataset
@@ -193,36 +151,3 @@ def test_explicit_legacy_overrides_feed_service_metadata_and_context_resets():
         row = next(p for p in providers_for_adapter("pxweb_v2") if p["code"] == "scb")
         assert row["timeout"] == 0
     assert load_configuration() is original
-
-
-def test_offline_profile_migration_retains_publication_and_codelist_bytes(tmp_path):
-    import gzip
-    from importlib.util import module_from_spec, spec_from_file_location
-
-    from apps.catalog.assembly import build
-    from apps.parsing.accepted import write_metadata
-    from apps.publication.candidates import promote
-    from tests.publication.test_catalog import unpack
-    from tests.support.worker_document import legacy
-
-    spec = spec_from_file_location("migrate_profile2", "apps/migrations/profile2.py")
-    migration = module_from_spec(spec)
-    spec.loader.exec_module(migration)
-    data = tmp_path / "data"
-    write_metadata(data / "pxweb_v2", [legacy()], adapter="pxweb_v2")
-    candidate = tmp_path / "catalog-candidate"
-    build(data, candidate, adapters=["pxweb_v2"])
-    promote(data, candidate)
-    before = (data / "catalog/codelists.jsonl.zst").read_bytes()
-    output = tmp_path / "migration"
-    summary = migration.convert(data, output)
-    assert summary["accepted_datasets"] == summary["published_datasets"] == 1
-    assert (output / "data/catalog/codelists.jsonl.zst").read_bytes() == before
-    original = json.loads(unpack(data / "catalog/catalog.jsonl.zst"))
-    migrated = json.loads(unpack(output / "data/catalog/catalog.jsonl.zst"))
-    assert migrated["@id"] == original["@id"]
-    assert migrated["dcat:distribution"] == original["dcat:distribution"]
-    ledger = json.loads(
-        gzip.decompress((output / "audit/publication.jsonl.gz").read_bytes())
-    )
-    assert ledger["dataset"] == original["@id"]

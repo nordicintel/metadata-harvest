@@ -58,5 +58,4 @@ compare dispatcher behavior. Run affected checks; use bounded live checks only w
 source compatibility needs verification, and label them separately.
 
 Register workflows and central schedules together. See [harvesting operations](README.md)
-for continuation, monitoring and collection; [catalog operations](../catalog/README.md)
-owns offline construction and explicit production promotion.
+for continuation, monitoring and collection.

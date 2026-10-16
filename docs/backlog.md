@@ -34,8 +34,7 @@ Open work only: bugs, fixes, features and investigations not yet done.
   datasets again instead of one combined dataset — better discoverability.
 - [ ] **catalog** Speed up the catalog build — runs take ~14 minutes, ~12 of
   them rebuilding the whole SCB group (5,000 datasets) when one of its
-  collections changes; unchanged groups are already reused
-  ([catalog.yml](../.github/workflows/catalog.yml)).
+  collections changes; unchanged groups are already reused.
 
 - [ ] **repo** Replace gzip with zstd everywhere in the codebase — some gzip
   files are approaching the 100 MB file-size limit (Kolada RKA at 91 MB,

@@ -12,7 +12,6 @@ LOG_LEVELS = ("DEBUG", "INFO", "WARNING", "ERROR", "OFF")
 # Each default fixes the key's type; string keys additionally list allowed values.
 DEFAULTS = {
     "scheduling": {"paused": False},
-    "catalog": {"include_scb_pxweb_v1": False},
     "logging": {"level": "INFO"},
 }
 CHOICES = {("logging", "level"): LOG_LEVELS}

@@ -77,17 +77,6 @@ def test_harvest_does_not_import_parsing():
             assert not name.startswith("apps.parsing"), (path, name)
 
 
-def test_parsing_does_not_import_catalog_or_harvest_workflows():
-    for path in (ROOT / "apps/parsing").rglob("*.py"):
-        for name in imports(path):
-            assert not name.startswith(
-                ("apps.catalog", "apps.publication.candidates")
-            ), (
-                path,
-                name,
-            )
-
-
 def test_statdcat_conversion_lives_in_parsing():
     assert not (ROOT / "apps/harvest/contributions.py").exists()
     assert not (ROOT / "apps/harvest/accepted.py").exists()
@@ -99,7 +88,6 @@ def test_every_repository_command_loads_without_running_work():
     for name in (
         "harvest",
         "parsing",
-        "catalog",
         "portal",
         "scheduling",
         "monitor",

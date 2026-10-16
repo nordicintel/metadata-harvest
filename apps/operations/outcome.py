@@ -29,7 +29,6 @@ REPORTS = {
     "riksbank": "reports/latest.json",
     "dataanalys": "reports/latest.json",
     "tillvaxtverket": "reports/latest.json",
-    "catalog": "reports/latest.json",
 }
 
 
@@ -99,9 +98,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         )
     if adapter == "tillvaxtverket":
         return []  # Every configured source endpoint is an individual dataset.
-    if adapter == "catalog":
-        # Catalog-level errors: a missing or unreadable accepted collection.
-        return [e["collection"] for e in report.get("errors") or []]
     raise ValueError(f"Unknown adapter: {adapter}")
 
 
@@ -126,8 +122,6 @@ def adapter_failed(adapter: str, report: dict, failures: list[str]) -> bool:
         scopes = report.get("scopes") or []
         return len(failures) >= len(scopes)
     counts = report.get("counts") or {}
-    if adapter == "catalog":
-        return not counts.get("datasets")
     return not any(counts.get(key) for key in READ_COUNTS)
 
 

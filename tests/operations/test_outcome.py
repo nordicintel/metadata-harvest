@@ -74,12 +74,6 @@ def test_individual_errors_do_not_fail_any_adapter():
                 {"stage": "discovery", "resource": "*/XYZ"},
             ]
         },
-        "catalog": {
-            "errors": [],
-            "upstream": {
-                "pxweb_v2": {"harvest.json": {"status": "completed_with_errors"}}
-            },
-        },
     }
     for adapter, report in individual.items():
         assert scope_failures(adapter, report) == [], adapter
@@ -100,14 +94,6 @@ def test_whole_scope_failures_fail():
         },
         "smhi_emissions": {
             "errors": [{"stage": "discovery", "resource": "filteroptions"}]
-        },
-        "catalog": {
-            "errors": [
-                {
-                    "collection": "kolada",
-                    "error": "Missing accepted metadata collections",
-                }
-            ]
         },
     }
     for adapter, report in failing.items():
@@ -133,10 +119,6 @@ def test_only_a_whole_adapter_failure_fails():
             "counts": {"unchanged": 34},
             "errors": [{"stage": "discovery", "resource": "swea"}],
         },
-        "catalog": {
-            "counts": {"datasets": 18501},
-            "errors": [{"collection": "kolada"}],
-        },
     }
     for adapter, report in partial.items():
         failures = scope_failures(adapter, report)
@@ -154,7 +136,6 @@ def test_only_a_whole_adapter_failure_fails():
                 for api in ("swea", "mpd", "swestr")
             ],
         },
-        "catalog": {"counts": {"datasets": 0}, "errors": [{"collection": "kolada"}]},
     }
     for adapter, report in whole.items():
         failures = scope_failures(adapter, report)
@@ -224,12 +205,8 @@ def test_command_reads_the_published_report(tmp_path):
 
 @pytest.mark.parametrize("adapter", sorted(REPORTS))
 def test_every_workflow_uses_the_outcome_command(adapter):
-    name = (
-        "catalog.yml"
-        if adapter == "catalog"
-        else {"pxweb_v1": "harvest.yml"}.get(
-            adapter, f"harvest-{adapter.replace('_', '-')}.yml"
-        )
+    name = {"pxweb_v1": "harvest.yml"}.get(
+        adapter, f"harvest-{adapter.replace('_', '-')}.yml"
     )
     text = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")
     assert f"apps.operations.outcome --adapter {adapter}" in text

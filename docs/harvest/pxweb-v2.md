@@ -39,7 +39,6 @@ come from `config/schedules.toml`, not a hard-coded weekly rule.
 [Harvesting operations](README.md) defines collection, recovery and schedules.
 [StatDCAT mapping](../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../retrieval/README.md) defines consumer calls and results.
-Historical live/fixture receipts are indexed under [migration evidence](../migrations/README.md).
 
 ## Stored source data
 

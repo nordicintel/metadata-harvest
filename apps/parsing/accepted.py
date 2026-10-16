@@ -10,10 +10,9 @@ from tempfile import TemporaryDirectory
 from urllib.parse import quote, unquote
 
 from apps.harvest.sources import inventory
-from apps.migrations.profile_reader import read_dataset
 from apps.model.composition import assemble
 from apps.model.models import Dataset, HarvestContribution
-from apps.parsing.contributions import convert_dataset, legacy_document
+from apps.parsing.contributions import convert_dataset
 
 
 def adapter_for(document: dict) -> str:
@@ -35,13 +34,6 @@ def adapter_for(document: dict) -> str:
     raise ValueError("Source requires an explicit registered adapter")
 
 
-def contribution_documents(dataset: Dataset):
-    """Expose independently replaceable records for metadata workers."""
-    for distribution in dataset.distributions:
-        if distribution.retrieval:
-            yield legacy_document(distribution, dataset)
-
-
 def read_records(path: Path):
     opener = gzip.open if path.suffix == ".gz" else open
     with opener(path, "rt", encoding="utf-8") as stream:
@@ -49,16 +41,6 @@ def read_records(path: Path):
             if not line.endswith("\n"):
                 raise ValueError(f"Truncated record at {path}:{number}")
             yield json.loads(line)
-
-
-def load_contributions(directory: Path):
-    """Read accepted profiles explicitly; newly collected worker artifacts stay strict."""
-    for path in sorted(Path(directory).glob("*.jsonl*")):
-        for document in read_records(path):
-            if document.get("@type") == "dcat:Dataset":
-                yield from contribution_documents(read_dataset(document))
-            else:
-                yield document
 
 
 def canonical_provider(provider: str) -> str:
@@ -95,8 +77,6 @@ def model_contributions(documents, *, adapter=None):
                             for c in distribution.structure.components
                         ],
                     )
-        elif document.get("@type") == "dcat:Dataset":
-            yield from model_contributions([read_dataset(document)], adapter=adapter)
         else:
             yield convert_dataset(document, adapter=adapter or adapter_for(document))
 

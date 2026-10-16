@@ -17,7 +17,7 @@ def _emit(stream, level):
     logs.configure(level, stream=stream)
     logging.getLogger("sdb_logger").info("hello")
     logging.getLogger("retrieval.data_adapters.demo").debug("fine")
-    logging.getLogger("apps.catalog.assembly").warning("careful")
+    logging.getLogger("apps.parsing.build").warning("careful")
     return stream.getvalue()
 
 
@@ -26,7 +26,7 @@ def test_adapter_loggers_inherit_level_and_readable_format():
     lines = output.splitlines()
     assert len(lines) == 2
     assert lines[0].endswith("INFO sdb_logger: hello")
-    assert lines[1].endswith("WARNING apps.catalog.assembly: careful")
+    assert lines[1].endswith("WARNING apps.parsing.build: careful")
     assert _emit(io.StringIO(), "DEBUG").count("\n") == 3
     assert _emit(io.StringIO(), "WARNING").count("\n") == 1
 

@@ -82,9 +82,7 @@ The generated [configuration field reference](reference.md) defines
 construction fields; the [metadata reference](../model/reference.md)
 lists standard vocabulary aliases and NordicIntel (`ni:`) extensions.
 
-Historical profiles and explicit candidate conversion are documented in the
-[migration guide](../migrations/README.md). Profile markers reject incompatible worker
-artifacts; read compatibility does not rewrite accepted production files.
+Worker artifacts are plain JSON; nothing rewrites accepted production files.
 
 The supplied [StatDCAT-AP 3.0.0 specification](<../reference/StatDCAT-AP 3.0.0.html>) is
 stored verbatim with a [hash and provenance](<../reference/StatDCAT-AP 3.0.0.provenance.json>).
