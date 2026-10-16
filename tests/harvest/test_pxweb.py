@@ -120,16 +120,15 @@ def table(title="Table", date="2026-10-01", route="/pxweb/sv/db/-/t.px/"):
 
 def test_matrix():
     providers = providers_for_adapter("pxweb_v1")
-    assert len(providers) == 26
-    assert sum(len(p["database_ids"]) for p in providers) == 52
-    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 62
+    assert len(providers) == 29
+    assert sum(len(p["database_ids"]) for p in providers) == 62
+    assert sum(len(p["database_ids"]) * len(p["languages"]) for p in providers) == 72
     excluded = json.loads(
         Path("docs/harvest/excluded-providers.json").read_text(encoding="utf-8")
     )
     assert {item["provider"]["code"] for item in excluded}.isdisjoint(
         provider["code"] for provider in providers
     )
-    assert any(item["provider"]["code"] == "vasteras" for item in excluded)
     for name in ("live-pxweb.yml", "live-metadata.yml"):
         workflow = (Path(".github/workflows") / name).read_text(encoding="utf-8")
         matrix = next(line for line in workflow.splitlines() if "provider: [" in line)

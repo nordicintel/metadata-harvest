@@ -607,6 +607,79 @@
       "identity_namespace": "scb",
       "discovery_origins": []
     },
+    "urn:nordicintel:service:ivo:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:ivo:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "ivo",
+      "endpoint_url": [
+        "https://statistikdatabasen.ivo.se/PXWeb/api/v1"
+      ],
+      "publisher": "ivo",
+      "order": 26,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistikdatabasen.ivo.se/PXWeb/pxweb",
+        "database_ids": [
+          "Statistikdatabasen"
+        ]
+      },
+      "identity_namespace": "ivo",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:umea:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:umea:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "umea",
+      "endpoint_url": [
+        "https://pxweb.umea.se/PXWeb/api/v1"
+      ],
+      "publisher": "umea",
+      "order": 27,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://pxweb.umea.se/PXWeb/pxweb",
+        "database_ids": [
+          "umea"
+        ]
+      },
+      "identity_namespace": "umea",
+      "discovery_origins": []
+    },
+    "urn:nordicintel:service:vasteras:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:service:vasteras:pxweb_v1:statistics",
+      "adapter": "pxweb_v1",
+      "source_code": "vasteras",
+      "endpoint_url": [
+        "https://statistik.vasteras.se/api/v1"
+      ],
+      "publisher": "vasteras",
+      "order": 28,
+      "options": {
+        "languages": [
+          "sv"
+        ],
+        "rate_limit": 1.25,
+        "base_web_url": "https://statistik.vasteras.se/pxweb",
+        "database_ids": [
+          "Arbetsmarknad",
+          "Befolkning",
+          "Befolkningsprognos",
+          "Bostäder och byggande",
+          "Dolda tabeller",
+          "Inkomster",
+          "Ohälsa",
+          "Utbildning"
+        ]
+      },
+      "identity_namespace": "vasteras",
+      "discovery_origins": []
+    },
     "urn:nordicintel:service:scb:pxweb_v2:statistics": {
       "id": "urn:nordicintel:service:scb:pxweb_v2:statistics",
       "adapter": "pxweb_v2",
@@ -1964,6 +2037,63 @@
       ],
       "homepage": [
         "https://hvduppdrag.scb.se/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:ivo:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:ivo:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Inspektionen för vård och omsorg (IVO)"
+        ]
+      },
+      "publisher": "ivo",
+      "services": [
+        "urn:nordicintel:service:ivo:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistikdatabasen.ivo.se/PXWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:umea:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:umea:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Umeå kommun"
+        ]
+      },
+      "publisher": "umea",
+      "services": [
+        "urn:nordicintel:service:umea:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://pxweb.umea.se/PXWeb/pxweb"
+      ]
+    },
+    "urn:nordicintel:catalog:vasteras:pxweb_v1:statistics": {
+      "id": "urn:nordicintel:catalog:vasteras:pxweb_v1:statistics",
+      "key": "statistics",
+      "title": {
+        "sv": [
+          "Västerås stad"
+        ]
+      },
+      "publisher": "vasteras",
+      "services": [
+        "urn:nordicintel:service:vasteras:pxweb_v1:statistics"
+      ],
+      "languages": [
+        "sv"
+      ],
+      "homepage": [
+        "https://statistik.vasteras.se/pxweb"
       ]
     },
     "urn:nordicintel:catalog:scb:pxweb_v2:statistics": {

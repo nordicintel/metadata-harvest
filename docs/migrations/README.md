@@ -36,7 +36,7 @@ readiness claims.
 | [Compression trial](../publication/compression-trial.json) | Historical corpus size/timing and content-hash comparison; not a future size guarantee |
 | [Supplied specification](<../reference/StatDCAT-AP 3.0.0.html>) and [provenance](<../reference/StatDCAT-AP 3.0.0.provenance.json>) | Verbatim reference snapshot, independent of the pinned model revision |
 | [EntryScape origins](../reference/entryscape-origins/) | Host, catalog/context and publisher discovery evidence; not runtime inventories |
-| [PXWeb exclusion record](../harvest/excluded-providers.json) | Explicit owner decision retained by regression tests |
+| [PXWeb exclusion record](../harvest/excluded-providers.json) | Explicit owner decisions, checked against the configured providers by regression tests; Västerås was restored on 2026-10-16 once JSON-stat fallback existed |
 
 Completed implementation plans and delivery narratives are retained in Git history.
 Preservation ledgers and supplied references remain byte-identical; update maintained

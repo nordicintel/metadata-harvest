@@ -32,6 +32,9 @@ Organisations are independent entities. Publisher is a relationship to a catalog
 | Norrköpings kommun | `norrkoping` | `pxweb_v1` | `norrkoping` | https://statistik.norrkoping.se/PxWeb/api/v1 |
 | Skogsstyrelsen SKA22 | `skog` | `pxweb_v1` | `skog_ska22` | https://pxwebska.skogsstyrelsen.se/api/v1 |
 | SCB HVD-uppdrag | `scb` | `pxweb_v1` | `scb_hvd` | https://hvduppdrag.scb.se/api/v1 |
+| Inspektionen för vård och omsorg (IVO) | `ivo` | `pxweb_v1` | `ivo` | https://statistikdatabasen.ivo.se/PXWeb/api/v1 |
+| Umeå kommun | `umea` | `pxweb_v1` | `umea` | https://pxweb.umea.se/PXWeb/api/v1 |
+| Västerås stad | `vasteras` | `pxweb_v1` | `vasteras` | https://statistik.vasteras.se/api/v1 |
 | Statistiska centralbyrån | `scb` | `pxweb_v2` | `scb` | https://statistikdatabasen.scb.se/api/v2 |
 | Rådet för främjande av kommunala analyser | `rka` | `kolada` | `kolada` | https://api.kolada.se/v3 |
 | Universitetskanslersämbetet | `uka` | `uka` | `uka` | https://statistik-api.uka.se/api |
