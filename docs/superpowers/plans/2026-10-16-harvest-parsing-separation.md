@@ -22,7 +22,9 @@ Decisions taken with the user (2026-10-16):
 - **Declared derived data** is allowed only where the per-dataset source data are observations: Kolada per-scope `coverage`, EntryScape trimmed `structure`, PXWeb v1 samples stripped of `value`/`status`, UKÄ per-period scan summaries (no CSV exports in Git). The envelope keeps these under `derived`, never under `responses`.
 - **Parse output:** today's collections, same path, same bytes. Catalog untouched. Parsing is a manual command; no workflow, no schedule. Existing `data/<adapter>/metadata/*.jsonl.gz` are never deleted by harvest code; `parsing apply` replaces them.
 - **File format:** plain JSON, `indent=2`, `sort_keys=True`, `ensure_ascii=False`, trailing newline, atomic writes.
+- **Order (user, 2026-10-16, after dataanalys):** PXWeb v1 (Task 8) and PXWeb v2 (Task 6) first, Kolada (Task 5) next, then Tillväxtverket (Task 4g) and EntryScape (Task 7) in any order; Tasks 9 and 10 last.
 - **Scope:** all twelve adapters in this plan, single cutover per adapter, commits straight to `main` (user instruction: merge direct requests myself).
+- **Never dismiss tables (user, 2026-10-16):** existing code that drops datasets on an earlier agent's assertion (analysverktyg "out of scope: no Riket or Region rows") is not carried into the harvest: every indicator's cube is stored and parse reports what the mapping cannot build yet instead of the harvest discarding it.
 - **Tillväxtverket:** drop the per-dataset data.europa.eu fetch; parse feeds `apply_dcat` from the offline portal snapshot `data/data_eu/oppnadata.jsonl.gz` (verified identical for all six accepted documents).
 
 ## Global Constraints
@@ -164,8 +166,12 @@ def test_harvest_manifest_excludes_metadata(tmp_path): ...
 - [ ] **Step 1: Write failing tests** in `tests/parsing/test_build.py` using a fake adapter module registered via `monkeypatch.setitem(sys.modules, "apps.harvest.metadata_adapters.fake.parse", module)` and a legacy document from `tests/model/test_statdcat.py:legacy`:
 
 ```python
-def test_build_writes_collection_and_report(tmp_path): ...  # metadata/<owner>__multilingual__*.jsonl.gz exists, counts.parsed == 2, status == "success"
-def test_build_reports_failed_documents_and_writes_siblings(tmp_path): ...  # one entry raises ValueError → errors has its key, status "completed_with_errors", sibling present
+def test_build_writes_collection_and_report(
+    tmp_path,
+): ...  # metadata/<owner>__multilingual__*.jsonl.gz exists, counts.parsed == 2, status == "success"
+def test_build_reports_failed_documents_and_writes_siblings(
+    tmp_path,
+): ...  # one entry raises ValueError → errors has its key, status "completed_with_errors", sibling present
 def test_build_skips_withheld_entries(tmp_path): ...
 def test_apply_refuses_changed_baseline_then_replaces(tmp_path): ...
 def test_cli_build_all_iterates_available_adapters(tmp_path, monkeypatch): ...

@@ -1,20 +1,23 @@
 """Weekly analysverktyg rebuild with independent area and indicator failures.
 
 The site publishes no change signal that covers the dimension categories, and a full
-harvest is about 170 requests, so every run rebuilds every indicator; an identical
-rebuild keeps its accepted bytes. Discovery reads the chart list (area tables and
-the charts' ``Matt_id`` filters) and the dashboard list (web pages). Per area, one
-catalogue query lists the indicators and one probe learns the values table's
-columns; per indicator, one query on the values table gives the dimension
-categories and is its endpoint check. An indicator is published only while that
-endpoint works and its document was verified within ``max_age_days``; otherwise its
-last good document is withheld in state. Only a complete chart list in an
-unbounded run proves an indicator's removal.
+harvest is about 170 requests, so every run refetches every indicator; identical
+responses keep their stored bytes. Discovery reads the chart list (area tables and
+the charts' ``Matt_id`` filters) and the dashboard list (web pages); both are stored
+as shared source files, as are each area's catalogue and column probe. Per
+indicator, one query on the values table gives the dimension rows, is its endpoint
+check and is stored as its envelope together with the catalogue row, columns, area
+and link it was issued for. Every listed indicator is stored, whether or not the
+current mapping can describe it. An indicator is published only while that endpoint
+works and its entry was verified within ``max_age_days``; otherwise it is withheld
+in state while its source files remain. Only a complete chart list in an unbounded
+run proves an indicator's removal. Documents are built later by ``parse``.
 """
 
 import asyncio
 import logging
 import shutil
+from dataclasses import asdict
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
@@ -45,10 +48,8 @@ from apps.harvest.metadata_adapters.dataanalys.client import (
     RequestRejected,
     Unreachable,
 )
-from apps.harvest.metadata_adapters.dataanalys.mapping import (
-    MAPPING_VERSION,
-    build_dataset,
-)
+from apps.harvest.metadata_adapters.dataanalys.mapping import MAPPING_VERSION
+from apps.harvest.metadata_adapters.dataanalys.parse import document_from, link_record
 from apps.harvest.metadata_adapters.dataanalys.source import (
     Area,
     Catalogue,
@@ -66,13 +67,17 @@ from apps.harvest.metadata_adapters.dataanalys.state import (
     PROVIDER_CODE,
     REPORT,
     STATE,
-    collection,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import (
+    Rejected,
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
@@ -109,17 +114,34 @@ def indicator_of(key: str) -> str:
     return key.split("/", 1)[1].split("|", 1)[1]
 
 
+def stored_key(key: str) -> str:
+    """The source-store key of a ``<language>/<AREA>|<indicator>`` state key."""
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def state_key(key: str) -> str:
+    _, code, language = split_key(key)
+    return f"{language}/{code}"
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
+
+
 async def _list(
-    client, url: str, columns, resource: str
+    client, url: str, columns, resource: str, pages: list | None = None
 ) -> tuple[list, int, Exception | None]:
-    """Retain understood pages when a later page fails; stop only this scope."""
+    """Retain understood pages when a later page fails; stop only this scope.
+
+    ``pages`` receives each understood page body as received.
+    """
     rows: list = []
     count = 0
     for page in range(MAX_PAGES):
         try:
-            page_count, result = check_page(
-                await client.get_json(url, {"q": list_query(columns, page)}), resource
-            )
+            body = await client.get_json(url, {"q": list_query(columns, page)})
+            page_count, result = check_page(body, resource)
             if page and page_count != count:
                 raise ValueError(
                     f"{resource} listing count changed from {count} to {page_count}"
@@ -137,6 +159,8 @@ async def _list(
             )
             return rows, count, error
         rows += result
+        if pages is not None:
+            pages.append(body)
         logger.debug(
             "%s listing page %d: %d rows (%d of %d)",
             resource,
@@ -158,15 +182,18 @@ async def _list(
     return rows, count, None
 
 
-async def discover(client) -> Discovery:
+async def discover(client, bodies: dict | None = None) -> Discovery:
     """Read the chart and dashboard lists.
 
     Page failures are recorded independently; cancellation still propagates.
+    ``bodies`` receives ``{"charts": [...pages], "dashboards": [...pages]}``.
     """
     discovery = Discovery()
+    bodies = {} if bodies is None else bodies
+    bodies.update(charts=[], dashboards=[])
     logger.info("Discovery: reading the chart and dashboard lists")
     charts, discovery.charts_count, error = await _list(
-        client, CHART_LIST_URL, CHART_COLUMNS, "chart"
+        client, CHART_LIST_URL, CHART_COLUMNS, "chart", bodies["charts"]
     )
     discovery.charts_listed = len(charts)
     discovery.charts_complete = error is None and listing_complete(
@@ -176,7 +203,7 @@ async def discover(client) -> Discovery:
         discovery.problems.append(("charts", error))
     add_charts(discovery, charts)
     dashboards, discovery.dashboards_count, error = await _list(
-        client, DASHBOARD_LIST_URL, DASHBOARD_COLUMNS, "dashboard"
+        client, DASHBOARD_LIST_URL, DASHBOARD_COLUMNS, "dashboard", bodies["dashboards"]
     )
     discovery.dashboards_listed = len(dashboards)
     discovery.dashboards_complete = error is None and listing_complete(
@@ -222,6 +249,10 @@ class _Harvester:
     def __init__(self, client, discovery: Discovery):
         self.client, self.discovery = client, discovery
         self.columns_cache: dict[str, dict[str, str]] = {}
+        self.catalogue_bodies: dict[str, dict] = {}
+        """Per area: the catalogue query body and the columns it was asked for."""
+        self.columns_bodies: dict[str, dict] = {}
+        """Per area: the successful column probe body and the columns it chose."""
 
     async def catalogue(self, area: Area) -> Catalogue:
         """The area's catalogue; optional columns the table lacks are dropped once.
@@ -268,6 +299,7 @@ class _Harvester:
                     f"row limit {CATALOGUE_ROW_LIMIT}; the catalogue may be truncated"
                 )
             catalogue = parse_catalogue(rows, columns)
+            self.catalogue_bodies[area.code] = {"columns": list(columns), "body": body}
             logger.info(
                 "Area %s: catalogue lists %d indicators (%d rows, %d duplicated "
                 "codes, %d malformed rows)",
@@ -332,6 +364,7 @@ class _Harvester:
                 continue
             result_rows(body)
             self.columns_cache[area.code] = current
+            self.columns_bodies[area.code] = {"columns": dict(current), "body": body}
             logger.info(
                 "Area %s: probed %s columns %s",
                 area.code,
@@ -341,57 +374,68 @@ class _Harvester:
             return current
         raise ValueError(f"{area.values_dataset}: columns could not be resolved")
 
-    async def build(
+    async def fetch(
         self, area: Area, code: str, row: dict, columns: dict[str, str]
-    ) -> tuple[dict | None, str]:
-        """The validated document and its link resolution; ``(None, "")`` when the
-        indicator has no Riket or Region rows.
+    ) -> tuple[dict, dict, bool]:
+        """One indicator's source responses, derived context and whether the
+        current mapping can describe it (it has Riket or Region rows).
 
         Raises:
             Unreachable: The values query (the endpoint check) did not answer.
+            ValueError: The dimension rows reach the row limit (truncated).
         """
         logger.debug("%s|%s: querying dimension categories", area.code, code)
-        rows = result_rows(
-            await self.client.post_json(
-                DATA_URL, cube_body(area.values_id, columns, code)
-            )
+        body = await self.client.post_json(
+            DATA_URL, cube_body(area.values_id, columns, code)
         )
+        rows = result_rows(body)
         if len(rows) >= CUBE_ROW_LIMIT:
             raise ValueError(
                 f"{len(rows)} dimension rows reach the row limit {CUBE_ROW_LIMIT}"
             )
-        cube = parse_cube(rows, columns)
-        if cube is None:
-            logger.debug(
-                "%s|%s: no Riket or Region rows; out of scope", area.code, code
+        try:
+            describable = parse_cube(rows, columns) is not None
+        except ValueError as error:  # stored anyway; parse reports it
+            logger.warning("%s|%s: dimension rows not understood: %s", area.code, code, error)
+            describable = True
+        if not describable:
+            logger.info(
+                "%s|%s: no Riket or Region rows; stored, the current mapping cannot "
+                "describe it",
+                area.code,
+                code,
             )
-            return None, ""
         link = resolve_link(
             self.discovery, area.code, code, row.get("HrefIndicatorDashboard")
         )
         log = logger.warning if link.resolution == "unresolved" else logger.debug
         log(
-            "%s|%s: %d dimension rows -> %d regions, %d periods; web page "
-            "resolved by %s (dashboard %s)",
+            "%s|%s: %d dimension rows; web page resolved by %s (dashboard %s)",
             area.code,
             code,
             len(rows),
-            len(cube.regions),
-            len(cube.periods),
             link.resolution,
             link.dashboard.slug if link.dashboard is not None else "none",
         )
-        document = build_dataset(
-            area,
-            code,
-            row,
-            cube,
-            columns,
-            link,
-            subject_label=self.subject_label(area, row),
-        )
-        validate_metadata(document, adapter=ADAPTER)
-        return document, link.resolution
+        derived = {
+            "row": row,
+            "columns": dict(columns),
+            "area": asdict(area),
+            "link": link_record(link),
+            "subject_label": self.subject_label(area, row),
+        }
+        return {"cube": body}, derived, describable
+
+    async def build(
+        self, area: Area, code: str, row: dict, columns: dict[str, str]
+    ) -> tuple[dict | None, str]:
+        """The document built in memory and its link resolution (typed boundary);
+        ``(None, "")`` when the current mapping cannot describe the indicator."""
+        responses, derived, describable = await self.fetch(area, code, row, columns)
+        if not describable:
+            return None, ""
+        document = document_from(f"{area.code}|{code}", responses, derived)
+        return document, derived["link"]["resolution"]
 
     def subject_label(self, area: Area, row: dict) -> str:
         if isinstance(row.get("AreaName"), str) and row["AreaName"].strip():
@@ -467,15 +511,24 @@ async def run(
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured) or set(configured) - set(LANGUAGES):
         raise ValueError(f"Unsupported analysverktyg languages: {selected_languages}")
-    allowed = {STATE, REPORT, *(collection(language) for language in configured)}
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - allowed:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published analysverktyg data")
     state = load_state(data)
-    published = load_documents(data, configured)
-    withheld = state["withheld"]
+    output.mkdir(parents=True, exist_ok=True)
+    for relative in baseline:
+        target = output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", ADAPTER)
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        key = state_key(stored)
+        status = state["datasets"].get(key, {}).get("status")
+        (withheld if status == "withheld" else published)[key] = True
     logger.info(
-        "Baseline in %s: %d published documents, %d withheld, %d state entries, "
+        "Baseline in %s: %d published entries, %d withheld, %d state entries, "
         "mapping version %s (current %s)",
         data,
         len(published),
@@ -484,11 +537,6 @@ async def run(
         state.get("mapping_version"),
         MAPPING_VERSION,
     )
-    output.mkdir(parents=True, exist_ok=True)
-    for relative in baseline:
-        target = output / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(data / relative, target)
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -510,7 +558,7 @@ async def run(
     logger.info(
         "Run start: %s; areas=%s indicators=%s languages=%s max_age=%dd "
         "retry_cooldown=%ss request_interval=%ss; the site has no change signal, "
-        "so every selected indicator is rebuilt (no refresh selection)",
+        "so every selected indicator is refetched (no refresh selection)",
         "bounded (removes nothing)" if bounded else "full",
         _sample(sorted(areas)) if areas is not None else "all",
         _sample(sorted(indicators)) if indicators else "all",
@@ -562,6 +610,7 @@ async def run(
         state["datasets"].pop(key, None)
         failures.pop(key, None)
         unresolved.discard(key)
+        store.remove(stored_key(key))
         if (published.pop(key, None) or withheld.pop(key, None)) is not None:
             counts["removed"] += 1
 
@@ -583,7 +632,13 @@ async def run(
 
     try:
         progress.update(phase="discovery", current="charts")
-        discovery = await discover(connection)
+        listing_bodies: dict = {}
+        discovery = await discover(connection, listing_bodies)
+        for name, pages in listing_bodies.items():
+            if pages:
+                store.put_shared(
+                    PROVIDER_CODE, f"{name}.json", pages, retrieved_at=stamp
+                )
         for resource, error in discovery.problems:
             fail("discovery", resource, error)
         if not discovery.charts_complete and not any(
@@ -655,18 +710,30 @@ async def run(
 
         harvester = _Harvester(connection, discovery)
 
-        def accept(key: str, document: dict, resolution: str) -> None:
+        def accept(key: str, responses: dict, derived: dict, row: dict) -> None:
+            stored = store.get(stored_key(key))
+            store.put(
+                stored_key(key),
+                responses=responses,
+                derived=derived,
+                updated=row.get("DataGenerationDate"),
+                retrieved_at=stamp,
+            )
             failures.pop(key, None)
             progress.update(failed=len(failures))
             working[key] = True
-            out_of_scope.discard(key)
+            resolution = derived["link"]["resolution"]
             (unresolved.add if resolution == "unresolved" else unresolved.discard)(key)
-            accepted = published.get(key) or withheld.get(key)
-            outcomes.setdefault(key, "unchanged" if document == accepted else "rebuilt")
+            unchanged = (
+                stored is not None
+                and stored["responses"] == responses
+                and stored["derived"] == derived
+            )
+            outcomes.setdefault(key, "unchanged" if unchanged else "rebuilt")
             state["datasets"][key].update(
                 verified_at=stamp, mapping_version=MAPPING_VERSION, error=None
             )
-            (withheld if key in withheld else published)[key] = document
+            (withheld if key in withheld else published)[key] = True
 
         async def harvest(area_code: str) -> bool:
             """Process one area; return whether an endpoint failure occurred."""
@@ -733,6 +800,18 @@ async def run(
                 return stage == "endpoint"
             failures.pop(f"*/{area_code}", None)
             progress.update(failed=len(failures))
+            store.put_shared(
+                PROVIDER_CODE,
+                f"catalogue/{area_code}.json",
+                harvester.catalogue_bodies[area_code],
+                retrieved_at=stamp,
+            )
+            store.put_shared(
+                PROVIDER_CODE,
+                f"columns/{area_code}.json",
+                harvester.columns_bodies[area_code],
+                retrieved_at=stamp,
+            )
             catalogue_problems[area_code] = catalogue.problems
             current = set()
             tally = dict.fromkeys(
@@ -769,7 +848,7 @@ async def run(
                 state["datasets"].setdefault(key, {})["checked_at"] = stamp
                 progress.update(current=key, operation="rebuild")
                 try:
-                    document, resolution = await harvester.build(
+                    responses, derived, describable = await harvester.fetch(
                         area, code, row, columns
                     )
                 except Unreachable as error:
@@ -783,21 +862,18 @@ async def run(
                     rejected += 1
                     record_failure(key, "metadata", error)
                     continue
-                if document is None:
+                if not describable:  # stored all the same: never dismissed
                     tally["out_of_scope"] += 1
                     out_of_scope.add(key)
-                    if not bounded and charts_whole and catalogue.complete:
-                        current.discard(key)
-                        remove(key, "it has no Riket or Region rows")
-                    else:
-                        logger.debug(
-                            "%s: no Riket or Region rows; kept because the run is "
-                            "bounded or the listings are incomplete",
-                            key,
-                        )
-                        working[key] = True
+                else:
+                    out_of_scope.discard(key)
+                try:
+                    accept(key, responses, derived, row)
+                except Rejected as error:
+                    working[key] = True
+                    rejected += 1
+                    record_failure(key, "metadata", error)
                     continue
-                accept(key, document, resolution)
                 tally[outcomes[key]] += 1
                 logger.debug("%s: accepted, %s", key, outcomes[key])
                 progress.update(succeeded=len(outcomes))
@@ -933,7 +1009,8 @@ async def run(
         out_of_scope=sorted(out_of_scope),
     )
     state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published, configured)
+    store.save()
+    save(output, state)
     status = report_status(pending=0, errors=errors)
     if unsupported_areas:
         logger.info(
@@ -995,12 +1072,13 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         output,
         data,
     )
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         raise ValueError("Stale analysverktyg artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("Analysverktyg artifact checksum mismatch")
-    allowed = {STATE, REPORT, *(collection(language) for language in languages)}
-    if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         raise ValueError("Unexpected analysverktyg artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -1010,4 +1088,7 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
         logger.debug("Collected %s", relative)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
     return result

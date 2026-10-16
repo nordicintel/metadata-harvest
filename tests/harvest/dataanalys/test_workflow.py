@@ -7,11 +7,12 @@ import pytest
 
 from apps.harvest.metadata_adapters.dataanalys.client import Unreachable
 from apps.harvest.metadata_adapters.dataanalys.state import (
-    collection,
-    load_documents,
+    PROVIDER_CODE,
     load_state,
 )
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
 from tests.support.dataanalys import PROVIDER, RecordedClient, apply_synthetic
+from tests.support.parsing import documents
 
 NOW = datetime(2026, 10, 12, 6, 45, tzinfo=UTC)
 BOOTSTRAP = {
@@ -41,8 +42,24 @@ def execute(source, data, output, **options):
     return result
 
 
-def published(data):
-    return load_documents(data, ["sv"])
+def published(data, *, include_withheld=False):
+    return documents("dataanalys", data, [PROVIDER], include_withheld=include_withheld)
+
+
+def stored_key(key):
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def store(data):
+    return SourceStore(data / "source", "dataanalys")
+
+
+def stable(data):
+    return {k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"}
+
+
+MANIFEST = "source/manifest.json"
 
 
 def resources(result):
@@ -51,22 +68,39 @@ def resources(result):
 
 @pytest.fixture
 def data(tmp_path):
-    root = tmp_path / "data"
+    root = tmp_path / "data" / "dataanalys"
     result = execute(RecordedClient(), root, tmp_path / "bootstrap")
     assert result["status"] == "success", result["errors"]
     assert result["counts"]["rebuilt"] == len(published(root)) == 7
     return root
 
 
-def test_bootstrap_publishes_valid_documents(data, tmp_path):
+def test_bootstrap_stores_listings_catalogues_and_cubes(data, tmp_path):
     from apps.harvest.storage import read
     from apps.harvest.validation import validate_metadata
 
-    documents = published(data)
-    assert set(documents) == BOOTSTRAP
-    for document in documents.values():
+    parsed = published(data)
+    assert set(parsed) == BOOTSTRAP
+    for document in parsed.values():
         validate_metadata(document, adapter="dataanalys")
         assert document["extension"]["socialstyrelsen_analys"]["source_record"]
+    shared = set(store(data).manifest["shared"])
+    assert {
+        f"{PROVIDER_CODE}/_shared/{name}"
+        for name in (
+            "charts.json",
+            "dashboards.json",
+            "catalogue/GONV.json",
+            "columns/GONV.json",
+        )
+    } <= shared
+    envelope = store(data).get(stored_key("sv/GONV|G082"))
+    assert set(envelope["responses"]) == {"cube"}
+    assert set(envelope["derived"]) == {"row", "columns", "area", "link", "subject_label"}
+    assert envelope["derived"]["row"]["MBusinessKey"] == "G082"
+    assert envelope["updated"] == envelope["derived"]["row"]["DataGenerationDate"]
+    assert "withheld" not in load_state(data)
+    assert not (data / "metadata").exists()
     report = read(data / "reports/latest.json")
     assert report["areas"] == ["GONV", "LRHST", "NRAA"]
     assert report["unsupported_datasources"] == [
@@ -78,15 +112,15 @@ def test_bootstrap_publishes_valid_documents(data, tmp_path):
 
 
 def test_rerun_is_byte_identical_and_unchanged(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
-    state = (data / "state/current.jsonl.gz").read_bytes()
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
 
     result = execute(RecordedClient(), data, tmp_path / "rerun")
 
     assert result["counts"]["rebuilt"] == 0
     assert result["counts"]["unchanged"] == 7
-    assert (data / collection("sv")).read_bytes() == before
-    assert (data / "state/current.jsonl.gz").read_bytes() == state
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
 
 
 def test_failing_indicator_is_withheld_then_restored(data, tmp_path):
@@ -100,7 +134,8 @@ def test_failing_indicator_is_withheld_then_restored(data, tmp_path):
     assert resources(result) == [("endpoint", "sv/GONV|G082")]
     assert result["counts"]["withheld"] == 1
     assert "sv/GONV|G082" not in published(data)
-    assert load_state(data)["withheld"]["sv/GONV|G082"] == before
+    assert load_state(data)["datasets"]["sv/GONV|G082"]["status"] == "withheld"
+    assert published(data, include_withheld=True)["sv/GONV|G082"] == before
     assert sum(k == source.cube_key("GONV", "G082") for k in source.requests) == 2
 
     result = execute(RecordedClient(), data, tmp_path / "back")
@@ -187,22 +222,20 @@ def test_error_telemetry_is_visible_before_next_sibling_and_retry_can_recover(
         assert result["errors"][0]["url"] == DATA_URL
 
 
-def test_metadata_failure_keeps_the_document_until_it_is_stale(data, tmp_path):
+def test_unreadable_cube_is_stored_and_fails_at_parse(data, tmp_path):
+    from apps.parsing.build import build
+
     source = RecordedClient()
     key = source.cube_key("GONV", "G200")
     source.responses[key]["body"]["result"][0]["data"][0]["Indelning_typ"] = "Kommun"
-    before = published(data)["sv/GONV|G200"]
 
     result = execute(source, data, tmp_path / "bad")
 
-    assert resources(result) == [("metadata", "sv/GONV|G200")]
-    assert published(data)["sv/GONV|G200"] == before
+    assert result["status"] == "success"  # the harvest stores what was returned
     assert result["counts"]["removed"] == 0
-
-    execute(source, data, tmp_path / "stale", clock=NOW + timedelta(days=61))
-
-    assert "sv/GONV|G200" not in published(data)
-    assert load_state(data)["datasets"]["sv/GONV|G200"]["withheld_reason"] == "stale"
+    parsed = build("dataanalys", data.parent, tmp_path / "parsed", providers=[PROVIDER])
+    assert [e["key"] for e in parsed["errors"]] == [stored_key("sv/GONV|G200")]
+    assert parsed["counts"]["parsed"] == 6
 
 
 def test_malformed_row_does_not_stop_later_rows_and_duplicates_are_quarantined(
@@ -230,14 +263,14 @@ def test_whole_listing_failure_preserves_documents_and_records_scope_error(
     source.failing = {
         k for k in source.responses if k.startswith("GET ") and "/chart/" in k
     }
-    before = (data / collection("sv")).read_bytes()
+    before = stable(data)
 
     result = execute(source, data, tmp_path / "out")
 
     assert result["status"] == "completed_with_errors"
     assert resources(result) == [("discovery", "charts")]
     assert any("/dashboard/" in request for request in source.requests)
-    assert (data / collection("sv")).read_bytes() == before
+    assert stable(data) == before
 
 
 def test_dashboard_failure_still_rebuilds_independent_indicators(data, tmp_path):
@@ -313,7 +346,7 @@ def test_incomplete_discovery_and_bounded_runs_never_remove_out_of_scope(
     )
 
     assert result["counts"]["removed"] == 0
-    assert set(published(data)) == BOOTSTRAP
+    assert set(store(data).entries()) == {stored_key(k) for k in BOOTSTRAP}
 
 
 def test_removal_only_in_an_unbounded_run_with_a_complete_chart_list(data, tmp_path):
@@ -340,6 +373,7 @@ def test_removal_only_in_an_unbounded_run_with_a_complete_chart_list(data, tmp_p
     result = execute(without_nraa(), data, tmp_path / "removed")
     assert result["counts"]["removed"] == 2
     assert set(published(data)) == BOOTSTRAP - {"sv/NRAA|NRAA_1", "sv/NRAA|NRAA_2"}
+    assert stored_key("sv/NRAA|NRAA_1") not in store(data).entries()
 
 
 def test_indicator_dropped_from_a_complete_catalogue_is_removed(data, tmp_path):
@@ -403,7 +437,11 @@ def test_unknown_selection_is_reported(data, tmp_path):
     assert all("Unknown" in e["error"] for e in result["errors"])
 
 
-def test_indicator_without_riket_or_region_rows_is_out_of_scope(data, tmp_path):
+def test_indicator_without_riket_or_region_rows_is_stored_not_dismissed(
+    data, tmp_path
+):
+    from apps.parsing.build import build
+
     source = RecordedClient()
     source.responses[source.cube_key("NRAA", "NRAA_2")]["body"]["result"][0][
         "data"
@@ -414,7 +452,12 @@ def test_indicator_without_riket_or_region_rows_is_out_of_scope(data, tmp_path):
     assert result["status"] == "success"
     assert result["out_of_scope"] == ["sv/NRAA|NRAA_2"]
     assert result["counts"]["out_of_scope"] == 1
-    assert "sv/NRAA|NRAA_2" not in published(data)
+    assert result["counts"]["removed"] == 0
+    assert store(data).get(stored_key("sv/NRAA|NRAA_2"))["responses"]["cube"]
+    parsed = build("dataanalys", data.parent, tmp_path / "parsed", providers=[PROVIDER])
+    assert [e["key"] for e in parsed["errors"]] == [stored_key("sv/NRAA|NRAA_2")]
+    assert "out of scope" in parsed["errors"][0]["error"]
+    assert parsed["counts"]["parsed"] == 6
 
 
 def test_incomplete_area_keeps_its_documents(data, tmp_path):
