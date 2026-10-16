@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 
-from apps.harvest.metadata_adapters.entrysoft.categories import clean_name
+from apps.harvest.metadata_adapters.entryscape.categories import clean_name
 
 MEASURE_DIMENSION = "measure"
 

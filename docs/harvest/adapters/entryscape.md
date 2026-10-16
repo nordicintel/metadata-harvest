@@ -1,6 +1,6 @@
-# EntryScape RowStore (`entrysoft`)
+# EntryScape RowStore (`entryscape`)
 
-Implementation: `apps/harvest/metadata_adapters/entrysoft/`.
+Implementation: `apps/harvest/metadata_adapters/entryscape/`.
 
 ## Scope and inference
 

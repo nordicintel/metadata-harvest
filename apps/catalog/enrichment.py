@@ -75,7 +75,7 @@ def _adapter_for_url(url):
     if is_scb_v1_url(url):
         return "pxweb_v1"
     if "/rowstore/" in url:
-        return "entrysoft"
+        return "entryscape"
     if "api.kolada.se/" in url:
         return "kolada"
     if "statistikdatabasen.scb.se/api/v2" in url:

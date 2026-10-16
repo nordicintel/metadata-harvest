@@ -1,7 +1,7 @@
 """Dataset records become valid, eliminable, queryable Dataset documents."""
 
-from apps.harvest.metadata_adapters.entrysoft.datasets import build_datasets
-from apps.harvest.metadata_adapters.entrysoft.mapping import (
+from apps.harvest.metadata_adapters.entryscape.datasets import build_datasets
+from apps.harvest.metadata_adapters.entryscape.mapping import (
     BLANK,
     ROW_COUNT,
     codes,
@@ -9,7 +9,7 @@ from apps.harvest.metadata_adapters.entrysoft.mapping import (
     to_document,
 )
 from apps.harvest.validation import validate_metadata
-from tests.harvest.entrysoft.test_datasets import document
+from tests.harvest.entryscape.test_datasets import document
 
 PROVIDER = {"code": "x", "label": "Exempel kommun", "base_url": "https://x"}
 
@@ -42,7 +42,7 @@ def test_cube_document_is_valid_and_eliminable():
         )
     )
     doc = to_document(item, PROVIDER)
-    validate_metadata(doc, adapter="entrysoft")
+    validate_metadata(doc, adapter="entryscape")
     assert doc["id"] == ["forvaltning", "ar", "measure"]
     assert doc["role"] == {"metric": ["measure"], "time": ["ar"]}
     assert doc["source"] == "Exempel kommun"
@@ -58,7 +58,7 @@ def test_cube_document_is_valid_and_eliminable():
         shared["last_period"],
     ) == ("2023", "2024")
     assert shared["data_url"] == "https://x/rowstore/dataset/d1"
-    native = doc["extension"]["entrysoft"]
+    native = doc["extension"]["entryscape"]
     assert native["constants"] == {"kommun_id": "1480"} and native["tables"] == [
         "https://x/rowstore/dataset/d1"
     ]
@@ -78,10 +78,12 @@ def test_blank_values_share_one_code_and_wide_columns_become_filters():
         )
     )
     doc = to_document(item, PROVIDER)
-    validate_metadata(doc, adapter="entrysoft")
+    validate_metadata(doc, adapter="entryscape")
     assert list(doc["dimension"]["konto"]["category"]["index"]) == ["10", BLANK]
     assert doc["id"] == ["konto", "measure"]
-    assert doc["extension"]["entrysoft"]["filters"]["leverantor"]["enumerable"] is False
+    assert (
+        doc["extension"]["entryscape"]["filters"]["leverantor"]["enumerable"] is False
+    )
 
 
 def test_dataset_without_measures_counts_rows():
@@ -95,10 +97,10 @@ def test_dataset_without_measures_counts_rows():
         )
     )
     doc = to_document(item, PROVIDER)
-    validate_metadata(doc, adapter="entrysoft")
+    validate_metadata(doc, adapter="entryscape")
     assert list(doc["dimension"]["measure"]["category"]["index"]) == [ROW_COUNT]
     assert (
-        doc["dimension"]["measure"]["extension"]["entrysoft"]["measure_kind"]
+        doc["dimension"]["measure"]["extension"]["entryscape"]["measure_kind"]
         == "row_count"
     )
 
@@ -118,9 +120,9 @@ def test_merged_dataset_has_a_part_dimension_mapped_to_tables():
     ]
     (item,) = dataset(*docs)
     doc = to_document(item, PROVIDER)
-    validate_metadata(doc, adapter="entrysoft")
+    validate_metadata(doc, adapter="entryscape")
     assert doc["id"][0] == "part"
-    assert doc["dimension"]["part"]["extension"]["entrysoft"]["tables"] == {
+    assert doc["dimension"]["part"]["extension"]["entryscape"]["tables"] == {
         "2023": "https://h/rowstore/dataset/d2023",
         "2024": "https://h/rowstore/dataset/d2024",
     }

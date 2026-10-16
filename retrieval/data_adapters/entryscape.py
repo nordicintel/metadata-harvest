@@ -20,9 +20,9 @@ from typing import Any
 
 import aiohttp
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
-REQUIRED_METADATA = ("/id", "/dimension", "/extension/entrysoft")
+REQUIRED_METADATA = ("/id", "/dimension", "/extension/entryscape")
 PAGE_SIZE = 500
 MAX_REQUESTS = 50
 """A selection needing more pages is refused rather than paid for."""
@@ -105,7 +105,7 @@ async def retrieve(
         RuntimeError: RowStore answered something other than a row page.
     """
     dimensions = metadata.get("/dimension") or {}
-    native = metadata.get("/extension/entrysoft") or {}
+    native = metadata.get("/extension/entryscape") or {}
     tables = list(native.get("tables") or ([data_url] if data_url else []))
     logger.info(
         "Retrieving %s/%s [%s]: %d table(s), selection dimensions %s",
@@ -125,7 +125,7 @@ async def retrieve(
         raise ValueError("The selection must include the measure dimension")
 
     def spec(name):
-        return dimensions.get(name, {}).get("extension", {}).get("entrysoft", {})
+        return dimensions.get(name, {}).get("extension", {}).get("entryscape", {})
 
     part_of: dict[str, str] = {}
     if PART_DIMENSION in dimensions:

@@ -4,7 +4,7 @@ AVAILABLE = True
 
 
 async def discover_provider(provider, *, client=None):
-    from apps.harvest.metadata_adapters.entrysoft.workflow import (
+    from apps.harvest.metadata_adapters.entryscape.workflow import (
         discover_provider as discover,
     )
 
@@ -13,8 +13,8 @@ async def discover_provider(provider, *, client=None):
 
 async def fetch_metadata(record, *, client):
     from apps.harvest.accepted import as_contributions
-    from apps.harvest.metadata_adapters.entrysoft.workflow import (
+    from apps.harvest.metadata_adapters.entryscape.workflow import (
         fetch_metadata as fetch,
     )
 
-    return as_contributions(await fetch(record, client=client), adapter="entrysoft")
+    return as_contributions(await fetch(record, client=client), adapter="entryscape")

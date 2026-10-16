@@ -1,5 +1,6 @@
 """Explicit, lossless profile 1 reader and profile 2 metadata transformation."""
 
+import json
 from copy import deepcopy
 
 from apps.configuration import load_configuration
@@ -10,6 +11,7 @@ from apps.model.vocabulary import CONTEXT, PROFILE1_CONTEXT
 
 def normalize_agent_homepages(document: dict) -> None:
     """Correct profile 1's known Agent.homepage alias without touching source evidence."""
+
     if document.get("ni:profileVersion") != "1.0.0":
         return
 
@@ -187,8 +189,27 @@ def upgrade_document(document: dict) -> tuple[dict, dict]:
     }
 
 
+RENAMED_ADAPTERS = {"entrysoft": "entryscape"}
+"""Adapter keys renamed after collections were accepted under the old name."""
+
+
+def _rename_adapters(value):
+    """Apply renamed adapter tokens to keys and strings of an accepted document."""
+    if isinstance(value, dict):
+        return {_rename_adapters(k): _rename_adapters(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_rename_adapters(item) for item in value]
+    if isinstance(value, str):
+        for old, new in RENAMED_ADAPTERS.items():
+            if old in value:
+                value = value.replace(old, new)
+    return value
+
+
 def read_dataset(document: dict) -> Dataset:
     """Read either supported profile explicitly; current validators stay strict."""
     if document.get("ni:profileVersion") == "1.0.0":
         document, _ = upgrade_document(document)
+    if any(old in json.dumps(document, ensure_ascii=False) for old in RENAMED_ADAPTERS):
+        document = _rename_adapters(document)
     return Dataset.from_jsonld(document)

@@ -17,7 +17,7 @@ def test_registry_contains_supported_adapters_and_rejects_unknown_names():
         "uka",
         "sdb",
         "trafa",
-        "entrysoft",
+        "entryscape",
         "smhi_emissions",
         "tillvaxtverket",
         "dataanalys",

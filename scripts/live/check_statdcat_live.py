@@ -72,7 +72,7 @@ async def main():
         ("pxweb_v1", "csn", None),
         ("kolada", "kolada", "municipality"),
         ("kolada", "kolada", "ou"),
-        ("entrysoft", "catalogalese", None),
+        ("entryscape", "catalogalese", None),
     ]:
         check = {"adapter": adapter, "scope": scope}
         try:

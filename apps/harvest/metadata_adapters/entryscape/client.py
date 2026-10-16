@@ -13,7 +13,7 @@ from urllib.parse import quote, urlencode
 
 import httpx
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 # Apache on EntryScape instances answers HTTP 414 for request URLs around 9.5 KB
 # (8 KB worked). Stay well below that.
@@ -120,7 +120,7 @@ class Client:
             base_url=base_url.rstrip("/") + "/",
             timeout=60,
             transport=transport,
-            headers={"User-Agent": "nordicintel-metadata-harvest/entrysoft"},
+            headers={"User-Agent": "nordicintel-metadata-harvest/entryscape"},
         )
         self.pacer = pacer or Pacer(interval)
         self.requests = 0

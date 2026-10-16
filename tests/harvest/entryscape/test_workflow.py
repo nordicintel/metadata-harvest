@@ -8,13 +8,13 @@ from urllib.parse import parse_qsl, urlsplit
 import httpx
 import pytest
 
-from apps.harvest.metadata_adapters.entrysoft.client import Client
-from apps.harvest.metadata_adapters.entrysoft.state import (
+from apps.harvest.metadata_adapters.entryscape.client import Client
+from apps.harvest.metadata_adapters.entryscape.state import (
     collection_store,
     load_current,
     load_tables,
 )
-from tests.support.entrysoft import page
+from tests.support.entryscape import page
 
 NOW = datetime(2026, 11, 1, 6, tzinfo=UTC)
 DCAT = "http://www.w3.org/ns/dcat#"
@@ -153,7 +153,7 @@ def source():
 
 
 def execute(fake, data, output, **options):
-    from apps.harvest.metadata_adapters.entrysoft.workflow import collect, run
+    from apps.harvest.metadata_adapters.entryscape.workflow import collect, run
 
     transport = httpx.MockTransport(fake)
 
@@ -195,7 +195,7 @@ def test_bootstrap_publishes_merged_and_single_datasets(data):
 
     documents = list(collection_store(data).records.values())
     for document in documents:
-        validate_metadata(document, adapter="entrysoft")
+        validate_metadata(document, adapter="entryscape")
     codes = {d["extension"]["nordicintel"]["dataset_code"] for d in documents}
     assert codes == {"alpha:befolkning", UUID_C}
     merged = next(d for d in documents if d["id"][0] == "part")
@@ -267,7 +267,7 @@ def test_budget_stop_keeps_finished_work(source, tmp_path):
 
 def test_second_throttle_stops_the_run(source, data, tmp_path, monkeypatch):
     monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.entrysoft.client.MIN_THROTTLE_PAUSE", 0.0
+        "apps.harvest.metadata_adapters.entryscape.client.MIN_THROTTLE_PAUSE", 0.0
     )
     source.throttle.add("alpha.example")
     result = execute(source, data, tmp_path / "throttled")
@@ -282,7 +282,7 @@ def test_bounded_run_touches_only_selected_providers(source, data, tmp_path):
 
 
 def test_stale_artifact_rejected(source, data, tmp_path):
-    from apps.harvest.metadata_adapters.entrysoft.workflow import collect, run
+    from apps.harvest.metadata_adapters.entryscape.workflow import collect, run
 
     transport = httpx.MockTransport(source)
     asyncio.run(

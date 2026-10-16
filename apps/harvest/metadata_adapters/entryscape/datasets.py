@@ -48,7 +48,7 @@ import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 MAPPING_VERSION = 1
 """Increment when a rule change must regroup every accepted table offline."""

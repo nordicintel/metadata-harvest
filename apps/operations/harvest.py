@@ -29,7 +29,7 @@ from apps.harvest.storage import read
 from apps.publication.git import publish
 
 
-def _entrysoft_options(args):
+def _entryscape_options(args):
     options = {"selected": args.provider_code}
     if args.max_requests:
         options["max_requests"] = args.max_requests
@@ -56,7 +56,7 @@ SIMPLE_ADAPTERS = {
         lambda a: {"products": a.product, "languages": a.language},
         lambda p: {"languages": p["languages"]},
     ),
-    "entrysoft": ("all", _entrysoft_options, lambda p: {}),
+    "entryscape": ("all", _entryscape_options, lambda p: {}),
     "smhi_emissions": (
         "single",
         lambda a: {"subjects": a.subject, "languages": a.language},

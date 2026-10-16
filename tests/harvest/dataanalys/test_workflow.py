@@ -56,7 +56,9 @@ def store(data):
 
 
 def stable(data):
-    return {k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"}
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
 
 
 MANIFEST = "source/manifest.json"
@@ -96,7 +98,13 @@ def test_bootstrap_stores_listings_catalogues_and_cubes(data, tmp_path):
     } <= shared
     envelope = store(data).get(stored_key("sv/GONV|G082"))
     assert set(envelope["responses"]) == {"cube"}
-    assert set(envelope["derived"]) == {"row", "columns", "area", "link", "subject_label"}
+    assert set(envelope["derived"]) == {
+        "row",
+        "columns",
+        "area",
+        "link",
+        "subject_label",
+    }
     assert envelope["derived"]["row"]["MBusinessKey"] == "G082"
     assert envelope["updated"] == envelope["derived"]["row"]["DataGenerationDate"]
     assert "withheld" not in load_state(data)
@@ -437,9 +445,7 @@ def test_unknown_selection_is_reported(data, tmp_path):
     assert all("Unknown" in e["error"] for e in result["errors"])
 
 
-def test_indicator_without_riket_or_region_rows_is_stored_not_dismissed(
-    data, tmp_path
-):
+def test_indicator_without_riket_or_region_rows_is_stored_not_dismissed(data, tmp_path):
     from apps.parsing.build import build
 
     source = RecordedClient()

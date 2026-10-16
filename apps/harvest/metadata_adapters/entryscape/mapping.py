@@ -3,7 +3,7 @@
 Listed dimensions and the synthetic ``measure`` dimension form the cube. Wide
 and dense-time columns have no finite category list, so they are not dimensions;
 they stay queryable through the adapter and are recorded under
-``extension.entrysoft.filters``. Every column dimension is eliminable: an omitted
+``extension.entryscape.filters``. Every column dimension is eliminable: an omitted
 dimension is aggregated by retrieval, like cells that cover several rows.
 """
 
@@ -11,15 +11,15 @@ import logging
 import re
 from copy import deepcopy
 
-from apps.harvest.metadata_adapters.entrysoft.datasets import (
+from apps.harvest.metadata_adapters.entryscape.datasets import (
     MAPPING_VERSION,
     PART_DIMENSION,
 )
 from apps.harvest.validation import validate_metadata
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
-ADAPTER = "entrysoft"
+ADAPTER = "entryscape"
 LANGUAGE = "sv"
 MEASURE_DIMENSION = "measure"
 BLANK = "(tom)"

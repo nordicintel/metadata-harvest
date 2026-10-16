@@ -26,13 +26,13 @@ def test_all_existing_worker_settings_survive_configuration_conversion():
 
 def test_explicit_false_zero_and_empty_values_override_adapter_defaults():
     configuration = load_configuration().model_copy(deep=True)
-    definition = configuration.adapters["entrysoft"]
+    definition = configuration.adapters["entryscape"]
     definition.defaults.update(limit=4, enabled=True, filters=["default"])
     binding = next(
-        s for s in configuration.services.values() if s.adapter == "entrysoft"
+        s for s in configuration.services.values() if s.adapter == "entryscape"
     )
     binding.options.update(limit=0, enabled=False, filters=[])
-    actual = providers_for_adapter("entrysoft", configuration=configuration)
+    actual = providers_for_adapter("entryscape", configuration=configuration)
     row = next(row for row in actual if row["code"] == binding.source_code)
     assert (row["limit"], row["enabled"], row["filters"]) == (0, False, [])
 
@@ -62,12 +62,12 @@ def test_concrete_services_accept_endpoints_and_publishers():
 
 
 def test_shared_host_keeps_catalog_publishers_and_discovery_scope_separate():
-    from apps.harvest.metadata_adapters.entrysoft.discovery import within_catalog_scope
+    from apps.harvest.metadata_adapters.entryscape.discovery import within_catalog_scope
     from apps.harvest.sources import resolve_source
     from apps.model.models import SourceIdentity
 
     source = SourceIdentity(
-        adapter="entrysoft",
+        adapter="entryscape",
         source_code="freeentryscapecom",
         dataset_code="a7c572c8-2146-4285-8947-7f2f378ee120",
         language="sv",
@@ -147,8 +147,8 @@ def test_unattributed_refresh_preserves_findings_across_languages():
     contributions = []
     for language in ("sv", "en"):
         native = legacy(language, code="unattributed", provider="freeentryscapecom")
-        native["extension"]["entrysoft"] = native["extension"].pop("pxweb_v2")
-        contributions.append(convert_dataset(native, adapter="entrysoft"))
+        native["extension"]["entryscape"] = native["extension"].pop("pxweb_v2")
+        contributions.append(convert_dataset(native, adapter="entryscape"))
     datasets, _ = assemble(contributions)
     assert len(datasets) == 1
     assert not datasets[0].catalogs

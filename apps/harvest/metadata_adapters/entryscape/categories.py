@@ -47,10 +47,10 @@ import re
 from dataclasses import dataclass, field
 from math import ceil
 
-from apps.harvest.metadata_adapters.entrysoft.client import MAX_URL_LENGTH, Client
-from apps.harvest.metadata_adapters.entrysoft.source import load_source_rows
+from apps.harvest.metadata_adapters.entryscape.client import MAX_URL_LENGTH, Client
+from apps.harvest.metadata_adapters.entryscape.source import load_source_rows
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 PAGE_SIZE = 500
 NEAR_UNIQUE_SHARE = 0.98  # sample share of distinct values that triggers a full scan

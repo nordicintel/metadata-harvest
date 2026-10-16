@@ -40,58 +40,58 @@ Organisations are independent entities. Publisher is a relationship to a catalog
 | Universitetskanslersämbetet | `uka` | `uka` | `uka` | https://statistik-api.uka.se/api |
 | Socialstyrelsen | `socialstyrelsen` | `sdb` | `socialstyrelsen` | https://sdb.socialstyrelsen.se/api/v1 |
 | Trafikanalys | `trafa` | `trafa` | `trafa` | https://api.trafa.se/api |
-| Ale kommuns öppna data | `ale` | `entrysoft` | `catalogalese` | https://catalog.ale.se |
-| Borås stads öppna data | `boras` | `entrysoft` | `catalogborasse` | https://catalog.boras.se |
-| DIGG:s datakatalog | `digg` | `entrysoft` | `catalogdiggse` | https://catalog.digg.se |
-| Eslövs kommuns öppna data | `eslov` | `entrysoft` | `catalogeslovse` | https://catalog.eslov.se |
-| Essunga kommuns öppna data | `essunga` | `entrysoft` | `catalogessungase` | https://catalog.essunga.se |
-| Falköpings kommuns öppna data | `falkoping` | `entrysoft` | `catalogfalkopingse` | https://catalog.falkoping.se |
-| Gävle kommuns öppna data | `gavle` | `entrysoft` | `cataloggavlese` | https://catalog.gavle.se |
-| Göteborgs Stads öppna data | `goteborg` | `entrysoft` | `cataloggoteborgse` | https://catalog.goteborg.se |
-| Götene kommuns öppna data | `gotene` | `entrysoft` | `cataloggotenese` | https://catalog.gotene.se |
-| Grästorps kommuns öppna data | `grastorp` | `entrysoft` | `cataloggrastorpse` | https://catalog.grastorp.se |
-| Gullspångs kommuns öppna data | `gullspang` | `entrysoft` | `cataloggullspangse` | https://catalog.gullspang.se |
-| Härryda kommuns öppna data | `harryda` | `entrysoft` | `catalogharrydase` | https://catalog.harryda.se |
-| Hjo kommuns öppna data | `hjo` | `entrysoft` | `cataloghjose` | https://catalog.hjo.se |
-| IAF:s öppna data | `iaf` | `entrysoft` | `catalogiafse` | https://catalog.iaf.se |
-| Karlsborgs kommuns öppna data | `karlsborg` | `entrysoft` | `catalogkarlsborgse` | https://catalog.karlsborg.se |
-| Kungälvs kommuns öppna data | `kungalv` | `entrysoft` | `catalogkungalvse` | https://catalog.kungalv.se |
-| Länsstyrelsernas datakatalog | `lansstyr` | `entrysoft` | `cataloglansstyrelsense` | https://catalog.lansstyrelsen.se |
-| Lidköpings kommuns öppna data | `lidkoping` | `entrysoft` | `cataloglidkopingse` | https://catalog.lidkoping.se |
-| Mariestads kommuns öppna data | `mariestad` | `entrysoft` | `catalogmariestadse` | https://catalog.mariestad.se |
-| Mölndals stads öppna data | `molndal` | `entrysoft` | `catalogmolndalse` | https://catalog.molndal.se |
-| Riksantikvarieämbetets öppna data | `raa` | `entrysoft` | `catalograase` | https://catalog.raa.se |
-| Skara kommuns öppna data | `skara` | `entrysoft` | `catalogskarase` | https://catalog.skara.se |
-| SKR:s datakatalog | `skr` | `entrysoft` | `catalogsklse` | https://catalog.skl.se |
-| Södertälje kommuns öppna data | `sodertalje` | `entrysoft` | `catalogsodertaljese` | https://catalog.sodertalje.se |
-| Stenungsunds kommuns öppna data | `stenungsund` | `entrysoft` | `catalogstenungsundse` | https://catalog.stenungsund.se |
-| Tibro kommuns öppna data | `tibro` | `entrysoft` | `catalogtibrose` | https://catalog.tibro.se |
-| Tidaholms kommuns öppna data | `tidaholm` | `entrysoft` | `catalogtidaholmse` | https://catalog.tidaholm.se |
-| Tjörns kommuns öppna data | `tjorn` | `entrysoft` | `catalogtjornse` | https://catalog.tjorn.se |
-| Töreboda kommuns öppna data | `toreboda` | `entrysoft` | `catalogtorebodase` | https://catalog.toreboda.se |
-| Trollhättans Stads öppna data | `trollhattan` | `entrysoft` | `catalogtrollhattanse` | https://catalog.trollhattan.se |
-| Upphandlingsmyndighetens datakatalog | `upphandlingsmyndigheten` | `entrysoft` | `catalogupphandlingsmyndighetense` | https://catalog.upphandlingsmyndigheten.se |
-| Vara kommuns öppna data | `vara` | `entrysoft` | `catalogvarase` | https://catalog.vara.se |
-| Botkyrka kommuns öppna data | `botkyrka` | `entrysoft` | `databotkyrkase` | https://data.botkyrka.se |
-| Tomelilla kommuns öppna data | `tomelilla` | `entrysoft` | `datatomelillase` | https://data.tomelilla.se |
-| Energimarknadsinspektionens öppna data | `ei` | `entrysoft` | `eientryscapenet` | https://ei.entryscape.net |
-| Eskilstuna kommuns öppna data | `eskilstuna` | `entrysoft` | `eskilstunaentryscapenet` | https://eskilstuna.entryscape.net |
-| Haninge kommuns öppna data | `haninge` | `entrysoft` | `haningeentryscapenet` | https://haninge.entryscape.net |
-| Lunds kommuns öppna data | `lund` | `entrysoft` | `kataloglundse` | https://katalog.lund.se |
-| Riksarkivets öppna data | `riksarkivet` | `entrysoft` | `katalogriksarkivetse` | https://katalog.riksarkivet.se |
-| Kronofogdens öppna data | `kronofogden` | `entrysoft` | `kronofogdenentryscapenet` | https://kronofogden.entryscape.net |
-| Kungsbacka kommuns öppna data | `kungsbacka` | `entrysoft` | `kungsbackaentryscapenet` | https://kungsbacka.entryscape.net |
-| Linköpings kommuns öppna data | `linkoping` | `entrysoft` | `linkopingentryscapenet` | https://linkoping.entryscape.net |
-| Västerås stads öppna data | `vasteras` | `entrysoft` | `opendatavasterasse` | https://opendata.vasteras.se |
-| Skatteverkets öppna data | `skatteverket` | `entrysoft` | `skatteverketentryscapenet` | https://skatteverket.entryscape.net |
-| Transportstyrelsens öppna data | `transportstyrelsen` | `entrysoft` | `transportstyrelsenentryscapenet` | https://transportstyrelsen.entryscape.net |
-| Västra Götalandsregionens öppna data | `vgregion` | `entrysoft` | `vgregionentryscapenet` | https://vgregion.entryscape.net |
+| Ale kommuns öppna data | `ale` | `entryscape` | `catalogalese` | https://catalog.ale.se |
+| Borås stads öppna data | `boras` | `entryscape` | `catalogborasse` | https://catalog.boras.se |
+| DIGG:s datakatalog | `digg` | `entryscape` | `catalogdiggse` | https://catalog.digg.se |
+| Eslövs kommuns öppna data | `eslov` | `entryscape` | `catalogeslovse` | https://catalog.eslov.se |
+| Essunga kommuns öppna data | `essunga` | `entryscape` | `catalogessungase` | https://catalog.essunga.se |
+| Falköpings kommuns öppna data | `falkoping` | `entryscape` | `catalogfalkopingse` | https://catalog.falkoping.se |
+| Gävle kommuns öppna data | `gavle` | `entryscape` | `cataloggavlese` | https://catalog.gavle.se |
+| Göteborgs Stads öppna data | `goteborg` | `entryscape` | `cataloggoteborgse` | https://catalog.goteborg.se |
+| Götene kommuns öppna data | `gotene` | `entryscape` | `cataloggotenese` | https://catalog.gotene.se |
+| Grästorps kommuns öppna data | `grastorp` | `entryscape` | `cataloggrastorpse` | https://catalog.grastorp.se |
+| Gullspångs kommuns öppna data | `gullspang` | `entryscape` | `cataloggullspangse` | https://catalog.gullspang.se |
+| Härryda kommuns öppna data | `harryda` | `entryscape` | `catalogharrydase` | https://catalog.harryda.se |
+| Hjo kommuns öppna data | `hjo` | `entryscape` | `cataloghjose` | https://catalog.hjo.se |
+| IAF:s öppna data | `iaf` | `entryscape` | `catalogiafse` | https://catalog.iaf.se |
+| Karlsborgs kommuns öppna data | `karlsborg` | `entryscape` | `catalogkarlsborgse` | https://catalog.karlsborg.se |
+| Kungälvs kommuns öppna data | `kungalv` | `entryscape` | `catalogkungalvse` | https://catalog.kungalv.se |
+| Länsstyrelsernas datakatalog | `lansstyr` | `entryscape` | `cataloglansstyrelsense` | https://catalog.lansstyrelsen.se |
+| Lidköpings kommuns öppna data | `lidkoping` | `entryscape` | `cataloglidkopingse` | https://catalog.lidkoping.se |
+| Mariestads kommuns öppna data | `mariestad` | `entryscape` | `catalogmariestadse` | https://catalog.mariestad.se |
+| Mölndals stads öppna data | `molndal` | `entryscape` | `catalogmolndalse` | https://catalog.molndal.se |
+| Riksantikvarieämbetets öppna data | `raa` | `entryscape` | `catalograase` | https://catalog.raa.se |
+| Skara kommuns öppna data | `skara` | `entryscape` | `catalogskarase` | https://catalog.skara.se |
+| SKR:s datakatalog | `skr` | `entryscape` | `catalogsklse` | https://catalog.skl.se |
+| Södertälje kommuns öppna data | `sodertalje` | `entryscape` | `catalogsodertaljese` | https://catalog.sodertalje.se |
+| Stenungsunds kommuns öppna data | `stenungsund` | `entryscape` | `catalogstenungsundse` | https://catalog.stenungsund.se |
+| Tibro kommuns öppna data | `tibro` | `entryscape` | `catalogtibrose` | https://catalog.tibro.se |
+| Tidaholms kommuns öppna data | `tidaholm` | `entryscape` | `catalogtidaholmse` | https://catalog.tidaholm.se |
+| Tjörns kommuns öppna data | `tjorn` | `entryscape` | `catalogtjornse` | https://catalog.tjorn.se |
+| Töreboda kommuns öppna data | `toreboda` | `entryscape` | `catalogtorebodase` | https://catalog.toreboda.se |
+| Trollhättans Stads öppna data | `trollhattan` | `entryscape` | `catalogtrollhattanse` | https://catalog.trollhattan.se |
+| Upphandlingsmyndighetens datakatalog | `upphandlingsmyndigheten` | `entryscape` | `catalogupphandlingsmyndighetense` | https://catalog.upphandlingsmyndigheten.se |
+| Vara kommuns öppna data | `vara` | `entryscape` | `catalogvarase` | https://catalog.vara.se |
+| Botkyrka kommuns öppna data | `botkyrka` | `entryscape` | `databotkyrkase` | https://data.botkyrka.se |
+| Tomelilla kommuns öppna data | `tomelilla` | `entryscape` | `datatomelillase` | https://data.tomelilla.se |
+| Energimarknadsinspektionens öppna data | `ei` | `entryscape` | `eientryscapenet` | https://ei.entryscape.net |
+| Eskilstuna kommuns öppna data | `eskilstuna` | `entryscape` | `eskilstunaentryscapenet` | https://eskilstuna.entryscape.net |
+| Haninge kommuns öppna data | `haninge` | `entryscape` | `haningeentryscapenet` | https://haninge.entryscape.net |
+| Lunds kommuns öppna data | `lund` | `entryscape` | `kataloglundse` | https://katalog.lund.se |
+| Riksarkivets öppna data | `riksarkivet` | `entryscape` | `katalogriksarkivetse` | https://katalog.riksarkivet.se |
+| Kronofogdens öppna data | `kronofogden` | `entryscape` | `kronofogdenentryscapenet` | https://kronofogden.entryscape.net |
+| Kungsbacka kommuns öppna data | `kungsbacka` | `entryscape` | `kungsbackaentryscapenet` | https://kungsbacka.entryscape.net |
+| Linköpings kommuns öppna data | `linkoping` | `entryscape` | `linkopingentryscapenet` | https://linkoping.entryscape.net |
+| Västerås stads öppna data | `vasteras` | `entryscape` | `opendatavasterasse` | https://opendata.vasteras.se |
+| Skatteverkets öppna data | `skatteverket` | `entryscape` | `skatteverketentryscapenet` | https://skatteverket.entryscape.net |
+| Transportstyrelsens öppna data | `transportstyrelsen` | `entryscape` | `transportstyrelsenentryscapenet` | https://transportstyrelsen.entryscape.net |
+| Västra Götalandsregionens öppna data | `vgregion` | `entryscape` | `vgregionentryscapenet` | https://vgregion.entryscape.net |
 | SMHI | `smhi` | `smhi_emissions` | `smhi` | https://nationellaemissionsdatabasen.smhi.se/api |
 | Försäkringskassan | `forsakringskassan` | `forsakringskassan` | `forsakringskassan` | https://www.forsakringskassan.se/api/sprstatistikrapportera/public/v1 |
 | Sveriges riksbank | `riksbank` | `riksbank` | `riksbank` | https://api.riksbank.se |
 | Socialstyrelsen | `socialstyrelsen` | `dataanalys` | `socialstyrelsen_analys` | https://dataanalys.socialstyrelsen.se/api/v1 |
 | Tillväxtverket | `tillvaxtverket` | `tillvaxtverket` | `tillvaxtverket` | https://oppnadata.tillvaxtverket.se |
-| Digidel öppna data | `digidel` | `entrysoft` | `freeentryscapecom` | https://free.entryscape.com |
-| Klimatbyrån öppna data | `klimatbyran` | `entrysoft` | `freeentryscapecom` | https://free.entryscape.com |
+| Digidel öppna data | `digidel` | `entryscape` | `freeentryscapecom` | https://free.entryscape.com |
+| Klimatbyrån öppna data | `klimatbyran` | `entryscape` | `freeentryscapecom` | https://free.entryscape.com |
 
 Shared hosting retains catalog-specific EntryStore contexts and original discovery origins. Records without supported attribution remain retained with findings; hosts never become invented organisations.

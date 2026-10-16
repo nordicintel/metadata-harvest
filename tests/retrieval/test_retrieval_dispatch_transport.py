@@ -97,9 +97,9 @@ def case(adapter, scope):
         namespace = "socialstyrelsen"
         native = {"result_dimensions": {"x": "x"}}
         bodies = [{"data": [{"x": "01", "varde": "0"}], "sidor": 1}]
-    elif adapter == "entrysoft":
+    elif adapter == "entryscape":
         selection["measure"] = ["v"]
-        dimensions = {"x": {"extension": {"entrysoft": {"column": "x"}}}}
+        dimensions = {"x": {"extension": {"entryscape": {"column": "x"}}}}
         bodies = [{"results": [{"x": "01", "v": 0}], "resultCount": 1}]
     elif adapter == "trafa":
         selection["measure"] = ["v"]

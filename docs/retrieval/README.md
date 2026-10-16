@@ -57,7 +57,7 @@ dispatcher, which constructs this projection internally. Existing
 | `pxweb_v1`, `pxweb_v2` | `_selection`: request splitting and coordinate-aligned assembly |
 | `kolada` | `_semantics`: category ordering and cube validation |
 | `uka` | `_uka_export`: CSV parsing and protocol constants |
-| `dataanalys`, `entrysoft`, `forsakringskassan`, `riksbank`, `sdb`, `smhi_emissions`, `tillvaxtverket`, `trafa` | Adapter-local request/response code, standard library and `aiohttp` |
+| `dataanalys`, `entryscape`, `forsakringskassan`, `riksbank`, `sdb`, `smhi_emissions`, `tillvaxtverket`, `trafa` | Adapter-local request/response code, standard library and `aiohttp` |
 | `distribution` | Operational projection/validation, `_semantics`, explicit adapter lookup |
 
 Harvesting may import identical pure helpers; consumer functions never import

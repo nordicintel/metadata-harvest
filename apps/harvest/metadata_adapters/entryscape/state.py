@@ -13,7 +13,7 @@ from pathlib import Path
 
 from apps.harvest.storage import JsonlStore, write_jsonl
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 TABLES = "state/tables.jsonl.gz"
 CURRENT = "state/current.jsonl.gz"

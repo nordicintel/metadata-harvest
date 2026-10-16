@@ -17,7 +17,7 @@ for adapter, provider in [
     ("pxweb_v2", "scb"),
     ("pxweb_v1", "csn"),
     ("kolada", "kolada"),
-    ("entrysoft", "catalogalese"),
+    ("entryscape", "catalogalese"),
 ]:
     document = source(adapter, provider)
     model = convert_dataset(document, adapter=adapter).dataset

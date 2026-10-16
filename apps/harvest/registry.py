@@ -57,10 +57,10 @@ ADAPTERS = {
         "harvest-trafa.yml",
         ("run", "collect", "publish"),
     ),
-    "entrysoft": Adapter(
-        "entrysoft",
+    "entryscape": Adapter(
+        "entryscape",
         True,
-        "harvest-entrysoft.yml",
+        "harvest-entryscape.yml",
         ("run", "collect", "publish"),
     ),
     "smhi_emissions": Adapter(

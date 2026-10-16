@@ -6,7 +6,7 @@ output directory, trims wide columns, writes ``state/tables.jsonl.gz`` and
 publishes the derived collections offline. No request is made: those results
 cost thousands of requests the hosts now refuse.
 
-    uv run --extra harvest python scripts/migrations/import_entrysoft.py <rowstore_final> --data data/entrysoft
+    uv run --extra harvest python scripts/migrations/import_entryscape.py <rowstore_final> --data data/entryscape
 """
 
 import argparse
@@ -15,9 +15,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from apps.configuration import providers_for_adapter
-from apps.harvest.metadata_adapters.entrysoft.datasets import trim
-from apps.harvest.metadata_adapters.entrysoft.state import load_tables, table_key
-from apps.harvest.metadata_adapters.entrysoft.workflow import markers, publish
+from apps.harvest.metadata_adapters.entryscape.datasets import trim
+from apps.harvest.metadata_adapters.entryscape.state import load_tables, table_key
+from apps.harvest.metadata_adapters.entryscape.workflow import markers, publish
 from apps.harvest.storage import write
 
 
@@ -132,10 +132,10 @@ def compare(data: Path, poc_datasets: Path) -> list[str]:
             dataset = json.loads(line)
             if dataset["kind"] == "cube":
                 expected[tuple(sorted(dataset["tables"]))] = dataset
-    from apps.harvest.metadata_adapters.entrysoft.state import collection_store
+    from apps.harvest.metadata_adapters.entryscape.state import collection_store
 
     published = {
-        tuple(sorted(d["extension"]["entrysoft"]["tables"])): d
+        tuple(sorted(d["extension"]["entryscape"]["tables"])): d
         for d in collection_store(data).records.values()
     }
     problems = []
@@ -154,7 +154,7 @@ def compare(data: Path, poc_datasets: Path) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
-    parser.add_argument("--data", type=Path, default=Path("data/entrysoft"))
+    parser.add_argument("--data", type=Path, default=Path("data/entryscape"))
     parser.add_argument("--providers", type=Path, default=None)
     args = parser.parse_args()
     if load_tables(args.data):
@@ -162,7 +162,7 @@ def main() -> None:
     counts = import_results(
         args.source,
         args.data,
-        providers_for_adapter("entrysoft", legacy_path=args.providers),
+        providers_for_adapter("entryscape", legacy_path=args.providers),
     )
     print(
         json.dumps(

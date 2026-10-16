@@ -23,7 +23,7 @@ REPORTS = {
     "uka": "reports/latest.json",
     "sdb": "reports/latest.json",
     "trafa": "reports/latest.json",
-    "entrysoft": "reports/latest.json",
+    "entryscape": "reports/latest.json",
     "smhi_emissions": "reports/latest.json",
     "forsakringskassan": "reports/latest.json",
     "riksbank": "reports/latest.json",
@@ -79,7 +79,7 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         return _scoped(report, discovery_resources=("products",), endpoint_prefix="*/")
     if adapter == "uka":
         return []  # the catalogue failing raises; indicator failures are individual
-    if adapter == "entrysoft":
+    if adapter == "entryscape":
         failures = _discovery(report)
         interrupted = report.get("interrupted") or ""
         if interrupted and "budget" not in interrupted:

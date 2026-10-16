@@ -7,16 +7,16 @@ import pytest
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 
-from apps.harvest.metadata_adapters.entrysoft.mapping import BLANK, to_document
+from apps.harvest.metadata_adapters.entryscape.mapping import BLANK, to_document
 from apps.model.validation import validate_retrieval
-from retrieval.data_adapters.entrysoft import (
+from retrieval.data_adapters.entryscape import (
     MAX_REQUESTS,
     REQUIRED_METADATA,
     filter_value,
     number,
     retrieve,
 )
-from tests.support.entrysoft import page
+from tests.support.entryscape import page
 
 
 def ledger_rows(year):
@@ -113,7 +113,7 @@ def run_with_server(test):
             metadata = {
                 "/id": document["id"],
                 "/dimension": document["dimension"],
-                "/extension/entrysoft": document["extension"]["entrysoft"],
+                "/extension/entryscape": document["extension"]["entryscape"],
             }
             async with aiohttp.ClientSession() as session:
 
@@ -137,7 +137,7 @@ def run_with_server(test):
 
 
 def test_required_metadata_points_at_dimensions_and_native_extension():
-    assert REQUIRED_METADATA == ("/id", "/dimension", "/extension/entrysoft")
+    assert REQUIRED_METADATA == ("/id", "/dimension", "/extension/entryscape")
 
 
 def test_full_selection_sums_rows_per_cell_and_flags_counts():
@@ -211,7 +211,7 @@ async def _errors(fetch, calls, url):
     with pytest.raises(LookupError):
         await fetch(
             {"measure": ["antal"]},
-            **{"/extension/entrysoft": {"tables": [f"{url}/rowstore/dataset/gone"]}},
+            **{"/extension/entryscape": {"tables": [f"{url}/rowstore/dataset/gone"]}},
         )
     before = len(calls)
     await fetch({"measure": ["antal"]})

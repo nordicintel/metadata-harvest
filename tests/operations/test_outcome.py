@@ -62,7 +62,7 @@ def test_individual_errors_do_not_fail_any_adapter():
         },
         "sdb": {"errors": [{"stage": "metadata", "resource": "sv/amning"}]},
         "trafa": {"errors": [{"stage": "endpoint", "resource": "sv/T10011|x"}]},
-        "entrysoft": {
+        "entryscape": {
             "errors": [{"stage": "metadata", "resource": "a/1"}],
             "interrupted": "x: request budget of 40 used up",
         },
@@ -94,7 +94,7 @@ def test_whole_scope_failures_fail():
         "kolada": {"errors": [{"stage": "discovery", "resource": "kpi"}]},
         "sdb": {"errors": [{"stage": "discovery", "resource": "en"}]},
         "trafa": {"errors": [{"stage": "endpoint", "resource": "*/T10011"}]},
-        "entrysoft": {
+        "entryscape": {
             "errors": [{"stage": "discovery", "resource": "catalogalese"}],
             "interrupted": None,
         },
@@ -113,7 +113,7 @@ def test_whole_scope_failures_fail():
     for adapter, report in failing.items():
         assert scope_failures(adapter, report), adapter
     assert scope_failures(
-        "entrysoft", {"errors": [], "interrupted": "host: HTTP 429 received 2 times"}
+        "entryscape", {"errors": [], "interrupted": "host: HTTP 429 received 2 times"}
     )
 
 
@@ -125,7 +125,7 @@ def test_only_a_whole_adapter_failure_fails():
                 {"language": "en", "complete": False},
             ]
         },
-        "entrysoft": {
+        "entryscape": {
             "counts": {"unchanged": 528, "harvested": 29},
             "errors": [{"stage": "discovery", "resource": "falunentryscapenet"}],
         },
@@ -164,8 +164,8 @@ def test_only_a_whole_adapter_failure_fails():
 
 def test_command_warns_but_succeeds_on_a_partial_failure(tmp_path, monkeypatch):
     summary = tmp_path / "summary.md"
-    (tmp_path / "entrysoft/reports").mkdir(parents=True)
-    (tmp_path / "entrysoft/reports/latest.json").write_text(
+    (tmp_path / "entryscape/reports").mkdir(parents=True)
+    (tmp_path / "entryscape/reports/latest.json").write_text(
         json.dumps(
             {
                 "status": "completed_with_errors",
@@ -180,7 +180,7 @@ def test_command_warns_but_succeeds_on_a_partial_failure(tmp_path, monkeypatch):
             "-m",
             "apps.operations.outcome",
             "--adapter",
-            "entrysoft",
+            "entryscape",
             "--data",
             str(tmp_path),
         ],

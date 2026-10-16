@@ -284,10 +284,10 @@ def test_every_configured_source_has_an_explicit_service_and_owner_disposition()
         ("pxweb_v1", "konj", "pxweb_v1", "konjbar"),
         ("pxweb_v1", "skog", "pxweb_v1", "skog_ska22"),
         ("sdb", "socialstyrelsen", "dataanalys", "socialstyrelsen_analys"),
-        ("pxweb_v1", "goteborg", "entrysoft", "cataloggoteborgse"),
-        ("pxweb_v1", "linkoping", "entrysoft", "linkopingentryscapenet"),
-        ("pxweb_v1", "vgregion", "entrysoft", "vgregionentryscapenet"),
-        ("pxweb_v1", "lansstyr", "entrysoft", "cataloglansstyrelsense"),
+        ("pxweb_v1", "goteborg", "entryscape", "cataloggoteborgse"),
+        ("pxweb_v1", "linkoping", "entryscape", "linkopingentryscapenet"),
+        ("pxweb_v1", "vgregion", "entryscape", "vgregionentryscapenet"),
+        ("pxweb_v1", "lansstyr", "entryscape", "cataloglansstyrelsense"),
     ]:
         left, right = deployment(a, p), deployment(b, q)
         assert left["owner"]["code"] == right["owner"]["code"]
@@ -435,7 +435,7 @@ def test_all_entryscape_owners_use_canonical_organisation_codes():
     from apps.model.models import SourceIdentity
 
     items = inventory()
-    entry = [item for item in items if item["adapter"] == "entrysoft"]
+    entry = [item for item in items if item["adapter"] == "entryscape"]
     assert len(entry) == 47
     for item in entry:
         owner = item["owner"]
@@ -446,7 +446,7 @@ def test_all_entryscape_owners_use_canonical_organisation_codes():
         assert "entryscape" not in owner["code"]
         catalog, service = source_entities(
             SourceIdentity(
-                adapter="entrysoft",
+                adapter="entryscape",
                 provider_code=item["source_code"],
                 dataset_code="01",
                 language="sv",
@@ -514,7 +514,7 @@ def test_malformed_optional_contacts_preserve_source_values():
         "uka",
         "sdb",
         "trafa",
-        "entrysoft",
+        "entryscape",
         "smhi_emissions",
         "forsakringskassan",
         "riksbank",

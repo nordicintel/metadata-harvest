@@ -83,7 +83,7 @@ failure does not require another harvest.
 | UKÄ | [Transient period exports](adapters/uka.md) |
 | SDB | [Subjects, languages and result-field reconciliation](adapters/sdb.md) |
 | Trafikanalys | [Product combinations and HTML discovery](adapters/trafa.md) |
-| EntryScape RowStore | [Scoped discovery and budgeted refresh](adapters/entrysoft.md) |
+| EntryScape RowStore | [Scoped discovery and budgeted refresh](adapters/entryscape.md) |
 | SMHI emissions | [Substances, sectors and region mappings](adapters/smhi_emissions.md) |
 | Försäkringskassan | [Reports, tables and undeclared dimensions](adapters/forsakringskassan.md) |
 | Socialstyrelsen analysverktyg | [Superset indicator/area scope](adapters/dataanalys.md) |

@@ -18,9 +18,9 @@ import logging
 
 import httpx
 
-from apps.harvest.metadata_adapters.entrysoft.client import Client
+from apps.harvest.metadata_adapters.entryscape.client import Client
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 DCAT = "http://www.w3.org/ns/dcat#"
 DELIMITERS = (",", ";", "\t", "|")

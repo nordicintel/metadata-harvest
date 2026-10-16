@@ -89,10 +89,10 @@ def convert_dataset(document: dict, *, adapter: str) -> HarvestContribution:
         if source.provider_code == owner_code
         else [owner_code, source.provider_code, code]
     )
-    if adapter == "entrysoft":
+    if adapter == "entryscape":
         identity_parts = [owner_code, "rowstore", code]
     dataset_id = stable_id("dataset", *identity_parts)
-    source_key = owner_code if adapter == "entrysoft" else source.provider_code
+    source_key = owner_code if adapter == "entryscape" else source.provider_code
     distribution_id = stable_id(
         "distribution",
         source_key,

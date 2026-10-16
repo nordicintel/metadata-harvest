@@ -60,13 +60,6 @@ Open work only: bugs, fixes, features and investigations not yet done.
   dict/JSON, not another custom model; wanted as a core capability
   ([apps/model/](../apps/model/)).
 
-- [ ] **entrysoft** Rename the adapter to `entryscape` — the product is
-  EntryScape; "entrysoft" is a misspelling baked into the adapter key, 47
-  service IDs, the package, `data/entrysoft/`, the `/extension/entrysoft`
-  JSON-stat key and the workflow (~76 files). Do it in one migration, or use
-  the correct name in any successor repo
-  ([adapters.json](../config/adapters.json)).
-
 ## Later
 
 ## Ideas

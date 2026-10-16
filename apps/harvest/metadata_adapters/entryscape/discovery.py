@@ -24,7 +24,7 @@ from collections.abc import AsyncIterator
 
 import httpx
 
-from apps.harvest.metadata_adapters.entrysoft.client import (
+from apps.harvest.metadata_adapters.entryscape.client import (
     BudgetExhausted,
     Client,
     RateLimited,
@@ -32,7 +32,7 @@ from apps.harvest.metadata_adapters.entrysoft.client import (
 from apps.harvest.sources import catalog_configurations
 from apps.model.models import SourceIdentity
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 SEARCH_PATH = "store/search"
 SEARCH_PAGE = 100
@@ -48,7 +48,7 @@ TABLE_URL = re.compile(
 def within_catalog_scope(provider: dict, record: dict) -> bool:
     """A shared host cannot widen its configured catalog/context selection."""
     source = SourceIdentity(
-        adapter="entrysoft",
+        adapter="entryscape",
         source_code=provider["code"],
         dataset_code=record.get("dataset_code", "unknown"),
         language=record.get("language", "sv"),

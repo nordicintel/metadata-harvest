@@ -22,28 +22,28 @@ from uuid import uuid4
 
 import httpx
 
-from apps.harvest.metadata_adapters.entrysoft.categories import (
+from apps.harvest.metadata_adapters.entryscape.categories import (
     EmptyTable,
     NeedsPaging,
     infer_structure,
 )
-from apps.harvest.metadata_adapters.entrysoft.client import (
+from apps.harvest.metadata_adapters.entryscape.client import (
     BudgetExhausted,
     Client,
     Pacer,
     RateLimited,
 )
-from apps.harvest.metadata_adapters.entrysoft.datasets import (
+from apps.harvest.metadata_adapters.entryscape.datasets import (
     MAPPING_VERSION,
     build_datasets,
     trim,
 )
-from apps.harvest.metadata_adapters.entrysoft.discovery import (
+from apps.harvest.metadata_adapters.entryscape.discovery import (
     discover_provider as discover,
 )
-from apps.harvest.metadata_adapters.entrysoft.discovery import within_catalog_scope
-from apps.harvest.metadata_adapters.entrysoft.mapping import to_document
-from apps.harvest.metadata_adapters.entrysoft.state import (
+from apps.harvest.metadata_adapters.entryscape.discovery import within_catalog_scope
+from apps.harvest.metadata_adapters.entryscape.mapping import to_document
+from apps.harvest.metadata_adapters.entryscape.state import (
     CURRENT,
     REPORT,
     TABLES,
@@ -55,12 +55,12 @@ from apps.harvest.metadata_adapters.entrysoft.state import (
     save_tables,
     table_key,
 )
-from apps.harvest.metadata_adapters.entrysoft.tables import table_document
+from apps.harvest.metadata_adapters.entryscape.tables import table_document
 from apps.harvest.storage import document_identity, filename, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
-logger = logging.getLogger("entrysoft_logger")
+logger = logging.getLogger("entryscape_logger")
 
 REQUESTS_PER_SECOND = 1.0
 DEFAULT_MAX_REQUESTS = 1500
@@ -224,7 +224,7 @@ async def run(
     pacer = Pacer(
         1 / requests_per_second, budget=max_requests, max_throttles=MAX_THROTTLES
     )
-    progress = Progress("entrysoft", "entryscape")
+    progress = Progress("entryscape", "entryscape")
     counts = dict.fromkeys(COUNTS, 0)
     errors, deferred, requests = [], [], 0
     interrupted = None

@@ -12,13 +12,13 @@ from pathlib import Path
 import aiohttp
 
 from apps.configuration import providers_for_adapter
-from apps.harvest.metadata_adapters.entrysoft.client import Client, Pacer
-from apps.harvest.metadata_adapters.entrysoft.state import collection_store
-from apps.harvest.metadata_adapters.entrysoft.workflow import discover_provider
+from apps.harvest.metadata_adapters.entryscape.client import Client, Pacer
+from apps.harvest.metadata_adapters.entryscape.state import collection_store
+from apps.harvest.metadata_adapters.entryscape.workflow import discover_provider
 from apps.harvest.storage import write
 from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
-from retrieval.data_adapters.entrysoft import REQUIRED_METADATA, retrieve
+from retrieval.data_adapters.entryscape import REQUIRED_METADATA, retrieve
 
 PROVIDER = "catalogalese"
 
@@ -39,10 +39,10 @@ async def check(provider: dict, data: Path) -> dict:
         for d in collection_store(data).records.values()
         if d["extension"]["nordicintel"]["provider_code"] == provider["code"]
     ]
-    documents.sort(key=lambda d: d["extension"]["entrysoft"]["rowcount"])
+    documents.sort(key=lambda d: d["extension"]["entryscape"]["rowcount"])
     report["retrievals"] = []
     async with aiohttp.ClientSession(
-        headers={"User-Agent": "nordicintel-metadata-harvest/entrysoft live check"}
+        headers={"User-Agent": "nordicintel-metadata-harvest/entryscape live check"}
     ) as session:
         for document in documents[:2]:
             shared = document["extension"]["nordicintel"]
@@ -63,7 +63,7 @@ async def check(provider: dict, data: Path) -> dict:
                     metadata={
                         REQUIRED_METADATA[0]: document["id"],
                         REQUIRED_METADATA[1]: document["dimension"],
-                        REQUIRED_METADATA[2]: document["extension"]["entrysoft"],
+                        REQUIRED_METADATA[2]: document["extension"]["entryscape"],
                     },
                 )
                 validate_retrieval(fragment, selection=selection)
@@ -83,14 +83,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--provider", default=PROVIDER)
     parser.add_argument("--providers", type=Path, default=None)
-    parser.add_argument("--data", type=Path, default=Path("data/entrysoft"))
+    parser.add_argument("--data", type=Path, default=Path("data/entryscape"))
     parser.add_argument(
-        "--report", type=Path, default=Path("output/entrysoft-live.json")
+        "--report", type=Path, default=Path("output/entryscape-live.json")
     )
     args = parser.parse_args()
     provider = next(
         p
-        for p in providers_for_adapter("entrysoft", legacy_path=args.providers)
+        for p in providers_for_adapter("entryscape", legacy_path=args.providers)
         if p["code"] == args.provider
     )
     result = asyncio.run(check(provider, args.data))

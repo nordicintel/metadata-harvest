@@ -15,7 +15,7 @@ ADAPTERS = frozenset(
         "uka",
         "sdb",
         "trafa",
-        "entrysoft",
+        "entryscape",
         "smhi_emissions",
         "forsakringskassan",
         "riksbank",
