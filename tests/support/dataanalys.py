@@ -338,7 +338,7 @@ async def retrieve_from(fake: FakeSuperset, document, selection, **overrides):
 
 def check_fragment(fragment: dict[str, Any], selection) -> None:
     """Validate a fragment: result schema plus the contract's consumer checks."""
-    from apps.model.validation import validate_retrieval
+    from schema.validation import validate_retrieval
 
     validate_retrieval(fragment, selection=selection)
     ids = fragment["id"]

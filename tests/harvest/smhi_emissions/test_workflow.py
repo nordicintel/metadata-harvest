@@ -98,7 +98,7 @@ def data(bootstrapped, tmp_path):
 
 
 def test_bootstrap_stores_one_raw_probe_per_substance(data):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     parsed = published(data)
     assert set(parsed) == {key(code) for code in substances()}

@@ -4,7 +4,7 @@
 
 - `retrieval/` is the only installable library; consumer implementations live in `retrieval/data_adapters/`. Its runtime dependencies are its own modules, `aiohttp`, and the standard library.
 - `apps/` contains repository applications: model, harvest, catalog, portal, publication, migrations, and operations. Harvesting owns metadata collection, probes, retries, and checkpoints.
-- `config/` holds authoritative inventories and settings; `schemas/` holds generated contracts and supporting validation resources. Pydantic models in `apps/model/` are authoritative.
+- `config/` holds authoritative inventories and settings; `registry/` loads them. `schema/` holds the schema seeds (the worker-document schema and validators).
 - `data/` contains accepted metadata and production artifacts. `docs/` and `tests/` follow application responsibilities. Developer scripts are grouped under `scripts/{checks,generate,live,migrations}/`.
 - Before changing module boundaries, read [architecture guidance](docs/architecture.md). Keep pure model helpers independent of workflows and persistence.
 

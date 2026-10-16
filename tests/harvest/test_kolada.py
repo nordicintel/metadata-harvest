@@ -15,7 +15,7 @@ from apps.harvest.metadata_adapters.kolada.metadata import (
     years_for,
 )
 from apps.harvest.metadata_adapters.kolada.state import load_state, normalize
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 from tests.support.binding import binding
 from tests.support.kolada_fixture import initial_state as import_seed
 from tests.support.parsing import documents
@@ -242,7 +242,7 @@ def seed_source(tmp_path):
 
 def test_seed_is_trusted_no_validation_or_network(seed_source, tmp_path, monkeypatch):
     monkeypatch.setattr(
-        "apps.harvest.validation.validate_metadata",
+        "schema.validation.validate_metadata",
         lambda *a, **k: pytest.fail("Seed validation forbidden"),
     )
     target = tmp_path / "data"

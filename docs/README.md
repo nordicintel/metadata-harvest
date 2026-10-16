@@ -7,7 +7,6 @@
 | Understand module ownership and dependencies | [Architecture](architecture.md) |
 | Retrieve observations from catalog distributions | [Retrieval](retrieval/README.md) |
 | Configure organisations, catalogs and concrete services | [Configuration](configuration/README.md) |
-| Understand published metadata and field mappings | [StatDCAT contract](model/output-contract.md) |
 | Run, resume and monitor metadata collection | [Harvesting](harvest/README.md) |
 | Add or change a metadata adapter | [Adapter implementation](harvest/adapter-guide.md) |
 | Track open bugs, features and investigations | [Backlog](backlog.md) |

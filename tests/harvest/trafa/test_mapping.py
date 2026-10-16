@@ -14,7 +14,7 @@ from apps.harvest.metadata_adapters.trafa.source import (
     parse_product,
     select_combinations,
 )
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 
 
 def product(recorded, name, language="sv"):

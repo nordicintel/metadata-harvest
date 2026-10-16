@@ -9,7 +9,7 @@ from tests.harvest.test_pxweb_v2 import metadata, record
 
 def test_native_mapping_produces_shared_identity_and_preserves_source_fields():
     from apps.harvest.metadata_adapters.pxweb_v1.mapping import map_metadata
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     native = metadata()
     native["dimension"]["Region"]["extension"].update(
@@ -47,7 +47,7 @@ def test_native_mapping_produces_shared_identity_and_preserves_source_fields():
 )
 def test_shared_validation_rejects_semantic_defects(defect):
     from apps.harvest.metadata_adapters.pxweb_v1.mapping import map_metadata
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     result = map_metadata(metadata(), record(), "pxweb_v2")
     dimension = result["dimension"]["Region"]
@@ -72,9 +72,9 @@ def test_shared_validation_rejects_semantic_defects(defect):
 
 
 def test_schema_resources_are_owned_here_and_fragment_checks_selection():
-    from apps.model.validation import schema, validate_retrieval
+    from schema.validation import schema, validate_retrieval
 
-    assert "metadata-harvest" in schema("dataset-metadata")["$id"]
+    assert schema("tabular")["$id"]
     fragment = {
         "id": ["x"],
         "size": [2],

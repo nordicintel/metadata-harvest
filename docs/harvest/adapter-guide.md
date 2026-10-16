@@ -15,19 +15,16 @@ its clients, discovery, parsing, coverage probes and operational policy.
    `mapping`; `parse.py` provides `documents(store, state, providers, *,
    portal=None)` yielding `(key, document | exception)` and `withheld_keys(state)`.
    Keep anything derived from observations under the envelope's `derived` key.
-   The public `fetch_metadata` builds in memory and returns
-   `list[HarvestContribution]` for live checks only.
-3. Preserve source change signals and unfamiliar attributes. Use standard properties
-   where they fit; see the [StatDCAT field mapping](../model/output-contract.md).
+3. Preserve source change signals and unfamiliar attributes.
 4. Keep metadata inference and observation probes here. Put consumer request/response
    implementation in `retrieval/data_adapters/`; harvesting must not call the
    consumer dispatcher. Only genuinely identical pure helpers may be shared.
 
 ## Active worker representation
 
-Some native parsers use the [worker schema](../../schemas/legacy-dataset-metadata.schema.json)
-before conversion in `apps.parsing.contributions`. This is an internal JSON-stat
-representation, not the published metadata contract: `id` orders dimensions, `size`
+Parsing produces worker documents validated by the
+[tabular schema](../../schema/tabular.schema.json), a JSON-stat
+representation: `id` orders dimensions, `size`
 gives category counts, and `value: []` means metadata only. Original routing identity
 and URLs live in `extension.nordicintel`; adapter evidence uses its own namespace.
 Category extras belong to the enclosing dimension's namespace. Preserve codes,

@@ -10,8 +10,8 @@ from apps.harvest.metadata_adapters.smhi_emissions.source import (
     parse_filter_options,
     parse_probe,
 )
-from apps.harvest.validation import validate_metadata
 from retrieval.data_adapters.smhi_emissions import REQUIRED_METADATA
+from schema.validation import validate_metadata
 from tests.support.smhi_emissions import (
     FILTER_OPTIONS,
     NATIONAL_CO2,

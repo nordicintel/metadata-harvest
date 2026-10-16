@@ -16,7 +16,7 @@ from apps.harvest.metadata_adapters.tillvaxtverket.source import (
     parse_probe,
     parse_regions,
 )
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 from tests.support.tillvaxtverket import (
     RECORDED,
     RecordedClient,

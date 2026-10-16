@@ -21,10 +21,10 @@ from uuid import uuid4
 from apps.harvest.artifacts import report_status
 from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.parsing.accepted import write_metadata
 from apps.publication.artifacts import check_collection_sizes, manifest
 from registry import ServiceBinding
+from schema.validation import validate_metadata
 
 logger = logging.getLogger("parsing_logger")
 

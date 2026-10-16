@@ -105,7 +105,7 @@ def data(bootstrapped, tmp_path):
 
 
 def test_bootstrap_stores_catalogues_and_probes(data):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     parsed = published(data)
     assert set(parsed) == ALL

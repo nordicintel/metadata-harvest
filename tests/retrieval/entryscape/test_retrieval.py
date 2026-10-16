@@ -8,7 +8,6 @@ from aiohttp import web
 from aiohttp.test_utils import TestServer
 
 from apps.harvest.metadata_adapters.entryscape.mapping import BLANK, to_document
-from apps.model.validation import validate_retrieval
 from retrieval.data_adapters.entryscape import (
     MAX_REQUESTS,
     REQUIRED_METADATA,
@@ -16,6 +15,7 @@ from retrieval.data_adapters.entryscape import (
     number,
     retrieve,
 )
+from schema.validation import validate_retrieval
 from tests.support.binding import binding
 from tests.support.entryscape import page
 

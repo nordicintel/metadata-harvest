@@ -108,7 +108,7 @@ def test_retrieval_splits_and_reassembles_coordinates(adapter, case):
                         await module.retrieve(session, **kwargs)
                 else:
                     result = await module.retrieve(session, **kwargs)
-                    from apps.model.validation import validate_retrieval
+                    from schema.validation import validate_retrieval
 
                     validate_retrieval(result, selection=kwargs["selection"])
                     assert result["id"] == ["x", "y"]

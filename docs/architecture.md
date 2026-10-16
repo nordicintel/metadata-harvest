@@ -7,7 +7,6 @@ modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
 
 | Location | Responsibility |
 | --- | --- |
-| `apps/model/` | Extensible StatDCAT Pydantic models, JSON-LD vocabulary, pure normalization and composition, repository validation |
 | `apps/configuration.py` | Load authoritative configuration, validate supported adapters and resolve execution settings |
 | `apps/harvest/` | Metadata collection into per-dataset source files with a manifest, worker persistence and source identity resolution |
 | `apps/harvest/metadata_adapters/` | Twelve adapters with their native clients, parsing, discovery, coverage probes, retry and pacing policy |
@@ -19,7 +18,7 @@ modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
 | `apps/operations/` | CLI routing, scheduling, monitoring, progress and outcome reporting |
 | `retrieval/data_adapters/` | Independent consumer observation retrieval implementations |
 | `config/` | Authoritative source inventories, profile declaration, operational settings and schedules |
-| `schemas/` | Generated contracts and labelled supporting schema resources |
+| `schema/` | Schema seeds: the worker-document schema, the configuration schema, merge and validation helpers |
 
 Harvests store source responses as received (`data/<adapter>/source/`, indexed by
 `manifest.json`) with simple safety nets only; parsing builds the worker

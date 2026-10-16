@@ -18,9 +18,9 @@ from apps.harvest.metadata_adapters.tillvaxtverket.workflow import (
     fetch_metadata,
 )
 from apps.harvest.storage import write
-from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.tillvaxtverket import REQUIRED_METADATA, retrieve
+from schema.validation import validate_retrieval
 
 SAMPLE = "GuestNights_Capacity_Revenue_Year"
 

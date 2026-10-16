@@ -9,8 +9,8 @@ from urllib.parse import urlencode
 import aiohttp
 import pytest
 
-from apps.model.validation import validate_retrieval
 from retrieval.data_adapters.uka import export_request, retrieve
+from schema.validation import validate_retrieval
 from tests.support.uka_support import (
     FIXTURES,
     UKA,

@@ -125,7 +125,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_stores_links_and_scan_summaries_not_exports(data):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     parsed = load_documents(data)
     assert set(parsed) == {"67", "72"}

@@ -1,4 +1,4 @@
-# Source configuration and StatDCAT vocabulary
+# Source configuration
 
 Edit these three authoritative files together:
 
@@ -76,10 +76,3 @@ These commands generate the service inventory; CI checks for drift. Edit the fil
 
 Worker artifacts are plain JSON; nothing rewrites accepted production files.
 
-The supplied [StatDCAT-AP 3.0.0 specification](<../reference/StatDCAT-AP 3.0.0.html>) is
-stored verbatim with a [hash and provenance](<../reference/StatDCAT-AP 3.0.0.provenance.json>).
-Its referenced images/styles were not bundled in the supplied HTML. The upstream
-revision pinned in [profile.json](../../config/profile.json) remains
-independent of this reference snapshot. Upstream descriptive requirements are
-quality findings; identities, retrieval structures and information preservation
-remain publication gates.

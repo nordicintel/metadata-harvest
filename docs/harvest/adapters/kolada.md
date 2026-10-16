@@ -7,7 +7,7 @@ Implementation: `apps/harvest/metadata_adapters/kolada/`.
 Group by native KPI ID under organisation `rka`; the source routing alias is `kolada`.
 Municipality and organisational-unit scopes are separate distributions of that KPI,
 each retaining categories and coverage. Municipality scope covers the static inventory
-in `schemas/kolada_municipalities.json`: municipalities, regions, the national
+in the adapter's `municipalities.json`: municipalities, regions, the national
 aggregate and the useful comparison groups. Derivable comparison groups outside that
 inventory are ignored. OU retains parent municipality relationships without pretending
 to be the same geographic dimension.
@@ -49,7 +49,6 @@ and transport errors propagate.
 ## Shared interfaces
 
 [Harvesting operations](../README.md) defines collection, recovery and schedules.
-[StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.
 
 ## Stored source data

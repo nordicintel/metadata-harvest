@@ -24,7 +24,7 @@ from apps.harvest.metadata_adapters.forsakringskassan.source import (
     text_entries,
     undeclared_dimensions,
 )
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 from tests.support.forsakringskassan import RecordedClient
 
 

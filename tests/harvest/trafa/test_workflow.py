@@ -65,7 +65,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_stores_raw_probes_and_shared_structures(data):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     entries = store(data).entries()
     assert {key.split("/")[1].split("|")[0] for key in entries} == {

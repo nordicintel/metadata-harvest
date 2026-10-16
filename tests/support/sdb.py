@@ -15,7 +15,7 @@ from typing import Any
 import pytest
 from aiohttp import web
 
-from apps.model.validation import validate_retrieval
+from schema.validation import validate_retrieval
 
 FIXTURES = Path("tests/fixtures/sdb")
 SDB_DATA = json.loads((FIXTURES / "sdb.json").read_text(encoding="utf-8"))

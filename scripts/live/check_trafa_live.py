@@ -13,9 +13,9 @@ from apps.harvest.metadata_adapters.trafa.client import TrafaClient
 from apps.harvest.metadata_adapters.trafa.source import product_list
 from apps.harvest.metadata_adapters.trafa.workflow import fetch_metadata
 from apps.harvest.storage import write
-from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.trafa import REQUIRED_METADATA, retrieve
+from schema.validation import validate_retrieval
 
 PRODUCTS = ("T10011", "T10033")
 

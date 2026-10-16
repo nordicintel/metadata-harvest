@@ -8,7 +8,7 @@ from apps.harvest.metadata_adapters.entryscape.mapping import (
     time_unit,
     to_document,
 )
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 from tests.harvest.entryscape.test_datasets import document
 from tests.support.binding import binding
 

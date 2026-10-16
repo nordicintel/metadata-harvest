@@ -16,10 +16,10 @@ import registry
 from apps.harvest.metadata_adapters.riksbank.client import RiksbankClient
 from apps.harvest.metadata_adapters.riksbank.workflow import build_record, discover_api
 from apps.harvest.storage import write
-from apps.model.validation import validate_retrieval
 from registry import ServiceBinding
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.riksbank import REQUIRED_METADATA, retrieve
+from schema.validation import validate_retrieval
 
 SAMPLES = {"swea": "swea_group_2", "mpd": "mpd_SEQGDPNAYSA", "swestr": "swestr"}
 

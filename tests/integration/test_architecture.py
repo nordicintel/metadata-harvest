@@ -25,16 +25,6 @@ def test_retrieval_has_only_its_runtime_dependencies():
             }, (path, name)
 
 
-def test_model_does_not_import_application_behaviour():
-    for path in (ROOT / "apps/model").glob("*.py"):
-        for name in imports(path):
-            if name.startswith("apps."):
-                assert name.startswith("apps.model.") or name == "apps.paths", (
-                    path,
-                    name,
-                )
-
-
 def test_retired_implementation_paths_have_no_source_or_callers():
     assert not list((ROOT / "harvesting").rglob("*.py"))
     assert not list((ROOT / "retrieval/adapters").glob("*.py"))

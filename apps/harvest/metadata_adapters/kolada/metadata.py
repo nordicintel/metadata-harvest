@@ -12,7 +12,7 @@ logger = logging.getLogger("kolada_logger")
 BASE_URL = "https://api.kolada.se/v3"
 SCOPES = {"municipality": "data", "ou": "oudata"}
 GENDERS = {"m": "Män", "k": "Kvinnor", "t": "Totalt"}
-MUNICIPALITIES = Path("schemas/kolada_municipalities.json")
+MUNICIPALITIES = Path(__file__).with_name("municipalities.json")
 FIRST_YEAR = {"municipality": 1970, "ou": 2003}
 
 

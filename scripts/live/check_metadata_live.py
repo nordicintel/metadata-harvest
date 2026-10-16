@@ -14,7 +14,7 @@ from apps.harvest.metadata_adapters.pxweb_v1.discovery import get_pxweb_tables
 from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
 from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
 from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 
 
 class RequestAudit(logging.Handler):

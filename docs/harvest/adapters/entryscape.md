@@ -38,7 +38,6 @@ pair inference is heuristic and large deferred tables require a deliberate budge
 ## Shared interfaces
 
 [Harvesting operations](../README.md) defines collection, recovery and schedules.
-[StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.
 
 ## Stored source data

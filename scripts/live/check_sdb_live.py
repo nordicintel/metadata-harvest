@@ -13,10 +13,10 @@ from apps.harvest.metadata_adapters.sdb.client import SdbClient
 from apps.harvest.metadata_adapters.sdb.mapping import time_unit_from_swedish_label
 from apps.harvest.metadata_adapters.sdb.workflow import fetch_metadata
 from apps.harvest.storage import write
-from apps.model.validation import validate_retrieval
 from registry import ServiceBinding
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.sdb import REQUIRED_METADATA, retrieve
+from schema.validation import validate_retrieval
 
 SAMPLE = (("sv", "amning"), ("sv", "dodsorsaker"), ("en", "dodsorsaker"))
 

@@ -5,7 +5,7 @@ import copy
 import pytest
 
 from apps.harvest.metadata_adapters.riksbank import mapping, source
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 from tests.support.riksbank import API, RECORDED, fixture_key
 
 GROUPS = RECORDED[fixture_key(f"{API}/swea/v1/Groups")]

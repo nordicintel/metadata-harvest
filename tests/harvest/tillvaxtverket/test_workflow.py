@@ -105,7 +105,7 @@ def data(tmp_path):
 
 
 def test_bootstrap_stores_six_datasets_with_label_files(data, portal):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     parsed = published(data, portal=portal)
     assert sorted(parsed) == sorted(key(name) for name in NAMES)

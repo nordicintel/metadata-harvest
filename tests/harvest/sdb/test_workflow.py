@@ -92,7 +92,7 @@ def data(seeded, tmp_path):
 
 
 def test_bootstrap_stores_raw_responses_for_both_languages(data):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     assert published(data) == {
         "sv/amning",

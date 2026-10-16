@@ -18,7 +18,7 @@ from apps.harvest.metadata_adapters.dataanalys.source import (
     resolve_link,
 )
 from apps.harvest.metadata_adapters.dataanalys.workflow import discover, fetch_metadata
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 from tests.support.dataanalys import RecordedClient, apply_synthetic
 
 GONV_COLUMNS = {

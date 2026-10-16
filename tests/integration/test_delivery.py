@@ -23,7 +23,7 @@ def test_local_documentation_links_resolve():
     documents = [
         ROOT / "README.md",
         *ROOT.glob("docs/**/*.md"),
-        *ROOT.glob("schemas/*.md"),
+        *ROOT.glob("schema/*.md"),
     ]
     documents = [
         p

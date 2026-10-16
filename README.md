@@ -44,4 +44,4 @@ datasets. Building a candidate and promoting production output are separate acti
 
 Start with the [documentation index](docs/README.md),
 [architecture](docs/architecture.md), or [source inventory](docs/configuration/inventory.md).
-Supporting schemas retain their [licence and provenance](schemas/README.md).
+The schema seeds and their [provenance](schema/README.md) live under `schema/`.

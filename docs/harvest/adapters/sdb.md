@@ -30,5 +30,4 @@ installations are different sources; do not infer their coverage from SDB subjec
 ## Shared interfaces
 
 [Harvesting operations](../README.md) defines collection, recovery and schedules.
-[StatDCAT mapping](../../model/output-contract.md) defines accepted metadata;
 [retrieval usage](../../retrieval/README.md) defines consumer calls and results.

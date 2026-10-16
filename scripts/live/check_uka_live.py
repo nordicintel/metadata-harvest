@@ -16,9 +16,9 @@ from apps.harvest.metadata_adapters.uka.client import TIMEOUT, USER_AGENT, UkaCl
 from apps.harvest.metadata_adapters.uka.source import parse_catalogue
 from apps.harvest.metadata_adapters.uka.workflow import fetch_metadata
 from apps.harvest.storage import write
-from apps.model.validation import validate_retrieval
 from registry import ServiceBinding
 from retrieval.data_adapters.uka import REQUIRED_METADATA, retrieve
+from schema.validation import validate_retrieval
 
 INDICATORS = {"15", "72", "97"}
 

@@ -12,7 +12,7 @@ from apps.harvest.metadata_adapters.sdb.mapping import (
     html_to_text,
     time_unit_from_swedish_label,
 )
-from apps.harvest.validation import validate_metadata
+from schema.validation import validate_metadata
 
 SDB_DATA = json.loads(
     (Path("tests/fixtures/sdb") / "sdb.json").read_text(encoding="utf-8")

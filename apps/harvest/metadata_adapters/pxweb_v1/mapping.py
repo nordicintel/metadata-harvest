@@ -5,8 +5,7 @@ from copy import deepcopy
 from datetime import date
 from urllib.parse import quote, urlsplit, urlunsplit
 
-from apps.harvest.validation import validate_metadata
-from apps.model.validation import validator
+from schema.validation import validate_metadata, validator
 
 
 def source_record(document: dict, adapter: str | None = None) -> dict:
@@ -72,7 +71,7 @@ def _retain_optional_source_fields(document, adapter):
     """
     retained = document["extension"][adapter].setdefault("source_fields", {})
     for _ in range(1000):
-        errors = list(validator("legacy-dataset-metadata").iter_errors(document))
+        errors = list(validator("tabular").iter_errors(document))
         if not errors:
             if not retained:
                 document["extension"][adapter].pop("source_fields")

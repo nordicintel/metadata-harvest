@@ -43,7 +43,7 @@ Open work only: bugs, fixes, features and investigations not yet done.
 - [ ] **model** Add a helper to the StatDCAT pydantic models that converts a
   StatDCAT object directly into a JSON-stat2 dataset — return a plain
   dict/JSON, not another custom model; wanted as a core capability
-  ([apps/model/](../apps/model/)).
+  (`schema/`).
 
 ## Later
 
@@ -51,4 +51,4 @@ Open work only: bugs, fixes, features and investigations not yet done.
 
 - [ ] **model** Investigate switching from `jsonschema` to `fast-jsonschema` —
   faster validation, if it supports the drafts and features we rely on
-  ([validation.py](../apps/model/validation.py)).
+  (`schema/validation.py`).

@@ -15,8 +15,8 @@ from apps.harvest.metadata_adapters.entryscape.datasets import (
     MAPPING_VERSION,
     PART_DIMENSION,
 )
-from apps.harvest.validation import validate_metadata
 from registry import ServiceBinding
+from schema.validation import validate_metadata
 
 logger = logging.getLogger("entryscape_logger")
 

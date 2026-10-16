@@ -79,7 +79,7 @@ def data(tmp_path):
 
 def test_bootstrap_stores_listings_catalogues_and_cubes(data, tmp_path):
     from apps.harvest.storage import read
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     parsed = published(data)
     assert set(parsed) == BOOTSTRAP

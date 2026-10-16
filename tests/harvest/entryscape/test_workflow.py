@@ -210,7 +210,7 @@ def data(source, tmp_path):
 
 
 def test_bootstrap_stores_tables_and_parse_groups_datasets(data):
-    from apps.harvest.validation import validate_metadata
+    from schema.validation import validate_metadata
 
     parsed = published(data)
     for document in parsed:

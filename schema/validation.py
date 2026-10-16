@@ -1,7 +1,41 @@
-"""Offline shared schema and semantic validation; requires the harvest extra."""
+"""JSON-schema loading and worker-document, provider and retrieval-result validation."""
 
-from apps.model.validation import _check
+import json
+from functools import cache
+
+from jsonschema import Draft202012Validator, FormatChecker
+
+from apps.paths import SCHEMA
 from retrieval._semantics import validate_cube
+
+NAMES = {"tabular", "provider", "retrieval-result", "source-configuration"}
+
+
+@cache
+def schema(name: str) -> dict:
+    """Load one of the bundled schemas without network resolution."""
+    if name not in NAMES:
+        raise ValueError(f"Unknown schema: {name}")
+    return json.loads(
+        SCHEMA.joinpath(name + ".schema.json").read_text(encoding="utf-8")
+    )
+
+
+@cache
+def validator(name: str) -> Draft202012Validator:
+    return Draft202012Validator(schema(name), format_checker=FormatChecker())
+
+
+def _check(name, document):
+    errors = list(validator(name).iter_errors(document))
+    if errors:
+        raise ValueError("; ".join(f"{e.json_path}: {e.message}" for e in errors[:8]))
+
+
+def validate_retrieval(document: dict, *, selection: dict) -> None:
+    """Validate an observation fragment against the caller's full selection."""
+    _check("retrieval-result", document)
+    validate_cube(document, selection=selection)
 
 
 def validate_provider(document: dict) -> None:
@@ -10,8 +44,8 @@ def validate_provider(document: dict) -> None:
 
 
 def validate_dataset(document: dict, *, adapter: str | None = None) -> None:
-    """Validate shared Dataset structure and cross-field relationships."""
-    _check("legacy-dataset-metadata", document)
+    """Validate a worker document's structure and cross-field relationships."""
+    _check("tabular", document)
     validate_cube(document)
     provider = document["extension"]["nordicintel"]["provider_code"]
     allowed = {"nordicintel", provider}

@@ -3,7 +3,7 @@
 from datetime import datetime
 
 from apps.harvest.metadata_adapters.pxweb_v1.mapping import source_record
-from apps.harvest.validation import validate_metadata as validate_shared
+from schema.validation import validate_metadata as validate_shared
 
 
 def text(value, name: str) -> str:

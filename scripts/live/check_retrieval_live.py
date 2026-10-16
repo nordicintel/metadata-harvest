@@ -15,9 +15,8 @@ from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_metadata
 from apps.harvest.storage import JsonlStore, now, write
-from apps.harvest.validation import validate_metadata
-from apps.model.validation import validate_retrieval
 from retrieval._semantics import category_codes
+from schema.validation import validate_metadata, validate_retrieval
 
 
 async def retrieve(document, adapter, interval):
