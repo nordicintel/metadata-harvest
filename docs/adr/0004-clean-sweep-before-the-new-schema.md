@@ -73,7 +73,7 @@ Tests and docs:
 | the matching and enrichment tests in `tests/portal/test_portal.py`; archive and candidate tests in `tests/publication/test_catalog.py`; the catalog branch in `tests/operations/test_outcome.py`; `apps.migrations` uses in `tests/integration/` | mixed files, StatDCAT parts removed |
 | `docs/catalog/`, `docs/model/`, `docs/migrations/` (98 MB), `docs/publication/compression-trial.json`, `docs/reference/StatDCAT-AP 3.0.0.html` and its provenance file, `docs/superpowers/plans/` | StatDCAT docs, audit ledgers, executed plans |
 
-Data, **only at step 5 below**:
+Data, **deleted at the start of the sweep branch**:
 
 | Path | Size | Why |
 | --- | --- | --- |
@@ -144,14 +144,12 @@ The remaining `schemas/` files (`provider.schema.json`, `retrieval-result.schema
 3. **Harvest lifecycle** (ADR 0001).
 4. **Schema session**: design the tabular model from `schema/tabular.schema.json`;
    rewrite each `parse.py`.
-5. **Regenerate and delete old data**: with `data/<adapter>/source/` present for
-   every adapter, run the new parse, regenerate accepted collections and goldens,
-   then delete `data/<adapter>/metadata/` and `data/catalog/`.
+5. **Regenerate**: harvest into `source/`, run the new parse, regenerate accepted
+   collections and goldens.
 
-Harvesting into `source/` is not a step of the sweep. The scheduled harvest workflows
-fill `source/` on their own cadence (the first dispatch of all twelve was 2026-10-16);
-the only thing that waits on them is step 5. Nothing under `data/` is deleted before
-every adapter has a `source/` directory and manifest.
+The sweep is done on a branch. The contents of `data/` are deleted at the start of that
+branch, so no StatDCAT artifact or earlier design survives into the new base. Source
+files are recreated by the harvest workflows after the sweep lands.
 
 ## Consequences
 
