@@ -53,13 +53,13 @@ class Session:
     def __init__(self): self.calls=[]
     def post(self, url, **kwargs):
         self.calls.append((url,kwargs)); return Response()
-distribution = {
- 'dcat:accessURL':['https://example.org/data'],
- 'ni:retrieval':{'source':{'adapter':'pxweb_v2','source_code':'scb','dataset_code':'01','language':'sv'},
-                 'dimensions':[{'code':'x','categories':['01']}], 'options':{'max_cells':1}},
- 'ni:structure':{'qb:component':[{'qb:order':1,'qb:dimension':{'dct:identifier':'x','qb:codeList':{'codes':[{'skos:notation':'01'}]}}}]}}
+document = {
+ 'id':['x'], 'size':[1], 'value':[], 'dimension':{'x':{'category':{'index':['01']}}},
+ 'extension':{'nordicintel':{'adapter':'pxweb_v2','provider_code':'scb','dataset_code':'01','language':'sv',
+                             'data_url':'https://example.org/data'},
+              'pxweb_v2':{'max_cells':1}}}
 session=Session()
-result=asyncio.run(retrieve_distribution(session,distribution,selection={'x':['01']}))
+result=asyncio.run(retrieve_distribution(session,document,selection={'x':['01']}))
 assert result['value']==[0]
 assert session.calls==[('https://example.org/data?lang=sv&outputFormat=json-stat2',{'json':{'selection':[{'variableCode':'x','valueCodes':['01']}]}})]
 assert not any(k.startswith(('apps','harvesting','metadata_harvest','pydantic','zstandard','httpx','playwright','jsonschema')) for k in sys.modules)

@@ -1,4 +1,4 @@
-"""Actual adapter requests/results through direct and catalog entry points (offline)."""
+"""Actual adapter requests/results through direct and document entry points (offline)."""
 
 import asyncio
 import importlib
@@ -6,7 +6,6 @@ from copy import deepcopy
 
 import pytest
 
-from apps.parsing.contributions import convert_dataset
 from retrieval import retrieve_distribution
 from retrieval.distribution import ADAPTERS
 
@@ -177,10 +176,8 @@ def case(adapter, scope):
     "adapter,scope",
     [(a, "municipality") for a in sorted(ADAPTERS)] + [("kolada", "ou")],
 )
-@pytest.mark.parametrize("profile,language", [(1, "sv"), (2, "en")])
-def test_dispatch_matches_direct_requests_and_observations(
-    adapter, scope, profile, language
-):
+@pytest.mark.parametrize("language", ["sv", "en"])
+def test_dispatch_matches_direct_requests_and_observations(adapter, scope, language):
     doc, selection, bodies = case(adapter, scope)
     source = doc["extension"]["nordicintel"]
     language = "sv" if adapter == "kolada" else language
@@ -188,12 +185,9 @@ def test_dispatch_matches_direct_requests_and_observations(
     source["provider_code"] = {"kolada": "kolada", "pxweb_v2": "scb"}.get(
         adapter, "fixture"
     )
-    encoded = convert_dataset(doc, adapter=adapter).dataset.distributions[0].to_jsonld()
-    encoded.pop("@context", None)
+    source["adapter"] = adapter
+    encoded = deepcopy(doc)
     encoded["unfamiliar"] = {"nested": [False, 0, ""]}
-    if profile == 1:
-        identity = encoded["ni:retrieval"]["source"]
-        identity["provider_code"] = identity.pop("source_code")
     before = deepcopy(encoded)
     module = importlib.import_module(f"retrieval.data_adapters.{adapter}")
     metadata = {}

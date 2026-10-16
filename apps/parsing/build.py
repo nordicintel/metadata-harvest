@@ -1,8 +1,9 @@
 """Build and apply accepted collections from an adapter's source files.
 
 Parsing is manual and unscheduled: ``build`` reads ``data/<adapter>/source`` and
-``state``, asks the adapter's ``parse`` module for worker documents, validates them
-and writes the same accepted collections the harvest used to write. ``apply``
+``state``, asks the adapter's ``parse`` module for worker documents, stamps the adapter name
+into ``extension.nordicintel``, validates them and writes them as accepted
+collections. ``apply``
 replaces the committed collections only when they are unchanged since the build.
 Each adapter's ``parse`` module provides ``documents(store, state, providers, *,
 portal=None)`` yielding ``(key, document | Exception)`` pairs and
@@ -80,6 +81,7 @@ def build(
             counts["withheld"] += 1
             continue
         if not isinstance(item, Exception):
+            item["extension"]["nordicintel"]["adapter"] = adapter
             try:
                 validate_metadata(item, adapter=adapter)
             except Exception as error:  # the document, not the run, is at fault
@@ -99,10 +101,7 @@ def build(
         shutil.rmtree(output)
     output.mkdir(parents=True)
     written = write_metadata(
-        output,
-        documents,
-        adapter=adapter,
-        empty_providers=[provider["code"] for provider in providers],
+        output, documents, empty_providers=[provider["code"] for provider in providers]
     )
     result = {
         "adapter": adapter,

@@ -73,7 +73,10 @@ def test_build_writes_collection_and_report(tmp_path, monkeypatch):
     result = build(ADAPTER, tmp_path / "data", tmp_path / "out", providers=PROVIDERS)
     assert result["status"] == "success"
     assert result["counts"] == {"parsed": 2, "failed": 0, "withheld": 0}
-    assert {d["dct:identifier"][0] for d in collection(tmp_path / "out")} == {
+    assert {
+        d["extension"]["nordicintel"]["dataset_code"]
+        for d in collection(tmp_path / "out")
+    } == {
         "T1",
         "T2",
     }
@@ -98,7 +101,10 @@ def test_build_reports_failed_documents_and_writes_siblings(tmp_path, monkeypatc
     assert result["errors"] == [
         {"key": "scb/T2/sv", "error": "ValueError: broken mapping"}
     ]
-    assert [d["dct:identifier"][0] for d in collection(tmp_path / "out")] == ["T1"]
+    assert [
+        d["extension"]["nordicintel"]["dataset_code"]
+        for d in collection(tmp_path / "out")
+    ] == ["T1"]
 
 
 def test_build_skips_withheld_entries_and_rejects_invalid_documents(
@@ -118,7 +124,10 @@ def test_build_skips_withheld_entries_and_rejects_invalid_documents(
     result = build(ADAPTER, tmp_path / "data", tmp_path / "out", providers=PROVIDERS)
     assert result["counts"] == {"parsed": 1, "failed": 1, "withheld": 1}
     assert result["errors"][0]["key"] == "scb/T3/sv"
-    assert [d["dct:identifier"][0] for d in collection(tmp_path / "out")] == ["T1"]
+    assert [
+        d["extension"]["nordicintel"]["dataset_code"]
+        for d in collection(tmp_path / "out")
+    ] == ["T1"]
 
 
 def test_apply_refuses_changed_baseline_then_replaces(tmp_path, monkeypatch):
@@ -139,7 +148,10 @@ def test_apply_refuses_changed_baseline_then_replaces(tmp_path, monkeypatch):
     applied = apply(ADAPTER, data, out)
     assert sorted(p.name for p in metadata.iterdir()) == applied["collections"]
     assert not stale.exists()
-    assert collection(data / ADAPTER)[0]["dct:identifier"] == ["T1"]
+    assert (
+        collection(data / ADAPTER)[0]["extension"]["nordicintel"]["dataset_code"]
+        == "T1"
+    )
     assert (data / ADAPTER / "reports/parse.json").exists()
 
 
