@@ -20,6 +20,7 @@ from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write_jsonl
 from harvest import lifecycle
 from tests.support.binding import binding
+from tests.support.parsing import documents
 
 STAMP = "2026-10-08T00:00:00+00:00"
 CLOCK = datetime(2026, 10, 9, 8, tzinfo=UTC)
@@ -131,8 +132,6 @@ def seed_source(tmp_path):
 
 def load_documents(root):
     """Parsed documents keyed ``<scope>/<kpi>``."""
-    from tests.support.parsing import documents
-
     parsed = documents("kolada", root, [PROVIDER])
     return {key.split("/", 1)[1]: document for key, document in parsed.items()}
 
