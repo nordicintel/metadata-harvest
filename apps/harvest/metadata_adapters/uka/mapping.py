@@ -17,6 +17,7 @@ from retrieval._uka_export import (
     EXPORT_PARAMS,
     PROVIDER_CODE,
     TOTAL,
+    Dimension,
     Layout,
     category_code,
     read_export,
@@ -111,6 +112,65 @@ class Scan:
             )
             self.conflicts[period] = [list(key) for key in sorted(conflicting)]
         self.files[period] = PeriodFile(url, last_modified, len(cells))
+
+    def to_summary(self) -> dict[str, Any]:
+        """The JSON form stored as derived source data (exports are never kept)."""
+        if self.layout is None:
+            raise ValueError("No export was scanned")
+        return {
+            "layout": {
+                "period_column": self.layout.period_column,
+                "measure_column": self.layout.measure_column,
+                "dimensions": [
+                    {"code": d.code, "columns": list(d.columns)}
+                    for d in self.layout.dimensions
+                ],
+            },
+            "categories": [
+                {code: list(path) for code, path in categories.items()}
+                for categories in self.categories
+            ],
+            "markers": sorted(self.markers),
+            "files": {
+                period: {
+                    "url": file.url,
+                    "last_modified": file.last_modified,
+                    "rows": file.rows,
+                }
+                for period, file in self.files.items()
+            },
+            "measure_columns": dict(self.measure_columns),
+            "period_columns": dict(self.period_columns),
+            "conflicts": {k: [list(c) for c in v] for k, v in self.conflicts.items()},
+        }
+
+    @classmethod
+    def from_summary(cls, summary: dict[str, Any]) -> "Scan":
+        layout = summary["layout"]
+        return cls(
+            layout=Layout(
+                layout["period_column"],
+                layout["measure_column"],
+                tuple(
+                    Dimension(d["code"], tuple(d["columns"]))
+                    for d in layout["dimensions"]
+                ),
+            ),
+            categories=[
+                {code: tuple(path) for code, path in categories.items()}
+                for categories in summary["categories"]
+            ],
+            markers=set(summary["markers"]),
+            files={
+                period: PeriodFile(file["url"], file["last_modified"], file["rows"])
+                for period, file in summary["files"].items()
+            },
+            measure_columns=dict(summary["measure_columns"]),
+            period_columns=dict(summary["period_columns"]),
+            conflicts={
+                k: [list(c) for c in v] for k, v in summary["conflicts"].items()
+            },
+        )
 
 
 def _updated(files: dict[str, PeriodFile]) -> str | None:

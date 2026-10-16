@@ -2,14 +2,16 @@
 
 Every run reads the catalogue, each indicator's totals and every period's export
 link. An indicator whose links, source record and mapping version are unchanged
-reuses its accepted document after a HEAD check of its newest export; any change
-downloads all its exports transiently and rebuilds the document. Exports and
-observations are never stored.
+keeps its stored source entry after a HEAD check of its newest export; any change
+downloads all its exports transiently and stores the catalogue row, totals and
+links as responses plus the scan summary the mapping consumes as derived data.
+Exports and observations are never stored; an export that cannot be scanned is a
+metadata failure that keeps the stored entry.
 
 An indicator is published only while its value endpoint works in the current run
-and its document was verified within ``max_age_days``; otherwise its last good
-document is withheld in state and restored automatically when both hold again.
-Only a complete, unbounded catalogue proves an indicator's removal.
+and its entry was verified within ``max_age_days``; otherwise it is withheld in
+state while its source files remain. Only a complete, unbounded catalogue proves
+an indicator's removal. Documents are built later by ``parse``.
 """
 
 import asyncio
@@ -28,9 +30,9 @@ from apps.harvest.metadata_adapters.uka.client import UkaClient, Unreachable
 from apps.harvest.metadata_adapters.uka.mapping import (
     MAPPING_VERSION,
     Scan,
-    build_dataset,
     source_record,
 )
+from apps.harvest.metadata_adapters.uka.parse import document_from, stored_key
 from apps.harvest.metadata_adapters.uka.source import (
     Entry,
     Indicator,
@@ -38,15 +40,14 @@ from apps.harvest.metadata_adapters.uka.source import (
     parse_totals,
 )
 from apps.harvest.metadata_adapters.uka.state import (
-    COLLECTION,
+    PROVIDER_CODE,
     REPORT,
     STATE,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import Rejected, SourceStore, harvest_manifest
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
@@ -74,11 +75,20 @@ async def _all(awaitables):
         raise
 
 
-def catalogue_entries(body, errors: list) -> tuple[list[Entry], bool]:
-    """Parse rows independently; malformed or duplicate rows make it incomplete."""
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
+
+
+def catalogue_entries(
+    body, errors: list, rows: dict | None = None
+) -> tuple[list[Entry], bool]:
+    """Parse rows independently; malformed or duplicate rows make it incomplete.
+
+    ``rows`` receives each usable indicator's raw catalogue row and group.
+    """
     if not isinstance(body, dict):
         raise ValueError(f"unexpected UKÄ catalogue {str(body)[:200]!r}")
-    complete, parsed = True, {}
+    complete, parsed, raw = True, {}, {}
     for group, items in body.items():
         if not isinstance(items, list):
             logger.warning("Catalogue group %r is not a list; skipping it", group)
@@ -100,6 +110,7 @@ def catalogue_entries(body, errors: list) -> tuple[list[Entry], bool]:
                 complete = False
                 continue
             parsed.setdefault(entry.id, []).append(entry)
+            raw[entry.id] = {"group": group, "row": item}
     entries = []
     for identifier, found in parsed.items():
         if len(found) > 1:
@@ -112,6 +123,8 @@ def catalogue_entries(body, errors: list) -> tuple[list[Entry], bool]:
             complete = False
         else:
             entries.append(found[0])
+            if rows is not None:
+                rows[found[0].id] = raw[found[0].id]
     logger.info(
         "Catalogue parsed: %d usable indicators in %d groups (%s)",
         len(entries),
@@ -212,14 +225,19 @@ async def scan_exports(client, indicator_id: int, files: dict[str, str | None]):
     return scan, skipped
 
 
-async def refresh(client, entry: Entry, accepted, known: dict, *, full: bool, seen):
-    """Return ``(outcome, document, signal)`` for one indicator.
+async def refresh(
+    client, entry: Entry, catalogue: dict, stored: bool, known: dict, *, full, seen
+):
+    """Return ``(outcome, payload, signal)`` for one indicator.
 
-    Raises Unreachable when a resource retrieval depends on is unavailable; any
-    other exception is a metadata failure. ``seen`` receives the current links.
+    ``payload`` is ``{"responses", "derived"}`` for a rebuilt indicator and None
+    when the stored entry is reused. Raises Unreachable when a resource retrieval
+    depends on is unavailable; any other exception is a metadata failure. ``seen``
+    receives the current links.
     """
     try:
-        indicator = parse_totals(await client.totals(entry.id), entry.id)
+        totals = await client.totals(entry.id)
+        indicator = parse_totals(totals, entry.id)
     except LookupError as error:  # "Indicator has no datasets." and similar
         logger.warning("Indicator %s totals unavailable: %s", entry.id, error)
         raise Unreachable(str(error)) from error
@@ -242,18 +260,18 @@ async def refresh(client, entry: Entry, accepted, known: dict, *, full: bool, se
         "mapping_version": MAPPING_VERSION,
     }
     changed = [key for key, value in signal.items() if known.get(key) != value]
-    if not full and accepted is not None and not changed:
+    if not full and stored and not changed:
         logger.debug(
             "Indicator %s reused: links, source record and mapping version "
             "unchanged; checking the newest export answers HEAD",
             entry.id,
         )
         await reachable(client, files)
-        return "reused", accepted, signal
+        return "reused", None, signal
     if full:
         reason = "full run"
-    elif accepted is None:
-        reason = "no accepted document"
+    elif not stored:
+        reason = "no stored source entry"
     else:
         reason = "changed " + ", ".join(changed)
         old = known.get("files")
@@ -273,10 +291,11 @@ async def refresh(client, entry: Entry, accepted, known: dict, *, full: bool, se
         reason,
     )
     scan, skipped = await scan_exports(client, entry.id, files)
-    document = build_dataset(entry, indicator, scan)
-    validate_metadata(document, adapter="uka")
-    logger.debug("Indicator %s document validated", entry.id)
-    return "rebuilt", document, {**signal, "skipped_periods": skipped}
+    payload = {
+        "responses": {"catalogue": catalogue, "totals": totals, "links": files},
+        "derived": {"scan": scan.to_summary(), "skipped_periods": skipped},
+    }
+    return "rebuilt", payload, {**signal, "skipped_periods": skipped}
 
 
 async def discover_provider(provider: dict, *, client=None) -> list[dict]:
@@ -292,12 +311,21 @@ async def discover_provider(provider: dict, *, client=None) -> list[dict]:
 
 
 async def fetch_metadata(record: dict, *, client) -> dict:
-    """Build and validate one indicator's document from a catalogue row."""
+    """Build one indicator's document in memory (typed boundary only)."""
     logger.debug("Fetching metadata for indicator %s", record.get("id"))
-    outcome, document, _ = await refresh(
-        client, Entry(**record), None, {}, full=True, seen={}
+    entry = Entry(**record)
+    catalogue = {
+        "group": entry.group,
+        "row": {
+            "id": entry.id,
+            "name": entry.name,
+            "most_recent_url": entry.most_recent_url,
+        },
+    }
+    _, payload, _ = await refresh(
+        client, entry, catalogue, False, {}, full=True, seen={}
     )
-    return document
+    return document_from(payload["responses"], payload["derived"])
 
 
 async def run(
@@ -321,11 +349,22 @@ async def run(
         data,
         output,
     )
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - {COLLECTION, STATE, REPORT}:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published UKÄ data")
-    state, published = load_state(data), load_documents(data)
-    withheld = state["withheld"]
+    state = load_state(data)
+    output.mkdir(parents=True, exist_ok=True)
+    for relative in baseline:
+        target = output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", PROVIDER_CODE)
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        code = stored.split("/")[1]
+        status = state["indicators"].get(code, {}).get("status")
+        (withheld if status == "withheld" else published)[code] = True
     logger.info(
         "Loaded baseline: %d published, %d withheld, %d tracked indicators, "
         "state mapping version %s (current %s)",
@@ -335,11 +374,6 @@ async def run(
         state.get("mapping_version"),
         MAPPING_VERSION,
     )
-    output.mkdir(parents=True, exist_ok=True)
-    for relative in baseline:
-        target = output / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(data / relative, target)
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -368,8 +402,12 @@ async def run(
 
     try:
         progress.update(phase="discovery", current="catalogue")
-        problems = []
-        entries, complete = catalogue_entries(await connection.catalogue(), problems)
+        problems, rows = [], {}
+        catalogue_body = await connection.catalogue()
+        entries, complete = catalogue_entries(catalogue_body, problems, rows)
+        store.put_shared(
+            PROVIDER_CODE, "indicators.json", catalogue_body, retrieved_at=stamp
+        )
         for resource, error in problems:
             fail("discovery", resource, error)
         if not entries:
@@ -393,6 +431,7 @@ async def run(
             known = set(published) | set(withheld) | set(state["indicators"])
             for code in sorted(known - listed, key=int):
                 state["indicators"].pop(code, None)
+                store.remove(stored_key(code))
                 if (published.pop(code, None) or withheld.pop(code, None)) is not None:
                     counts["removed"] += 1
                     logger.info(
@@ -426,12 +465,26 @@ async def run(
                 progress.update(current=code, operation=f"refresh (attempt {attempt})")
                 info = state["indicators"].setdefault(code, {})
                 info["checked_at"] = stamp
-                accepted = published.get(code) or withheld.get(code)
+                stored = store.get(stored_key(code)) is not None
                 seen = {}
                 try:
-                    outcome, document, signal = await refresh(
-                        connection, entry, accepted, info, full=full, seen=seen
+                    outcome, payload, signal = await refresh(
+                        connection,
+                        entry,
+                        rows[entry.id],
+                        stored,
+                        info,
+                        full=full,
+                        seen=seen,
                     )
+                    if payload is not None:
+                        store.put(
+                            stored_key(code),
+                            responses=payload["responses"],
+                            derived=payload["derived"],
+                            updated=None,
+                            retrieved_at=stamp,
+                        )
                 except Unreachable as error:
                     logger.warning(
                         "Indicator %s endpoint unavailable on attempt %d: %s",
@@ -443,7 +496,7 @@ async def run(
                     failures[code] = ("endpoint", error)
                     retry.append(entry)
                     continue
-                except Exception as error:
+                except (Rejected, Exception) as error:
                     logger.warning(
                         "Indicator %s metadata failure on attempt %d: %s: %s",
                         code,
@@ -468,7 +521,7 @@ async def run(
                 counts[outcome] += 1
                 info.update(signal, verified_at=stamp, error=None)
                 info.setdefault("skipped_periods", {})
-                (withheld if code in withheld else published)[code] = document
+                (withheld if code in withheld else published)[code] = True
                 progress.update(
                     processed=counts["rebuilt"] + counts["reused"],
                     succeeded=counts["rebuilt"],
@@ -517,8 +570,9 @@ async def run(
             await connection.close()
 
     state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published)
-    logger.info("Saved %d published documents to %s", len(published), output)
+    store.save()
+    save(output, state)
+    logger.info("Saved %d published source entries to %s", len(published), output)
     status = report_status(pending=0, errors=errors)
     result = {
         "run_id": uuid4().hex,
@@ -552,11 +606,13 @@ def collect(data: Path, output: Path) -> dict:
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
     logger.info("Collecting UKÄ artifact %s into %s", output, data)
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         raise ValueError("Stale UKÄ artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("UKÄ artifact checksum mismatch")
-    if set(result["manifest"]) != {COLLECTION, STATE, REPORT}:
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         raise ValueError("Unexpected UKÄ artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -566,5 +622,9 @@ def collect(data: Path, output: Path) -> dict:
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
         logger.debug("Applied %s", relative)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
+            logger.debug("Removed %s", relative)
     logger.info("Collected %d UKÄ files", len(result["manifest"]))
     return result

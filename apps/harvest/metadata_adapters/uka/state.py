@@ -1,50 +1,27 @@
-"""Published UKÄ collection and compact per-indicator state."""
+"""Compact per-indicator UKÄ state next to the per-indicator source files."""
 
 import gzip
 import json
 from pathlib import Path
 
-from apps.harvest.accepted import (
-    collection_name,
-    contribution_documents,
-    write_metadata,
-)
 from apps.harvest.storage import write_jsonl
-from apps.model.models import Dataset
 
-COLLECTION = "metadata/" + collection_name("uka")
+PROVIDER_CODE = "uka"
 STATE = "state/current.jsonl.gz"
 REPORT = "reports/latest.json"
 
 
-def records(path: Path):
-    if path.exists():
-        with gzip.open(path, "rt", encoding="utf-8") as stream:
-            for line in stream:
-                value = json.loads(line)
-                if value.get("@type") == "dcat:Dataset":
-                    yield from contribution_documents(Dataset.from_jsonld(value))
-                else:
-                    yield value
-
-
-def load_documents(root: Path) -> dict:
-    """Published documents keyed by dataset code (the indicator id)."""
-    return {
-        d["extension"]["nordicintel"]["dataset_code"]: d
-        for d in records(Path(root) / COLLECTION)
-    }
-
-
 def load_state(root: Path) -> dict:
-    return next(
-        records(Path(root) / STATE),
-        {"mapping_version": None, "indicators": {}, "withheld": {}},
-    )
+    path = Path(root) / STATE
+    if not path.exists():
+        return {"mapping_version": None, "indicators": {}}
+    with gzip.open(path, "rt", encoding="utf-8") as stream:
+        state = json.loads(stream.readline())
+    # Documents are no longer kept in state; the source files remain.
+    state.pop("withheld", None)
+    state.setdefault("indicators", {})
+    return state
 
 
-def save(root: Path, state: dict, documents: dict) -> None:
-    write_metadata(
-        Path(root), documents.values(), adapter="uka", empty_providers=["uka"]
-    )
+def save(root: Path, state: dict) -> None:
     write_jsonl(Path(root) / STATE, [state])

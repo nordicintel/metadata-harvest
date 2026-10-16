@@ -8,15 +8,14 @@ from urllib.parse import urlencode
 import pytest
 
 from apps.harvest.metadata_adapters.uka.client import ExportFile, Unreachable
-from apps.harvest.metadata_adapters.uka.state import (
-    COLLECTION,
-    load_documents,
-    load_state,
-)
+from apps.harvest.metadata_adapters.uka.state import load_state
+from apps.harvest.source_store import SourceStore, harvest_manifest
+from tests.support.parsing import documents
 from tests.support.uka_support import RECORDED, UKA, export_text
 
 NOW = datetime(2026, 10, 12, 5, tzinfo=UTC)
 PROVIDER = {"code": "uka", "retry_cooldown_seconds": 0}
+MANIFEST = "source/manifest.json"
 
 
 def link_key(indicator, period):
@@ -98,43 +97,63 @@ def execute(source, data, output, *, clock=NOW, **options):
     return result
 
 
+def load_documents(data, *, include_withheld=False):
+    """Parsed documents keyed by indicator id."""
+    parsed = documents("uka", data, [PROVIDER], include_withheld=include_withheld)
+    return {key.split("/", 1)[1]: document for key, document in parsed.items()}
+
+
+def store(data):
+    return SourceStore(data / "source", "uka")
+
+
+def stable(data):
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
+
+
 @pytest.fixture
 def data(tmp_path):
     """Published data after a bootstrap run from an empty directory."""
-    root = tmp_path / "data"
+    root = tmp_path / "data" / "uka"
     result = execute(Source(), root, tmp_path / "bootstrap")
     assert result["status"] == "success"
     assert result["counts"]["rebuilt"] == 2
     return root
 
 
-def test_bootstrap_publishes_valid_documents(data):
+def test_bootstrap_stores_links_and_scan_summaries_not_exports(data):
     from apps.harvest.validation import validate_metadata
 
-    documents = load_documents(data)
-    assert set(documents) == {"67", "72"}
-    for document in documents.values():
+    parsed = load_documents(data)
+    assert set(parsed) == {"67", "72"}
+    for document in parsed.values():
         validate_metadata(document, adapter="uka")
         assert document["extension"]["uka"]["source_record"]["catalogue"]["id"]
     state = load_state(data)
     assert {i["status"] for i in state["indicators"].values()} == {"published"}
-    assert state["withheld"] == {}
+    assert "withheld" not in state
+    envelope = store(data).get("uka/72/sv")
+    assert set(envelope["responses"]) == {"catalogue", "totals", "links"}
+    assert envelope["responses"]["catalogue"]["row"]["id"] == 72
+    assert set(envelope["derived"]) == {"scan", "skipped_periods"}
+    assert envelope["derived"]["scan"]["files"]
+    assert not list((data / "source").rglob("*.csv"))
+    assert store(data).get_shared("uka", "indicators.json")
+    assert not (data / "metadata").exists()
 
 
-def test_unchanged_rerun_downloads_nothing_and_is_byte_identical(
-    data, tmp_path, monkeypatch
-):
-    before = (data / COLLECTION).read_bytes()
-    monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.uka.workflow.validate_metadata",
-        lambda *a, **k: pytest.fail("Unchanged indicators must not be rebuilt"),
-    )
+def test_unchanged_rerun_downloads_nothing_and_is_byte_identical(data, tmp_path):
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
     source = Source()
     result = execute(source, data, tmp_path / "rerun")
     assert result["counts"]["reused"] == 2
     assert source.downloads == []
     assert len(source.heads) == 2
-    assert (data / COLLECTION).read_bytes() == before
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
 
 
 def test_changed_link_rebuilds_only_that_indicator(data, tmp_path):
@@ -144,6 +163,7 @@ def test_changed_link_rebuilds_only_that_indicator(data, tmp_path):
     assert result["counts"] == {**result["counts"], "rebuilt": 1, "reused": 1}
     assert new in source.downloads
     assert all("andel-disputerade" not in url for url in source.downloads)  # 67
+    assert new in store(data).get("uka/72/sv")["responses"]["links"].values()
     files = load_documents(data)["72"]["extension"]["uka"]["files"]
     assert new in {file["url"] for file in files.values()}
 
@@ -168,9 +188,9 @@ def test_unreachable_indicator_is_withheld_then_restored(data, tmp_path):
     assert result["counts"]["withheld"] == 1
     assert set(load_documents(data)) == {"67"}
     state = load_state(data)
-    assert state["withheld"]["72"] == before
     assert state["indicators"]["72"]["status"] == "withheld"
     assert state["indicators"]["72"]["error"]["stage"] == "endpoint"
+    assert load_documents(data, include_withheld=True)["72"] == before
 
     source = Source()
     result = execute(source, data, tmp_path / "recovered")
@@ -178,7 +198,6 @@ def test_unreachable_indicator_is_withheld_then_restored(data, tmp_path):
     assert result["counts"]["restored"] == 1
     assert source.downloads == []
     assert load_documents(data)["72"] == before
-    assert load_state(data)["withheld"] == {}
 
 
 def test_transient_outage_recovered_by_retry_pass(data, tmp_path):
@@ -199,7 +218,7 @@ def test_transient_outage_recovered_by_retry_pass(data, tmp_path):
     assert set(load_documents(data)) == {"67", "72"}
 
 
-def test_processing_failure_keeps_document_until_it_is_stale(data, tmp_path):
+def test_unreadable_export_keeps_stored_scan_until_it_is_stale(data, tmp_path):
     before = load_documents(data)["67"]
     source = Source()
     source.replace_newest(67, text="not;a\nvalid;export;row\n")
@@ -226,6 +245,7 @@ def test_complete_catalogue_removes_and_incomplete_catalogue_keeps(data, tmp_pat
     assert result["counts"]["removed"] == 1
     assert set(load_documents(data)) == {"67"}
     assert "72" not in load_state(data)["indicators"]
+    assert "uka/72/sv" not in store(data).entries()
 
 
 def test_catalogue_failure_publishes_nothing(data, tmp_path):
@@ -233,10 +253,10 @@ def test_catalogue_failure_publishes_nothing(data, tmp_path):
 
     source = Source()
     source.catalogue_error = Unreachable("UKÄ is down")
-    before = (data / COLLECTION).read_bytes()
+    before = harvest_manifest(data)
     with pytest.raises(Unreachable):
         asyncio.run(run(PROVIDER, data, tmp_path / "out", client=source, clock=NOW))
-    assert (data / COLLECTION).read_bytes() == before
+    assert harvest_manifest(data) == before
 
 
 def test_bounded_run_touches_only_selected(data, tmp_path):
