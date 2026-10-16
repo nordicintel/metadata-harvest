@@ -28,6 +28,9 @@ updates preserve stored source entries; complete discovery is required to establ
 removal. Checkpoints retain existing task identities. Historical profile readers do
 not execute migration commands.
 
+Decisions that change module boundaries are recorded under [docs/adr/](adr/);
+[ADR 0001](adr/0001-harvest-adapter-contract.md) defines the harvest adapter contract.
+
 ## Dependencies and data flow
 
 ```text
