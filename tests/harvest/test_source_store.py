@@ -200,3 +200,28 @@ def test_unchanged_put_keeps_retrieved_at_and_bytes(tmp_path):
     again.save()
     assert again.get(key)["retrieved_at"] == "later"
     assert again.entries()[key]["retrieved_at"] == "later"
+
+
+def test_put_normalises_tuples_to_json_lists(tmp_path):
+    store = _store(tmp_path)
+    key = source_key("smhi", "x", "sv")
+    store.put(
+        key,
+        responses={"probe": {"years": (2020, 2021)}},
+        derived={"listed_in": ("1.1", "2.3")},
+        updated=None,
+        retrieved_at=STAMP,
+    )
+    store.save()
+    envelope = _store(tmp_path).get(key)
+    assert envelope["responses"] == {"probe": {"years": [2020, 2021]}}
+    assert envelope["derived"] == {"listed_in": ["1.1", "2.3"]}
+    again = _store(tmp_path)
+    again.put(
+        key,
+        responses={"probe": {"years": (2020, 2021)}},
+        derived={"listed_in": ("1.1", "2.3")},
+        updated=None,
+        retrieved_at="later",
+    )
+    assert again.get(key)["retrieved_at"] == STAMP

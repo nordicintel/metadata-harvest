@@ -3,16 +3,18 @@
 One ``getfilteroptions/`` request discovers the sector tree and the substances; it
 failing fails the whole run, which then publishes nothing. Each substance's national
 ``getdata`` probe supplies its years and submission round and is its endpoint check.
-A full run is 30 requests, so every run rebuilds every substance; an identical
-rebuild keeps its accepted bytes. A substance is published only while its probe
-answers and its document was verified within ``max_age_days``; otherwise its last
-good document is withheld in state. Only a complete tree in an unbounded run proves
-a substance's removal.
+A full run is 30 requests, so every run refetches every substance; an identical
+probe keeps its stored bytes. The tree is stored as a shared source file and each
+probe as its substance's envelope. A substance is published only while its probe
+answers and its entry was verified within ``max_age_days``; otherwise it is
+withheld in state while its source files remain. Only a complete tree in an
+unbounded run proves a substance's removal. Documents are built later by ``parse``.
 """
 
 import asyncio
 import logging
 import shutil
+from dataclasses import asdict
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
@@ -41,13 +43,17 @@ from apps.harvest.metadata_adapters.smhi_emissions.state import (
     PROVIDER_CODE,
     REPORT,
     STATE,
-    collection,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import (
+    Rejected,
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 from retrieval.data_adapters.smhi_emissions import DATASET_PREFIX
@@ -59,27 +65,42 @@ COUNTS = ("rebuilt", "unchanged", "failed", "withheld", "restored", "removed")
 logger = logging.getLogger("smhi_emissions_logger")
 
 
-async def build_substance(client, substance: Substance, options: FilterOptions):
-    """Probe one substance and return its validated document and submission.
+def stored_key(key: str) -> str:
+    """The source-store key of a ``<language>/<dataset_code>`` state key."""
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def state_key(key: str) -> str:
+    _, code, language = split_key(key)
+    return f"{language}/{code}"
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
+
+
+def submission_of(body) -> int | None:
+    """``primary_submission`` read straight from the probe body, else None."""
+    value = body.get("primary_submission") if isinstance(body, dict) else None
+    return value if isinstance(value, int) and not isinstance(value, bool) else None
+
+
+async def probe_substance(client, substance: Substance):
+    """The raw national probe body of one substance.
 
     Raises:
         Unreachable: The probe failed (an endpoint failure).
-        Exception: Any other error is a metadata failure; the probe answered.
     """
     logger.debug("Probing substance %s (%s)", substance.code, substance.long_name)
-    body = await client.get_json(DATA_URL, probe_parameters(substance.code))
+    return await client.get_json(DATA_URL, probe_parameters(substance.code))
+
+
+async def build_substance(client, substance: Substance, options: FilterOptions):
+    """Probe one substance and build its document in memory (typed boundary)."""
+    body = await probe_substance(client, substance)
     probe = parse_probe(body, options, substance.code)
-    document = build_dataset(substance, options, probe)
-    validate_metadata(document, adapter=ADAPTER)
-    logger.debug(
-        "Validated %s: %d years %s-%s, submission %s",
-        substance.code,
-        len(probe.years),
-        probe.years[0],
-        probe.years[-1],
-        probe.submission,
-    )
-    return document, probe.submission
+    return build_dataset(substance, options, probe), probe.submission
 
 
 async def discover_provider(provider: dict, *, client=None) -> list[dict]:
@@ -163,7 +184,7 @@ async def run(
     subjects=None,
     languages=None,
 ) -> dict:
-    """Rebuild every (or each selected) substance into a separate worker output."""
+    """Refetch every (or each selected) substance into a separate worker output."""
     data, output = Path(data), Path(output)
     if data.resolve() == output.resolve() or data.resolve() in output.resolve().parents:
         raise ValueError("Worker output must be separate from published data")
@@ -173,18 +194,22 @@ async def run(
     selected_languages = list(languages or configured)
     if set(selected_languages) - set(configured):
         raise ValueError(f"Unconfigured SMHI emissions languages: {selected_languages}")
-    allowed = {STATE, REPORT, *(collection(language) for language in configured)}
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - allowed:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published SMHI emissions data")
     state = load_state(data)
-    published = load_documents(data, configured)
-    withheld = state["withheld"]
     output.mkdir(parents=True, exist_ok=True)
     for relative in baseline:
         target = output / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", ADAPTER)
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        key = state_key(stored)
+        status = state["datasets"].get(key, {}).get("status")
+        (withheld if status == "withheld" else published)[key] = True
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -200,7 +225,7 @@ async def run(
         cooldown,
     )
     logger.info(
-        "Baseline: %d published documents, %d withheld, %d state entries, %d files "
+        "Baseline: %d published entries, %d withheld, %d state entries, %d files "
         "copied to the worker output",
         len(published),
         len(withheld),
@@ -256,15 +281,15 @@ async def run(
     try:
         progress.update(phase="discovery", current="filteroptions")
         try:
-            options = parse_filter_options(
-                await connection.get_json(FILTER_OPTIONS_URL)
-            )
+            tree = await connection.get_json(FILTER_OPTIONS_URL)
+            options = parse_filter_options(tree)
             if not options.substances and not options.quarantined:
                 raise ValueError("getfilteroptions lists no substances")
         except Exception as error:
             fail("discovery", "filteroptions", error, record=False)
             logger.error("Discovery failed; the run publishes nothing")
             raise
+        store.put_shared(PROVIDER_CODE, "filteroptions.json", tree, retrieved_at=stamp)
         logger.info(
             "Discovered %d sectors and %d substances; %d quarantined, %d malformed "
             "entries; tree complete=%s",
@@ -296,6 +321,7 @@ async def run(
             )
             for key in gone:
                 state["datasets"].pop(key, None)
+                store.remove(stored_key(key))
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
                     logger.info("Removed %s: substance no longer listed", key)
@@ -327,7 +353,7 @@ async def run(
 
         logger.info(
             "Probing %d of %d candidate datasets (%d quarantined skipped); every "
-            "selected substance is rebuilt, nothing is skipped as unchanged",
+            "selected substance is refetched, nothing is skipped as unchanged",
             len(pending),
             len(settled),
             len(settled) - len(pending),
@@ -341,9 +367,7 @@ async def run(
                 info = state["datasets"][key]
                 url = f"{DATA_URL}?{urlencode(probe_parameters(substance.code))}"
                 try:
-                    document, submission = await build_substance(
-                        connection, substance, options
-                    )
+                    body = await probe_substance(connection, substance)
                 except Unreachable as error:
                     logger.warning(
                         "Probe of %s unreachable on attempt %d; %s",
@@ -366,13 +390,24 @@ async def run(
                     progress.update(failed=len(failures))
                     retry.append((key, substance))
                     continue
-                except Exception as error:  # the probe answered: endpoint works
-                    logger.warning(
-                        "Probe of %s answered but the metadata was rejected; "
-                        "not retried",
-                        key,
+                working[key] = True  # the probe answered: endpoint works
+                submission = submission_of(body)
+                stored = store.get(stored_key(key))
+                try:
+                    store.put(
+                        stored_key(key),
+                        responses={"getdata": body},
+                        derived={"substance": asdict(substance)},
+                        updated=submission,
+                        retrieved_at=stamp,
                     )
-                    working[key], failures[key] = True, ("metadata", error)
+                except Rejected as error:
+                    logger.warning(
+                        "Probe of %s answered but is not storable (%s); not retried",
+                        key,
+                        error,
+                    )
+                    failures[key] = ("metadata", error)
                     fail(
                         "metadata",
                         key,
@@ -385,21 +420,20 @@ async def run(
                     progress.update(failed=len(failures))
                     continue
                 failures.pop(key, None)
-                working[key] = True
                 submissions[substance.code] = submission
-                accepted = published.get(key) or withheld.get(key)
-                outcome = "unchanged" if document == accepted else "rebuilt"
+                unchanged = stored is not None and stored["responses"] == {
+                    "getdata": body
+                }
+                outcome = "unchanged" if unchanged else "rebuilt"
                 counts[outcome] += 1
-                logger.debug(
-                    "Accepted %s: %s (submission %s)", key, outcome, submission
-                )
+                logger.debug("Stored %s: %s (submission %s)", key, outcome, submission)
                 info.update(
                     verified_at=stamp,
                     mapping_version=MAPPING_VERSION,
                     submission=submission,
                     error=None,
                 )
-                (withheld if key in withheld else published)[key] = document
+                (withheld if key in withheld else published)[key] = True
                 progress.update(
                     processed=counts["rebuilt"] + counts["unchanged"],
                     succeeded=counts["rebuilt"] + counts["unchanged"],
@@ -434,7 +468,7 @@ async def run(
         progress.update(failed=counts["failed"])
         logger.info(
             "Settling %d datasets: published only when the probe answered and the "
-            "document was verified within %d days",
+            "entry was verified within %d days",
             len(settled),
             max_age.days,
         )
@@ -458,7 +492,7 @@ async def run(
                     info.get("verified_at"),
                 )
             elif info.get("status") == "missing":
-                logger.warning("No accepted document exists for %s", key)
+                logger.warning("No stored source entry exists for %s", key)
             else:
                 logger.debug("Settled %s as %s", key, info.get("status"))
     finally:
@@ -466,7 +500,8 @@ async def run(
             await connection.close()
 
     state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published, configured)
+    store.save()
+    save(output, state)
     status = report_status(pending=0, errors=errors)
     result = {
         "run_id": uuid4().hex,
@@ -512,13 +547,14 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         result.get("status"),
         len(result.get("manifest") or ()),
     )
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         logger.error("Published baseline changed since the run; refusing to collect")
         raise ValueError("Stale SMHI emissions artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("SMHI emissions artifact checksum mismatch")
-    allowed = {STATE, REPORT, *(collection(language) for language in languages)}
-    if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         raise ValueError("Unexpected SMHI emissions artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -528,5 +564,9 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
         logger.debug("Applied %s", relative)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
+            logger.debug("Removed %s", relative)
     logger.info("Applied %d files to the published data", len(result["manifest"]))
     return result

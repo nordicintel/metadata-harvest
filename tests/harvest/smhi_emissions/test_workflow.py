@@ -11,10 +11,11 @@ import pytest
 from apps.harvest.metadata_adapters.smhi_emissions.api import FILTER_OPTIONS_URL
 from apps.harvest.metadata_adapters.smhi_emissions.client import Unreachable
 from apps.harvest.metadata_adapters.smhi_emissions.state import (
-    collection,
-    load_documents,
+    PROVIDER_CODE,
     load_state,
 )
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.parsing import documents
 from tests.support.smhi_emissions import (
     RecordedClient,
     fixture_key,
@@ -25,6 +26,7 @@ from tests.support.smhi_emissions import (
 NOW = datetime(2026, 11, 3, 7, 30, tzinfo=UTC)
 PROVIDER = {"code": "smhi", "languages": ["sv"], "retry_cooldown_seconds": 0}
 LISTING = fixture_key(FILTER_OPTIONS_URL)
+MANIFEST = "source/manifest.json"
 
 
 class Source(RecordedClient):
@@ -54,18 +56,34 @@ def execute(source, data, output, **options):
     return result
 
 
-def published(data):
-    return load_documents(data, ["sv"])
+def published(data, *, include_withheld=False):
+    return documents(
+        "smhi_emissions", data, [PROVIDER], include_withheld=include_withheld
+    )
 
 
 def key(code):
     return f"sv/emissionsdatabasen_{code}"
 
 
+def stored_key(code):
+    return source_key(PROVIDER_CODE, f"emissionsdatabasen_{code}", "sv")
+
+
+def store(data):
+    return SourceStore(data / "source", "smhi_emissions")
+
+
+def stable(data):
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
+
+
 @pytest.fixture(scope="module")
 def bootstrapped(tmp_path_factory):
     base = tmp_path_factory.mktemp("bootstrap")
-    root = base / "data"
+    root = base / "data" / "smhi_emissions"
     result = execute(Source(), root, base / "bootstrap")
     assert result["status"] == "success", result["errors"]
     assert result["counts"]["rebuilt"] == len(published(root)) == 29
@@ -75,17 +93,22 @@ def bootstrapped(tmp_path_factory):
 @pytest.fixture
 def data(bootstrapped, tmp_path):
     """A private copy of the bootstrapped published data."""
-    return Path(shutil.copytree(bootstrapped, tmp_path / "data"))
+    return Path(shutil.copytree(bootstrapped, tmp_path / "data" / "smhi_emissions"))
 
 
-def test_bootstrap_publishes_one_valid_dataset_per_substance(data):
+def test_bootstrap_stores_one_raw_probe_per_substance(data):
     from apps.harvest.validation import validate_metadata
 
-    documents = published(data)
-    assert set(documents) == {key(code) for code in substances()}
-    for document in documents.values():
+    parsed = published(data)
+    assert set(parsed) == {key(code) for code in substances()}
+    for document in parsed.values():
         validate_metadata(document, adapter="smhi_emissions")
     assert load_state(data)["datasets"][key("CO2")]["submission"] == 2026
+    envelope = store(data).get(stored_key("CO2"))
+    assert set(envelope["responses"]) == {"getdata"}
+    assert envelope["updated"] == 2026
+    assert store(data).get_shared(PROVIDER_CODE, "filteroptions.json")
+    assert not (data / "metadata").exists()
 
 
 def test_bootstrap_requests_listing_then_one_probe_per_substance(tmp_path):
@@ -95,11 +118,13 @@ def test_bootstrap_requests_listing_then_one_probe_per_substance(tmp_path):
 
 
 def test_rerun_is_byte_identical_and_unchanged(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
     result = execute(Source(), data, tmp_path / "rerun")
     assert result["counts"]["rebuilt"] == 0
     assert result["counts"]["unchanged"] == 29
-    assert (data / collection("sv")).read_bytes() == before
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
 
 
 def test_failing_probe_is_withheld_then_restored(data, tmp_path):
@@ -116,31 +141,34 @@ def test_failing_probe_is_withheld_then_restored(data, tmp_path):
     assert result["errors"][0]["url"].endswith("sub=NOx")
     assert result["counts"]["withheld"] == 1
     assert key("NOx") not in published(data)
-    assert load_state(data)["withheld"][key("NOx")] == before
+    state = load_state(data)
+    assert "withheld" not in state
+    assert state["datasets"][key("NOx")]["status"] == "withheld"
+    assert published(data, include_withheld=True)[key("NOx")] == before
 
     result = execute(Source(), data, tmp_path / "back")
     assert result["counts"]["restored"] == 1
     assert published(data)[key("NOx")] == before
 
 
-def test_unknown_sector_label_keeps_document_until_stale(data, tmp_path):
+def test_unknown_sector_label_is_stored_and_fails_at_parse(data, tmp_path):
     """Synthetic: the CO2 probe names a sector the tree does not have."""
-    before = published(data)
+    from apps.parsing.build import build
+
     source = Source()
     probe = source.responses[probe_key("CO2")]["data"]["Koldioxid (CO2)"]
     probe["Rymdfart"] = probe["Transporter"]
     result = execute(source, data, tmp_path / "unknown-label")
-    assert [(e["stage"], e["resource"]) for e in result["errors"]] == [
-        ("metadata", key("CO2"))
-    ]
-    assert "Rymdfart" in result["errors"][0]["error"]
-    assert published(data) == before
-
-    later = NOW + timedelta(days=61)
-    result = execute(source, data, tmp_path / "stale", clock=later)
-    assert key("CO2") not in published(data)
-    assert load_state(data)["datasets"][key("CO2")]["withheld_reason"] == "stale"
-    assert result["counts"]["withheld"] == 1
+    assert result["status"] == "success"  # the harvest stores what SMHI returned
+    assert store(data).get(stored_key("CO2"))["responses"]["getdata"]["data"][
+        "Koldioxid (CO2)"
+    ]["Rymdfart"]
+    parsed = build(
+        "smhi_emissions", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+    )
+    assert [e["key"] for e in parsed["errors"]] == [stored_key("CO2")]
+    assert "Rymdfart" in parsed["errors"][0]["error"]
+    assert parsed["counts"]["parsed"] == 28
 
 
 def test_malformed_substance_row_before_later_valid_rows(data, tmp_path):
@@ -161,10 +189,10 @@ def test_malformed_substance_row_before_later_valid_rows(data, tmp_path):
 def test_listing_failure_publishes_nothing(data, tmp_path):
     source = Source()
     source.failing = {LISTING}
-    before = (data / collection("sv")).read_bytes()
+    before = harvest_manifest(data)
     with pytest.raises(Unreachable):
         start(source, data, tmp_path / "out")
-    assert (data / collection("sv")).read_bytes() == before
+    assert harvest_manifest(data) == before
     assert not (tmp_path / "out" / "result.json").exists()
 
 
@@ -195,7 +223,7 @@ def test_discovery_failure_is_reported_live_before_raise(
     assert not (tmp_path / "out" / "result.json").exists()
 
 
-@pytest.mark.parametrize("stage", ["endpoint", "metadata"])
+@pytest.mark.parametrize("stage", ["endpoint"])
 def test_failed_probe_is_reported_before_valid_sibling(
     data, tmp_path, monkeypatch, stage
 ):
@@ -292,6 +320,7 @@ def test_removal_only_in_an_unbounded_run_with_a_complete_tree(data, tmp_path):
     assert result["counts"]["removed"] == 1
     assert key("Se") not in published(data)
     assert key("Se") not in load_state(data)["datasets"]
+    assert stored_key("Se") not in store(data).entries()
 
 
 def test_bounded_run_touches_only_selected(data, tmp_path):

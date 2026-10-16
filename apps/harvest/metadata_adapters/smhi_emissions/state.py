@@ -1,60 +1,27 @@
-"""Published SMHI emissions collection (Swedish) and compact per-dataset state."""
+"""Compact per-dataset SMHI emissions state next to the per-dataset source files."""
 
 import gzip
 import json
 from pathlib import Path
 
-from apps.harvest.accepted import (
-    collection_name,
-    contribution_documents,
-    write_metadata,
-)
 from apps.harvest.storage import write_jsonl
-from apps.model.models import Dataset
 
 PROVIDER_CODE = "smhi"
 STATE = "state/current.jsonl.gz"
 REPORT = "reports/latest.json"
 
 
-def collection(language: str) -> str:
-    return "metadata/" + collection_name(PROVIDER_CODE)
-
-
-def records(path: Path):
-    if path.exists():
-        with gzip.open(path, "rt", encoding="utf-8") as stream:
-            for line in stream:
-                value = json.loads(line)
-                if value.get("@type") == "dcat:Dataset":
-                    yield from contribution_documents(Dataset.from_jsonld(value))
-                else:
-                    yield value
-
-
-def load_documents(root: Path, languages) -> dict:
-    """Published documents keyed ``<language>/<dataset_code>``."""
-    documents = {}
-    for language in languages:
-        for document in records(Path(root) / collection(language)):
-            shared = document["extension"]["nordicintel"]
-            documents[f"{shared['language']}/{shared['dataset_code']}"] = document
-    return documents
-
-
 def load_state(root: Path) -> dict:
-    return next(
-        records(Path(root) / STATE),
-        {"mapping_version": None, "datasets": {}, "withheld": {}},
-    )
+    path = Path(root) / STATE
+    if not path.exists():
+        return {"mapping_version": None, "datasets": {}}
+    with gzip.open(path, "rt", encoding="utf-8") as stream:
+        state = json.loads(stream.readline())
+    # Documents are no longer kept in state; the source files remain.
+    state.pop("withheld", None)
+    state.setdefault("datasets", {})
+    return state
 
 
-def save(root: Path, state: dict, documents: dict, languages) -> None:
-    """Write every configured language's collection, even when it is empty."""
-    write_metadata(
-        Path(root),
-        documents.values(),
-        adapter="smhi_emissions",
-        empty_providers=[PROVIDER_CODE],
-    )
+def save(root: Path, state: dict) -> None:
     write_jsonl(Path(root) / STATE, [state])

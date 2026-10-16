@@ -57,11 +57,12 @@ def harvest_manifest(data: Path) -> dict:
     }
 
 
-def _check(name: str, body) -> None:
-    if body is None or body == "" or body == [] or body == {}:
+def _check(name: str, body):
+    """Reject empty or unserialisable bodies; return the JSON-normalised body."""
+    if body is None or body == "" or body == [] or body == {} or body == ():
         raise Rejected(f"Empty response for {name}")
     try:
-        json.dumps(body, ensure_ascii=False, allow_nan=False)
+        return json.loads(json.dumps(body, ensure_ascii=False, allow_nan=False))
     except (TypeError, ValueError) as error:
         raise Rejected(f"Unserialisable response for {name}: {error}") from error
 
@@ -142,12 +143,14 @@ class SourceStore:
     ) -> None:
         if not responses:
             raise Rejected(f"No responses for {key}")
-        for name, body in responses.items():
-            _check(f"{key} {name}", body)
+        responses = {
+            name: _check(f"{key} {name}", body) for name, body in responses.items()
+        }
         for name, text in (files or {}).items():
             if not isinstance(text, str) or not text:
                 raise Rejected(f"Empty companion file {name} for {key}")
-        _check(key, {"derived": derived or {}, "updated": updated})
+        extra = _check(key, {"derived": derived or {}, "updated": updated})
+        derived, updated = extra["derived"], extra["updated"]
         provider, code, language = split_key(key)
         previous = self.get(key)
         if (
@@ -199,7 +202,7 @@ class SourceStore:
         return self._read(f"{provider_code}/{SHARED}/{name}")
 
     def put_shared(self, provider_code: str, name: str, body, *, retrieved_at: str):
-        _check(f"{provider_code}/{name}", body)
+        body = _check(f"{provider_code}/{name}", body)
         relative = f"{provider_code}/{SHARED}/{name}"
         self._pending[relative] = body
         self.manifest["shared"][relative] = {"retrieved_at": retrieved_at}
