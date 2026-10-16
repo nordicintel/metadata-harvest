@@ -1,6 +1,19 @@
 # ADR 0003: One registry owns source identity
 
-Status: accepted (2026-10-16)
+Status: accepted with retractions (2026-10-16)
+
+> **Retracted the same day, before implementation.** The following parts added
+> complexity for callers that ADR 0004 deletes, and are withdrawn: splitting
+> riksbank into two service bindings and two catalogs; giving the two EntryScape
+> tenants their own bindings; `aliases` on organisations and `owner_by_name`;
+> `recognise(url)` (its only callers were catalog enrichment, matching and
+> filtering, all deleted); and fixing the `mint` rule now (identifiers are
+> redesigned with the new schema). What stands: one root-level `registry/` that
+> loads and validates the three inventories, returns typed `ServiceBinding`s per
+> adapter, and replaces `apps/configuration.py`, `apps/model/configuration.py` and
+> `apps/harvest/sources.py`. Catalog `scopes` and the riksbank regex are deleted
+> with their callers, not re-expressed. The implementing agent plans the exact
+> interface from the callers that remain after the sweep.
 
 ## In one paragraph
 
