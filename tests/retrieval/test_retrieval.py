@@ -282,3 +282,59 @@ def test_synthetic_axis_requires_native_and_harvested_elimination_evidence(evide
     else:
         with pytest.raises(ValueError):
             _fragment(response, {"x": ["a"]}, {}, *([harvested] if harvested else []))
+
+
+def test_missing_json_stat2_falls_back_to_converted_json_stat(monkeypatch):
+    import retrieval._jsonstat as jsonstat
+    from retrieval.data_adapters.pxweb_v1 import retrieve
+
+    monkeypatch.setattr(jsonstat, "JSONSTAT1_HOSTS", set())
+
+    async def run():
+        formats = []
+
+        async def handler(request):
+            if request.method == "GET":
+                return web.json_response({"variables": []})
+            fmt = (await request.json())["response"]["format"]
+            formats.append(fmt)
+            if fmt == "json-stat2":
+                return web.Response(status=404)
+            dimension = {
+                "x": {"category": {"index": {"a": 0, "b": 1}}},
+                "id": ["x"],
+                "size": [2],
+                "role": {},
+            }
+            return web.json_response(
+                {"dataset": {"dimension": dimension, "value": [1, None]}}
+            )
+
+        app = web.Application()
+        app.router.add_route("*", "/data", handler)
+        runner = web.AppRunner(app)
+        await runner.setup()
+        site = web.TCPSite(runner, "127.0.0.1", 0)
+        await site.start()
+        url = f"http://127.0.0.1:{site._server.sockets[0].getsockname()[1]}/data"
+        try:
+            async with aiohttp.ClientSession() as session:
+                for _ in range(2):
+                    result = await retrieve(
+                        session,
+                        provider_code="p",
+                        dataset_code="d",
+                        language="sv",
+                        selection={"x": ["a", "b"]},
+                        data_url=url,
+                        metadata_url=url,
+                        metadata={"/dimension": {"x": {}}},
+                    )
+                    assert result["value"] == [1, None]
+            # Only the first request probes JSON-stat2; the host is remembered.
+            assert formats == ["json-stat2", "json-stat", "json-stat"]
+            assert jsonstat.JSONSTAT1_HOSTS == {"127.0.0.1"}
+        finally:
+            await runner.cleanup()
+
+    asyncio.run(run())

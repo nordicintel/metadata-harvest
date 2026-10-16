@@ -24,10 +24,6 @@ Open work only: bugs, fixes, features and investigations not yet done.
 
 - [ ] **harvest** Re-evaluate tables previously dismissed as incompatible with
   JSON-stat2 — after the switch to StatDCAT they may now qualify for inclusion.
-- [ ] **retrieval** Support PXWeb v1 APIs without JSON-stat2 output — wrap the
-  retrieval function to recognise those organisations, request JSON-stat (v1,
-  always supported) and convert it to JSON-stat2 so the normal workflow is
-  unaware of the switch.
 - [ ] **pxweb_v1** Fix tables found at multiple paths with different variables
   (e.g. Energimyndigheten) — record multiple paths only when variables match;
   otherwise keep the most recently published/updated instance as canonical and

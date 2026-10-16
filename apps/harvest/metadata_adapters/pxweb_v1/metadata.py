@@ -10,6 +10,7 @@ from playwright.async_api import Error as PlaywrightError
 from playwright.async_api import async_playwright
 
 from apps.harvest.metadata_adapters.pxweb_v1.discovery import _retry_after
+from retrieval._jsonstat import jsonstat2, mark_jsonstat1, uses_jsonstat1
 
 logger = logging.getLogger("pxweb_v1_logger")
 _CELL_LIMIT = 10_000
@@ -395,6 +396,23 @@ def _payload(selections):
     }
 
 
+async def _post(requests, url, payload):
+    """POST for JSON-stat2, converting JSON-stat 1 where a host lacks JSON-stat2."""
+    fallback = {**payload, "response": {"format": "json-stat"}}
+    if uses_jsonstat1(url):
+        return jsonstat2(await requests.json(url, fallback))
+    try:
+        return await requests.json(url, payload)
+    except ValueError as error:
+        # GET metadata already resolved, so a 404 here rejects the output format.
+        if not str(error).startswith("HTTP 404"):
+            raise
+        sample = jsonstat2(await requests.json(url, fallback))
+        logger.info("%s lacks JSON-stat2 output; using JSON-stat", url)
+        mark_jsonstat1(url)
+        return sample
+
+
 def _project(fields, consumed, *, dimension=False):
     standard = _STANDARD | ({"category"} if dimension else set())
     result = {
@@ -538,7 +556,7 @@ async def _generate(requests, table, provider_code):
             for entry in payload["query"]:
                 if entry["code"] != recovery and selections[entry["code"]] is None:
                     entry["selection"] = {"filter": "top", "values": ["1"]}
-        sample = await requests.json(url, payload)
+        sample = await _post(requests, url, payload)
         clean, coordinates = _read_sample(sample, variables, selections, limit)
         if recovery and any(
             len(codes) != 1 for code, codes in coordinates.items() if code != recovery

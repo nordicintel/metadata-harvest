@@ -29,6 +29,9 @@ and listing fallbacks. Advance processed source timestamps only after acceptance
 - Socialstyrelsen's separate PXWeb listings do not establish SDB coverage.
 - [Excluded sources](excluded-providers.json) record explicit decisions; do not
   restore them merely because website discovery works.
+- Hosts without JSON-stat2 output (Umeå, Västerås) answer its POST with HTTP 404.
+  Metadata and retrieval POSTs then request JSON-stat and convert it to JSON-stat2
+  (`retrieval/_jsonstat.py`); detected hosts are remembered for the process.
 
 Use `scripts/live/check_pxweb_live.py` for explicit discovery checks and
 `scripts/live/check_metadata_live.py` for metadata checks. Bounded samples do not

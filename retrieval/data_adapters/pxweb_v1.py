@@ -6,6 +6,7 @@ from typing import Any
 
 import aiohttp
 
+from retrieval._jsonstat import jsonstat2, mark_jsonstat1, uses_jsonstat1
 from retrieval._selection import retrieve_selection
 
 logger = logging.getLogger("pxweb_v1_logger")
@@ -49,26 +50,42 @@ async def retrieve(
             response.raise_for_status()
             await response.read()
 
-    def request(part):
-        return {
-            "json": {
-                "query": [
-                    {
-                        "code": code,
-                        "selection": {"filter": "item", "values": list(values)},
-                    }
-                    for code, values in part.items()
-                ],
-                "response": {"format": "json-stat2"},
+    async def attempt(fmt):
+        def request(part):
+            return {
+                "json": {
+                    "query": [
+                        {
+                            "code": code,
+                            "selection": {"filter": "item", "values": list(values)},
+                        }
+                        for code, values in part.items()
+                    ],
+                    "response": {"format": fmt},
+                }
             }
-        }
 
-    return await retrieve_selection(
-        session,
-        selection=selection,
-        data_url=data_url,
-        metadata_url=metadata_url,
-        metadata=metadata,
-        adapter="pxweb_v1",
-        request=request,
-    )
+        return await retrieve_selection(
+            session,
+            selection=selection,
+            data_url=data_url,
+            metadata_url=metadata_url,
+            metadata=metadata,
+            adapter="pxweb_v1",
+            request=request,
+            parse=jsonstat2 if fmt == "json-stat" else None,
+        )
+
+    if data_url and uses_jsonstat1(data_url):
+        return await attempt("json-stat")
+    try:
+        return await attempt("json-stat2")
+    except ValueError as error:
+        # PXWeb answers an unsupported output format with HTTP 404 while the
+        # table metadata still resolves; retry once in JSON-stat 1.
+        if str(error) != "Provider rejected the selected data request":
+            raise
+        result = await attempt("json-stat")
+        logger.info("%s lacks JSON-stat2 output; using JSON-stat", data_url)
+        mark_jsonstat1(data_url)
+        return result

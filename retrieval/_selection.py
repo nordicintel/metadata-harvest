@@ -100,6 +100,7 @@ async def retrieve_selection(
     metadata: Mapping,
     adapter: str,
     request,
+    parse=None,
 ) -> dict:
     """Execute adapter-built requests and merge returned cells by their codes."""
     if not data_url:
@@ -151,6 +152,8 @@ async def retrieve_selection(
                 raise ValueError(f"Provider rejected selection: HTTP {response.status}")
             response.raise_for_status()
             payload = await response.json(content_type=None)
+        if parse is not None:
+            payload = parse(payload)
         source = metadata.get(f"/extension/{adapter}", {})
         auxiliary = source.get("harvest_metadata", {}).get(
             "auxiliary_dimensions",

@@ -449,3 +449,42 @@ def test_http_failure_is_not_a_successful_empty_dataset(server):
                 provider_code="p",
             )
         )
+
+
+class JsonStat1Provider(Provider):
+    """A provider whose POST rejects JSON-stat2 with HTTP 404 but serves JSON-stat."""
+
+    async def json(self, url, payload=None, **kwargs):
+        if payload is not None and payload["response"]["format"] == "json-stat2":
+            self.calls.append((url, deepcopy(payload)))
+            raise ValueError("HTTP 404: format unavailable")
+        sample = await super().json(url, payload, **kwargs)
+        if payload is None or url.endswith("?config"):
+            return sample
+        dimension = dict(sample.pop("dimension"), id=sample.pop("id"))
+        dimension["size"] = sample.pop("size")
+        for key in ("class", "version"):
+            sample.pop(key)
+        return {"dataset": dict(sample, dimension=dimension)}
+
+
+def test_missing_json_stat2_falls_back_to_converted_json_stat(monkeypatch):
+    import retrieval._jsonstat as jsonstat
+
+    monkeypatch.setattr(jsonstat, "JSONSTAT1_HOSTS", set())
+    expected = asyncio.run(_generate(Provider(), table(), "p"))
+    provider = JsonStat1Provider()
+    assert asyncio.run(_generate(provider, table(), "p")) == expected
+    assert jsonstat.JSONSTAT1_HOSTS == {"example.test"}
+    formats = [
+        payload["response"]["format"] for _, payload in provider.calls if payload
+    ]
+    assert formats.count("json-stat2") == 1
+    # The host is remembered, so later tables go straight to JSON-stat.
+    provider = JsonStat1Provider()
+    assert asyncio.run(_generate(provider, table(), "p")) == expected
+    assert all(
+        payload["response"]["format"] == "json-stat"
+        for _, payload in provider.calls
+        if payload
+    )
