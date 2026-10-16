@@ -40,3 +40,17 @@ Follow history’s short imperative subjects, such as “Organize developer scri
 ## Agent Instructions
 
 When delegation is requested, specify each subagent’s model and reasoning effort explicitly: GPT-6.1 Sol at Medium or cheaper; use GPT-6 Luna for very simple tasks.
+
+## Agent skills
+
+### Issue tracker
+
+Issues are one-line items in `docs/backlog.md`; no GitHub issues or ticket files. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+No labels: the backlog section (`Ideas`, `Next`, `Now`) is the triage state. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` at the repo root and ADRs under `docs/adr/`. See `docs/agents/domain.md`.
