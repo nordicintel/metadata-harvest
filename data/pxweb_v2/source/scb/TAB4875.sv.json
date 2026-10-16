@@ -1,0 +1,612 @@
+{
+  "key": "scb/TAB4875/sv",
+  "identifier": "TAB4875",
+  "language": "sv",
+  "updated": "2026-08-24T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:41:15.298044+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Andelar i investeringsfonder efter fondtyp och sektor. Kvartal 1998K2-2026K2",
+      "source": "Finansinspektionen",
+      "updated": "2026-08-24T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0403"
+            },
+            "href": "https://www.scb.se/FM0403",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Från och med publiceringen för det fjärde kvartalet 2024 så har dataunderlaget berikats med depådata för att bättre beskriva hushållens fondinnehav som tidigare delvis hamnat under finansiella företag. Revideringar av tidigare publicerade serier har skett till och med det första kvartalet 2024. I samband med denna förändring kommer SCB inte att redovisa transaktioner i fondandelar för hushåll och finansiella företag samt hushållens fondinnehav i individuellt pensionssparande (IPS).",
+        "Under fjärde kvartalet 2017 har svenskregistrerade fonder flyttats utomlands och utländska fonder har fusionerats med svenskregistrerade fonder. Vid jämförelse av fondförmögenheten och nettoinvesteringar mellan kvartal 3 och kvartal 4 2017 bör det noteras att den totala fondförmögenheten påverkades negativt med 45 miljarder kronor vilket kompenserades av en positiv marknadsutveckling."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Innehall",
+        "Fondtyp",
+        "Sektor",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        8,
+        12,
+        1,
+        113
+      ],
+      "dimension": {
+        "Innehall": {
+          "label": "innehåll",
+          "note": [
+            "Premiepensionsmyndigheten (PPM) har omklassificerats från sektorn socialförsäkring till sektorn finansiella företag enligt riktlinjer från Eurostat. 1 januari 2010 upphörde PPM men innehav i premiepensionssystemet räknas fortfarande till sektorn finansiella företag.",
+            "Under andra kvartalet 2014 blev ett flertal utlandsregistrerade fonder svenskregistrerade. Totalt flyttades omkring 130 miljarder."
+          ],
+          "category": {
+            "index": {
+              "inbet": 0,
+              "utbet": 1,
+              "netto": 2,
+              "form": 3
+            },
+            "label": {
+              "inbet": "fondsparande, inbetalt",
+              "utbet": "fondsparande, utbetalt",
+              "netto": "fondsparande, netto",
+              "form": "fondförmögenhet, ställning"
+            },
+            "note": {
+              "inbet": [
+                "Inbetalt för sålda fondandelar. Inkl. återinvesterad utdelning."
+              ],
+              "utbet": [
+                "Utbetalt för inlösta fondandelar."
+              ],
+              "netto": [
+                "Inbetalt minus utbetalt. Inkl. återinvesterad utdelning."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fondtyp": {
+          "label": "fondtyp",
+          "note": [
+            "Två blandfonder i premiepensionssystemet har avslutats under andra kvartalet 2010 och innehaven har flyttats till en aktiefond och en räntefond."
+          ],
+          "category": {
+            "index": {
+              "S1225+35": 0,
+              "S1225+35R": 1,
+              "S12251": 2,
+              "S12351": 3,
+              "S12352": 4,
+              "S12353": 5,
+              "S12354": 6,
+              "S12359": 7
+            },
+            "label": {
+              "S1225+35": "investeringsfonder, totalt",
+              "S1225+35R": "räntefonder",
+              "S12251": "räntefonder, korta",
+              "S12351": "räntefonder, långa",
+              "S12352": "aktiefonder",
+              "S12353": "blandfonder",
+              "S12354": "fond-i-fonder",
+              "S12359": "övriga fonder"
+            },
+            "note": {
+              "S12251": [
+                "S k penningmarknadsfonder. Här avses räntebärande värdepapper med en ursprunglig löptid på under ett år."
+              ],
+              "S12351": [
+                "Här avses räntebärande värdepapper med en ursprunglig löptid på över ett år"
+              ],
+              "S12352": [
+                "Här ingår även allemansfonder."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Sektor": {
+          "label": "sektor",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S11": 1,
+              "S12": 2,
+              "S12511": 3,
+              "S1254": 4,
+              "S1313": 5,
+              "S1314": 6,
+              "S14": 7,
+              "S14IPS": 8,
+              "S15": 9,
+              "S19": 10,
+              "S2": 11
+            },
+            "label": {
+              "S0": "samtliga sektorer",
+              "S11": "icke-finansiella företag",
+              "S12": "finansiella företag; totalt",
+              "S12511": "finansiella företag; varav livförsäkringsanknutna företag",
+              "S1254": "finansiella företag; varav premiepension",
+              "S1313": "kommuner",
+              "S1314": "socialförsäkring",
+              "S14": "hushåll",
+              "S14IPS": "hushåll; varav hushållens individuella pensionssparande, IPS",
+              "S15": "hushållens icke-vinstdrivande organisationer",
+              "S19": "övriga svenska sektorer",
+              "S2": "utlandet"
+            },
+            "note": {
+              "S0": [
+                "2014K4 har det skett en omklassificering på 16 miljarder kronor från hushållssektorn till utlandet. Detta påverkar sektorernas ställningsvärden för 2014K4. Vid jämförelse av fondförmögenheten och nettosparande mellan 2014K3 och 2014K4 måste därför hänsyn tas till omklassificeringen."
+              ],
+              "S12": [
+                "Inkluderar livförsäkringsanknutna företag och Premiepensionsmyndigheten (PPM)."
+              ],
+              "S12511": [
+                "S k unit linked. Ingår i finansiella företag.",
+                "Livförsäkringsanknutna företag inkluderar fondförsäkring från livförsäkringsbolag. Posten inkluderar inte någon annan fondförsäkring som till exempel fondförsäkring från pensionsinstitut; I enlighet med EU:s gemensamma regelverk för Nationalräkenskaperna har ett tiotal försäkringsbolag omklassificerats från INSEKT sektor 1281 (försäkringsbolag) till INSEKT sektor 1291 (pensionsinstitut) under 2016."
+              ],
+              "S1254": [
+                "Ingår i finansiella företag."
+              ],
+              "S14": [
+                "2014K4 har det skett en omklassificering på 16 miljarder kronor från hushållssektorn till utlandet. Detta påverkar sektorernas ställningsvärden för 2014K4. Vid jämförelse av fondförmögenheten och nettosparande mellan 2014K3 och 2014K4 måste därför hänsyn tas till omklassificeringen.",
+                "Inkluderar hushållens individuella pensionssparande."
+              ],
+              "S2": [
+                "2014K4 har det skett en omklassificering på 16 miljarder kronor från hushållssektorn till utlandet. Detta påverkar sektorernas ställningsvärden för 2014K4. Vid jämförelse av fondförmögenheten och nettosparande mellan 2014K3 och 2014K4 måste därför hänsyn tas till omklassificeringen."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "S0": {
+                "0": true
+              },
+              "S12511": {
+                "1": true
+              },
+              "S14": {
+                "0": true
+              },
+              "S2": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000001SS": 0
+            },
+            "label": {
+              "000001SS": "Andelar i investeringsfonder, mnkr"
+            },
+            "unit": {
+              "000001SS": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001SS": "Vid periodens slut"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001SS": "Stock"
+            },
+            "priceType": {
+              "000001SS": "NotApplicable"
+            },
+            "adjustment": {
+              "000001SS": "None"
+            },
+            "alternativeText": {
+              "000001SS": "Andelar i investeringsfonder, mnkr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "1998K2": 0,
+              "1998K3": 1,
+              "1998K4": 2,
+              "1999K1": 3,
+              "1999K2": 4,
+              "1999K3": 5,
+              "1999K4": 6,
+              "2000K1": 7,
+              "2000K2": 8,
+              "2000K3": 9,
+              "2000K4": 10,
+              "2001K1": 11,
+              "2001K2": 12,
+              "2001K3": 13,
+              "2001K4": 14,
+              "2002K1": 15,
+              "2002K2": 16,
+              "2002K3": 17,
+              "2002K4": 18,
+              "2003K1": 19,
+              "2003K2": 20,
+              "2003K3": 21,
+              "2003K4": 22,
+              "2004K1": 23,
+              "2004K2": 24,
+              "2004K3": 25,
+              "2004K4": 26,
+              "2005K1": 27,
+              "2005K2": 28,
+              "2005K3": 29,
+              "2005K4": 30,
+              "2006K1": 31,
+              "2006K2": 32,
+              "2006K3": 33,
+              "2006K4": 34,
+              "2007K1": 35,
+              "2007K2": 36,
+              "2007K3": 37,
+              "2007K4": 38,
+              "2008K1": 39,
+              "2008K2": 40,
+              "2008K3": 41,
+              "2008K4": 42,
+              "2009K1": 43,
+              "2009K2": 44,
+              "2009K3": 45,
+              "2009K4": 46,
+              "2010K1": 47,
+              "2010K2": 48,
+              "2010K3": 49,
+              "2010K4": 50,
+              "2011K1": 51,
+              "2011K2": 52,
+              "2011K3": 53,
+              "2011K4": 54,
+              "2012K1": 55,
+              "2012K2": 56,
+              "2012K3": 57,
+              "2012K4": 58,
+              "2013K1": 59,
+              "2013K2": 60,
+              "2013K3": 61,
+              "2013K4": 62,
+              "2014K1": 63,
+              "2014K2": 64,
+              "2014K3": 65,
+              "2014K4": 66,
+              "2015K1": 67,
+              "2015K2": 68,
+              "2015K3": 69,
+              "2015K4": 70,
+              "2016K1": 71,
+              "2016K2": 72,
+              "2016K3": 73,
+              "2016K4": 74,
+              "2017K1": 75,
+              "2017K2": 76,
+              "2017K3": 77,
+              "2017K4": 78,
+              "2018K1": 79,
+              "2018K2": 80,
+              "2018K3": 81,
+              "2018K4": 82,
+              "2019K1": 83,
+              "2019K2": 84,
+              "2019K3": 85,
+              "2019K4": 86,
+              "2020K1": 87,
+              "2020K2": 88,
+              "2020K3": 89,
+              "2020K4": 90,
+              "2021K1": 91,
+              "2021K2": 92,
+              "2021K3": 93,
+              "2021K4": 94,
+              "2022K1": 95,
+              "2022K2": 96,
+              "2022K3": 97,
+              "2022K4": 98,
+              "2023K1": 99,
+              "2023K2": 100,
+              "2023K3": 101,
+              "2023K4": 102,
+              "2024K1": 103,
+              "2024K2": 104,
+              "2024K3": 105,
+              "2024K4": 106,
+              "2025K1": 107,
+              "2025K2": 108,
+              "2025K3": 109,
+              "2025K4": 110,
+              "2026K1": 111,
+              "2026K2": 112
+            },
+            "label": {
+              "1998K2": "1998K2",
+              "1998K3": "1998K3",
+              "1998K4": "1998K4",
+              "1999K1": "1999K1",
+              "1999K2": "1999K2",
+              "1999K3": "1999K3",
+              "1999K4": "1999K4",
+              "2000K1": "2000K1",
+              "2000K2": "2000K2",
+              "2000K3": "2000K3",
+              "2000K4": "2000K4",
+              "2001K1": "2001K1",
+              "2001K2": "2001K2",
+              "2001K3": "2001K3",
+              "2001K4": "2001K4",
+              "2002K1": "2002K1",
+              "2002K2": "2002K2",
+              "2002K3": "2002K3",
+              "2002K4": "2002K4",
+              "2003K1": "2003K1",
+              "2003K2": "2003K2",
+              "2003K3": "2003K3",
+              "2003K4": "2003K4",
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "FM0403",
+          "tableid": "TAB4875",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Andelar i investeringsfonder, mnkr",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Innehall",
+            "Fondtyp",
+            "Sektor"
+          ],
+          "matrix": "TAB4875",
+          "subject-code": "FM",
+          "subject-area": "Finansmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Mathias Lindström",
+            "organization": "SCB",
+            "phone": "+46104794355",
+            "mail": "mathias.lindstrom@scb.se",
+            "raw": "Mathias Lindström, SCB# +46 +46104794355#mathias.lindstrom@scb.se"
+          },
+          {
+            "name": "Tina Hansson",
+            "organization": "SCB",
+            "phone": "010-479 58 15",
+            "mail": "tina.hansson@scb.se",
+            "raw": "Tina Hansson, SCB# +46 010-479 58 15#tina.hansson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4875",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4875",
+        "label": "Andelar i investeringsfonder efter fondtyp och sektor. Kvartal 1998K2-2026K2",
+        "description": "",
+        "sortCode": "Andelar i investeringsfonder efter fondtyp och sektor. Kvartal 1998K2-2026K2",
+        "updated": "2026-08-24T06:00:00Z",
+        "firstPeriod": "1998K2",
+        "lastPeriod": "2026K2",
+        "category": "public",
+        "variableNames": [
+          "innehåll",
+          "fondtyp",
+          "sektor",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "Finansinspektionen",
+        "subjectCode": "FM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Finansmarknad",
+              "sortCode": "Finansmarknad"
+            },
+            {
+              "id": "FM0403",
+              "label": "Investeringsfonder, tillgångar och skulder",
+              "sortCode": "Investeringsfonder, tillgångar och skulder"
+            },
+            {
+              "id": "FM0403A",
+              "label": "Investeringsfonder, tillgångar och skulder Kvartal",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

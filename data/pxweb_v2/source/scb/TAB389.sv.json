@@ -1,0 +1,655 @@
+{
+  "key": "scb/TAB389/sv",
+  "identifier": "TAB389",
+  "language": "sv",
+  "updated": "2023-04-12T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:08:59.892775+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Arbetsmarknadsvariabler efter län, kön, utbildningsnivå och bakgrundsvariabel. År 1997-2021",
+      "source": "SCB",
+      "updated": "2023-04-12T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AA0003"
+            },
+            "href": "https://www.scb.se/AA0003",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Vistelsetid beräknas utifrån antal dagar och nytt år blir det först när 364 dagar övergår till 365 dagar. Det innebär att om en person har varit folkbokförd i Sverige i 729 dagar (1 år och 364 dagar) så hamnar personen i gruppen Vistelsetid 0–1 år. Om personen varit folkbokförd i 730 dagar så hamnar personen i gruppen Vistelsetid 2–3 år. På motsvarande sätt fungerar indelningen av övriga grupper vilket gör att man ska ha en vistelsetid på minst 3 650 dagar för att hamna i gruppen Vistelsetid 10– år. \r\n  \r\nUtbildningsregistret genomgick till årgång 2000 större kvalitetshöjande förändringar, ny nomenklatur och att antal nya källor, vilka ledde till ett tidsseriebrott. Detta gör att jämförelser med tidigare årgångar måste göras med stor försiktighet. För mer information se:  \r\n[Kvalitetshöjningen i Utbildningsregistret år 2000](https://www.scb.se/hitta-statistik/statistik-efter-amne/utbildning-samt-forskning-inom-hogskolan/befolkningens-utbildning-och-studiedeltagande/befolkningens-utbildning/produktrelaterat/Fordjupad-information/kvalitetshojningen-i-utbildningsregistret-ar-2000/) \r\n  \r\nUppgifter om sysselsättning hämtas från [Befolkningens arbetsmarknadsstatus (BAS)](https://www.scb.se/bas)",
+        "Födelseregion: Gruppen EU/EFTA exkl. Norden respektive Övriga världen förändras över tid. Till exempel grupperas personer födda i Kroatien till EU/EFTA från 2013 och framåt, innan dess grupperades de till Övriga världen. From 2021 redovisas Förenade kungariket (Storbritannien och Nordirland) i gruppen Övriga världen."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Kon",
+        "UtbNiv",
+        "BakgrVar",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        21,
+        3,
+        5,
+        20,
+        11,
+        25
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "01": 0,
+              "03": 1,
+              "04": 2,
+              "05": 3,
+              "06": 4,
+              "07": 5,
+              "08": 6,
+              "09": 7,
+              "10": 8,
+              "12": 9,
+              "13": 10,
+              "14": 11,
+              "17": 12,
+              "18": 13,
+              "19": 14,
+              "20": 15,
+              "21": 16,
+              "22": 17,
+              "23": 18,
+              "24": 19,
+              "25": 20
+            },
+            "label": {
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "1": 1,
+              "2": 2
+            },
+            "label": {
+              "1+2": "män och kvinnor",
+              "1": "män",
+              "2": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbNiv": {
+          "label": "utbildningsnivå",
+          "category": {
+            "index": {
+              "000": 0,
+              "F": 1,
+              "3": 2,
+              "EU": 3,
+              "US": 4
+            },
+            "label": {
+              "000": "samtliga utbildningsnivåer",
+              "F": "utbildningsnivå: förgymnasial utbildning",
+              "3": "utbildningsnivå: gymnasial utbildning",
+              "EU": "utbildningsnivå: eftergymnasial utbildning",
+              "US": "utbildningsnivå: uppgift saknas"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "BakgrVar": {
+          "label": "bakgrundsvariabel",
+          "category": {
+            "index": {
+              "tot20-64": 0,
+              "20-24": 1,
+              "25-34": 2,
+              "35-44": 3,
+              "45-54": 4,
+              "55-64": 5,
+              "TOT": 6,
+              "SE": 7,
+              "NEXS": 8,
+              "EUEESXN": 9,
+              "VXEUEES": 10,
+              "030": 11,
+              "SAMUTF": 12,
+              "010": 13,
+              "020": 14,
+              "INTTOT": 15,
+              "INT010": 16,
+              "INT020": 17,
+              "INT030": 18,
+              "INT040": 19
+            },
+            "label": {
+              "tot20-64": "samtliga 20–64 år",
+              "20-24": "20–24 år",
+              "25-34": "ålder: 25–34 år",
+              "35-44": "ålder: 35–44 år",
+              "45-54": "ålder: 45–54 år",
+              "55-64": "ålder: 55–64 år",
+              "TOT": "samtliga",
+              "SE": "födelseregion: Sverige",
+              "NEXS": "födelseregion: Norden exkl. Sverige",
+              "EUEESXN": "födelseregion: EU/EFTA exkl. Norden",
+              "VXEUEES": "födelseregion: övriga världen",
+              "030": "samtliga utrikes födda invandrare",
+              "SAMUTF": "samtliga utrikes födda invandrare",
+              "010": "skäl till invandring: skyddsbehövande och deras anhöriga",
+              "020": "skäl till invandring: övriga utrikes födda invandrare",
+              "INTTOT": "samtliga utrikes födda",
+              "INT010": "vistelsetid 0–1 år",
+              "INT020": "vistelsetid 2–3 år",
+              "INT030": "vistelsetid 4–9 år",
+              "INT040": "vistelsetid 10– år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_IntegrationBakgrundFödelseland",
+                "label": "Födelseregion",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_IntegrationBakgrundFödelseland?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_IntegrationBakgrundSkäl",
+                "label": "Skäl till invandring",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_IntegrationBakgrundSkäl?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_IntegrationBakgrundVistelsetid",
+                "label": "Vistelsetid i Sverige",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_IntegrationBakgrundVistelsetid?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_IntegrationBakgrundÅlder",
+                "label": "Åldersfördelning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_IntegrationBakgrundÅlder?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000001X": 0,
+              "000000LR": 1,
+              "000000LS": 2,
+              "000000LT": 3,
+              "000000LU": 4,
+              "000001DR": 5,
+              "000001L4": 6,
+              "000001NX": 7,
+              "0000001Y": 8,
+              "000000LP": 9,
+              "000000LQ": 10
+            },
+            "label": {
+              "0000001X": "Andel förvärvsarbetande (ny definition från och med 2019)",
+              "000000LR": "Andel företagare av de förvärvsarbetande (ny definition från och med 2019)",
+              "000000LS": "Andel inskrivna arbetslösa, procent",
+              "000000LT": "Andel öppet arbetslösa, procent",
+              "000000LU": "Andel sökande i program med aktivitetsstöd, procent",
+              "000001DR": "Andel långtidsarbetslösa, procent",
+              "000001L4": "Andel fortfarande förvärvsarbetande efter ett år (ny def. från och med 2019)",
+              "000001NX": "Andel fortfarande företagare efter ett år (ny definition från och med 2019)",
+              "0000001Y": "Andel i chefsposition, procent",
+              "000000LP": "Andel med eftergymn. utb. med arbete inom yrkesomr. 2-3 enligt SSYK, procent",
+              "000000LQ": "Andel med eftergymn. utb. med arbete på kval.nivå 3-4 enligt SSYK, procent"
+            },
+            "note": {
+              "0000001X": [
+                "Täljaren består av antal förvärvsarbetande enligt den Registerbaserade arbetsmarknadsstatistiken (RAMS). Nämnaren består av befolkningen. \r\n  \r\nFrån och med referensår 2019 används en ny datakälla och metod för att klassificera förvärvsarbetande i RAMS. Bytet av källa och metod innebär tidseriebrott och jämförelser av statistik avseende 2019 och tidigare referensår måste därför göras med stor försiktighet. \r\n  \r\nNy källa för egenföretagare och justerad skattningsmetod i används i RAMS fr.o.m. årgång 2004 som också medför ett tidsseriebrott. Ålder 20–64 år. \r\n  \r\nKälla: [Registerbaserad arbetsmarknadsstatistik (RAMS)](https://www.scb.se/rams)"
+              ],
+              "000000LR": [
+                "Täljaren består av egenföretagare och företagare i eget AB. Nämnaren består av antalet förvärvsarbetande enligt Registerbaserad arbetsmarknadsstatistik (RAMS). Ålder 20–64 år. \r\n  \r\nKälla: [Registerbaserad arbetsmarknadsstatistik (RAMS)](https://www.scb.se/rams)"
+              ],
+              "000000LS": [
+                "Täljaren består av personer som någon gång under året varit inskriven som arbetslös enligt Arbetsförmedlingens register. Man definieras som inskriven arbetslös om man under året varit registrerad som öppet arbetslös och/eller sökande i program med aktivitetsstöd. Nämnaren består av befolkningen.  \r\n  \r\nKälla: [Databasen STATIV](https://www.scb.se/STATIV)"
+              ],
+              "000000LT": [
+                "Täljaren består av personer som någon gång under året registrerats som öppet arbetslösa i sökandekategori för öppen arbetslöshet. Från och med uppdatering år 2018 av nya uppgifter från 1997 och framåt justerades även innehållet i Andel öppet arbetslösa. Tidigare ingick endast personer som den senaste sökandeperioden var registrerad som öppet arbetslös. Innan ändringen kunde en person tillhöra endast en sökandekategori under det aktuella året. Nämnaren består av befolkningen. \r\n  \r\nKälla: [Databasen STATIV](https://www.scb.se/STATIV)"
+              ],
+              "000000LU": [
+                "Täljaren består av personer som någon gång under året registrerats som sökande i program med aktivitetsstöd. Indikatorn skapas genom gruppering av samma sökandekategorier som Arbetsförmedlingen använder i sin statistik om sökande i program respektive år. Från och med uppdatering år 2018 av nya uppgifter från 1997 och framåt justerades även innehållet i Andel sökande i program med aktivitetsstöd. Tidigare ingick endast personer som den senaste sökandeperioden var registrerad som sökande i program med aktivitetsstöd. Innan ändringen kunde en person tillhöra endast en sökandekategori under det aktuella året. Nämnaren består av befolkningen.  \r\n  \r\nKälla: [Databasen STATIV](https://www.scb.se/STATIV)"
+              ],
+              "000001DR": [
+                "Täljaren består av personer under 25 år inskrivna som öppet arbetslösa hos arbetsförmedlingen någon gång under året, sammanhängande minst 100 dagar samt för 25+ år minst 6 månader. Nämnaren består av befolkningen.  \r\n  \r\nKälla: [Databasen STATIV](https://www.scb.se/STATIV)"
+              ],
+              "000001L4": [
+                "Täljaren består av de som är förvärvsarbetande enligt den Registerbaserade arbetsmarknadsstatistiken (RAMS) både år t och år t-1. Nämnaren består av antalet förvärvsarbetande enligt den Registerbaserade arbetsmarknadsstatistiken (RAMS) år t-1 i respektive region. Ålder 20–64 vid år t . Beräkningen görs endast på personer som är folkbokförda båda åren. \r\n  \r\nObservera att från och med referensår 2019 används en ny datakälla och metod för att klassificera förvärvsarbetande i RAMS. Bytet av källa och metod innebär tidseriebrott och jämförelser av statistik avseende 2019 och tidigare referensår måste därför göras med stor försiktighet. Detta innebär att en metod att klassificera förvärvsarbetande används 2018 och en annan metod används 2019. \r\n  \r\nKälla: [Registerbaserad arbetsmarknadsstatistik (RAMS)](https://www.scb.se/rams)"
+              ],
+              "000001NX": [
+                "Täljaren består av de som är företagare både år t och år t-1. Nämnaren består av antalet företagare år t-1 i respektive region. Beräkningen görs endast på personer som är folkbokförda båda åren. \r\n  \r\nKälla: [Befolkningens arbetsmarknadsstatus (BAS)](https://www.scb.se/bas)"
+              ],
+              "0000001Y": [
+                "Täljaren består av anställda personer inom yrkesområdet ledningsarbete enligt SSYK. Nämnaren består av personer som är anställda och sysselsatta och har ett klassificerat yrke. \r\n  \r\nFrån och med 2014 redovisas yrkesuppgifter efter den reviderade standarden för svensk yrkesklassificering 2012 (SSYK 2012). SSYK 2012 ersätter den tidigare versionen, SSYK96. Detta betyder att jämförelser mellan 2014 och tidigare år inte bör göras. För anställda i åldern 16–64 år 2014 avser de flesta yrkesuppgifter, 74 procent, förhållandena under referensåret eller året efter. 19 procent av uppgifterna är imputerade via en modell som utgår från vilken yrkeskod (enligt SSYK 96) individen hade i registret sedan tidigare. Den tidigare koden som använts får vara maximalt fem år gammal. \r\n  \r\nKälla: [Yrkesregistret med yrkesstatistik](http://www.scb.se/yrke/).  \r\nBeskrivning av SSYK: [SSYK](https://www.scb.se/ssyk/).  \r\nBeskrivning av sysselsatta: [Befolkningens arbetsmarknadsstatus (BAS)](https://www.scb.se/bas)."
+              ],
+              "000000LP": [
+                "Täljaren består av personer som har eftergymnasial utbildning och som har ett arbete inom yrkesområde 2 (yrken med krav på fördjupad högskolekompetens) och 3 (yrken med krav på högskolekompetens eller motsvarande) enligt SSYK. Nämnaren består av personer som är anställda och har en eftergymnasial utbildning.  \r\n  \r\nFrån och med 2014 redovisas yrkesuppgifter efter den reviderade standarden för svensk yrkesklassificering 2012 (SSYK 2012). SSYK 2012 ersätter den tidigare versionen, SSYK96. Detta betyder att jämförelser mellan 2014 och tidigare år inte bör göras. För anställda i åldern 16–64 år 2014 avser de flesta yrkesuppgifter, 74 procent, förhållandena under referensåret eller året efter. 19 procent av uppgifterna är imputerade via en modell som utgår från vilken yrkeskod (enligt SSYK 96) individen hade i registret sedan tidigare. Den tidigare koden som använts får vara maximalt fem år gammal. \r\n  \r\nKälla: [Yrkesregistret med yrkesstatistik](http://www.scb.se/yrke/)  \r\nBeskrivning av SSYK: [SSYK](https://www.scb.se/ssyk/)  \r\nBeskrivning av utbildning: [Befolkningens utbildning](http://www.scb.se/uf0506)  \r\nBeskrivning av sysselsatta: [Befolkningens arbetsmarknadsstatus (BAS)](https://www.scb.se/bas)"
+              ],
+              "000000LQ": [
+                "Täljaren består av personer som har eftergymnasial utbildning och som har ett arbete inom kvalifikationsnivåerna 3 och 4 enligt SSYK2012. Yrkesområden som ingår i kvalifikationsnivåerna 3 och 4 är chefsyrken, yrken med krav på fördjupad högskolekompetens, yrken med krav på högskolekompetens eller motsvarande samt officerare inom yrkesområdet militärt arbete. \r\n  \r\nNämnaren består av personer som är anställda och har en eftergymnasial utbildning. Man måste ha ett klassificerat yrke enligt SSYK2012 för att ingå i nämnaren. \r\n  \r\nKälla: [Yrkesregistret med yrkesstatistik](http://www.scb.se/yrke/).  \r\nBeskrivning av SSYK: [SSYK](https://www.scb.se/ssyk/).  \r\nBeskrivning av utbildning: [Befolkningens utbildning](http://www.scb.se/uf0506).  \r\nBeskrivning av sysselsatta: [Befolkningens arbetsmarknadsstatus (BAS)](https://www.scb.se/bas)."
+              ]
+            },
+            "unit": {
+              "0000001X": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000000LR": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000000LS": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000000LT": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000000LU": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000001DR": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000001L4": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000001NX": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "0000001Y": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000000LP": {
+                "base": "andel, procent",
+                "decimals": 1
+              },
+              "000000LQ": {
+                "base": "andel, procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000001X": {
+                "0": true
+              },
+              "000000LR": {
+                "0": true
+              },
+              "000000LS": {
+                "0": true
+              },
+              "000000LT": {
+                "0": true
+              },
+              "000000LU": {
+                "0": true
+              },
+              "000001DR": {
+                "0": true
+              },
+              "000001L4": {
+                "0": true
+              },
+              "000001NX": {
+                "0": true
+              },
+              "0000001Y": {
+                "0": true
+              },
+              "000000LP": {
+                "0": true
+              },
+              "000000LQ": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "0000001X": "År",
+              "000000LR": "År",
+              "000000LS": "År",
+              "000000LT": "År",
+              "000000LU": "År",
+              "000001DR": "År",
+              "000001L4": "År",
+              "000001NX": "År",
+              "0000001Y": "År",
+              "000000LP": "År",
+              "000000LQ": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000001X": "Stock",
+              "000000LR": "Stock",
+              "000000LS": "Stock",
+              "000000LT": "Stock",
+              "000000LU": "Stock",
+              "000001DR": "Stock",
+              "000001L4": "Stock",
+              "000001NX": "Stock",
+              "0000001Y": "Stock",
+              "000000LP": "Stock",
+              "000000LQ": "Stock"
+            },
+            "priceType": {
+              "0000001X": "NotApplicable",
+              "000000LR": "NotApplicable",
+              "000000LS": "NotApplicable",
+              "000000LT": "NotApplicable",
+              "000000LU": "NotApplicable",
+              "000001DR": "NotApplicable",
+              "000001L4": "NotApplicable",
+              "000001NX": "NotApplicable",
+              "0000001Y": "NotApplicable",
+              "000000LP": "NotApplicable",
+              "000000LQ": "NotApplicable"
+            },
+            "adjustment": {
+              "0000001X": "None",
+              "000000LR": "None",
+              "000000LS": "None",
+              "000000LT": "None",
+              "000000LU": "None",
+              "000001DR": "None",
+              "000001L4": "None",
+              "000001NX": "None",
+              "0000001Y": "None",
+              "000000LP": "None",
+              "000000LQ": "None"
+            },
+            "alternativeText": {
+              "0000001X": "Andel förvärvsarbetande (ny definition från och med 2019) i befolkningen",
+              "000000LR": "Andel företagare av de förvärvsarbetande (ny definition från och med 2019)",
+              "000000LS": "Andel inskrivna arbetslösa i befolkningen, procent",
+              "000000LT": "Andel öppet arbetslösa i befolkningen, procent",
+              "000000LU": "Andel sökande i program med aktivitetsstöd i befolkningen, procent",
+              "000001DR": "Andel långtidsarbetslösa i befolkningen, procent",
+              "000001L4": "Andel förvärvsarbetande (ny definition från och med 2019) ett år före mättidpunkten som fortfarande är förvärvsarbetande, i befolkningen",
+              "000001NX": "Andel företagare (ny definition från och med 2019) ett år före mättidpunkten som fortfarande är företagare, i befolkningen",
+              "0000001Y": "Andel i chefsposition i befolkningen, procent",
+              "000000LP": "Andel med eftergymn. utb. med arbete inom yrkesomr. 2-3 enligt SSYK i befolkningen, procent",
+              "000000LQ": "Andel med eftergymn. utb. med arbete på kval.nivå 3-4 enligt SSYK i befolkningen, procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1997": 0,
+              "1998": 1,
+              "1999": 2,
+              "2000": 3,
+              "2001": 4,
+              "2002": 5,
+              "2003": 6,
+              "2004": 7,
+              "2005": 8,
+              "2006": 9,
+              "2007": 10,
+              "2008": 11,
+              "2009": 12,
+              "2010": 13,
+              "2011": 14,
+              "2012": 15,
+              "2013": 16,
+              "2014": 17,
+              "2015": 18,
+              "2016": 19,
+              "2017": 20,
+              "2018": 21,
+              "2019": 22,
+              "2020": 23,
+              "2021": 24
+            },
+            "label": {
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AA0003",
+          "tableid": "TAB389",
+          "decimals": 1,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Statistik med inriktning mot arbetsmarknaden",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Kon",
+            "UtbNiv",
+            "BakgrVar"
+          ],
+          "matrix": "TAB389",
+          "subject-code": "AA",
+          "subject-area": "Ämnesövergripande statistik"
+        },
+        "contact": [
+          {
+            "name": "Malin Forsberg",
+            "organization": "SCB",
+            "phone": "010-479 69 61",
+            "mail": "malin.forsberg@scb.se",
+            "raw": "Malin Forsberg, SCB# +46 010-479 69 61#malin.forsberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB389",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB389",
+        "label": "Arbetsmarknadsvariabler efter län, kön, utbildningsnivå och bakgrundsvariabel. År 1997-2021",
+        "description": "",
+        "sortCode": "12",
+        "updated": "2023-04-12T06:00:00Z",
+        "firstPeriod": "1997",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "kön",
+          "utbildningsnivå",
+          "bakgrundsvariabel",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "AA",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AA",
+              "label": "Ämnesövergripande statistik",
+              "sortCode": "Ämnesövergripande statistik"
+            },
+            {
+              "id": "AA0003",
+              "label": "Registerdata för integration",
+              "sortCode": "Registerdata för integration"
+            },
+            {
+              "id": "AA0003X",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "013"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB389?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB389?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB389/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB389/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

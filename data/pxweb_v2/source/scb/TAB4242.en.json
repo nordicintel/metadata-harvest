@@ -1,0 +1,701 @@
+{
+  "key": "scb/TAB4242/en",
+  "identifier": "TAB4242",
+  "language": "en",
+  "updated": "2026-08-28T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:41:37.721129+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Costs and income for regions by activity. Year 2007-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-08-28T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:OE0107"
+            },
+            "href": "https://www.scb.se/OE0107-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "In the figures for Sweden Region Gotland is excluded.",
+        "Data concerning the most recent financial year are preliminary until the publication that takes place in August/September. After that, data for the most recent financial year, as well as data for older years, should be considered as final.  \r\n  \r\nFor more information about this year´s planned publications, see the publication calendar.",
+        "Some regions, for example Region Skåne and Region Uppsala have changed the accounting of the internal items. This means large changes in particularly the gross income and gross cost.",
+        "X",
+        "All variables in this table contain errors for region Västra Götaland concerning 2024, mainly in the following practice areas: Primary care (total), Specialist somatic care (total), Somatic inpatient care and Research and development in health care. You may contact the region directly to receive the revised information.",
+        "The data for region Västra Götaland concerning 2013 contains errors in the distribution across the different practice areas. You may contact the region directly to receive the revised information."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Verksomrkom",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        31,
+        5,
+        19
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01L": 1,
+              "03L": 2,
+              "04L": 3,
+              "05L": 4,
+              "06L": 5,
+              "07L": 6,
+              "08L": 7,
+              "0980L": 8,
+              "10L": 9,
+              "12L": 10,
+              "13L": 11,
+              "14L": 12,
+              "17L": 13,
+              "18L": 14,
+              "19L": 15,
+              "20L": 16,
+              "21L": 17,
+              "22L": 18,
+              "23L": 19,
+              "24L": 20,
+              "25L": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01L": "Region Stockholm",
+              "03L": "Region Uppsala",
+              "04L": "Region Sörmland",
+              "05L": "Region Östergötland",
+              "06L": "Region Jönköpings county",
+              "07L": "Region Kronoberg",
+              "08L": "Region Kalmar county",
+              "0980L": "Region Gotland",
+              "10L": "Region Blekinge",
+              "12L": "Region Skåne",
+              "13L": "Region Halland",
+              "14L": "Region Västra Götaland",
+              "17L": "Region Värmland",
+              "18L": "Region Örebro county",
+              "19L": "Region Västmanland",
+              "20L": "Region Dalarna",
+              "21L": "Region Gävleborg",
+              "22L": "Region Västernorrland",
+              "23L": "Region Jämtland Härjedalen",
+              "24L": "Region Västerbotten",
+              "25L": "Region Norrbotten"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLandsting99ejAggr",
+                "label": "Regions",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLandsting99ejAggr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Verksomrkom": {
+          "label": "activity",
+          "category": {
+            "index": {
+              "0": 0,
+              "080": 1,
+              "1": 2,
+              "180": 3,
+              "2": 4,
+              "280": 5,
+              "3": 6,
+              "4": 7,
+              "430": 8,
+              "440": 9,
+              "470": 10,
+              "910": 11,
+              "0-4": 12,
+              "5": 13,
+              "510": 14,
+              "520": 15,
+              "530": 16,
+              "6": 17,
+              "7": 18,
+              "710": 19,
+              "710_1": 20,
+              "8": 21,
+              "870": 22,
+              "920": 23,
+              "5-8": 24,
+              "940-980": 25,
+              "940": 26,
+              "960": 27,
+              "980": 28,
+              "Jamf": 29,
+              "0-9": 30
+            },
+            "label": {
+              "0": "PRIMARY CARE, TOTAL",
+              "080": "Primary inpatient care",
+              "1": "SPECIALIST SOMATIC CARE, TOTAL",
+              "180": "Somatic inpatient care",
+              "2": "SPECIALIST PSYCHIATRIC CARE, TOTAL",
+              "280": "Psychiatric inpatient care",
+              "3": "DENTAL CARE, TOTAL",
+              "4": "OTHER HEALTH AND MEDICAL CARE, TOTAL",
+              "430": "Handicap and assistance activities",
+              "440": "Social activities",
+              "470": "Research and development  in health care",
+              "910": "POLITICAL ACTIVITIES REGARDING HEALTH CARE",
+              "0-4": "SUM  HEALTH AND MEDICAL CARE",
+              "5": "EDUCATION, TOTAL",
+              "510": "Adult education",
+              "520": "University education",
+              "530": "Upper secundary education",
+              "6": "CULTURE, TOTAL",
+              "7": "TRAFFIC AND INFRASTRUCTURE, TOTAL",
+              "710": "Traffic ",
+              "710_1": "Traffic thereof transportation service",
+              "8": "PUBLIC REGIONAL DEVELOPMENT, TOTAL",
+              "870": "Resaerch and developemnt in regional development",
+              "920": "POLITICAL ACTIVITIES REGARDING REGIONAL DEVELOPMENT",
+              "5-8": "REGIONAL DEVELOPMENT, TOTAL",
+              "940-980": "SERVICE ACTIVITIES, TOTAL",
+              "940": "Medical service",
+              "960": "General services",
+              "980": "Property management",
+              "Jamf": "ITEMS AFFECTING COMPARABILITY",
+              "0-9": "TOTAL SUM"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_AggNivå3",
+                "label": "Aggregate level",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_AggNivå3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Kultur3",
+                "label": "Culture",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Kultur3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Tandvård3",
+                "label": "Dental care",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Tandvård3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Utbildning3",
+                "label": "Education",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Utbildning3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Jamf",
+                "label": "Items affecting comparability",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Jamf?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_OvrigHälso3",
+                "label": "Other health and medical care",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_OvrigHälso3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Primärvård3",
+                "label": "Primary care",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Primärvård3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Allmän3",
+                "label": "Public regional development",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Allmän3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Regionutv3",
+                "label": "Public regional development",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Regionutv3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_PolitiskHälso3",
+                "label": "Regional development",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_PolitiskHälso3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SumRegion3",
+                "label": "Regional development",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SumRegion3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Service3",
+                "label": "Service activities",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Service3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SpecialPsy3",
+                "label": "Specialist psychiatric care",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SpecialPsy3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Specialiserad3",
+                "label": "Specialist somatic care",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Specialiserad3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SumHälso3",
+                "label": "Sum health and medical care",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SumHälso3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Totsum3",
+                "label": "Total sum",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Totsum3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Trafik3",
+                "label": "Traffic and infrastructure",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Trafik3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_VerksOmrKostnLt",
+                "label": "Practice area",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_VerksOmrKostnLt?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000000A6": 0,
+              "000000A5": 1,
+              "000000A7": 2,
+              "000000A8": 3,
+              "000000A9": 4
+            },
+            "label": {
+              "000000A6": "Total costs",
+              "000000A5": "Total incomes",
+              "000000A7": "Net costs incl. pharmaceutical costs",
+              "000000A8": "Cost of the own commitment",
+              "000000A9": "Production cost"
+            },
+            "note": {
+              "000000A7": [
+                "Net cost: Total cost exclusive external and internal income (total incomes)."
+              ],
+              "000000A8": [
+                "Costs of the own commitment: Total cost exclusive internal income and purchase to other municipalities and regions."
+              ],
+              "000000A9": [
+                "Production cost: Total cost exclusive purchase of activities, given contribution and internal income."
+              ]
+            },
+            "unit": {
+              "000000A6": {
+                "base": "SEK millions",
+                "decimals": 0
+              },
+              "000000A5": {
+                "base": "SEK millions",
+                "decimals": 0
+              },
+              "000000A7": {
+                "base": "SEK millions",
+                "decimals": 0
+              },
+              "000000A8": {
+                "base": "SEK millions",
+                "decimals": 0
+              },
+              "000000A9": {
+                "base": "SEK millions",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000000A7": {
+                "0": true
+              },
+              "000000A8": {
+                "0": true
+              },
+              "000000A9": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000000A6": "During the calender year",
+              "000000A5": "During the calender year",
+              "000000A7": "During the calender year",
+              "000000A8": "During the calender year",
+              "000000A9": "During the calender year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000A6": "Flow",
+              "000000A5": "Flow",
+              "000000A7": "Flow",
+              "000000A8": "Flow",
+              "000000A9": "Flow"
+            },
+            "priceType": {
+              "000000A6": "Current",
+              "000000A5": "Current",
+              "000000A7": "Current",
+              "000000A8": "Current",
+              "000000A9": "Current"
+            },
+            "adjustment": {
+              "000000A6": "None",
+              "000000A5": "None",
+              "000000A7": "None",
+              "000000A8": "None",
+              "000000A9": "None"
+            },
+            "alternativeText": {
+              "000000A6": "Total costs in SEK millions, current prices",
+              "000000A5": "Total incomes in SEK millions, current prices",
+              "000000A7": "Net costs incl. pharmaceutical costs in SEK millions, current prices",
+              "000000A8": "Cost of the own commitment in SEK millions, current prices",
+              "000000A9": "Production cost in SEK millions, current prices"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2008": 1,
+              "2009": 2,
+              "2010": 3,
+              "2011": 4,
+              "2012": 5,
+              "2013": 6,
+              "2014": 7,
+              "2015": 8,
+              "2016": 9,
+              "2017": 10,
+              "2018": 11,
+              "2019": 12,
+              "2020": 13,
+              "2021": 14,
+              "2022": 15,
+              "2023": 16,
+              "2024": 17,
+              "2025": 18
+            },
+            "label": {
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "OE0107",
+          "tableid": "TAB4242",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Costs and income for regions, SEK millions, current prices",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Verksomrkom"
+          ],
+          "matrix": "TAB4242",
+          "subject-code": "OE",
+          "subject-area": "Public finances"
+        },
+        "contact": [
+          {
+            "name": "Barbro von Hofsten",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 67 24",
+            "mail": "barbro.vonhofsten@scb.se",
+            "raw": "Barbro von Hofsten, Statistics Sweden# +46 010-479 67 24#barbro.vonhofsten@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4242",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4242",
+        "label": "Costs and income for regions by activity. Year 2007-2025",
+        "description": "",
+        "sortCode": "176",
+        "updated": "2026-08-28T06:00:00Z",
+        "firstPeriod": "2007",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "activity",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "OE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "OE",
+              "label": "Public finances",
+              "sortCode": "Public finances"
+            },
+            {
+              "id": "OE0107",
+              "label": "Annual Municipal Accounts",
+              "sortCode": "Annual Municipal Accounts"
+            },
+            {
+              "id": "OE0107D",
+              "label": "Statistics by activity for regions",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4242?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4242?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4242/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4242/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

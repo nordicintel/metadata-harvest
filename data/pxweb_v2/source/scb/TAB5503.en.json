@@ -1,0 +1,427 @@
+{
+  "key": "scb/TAB5503/en",
+  "identifier": "TAB5503",
+  "language": "en",
+  "updated": "2021-11-26T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:34:02.722226+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Persons aged 20–69 by occupation, level of education, number of years in Sweden, region of birth, sex and age. Number. Year 2004-2018",
+      "source": "Statistics Sweden",
+      "updated": "2021-11-26T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0105"
+            },
+            "href": "https://www.scb.se/LE0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Source: [Labour statistics based on administrative sources](https://www.scb.se/am0207-en)",
+        "Description of gainfully employed: [Labour statistics based on administrative sources](https://www.scb.se/am0207-en)",
+        "Source: [Educational attainment of the population](https://www.scb.se/uf0506-en)",
+        "Description of education: [Educational attainment of the population](https://www.scb.se/uf0506-en)",
+        "If the number is 3 or less, it will be replaced by (..). ",
+        "Duration of residence refers to the total amount of time that a person has been registered in the population in Sweden and is specified for persons who have immigrated to Sweden.  Certain foreign citizens who are born in Sweden must apply for a residence permit. They are usually granted a residence permit for the same period as their parents. If the parents do not have a residence permit, the child´s application is examined together with the parent´s application. ",
+        "The region of birth is based on the country of birth listed in the population register and based on the distribution of each year.",
+        "In order to be classified as ´gainfully employed´, the person must have earned income exceeding an estimated limit, or have submitted tax returns for business activity during the year concerned. The limit that determines whether or not an employed person is gainfully employed is estimated using a model-based method. The aim is to find a level of earned income that, as far as possible, corresponds to the definition of ´employment´ of the International Labour Organization (ILO). People with earned income that is higher than the limit are assumed to be gainfully employed.",
+        "Level of education: The highest level of education refers to the highest level of education obtained at the end of the spring term of the year concerned.\r\nThe source of the variable is Statistics Sweden´s Education Register. Stated with the education code according to the Swedish education nomenclature (SUN code). See ´´Swedish education nomenclature (SUN). Part 1. Systematic version´´ (MIS 1988:4 and 1996:1).\r\n\r\nIn this table, the following grouping is used:\r\n\r\nCompulsory education\r\n- primary and lower secondary education, less than 9 years\r\n- primary and lower secondary education, 9 years (equivalent)\r\n\r\nUpper secondary education\r\n- upper secondary education, maximum of 2 years\r\n- upper secondary education, 3 years\r\n\r\nPost-secondary education\r\n- post-secondary education, less than 3 years\r\n- post-secondary education, 3 years or longer\r\n- postgraduate education",
+        "Region of birth: From 2004, Cyprus and Turkey are reported under Europe excluding Sweden."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sysselsattning",
+        "UtbildningsNiva",
+        "Vistelsetid",
+        "Fodelseregion",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        5,
+        6,
+        7,
+        3,
+        8,
+        1,
+        15
+      ],
+      "dimension": {
+        "Sysselsattning": {
+          "label": "employment status",
+          "category": {
+            "index": {
+              "total": 0,
+              "EJFÖRV": 1,
+              "FÖRV": 2
+            },
+            "label": {
+              "total": "total",
+              "EJFÖRV": "not gainfully employed population",
+              "FÖRV": "gainfully employed population"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildningsNiva": {
+          "label": "level of education",
+          "note": [
+            "The classification by level of educational attainment is according to the Swedish national educational classification (SUN)"
+          ],
+          "category": {
+            "index": {
+              "TOT": 0,
+              "21": 1,
+              "3+4": 2,
+              "8": 3,
+              "US2": 4
+            },
+            "label": {
+              "TOT": "All educational of levels",
+              "21": "primary and lower secondary education",
+              "3+4": "upper secondary education",
+              "8": "post secondary education",
+              "US2": "data not available"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Vistelsetid": {
+          "label": "number of years in Sweden",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "INRF": 1,
+              "0-3": 2,
+              "4-9": 3,
+              "10-": 4,
+              "US": 5
+            },
+            "label": {
+              "TOT": "total",
+              "INRF": "born in Sweden",
+              "0-3": "0–3 years",
+              "4-9": "4–9 years",
+              "10-": "10– years",
+              "US": "data not available"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fodelseregion": {
+          "label": "region of birth",
+          "category": {
+            "index": {
+              "200": 0,
+              "010": 1,
+              "020": 2,
+              "030": 3,
+              "040": 4,
+              "050": 5,
+              "100": 6
+            },
+            "label": {
+              "200": "total",
+              "010": "Sweden",
+              "020": "Europe, excl. Sweden",
+              "030": "Africa",
+              "040": "Asia",
+              "050": "rest of the world, incl. Soviet Union",
+              "100": "unknown"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "TOT2": 0,
+              "100": 1,
+              "200": 2
+            },
+            "label": {
+              "TOT2": "total",
+              "100": "women",
+              "200": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "totalt": 0,
+              "20-24": 1,
+              "25-29": 2,
+              "30-39": 3,
+              "40-49": 4,
+              "50-59": 5,
+              "60-64": 6,
+              "65-69": 7
+            },
+            "label": {
+              "totalt": "total",
+              "20-24": "20–24 years",
+              "25-29": "25–29 years",
+              "30-39": "30–39 years",
+              "40-49": "40–49 years",
+              "50-59": "50–59 years",
+              "60-64": "60–64 years",
+              "65-69": "65–69 years"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002I5": 0
+            },
+            "label": {
+              "000002I5": "Number in the population"
+            },
+            "unit": {
+              "000002I5": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002I5": "31 december"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002I5": "Stock"
+            },
+            "priceType": {
+              "000002I5": "NotApplicable"
+            },
+            "adjustment": {
+              "000002I5": "None"
+            },
+            "alternativeText": {
+              "000002I5": "Number in the population"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2004": 0,
+              "2005": 1,
+              "2006": 2,
+              "2007": 3,
+              "2008": 4,
+              "2009": 5,
+              "2010": 6,
+              "2011": 7,
+              "2012": 8,
+              "2013": 9,
+              "2014": 10,
+              "2015": 11,
+              "2016": 12,
+              "2017": 13,
+              "2018": 14
+            },
+            "label": {
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true,
+          "9": true
+        },
+        "px": {
+          "infofile": "LE0105",
+          "tableid": "TAB5503",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number in the population",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sysselsattning",
+            "UtbildningsNiva",
+            "Vistelsetid",
+            "Fodelseregion",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB5503",
+          "subject-code": "LE",
+          "subject-area": "Living conditions"
+        },
+        "contact": [
+          {
+            "name": "Malin Forsberg",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 69 61",
+            "mail": "malin.forsberg@scb.se",
+            "raw": "Malin Forsberg, Statistics Sweden# +46 010-479 69 61#malin.forsberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5503",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5503",
+        "label": "Persons aged 20–69 by occupation, level of education, number of years in Sweden, region of birth, sex and age. Number. Year 2004-2018",
+        "description": "",
+        "sortCode": "006",
+        "updated": "2021-11-26T08:30:00Z",
+        "firstPeriod": "2004",
+        "lastPeriod": "2018",
+        "category": "public",
+        "variableNames": [
+          "employment status",
+          "level of education",
+          "number of years in Sweden",
+          "region of birth",
+          "sex",
+          "age",
+          "observations",
+          "year"
+        ],
+        "discontinued": true,
+        "source": "Statistics Sweden",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Living conditions",
+              "sortCode": "Living conditions"
+            },
+            {
+              "id": "LE0105",
+              "label": "Integration – statistics and analysis",
+              "sortCode": "Integration – statistics and analysis"
+            },
+            {
+              "id": "LE0105X",
+              "label": "Old tables, not updated",
+              "sortCode": "09"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5503?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5503?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5503/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5503/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

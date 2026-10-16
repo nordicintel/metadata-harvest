@@ -1,0 +1,364 @@
+{
+  "key": "scb/TAB859/en",
+  "identifier": "TAB859",
+  "language": "en",
+  "updated": "2013-12-12T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:36:17.392759+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Regional Gross Domestic Product (GDPR), number of employed  and  compensation of employees (ENS95) by region (NUTS2) and activity SNI2007. Year 2000-2011",
+      "source": "Statistics Sweden",
+      "updated": "2013-12-12T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NR0105"
+            },
+            "href": "https://www.scb.se/NR0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SNI2007",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        20,
+        3,
+        12
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "RIKS1": 1,
+              "RIKS2": 2,
+              "RIKS3": 3,
+              "RIKS4": 4,
+              "RIKS5": 5,
+              "RIKS6": 6,
+              "RIKS7": 7,
+              "RIKS8": 8,
+              "90": 9
+            },
+            "label": {
+              "00": "Sweden",
+              "RIKS1": "Stockholm production county",
+              "RIKS2": "Eastern Central Sweden",
+              "RIKS3": "Småland with the islands",
+              "RIKS4": "South Sweden",
+              "RIKS5": "West Sweden",
+              "RIKS6": "Northern Central Sweden",
+              "RIKS7": "Central Norrland",
+              "RIKS8": "Upper Norrland",
+              "90": "Extra region"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1-2x",
+                "label": "NUTS1-2x",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1-2x?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Region99RiksX",
+                "label": "NUTS 2 ,  extra region and  NUTS1",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Region99RiksX?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "SNI2007": {
+          "label": "industrial classification (NACE Rev. 2)",
+          "category": {
+            "index": {
+              "0002": 0,
+              "A01-T98exkl": 1,
+              "A01-F43": 2,
+              "A01-A03": 3,
+              "B05-C33": 4,
+              "D35-E39": 5,
+              "F41-F43": 6,
+              "G45-T98": 7,
+              "G45-G47": 8,
+              "H49-H53": 9,
+              "I55-I56": 10,
+              "J58-J63": 11,
+              "K64-K66": 12,
+              "L68": 13,
+              "M69-N82": 14,
+              "O84": 15,
+              "P85": 16,
+              "Q86-Q88": 17,
+              "R90-T98": 18,
+              "Y0114": 19
+            },
+            "label": {
+              "0002": "total economy",
+              "A01-T98exkl": "Total economy, excl not allocated by avtivity",
+              "A01-F43": "producers of goods",
+              "A01-A03": "agriculture, forestry and fishing",
+              "B05-C33": "mining, quarrying and manufacturing  industry",
+              "D35-E39": "electricity, gas, steam and air conditioning, water supply, waste",
+              "F41-F43": "construction",
+              "G45-T98": "producers of services",
+              "G45-G47": "wholesale and retail trade",
+              "H49-H53": "transport and storage",
+              "I55-I56": "hotels and restaurants",
+              "J58-J63": "information and communication",
+              "K64-K66": "financial services and insurance activities",
+              "L68": "real estate activities",
+              "M69-N82": "professional, scientific, technical and admin. activities",
+              "O84": "public authorities and national defence",
+              "P85": "education",
+              "Q86-Q88": "human health and social work activities",
+              "R90-T98": "personal and art services",
+              "Y0114": "unallocated"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "NR0105AD": 0,
+              "NR0105AE": 1,
+              "NR0105AF": 2
+            },
+            "label": {
+              "NR0105AD": "GDPR, current prices, million SEK",
+              "NR0105AE": "Average number of employed, thousand of persons",
+              "NR0105AF": "Compensation of employees, current prices, million SEK"
+            },
+            "unit": {
+              "NR0105AD": {
+                "base": "million, SEK",
+                "decimals": 0
+              },
+              "NR0105AE": {
+                "base": "thousand of persons",
+                "decimals": 1
+              },
+              "NR0105AF": {
+                "base": "million, SEK",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "NR0105AD": "During the calendar year",
+              "NR0105AE": "During the calendar year",
+              "NR0105AF": "During the calendar year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "NR0105AD": "Flow",
+              "NR0105AE": "Flow",
+              "NR0105AF": "Flow"
+            },
+            "priceType": {
+              "NR0105AD": "Current",
+              "NR0105AE": "NotApplicable",
+              "NR0105AF": "Current"
+            },
+            "adjustment": {
+              "NR0105AD": "None",
+              "NR0105AE": "None",
+              "NR0105AF": "None"
+            },
+            "alternativeText": {
+              "NR0105AD": "Regional Gross Domestic Product (GDPR, ENS95), current prices, million SEK",
+              "NR0105AE": "Average number of employed (ENS95), thousand of persons",
+              "NR0105AF": "Compensation of employees (ENS95), current prices, million SEK"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2000": 0,
+              "2001": 1,
+              "2002": 2,
+              "2003": 3,
+              "2004": 4,
+              "2005": 5,
+              "2006": 6,
+              "2007": 7,
+              "2008": 8,
+              "2009": 9,
+              "2010": 10,
+              "2011": 11
+            },
+            "label": {
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "NR0105",
+          "tableid": "TAB859",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Regional Gross Domestic Product (BRP), number of employed  and  compensation of employees (ENS95)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SNI2007"
+          ],
+          "matrix": "TAB859",
+          "subject-code": "NR",
+          "subject-area": "National accounts"
+        },
+        "contact": [
+          {
+            "name": "Torkel Brinkenfeldt",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 46 59",
+            "mail": "nrinfo@scb.se",
+            "raw": "Torkel Brinkenfeldt, Statistics Sweden# +46 010-479 46 59#nrinfo@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB859",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB859",
+        "label": "Regional Gross Domestic Product (GDPR), number of employed  and  compensation of employees (ENS95) by region (NUTS2) and activity SNI2007. Year 2000-2011",
+        "description": "",
+        "sortCode": "007",
+        "updated": "2013-12-12T08:30:00Z",
+        "firstPeriod": "2000",
+        "lastPeriod": "2011",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "industrial classification (NACE Rev. 2)",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "NR",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NR",
+              "label": "National accounts",
+              "sortCode": "National accounts"
+            },
+            {
+              "id": "NR0105",
+              "label": "Regional accounts",
+              "sortCode": "Regional accounts"
+            },
+            {
+              "id": "NR0105B",
+              "label": "Regional accounts, annual estimates, older series",
+              "sortCode": "020"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

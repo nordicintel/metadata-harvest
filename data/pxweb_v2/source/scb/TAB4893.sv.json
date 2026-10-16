@@ -1,0 +1,366 @@
+{
+  "key": "scb/TAB4893/sv",
+  "identifier": "TAB4893",
+  "language": "sv",
+  "updated": "2023-03-08T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:28:07.322884+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Egna företagare i riket (dagbef) fördelat efter näringsgren SNI2007 (grov nivå), kombinatör, ålder och kön. Baserat på RAMS. År 2019-2021",
+      "source": "SCB",
+      "updated": "2023-03-08T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0208"
+            },
+            "href": "https://www.scb.se/AM0208",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Statistiken avser endast de företagare som enligt den registerbaserade arbetsmarknadsstatistiken RAMS är sysselsatta och har yrkesställning 4, vilka är enskilda näringsidkare, handelsbolagsägare och kommanditbolagsägare.",
+        "Tidseriebrott, fr.o.m. årgång 2011 har det gjorts förändringar i bearbetningarna för att klassificera förvärvsarbetande i RAMS. Förändringarna påverkar endast personer som är 65 år och äldre och innebär att antalet förvärvsarbetande i denna åldersgrupp ökar dessutom har den övre åldersgränsen för att klassificeras som förvärvsarbetande ändrats från 84 till 74 år. Det innebär att det inte finns några förvärvsarbetande som är 75 år och äldre fr.o.m. årgång 2011.",
+        "Tidseriebrottet medför även en förändringar i bearbetningarna för att klassificera egna företagare i RAMS. Fr.o.m. årgång 2011 kommer alla egna företagare oavsett ålder att avgränsas på samma sätt. Detta innebär att en deklaration av aktiv näringsverksamhet är ett tillräckligt krav för att klassificeras som förvärvsarbetande oavsett ålder. Tidigare, för att bli förvärvsarbetande har lönebeloppet behövt komma över ett beräknat gränsvärde, samma gränsvärde som för anställda som är 65 år eller äldre. Detta innebar större krav på egna företagare att bli klassade som förvärvsarbetande i åldern 65-84 år jämfört med egna företagare i yngre åldersgrupper. Mer information om förändringarna finns på www.scb.se/rams.",
+        "Om det inte har gått att sätta en yrkeskod via bakgrundsinformationen är yrkesuppgifter den senast kända yrkesuppgiften så därför finns det individer som har en yrkeskod som inte överensstämmer med det yrket som man utövar på sitt företag. Yrkesuppgiften kan t.ex. komma från en tidigare anställning. Därför förekommer det yrken som Vårdbiträden, Receptionister eller Telefonister som inte är yrken man vanligtvis har som företagare.",
+        "Bortfallet av yrkeskoder beror till stor del på om det funnits bakgrundsinformation om de företag som individerna har, därför är det störst bortfall av yrkeskoder för individer på företag som saknar bransch (SNI07)."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "SNI2007",
+        "Kombinator",
+        "Alder",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        16,
+        2,
+        10,
+        2,
+        1,
+        3
+      ],
+      "dimension": {
+        "SNI2007": {
+          "label": "näringsgren SNI 2007",
+          "category": {
+            "index": {
+              "A": 0,
+              "B+C": 1,
+              "D+E": 2,
+              "F": 3,
+              "G": 4,
+              "H": 5,
+              "I": 6,
+              "J": 7,
+              "K": 8,
+              "L": 9,
+              "M+N": 10,
+              "O": 11,
+              "P": 12,
+              "Q": 13,
+              "R+S+T+U": 14,
+              "00": 15
+            },
+            "label": {
+              "A": "jordbruk, skogsbruk och fiske",
+              "B+C": "tillverkning och utvinning",
+              "D+E": "energiförsörjning; miljöverksamhet",
+              "F": "byggverksamhet",
+              "G": "handel",
+              "H": "transport och magasinering",
+              "I": "hotell- och restaurangverksamhet",
+              "J": "information och kommunikation",
+              "K": "finans- och försäkringsverksamhet",
+              "L": "fastighetsverksamhet",
+              "M+N": "företagstjänster",
+              "O": "offentlig förvaltning och försvar",
+              "P": "utbildning ",
+              "Q": "vård och omsorg; sociala tjänster",
+              "R+S+T+U": "kulturella och personliga tjänster m.m.",
+              "00": "okänd verksamhet"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kombinator": {
+          "label": "kombinatör",
+          "note": [
+            "Kombinatör avser en individ som antingen har en anställning vid sidan av sitt företagande eller driver flera olika företag."
+          ],
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1
+            },
+            "label": {
+              "0": "ej kombinatör",
+              "1": "kombinatör"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-29": 1,
+              "30-34": 2,
+              "35-39": 3,
+              "40-44": 4,
+              "45-49": 5,
+              "50-54": 6,
+              "55-59": 7,
+              "60-64": 8,
+              "65+": 9
+            },
+            "label": {
+              "16-24": "16–24 år",
+              "25-29": "25–29 år",
+              "30-34": "30–34 år",
+              "35-39": "35–39 år",
+              "40-44": "40–44 år",
+              "45-49": "45–49 år",
+              "50-54": "50–54 år",
+              "55-59": "55–59 år",
+              "60-64": "60–64 år",
+              "65+": "65+ år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000001Z7": 0
+            },
+            "label": {
+              "000001Z7": "Antal"
+            },
+            "unit": {
+              "000001Z7": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001Z7": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001Z7": "Flow"
+            },
+            "priceType": {
+              "000001Z7": "NotApplicable"
+            },
+            "adjustment": {
+              "000001Z7": "None"
+            },
+            "alternativeText": {
+              "000001Z7": "Egna företagare 16+ (dagbefolkning), antal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2019": 0,
+              "2020": 1,
+              "2021": 2
+            },
+            "label": {
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "AM0208",
+          "tableid": "TAB4893",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Egna företagare 16+ (dagbefolkning), antal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "SNI2007",
+            "Kombinator",
+            "Alder",
+            "Kon"
+          ],
+          "matrix": "TAB4893",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Linn Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 61 34",
+            "mail": "linn.eriksson@scb.se",
+            "raw": "Linn Eriksson, SCB# +46 010-479 61 34#linn.eriksson@scb.se"
+          },
+          {
+            "name": "Linda Karbing",
+            "organization": "SCB",
+            "phone": "010-479 66 49",
+            "mail": "linda.karbing@scb.se",
+            "raw": "Linda Karbing, SCB# +46 010-479 66 49#linda.karbing@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4893",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4893",
+        "label": "Egna företagare i riket (dagbef) fördelat efter näringsgren SNI2007 (grov nivå), kombinatör, ålder och kön. Baserat på RAMS. År 2019-2021",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2023-03-08T07:00:00Z",
+        "firstPeriod": "2019",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "näringsgren SNI 2007",
+          "kombinatör",
+          "ålder",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0208",
+              "label": "Yrkesregistret med yrkesstatistik",
+              "sortCode": "320"
+            },
+            {
+              "id": "AM0208S",
+              "label": "Egna företagare 16+ (dagbefolkning)",
+              "sortCode": "14"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4893?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4893/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4893/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

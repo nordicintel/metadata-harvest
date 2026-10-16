@@ -1,0 +1,396 @@
+{
+  "key": "scb/TAB46/en",
+  "identifier": "TAB46",
+  "language": "en",
+  "updated": "2008-09-12T07:32:00Z",
+  "retrieved_at": "2026-10-16T18:09:21.632350+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Type of land area by county/country. Year 1981-1999, 2003-2007",
+      "source": "Swedish Board of Agriculture",
+      "updated": "2008-09-12T07:32:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:JO0104"
+            },
+            "href": "https://www.scb.se/JO0104-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The results refer only to agricultural enterprises with more than 2,0 hectares of arable land. The main part of the forest land and a considerable part of the grazing land are therefore not included in the results."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Agoslag",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        27,
+        4,
+        1,
+        23
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "11": 11,
+              "122": 12,
+              "13": 13,
+              "14": 14,
+              "141": 15,
+              "15": 16,
+              "16": 17,
+              "17": 18,
+              "18": 19,
+              "19": 20,
+              "20": 21,
+              "21": 22,
+              "22": 23,
+              "23": 24,
+              "24": 25,
+              "25": 26
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "11": "former Kristianstad county",
+              "122": "former Malmöhus county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "141": "former Göteborgs o Bohus county",
+              "15": "former Älvsborg county",
+              "16": "former Skaraborg county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            },
+            "note": {
+              "03": [
+                "Since 1 January 2007, Uppsala county has been expanded to include Heby municipality. Please note that the figures for the county are not comparable with earlier figures."
+              ],
+              "19": [
+                "Since 1 January 2007, Västmanland county no longer includes Heby municipality. Please note that the figures for the county are not comparable with earlier figures."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "03": {
+                "0": true
+              },
+              "19": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_Region99LanGU",
+                "label": "County",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Region99LanGU?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Agoslag": {
+          "label": "type of land",
+          "category": {
+            "index": {
+              "10": 0,
+              "20": 1,
+              "30": 2,
+              "40": 3
+            },
+            "label": {
+              "10": "arable land",
+              "20": "permanent grassland",
+              "30": "forest land",
+              "40": "other land"
+            },
+            "note": {
+              "30": [
+                "Results for Area of forest land are not presented for the years 2001, 2002 and 2004 for quality reasons."
+              ],
+              "40": [
+                "Results for Other land are not presented after 1999."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "30": {
+                "0": true
+              },
+              "40": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "JO0104A5": 0
+            },
+            "label": {
+              "JO0104A5": "Type of land area, hectares"
+            },
+            "unit": {
+              "JO0104A5": {
+                "base": "hectares",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "JO0104A5": "June"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "JO0104A5": "Stock"
+            },
+            "priceType": {
+              "JO0104A5": "NotApplicable"
+            },
+            "adjustment": {
+              "JO0104A5": "None"
+            },
+            "alternativeText": {
+              "JO0104A5": "Type of land area, hectares"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1981": 0,
+              "1982": 1,
+              "1983": 2,
+              "1984": 3,
+              "1985": 4,
+              "1986": 5,
+              "1987": 6,
+              "1988": 7,
+              "1989": 8,
+              "1990": 9,
+              "1991": 10,
+              "1992": 11,
+              "1993": 12,
+              "1994": 13,
+              "1995": 14,
+              "1996": 15,
+              "1997": 16,
+              "1998": 17,
+              "1999": 18,
+              "2003": 19,
+              "2004": 20,
+              "2005": 21,
+              "2007": 22
+            },
+            "label": {
+              "1981": "1981",
+              "1982": "1982",
+              "1983": "1983",
+              "1984": "1984",
+              "1985": "1985",
+              "1986": "1986",
+              "1987": "1987",
+              "1988": "1988",
+              "1989": "1989",
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2007": "2007"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "JO0104",
+          "tableid": "TAB46",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Type of land area, hectares",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Agoslag"
+          ],
+          "matrix": "TAB46",
+          "subject-code": "JO",
+          "subject-area": "Agriculture, forestry and fishery"
+        },
+        "contact": [
+          {
+            "name": "Ann-Marie Karlsson",
+            "organization": "Swedish Board of Agriculture",
+            "phone": "036-15 59 33",
+            "mail": "ann-marie.karlsson@jordbruksverket.se",
+            "raw": "Ann-Marie Karlsson, Swedish Board of Agriculture# +46 036-15 59 33#ann-marie.karlsson@jordbruksverket.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB46",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB46",
+        "label": "Type of land area by county/country. Year 1981-1999, 2003-2007",
+        "description": "",
+        "sortCode": "10",
+        "updated": "2008-09-12T07:32:00Z",
+        "firstPeriod": "1981",
+        "lastPeriod": "2007",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "type of land",
+          "observations",
+          "year"
+        ],
+        "source": "Swedish Board of Agriculture",
+        "subjectCode": "JO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "JO",
+              "label": "Agriculture, forestry and fishery",
+              "sortCode": "Agriculture, forestry and fishery"
+            },
+            {
+              "id": "JO0104",
+              "label": "Use of agricultural land",
+              "sortCode": "060"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB46?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB46?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB46/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB46/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

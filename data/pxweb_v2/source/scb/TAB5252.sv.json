@@ -1,0 +1,519 @@
+{
+  "key": "scb/TAB5252/sv",
+  "identifier": "TAB5252",
+  "language": "sv",
+  "updated": "2023-02-28T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:36:32.276582+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Nominerade och valda i riksdagsval efter kön, parti och bakgrundsvariabler. Valår 1991-2022",
+      "source": "SCB",
+      "updated": "2023-02-28T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:ME0107"
+            },
+            "href": "https://www.scb.se/ME0107",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Indikatorn Skillnaden mot röstberättigade i procentenheter visar skillnader mellan nominerade eller valda kandidater och de röstberättigade utifrån olika variabler, som ålder och födelseland. Skillnaden avser fördelningen i den specifika gruppen jämfört med de röstberättigade. Om talet är positivt är andelen bland politikerna större än motsvarande andel bland de röstberättigade. Om talet är negativt är andelen bland politikerna mindre än motsvarande andel bland de röstberättigade. För totaler som summerar samtliga variabelvärden för en viss bakgrundsvariabel, exempelvis samtliga åldrar, redovisas inga skillnader."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Parti",
+        "BakgrVar",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        10,
+        27,
+        8,
+        9
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2
+            },
+            "label": {
+              "010": "samtliga män och kvinnor",
+              "020": "män",
+              "030": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Parti": {
+          "label": "parti",
+          "category": {
+            "index": {
+              "M": 0,
+              "C": 1,
+              "L": 2,
+              "KD": 3,
+              "MP": 4,
+              "S": 5,
+              "V": 6,
+              "SD": 7,
+              "ÖVRIGA": 8,
+              "TOTALT": 9
+            },
+            "label": {
+              "M": "Moderaterna",
+              "C": "Centerpartiet",
+              "L": "Liberalerna",
+              "KD": "Kristdemokraterna",
+              "MP": "Miljöpartiet",
+              "S": "Socialdemokraterna",
+              "V": "Vänsterpartiet",
+              "SD": "Sverigedemokraterna",
+              "ÖVRIGA": "övriga partier",
+              "TOTALT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "BakgrVar": {
+          "label": "bakgrundsvariabel",
+          "category": {
+            "index": {
+              "18-29": 0,
+              "30-49": 1,
+              "50-64": 2,
+              "65+": 3,
+              "samald": 4,
+              "barnihh": 5,
+              "ejbarnihh": 6,
+              "totbarnihh": 7,
+              "giftsambo": 8,
+              "ejgiftsambo": 9,
+              "totgiftsambo": 10,
+              "forgymn": 11,
+              "gymn": 12,
+              "eftergymn-3": 13,
+              "eftergymn+3": 14,
+              "usutb": 15,
+              "samutb": 16,
+              "inrfodd": 17,
+              "utrfodd": 18,
+              "samiu": 19,
+              "us0": 20,
+              "0/20": 21,
+              "21/40": 22,
+              "41/60": 23,
+              "61/80": 24,
+              "81/100": 25,
+              "samink": 26
+            },
+            "label": {
+              "18-29": "18–29 år",
+              "30-49": "30–49 år",
+              "50-64": "50–64 år",
+              "65+": "65+ år",
+              "samald": "samtliga åldrar",
+              "barnihh": "barn under 18 år i hushållet",
+              "ejbarnihh": "inget barn under 18 år i hushållet",
+              "totbarnihh": "totalt, barn/inget barn under 18 år i hushållet",
+              "giftsambo": "gift eller sambo med barn",
+              "ejgiftsambo": "ej gift eller sambo med barn",
+              "totgiftsambo": "totalt, gift eller sambo, ej gift eller sambo med barn",
+              "forgymn": "förgymnasial utbildning",
+              "gymn": "gymnasial utbildning",
+              "eftergymn-3": "eftergymnasial utbildning – mindre än tre år",
+              "eftergymn+3": "eftergymnasial utbildning – 3 år eller mer",
+              "usutb": "uppgift saknas",
+              "samutb": "samtliga utbildningsnivåer",
+              "inrfodd": "inrikes födda",
+              "utrfodd": "utrikes födda",
+              "samiu": "samtliga inrikes och utrikes födda",
+              "us0": "nolltaxerare och uppgift saknas",
+              "0/20": "0–20 %",
+              "21/40": "21–40 %",
+              "41/60": "41–60 %",
+              "61/80": "61–80 %",
+              "81/100": "81–100 %",
+              "samink": "samtliga inkomstkvintiler"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_AlderBakgr",
+                "label": "Ålder",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_AlderBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_D_Familjeställning",
+                "label": "Familjeställning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_D_Familjeställning?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_H_Barnhushall",
+                "label": "Barn",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_H_Barnhushall?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_J_FodelselandBakgr",
+                "label": "Födelseland",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_J_FodelselandBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_O_UtbildnBakgr",
+                "label": "Utbildning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_O_UtbildnBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Q_InkomstkvBakgr",
+                "label": "Inkomstkvintiler",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Q_InkomstkvBakgr?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000003ER": 0,
+              "000003EP": 1,
+              "000003EQ": 2,
+              "000003EO": 3,
+              "000003ES": 4,
+              "000003EU": 5,
+              "000003EV": 6,
+              "000003ET": 7
+            },
+            "label": {
+              "000003ER": "Antal nominerade",
+              "000003EP": "Andel nominerade, fördelning",
+              "000003EQ": "Skillnad mot röstberättigade i procentenheter - nominerade",
+              "000003EO": "Könsfördelning bland nominerade",
+              "000003ES": "Antal valda",
+              "000003EU": "Andel valda, fördelning",
+              "000003EV": "Skillnad mot röstberättigade i procentenheter - valda",
+              "000003ET": "Könsfördelning bland valda"
+            },
+            "unit": {
+              "000003ER": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000003EP": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000003EQ": {
+                "base": "procentenhet",
+                "decimals": 0
+              },
+              "000003EO": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000003ES": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000003EU": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000003EV": {
+                "base": "procentenhet",
+                "decimals": 0
+              },
+              "000003ET": {
+                "base": "procent",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000003ER": "Valår",
+              "000003EP": "Valår",
+              "000003EQ": "Valår",
+              "000003EO": "Valår",
+              "000003ES": "Valår",
+              "000003EU": "Valår",
+              "000003EV": "Valår",
+              "000003ET": "Valår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000003ER": "Stock",
+              "000003EP": "Stock",
+              "000003EQ": "Stock",
+              "000003EO": "Stock",
+              "000003ES": "Stock",
+              "000003EU": "Stock",
+              "000003EV": "Stock",
+              "000003ET": "Stock"
+            },
+            "priceType": {
+              "000003ER": "NotApplicable",
+              "000003EP": "NotApplicable",
+              "000003EQ": "NotApplicable",
+              "000003EO": "NotApplicable",
+              "000003ES": "NotApplicable",
+              "000003EU": "NotApplicable",
+              "000003EV": "NotApplicable",
+              "000003ET": "NotApplicable"
+            },
+            "adjustment": {
+              "000003ER": "None",
+              "000003EP": "None",
+              "000003EQ": "None",
+              "000003EO": "None",
+              "000003ES": "None",
+              "000003EU": "None",
+              "000003EV": "None",
+              "000003ET": "None"
+            },
+            "alternativeText": {
+              "000003ER": "Antal nominerade i riksdagsval",
+              "000003EP": "Andel nominerade i riksdagsval, fördelning",
+              "000003EQ": "Skillnad mot röstberättigade i procentenheter - nominerade i riksdagsval",
+              "000003EO": "Könsfördelning bland nominerade i riksdagsval",
+              "000003ES": "Antal valda i riksdagsval",
+              "000003EU": "Andel valda i riksdagsval, fördelning",
+              "000003EV": "Skillnad mot röstberättigade i procentenheter - valda i riksdagsval",
+              "000003ET": "Könsfördelning bland valda i riksdagsval"
+            }
+          }
+        },
+        "Tid": {
+          "label": "valår",
+          "category": {
+            "index": {
+              "1991": 0,
+              "1994": 1,
+              "1998": 2,
+              "2002": 3,
+              "2006": 4,
+              "2010": 5,
+              "2014": 6,
+              "2018": 7,
+              "2022": 8
+            },
+            "label": {
+              "1991": "1991",
+              "1994": "1994",
+              "1998": "1998",
+              "2002": "2002",
+              "2006": "2006",
+              "2010": "2010",
+              "2014": "2014",
+              "2018": "2018",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "ME0107",
+          "tableid": "TAB5252",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Nominerade och valda i riksdagsval",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Parti",
+            "BakgrVar"
+          ],
+          "matrix": "TAB5252",
+          "subject-code": "ME",
+          "subject-area": "Demokrati"
+        },
+        "contact": [
+          {
+            "name": "Jonas Olofsson",
+            "organization": "SCB",
+            "phone": "010-479 47 18",
+            "mail": "jonas.olofsson@scb.se",
+            "raw": "Jonas Olofsson, SCB# +46 010-479 47 18#jonas.olofsson@scb.se"
+          },
+          {
+            "name": "Karolina Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, SCB# +46 010-479 41 76#karolina.eriksson@scb.se"
+          },
+          {
+            "name": "  Valstatistik",
+            "organization": "SCB",
+            "phone": "010-479 44 10",
+            "mail": "valstatistik@scb.se",
+            "raw": "  Valstatistik, SCB# +46 010-479 44 10#valstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5252",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5252",
+        "label": "Nominerade och valda i riksdagsval efter kön, parti och bakgrundsvariabler. Valår 1991-2022",
+        "description": "",
+        "sortCode": "Nominerade och valda i riksdagsval efter kön, parti och bakgrundsvariabler. Valår 1991-2022",
+        "updated": "2023-02-28T07:00:00Z",
+        "firstPeriod": "1991",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "parti",
+          "bakgrundsvariabel",
+          "tabellinnehåll",
+          "valår"
+        ],
+        "source": "SCB",
+        "subjectCode": "ME",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "ME",
+              "label": "Demokrati",
+              "sortCode": "Demokrati"
+            },
+            {
+              "id": "ME0107",
+              "label": "Allmänna val, nominerade och valda",
+              "sortCode": "Allmänna val, nominerade och valda"
+            },
+            {
+              "id": "ME0107C",
+              "label": "Riksdagsval",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5252?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5252?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5252/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5252/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

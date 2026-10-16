@@ -1,0 +1,384 @@
+{
+  "key": "scb/TAB413/sv",
+  "identifier": "TAB413",
+  "language": "sv",
+  "updated": "2024-02-28T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:34:09.478169+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Taxeringsenheter med skog (typkod 110,113,120,122) ägda av fysiska personer samt skogsareal efter län och utboägande. År 2005-2023",
+      "source": "SCB",
+      "updated": "2024-02-28T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0601"
+            },
+            "href": "https://www.scb.se/BO0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Utbo",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        3,
+        2,
+        7
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1_2008",
+                "label": "NUTS1 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS2_2008",
+                "label": "NUTS2 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3_2008",
+                "label": "NUTS3 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän07",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Utbo": {
+          "label": "utboägande",
+          "note": [
+            "En taxeringsenhet räknas som utboägd om ägaren bor utanför den kommun där taxeringsenheten är belägen. Flerägda taxeringsenheter räknas som utboägda om ägaren med störst ägarandel bor utanför den kommun där taxeringsenheten är belägen. Till hälften utboägd räknas en taxeringsenhet som till lika delar ägs av en person som bor utanför den kommun där taxeringsenheten är belägen och en person om bor i den kommun där taxeringsenheten är belägen. Ägare för vilka uppgifter om bostadskommun saknas räknas som utbor, då dessa till största delen antas vara bosatta utomlands.",
+            "En taxeringsenhet räknas som utboägd om ägaren bor utanför den kommun där taxeringsenheten är belägen. Flerägda taxeringsenheter räknas som utboägda om ägaren med störst ägarandel bor utanför den kommun där taxeringsenheten är belägen. Till hälften utboägd räknas en taxeringsenhet som till lika delar ägs av en person som bor utanför den kommun där taxeringsenheten är belägen och en person om bor i den kommun där taxeringsenheten är belägen. Ägare för vilka uppgifter om bostadskommun saknas räknas som utbor, då dessa till största delen antas vara bosatta utomlands."
+          ],
+          "category": {
+            "index": {
+              "Utbo": 0,
+              "Ej Utbo": 1,
+              "Blandat50": 2
+            },
+            "label": {
+              "Utbo": "utboägd",
+              "Ej Utbo": "ej utboägd",
+              "Blandat50": "till hälften utboägd"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0601P6": 0,
+              "BO0601P7": 1
+            },
+            "label": {
+              "BO0601P6": "Taxeringsenheter",
+              "BO0601P7": "Skogsareal, ha"
+            },
+            "unit": {
+              "BO0601P6": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0601P7": {
+                "base": "ha",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0601P6": "2005",
+              "BO0601P7": "2005"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0601P6": "Stock",
+              "BO0601P7": "Stock"
+            },
+            "priceType": {
+              "BO0601P6": "NotApplicable",
+              "BO0601P7": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0601P6": "None",
+              "BO0601P7": "None"
+            },
+            "basePeriod": {
+              "BO0601P6": "2005",
+              "BO0601P7": "2005"
+            },
+            "alternativeText": {
+              "BO0601P6": "Allmän fastighetstaxering för lantbruk, taxeringsenheter med skogsareal",
+              "BO0601P7": "Allmän fastighetstaxering för lantbruk, skogsareal, ha"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år, oregelb",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2008": 1,
+              "2011": 2,
+              "2014": 3,
+              "2017": 4,
+              "2020": 5,
+              "2023": 6
+            },
+            "label": {
+              "2005": "2005",
+              "2008": "2008",
+              "2011": "2011",
+              "2014": "2014",
+              "2017": "2017",
+              "2020": "2020",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0601",
+          "tableid": "TAB413",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Allmän fastighetstaxering för lantbruk med skogsareal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Utbo"
+          ],
+          "matrix": "TAB413",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Magnus Walestad",
+            "organization": "SCB",
+            "phone": "010-479 44 18",
+            "mail": "magnus.walestad@scb.se",
+            "raw": "Magnus Walestad, SCB# +46 010-479 44 18#magnus.walestad@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB413",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB413",
+        "label": "Taxeringsenheter med skog (typkod 110,113,120,122) ägda av fysiska personer samt skogsareal efter län och utboägande. År 2005-2023",
+        "description": "",
+        "sortCode": "08",
+        "updated": "2024-02-28T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "utboägande",
+          "tabellinnehåll",
+          "år, oregelb"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0601",
+              "label": "Fastighetstaxeringar",
+              "sortCode": "Fastighetstaxeringar"
+            },
+            {
+              "id": "BO0601E",
+              "label": "Allmän/förenklad fastighetstaxering för lantbruk",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB413?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB413?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB413/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB413/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

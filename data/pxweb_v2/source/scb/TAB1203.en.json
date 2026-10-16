@@ -1,0 +1,991 @@
+{
+  "key": "scb/TAB1203/en",
+  "identifier": "TAB1203",
+  "language": "en",
+  "updated": "2026-09-17T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:19:17.439007+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Financial accounts by sector, item and counterpart-sector (ESA2010). Quarterly 1996K1-2026K2",
+      "source": "Swedish Financial Supervisory Authority",
+      "updated": "2026-09-17T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0103"
+            },
+            "href": "https://www.scb.se/FM0103-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Financial accounts shows financial assets and liabilities, balance sheets and transactions, for institutional sectors. All assets and liabilities are divided by items and counterpart-sectors for all sectors. Definitions and codes for Financial Accounts is based on the European System of Accounts (ESA 2010). Financial assets are marked with an A in the second position of the item-code and liabilities with a L.  \r\nThe financial accounts is based on the regulations ESA 2010 (European system of accounts), which in turn is based on SNA 2008 (System of National Accounts).  ",
+        "The financial accounts is based on the regulations ESA 2010 (European system of accounts), which in turn is based on SNA 2008 (System of National Accounts).  \r\nSNA 2008 has been produced in cooperation with the large international organisations the UN, OECD, EU, IMF and the World Bank. ESA 2010 is an application of SNA 2008 for the EU countries and all the EU countries will publish data in accordance with ESA 2010 as of September 2014. Both ESA 2010 and SNA 2008 are updated versions of the previous regulations ESA 1995 and SNA 1993."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sektor",
+        "Kontopost",
+        "Motsektor",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        23,
+        75,
+        23,
+        2,
+        122
+      ],
+      "dimension": {
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S1": 1,
+              "S11": 2,
+              "S12": 3,
+              "S121": 4,
+              "S122+123": 5,
+              "S1221": 6,
+              "S1223": 7,
+              "S1224": 8,
+              "S1225": 9,
+              "S1229": 10,
+              "S123": 11,
+              "S124": 12,
+              "S125-127": 13,
+              "S128": 14,
+              "S129": 15,
+              "S13": 16,
+              "S1311": 17,
+              "S1313": 18,
+              "S1314": 19,
+              "S14": 20,
+              "S15": 21,
+              "S2": 22
+            },
+            "label": {
+              "S0": "All sectors",
+              "S1": "Domestic sectors",
+              "S11": "Non-financial corporations",
+              "S12": "Financial corporations",
+              "S121": "Central bank",
+              "S122+123": "Monetary financial institutions excl. Central bank",
+              "S1221": "Banks",
+              "S1223": "Housing credit institutions",
+              "S1224": "Other monetary credit market corporations",
+              "S1225": "Monetary securities brokerage companies and investment firms",
+              "S1229": "Other monetary financial institutions",
+              "S123": "Money market funds",
+              "S124": "Non-Money market funds investment funds",
+              "S125-127": "Other financial corporations",
+              "S128": "Insurance corporations",
+              "S129": "Pension funds",
+              "S13": "General government",
+              "S1311": "Central government",
+              "S1313": "Local government",
+              "S1314": "Social security funds",
+              "S14": "Households",
+              "S15": "Non-profit institutions serving households",
+              "S2": "Rest of the world"
+            },
+            "note": {
+              "S128": [
+                "Some corporations in sector S128 Insurance corporations has been moved to sector S129 Pension funds."
+              ],
+              "S129": [
+                "Some corporations in sector S128 Insurance corporations has been moved to sector S129 Pension funds."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "S128": {
+                "0": true
+              },
+              "S129": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kontopost": {
+          "label": "item",
+          "category": {
+            "index": {
+              "BF9000": 0,
+              "FA0100": 1,
+              "FA1100": 2,
+              "FA1200": 3,
+              "FA2100": 4,
+              "FA2200": 5,
+              "FA2900": 6,
+              "FA3000": 7,
+              "FA3100": 8,
+              "FA3200": 9,
+              "FA4000": 10,
+              "FA4100": 11,
+              "FA4200": 12,
+              "FA4500": 13,
+              "FA5100": 14,
+              "FA5110": 15,
+              "FA5120": 16,
+              "FA5190": 17,
+              "FA5200": 18,
+              "FA5202": 19,
+              "FA5203": 20,
+              "FA5204": 21,
+              "FA5205": 22,
+              "FA5209": 23,
+              "FA6100": 24,
+              "FA6200": 25,
+              "FA6211": 26,
+              "FA6212": 27,
+              "FA6300": 28,
+              "FA6301": 29,
+              "FA6302": 30,
+              "FA6303": 31,
+              "FA6400": 32,
+              "FA6500": 33,
+              "FA6600": 34,
+              "FA7000": 35,
+              "FA8100": 36,
+              "FA8900": 37,
+              "FL0100": 38,
+              "FL1100": 39,
+              "FL1200": 40,
+              "FL2100": 41,
+              "FL2200": 42,
+              "FL2900": 43,
+              "FL3000": 44,
+              "FL3100": 45,
+              "FL3200": 46,
+              "FL4000": 47,
+              "FL4100": 48,
+              "FL4200": 49,
+              "FL4500": 50,
+              "FL5100": 51,
+              "FL5110": 52,
+              "FL5120": 53,
+              "FL5190": 54,
+              "FL5200": 55,
+              "FL5202": 56,
+              "FL5203": 57,
+              "FL5204": 58,
+              "FL5205": 59,
+              "FL5209": 60,
+              "FL6100": 61,
+              "FL6200": 62,
+              "FL6211": 63,
+              "FL6212": 64,
+              "FL6300": 65,
+              "FL6301": 66,
+              "FL6302": 67,
+              "FL6303": 68,
+              "FL6400": 69,
+              "FL6500": 70,
+              "FL6600": 71,
+              "FL7000": 72,
+              "FL8100": 73,
+              "FL8900": 74
+            },
+            "label": {
+              "BF9000": "Financial Net",
+              "FA0100": "Financial assets (FA)",
+              "FA1100": "Monetary gold",
+              "FA1200": "Special drawing rights (SDR)",
+              "FA2100": "Currency",
+              "FA2200": "Transferable deposits",
+              "FA2900": "Other deposits",
+              "FA3000": "Debt securities",
+              "FA3100": "Short-term debt securities",
+              "FA3200": "Long-term debt securities",
+              "FA4000": "Loans, total",
+              "FA4100": "Short-term loans",
+              "FA4200": "Long-term loans",
+              "FA4500": "Inter-company loans",
+              "FA5100": "Equity",
+              "FA5110": "Listed shares",
+              "FA5120": "Unlisted shares",
+              "FA5190": "Other equity",
+              "FA5200": "Investment fund shares or units",
+              "FA5202": "Money market funds",
+              "FA5203": "Bond market funds",
+              "FA5204": "Equity funds",
+              "FA5205": "Other funds",
+              "FA5209": "Undistributed funds",
+              "FA6100": "Other insurance technical reserves",
+              "FA6200": "Life insurance and annuity entitlements",
+              "FA6211": "Life insurance and annuity entitlements, non unit-linked",
+              "FA6212": "Life insurance and annuity entitlements, unit-linked",
+              "FA6300": "Pension funds reserves, total",
+              "FA6301": "Pension funds reserves, non unit-linked",
+              "FA6302": "Pension funds reserves, unit-linked",
+              "FA6303": "Pension funds reserves, unit-linked, Premium Pension",
+              "FA6400": "Claims of pension funds on pension managers",
+              "FA6500": "Entitlements to non-pension benefits",
+              "FA6600": "Provision for calls under standardised guarantees",
+              "FA7000": "Financial derivatives and employee stock options",
+              "FA8100": "Trade credits and advances",
+              "FA8900": "Other accounts receivable/payable excluding trade credits and advances",
+              "FL0100": "Liabilities (FL)",
+              "FL1100": "Monetary gold",
+              "FL1200": "Special drawing rights (SDR)",
+              "FL2100": "Currency",
+              "FL2200": "Transferable deposits",
+              "FL2900": "Other deposits",
+              "FL3000": "Debt securities",
+              "FL3100": "Short-term debt securities",
+              "FL3200": "Long-term debt securities",
+              "FL4000": "Loans, total",
+              "FL4100": "Short-term loans",
+              "FL4200": "Long-term loans",
+              "FL4500": "Inter-company loans",
+              "FL5100": "Equity",
+              "FL5110": "Listed shares",
+              "FL5120": "Unlisted shares",
+              "FL5190": "Other equity",
+              "FL5200": "Investment fund shares or units",
+              "FL5202": "Money market funds",
+              "FL5203": "Bond market funds",
+              "FL5204": "Equity funds",
+              "FL5205": "Other funds",
+              "FL5209": "Undistributed funds",
+              "FL6100": "Other insurance technical reserves",
+              "FL6200": "Life insurance and annuity entitlements",
+              "FL6211": "Life insurance and annuity entitlements, non unit-linked",
+              "FL6212": "Life insurance and annuity entitlements, unit-linked",
+              "FL6300": "Pension funds reserves, total",
+              "FL6301": "Pension funds reserves, non unit-linked",
+              "FL6302": "Pension funds reserves, unit-linked",
+              "FL6303": "Pension funds reserves, unit-linked, Premium Pension",
+              "FL6400": "Claims of pension funds on pension managers",
+              "FL6500": "Entitlements to non-pension benefits",
+              "FL6600": "Provision for calls under standardised guarantees",
+              "FL7000": "Financial derivatives and employee stock options",
+              "FL8100": "Trade credits and advances",
+              "FL8900": "Other accounts receivable/payable excluding trade credits and advances"
+            },
+            "note": {
+              "FA1200": [
+                "The reporting of the financial instrument Special Drawing Rights (SDR) has been changed in the transition to ESA 2010. Previously, this instrument was reported as an asset for the Central bank, but without any counterparty for the liability. Rest of the world (all IMF member states) will now be reported as the counterparty for the liability. The Central bank will also report a liability in SDR where the counterparty is the rest of the world. The liability of SDR on the Central bank´s balance sheet is called counterpart for Special Drawing Rights allocated by the IMF. The principle underlying financial accounting is that every asset must be matched by an equally large liability in another part of the economy or with the rest of the world. The financial accounts have become more comprehensive by including SDR on the liability side."
+              ],
+              "FA4000": [
+                "According to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the financial market statistics at www.scb.se."
+              ],
+              "FA4100": [
+                "According to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the financial market statistics at www.scb.se."
+              ],
+              "FA4200": [
+                "According to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the financial market statistics at www.scb.se."
+              ],
+              "FA5110": [
+                "The transactions in Swedish listed shares have been broken down into different sectors from the first quarter 2011 and onwards. A review has been done and general improvements made to the calculation model. This has led to revisions of the total level for share transactions. The sector breakdown is based on supplementary information from the Shareholder statistics, which is the primary source for the calculation of balances and transactions for Swedish listed shares. Previously, transactions in Swedish listed shares were only reported as a single item, without a counterpart sector. Data prior to the first quarter 2011 will still be published in this way."
+              ],
+              "FA5120": [
+                "According to the European System of National Accounts 2010 (ESA 2010), holdings in unlisted shares are to be reported at market value. Previously the Financial Accounts have published holdings of unlisted shares at book value and households have not had any holdings at all. In connection with the publishing of the second quarter of 2013, a market valuation of unlisted shares has been introduced, according to a model from Eurostat. With the help of this model, unlisted Swedish non-financial corporations have been given a market value in relation to listed companies in the same industry. An exception for market valuation according to this model has been done for the public sector. An estimation of household holdings in unlisted shares has also been made. This estimation is based on information about households’ received dividends in unlisted limited companies in relation to the total dividends for unlisted limited companies. A more detailed breakdown of holdings of unlisted shares has also been done. In the case of banks, for example, we can now see what these own in unlisted housing credit institutions; previously all financial unlisted holdings were reported together. All these revisions have been done for the whole time series back to the first quarter of 2002."
+              ],
+              "FA5190": [
+                "The central government ownership in the Swedish Central bank and State Enterprises as well as Households´ assets in owner-occupied dwellings are presented in the Financial Accounts as other equity, FA.5190. Households´ assets of owner-occupied dwellings have been revised according to a new method from the first quarter of 2003. Because the revised balance values are on a higher level than the old values, a break in the time series has occurred for households’ other equity between the fourth quarter of 2002 and the first quarter of 2003."
+              ],
+              "FA6200": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA6211": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA6212": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA6300": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA6301": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA6302": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA6303": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FA7000": [
+                "Coverage of balance values in the Financial Accounts for financial derivatives is relatively complete, while there is a lack of complete presentation of transactions in financial derivatives. \r\nIn Sweden, the largest balance values in financial derivatives are between Swedish banks and the rest of the world. In recent years, the collected statistics in the Balance of Payments for financial derivatives have improved in quality and accuracy regarding transactions in financial derivatives between Swedish banks and rest of the world are considered to be quite good. The time series for transactions in financial derivatives between monetary finance institutes and rest of the world from first quarter of 1999 onwards have therefore been introduced into the financial accounts with the Balance of Payment as source. Financial savings will be more accurate with the introduction but are not particularly affected. This is because the transactions in financial derivatives are of the same size on the asset side and the liability side and cancel each other out when the net value is calculated."
+              ],
+              "FA8900": [
+                "According to ENS 2010 taxes and social security contributions should be on an accrual basis.  The period of time between the moment a transaction is recorded, and the moment the payment is actually made, is bridged by recording an account receivable/payable in the financial accounts.\r\nThis has been done in the financial accounts from the first quarter of 2001 and onward."
+              ],
+              "FL1200": [
+                "The reporting of the financial instrument Special Drawing Rights (SDR) has been changed in the transition to ESA 2010. Previously, this instrument was reported as an asset for the Central bank, but without any counterparty for the liability. Rest of the world (all IMF member states) will now be reported as the counterparty for the liability. The Central bank will also report a liability in SDR where the counterparty is the rest of the world. The liability of SDR on the Central bank´s balance sheet is called counterpart for Special Drawing Rights allocated by the IMF. The principle underlying financial accounting is that every asset must be matched by an equally large liability in another part of the economy or with the rest of the world. The financial accounts have become more comprehensive by including SDR on the liability side."
+              ],
+              "FL4000": [
+                "According to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the financial market statistics at www.scb.se."
+              ],
+              "FL4100": [
+                "According to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the financial market statistics at www.scb.se."
+              ],
+              "FL4200": [
+                "According to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the financial market statistics at www.scb.se."
+              ],
+              "FL5110": [
+                "The transactions in Swedish listed shares have been broken down into different sectors from the first quarter 2011 and onwards. A review has been done and general improvements made to the calculation model. This has led to revisions of the total level for share transactions. The sector breakdown is based on supplementary information from the Shareholder statistics, which is the primary source for the calculation of balances and transactions for Swedish listed shares. Previously, transactions in Swedish listed shares were only reported as a single item, without a counterpart sector. Data prior to the first quarter 2011 will still be published in this way."
+              ],
+              "FL5120": [
+                "According to the European System of National Accounts 2010 (ESA 2010), holdings in unlisted shares are to be reported at market value. Previously the Financial Accounts have published holdings of unlisted shares at book value and households have not had any holdings at all. In connection with the publishing of the second quarter of 2013, a market valuation of unlisted shares has been introduced, according to a model from Eurostat. With the help of this model, unlisted Swedish non-financial corporations have been given a market value in relation to listed companies in the same industry. An exception for market valuation according to this model has been done for the public sector. An estimation of household holdings in unlisted shares has also been made. This estimation is based on information about households’ received dividends in unlisted limited companies in relation to the total dividends for unlisted limited companies. A more detailed breakdown of holdings of unlisted shares has also been done. In the case of banks, for example, we can now see what these own in unlisted housing credit institutions; previously all financial unlisted holdings were reported together. All these revisions have been done for the whole time series back to the first quarter of 2002."
+              ],
+              "FL5190": [
+                "The central government ownership in the Swedish Central bank and State Enterprises as well as Households´ assets in owner-occupied dwellings are presented in the Financial Accounts as other equity, FA.5190. Households´ assets of owner-occupied dwellings have been revised according to a new method from the first quarter of 2003. Because the revised balance values are on a higher level than the old values, a break in the time series has occurred for households’ other equity between the fourth quarter of 2002 and the first quarter of 2003."
+              ],
+              "FL6200": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL6211": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL6212": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL6300": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL6301": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL6302": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL6303": [
+                "A number of revisions to the time series have been introduced up until the first quarter 2001. The revisions chiefly consist of new transactions having been calculated as from the first quarter of 2005 for the traditional insurance and unit-linked funds sectors respectively, both in collective and individual insurance. This has led to an improvement in quality in that the transaction values had previously been included in the revaluations (although transactions have previously been found for the sum of traditional insurance and unit-linked insurance. Since the balance values are basically unchanged for both the sub-groups, the addition of new transactions means that the revaluations are affected to a corresponding degree (if new transactions are positive, the revaluation de-creases by the same amount and vice versa). The new transaction series are comparable to the previous series based on the total transactions for collective and individual insurance respectively. An error in the old series is that the total transactions also ended up as transactions for traditional insurance. The new total transactions are generally higher than previously partly as a result of modified methods for calculating return on investment. For the time series from first quarter 1996 – to the fourth quarter 2000, there is no breakdown into traditional or unit-linked insurance savings. Instead, all insurance savings are in F6200 Total life insurance, and F6300 Total pension entitlements. For the time series from the first quarter 2001- to the fourth quarter 2004, there is a breakdown of balances into traditional and unit-linked insurance but the transactions are not broken down but are only given as totals. For the first quarter 2005 and on-wards, there is a breakdown of balances and transactions into traditional and unit-linked insurance savings for both life insurance savings and pension entitlements."
+              ],
+              "FL7000": [
+                "Coverage of balance values in the Financial Accounts for financial derivatives is relatively complete, while there is a lack of complete presentation of transactions in financial derivatives. \r\nIn Sweden, the largest balance values in financial derivatives are between Swedish banks and the rest of the world. In recent years, the collected statistics in the Balance of Payments for financial derivatives have improved in quality and accuracy regarding transactions in financial derivatives between Swedish banks and rest of the world are considered to be quite good. The time series for transactions in financial derivatives between monetary finance institutes and rest of the world from first quarter of 1999 onwards have therefore been introduced into the financial accounts with the Balance of Payment as source. Financial savings will be more accurate with the introduction but are not particularly affected. This is because the transactions in financial derivatives are of the same size on the asset side and the liability side and cancel each other out when the net value is calculated."
+              ],
+              "FL8900": [
+                "According to ENS 2010 taxes and social security contributions should be on an accrual basis.  The period of time between the moment a transaction is recorded, and the moment the payment is actually made, is bridged by recording an account receivable/payable in the financial accounts.\r\nThis has been done in the financial accounts from the first quarter of 2001 and onward."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "FA1200": {
+                "0": true
+              },
+              "FA4000": {
+                "0": true
+              },
+              "FA4100": {
+                "0": true
+              },
+              "FA4200": {
+                "0": true
+              },
+              "FA5110": {
+                "0": true
+              },
+              "FA5120": {
+                "0": true
+              },
+              "FA5190": {
+                "0": true
+              },
+              "FA6200": {
+                "0": true
+              },
+              "FA6211": {
+                "0": true
+              },
+              "FA6212": {
+                "0": true
+              },
+              "FA6300": {
+                "0": true
+              },
+              "FA6301": {
+                "0": true
+              },
+              "FA6302": {
+                "0": true
+              },
+              "FA6303": {
+                "0": true
+              },
+              "FA7000": {
+                "0": true
+              },
+              "FA8900": {
+                "0": true
+              },
+              "FL1200": {
+                "0": true
+              },
+              "FL4000": {
+                "0": true
+              },
+              "FL4100": {
+                "0": true
+              },
+              "FL4200": {
+                "0": true
+              },
+              "FL5110": {
+                "0": true
+              },
+              "FL5120": {
+                "0": true
+              },
+              "FL5190": {
+                "0": true
+              },
+              "FL6200": {
+                "0": true
+              },
+              "FL6211": {
+                "0": true
+              },
+              "FL6212": {
+                "0": true
+              },
+              "FL6300": {
+                "0": true
+              },
+              "FL6301": {
+                "0": true
+              },
+              "FL6302": {
+                "0": true
+              },
+              "FL6303": {
+                "0": true
+              },
+              "FL7000": {
+                "0": true
+              },
+              "FL8900": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Motsektor": {
+          "label": "counterpart-sector",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S1": 1,
+              "S11": 2,
+              "S12": 3,
+              "S121": 4,
+              "S122+123": 5,
+              "S1221": 6,
+              "S1223": 7,
+              "S1224": 8,
+              "S1225": 9,
+              "S1229": 10,
+              "S123": 11,
+              "S124": 12,
+              "S125-127": 13,
+              "S128": 14,
+              "S129": 15,
+              "S13": 16,
+              "S1311": 17,
+              "S1313": 18,
+              "S1314": 19,
+              "S14": 20,
+              "S15": 21,
+              "S2": 22
+            },
+            "label": {
+              "S0": "All sectors",
+              "S1": "Domestic sectors",
+              "S11": "Non-financial corporations",
+              "S12": "Financial corporations",
+              "S121": "Central bank",
+              "S122+123": "Monetary financial institutions excl. Central bank",
+              "S1221": "Banks",
+              "S1223": "Housing credit institutions",
+              "S1224": "Other monetary credit market corporations",
+              "S1225": "Monetary securities brokerage companies and investment firms",
+              "S1229": "Other monetary financial institutions",
+              "S123": "Money market funds",
+              "S124": "Non-Money market funds investment funds",
+              "S125-127": "Other financial corporations",
+              "S128": "Insurance corporations",
+              "S129": "Pension funds",
+              "S13": "General government",
+              "S1311": "Central government",
+              "S1313": "Local government",
+              "S1314": "Social security funds",
+              "S14": "Households",
+              "S15": "Non-profit institutions serving households",
+              "S2": "Rest of the world"
+            },
+            "note": {
+              "S128": [
+                "Some corporations in sector S128 Insurance corporations has been moved to sector S129 Pension funds."
+              ],
+              "S129": [
+                "Some corporations in sector S128 Insurance corporations has been moved to sector S129 Pension funds."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "S128": {
+                "0": true
+              },
+              "S129": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002KM": 0,
+              "FM0103AS": 1
+            },
+            "label": {
+              "000002KM": "Transactions",
+              "FM0103AS": "Balances"
+            },
+            "unit": {
+              "000002KM": {
+                "base": "SEK million",
+                "decimals": 0
+              },
+              "FM0103AS": {
+                "base": "SEK million",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002KM": "During calendar year",
+              "FM0103AS": "End of calendar year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002KM": "Flow",
+              "FM0103AS": "Stock"
+            },
+            "priceType": {
+              "000002KM": "NotApplicable",
+              "FM0103AS": "NotApplicable"
+            },
+            "adjustment": {
+              "000002KM": "None",
+              "FM0103AS": "None"
+            },
+            "alternativeText": {
+              "000002KM": "Financial accounts, transactions, SEK million",
+              "FM0103AS": "Financial accounts, balances, SEK million"
+            }
+          }
+        },
+        "Tid": {
+          "label": "quarter",
+          "category": {
+            "index": {
+              "1996K1": 0,
+              "1996K2": 1,
+              "1996K3": 2,
+              "1996K4": 3,
+              "1997K1": 4,
+              "1997K2": 5,
+              "1997K3": 6,
+              "1997K4": 7,
+              "1998K1": 8,
+              "1998K2": 9,
+              "1998K3": 10,
+              "1998K4": 11,
+              "1999K1": 12,
+              "1999K2": 13,
+              "1999K3": 14,
+              "1999K4": 15,
+              "2000K1": 16,
+              "2000K2": 17,
+              "2000K3": 18,
+              "2000K4": 19,
+              "2001K1": 20,
+              "2001K2": 21,
+              "2001K3": 22,
+              "2001K4": 23,
+              "2002K1": 24,
+              "2002K2": 25,
+              "2002K3": 26,
+              "2002K4": 27,
+              "2003K1": 28,
+              "2003K2": 29,
+              "2003K3": 30,
+              "2003K4": 31,
+              "2004K1": 32,
+              "2004K2": 33,
+              "2004K3": 34,
+              "2004K4": 35,
+              "2005K1": 36,
+              "2005K2": 37,
+              "2005K3": 38,
+              "2005K4": 39,
+              "2006K1": 40,
+              "2006K2": 41,
+              "2006K3": 42,
+              "2006K4": 43,
+              "2007K1": 44,
+              "2007K2": 45,
+              "2007K3": 46,
+              "2007K4": 47,
+              "2008K1": 48,
+              "2008K2": 49,
+              "2008K3": 50,
+              "2008K4": 51,
+              "2009K1": 52,
+              "2009K2": 53,
+              "2009K3": 54,
+              "2009K4": 55,
+              "2010K1": 56,
+              "2010K2": 57,
+              "2010K3": 58,
+              "2010K4": 59,
+              "2011K1": 60,
+              "2011K2": 61,
+              "2011K3": 62,
+              "2011K4": 63,
+              "2012K1": 64,
+              "2012K2": 65,
+              "2012K3": 66,
+              "2012K4": 67,
+              "2013K1": 68,
+              "2013K2": 69,
+              "2013K3": 70,
+              "2013K4": 71,
+              "2014K1": 72,
+              "2014K2": 73,
+              "2014K3": 74,
+              "2014K4": 75,
+              "2015K1": 76,
+              "2015K2": 77,
+              "2015K3": 78,
+              "2015K4": 79,
+              "2016K1": 80,
+              "2016K2": 81,
+              "2016K3": 82,
+              "2016K4": 83,
+              "2017K1": 84,
+              "2017K2": 85,
+              "2017K3": 86,
+              "2017K4": 87,
+              "2018K1": 88,
+              "2018K2": 89,
+              "2018K3": 90,
+              "2018K4": 91,
+              "2019K1": 92,
+              "2019K2": 93,
+              "2019K3": 94,
+              "2019K4": 95,
+              "2020K1": 96,
+              "2020K2": 97,
+              "2020K3": 98,
+              "2020K4": 99,
+              "2021K1": 100,
+              "2021K2": 101,
+              "2021K3": 102,
+              "2021K4": 103,
+              "2022K1": 104,
+              "2022K2": 105,
+              "2022K3": 106,
+              "2022K4": 107,
+              "2023K1": 108,
+              "2023K2": 109,
+              "2023K3": 110,
+              "2023K4": 111,
+              "2024K1": 112,
+              "2024K2": 113,
+              "2024K3": 114,
+              "2024K4": 115,
+              "2025K1": 116,
+              "2025K2": 117,
+              "2025K3": 118,
+              "2025K4": 119,
+              "2026K1": 120,
+              "2026K2": 121
+            },
+            "label": {
+              "1996K1": "1996K1",
+              "1996K2": "1996K2",
+              "1996K3": "1996K3",
+              "1996K4": "1996K4",
+              "1997K1": "1997K1",
+              "1997K2": "1997K2",
+              "1997K3": "1997K3",
+              "1997K4": "1997K4",
+              "1998K1": "1998K1",
+              "1998K2": "1998K2",
+              "1998K3": "1998K3",
+              "1998K4": "1998K4",
+              "1999K1": "1999K1",
+              "1999K2": "1999K2",
+              "1999K3": "1999K3",
+              "1999K4": "1999K4",
+              "2000K1": "2000K1",
+              "2000K2": "2000K2",
+              "2000K3": "2000K3",
+              "2000K4": "2000K4",
+              "2001K1": "2001K1",
+              "2001K2": "2001K2",
+              "2001K3": "2001K3",
+              "2001K4": "2001K4",
+              "2002K1": "2002K1",
+              "2002K2": "2002K2",
+              "2002K3": "2002K3",
+              "2002K4": "2002K4",
+              "2003K1": "2003K1",
+              "2003K2": "2003K2",
+              "2003K3": "2003K3",
+              "2003K4": "2003K4",
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "FM0103",
+          "tableid": "TAB1203",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Financial accounts",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sektor",
+            "Kontopost",
+            "Motsektor"
+          ],
+          "matrix": "TAB1203",
+          "subject-code": "FM",
+          "subject-area": "Financial markets"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Finansräkenskaperna",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "finansrakenskaperna@scb.se",
+            "raw": " Finansräkenskaperna, Statistics Sweden# +46 010-479 50 00#finansrakenskaperna@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1203",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1203",
+        "label": "Financial accounts by sector, item and counterpart-sector (ESA2010). Quarterly 1996K1-2026K2",
+        "description": "",
+        "sortCode": "012",
+        "updated": "2026-09-17T06:00:00Z",
+        "firstPeriod": "1996K1",
+        "lastPeriod": "2026K2",
+        "category": "public",
+        "variableNames": [
+          "sector",
+          "item",
+          "counterpart-sector",
+          "observations",
+          "quarter"
+        ],
+        "source": "Swedish Financial Supervisory Authority",
+        "subjectCode": "FM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Financial markets",
+              "sortCode": "Financial markets"
+            },
+            {
+              "id": "FM0103",
+              "label": "Financial accounts, quarterly and annual",
+              "sortCode": "Financial accounts, quarterly and annual"
+            },
+            {
+              "id": "FM0103A",
+              "label": "Financial accounts, quarterly and annual",
+              "sortCode": "10"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1203?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1203?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1203/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1203/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

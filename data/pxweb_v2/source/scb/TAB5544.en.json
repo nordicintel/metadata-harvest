@@ -1,0 +1,475 @@
+{
+  "key": "scb/TAB5544/en",
+  "identifier": "TAB5544",
+  "language": "en",
+  "updated": "2026-05-21T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:12:57.261286+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Students and students who have completed their programme in certain other programmes, by sex and lenght, form of study, study rate and national background. Year 2015-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-05-21T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0702"
+            },
+            "href": "https://www.scb.se/UF0702-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "To prevent disclosure of information, random rounding off was applied in the table.  Cell values 1 and 2 have been rounded off to either 0 or 3 with predetermined probabilities. This is why the study domains sometimes do not add up to the total.",
+        "One person is counted for each study programme and can therefore be included in the statistics twice or more for the same year. The number of admitted students who have commenced studies, students, and students who have completed their programme thus does not equal the number of people.",
+        "Swedish background refers to people born in Sweden with at least one parent also born in Sweden.\r\nForeign background refers to people born in Sweden whose parents were both born abroad, and people born abroad.",
+        "Data for the reference year 2024–2025 are updated 2026-05-21."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbLangd",
+        "UtbFormYH",
+        "UtbTakt",
+        "NationellBakgrund",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        5,
+        3,
+        3,
+        14,
+        4,
+        11
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "total",
+              "2": "women",
+              "1": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbLangd": {
+          "label": "programme length",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "100": 1,
+              "110": 2,
+              "120": 3,
+              "130": 4
+            },
+            "label": {
+              "TOT": "total, all programme lengths",
+              "100": "programmes less than 20 weeks ",
+              "110": "1-year programmes (20–40 weeks)",
+              "120": "2-year programmes (41–80 weeks)",
+              "130": "3-year programmes (81–120 weeks)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbFormYH": {
+          "label": "form of study of the programme",
+          "category": {
+            "index": {
+              "BundDist": 0,
+              "Bund": 1,
+              "Dist": 2
+            },
+            "label": {
+              "BundDist": "total, traditional+distance learning",
+              "Bund": "traditional learning",
+              "Dist": "distance learning"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbTakt": {
+          "label": "study rate of the programme",
+          "category": {
+            "index": {
+              "HelDel": 0,
+              "Hel": 1,
+              "Del": 2
+            },
+            "label": {
+              "HelDel": "total, full time+part time",
+              "Hel": "full time",
+              "Del": "part time"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NationellBakgrund": {
+          "label": "national background",
+          "category": {
+            "index": {
+              "totfodd": 0,
+              "infodd": 1,
+              "utfodd": 2,
+              "usfodd": 3,
+              "totbak": 4,
+              "svbak": 5,
+              "utlbak": 6,
+              "usbak": 7,
+              "TOTLAND": 8,
+              "SE": 9,
+              "UTNO": 10,
+              "UTEU": 11,
+              "OVR": 12,
+              "USLAND": 13
+            },
+            "label": {
+              "totfodd": "Total, Swedish/foreign born",
+              "infodd": "Swedish born",
+              "utfodd": "Foregin born",
+              "usfodd": "Data not available",
+              "totbak": "Total, Swedish/foreign background",
+              "svbak": "Swedish background",
+              "utlbak": "Foregin background",
+              "usbak": "Data not available",
+              "TOTLAND": "Total, all countries",
+              "SE": "Born in Sweden",
+              "UTNO": "Born in a Nordic country, outside Sweden",
+              "UTEU": "Born in the EU, outside the Nordic countries",
+              "OVR": "Born outside the EU and the Nordic countries",
+              "USLAND": "Data not available"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ANBKKVA",
+                "label": "Swedish/foreign born",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ANBKKVA?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BNBKKV",
+                "label": "Swedish/foreign background",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BNBKKV?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_CNBKKV",
+                "label": "Country of birth",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CNBKKV?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "0000040L": 0,
+              "0000040O": 1,
+              "0000040M": 2,
+              "0000040N": 3
+            },
+            "label": {
+              "0000040L": "Number of admitted students who have commenced studies",
+              "0000040O": "Number of students",
+              "0000040M": "Number of students who have completed their programme",
+              "0000040N": "Completion rate"
+            },
+            "note": {
+              "0000040L": [
+                "Admitted students who have commenced studies refers to everybody who is or has been a student in a study programme, including those who joined during the course of the programme and those who quit the programme."
+              ],
+              "0000040O": [
+                "Students refers to active students in study programmes that have been in progress for at least a day during the intended period. Students may not have discontinued their studies prior to the intended period or taken a break in their studies for the entire intended period."
+              ],
+              "0000040M": [
+                "Students who have completed the programme refers to students who have reached the goals of the courses in all of the programme modules. Students who have discontinued their studies prior to the end of the study programme do not count as completed."
+              ],
+              "0000040N": [
+                "In this context, ´completion rate´ is used to designate the percentage of students who have completed their programme. Refers to the share of students who have completed their programme as a percentage of everyone engaged in studies in the study programmes that ended during a year. "
+              ]
+            },
+            "unit": {
+              "0000040L": {
+                "base": "number",
+                "decimals": 0
+              },
+              "0000040O": {
+                "base": "number",
+                "decimals": 0
+              },
+              "0000040M": {
+                "base": "number",
+                "decimals": 0
+              },
+              "0000040N": {
+                "base": "percent",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000040L": {
+                "0": true
+              },
+              "0000040O": {
+                "0": true
+              },
+              "0000040M": {
+                "0": true
+              },
+              "0000040N": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "0000040L": "Year",
+              "0000040O": "Year",
+              "0000040M": "Year",
+              "0000040N": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000040L": "Stock",
+              "0000040O": "Stock",
+              "0000040M": "Stock",
+              "0000040N": "Stock"
+            },
+            "priceType": {
+              "0000040L": "NotApplicable",
+              "0000040O": "NotApplicable",
+              "0000040M": "NotApplicable",
+              "0000040N": "NotApplicable"
+            },
+            "adjustment": {
+              "0000040L": "None",
+              "0000040O": "None",
+              "0000040M": "None",
+              "0000040N": "None"
+            },
+            "alternativeText": {
+              "0000040L": "Number of admitted students who have commenced studies in certain other programmes ",
+              "0000040O": "Number of students in certain other programmes ",
+              "0000040M": "Number of students who have completed their programme in certain other programmes ",
+              "0000040N": "Completion rate in certain other programmes"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1,
+              "2017": 2,
+              "2018": 3,
+              "2019": 4,
+              "2020": 5,
+              "2021": 6,
+              "2022": 7,
+              "2023": 8,
+              "2024": 9,
+              "2025": 10
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true
+        },
+        "px": {
+          "infofile": "UF0702",
+          "tableid": "TAB5544",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Students and students who have completed their programme in certain other programmes",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbLangd",
+            "UtbFormYH",
+            "UtbTakt",
+            "NationellBakgrund"
+          ],
+          "matrix": "TAB5544",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, Statistics Sweden# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5544",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5544",
+        "label": "Students and students who have completed their programme in certain other programmes, by sex and lenght, form of study, study rate and national background. Year 2015-2025",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2026-05-21T06:00:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "programme length",
+          "form of study of the programme",
+          "study rate of the programme",
+          "national background",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0702",
+              "label": "Arts ant Culture courses",
+              "sortCode": "Arts ant Culture courses"
+            },
+            {
+              "id": "UF0702C",
+              "label": "Certain other programmes",
+              "sortCode": "014"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5544?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5544?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5544/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5544/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "key": "scb/TAB4483/sv",
+  "identifier": "TAB4483",
+  "language": "sv",
+  "updated": "2022-11-24T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:57:58.447907+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Användning av robotar efter typ av robot och redovisningsgrupp. Andel företag. År 2018-2022",
+      "source": "SCB",
+      "updated": "2022-11-24T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Exempel på industrirobot är montering, robotsvetsning.\r\nExempel på tjänsterobot är övervakning, städning."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TypRobot",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        24,
+        2,
+        3
+      ],
+      "dimension": {
+        "TypRobot": {
+          "label": "typ av robot",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1
+            },
+            "label": {
+              "010": "industrirobot",
+              "020": "tjänsterobot"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "Tot250": 0,
+              "10-49": 1,
+              "50-249": 2,
+              "250-": 3,
+              "TotSNI": 4,
+              "10-33": 5,
+              "35-39": 6,
+              "41-43": 7,
+              "45-47": 8,
+              "49-53": 9,
+              "55-56": 10,
+              "58-63": 11,
+              "68": 12,
+              "69-82+95.1exkl.75": 13,
+              "IKT": 14,
+              "SE": 15,
+              "RIKS1": 16,
+              "RIKS2": 17,
+              "RIKS3": 18,
+              "RIKS4": 19,
+              "RIKS5": 20,
+              "RIKS6": 21,
+              "RIKS7": 22,
+              "RIKS8": 23
+            },
+            "label": {
+              "Tot250": "totalt 10 eller fler anställda",
+              "10-49": "10–49 anställda",
+              "50-249": "50–249 anställda",
+              "250-": "250 eller fler anställda",
+              "TotSNI": "totalt (SNI 10–63, 68–74, 77–82, 95.1) ",
+              "10-33": "tillverkningsindustri (SNI 10–33)",
+              "35-39": "energi och återvinning (SNI 35–39)",
+              "41-43": "byggindustri (SNI 41–43)",
+              "45-47": "handel; serviceverkstäder för motorfordon (SNI 45–47)",
+              "49-53": "transport- och magasineringsföretag (SNI 49–53)",
+              "55-56": "hotell och restauranger (SNI 55–56)",
+              "58-63": "informations- och kommunikationsföretag (SNI 58–63)",
+              "68": "fastighetsbolag och förvaltare (SNI 68)",
+              "69-82+95.1exkl.75": "andra tjänsteföretag (SNI 69–74, 77–82, 95.1)",
+              "IKT": "IKT-sektorn (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sverige",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Företag, 10 eller fler anställda",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Näringsgren (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000000UD": 0,
+              "000000UE": 1
+            },
+            "label": {
+              "000000UD": "Andel företag, procent",
+              "000000UE": "Felmarginal, ±"
+            },
+            "unit": {
+              "000000UD": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000000UE": {
+                "base": "procentenheter",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000000UD": "År",
+              "000000UE": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000UD": "Stock",
+              "000000UE": "Stock"
+            },
+            "priceType": {
+              "000000UD": "NotApplicable",
+              "000000UE": "NotApplicable"
+            },
+            "adjustment": {
+              "000000UD": "None",
+              "000000UE": "None"
+            },
+            "alternativeText": {
+              "000000UD": "Andel företag som använder robotar, procent",
+              "000000UE": "Andel företag som använder robotar, felmarginal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2018": 0,
+              "2020": 1,
+              "2022": 2
+            },
+            "label": {
+              "2018": "2018",
+              "2020": "2020",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB4483",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Användning av robotar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TypRobot",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4483",
+          "subject-code": "NV",
+          "subject-area": "Näringsverksamhet"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "SCB",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, SCB# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , SCB# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4483",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4483",
+        "label": "Användning av robotar efter typ av robot och redovisningsgrupp. Andel företag. År 2018-2022",
+        "description": "",
+        "sortCode": "01",
+        "updated": "2022-11-24T07:00:00Z",
+        "firstPeriod": "2018",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "typ av robot",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Näringsverksamhet",
+              "sortCode": "Näringsverksamhet"
+            },
+            {
+              "id": "NV0116",
+              "label": "IT-användning i företag",
+              "sortCode": "IT-användning i företag"
+            },
+            {
+              "id": "NV0116J",
+              "label": "Användning av robotar",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4483?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4483?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4483/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4483/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

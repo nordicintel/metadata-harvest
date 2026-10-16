@@ -1,0 +1,351 @@
+{
+  "key": "scb/TAB75/sv",
+  "identifier": "TAB75",
+  "language": "sv",
+  "updated": "2006-09-04T07:30:00Z",
+  "retrieved_at": "2026-10-16T17:40:43.725731+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Aktieägande i bolag noterade på svensk marknadsplats efter sektor och marknadsplats (t o m 2006M06). 2 ggr/år 1999M12-2006M06",
+      "source": "Finansinspektionen",
+      "updated": "2006-09-04T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0201"
+            },
+            "href": "https://www.scb.se/FM0201",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Tidsskalan avser den sista december resp sista juni. Innehaven är värderade till kurser som gällde vid aktuellt halvårsskifte."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sektor",
+        "Marknadsplats",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        14,
+        7,
+        2,
+        14
+      ],
+      "dimension": {
+        "Sektor": {
+          "label": "sektor",
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "100": 1,
+              "200": 2,
+              "210--240": 3,
+              "216+222": 4,
+              "224": 5,
+              "230": 6,
+              "300-500": 7,
+              "300": 8,
+              "400": 9,
+              "500": 10,
+              "600": 11,
+              "700": 12,
+              "800": 13
+            },
+            "label": {
+              "TOTALT": "samtliga sektorer",
+              "100": "icke-finansiella företag",
+              "200": "finansiella företag",
+              "210--240": "banker, finansinstitut m.fl.",
+              "216+222": "värdepappersfonder",
+              "224": "investmentbolag",
+              "230": "försäkringsföretag",
+              "300-500": "offentlig sektor",
+              "300": "staten",
+              "400": "kommuner och regioner",
+              "500": "socialförsäkring",
+              "600": "hushåll",
+              "700": "hushålls icke-vinstdrivande org",
+              "800": "utlandet"
+            },
+            "note": {
+              "100": [
+                "Inkluderar sektorns icke-vinstdrivande organisationer."
+              ],
+              "200": [
+                "Inkluderar sektorns icke-vinstdrivande organisationer."
+              ],
+              "210--240": [
+                "Här ingår banker, bostadsinstitut och övriga kreditmarknadsföretag samt finansiella serviceföretag."
+              ],
+              "230": [
+                "Här ingår pensionsstiftelser och understödsföreningar."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Marknadsplats": {
+          "label": "marknadsplats",
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "BORSOMA": 1,
+              "BORSOMO": 2,
+              "AUKTMPTORGTORG": 3,
+              "AUKTMPNGMNGM": 4,
+              "OVRMPNYAMNYAM": 5,
+              "OVRMPTKGTB": 6
+            },
+            "label": {
+              "TOTALT": "marknadsplatser, totalt",
+              "BORSOMA": "Stockholms fondbörs, A-listan",
+              "BORSOMO": "Stockholms fondbörs, O-listan",
+              "AUKTMPTORGTORG": "auktoriserad marknadsplats, Aktietorget",
+              "AUKTMPNGMNGM": "auktoriserad marknadsplats, NGM",
+              "OVRMPNYAMNYAM": "annan marknadsplats, Nya marknaden",
+              "OVRMPTKGTB": "annan marknadsplats, Göteborgs OTC-lista"
+            },
+            "note": {
+              "BORSOMO": [
+                "Redovisade värden för Stockholmsbörsens O-lista är för perioden fram t.o.m. juni 2000 summan av O-listan och OTC-listan."
+              ],
+              "AUKTMPTORGTORG": [
+                "I maj 2018 bytte Aktietorget namn till Spotlight Stock Market."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "AUKTMPTORGTORG": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "FM0201C1": 0,
+              "FM0201C2": 1
+            },
+            "label": {
+              "FM0201C1": "Ställningsvärden, mnkr",
+              "FM0201C2": "Ställningsvärden, marknadsplatsandelar, procent"
+            },
+            "unit": {
+              "FM0201C1": {
+                "base": "mnkr",
+                "decimals": 0
+              },
+              "FM0201C2": {
+                "base": "procent",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0201C1": "Per den 30/6 resp 31/12",
+              "FM0201C2": "Per den 30/6 resp 31/12"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0201C1": "Stock",
+              "FM0201C2": "Stock"
+            },
+            "priceType": {
+              "FM0201C1": "NotApplicable",
+              "FM0201C2": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0201C1": "None",
+              "FM0201C2": "None"
+            },
+            "alternativeText": {
+              "FM0201C1": "Aktieägande i bolag noterade på svensk marknadsplats, ställningsvärden, mnkr",
+              "FM0201C2": "Aktieägande i bolag noterade på svensk marknadsplats, ställningsvärden, marknadsplatsandelar, procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "2 ggr/år",
+          "category": {
+            "index": {
+              "1999M12": 0,
+              "2000M06": 1,
+              "2000M12": 2,
+              "2001M06": 3,
+              "2001M12": 4,
+              "2002M06": 5,
+              "2002M12": 6,
+              "2003M06": 7,
+              "2003M12": 8,
+              "2004M06": 9,
+              "2004M12": 10,
+              "2005M06": 11,
+              "2005M12": 12,
+              "2006M06": 13
+            },
+            "label": {
+              "1999M12": "1999M12",
+              "2000M06": "2000M06",
+              "2000M12": "2000M12",
+              "2001M06": "2001M06",
+              "2001M12": "2001M12",
+              "2002M06": "2002M06",
+              "2002M12": "2002M12",
+              "2003M06": "2003M06",
+              "2003M12": "2003M12",
+              "2004M06": "2004M06",
+              "2004M12": "2004M12",
+              "2005M06": "2005M06",
+              "2005M12": "2005M12",
+              "2006M06": "2006M06"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "FM0201",
+          "tableid": "TAB75",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Aktieägande i bolag noterade på svensk marknadsplats",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sektor",
+            "Marknadsplats"
+          ],
+          "matrix": "TAB75",
+          "subject-code": "FM",
+          "subject-area": "Finansmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Aktieägarstatistik",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aktieagarstatistik@scb.se",
+            "raw": " Aktieägarstatistik, SCB# +46 010-479 50 00#aktieagarstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB75",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB75",
+        "label": "Aktieägande i bolag noterade på svensk marknadsplats efter sektor och marknadsplats (t o m 2006M06). 2 ggr/år 1999M12-2006M06",
+        "description": "",
+        "sortCode": "08",
+        "updated": "2006-09-04T07:30:00Z",
+        "firstPeriod": "1999M12",
+        "lastPeriod": "2006M06",
+        "category": "public",
+        "variableNames": [
+          "sektor",
+          "marknadsplats",
+          "tabellinnehåll",
+          "2 ggr/år"
+        ],
+        "source": "Finansinspektionen",
+        "subjectCode": "FM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Finansmarknad",
+              "sortCode": "Finansmarknad"
+            },
+            {
+              "id": "FM0201",
+              "label": "Aktieägarstatistik",
+              "sortCode": "Aktieägarstatistik"
+            },
+            {
+              "id": "FM0201A",
+              "label": "Aktieägande på svensk marknadsplats",
+              "sortCode": "015"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "key": "scb/TAB5816/sv",
+  "identifier": "TAB5816",
+  "language": "sv",
+  "updated": "2022-03-30T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:06:58.368203+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Inkomster (spridningsmått) bland de som arbetar efter yrkeshögskolan. Avgångsår 2007/2008-2018/2019",
+      "source": "SCB",
+      "updated": "2022-03-30T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0503"
+            },
+            "href": "https://www.scb.se/UF0503",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Observera att yrkeshögskolan inte följer någon terminsindelning eller läsår. Redovisningen per läsår har skapats för att skapa jämförbarhet med de andra utbildningsformerna. ",
+        "Examinerade avser antagna som har uppfyllt alla villkor för examen. Examinerade redovisas utifrån det slutår som en utbildningsomgång har. Det innebär att personer som inte är klara med sin utbildning vid utbildningsomgångens slut utan som gör sena kompletteringar innan de uppfyller kraven för examen redovisas ändå utifrån när utbildningsomgången avslutades. Fr.o.m. läsåret 2017/18 används examensdatum för varje examinerad för att avgränsa läsåret. Examinerade efter 31 juli 2018 har exkluderats från statistiken.",
+        "Det förekommer att personer tar ut flera examina under ett läsår. För dessa har en prioritering gjorts så att de endast redovisas en gång per läsår. Om en person har examen från flera utbildningar samma läsår väljs den längre utbildningen.",
+        "Examenstyp\r\n Kvalificerad yrkesexamen förekommer fram t.o.m. 2013/14. Yrkeshögskoleexamen förekommer från 2009/10 och Kvalificerad yrkeshögskoleexamen förekommer från 2010/11.\r\n Utbildningar som leder till en yrkeshögskoleexamen är i regel kortare än två år. Utbildningar som leder till en kvalificerad yrkeshögskoleexamen är i regel minst två år långa. Undantag förekommer. \r\n Utbildningslängden har vid deltidsutbildningar omräknats till heltid.",
+        "Inkomst\r\n Inkomst från arbete är inte samma sak som lön. Förvärvsinkomst, det vill säga inkomst från arbete, påverkas av hur stor del man arbetat under året, frånvaro från arbetet, deltids- och heltidstjänstgöring och övertidsersättning. Inkomst visar därför en kombination av hur mycket man har jobbat och hur hög lön man haft.\r\n Det som ingår är inkomst av tjänst och inkomst av näringsverksamhet. I inkomst av tjänst ingår förutom löneinkomst även inkomst från pension, sjukpenning och andra skattepliktiga ersättningar från exempelvis Försäkringskassan.\r\n Flera spridningsmått anges för att beskriva inkomstfördelningen. En percentil innebär att man rangordnar alla personer utifrån deras inkomst från lägst till högst. Sedan grupperas inkomsterna i 100 grupper. Den 10:e percentilen är den inkomstnivå som 10 procent av personerna ligger under och 90 procent ligger över. Den 90:e percentilen den inkomstnivå som 90 procent av personerna ligger under och 10 procent ligger över. Medianinkomsten är den mellersta inkomsten.",
+        "Jämförbarheten mellan de olika utbildningsformerna och mellan olika grupper inom utbildningsformerna påverkas till viss del av att alla inte blir klara samtidigt under läsåret och att vissa därmed får mer tid på sig att etablera sig på arbetsmarknaden än andra. Detta kan påverka resultaten för den första uppföljningstidpunkten ”efter 1 år”. Betydelsen antas dock minska ju längre tid efter läsåret som uppföljningen görs.",
+        "Sista tillgängliga data avser uppföljningsår 2019.",
+        "För att förhindra röjande av information om personer i statistiken har alla siffror avrundats till närmaste 5-tal. Därför summerar redovisningsgrupperna ibland inte till totalen. Endast grupper med minst 100 examinerade redovisas. Vad gäller yrkesställning och inkomster redovisas endast grupper med minst 100 examinerade som arbetar respektive arbetar och studerar."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sysselsattning",
+        "InkFordelning",
+        "UppfoljningTid",
+        "Examenstyp",
+        "UtbildningsinriktUF",
+        "Kon",
+        "NationellBakgrund",
+        "AldEx",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        6,
+        4,
+        5,
+        27,
+        3,
+        9,
+        3,
+        1,
+        12
+      ],
+      "dimension": {
+        "Sysselsattning": {
+          "label": "sysselsättning",
+          "category": {
+            "index": {
+              "arb": 0,
+              "arbstu": 1,
+              "arb+arbstu": 2
+            },
+            "label": {
+              "arb": "arbetar",
+              "arbstu": "arbetar och studerar",
+              "arb+arbstu": "arbetar + arbetar och studerar"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "InkFordelning": {
+          "label": "inkomstfördelning",
+          "category": {
+            "index": {
+              "antpers": 0,
+              "P10": 1,
+              "P25": 2,
+              "P50": 3,
+              "P75": 4,
+              "P90": 5
+            },
+            "label": {
+              "antpers": "antal personer",
+              "P10": "P10, kr",
+              "P25": "P25, kr",
+              "P50": "P50 (median), kr",
+              "P75": "P75, kr",
+              "P90": "P90, kr"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UppfoljningTid": {
+          "label": "uppföljningstidpunkt",
+          "category": {
+            "index": {
+              "efter1": 0,
+              "efter3": 1,
+              "efter5": 2,
+              "efter10": 3
+            },
+            "label": {
+              "efter1": "efter 1 år",
+              "efter3": "efter 3 år",
+              "efter5": "efter 5 år",
+              "efter10": "efter 10 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Examenstyp": {
+          "label": "examenstyp",
+          "category": {
+            "index": {
+              "extot": 0,
+              "kvalKY": 1,
+              "kvalKY2+": 2,
+              "YH": 3,
+              "kvalYH": 4
+            },
+            "label": {
+              "extot": "examinerade totalt",
+              "kvalKY": "kvalificerad yrkesexamen (KY) - kortare än 2 år",
+              "kvalKY2+": "kvalificerad yrkesexamen (KY) - minst 2 år",
+              "YH": "yrkeshögskoleexamen (YH)",
+              "kvalYH": "kvalificerad yrkeshögskoleexamen (YH)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildningsinriktUF": {
+          "label": "utbildningsinriktning",
+          "category": {
+            "index": {
+              "TOTM": 0,
+              "1M": 1,
+              "2M": 2,
+              "3M": 3,
+              "4M": 4,
+              "5M": 5,
+              "6M": 6,
+              "7M": 7,
+              "8M": 8,
+              "9M": 9,
+              "11M": 10,
+              "12M": 11,
+              "13M": 12,
+              "14M": 13,
+              "15M": 14,
+              "16": 15,
+              "TOTS": 16,
+              "1S": 17,
+              "2S": 18,
+              "3S": 19,
+              "4S": 20,
+              "5S": 21,
+              "6S": 22,
+              "7S": 23,
+              "8S": 24,
+              "17": 25,
+              "TOT": 26
+            },
+            "label": {
+              "TOTM": "Utbildningsområden totalt",
+              "1M": "Data/It",
+              "2M": "Ekonomi, administration och försäljning",
+              "3M": "Friskvård och kroppsvård",
+              "4M": "Hotell, restaurang och turism",
+              "5M": "Hälso- och sjukvård samt socialt arbete",
+              "6M": "Journalistik och information",
+              "7M": "Juridik",
+              "8M": "Kultur, media och design",
+              "9M": "Lantbruk, djurvård, trädgård, skog och fiske",
+              "11M": "Pedagogik och undervisning",
+              "12M": "Samhällsbyggnad och byggteknik",
+              "13M": "Säkerhetstjänster",
+              "14M": "Teknik och tillverkning",
+              "15M": "Transporttjänster",
+              "16": "Övrigt",
+              "TOTS": "Utbildningsinriktningar totalt",
+              "1S": "Pedagogik och lärarutbildning",
+              "2S": "Humaniora och konst",
+              "3S": "Samhällsvetenskap, juridik, handel, administration",
+              "4S": "Naturvetenskap, matematik och informations- och kommunikationsteknik (IKT)",
+              "5S": "Teknik och tillverkning",
+              "6S": "Lant- och skogsbruk samt djursjukvård",
+              "7S": "Hälso- och sjukvård samt social omsorg",
+              "8S": "Tjänster",
+              "17": "Okänt",
+              "TOT": "Utbildningsinriktningar totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_AUtbOmrMYH",
+                "label": "Utbildningsområde MYH",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AUtbOmrMYH?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BUtbInrSUN",
+                "label": "Utbildningsinriktning SUN 2020, 1-siffer",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BUtbInrSUN?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_CUtbInrTot",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CUtbInrTot?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NationellBakgrund": {
+          "label": "nationell bakgrund",
+          "category": {
+            "index": {
+              "tot": 0,
+              "totinr": 1,
+              "if": 2,
+              "uf": 3,
+              "usgrov": 4,
+              "totbak": 5,
+              "sb": 6,
+              "ub": 7,
+              "usbakg": 8
+            },
+            "label": {
+              "tot": "totalt",
+              "totinr": "totalt",
+              "if": "inrikes född",
+              "uf": "utrikes född",
+              "usgrov": "uppgift saknas",
+              "totbak": "totalt",
+              "sb": "svensk bakgrund",
+              "ub": "utländsk bakgrund",
+              "usbakg": "uppgift saknas"
+            },
+            "note": {
+              "sb": [
+                "Personer som är födda i Sverige med minst en förälder också född i Sverige. "
+              ],
+              "ub": [
+                "Personer som är födda i Sverige, men vars föräldrar båda är födda utomlands samt personer som är födda utomlands."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "sb": {
+                "0": true
+              },
+              "ub": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ATotalt",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ATotalt?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BInrikesUtrikes",
+                "label": "Inrikes/utrikes född",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BInrikesUtrikes?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_CFodelselandBakgT",
+                "label": "Svensk/utländsk bakgrund",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CFodelselandBakgT?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "AldEx": {
+          "label": "ålder vid examen",
+          "category": {
+            "index": {
+              "totald": 0,
+              "-29": 1,
+              "30+": 2
+            },
+            "label": {
+              "totald": "totalt",
+              "-29": "–29 år",
+              "30+": "30+ år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000052V": 0
+            },
+            "label": {
+              "0000052V": "Antal personer"
+            },
+            "unit": {
+              "0000052V": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000052V": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000052V": "Flow"
+            },
+            "priceType": {
+              "0000052V": "NotApplicable"
+            },
+            "adjustment": {
+              "0000052V": "None"
+            },
+            "alternativeText": {
+              "0000052V": "Antal personer"
+            }
+          }
+        },
+        "Tid": {
+          "label": "avgångsår",
+          "category": {
+            "index": {
+              "2007/2008": 0,
+              "2008/2009": 1,
+              "2009/2010": 2,
+              "2010/2011": 3,
+              "2011/2012": 4,
+              "2012/2013": 5,
+              "2013/2014": 6,
+              "2014/2015": 7,
+              "2015/2016": 8,
+              "2016/2017": 9,
+              "2017/2018": 10,
+              "2018/2019": 11
+            },
+            "label": {
+              "2007/2008": "2007/2008",
+              "2008/2009": "2008/2009",
+              "2009/2010": "2009/2010",
+              "2010/2011": "2010/2011",
+              "2011/2012": "2011/2012",
+              "2012/2013": "2012/2013",
+              "2013/2014": "2013/2014",
+              "2014/2015": "2014/2015",
+              "2015/2016": "2015/2016",
+              "2016/2017": "2016/2017",
+              "2017/2018": "2017/2018",
+              "2018/2019": "2018/2019"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true
+        },
+        "px": {
+          "infofile": "UF0503",
+          "tableid": "TAB5816",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal personer",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sysselsattning",
+            "InkFordelning",
+            "UppfoljningTid",
+            "Examenstyp",
+            "UtbildningsinriktUF",
+            "Kon",
+            "NationellBakgrund",
+            "AldEx"
+          ],
+          "matrix": "TAB5816",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Paula Kossack",
+            "organization": "SCB",
+            "phone": "010-479 60 05",
+            "mail": "paula.kossack@scb.se",
+            "raw": "Paula Kossack, SCB# +46 010-479 60 05#paula.kossack@scb.se"
+          },
+          {
+            "name": "Evalena Andersson",
+            "organization": "SCB",
+            "phone": "010-479 61 50",
+            "mail": "evalena.andersson@scb.se",
+            "raw": "Evalena Andersson, SCB# +46 010-479 61 50#evalena.andersson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5816",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5816",
+        "label": "Inkomster (spridningsmått) bland de som arbetar efter yrkeshögskolan. Avgångsår 2007/2008-2018/2019",
+        "description": "",
+        "sortCode": "08",
+        "updated": "2022-03-30T06:00:00Z",
+        "firstPeriod": "2007/2008",
+        "lastPeriod": "2018/2019",
+        "category": "public",
+        "variableNames": [
+          "sysselsättning",
+          "inkomstfördelning",
+          "uppföljningstidpunkt",
+          "examenstyp",
+          "utbildningsinriktning",
+          "kön",
+          "nationell bakgrund",
+          "ålder vid examen",
+          "tabellinnehåll",
+          "avgångsår"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Other",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0503",
+              "label": "Sysselsättning och inkomster efter avslutad utbildning",
+              "sortCode": "Sysselsättning och inkomster efter avslutad utbildning"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5816?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5816?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5816/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5816/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

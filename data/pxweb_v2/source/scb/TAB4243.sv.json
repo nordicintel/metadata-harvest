@@ -1,0 +1,669 @@
+{
+  "key": "scb/TAB4243/sv",
+  "identifier": "TAB4243",
+  "language": "sv",
+  "updated": "2026-08-28T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:00:34.191354+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Nettokostnad exkl. läkemedel inom förmånen för regioner efter verksamhetsområde. År 2009-2025",
+      "source": "SCB",
+      "updated": "2026-08-28T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:OE0107"
+            },
+            "href": "https://www.scb.se/OE0107",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Rikstotalen för regionerna är exklusive Region Gotland.",
+        "Uppgifter avseende det senaste redovisningsåret är preliminära fram till den publicering som sker i augusti/september. Därefter ska uppgifterna för det senaste redovisningsåret, samt uppgifter avseende äldre år, betraktas som slutliga.  \r\n  \r\nFör mer information om årets planerade publiceringar, se publiceringskalendern.",
+        "2026-04-28: På grund av ett tekniskt fel vid publiceringen i augusti 2025 har uppgifter för region Dalarna (och därmed även uppgifter för riket) avseende årgång 2024 korrigerats."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Verksomrkom",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        57,
+        1,
+        17
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01L": 1,
+              "03L": 2,
+              "04L": 3,
+              "05L": 4,
+              "06L": 5,
+              "07L": 6,
+              "08L": 7,
+              "0980L": 8,
+              "10L": 9,
+              "12L": 10,
+              "13L": 11,
+              "14L": 12,
+              "17L": 13,
+              "18L": 14,
+              "19L": 15,
+              "20L": 16,
+              "21L": 17,
+              "22L": 18,
+              "23L": 19,
+              "24L": 20,
+              "25L": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01L": "Region Stockholm",
+              "03L": "Region Uppsala",
+              "04L": "Region Sörmland",
+              "05L": "Region Östergötland",
+              "06L": "Region Jönköpings län",
+              "07L": "Region Kronoberg",
+              "08L": "Region Kalmar län",
+              "0980L": "Region Gotland",
+              "10L": "Region Blekinge",
+              "12L": "Region Skåne",
+              "13L": "Region Halland",
+              "14L": "Västra Götalandsregionen",
+              "17L": "Region Värmland",
+              "18L": "Region Örebro län",
+              "19L": "Region Västmanland",
+              "20L": "Region Dalarna",
+              "21L": "Region Gävleborg",
+              "22L": "Region Västernorrland",
+              "23L": "Region Jämtland Härjedalen",
+              "24L": "Region Västerbotten",
+              "25L": "Region Norrbotten"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLandsting99ejAggr",
+                "label": "Regioner",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLandsting99ejAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Verksomrkom": {
+          "label": "verksamhetsområde",
+          "category": {
+            "index": {
+              "0": 0,
+              "010": 1,
+              "015": 2,
+              "020": 3,
+              "025": 4,
+              "030": 5,
+              "060": 6,
+              "080": 7,
+              "090": 8,
+              "1": 9,
+              "110": 10,
+              "120": 11,
+              "160": 12,
+              "180": 13,
+              "2": 14,
+              "210": 15,
+              "220": 16,
+              "260": 17,
+              "280": 18,
+              "3": 19,
+              "310": 20,
+              "320": 21,
+              "330": 22,
+              "340": 23,
+              "4": 24,
+              "410": 25,
+              "420": 26,
+              "430": 27,
+              "440": 28,
+              "450": 29,
+              "470": 30,
+              "490": 31,
+              "910": 32,
+              "0-4": 33,
+              "5": 34,
+              "510": 35,
+              "520": 36,
+              "530": 37,
+              "590": 38,
+              "6": 39,
+              "610": 40,
+              "620": 41,
+              "690": 42,
+              "7": 43,
+              "710": 44,
+              "710_1": 45,
+              "750": 46,
+              "8": 47,
+              "810": 48,
+              "820": 49,
+              "830": 50,
+              "870": 51,
+              "890": 52,
+              "920": 53,
+              "5-8": 54,
+              "Jamf": 55,
+              "0-9": 56
+            },
+            "label": {
+              "0": "PRIMÄRVÅRD, TOTALT",
+              "010": "Allmänläkarvård inkl. jourverksamhet",
+              "015": "Sjuksköterskevård inkl. jourverksamhet",
+              "020": "Mödrahälsovård",
+              "025": "Barnhälsovård",
+              "030": "Fysioterapi och arbetsterapi",
+              "060": "Primärvårdsansluten hemsjukvård",
+              "080": "Sluten primärvård",
+              "090": "Övrig primärvård",
+              "1": "SPECIALISERAD SOMATISK VÅRD, TOTALT",
+              "110": "Somatisk mottagningsverksamhet",
+              "120": "Somatisk dagsjukvård",
+              "160": "Somatisk hemsjukvård ",
+              "180": "Somatisk sluten vård ",
+              "2": "SPECIALISERAD PSYKIATRISK VÅRD, TOTALT",
+              "210": "Psykiatrisk mottagningsverksamhet ",
+              "220": "Psykiatrisk dagsjukvård",
+              "260": "Psykiatrisk hemsjukvård ",
+              "280": "Psykiatrisk sluten vård",
+              "3": "TANDVÅRD, TOTALT (exkl moms) ",
+              "310": "Allmäntandvård vuxna",
+              "320": "Regionens tandvårdsstöd ",
+              "330": "Allmäntandvård barn o ungdomar ",
+              "340": "Specialisttandvård ",
+              "4": "ÖVRIG HÄLSO- OCH SJUKVÅRD, TOTALT",
+              "410": "Ambulans- och sjuktransporter",
+              "420": "Sjukresor ",
+              "430": "Funktionshinder- /hjälpmedelsverksamhet",
+              "440": "Social verksamhet",
+              "450": "Folkhälsofrågor",
+              "470": "FoU avseende hälso- och sjukvård ",
+              "490": "Övrigt, övrig hälso- och sjukvård",
+              "910": "POLITISK VERKSAMHET AVSEENDE HÄLSO- OCH SJUKVÅRD",
+              "0-4": "SUMMA HÄLSO-OCH SJUKVÅRD",
+              "5": "UTBILDNING, TOTALT",
+              "510": "Folkhögskolverksamhet",
+              "520": "Högskoleverksamhet",
+              "530": "Gymnasieverksamhet",
+              "590": "Övrig utbildningsverksamhet",
+              "6": "KULTUR, TOTALT",
+              "610": "Teater- och musikverksamhet",
+              "620": "Museieverksamhet",
+              "690": "Övrig kulturvererksamhet",
+              "7": "TRAFIK OCH INFRASTRUKTUR, TOTALT",
+              "710": "Trafik",
+              "710_1": "Trafik därav färdtjänst",
+              "750": "Infrastuktur",
+              "8": "ALLMÄN REGIONAL UTVECKLING, TOTALT",
+              "810": "Näringsliv och turism",
+              "820": "Interregional och internationell samverkan",
+              "830": "Lokal utveckling",
+              "870": "FoU avseende regional utveckling",
+              "890": "Övrig allmän regional utveckling",
+              "920": "POLITISK VERKSAMHET AVSEENDE REGIONAL UTVECKLING",
+              "5-8": "SUMMA REGIONAL UTVECKLING",
+              "Jamf": "JÄMFÖRELSESTÖRANDE POSTER",
+              "0-9": "TOTALSUMMA"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_AggNivå",
+                "label": "Aggregerad nivå",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_AggNivå?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Allmän",
+                "label": "Allmän regional utvecklingt",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Allmän?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Kultur",
+                "label": "Kultur",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Kultur?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_PolitiskHälso",
+                "label": "Politisk verksamhet avseende hälso- och sjukvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_PolitiskHälso?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Regionutv",
+                "label": "Politisk verksamhet avseende regional utveckling",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Regionutv?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Primärvård",
+                "label": "Primärvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Primärvård?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SpecialPsy",
+                "label": "Specialiserad psykiatrisk vård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SpecialPsy?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Specialiserad",
+                "label": "Specialiserad somatisk vård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Specialiserad?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SumHälso",
+                "label": "Summa hälso- och sjukvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SumHälso?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SumRegion",
+                "label": "Summa regionalutveckling",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SumRegion?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Tandvård",
+                "label": "Tandvård,(exkl moms) ",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Tandvård?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Totsum",
+                "label": "Totalsumma",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Totsum?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Trafik",
+                "label": "Trafik och infrastruktur",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Trafik?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Utbild",
+                "label": "Utbildning",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Utbild?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_OvrigHälso",
+                "label": "Övrig häso- och sjukvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_OvrigHälso?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_VerksFinansLt",
+                "label": "Verksamhetsområde",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_VerksFinansLt?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000000AC": 0
+            },
+            "label": {
+              "000000AC": "Nettokostnad exkl. läkemedel inom förmånen för regioner"
+            },
+            "unit": {
+              "000000AC": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000000AC": "Under året"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000AC": "Flow"
+            },
+            "priceType": {
+              "000000AC": "Current"
+            },
+            "adjustment": {
+              "000000AC": "None"
+            },
+            "alternativeText": {
+              "000000AC": "Nettokostnad exkl. läkemedel inom förmånen för regioner i mnkr, löpande priser"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2009": 0,
+              "2010": 1,
+              "2011": 2,
+              "2012": 3,
+              "2013": 4,
+              "2014": 5,
+              "2015": 6,
+              "2016": 7,
+              "2017": 8,
+              "2018": 9,
+              "2019": 10,
+              "2020": 11,
+              "2021": 12,
+              "2022": 13,
+              "2023": 14,
+              "2024": 15,
+              "2025": 16
+            },
+            "label": {
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            },
+            "note": {
+              "2013": [
+                "Uppgifterna för Västra Götalandsregionen år 2013 innehåller fel i fördelningen mellan verksamhetskoder. Kontakta gärna regionen direkt för att ta del av korrigerade uppgifter."
+              ],
+              "2024": [
+                "Uppgifterna för Västra Götalandsregionen år 2024 innehåller fel, främst inom verksamhetsområdena Primärvård totalt, Allmänläkarvård, Sjuksköterskevård, Specialiserad somatisk vård totalt, Somatisk sluten vård och FoU avseende hälso- och sjukvård. Kontakta gärna regionen direkt för att ta del av korrigerade uppgifter."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "2013": {
+                "0": true
+              },
+              "2024": {
+                "0": true
+              }
+            },
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "OE0107",
+          "tableid": "TAB4243",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Nettokostnad exkl. läkemedel inom förmånen för regioner i mnkr, löpande priser",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Verksomrkom"
+          ],
+          "matrix": "TAB4243",
+          "subject-code": "OE",
+          "subject-area": "Offentlig ekonomi"
+        },
+        "contact": [
+          {
+            "name": "Barbro von Hofsten",
+            "organization": "SCB",
+            "phone": "010-479 67 24",
+            "mail": "barbro.vonhofsten@scb.se",
+            "raw": "Barbro von Hofsten, SCB# +46 010-479 67 24#barbro.vonhofsten@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4243",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4243",
+        "label": "Nettokostnad exkl. läkemedel inom förmånen för regioner efter verksamhetsområde. År 2009-2025",
+        "description": "",
+        "sortCode": "177",
+        "updated": "2026-08-28T06:00:00Z",
+        "firstPeriod": "2009",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "verksamhetsområde",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "OE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "OE",
+              "label": "Offentlig ekonomi",
+              "sortCode": "Offentlig ekonomi"
+            },
+            {
+              "id": "OE0107",
+              "label": "Räkenskapssammandrag för kommuner och regioner",
+              "sortCode": "Räkenskapssammandrag för kommuner och regioner"
+            },
+            {
+              "id": "OE0107D",
+              "label": "Verksamhetsindelad statistik för regioner",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4243?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4243?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4243/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4243/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

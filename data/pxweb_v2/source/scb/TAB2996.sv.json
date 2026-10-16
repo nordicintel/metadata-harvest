@@ -1,0 +1,392 @@
+{
+  "key": "scb/TAB2996/sv",
+  "identifier": "TAB2996",
+  "language": "sv",
+  "updated": "2026-01-23T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:19:23.956530+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta 15-74 år (AKU) efter veckoarbetstid (överenskommen), näringsgren SNI2007 och kön. År 2005-2025",
+      "source": "SCB",
+      "updated": "2026-01-23T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "För perioden 2021 till 2022 avses endast överenskommen arbetstid i huvudsysslan. Detta då överenskommen arbetstid i bisysslan inte samlats in sedan implementeringen av EU förordning 2019/1700. Från och med januari 2023 återinfördes frågan om överenskommen arbetstid i bisysslan och total överenskommen arbetstid kan återigen redovisas.",
+        "För perioden 2005M01–2020M12 innehåller tidsserien ’länkade data’. Inga felmarginaler (osäkerhetstal) redovisas för perioden, detta markeras istället som ”..” i tidsserien. Läs under ’Aktuellt’ för mer information om de länkade serierna. Skattningarna avseende kvartal 1 2005 samt dess ingående månader baseras på en mindre svarsmängd än övriga perioder. Dessa skattningar är därför mer osäkra och bör användas med försiktighet. ",
+        "På grund av bristande jämförbarhet över tid, som ej har kunnat justeras genom länkning, prickas serier avseende överenskommen arbetstid för tidsperioden 2005–2020."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "VeckoarbetstidO",
+        "SNI2007",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        17,
+        3,
+        2,
+        21
+      ],
+      "dimension": {
+        "VeckoarbetstidO": {
+          "label": "veckoarbetstid (överenskommen)",
+          "category": {
+            "index": {
+              "1-19": 0,
+              "20-34": 1,
+              "35+": 2,
+              "TotSyss": 3
+            },
+            "label": {
+              "1-19": "1-19 tim",
+              "20-34": "20-34 tim",
+              "35+": "35+ tim",
+              "TotSyss": "sysselsatta totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "SNI2007": {
+          "label": "näringsgren SNI 2007",
+          "category": {
+            "index": {
+              "A-U": 0,
+              "A-U+UT": 1,
+              "01-03": 2,
+              "05-33+35-39": 3,
+              "25-30+33": 4,
+              "41-43": 5,
+              "45-47": 6,
+              "49-53": 7,
+              "55-56": 8,
+              "58-63": 9,
+              "64-82": 10,
+              "84+99": 11,
+              "85": 12,
+              "86-88": 13,
+              "90-98": 14,
+              "UT": 15,
+              "US": 16
+            },
+            "label": {
+              "A-U": "samtliga näringsgrenar",
+              "A-U+UT": "samtliga näringsgrenar inkl. utlandsarbete",
+              "01-03": "jordbruk, skogsbruk och fiske",
+              "05-33+35-39": "tillverkning och utvinning, energi och miljö",
+              "25-30+33": "tillverkning av verkstadsvaror",
+              "41-43": "byggverksamhet",
+              "45-47": "handel",
+              "49-53": "transport",
+              "55-56": "hotell och restaurang",
+              "58-63": "information och kommunikation",
+              "64-82": "finansiell verksamhet, företagstjänster",
+              "84+99": "offentlig förvaltning m.m.",
+              "85": "utbildning",
+              "86-88": "vård och omsorg",
+              "90-98": "personliga och kulturella tjänster",
+              "UT": "utlandsarbete",
+              "US": "uppgift saknas"
+            },
+            "note": {
+              "25-30+33": [
+                "25-30+33 tillverkning av verkstadsvaror är en delmängd av 05-33+35-39 tillverkning och utvinning,  energi och miljö"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "25-30+33": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM04012S": 0,
+              "AM04012T": 1
+            },
+            "label": {
+              "AM04012S": "Sysselsatta",
+              "AM04012T": "Felmarginal ±"
+            },
+            "note": {
+              "AM04012T": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM04012S": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "AM04012T": {
+                "base": "1000-tal",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM04012T": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM04012S": "",
+              "AM04012T": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM04012S": "Average",
+              "AM04012T": "Average"
+            },
+            "priceType": {
+              "AM04012S": "NotApplicable",
+              "AM04012T": "NotApplicable"
+            },
+            "adjustment": {
+              "AM04012S": "None",
+              "AM04012T": "None"
+            },
+            "alternativeText": {
+              "AM04012S": "Sysselsatta 15-74 år (AKU), 1000-tal",
+              "AM04012T": "Felmarginal ±, sysselsatta 15-74 år (AKU), 1000-tal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15,
+              "2021": 16,
+              "2022": 17,
+              "2023": 18,
+              "2024": 19,
+              "2025": 20
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB2996",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sysselsatta 15-74 år (AKU), 1000-tal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "VeckoarbetstidO",
+            "SNI2007",
+            "Kon"
+          ],
+          "matrix": "TAB2996",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2996",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2996",
+        "label": "Sysselsatta 15-74 år (AKU) efter veckoarbetstid (överenskommen), näringsgren SNI2007 och kön. År 2005-2025",
+        "description": "",
+        "sortCode": "006",
+        "updated": "2026-01-23T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "veckoarbetstid (överenskommen)",
+          "näringsgren SNI 2007",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0401",
+              "label": "Arbetskraftsundersökningarna (AKU)",
+              "sortCode": "020"
+            },
+            {
+              "id": "AM0401B",
+              "label": "Arbetstid efter näringsgren (SNI2007) från och med 2005",
+              "sortCode": "005"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2996?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2996?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2996/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2996/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

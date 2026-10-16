@@ -1,0 +1,375 @@
+{
+  "key": "scb/TAB2699/en",
+  "identifier": "TAB2699",
+  "language": "en",
+  "updated": "2023-02-27T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:12:27.997681+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Election to the Riksdag - those entitled to vote among Swedish citizens registered in Sweden and Swedish citizens residing abroad by sex and age/first-time voters. Number and percent. Year of election 2002-2022",
+      "source": "Statistics Sweden",
+      "updated": "2023-02-27T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:ME0104"
+            },
+            "href": "https://www.scb.se/ME0104-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Bosattn",
+        "Kon",
+        "AlderForstagangsv",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        19,
+        2,
+        6
+      ],
+      "dimension": {
+        "Bosattn": {
+          "label": "registered in Sweden/residing abroad",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2
+            },
+            "label": {
+              "01": "registered in Sweden",
+              "02": "registered in Sweden residing abroad",
+              "03": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AlderForstagangsv": {
+          "label": "age/first-time voters",
+          "category": {
+            "index": {
+              "18-24": 0,
+              "18-29": 1,
+              "25-29": 2,
+              "30-34": 3,
+              "30-49": 4,
+              "35-39": 5,
+              "40-44": 6,
+              "45-49": 7,
+              "50-54": 8,
+              "50-64": 9,
+              "55-59": 10,
+              "60-64": 11,
+              "65-69": 12,
+              "65+": 13,
+              "70-74": 14,
+              "75-79": 15,
+              "80+": 16,
+              "f": 17,
+              "if": 18
+            },
+            "label": {
+              "18-24": "18–24 years",
+              "18-29": "18–29 years",
+              "25-29": "25–29 years",
+              "30-34": "30–34 years",
+              "30-49": "30–49 years",
+              "35-39": "35–39 years",
+              "40-44": "40–44 years",
+              "45-49": "45–49 years",
+              "50-54": "50–54 years",
+              "50-64": "50–64 years",
+              "55-59": "55–59 years",
+              "60-64": "60–64 years",
+              "65-69": "65–69 years",
+              "65+": "65+ years",
+              "70-74": "70–74 years",
+              "75-79": "75–79 years",
+              "80+": "80+ years",
+              "f": "First-time voters",
+              "if": "Not first-time voters"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ÅlderEUValEjAggr",
+                "label": "Age, 5 year age classes",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderEUValEjAggr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ÅlderVal4Klasser",
+                "label": "Age, 4 groups",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderVal4Klasser?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ÅlderValFörstagångsv",
+                "label": "First-time voters or not first-time voters",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderValFörstagångsv?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "ME0104AP": 0,
+              "ME0104AQ": 1
+            },
+            "label": {
+              "ME0104AP": "Number of those entitled to vote",
+              "ME0104AQ": "Percentage of those entitled to vote"
+            },
+            "unit": {
+              "ME0104AP": {
+                "base": "number",
+                "decimals": 0
+              },
+              "ME0104AQ": {
+                "base": "percent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "ME0104AP": "Year of election",
+              "ME0104AQ": "Year of election"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "ME0104AP": "Stock",
+              "ME0104AQ": "Stock"
+            },
+            "priceType": {
+              "ME0104AP": "NotApplicable",
+              "ME0104AQ": "NotApplicable"
+            },
+            "adjustment": {
+              "ME0104AP": "None",
+              "ME0104AQ": "None"
+            },
+            "alternativeText": {
+              "ME0104AP": "Election to the Riksdag - number of those entitled to vote",
+              "ME0104AQ": "Election to the Riksdag - percentage of those entitled to vote"
+            }
+          }
+        },
+        "Tid": {
+          "label": "election year",
+          "category": {
+            "index": {
+              "2002": 0,
+              "2006": 1,
+              "2010": 2,
+              "2014": 3,
+              "2018": 4,
+              "2022": 5
+            },
+            "label": {
+              "2002": "2002",
+              "2006": "2006",
+              "2010": "2010",
+              "2014": "2014",
+              "2018": "2018",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "ME0104",
+          "tableid": "TAB2699",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Election to the Riksdag - those entitled to vote",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Bosattn",
+            "Kon",
+            "AlderForstagangsv"
+          ],
+          "matrix": "TAB2699",
+          "subject-code": "ME",
+          "subject-area": "Democracy"
+        },
+        "contact": [
+          {
+            "name": "Jonas Olofsson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 47 18",
+            "mail": "jonas.olofsson@scb.se",
+            "raw": "Jonas Olofsson, Statistics Sweden# +46 010-479 47 18#jonas.olofsson@scb.se"
+          },
+          {
+            "name": "Karolina Eriksson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, Statistics Sweden# +46 010-479 41 76#karolina.eriksson@scb.se"
+          },
+          {
+            "name": "  Valstatistik",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 44 10",
+            "mail": "valstatistik@scb.se",
+            "raw": "  Valstatistik, Statistics Sweden# +46 010-479 44 10#valstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2699",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2699",
+        "label": "Election to the Riksdag - those entitled to vote among Swedish citizens registered in Sweden and Swedish citizens residing abroad by sex and age/first-time voters. Number and percent. Year of election 2002-2022",
+        "description": "",
+        "sortCode": "07",
+        "updated": "2023-02-27T07:00:00Z",
+        "firstPeriod": "2002",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "registered in Sweden/residing abroad",
+          "sex",
+          "age/first-time voters",
+          "observations",
+          "election year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "ME",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "ME",
+              "label": "Democracy",
+              "sortCode": "Democracy"
+            },
+            {
+              "id": "ME0104",
+              "label": "General elections, results",
+              "sortCode": "General elections, results"
+            },
+            {
+              "id": "ME0104C",
+              "label": "Elections to the Riksdag",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2699?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2699?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2699/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2699/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

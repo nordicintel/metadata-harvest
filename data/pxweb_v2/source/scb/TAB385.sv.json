@@ -1,0 +1,430 @@
+{
+  "key": "scb/TAB385/sv",
+  "identifier": "TAB385",
+  "language": "sv",
+  "updated": "2024-02-28T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:34:13.811231+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Värderingsenheter (typkod 120) genomsnittliga areor och byggnadsvärden efter län och värdeårsklass. År 1998-2023",
+      "source": "SCB",
+      "updated": "2024-02-28T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0601"
+            },
+            "href": "https://www.scb.se/BO0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "VardeArsKlass",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        15,
+        7,
+        8
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän07EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "VardeArsKlass": {
+          "label": "värdeårsklass",
+          "category": {
+            "index": {
+              "Tot": 0,
+              "-1929": 1,
+              "1930-1939": 2,
+              "1940-1949": 3,
+              "1950-1959": 4,
+              "1960-1964": 5,
+              "1965-1969": 6,
+              "1970-1974": 7,
+              "1975-1979": 8,
+              "1980-1984": 9,
+              "1985-1989": 10,
+              "1990-1994": 11,
+              "1995-1999": 12,
+              "2000-": 13,
+              "UB": 14
+            },
+            "label": {
+              "Tot": "totalt",
+              "-1929": "–1929",
+              "1930-1939": "1930–1939",
+              "1940-1949": "1940–1949",
+              "1950-1959": "1950–1959",
+              "1960-1964": "1960–1964",
+              "1965-1969": "1965–1969",
+              "1970-1974": "1970–1974",
+              "1975-1979": "1975–1979",
+              "1980-1984": "1980–1984",
+              "1985-1989": "1985–1989",
+              "1990-1994": "1990–1994",
+              "1995-1999": "1995–1999",
+              "2000-": "2000–",
+              "UB": "under byggnad"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0601N3": 0,
+              "BO0601N4": 1,
+              "BO0601N5": 2,
+              "BO0601N6": 3,
+              "BO0601N7": 4,
+              "BO0601N8": 5,
+              "BO0601N9": 6
+            },
+            "label": {
+              "BO0601N3": "Värderingsenheter med bostadsyta",
+              "BO0601N4": "Värderingsenheter med biutrymmesyta",
+              "BO0601N5": "Genomsnittligt byggnadsvärde, kr",
+              "BO0601N6": "Genomsnittlig bostadsyta, kvm",
+              "BO0601N7": "Genomsnittlig biutrymmesyta, kvm",
+              "BO0601N8": "Genomsnittligt byggnadsvärde per kvm bostadyta, kr",
+              "BO0601N9": "Värderingsenheter under byggnation"
+            },
+            "unit": {
+              "BO0601N3": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0601N4": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0601N5": {
+                "base": "kr",
+                "decimals": 0
+              },
+              "BO0601N6": {
+                "base": "kvm",
+                "decimals": 0
+              },
+              "BO0601N7": {
+                "base": "kvm",
+                "decimals": 0
+              },
+              "BO0601N8": {
+                "base": "kr",
+                "decimals": 0
+              },
+              "BO0601N9": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0601N3": "2005",
+              "BO0601N4": "2005",
+              "BO0601N5": "2005",
+              "BO0601N6": "2005",
+              "BO0601N7": "2005",
+              "BO0601N8": "2005",
+              "BO0601N9": "2005"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0601N3": "Stock",
+              "BO0601N4": "Stock",
+              "BO0601N5": "Stock",
+              "BO0601N6": "Stock",
+              "BO0601N7": "Stock",
+              "BO0601N8": "Stock",
+              "BO0601N9": "Stock"
+            },
+            "priceType": {
+              "BO0601N3": "NotApplicable",
+              "BO0601N4": "NotApplicable",
+              "BO0601N5": "NotApplicable",
+              "BO0601N6": "NotApplicable",
+              "BO0601N7": "NotApplicable",
+              "BO0601N8": "NotApplicable",
+              "BO0601N9": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0601N3": "None",
+              "BO0601N4": "None",
+              "BO0601N5": "None",
+              "BO0601N6": "None",
+              "BO0601N7": "None",
+              "BO0601N8": "None",
+              "BO0601N9": "None"
+            },
+            "basePeriod": {
+              "BO0601N3": "2005",
+              "BO0601N4": "2005",
+              "BO0601N5": "2005",
+              "BO0601N6": "2005",
+              "BO0601N7": "2005",
+              "BO0601N8": "2005",
+              "BO0601N9": "2005"
+            },
+            "alternativeText": {
+              "BO0601N3": "Allmän fastighetstaxering för lantbruk, värderingsenheter med bostadsyta",
+              "BO0601N4": "Allmän fastighetstaxering för lantbruk, värderingsenheter med biutrymmesyta",
+              "BO0601N5": "Allmän fastighetstaxering för lantbruk, genomsnittligt byggnadsvärde, kr",
+              "BO0601N6": "Allmän fastighetstaxering för lantbruk, genomsnittlig bostadsyta, kvm",
+              "BO0601N7": "Allmän fastighetstaxering för lantbruk, genomsnittlig biutrymmesyta, kvm",
+              "BO0601N8": "Allmän fastighetstaxering för lantbruk, genomsnittligt byggnadsvärde per kvm bostadyta, kr",
+              "BO0601N9": "Allmän fastighetstaxering för lantbruk, värderingsenheter under byggnation"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år, oregelb",
+          "category": {
+            "index": {
+              "1998": 0,
+              "2005": 1,
+              "2008": 2,
+              "2011": 3,
+              "2014": 4,
+              "2017": 5,
+              "2020": 6,
+              "2023": 7
+            },
+            "label": {
+              "1998": "1998",
+              "2005": "2005",
+              "2008": "2008",
+              "2011": "2011",
+              "2014": "2014",
+              "2017": "2017",
+              "2020": "2020",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0601",
+          "tableid": "TAB385",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Allmän fastighetstaxering för lantbruk",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "VardeArsKlass"
+          ],
+          "matrix": "TAB385",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Magnus Walestad",
+            "organization": "SCB",
+            "phone": "010-479 44 18",
+            "mail": "magnus.walestad@scb.se",
+            "raw": "Magnus Walestad, SCB# +46 010-479 44 18#magnus.walestad@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB385",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB385",
+        "label": "Värderingsenheter (typkod 120) genomsnittliga areor och byggnadsvärden efter län och värdeårsklass. År 1998-2023",
+        "description": "",
+        "sortCode": "17",
+        "updated": "2024-02-28T07:00:00Z",
+        "firstPeriod": "1998",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "värdeårsklass",
+          "tabellinnehåll",
+          "år, oregelb"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0601",
+              "label": "Fastighetstaxeringar",
+              "sortCode": "Fastighetstaxeringar"
+            },
+            {
+              "id": "BO0601E",
+              "label": "Allmän/förenklad fastighetstaxering för lantbruk",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB385?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB385?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB385/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB385/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

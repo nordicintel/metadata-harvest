@@ -1,0 +1,369 @@
+{
+  "key": "scb/TAB4426/en",
+  "identifier": "TAB4426",
+  "language": "en",
+  "updated": "2024-12-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:16:46.481918+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Concentration averages (yearly averages) in outgoing wastewater by treatment method/size, substance and interval. Every other year 2014-2022",
+      "source": "Swedish Environmental Protection Agency",
+      "updated": "2024-12-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:MI0106"
+            },
+            "href": "https://www.scb.se/MI0106-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "RenStrl",
+        "Substans",
+        "Intervall",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        9,
+        4,
+        16,
+        2,
+        5
+      ],
+      "dimension": {
+        "RenStrl": {
+          "label": "treatment method/size",
+          "category": {
+            "index": {
+              "71": 0,
+              "75": 1,
+              "78": 2,
+              "80": 3,
+              "82": 4,
+              "84": 5,
+              "86": 6,
+              "88": 7,
+              "90": 8
+            },
+            "label": {
+              "71": "2 001–20 000",
+              "75": "20 001–100 000",
+              "78": "100 001–",
+              "80": "biological",
+              "82": "chemical",
+              "84": "bio-chem (conv.)",
+              "86": "bio-chem (compl.)",
+              "88": "bio-chem (nitrogen)",
+              "90": " Total"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_Reningsverk",
+                "label": "Total",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Reningsverk?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ReningsverkMetod",
+                "label": "Treatment method",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ReningsverkMetod?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ReningsverkStrlklassB",
+                "label": "Size",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ReningsverkStrlklassB?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Substans": {
+          "label": "substance",
+          "category": {
+            "index": {
+              "Tot-P": 0,
+              "Tot-N": 1,
+              "BOD7": 2,
+              "CODCr": 3
+            },
+            "label": {
+              "Tot-P": "total phosphorous",
+              "Tot-N": "total nitrogen",
+              "BOD7": "BOD7 (organic compounds)",
+              "CODCr": "CODCr (organic compounds)"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Intervall": {
+          "label": "interval",
+          "category": {
+            "index": {
+              "-0,15": 0,
+              "0,15-0,35": 1,
+              "0,3": 2,
+              "0,4-0,5": 3,
+              "0,6": 4,
+              "-5": 5,
+              "5-15": 6,
+              "15-B": 7,
+              "-8": 8,
+              "8-10": 9,
+              "-10": 10,
+              "10-15": 11,
+              "15-": 12,
+              "-40": 13,
+              "40-70": 14,
+              "70-": 15
+            },
+            "label": {
+              "-0,15": "–0,15 (P-concentration)",
+              "0,15-0,35": "0,15–0,35 (P-concentration)",
+              "0,3": "–0,35 (P-concentration)",
+              "0,4-0,5": "0,35–0,55 (P-concentration)",
+              "0,6": "0,55– (P-concentration)",
+              "-5": "–5 (BOD7-concentration)",
+              "5-15": "5–15 (BOD7-concentration)",
+              "15-B": "15– (BOD7-concentration)",
+              "-8": "–8 (N-concentration)",
+              "8-10": "8–10 (N-concentration)",
+              "-10": "–10 (N-concentration)",
+              "10-15": "10–15 (N-concentration)",
+              "15-": "15– (N-concentration)",
+              "-40": "–40 (CODCr-concentration)",
+              "40-70": "40–70 (CODCr-concentration)",
+              "70-": "70– (CODCr-concentration)"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000000PY": 0,
+              "000000PX": 1
+            },
+            "label": {
+              "000000PY": "Amount of plants",
+              "000000PX": "Amount, tonnes"
+            },
+            "unit": {
+              "000000PY": {
+                "base": "amount",
+                "decimals": 0
+              },
+              "000000PX": {
+                "base": "tonnes",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000000PY": "",
+              "000000PX": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000PY": "Flow",
+              "000000PX": "Flow"
+            },
+            "priceType": {
+              "000000PY": "NotApplicable",
+              "000000PX": "NotApplicable"
+            },
+            "adjustment": {
+              "000000PY": "None",
+              "000000PX": "None"
+            },
+            "alternativeText": {
+              "000000PY": "Amount of plants",
+              "000000PX": "Amount, tonnes"
+            }
+          }
+        },
+        "Tid": {
+          "label": "every other year",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2016": 1,
+              "2018": 2,
+              "2020": 3,
+              "2022": 4
+            },
+            "label": {
+              "2014": "2014",
+              "2016": "2016",
+              "2018": "2018",
+              "2020": "2020",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "MI0106",
+          "tableid": "TAB4426",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Concentration averages (yearly averages) in outgoing wastewater",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "RenStrl",
+            "Substans",
+            "Intervall"
+          ],
+          "matrix": "TAB4426",
+          "subject-code": "MI",
+          "subject-area": "Environment"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Alexander Dimberg",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 44 17",
+            "mail": "alexander.dimberg@scb.se",
+            "raw": "Alexander Dimberg, Statistics Sweden# +46 010-479 44 17#alexander.dimberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4426",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4426",
+        "label": "Concentration averages (yearly averages) in outgoing wastewater by treatment method/size, substance and interval. Every other year 2014-2022",
+        "description": "",
+        "sortCode": "028",
+        "updated": "2024-12-18T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "treatment method/size",
+          "substance",
+          "interval",
+          "observations",
+          "every other year"
+        ],
+        "source": "Swedish Environmental Protection Agency",
+        "subjectCode": "MI",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "MI",
+              "label": "Environment",
+              "sortCode": "Environment"
+            },
+            {
+              "id": "MI0106",
+              "label": "Discharges to water and sewage sludge production",
+              "sortCode": "Discharges to water and sewage sludge production"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4426?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4426?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4426/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4426/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

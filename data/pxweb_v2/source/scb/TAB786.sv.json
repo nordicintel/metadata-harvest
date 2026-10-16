@@ -1,0 +1,442 @@
+{
+  "key": "scb/TAB786/sv",
+  "identifier": "TAB786",
+  "language": "sv",
+  "updated": "2013-06-20T07:30:00Z",
+  "retrieved_at": "2026-10-16T18:01:52.544256+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Biståndsmånader (under året) efter region, hushållstyp och född i Sverige/utrikes (samt flyktingar) och antal barn. År 1998-2011",
+      "source": "Socialstyrelsen (SoS)",
+      "updated": "2013-06-20T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:SO0203"
+            },
+            "href": "https://www.scb.se/SO0203",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Uppgifter saknas för följande år och kommuner; 1998 för Höör, Lessebo och Varberg, 1999 för Jokkmokk, Kiruna och Överkalix samt 2000 för Härjedalen.",
+        "Uppgifter avseende 2004 saknas för Munkfors, Norberg och Ludvika och är på läns- och riksnivå skattade med 2003 års uppgifter.",
+        "Uppgifter om introduktionsersättning saknas 2007 för Hällefors och är på läns- och riksnivå skattade med 2006 års uppgifter."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Hushallstyp",
+        "Utrikesfodd",
+        "Barn",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        3,
+        3,
+        4,
+        1,
+        14
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            },
+            "note": {
+              "03": [
+                "Fr o m 2007-01-01 utökas Uppsala län med Heby kommun. Observera att länssiffrorna inte är jämförbara med länssiffrorna bakåt i tiden."
+              ],
+              "19": [
+                "Fr o m 2007-01-01 minskar Västmanlands län med Heby kommun. Observera att länssiffrorna inte är jämförbara med länssiffrorna bakåt i tiden."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "03": {
+                "0": true
+              },
+              "19": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1_2008",
+                "label": "NUTS1 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS2_2008",
+                "label": "NUTS2 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3_2008",
+                "label": "NUTS3 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän07",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Hushallstyp": {
+          "label": "hushållstyp",
+          "category": {
+            "index": {
+              "EKV": 0,
+              "EM": 1,
+              "GS": 2
+            },
+            "label": {
+              "EKV": "ensamstående kvinnor",
+              "EM": "ensamstående män",
+              "GS": "gifta/samboende"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Utrikesfodd": {
+          "label": "född i Sverige/utrikes",
+          "category": {
+            "index": {
+              "svensk": 0,
+              "utfodd": 1,
+              "flykt": 2
+            },
+            "label": {
+              "svensk": "född i Sverige",
+              "utfodd": "utrikes född inkl. flykting",
+              "flykt": "flykting"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Barn": {
+          "label": "antal barn",
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1,
+              "2": 2,
+              "3+": 3
+            },
+            "label": {
+              "0": "0 barn",
+              "1": "1 barn",
+              "2": "2 barn",
+              "3+": "3+ barn"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "SO0203B6": 0
+            },
+            "label": {
+              "SO0203B6": "Antal"
+            },
+            "unit": {
+              "SO0203B6": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "SO0203B6": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "SO0203B6": "Flow"
+            },
+            "priceType": {
+              "SO0203B6": "NotApplicable"
+            },
+            "adjustment": {
+              "SO0203B6": "None"
+            },
+            "alternativeText": {
+              "SO0203B6": "Biståndsmånader (under året), antal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1998": 0,
+              "1999": 1,
+              "2000": 2,
+              "2001": 3,
+              "2002": 4,
+              "2003": 5,
+              "2004": 6,
+              "2005": 7,
+              "2006": 8,
+              "2007": 9,
+              "2008": 10,
+              "2009": 11,
+              "2010": 12,
+              "2011": 13
+            },
+            "label": {
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "2": true
+        },
+        "px": {
+          "infofile": "SO0203",
+          "tableid": "TAB786",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Biståndsmånader (under året), antal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Hushallstyp",
+            "Utrikesfodd",
+            "Barn"
+          ],
+          "matrix": "TAB786",
+          "subject-code": "SO",
+          "subject-area": "Socialtjänst"
+        },
+        "contact": [
+          {
+            "name": "Helena Rudander",
+            "organization": "SCB",
+            "phone": "010-479 41 24",
+            "mail": "helena.rudander@scb.se",
+            "raw": "Helena Rudander, SCB# +46 010-479 41 24#helena.rudander@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB786",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB786",
+        "label": "Biståndsmånader (under året) efter region, hushållstyp och född i Sverige/utrikes (samt flyktingar) och antal barn. År 1998-2011",
+        "description": "",
+        "sortCode": "008",
+        "updated": "2013-06-20T07:30:00Z",
+        "firstPeriod": "1998",
+        "lastPeriod": "2011",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "hushållstyp",
+          "född i Sverige/utrikes",
+          "antal barn",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "Socialstyrelsen (SoS)",
+        "subjectCode": "SO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "SO",
+              "label": "Socialtjänst",
+              "sortCode": "Socialtjänst"
+            },
+            {
+              "id": "SO0203",
+              "label": "Statistik om ekonomiskt bistånd",
+              "sortCode": "Statistik om ekonomiskt bistånd"
+            },
+            {
+              "id": "SO0203B",
+              "label": "Statistik från Socialstyrelsen, äldre tabeller uppdateras ej",
+              "sortCode": "020"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB786?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB786/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB786/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

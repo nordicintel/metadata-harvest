@@ -1,0 +1,375 @@
+{
+  "key": "scb/TAB4918/en",
+  "identifier": "TAB4918",
+  "language": "en",
+  "updated": "2021-11-25T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:10:10.134487+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Automated information exchange within the enterprise, by system and accounting group. Share of enteprises. Year 2014-2021",
+      "source": "Statistics Sweden",
+      "updated": "2021-11-25T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "In this table, 0 means that the proportion is greater than zero but less than 0.5 percent, and that the confidence interval is greater than 0, but less than 0.5 percentage points. The character .. means that the task is not available or too uncertain to indicate."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "System",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        24,
+        2,
+        5
+      ],
+      "dimension": {
+        "System": {
+          "label": "system",
+          "category": {
+            "index": {
+              "0090": 0,
+              "0100": 1,
+              "0110": 2
+            },
+            "label": {
+              "0090": "ERP to share information within the enterprise",
+              "0100": "CRM for collecting and storing customer information",
+              "0110": "CRM for analysing customer information for marketing purposes"
+            },
+            "note": {
+              "0090": [
+                "In 2019 the question was changed compared to 2017. Examples and explanation of ERP were added to the question."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0090": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "study domain",
+          "category": {
+            "index": {
+              "Tot250": 0,
+              "10-49": 1,
+              "50-249": 2,
+              "250-": 3,
+              "TotSNI": 4,
+              "10-33": 5,
+              "35-39": 6,
+              "41-43": 7,
+              "45-47": 8,
+              "49-53": 9,
+              "55-56": 10,
+              "58-63": 11,
+              "68": 12,
+              "69-82+95.1exkl.75": 13,
+              "IKT": 14,
+              "SE": 15,
+              "RIKS1": 16,
+              "RIKS2": 17,
+              "RIKS3": 18,
+              "RIKS4": 19,
+              "RIKS5": 20,
+              "RIKS6": 21,
+              "RIKS7": 22,
+              "RIKS8": 23
+            },
+            "label": {
+              "Tot250": "10 or more employees in total",
+              "10-49": "10–49 employees",
+              "50-249": "50–249 employees",
+              "250-": "250 or more employees",
+              "TotSNI": "total (SNI 10–63, 68–74, 77–82, 95.1)",
+              "10-33": "manufacturing (SNI 10–33)",
+              "35-39": "energy and recycling (SNI 35–39)",
+              "41-43": "construction (SNI 41–43)",
+              "45-47": "trade; motor vehicle and motorcycle garages (SNI 45–47)",
+              "49-53": "transport and storage enterprises (SNI 49–53)",
+              "55-56": "accommodation and food services (SNI 55–56)",
+              "58-63": "information and communication enterprises (SNI 58–63)",
+              "68": "real estate companies and managers (SNI 68)",
+              "69-82+95.1exkl.75": "other service companies (SNI 69–74, 77–82, 95.1)",
+              "IKT": "ICT sector (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sweden",
+              "RIKS1": "Stockholm",
+              "RIKS2": "East-Central Sweden",
+              "RIKS3": "Småland and islands",
+              "RIKS4": "South Sweden",
+              "RIKS5": "West Sweden",
+              "RIKS6": "North-Central Sweden",
+              "RIKS7": "Central Norrland",
+              "RIKS8": "Upper Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (only for enterprises with 10 or more employees)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Enterprises, 10 or more employees",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Industry (only enterprises with 10 or more employees)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000001ZF": 0,
+              "000001ZG": 1
+            },
+            "label": {
+              "000001ZF": "Percentage, percent",
+              "000001ZG": "Margin of error, ±"
+            },
+            "unit": {
+              "000001ZF": {
+                "base": "percent",
+                "decimals": 0
+              },
+              "000001ZG": {
+                "base": "percentage points",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001ZF": "Year",
+              "000001ZG": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001ZF": "Stock",
+              "000001ZG": "Stock"
+            },
+            "priceType": {
+              "000001ZF": "NotApplicable",
+              "000001ZG": "NotApplicable"
+            },
+            "adjustment": {
+              "000001ZF": "None",
+              "000001ZG": "None"
+            },
+            "alternativeText": {
+              "000001ZF": "Share of enterprises with automated information exchange within the enterprise, percent",
+              "000001ZG": "Share of enterprises with automated information exchange within the enterprise, margin of error ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2017": 2,
+              "2019": 3,
+              "2021": 4
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2017": "2017",
+              "2019": "2019",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB4918",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Automated information exchange within the enterprise",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "System",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4918",
+          "subject-code": "NV",
+          "subject-area": "Business activities"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, Statistics Sweden# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , Statistics Sweden# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4918",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4918",
+        "label": "Automated information exchange within the enterprise, by system and accounting group. Share of enteprises. Year 2014-2021",
+        "description": "",
+        "sortCode": "024",
+        "updated": "2021-11-25T08:30:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "system",
+          "study domain",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Business activities",
+              "sortCode": "Business activities"
+            },
+            {
+              "id": "NV0116",
+              "label": "ICT usage in enterprises",
+              "sortCode": "ICT usage in enterprises"
+            },
+            {
+              "id": "NV0116O",
+              "label": "Electronic Business Processes",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

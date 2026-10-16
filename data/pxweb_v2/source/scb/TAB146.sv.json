@@ -1,0 +1,289 @@
+{
+  "key": "scb/TAB146/sv",
+  "identifier": "TAB146",
+  "language": "sv",
+  "updated": "2008-01-31T08:31:00Z",
+  "retrieved_at": "2026-10-16T17:22:58.185891+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Ej i arbetskraften, antal personer 16-64 år (AKU) efter orsak och kön. År 2005-2007",
+      "source": "SCB",
+      "updated": "2008-01-31T08:31:00Z",
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "EjiakOrsak",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        9,
+        3,
+        2,
+        3
+      ],
+      "dimension": {
+        "EjiakOrsak": {
+          "label": "orsak",
+          "category": {
+            "index": {
+              "STUDHEL": 0,
+              "HEMARB": 1,
+              "ARBSOK": 2,
+              "VPL": 3,
+              "LEDIG": 4,
+              "PENSION": 5,
+              "FRSJUK": 6,
+              "OVR": 7,
+              "EJIAKTOT": 8
+            },
+            "label": {
+              "STUDHEL": "studerande heltid",
+              "HEMARB": "hemarbetande",
+              "ARBSOK": "arbetssökande",
+              "VPL": "värnpliktiga",
+              "LEDIG": "lediga",
+              "PENSION": "pension",
+              "FRSJUK": "sjuk",
+              "OVR": "övriga orsaker",
+              "EJIAKTOT": "ej i arbetskraften totalt"
+            },
+            "note": {
+              "ARBSOK": [
+                "Betraktar sig som arbetssökande men uppfyller ej definitionskrav för arbetslösa."
+              ],
+              "PENSION": [
+                "Förtidspension av hälsoskäl ingår i sjuk."
+              ],
+              "FRSJUK": [
+                "Förtidspension av hälsoskäl ingår i sjuk."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ARBSOK": {
+                "0": true
+              },
+              "PENSION": {
+                "0": true
+              },
+              "FRSJUK": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402R2": 0,
+              "AM0402R3": 1
+            },
+            "label": {
+              "AM0402R2": "1000-tal",
+              "AM0402R3": "Felmarginal ±, 1000-tal"
+            },
+            "note": {
+              "AM0402R3": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM0402R2": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "AM0402R3": {
+                "base": "1000-tal",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0402R3": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0402R2": "",
+              "AM0402R3": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402R2": "Average",
+              "AM0402R3": "Average"
+            },
+            "priceType": {
+              "AM0402R2": "NotApplicable",
+              "AM0402R3": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402R2": "None",
+              "AM0402R3": "None"
+            },
+            "alternativeText": {
+              "AM0402R2": "Antal personer ej i arbetskraften 16-64 år (AKU), 1000-tal",
+              "AM0402R3": "Felmarginal ±, antal personer ej i arbetskraften 16-64 år (AKU), 1000-tal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB146",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal personer ej i arbetskraften 16-64 år (AKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "EjiakOrsak",
+            "Kon"
+          ],
+          "matrix": "TAB146",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB146",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB146",
+        "label": "Ej i arbetskraften, antal personer 16-64 år (AKU) efter orsak och kön. År 2005-2007",
+        "description": "",
+        "sortCode": "009",
+        "updated": "2008-01-31T08:31:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2007",
+        "category": "public",
+        "variableNames": [
+          "orsak",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402E",
+              "label": "Personer ej i arbetskraften",
+              "sortCode": "05"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB146?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB146/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB146/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

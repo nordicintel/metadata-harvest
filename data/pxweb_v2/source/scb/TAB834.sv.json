@@ -1,0 +1,499 @@
+{
+  "key": "scb/TAB834/sv",
+  "identifier": "TAB834",
+  "language": "sv",
+  "updated": "2014-10-01T07:30:00Z",
+  "retrieved_at": "2026-10-16T17:33:19.829947+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Outhyrda/osålda lägenheter i nybyggda hus efter region, hustyp, byggherre, upplåtelseform och lägenhetstyp. År 1997-2013",
+      "source": "SCB",
+      "updated": "2014-10-01T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0404"
+            },
+            "href": "https://www.scb.se/BO0404",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Redovisningen av Seniorboende under kategoriboende upphör fr.o.m. år 2005. Dessa bostäder redovisas under hyres- eller bostadsrätter då dessa bostäder numera ej skiljer sig nämnvärt mot vanliga bostäder. Nytt från år 2006 är att kollektivboende ej längre finns redovisat under kategoriboende. Detta för att denna fråga utgått då inget kollektivboende byggts de sista 10 åren."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Hustyp",
+        "Byggherre",
+        "Upplatelseform",
+        "Lagenhetstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        27,
+        3,
+        5,
+        2,
+        9,
+        2,
+        15
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5,
+              "01": 6,
+              "03": 7,
+              "04": 8,
+              "05": 9,
+              "06": 10,
+              "07": 11,
+              "08": 12,
+              "09": 13,
+              "10": 14,
+              "12": 15,
+              "13": 16,
+              "14": 17,
+              "17": 18,
+              "18": 19,
+              "19": 20,
+              "20": 21,
+              "21": 22,
+              "22": 23,
+              "23": 24,
+              "24": 25,
+              "25": 26
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0030": "Stor-Malmö",
+              "0040": "Kommuner med >75 000 inv. (exkl. storstadsområden)",
+              "0041": "Kommuner med <75 000 inv. (exkl. storstadsområden)",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS2_3",
+                "label": "NUTS2 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_3?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3_2",
+                "label": "NUTS3 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3_2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän98",
+                "label": "Län, 1997 års indelning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän98?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket98",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket98?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionStorstad98B",
+                "label": "Storstadsområden och kommungrupper",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionStorstad98B?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Hustyp": {
+          "label": "hustyp",
+          "category": {
+            "index": {
+              "FLERBO": 0,
+              "SMÅHUSB": 1,
+              "TOTALT": 2
+            },
+            "label": {
+              "FLERBO": "flerbostadshus",
+              "SMÅHUSB": "småhus",
+              "TOTALT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Byggherre": {
+          "label": "byggherre",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "5": 2,
+              "3": 3,
+              "4": 4
+            },
+            "label": {
+              "1": "Offentliga",
+              "2": "bostadsrättsförening (totalt), bostadsförening och kooperativ hyresförening",
+              "5": "rikskooperativ bostadsrättsförening",
+              "3": "Privata företag och organisationer",
+              "4": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Upplatelseform": {
+          "label": "upplåtelseform",
+          "category": {
+            "index": {
+              "BOSTADSRÄTT": 0,
+              "HYRESRÄTT": 1
+            },
+            "label": {
+              "BOSTADSRÄTT": "bostadsrätt",
+              "HYRESRÄTT": "hyresrätt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Lagenhetstyp": {
+          "label": "lägenhetstyp",
+          "category": {
+            "index": {
+              "1RKV": 0,
+              "1RK": 1,
+              "2RK": 2,
+              "3RK": 3,
+              "4RK": 4,
+              "5RK": 5,
+              "6+RK": 6,
+              "ÖVRIGA": 7,
+              "TOTALT": 8
+            },
+            "label": {
+              "1RKV": "1 rum och kokvrå",
+              "1RK": "1 rum och kök",
+              "2RK": "2 rum och kök",
+              "3RK": "3 rum och kök",
+              "4RK": "4 rum och kök",
+              "5RK": "5 rum och kök",
+              "6+RK": "6 eller flera rum och kök",
+              "ÖVRIGA": "övriga",
+              "TOTALT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0404D1": 0,
+              "BO0404D2": 1
+            },
+            "label": {
+              "BO0404D1": "Lägenheter i nybyggda hus med hyres- eller bostadsrätt",
+              "BO0404D2": "Outhyrda/osålda lägenheter i nybyggda hus med hyres- eller bostadsrätt"
+            },
+            "note": {
+              "BO0404D1": [
+                "Med lägenheter avses antal lägenheter exkl. kategoribostäder (redovisas i en annan tabell), övriga specialbostäder och ägda småhus",
+                "Fr.o.m. 2003 års undersökning har hänsyn tagits till såväl övertäckning som undertäckning. Målsättningen med denna kompensation, som inte gjorts vid tidigare undersökningar, är att höja kvaliteten i de skattningar som avser uppgifter om antal lägenheter. Detta leder dock till att de skattningar som avser uppgifter om antal lägenheter för år 2003 och 2004 inte är direkt jämförbara med motsvarande uppgifter för åren 1997 - 2002 som finns i Statistikdatabasen. Genom att multiplicera antalsuppgifter för år 2003 med faktorn 0.898 kan de göras direkt jämförbara med tidigare års uppgifter. För att göra samma jämförelse med uppgifterna för år 2004 multipliceras dessa med faktorn 0.916. År 2005 multipliceras antalsuppgifterna med faktorn 0.940. Faktorn att multiplicera med för år 2006 är 0.9014. Faktorn att multiplicera med för år 2007 är 0.8693. Åren 2003 - 2007 är jämförbara sinsemellan utan uppräkning, endast vid jämförelse bakåt i tiden skall de olika faktorerna användas."
+              ]
+            },
+            "unit": {
+              "BO0404D1": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0404D2": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "BO0404D1": {
+                "1": true
+              }
+            },
+            "refperiod": {
+              "BO0404D1": "31 december respektive år",
+              "BO0404D2": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0404D1": "Stock",
+              "BO0404D2": "Stock"
+            },
+            "priceType": {
+              "BO0404D1": "NotApplicable",
+              "BO0404D2": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0404D1": "None",
+              "BO0404D2": "None"
+            },
+            "alternativeText": {
+              "BO0404D1": "Lägenheter i nybyggda hus med hyres- eller bostadsrätt",
+              "BO0404D2": "Outhyrda/osålda lägenheter i nybyggda hus med hyres- eller bostadsrätt"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1997": 0,
+              "1998": 1,
+              "1999": 2,
+              "2000": 3,
+              "2001": 4,
+              "2002": 5,
+              "2003": 6,
+              "2004": 7,
+              "2005": 8,
+              "2006": 9,
+              "2007": 10,
+              "2008": 11,
+              "2009": 12,
+              "2011": 13,
+              "2013": 14
+            },
+            "label": {
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2011": "2011",
+              "2013": "2013"
+            },
+            "note": {
+              "1997": [
+                "För år 1997 räknas kommunerna Habo och Mullsjö till Västra Götalands län i stället för till Jönköpings län."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "BO0404",
+          "tableid": "TAB834",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Outhyrda/osålda lägenheter i nybyggda hus",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Hustyp",
+            "Byggherre",
+            "Upplatelseform",
+            "Lagenhetstyp"
+          ],
+          "matrix": "TAB834",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB834",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB834",
+        "label": "Outhyrda/osålda lägenheter i nybyggda hus efter region, hustyp, byggherre, upplåtelseform och lägenhetstyp. År 1997-2013",
+        "description": "",
+        "sortCode": "02",
+        "updated": "2014-10-01T07:30:00Z",
+        "firstPeriod": "1997",
+        "lastPeriod": "2013",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "hustyp",
+          "byggherre",
+          "upplåtelseform",
+          "lägenhetstyp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0404",
+              "label": "Avgifter/hyror för nybyggda lägenheter",
+              "sortCode": "Avgifter/hyror för nybyggda lägenheter"
+            },
+            {
+              "id": "BO0404C",
+              "label": "Hyresrätter och bostadsrätter. Uppdateras ej. År 1997-2013",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB834?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB834/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB834/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

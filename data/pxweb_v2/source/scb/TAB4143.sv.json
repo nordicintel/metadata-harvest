@@ -1,0 +1,373 @@
+{
+  "key": "scb/TAB4143/sv",
+  "identifier": "TAB4143",
+  "language": "sv",
+  "updated": "2015-02-25T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:34:25.489770+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Taxeringsenheter (typkod 110,120,121,122), totalt taxeringsvärde år 2013, totalt taxeringsvärde år 2014 samt vägd och ovägd förändring efter län och typkod. År 2014",
+      "source": "SCB",
+      "updated": "2015-02-25T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0601"
+            },
+            "href": "https://www.scb.se/BO0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Typkod",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        5,
+        5,
+        1
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän99EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Typkod": {
+          "label": "typ av fastighet",
+          "category": {
+            "index": {
+              "Tot": 0,
+              "110": 1,
+              "120": 2,
+              "121": 3,
+              "122": 4
+            },
+            "label": {
+              "Tot": "Totalt",
+              "110": "Lantbruksenhet, obebyggd",
+              "120": "Lantbruksenhet, bebyggd",
+              "121": "Lantbruksenhet, som endast utgörs av växthus/djurstall",
+              "122": "Lantbruksenhet, bebyggd enbart med ekonomibyggnad"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000006": 0,
+              "0000000C": 1,
+              "0000000B": 2,
+              "00000008": 3,
+              "00000007": 4
+            },
+            "label": {
+              "00000006": "Taxeringsenheter",
+              "0000000C": "Totalt taxeringsvärde år 2013, mnkr",
+              "0000000B": "Totalt taxeringsvärde år 2014, mnkr",
+              "00000008": "Vägd förändring mellan år 2013 och 2014",
+              "00000007": "Ovägd förändring mellan år 2013 och 2014"
+            },
+            "unit": {
+              "00000006": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "0000000C": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "0000000B": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "00000008": {
+                "base": "förändringstal",
+                "decimals": 2
+              },
+              "00000007": {
+                "base": "förändringstal",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000006": "2014",
+              "0000000C": "2014",
+              "0000000B": "2014",
+              "00000008": "2013",
+              "00000007": "2014"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000006": "Stock",
+              "0000000C": "Stock",
+              "0000000B": "Stock",
+              "00000008": "Stock",
+              "00000007": "Stock"
+            },
+            "priceType": {
+              "00000006": "NotApplicable",
+              "0000000C": "NotApplicable",
+              "0000000B": "NotApplicable",
+              "00000008": "NotApplicable",
+              "00000007": "NotApplicable"
+            },
+            "adjustment": {
+              "00000006": "None",
+              "0000000C": "None",
+              "0000000B": "None",
+              "00000008": "None",
+              "00000007": "None"
+            },
+            "basePeriod": {
+              "00000006": "2014",
+              "0000000C": "2014",
+              "0000000B": "2014",
+              "00000008": "2013",
+              "00000007": "2014"
+            },
+            "alternativeText": {
+              "00000006": "Allmän fastighetstaxering för lantbruk, taxeringsenheter",
+              "0000000C": "Allmän fastighetstaxering för lantbruk, totalt taxeringsvärde år 2013, mnkr",
+              "0000000B": "Allmän fastighetstaxering för lantbruk, totalt taxeringsvärde år 2014, mnkr",
+              "00000008": "Allmän fastighetstaxering för lantbruk, vägd förändring mellan år 2013 och 2014",
+              "00000007": "Allmän fastighetstaxering för lantbruk, ovägd förändring mellan år 2013 och 2014"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år, oregelb",
+          "category": {
+            "index": {
+              "2014": 0
+            },
+            "label": {
+              "2014": "2014"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0601",
+          "tableid": "TAB4143",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Allmän fastighetstaxering för lantbruk",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Typkod"
+          ],
+          "matrix": "TAB4143",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Magnus Walestad",
+            "organization": "SCB",
+            "phone": "010-479 44 18",
+            "mail": "magnus.walestad@scb.se",
+            "raw": "Magnus Walestad, SCB# +46 010-479 44 18#magnus.walestad@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4143",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4143",
+        "label": "Taxeringsenheter (typkod 110,120,121,122), totalt taxeringsvärde år 2013, totalt taxeringsvärde år 2014 samt vägd och ovägd förändring efter län och typkod. År 2014",
+        "description": "",
+        "sortCode": "11",
+        "updated": "2015-02-25T08:30:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2014",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "typ av fastighet",
+          "tabellinnehåll",
+          "år, oregelb"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0601",
+              "label": "Fastighetstaxeringar",
+              "sortCode": "Fastighetstaxeringar"
+            },
+            {
+              "id": "BO0601G",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "07"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4143?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4143?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4143/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4143/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

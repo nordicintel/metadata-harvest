@@ -1,0 +1,692 @@
+{
+  "key": "scb/TAB1220/sv",
+  "identifier": "TAB1220",
+  "language": "sv",
+  "updated": "2026-09-04T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:40:47.829331+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Betalningsbalans. Bytesbalans. Export och import landsgruppsfördelad efter Intra/extra EU samt kontopost. Kvartal 1982K1-2026K2",
+      "source": "Sveriges riksbank",
+      "updated": "2026-09-04T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0001"
+            },
+            "href": "https://www.scb.se/FM0001",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I samband med publiceringen av kvartal 3 2022 har uppgifterna om löner till och från utlandet reviderats från 2015 och framåt. Bakgrunden till denna revidering är att Betalningsbalansen övergått till att använda nya källor. Löner och andra inkomster från utlandet till Sverige framställs med hjälp av Inkomst och taxeringsregistret (IoT) som källa. Löner och andra inkomster från Sverige till utlandet framställs med hjälp av arbetsgivardeklarationer på individnivå (AGI).",
+        "2026-09-14: Efter publiceringen den 4 september 2026, har vi upptäckt ett fel på ett växelkursindex rörande Danmark som används i beräkningen av svenskars löner i utlandet. En upprättning är planerad i samband med ordinarie publicering i november. Preliminära uppgifter tyder på att de svenska lönerna i utlandet kommer att justeras upp med cirka 1 miljard kronor per kvartal från första kvartalet 2025 till och med andra kvartalet 2026."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Landgrupp",
+        "ExpImp",
+        "Kontopost",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        13,
+        1,
+        178
+      ],
+      "dimension": {
+        "Landgrupp": {
+          "label": "landgrupp",
+          "category": {
+            "index": {
+              "W1": 0,
+              "B6": 1,
+              "D6": 2
+            },
+            "label": {
+              "W1": "transaktioner totalt",
+              "B6": "transaktioner med EU-länder",
+              "D6": "transaktioner med länder utanför EU"
+            },
+            "note": {
+              "B6": [
+                "Med EU-länder avses Europeiska unionens samtliga medlemsstater. Efter att Storbritannien lämnade EU den 31 januari 2020, består nu unionen av 27 medlemsländer. Hela tidsserien för transaktioner med EU-länder innehåller endast de 27 nuvarande medlemsländerna."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "B6": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ExpImp": {
+          "label": "export och import",
+          "category": {
+            "index": {
+              "X1": 0,
+              "X2": 1,
+              "X0": 2
+            },
+            "label": {
+              "X1": "export",
+              "X2": "import",
+              "X0": "netto"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kontopost": {
+          "label": "kontopost",
+          "category": {
+            "index": {
+              "B0": 0,
+              "B1": 1,
+              "B1.1": 2,
+              "B1.1.1": 3,
+              "B1.2": 4,
+              "B2": 5,
+              "B2.1": 6,
+              "B2.2": 7,
+              "B2.3": 8,
+              "B3": 9,
+              "B3.1": 10,
+              "B3.2": 11,
+              "B3.3": 12
+            },
+            "label": {
+              "B0": "bytesbalans, totalt",
+              "B1": "1 handel med varor och tjänster",
+              "B1.1": "1.1 handelsbalans (f.o.b. - f.o.b.)",
+              "B1.1.1": "1.1.1 merchanting, netto",
+              "B1.2": "1.2 tjänstebalans",
+              "B2": "2 primärinkomst",
+              "B2.1": "2.1 löner",
+              "B2.2": "2.2 kapitalavkastning",
+              "B2.3": "2.3 övrig primärinkomst",
+              "B3": "3 sekundärinkomst",
+              "B3.1": "3.1 EU-bidrag/avgift",
+              "B3.2": "3.2 internationellt samarbete",
+              "B3.3": "3.3 övrig sekundärinkomst"
+            },
+            "note": {
+              "B1.1": [
+                "Varuhandel värderas enligt f.o.b i betalningsbalansen vilket för import innebär värdet av varan vid det exporterande landets gräns."
+              ],
+              "B1.1.1": [
+                "Merchanting finns endast under export och är den försäljningsmarginal som uppstår när svenska företag köper varor och säljer dem vidare på världsmarknaden utan att de importeras till Sverige."
+              ],
+              "B3.2": [
+                "Kontoposten gick tidigare under namnet ”bistånd”. Från och med 2013K1 så innehåller kontoposten förutom bistånd även övriga offentliga transfereringar. "
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "B1.1": {
+                "0": true
+              },
+              "B1.1.1": {
+                "0": true
+              },
+              "B3.2": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "FM0001AW": 0
+            },
+            "label": {
+              "FM0001AW": "Bytesbalans, miljarder kronor"
+            },
+            "unit": {
+              "FM0001AW": {
+                "base": "betalningsbalans, miljarder kr",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0001AW": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0001AW": "Other"
+            },
+            "priceType": {
+              "FM0001AW": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0001AW": "None"
+            },
+            "alternativeText": {
+              "FM0001AW": "Betalningsbalans. Bytesbalans i miljarder kronor"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "1982K1": 0,
+              "1982K2": 1,
+              "1982K3": 2,
+              "1982K4": 3,
+              "1983K1": 4,
+              "1983K2": 5,
+              "1983K3": 6,
+              "1983K4": 7,
+              "1984K1": 8,
+              "1984K2": 9,
+              "1984K3": 10,
+              "1984K4": 11,
+              "1985K1": 12,
+              "1985K2": 13,
+              "1985K3": 14,
+              "1985K4": 15,
+              "1986K1": 16,
+              "1986K2": 17,
+              "1986K3": 18,
+              "1986K4": 19,
+              "1987K1": 20,
+              "1987K2": 21,
+              "1987K3": 22,
+              "1987K4": 23,
+              "1988K1": 24,
+              "1988K2": 25,
+              "1988K3": 26,
+              "1988K4": 27,
+              "1989K1": 28,
+              "1989K2": 29,
+              "1989K3": 30,
+              "1989K4": 31,
+              "1990K1": 32,
+              "1990K2": 33,
+              "1990K3": 34,
+              "1990K4": 35,
+              "1991K1": 36,
+              "1991K2": 37,
+              "1991K3": 38,
+              "1991K4": 39,
+              "1992K1": 40,
+              "1992K2": 41,
+              "1992K3": 42,
+              "1992K4": 43,
+              "1993K1": 44,
+              "1993K2": 45,
+              "1993K3": 46,
+              "1993K4": 47,
+              "1994K1": 48,
+              "1994K2": 49,
+              "1994K3": 50,
+              "1994K4": 51,
+              "1995K1": 52,
+              "1995K2": 53,
+              "1995K3": 54,
+              "1995K4": 55,
+              "1996K1": 56,
+              "1996K2": 57,
+              "1996K3": 58,
+              "1996K4": 59,
+              "1997K1": 60,
+              "1997K2": 61,
+              "1997K3": 62,
+              "1997K4": 63,
+              "1998K1": 64,
+              "1998K2": 65,
+              "1998K3": 66,
+              "1998K4": 67,
+              "1999K1": 68,
+              "1999K2": 69,
+              "1999K3": 70,
+              "1999K4": 71,
+              "2000K1": 72,
+              "2000K2": 73,
+              "2000K3": 74,
+              "2000K4": 75,
+              "2001K1": 76,
+              "2001K2": 77,
+              "2001K3": 78,
+              "2001K4": 79,
+              "2002K1": 80,
+              "2002K2": 81,
+              "2002K3": 82,
+              "2002K4": 83,
+              "2003K1": 84,
+              "2003K2": 85,
+              "2003K3": 86,
+              "2003K4": 87,
+              "2004K1": 88,
+              "2004K2": 89,
+              "2004K3": 90,
+              "2004K4": 91,
+              "2005K1": 92,
+              "2005K2": 93,
+              "2005K3": 94,
+              "2005K4": 95,
+              "2006K1": 96,
+              "2006K2": 97,
+              "2006K3": 98,
+              "2006K4": 99,
+              "2007K1": 100,
+              "2007K2": 101,
+              "2007K3": 102,
+              "2007K4": 103,
+              "2008K1": 104,
+              "2008K2": 105,
+              "2008K3": 106,
+              "2008K4": 107,
+              "2009K1": 108,
+              "2009K2": 109,
+              "2009K3": 110,
+              "2009K4": 111,
+              "2010K1": 112,
+              "2010K2": 113,
+              "2010K3": 114,
+              "2010K4": 115,
+              "2011K1": 116,
+              "2011K2": 117,
+              "2011K3": 118,
+              "2011K4": 119,
+              "2012K1": 120,
+              "2012K2": 121,
+              "2012K3": 122,
+              "2012K4": 123,
+              "2013K1": 124,
+              "2013K2": 125,
+              "2013K3": 126,
+              "2013K4": 127,
+              "2014K1": 128,
+              "2014K2": 129,
+              "2014K3": 130,
+              "2014K4": 131,
+              "2015K1": 132,
+              "2015K2": 133,
+              "2015K3": 134,
+              "2015K4": 135,
+              "2016K1": 136,
+              "2016K2": 137,
+              "2016K3": 138,
+              "2016K4": 139,
+              "2017K1": 140,
+              "2017K2": 141,
+              "2017K3": 142,
+              "2017K4": 143,
+              "2018K1": 144,
+              "2018K2": 145,
+              "2018K3": 146,
+              "2018K4": 147,
+              "2019K1": 148,
+              "2019K2": 149,
+              "2019K3": 150,
+              "2019K4": 151,
+              "2020K1": 152,
+              "2020K2": 153,
+              "2020K3": 154,
+              "2020K4": 155,
+              "2021K1": 156,
+              "2021K2": 157,
+              "2021K3": 158,
+              "2021K4": 159,
+              "2022K1": 160,
+              "2022K2": 161,
+              "2022K3": 162,
+              "2022K4": 163,
+              "2023K1": 164,
+              "2023K2": 165,
+              "2023K3": 166,
+              "2023K4": 167,
+              "2024K1": 168,
+              "2024K2": 169,
+              "2024K3": 170,
+              "2024K4": 171,
+              "2025K1": 172,
+              "2025K2": 173,
+              "2025K3": 174,
+              "2025K4": 175,
+              "2026K1": 176,
+              "2026K2": 177
+            },
+            "label": {
+              "1982K1": "1982K1",
+              "1982K2": "1982K2",
+              "1982K3": "1982K3",
+              "1982K4": "1982K4",
+              "1983K1": "1983K1",
+              "1983K2": "1983K2",
+              "1983K3": "1983K3",
+              "1983K4": "1983K4",
+              "1984K1": "1984K1",
+              "1984K2": "1984K2",
+              "1984K3": "1984K3",
+              "1984K4": "1984K4",
+              "1985K1": "1985K1",
+              "1985K2": "1985K2",
+              "1985K3": "1985K3",
+              "1985K4": "1985K4",
+              "1986K1": "1986K1",
+              "1986K2": "1986K2",
+              "1986K3": "1986K3",
+              "1986K4": "1986K4",
+              "1987K1": "1987K1",
+              "1987K2": "1987K2",
+              "1987K3": "1987K3",
+              "1987K4": "1987K4",
+              "1988K1": "1988K1",
+              "1988K2": "1988K2",
+              "1988K3": "1988K3",
+              "1988K4": "1988K4",
+              "1989K1": "1989K1",
+              "1989K2": "1989K2",
+              "1989K3": "1989K3",
+              "1989K4": "1989K4",
+              "1990K1": "1990K1",
+              "1990K2": "1990K2",
+              "1990K3": "1990K3",
+              "1990K4": "1990K4",
+              "1991K1": "1991K1",
+              "1991K2": "1991K2",
+              "1991K3": "1991K3",
+              "1991K4": "1991K4",
+              "1992K1": "1992K1",
+              "1992K2": "1992K2",
+              "1992K3": "1992K3",
+              "1992K4": "1992K4",
+              "1993K1": "1993K1",
+              "1993K2": "1993K2",
+              "1993K3": "1993K3",
+              "1993K4": "1993K4",
+              "1994K1": "1994K1",
+              "1994K2": "1994K2",
+              "1994K3": "1994K3",
+              "1994K4": "1994K4",
+              "1995K1": "1995K1",
+              "1995K2": "1995K2",
+              "1995K3": "1995K3",
+              "1995K4": "1995K4",
+              "1996K1": "1996K1",
+              "1996K2": "1996K2",
+              "1996K3": "1996K3",
+              "1996K4": "1996K4",
+              "1997K1": "1997K1",
+              "1997K2": "1997K2",
+              "1997K3": "1997K3",
+              "1997K4": "1997K4",
+              "1998K1": "1998K1",
+              "1998K2": "1998K2",
+              "1998K3": "1998K3",
+              "1998K4": "1998K4",
+              "1999K1": "1999K1",
+              "1999K2": "1999K2",
+              "1999K3": "1999K3",
+              "1999K4": "1999K4",
+              "2000K1": "2000K1",
+              "2000K2": "2000K2",
+              "2000K3": "2000K3",
+              "2000K4": "2000K4",
+              "2001K1": "2001K1",
+              "2001K2": "2001K2",
+              "2001K3": "2001K3",
+              "2001K4": "2001K4",
+              "2002K1": "2002K1",
+              "2002K2": "2002K2",
+              "2002K3": "2002K3",
+              "2002K4": "2002K4",
+              "2003K1": "2003K1",
+              "2003K2": "2003K2",
+              "2003K3": "2003K3",
+              "2003K4": "2003K4",
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "FM0001",
+          "tableid": "TAB1220",
+          "decimals": 1,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Betalningsbalans. Bytesbalans i miljarder kronor",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Landgrupp",
+            "ExpImp",
+            "Kontopost"
+          ],
+          "matrix": "TAB1220",
+          "subject-code": "FM",
+          "subject-area": "Finansmarknad"
+        },
+        "contact": [
+          {
+            "name": "Jörgen Bromé",
+            "organization": "SCB",
+            "phone": "010-479 45 33",
+            "mail": "jorgen.brome@scb.se",
+            "raw": "Jörgen Bromé, SCB# +46 010-479 45 33#jorgen.brome@scb.se"
+          },
+          {
+            "name": "Viktor Penna",
+            "organization": "SCB",
+            "phone": "010-479 41 29",
+            "mail": "viktor.penna@scb.se",
+            "raw": "Viktor Penna, SCB# +46 010-479 41 29#viktor.penna@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1220",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1220",
+        "label": "Betalningsbalans. Bytesbalans. Export och import landsgruppsfördelad efter Intra/extra EU samt kontopost. Kvartal 1982K1-2026K2",
+        "description": "",
+        "sortCode": "002",
+        "updated": "2026-09-04T06:00:00Z",
+        "firstPeriod": "1982K1",
+        "lastPeriod": "2026K2",
+        "category": "public",
+        "variableNames": [
+          "landgrupp",
+          "export och import",
+          "kontopost",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "Sveriges riksbank",
+        "subjectCode": "FM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Finansmarknad",
+              "sortCode": "Finansmarknad"
+            },
+            {
+              "id": "FM0001",
+              "label": "Betalningsbalansen",
+              "sortCode": "Betalningsbalansen"
+            },
+            {
+              "id": "FM0001A",
+              "label": "Betalningsbalansen",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1220?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1220?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1220/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1220/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

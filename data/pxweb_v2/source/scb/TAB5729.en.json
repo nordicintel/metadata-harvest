@@ -1,0 +1,399 @@
+{
+  "key": "scb/TAB5729/en",
+  "identifier": "TAB5729",
+  "language": "en",
+  "updated": "2024-10-31T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:14:30.481030+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Government sector’s expenditure for extramural R&D by region and receiving unit. SEK million, every other year 2007-2023",
+      "source": "Statistics Sweden",
+      "updated": "2024-10-31T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0301"
+            },
+            "href": "https://www.scb.se/UF0301-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "From the reference year 2023, the sub-sector local and regional R&D units is made up of associations of local authorities.",
+        "Statistics on extramural R&D expenditure for local and regional R&D units are unavailable prior to the reference year 2023.",
+        "Statistics on regional allocation of extramural R&D expenditure for government agencies are unavailable."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Sektor",
+        "MottagEnhet",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        6,
+        16,
+        1,
+        9
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_BLän",
+                "label": "County",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2,
+              "040": 3,
+              "050": 4,
+              "060": 5
+            },
+            "label": {
+              "010": "Government sector",
+              "020": "Government agencies",
+              "030": "Region",
+              "040": "Municipality",
+              "050": "Local and regional R&D units",
+              "060": "Public non-profit sector"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "MottagEnhet": {
+          "label": "receiving units",
+          "category": {
+            "index": {
+              "ERD_REC_T": 0,
+              "ERD_REC_EXCH": 1,
+              "ERD_REC_TRF": 2,
+              "ERD_REC_BES": 3,
+              "ERD_REC_RI": 4,
+              "ERD_REC_GOV_DEF": 5,
+              "ERD_REC_GOV_CIV": 6,
+              "ERD_REC_GOV_LAR": 7,
+              "ERD_REC_GOV_RDU": 8,
+              "ERD_REC_HES": 9,
+              "ERD_REC_PNP": 10,
+              "ERD_REC_ROW_BES": 11,
+              "ERD_REC_ROW_HES": 12,
+              "ERD_REC_ROW_GOV": 13,
+              "ERD_REC_ROW_IO": 14,
+              "ERD_REC_ROW_PNP": 15
+            },
+            "label": {
+              "ERD_REC_T": "Total",
+              "ERD_REC_EXCH": "Exchange funds",
+              "ERD_REC_TRF": "Transfer funds",
+              "ERD_REC_BES": "Sweden - Enterprises",
+              "ERD_REC_RI": "Sweden - Research institutes",
+              "ERD_REC_GOV_DEF": "Sweden - Defence agencies",
+              "ERD_REC_GOV_CIV": "Sweden - Government agencies excl. Defence agencies",
+              "ERD_REC_GOV_LAR": "Sweden - Regions and municipalities",
+              "ERD_REC_GOV_RDU": "Sweden - Local and regional R&D units",
+              "ERD_REC_HES": "Sweden - Universities and higher education institutions ",
+              "ERD_REC_PNP": "Sweden - Private non-profit organisations",
+              "ERD_REC_ROW_BES": "Abroad - Enterprises",
+              "ERD_REC_ROW_HES": "Abroad - Universities and higher education institutions ",
+              "ERD_REC_ROW_GOV": "Abroad - Government agencies",
+              "ERD_REC_ROW_IO": "Abroad - International organisations",
+              "ERD_REC_ROW_PNP": "Abroad - Private non-profit organisations"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000004VG": 0
+            },
+            "label": {
+              "000004VG": "Government sectors expenditure for extramural R&D"
+            },
+            "unit": {
+              "000004VG": {
+                "base": "SEK millions",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004VG": "January 1 to December 31 of each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004VG": "Flow"
+            },
+            "priceType": {
+              "000004VG": "Current"
+            },
+            "adjustment": {
+              "000004VG": "WorkOnly"
+            },
+            "alternativeText": {
+              "000004VG": "Government sectors expenditure for extramural R&D"
+            }
+          }
+        },
+        "Tid": {
+          "label": "every other year",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2009": 1,
+              "2011": 2,
+              "2013": 3,
+              "2015": 4,
+              "2017": 5,
+              "2019": 6,
+              "2021": 7,
+              "2023": 8
+            },
+            "label": {
+              "2007": "2007",
+              "2009": "2009",
+              "2011": "2011",
+              "2013": "2013",
+              "2015": "2015",
+              "2017": "2017",
+              "2019": "2019",
+              "2021": "2021",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "UF0301",
+          "tableid": "TAB5729",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Government sectors expenditure for extramural R&D",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Sektor",
+            "MottagEnhet"
+          ],
+          "matrix": "TAB5729",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Utbildning och forskning FoU",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "FoU-statistik@scb.se",
+            "raw": "Utbildning och forskning FoU, Statistics Sweden# +46 010-479 50 00#FoU-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5729",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5729",
+        "label": "Government sector’s expenditure for extramural R&D by region and receiving unit. SEK million, every other year 2007-2023",
+        "description": "",
+        "sortCode": "031",
+        "updated": "2024-10-31T07:00:00Z",
+        "firstPeriod": "2007",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "sector",
+          "receiving units",
+          "observations",
+          "every other year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0301",
+              "label": "Research and development in Sweden",
+              "sortCode": "Research and development in Sweden"
+            },
+            {
+              "id": "UF0301O",
+              "label": "Government sector",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5729?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5729?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5729/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5729/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "key": "scb/TAB1110/sv",
+  "identifier": "TAB1110",
+  "language": "sv",
+  "updated": "2009-12-18T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:06:47.891135+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Antal studenter som tar sin första examen i högskolan efter kön och ålder. Uppdateras ej. Läsår 1977/78-2008/09",
+      "source": "Universitetskanslersämbetet",
+      "updated": "2009-12-18T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0205"
+            },
+            "href": "https://www.scb.se/UF0205",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Med första examen menas en persons först avlagda examen i högskoleutbildning på grundnivå och avancerad nivå. Det som tidigare kallades grundläggande högskoleutbildning motsvaras nu av högskoleutbildning på grundnivå och avancerad nivå. Om en person har avlagt mer än en examen väljs den examen som har tidigast datum."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        24,
+        1,
+        32
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "note": [
+            "Beräknas per den 31 dec under läsåret."
+          ],
+          "category": {
+            "index": {
+              "0-19": 0,
+              "20": 1,
+              "21": 2,
+              "22": 3,
+              "23": 4,
+              "24": 5,
+              "25": 6,
+              "26": 7,
+              "27": 8,
+              "28": 9,
+              "29": 10,
+              "30": 11,
+              "31": 12,
+              "32": 13,
+              "33": 14,
+              "34": 15,
+              "35": 16,
+              "36": 17,
+              "37": 18,
+              "38": 19,
+              "39": 20,
+              "40-49": 21,
+              "50-59": 22,
+              "60+": 23
+            },
+            "label": {
+              "0-19": "0–19 år",
+              "20": "20 år",
+              "21": "21 år",
+              "22": "22 år",
+              "23": "23 år",
+              "24": "24 år",
+              "25": "25 år",
+              "26": "26 år",
+              "27": "27 år",
+              "28": "28 år",
+              "29": "29 år",
+              "30": "30 år",
+              "31": "31 år",
+              "32": "32 år",
+              "33": "33 år",
+              "34": "34 år",
+              "35": "35 år",
+              "36": "36 år",
+              "37": "37 år",
+              "38": "38 år",
+              "39": "39 år",
+              "40-49": "40–49 år",
+              "50-59": "50–59 år",
+              "60+": "60+ år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_Ålder4grupper",
+                "label": "4 åldersgrupper",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Ålder4grupper?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Ålder5år20-39",
+                "label": "5-års (20-39)",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Ålder5år20-39?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AlderHRegGr",
+                "label": "Ålder, 1-årsklasser och 4 grupper",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AlderHRegGr?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "UF0205E5": 0
+            },
+            "label": {
+              "UF0205E5": "Antal studenter som tar sin första examen"
+            },
+            "unit": {
+              "UF0205E5": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "UF0205E5": "Läsår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "UF0205E5": "Stock"
+            },
+            "priceType": {
+              "UF0205E5": "NotApplicable"
+            },
+            "adjustment": {
+              "UF0205E5": "None"
+            },
+            "alternativeText": {
+              "UF0205E5": "Antal studenter som tar sin första examen i högskoleutbildning på grundnivå och avancerad nivå"
+            }
+          }
+        },
+        "Tid": {
+          "label": "läsår",
+          "category": {
+            "index": {
+              "1977/78": 0,
+              "1978/79": 1,
+              "1979/80": 2,
+              "1980/81": 3,
+              "1981/82": 4,
+              "1982/83": 5,
+              "1983/84": 6,
+              "1984/85": 7,
+              "1985/86": 8,
+              "1986/87": 9,
+              "1987/88": 10,
+              "1988/89": 11,
+              "1989/90": 12,
+              "1990/91": 13,
+              "1991/92": 14,
+              "1992/93": 15,
+              "1993/94": 16,
+              "1994/95": 17,
+              "1995/96": 18,
+              "1996/97": 19,
+              "1997/98": 20,
+              "1998/99": 21,
+              "1999/00": 22,
+              "2000/01": 23,
+              "2001/02": 24,
+              "2002/03": 25,
+              "2003/04": 26,
+              "2004/05": 27,
+              "2005/06": 28,
+              "2006/07": 29,
+              "2007/08": 30,
+              "2008/09": 31
+            },
+            "label": {
+              "1977/78": "1977/78",
+              "1978/79": "1978/79",
+              "1979/80": "1979/80",
+              "1980/81": "1980/81",
+              "1981/82": "1981/82",
+              "1982/83": "1982/83",
+              "1983/84": "1983/84",
+              "1984/85": "1984/85",
+              "1985/86": "1985/86",
+              "1986/87": "1986/87",
+              "1987/88": "1987/88",
+              "1988/89": "1988/89",
+              "1989/90": "1989/90",
+              "1990/91": "1990/91",
+              "1991/92": "1991/92",
+              "1992/93": "1992/93",
+              "1993/94": "1993/94",
+              "1994/95": "1994/95",
+              "1995/96": "1995/96",
+              "1996/97": "1996/97",
+              "1997/98": "1997/98",
+              "1998/99": "1998/99",
+              "1999/00": "1999/00",
+              "2000/01": "2000/01",
+              "2001/02": "2001/02",
+              "2002/03": "2002/03",
+              "2003/04": "2003/04",
+              "2004/05": "2004/05",
+              "2005/06": "2005/06",
+              "2006/07": "2006/07",
+              "2007/08": "2007/08",
+              "2008/09": "2008/09"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "UF0205",
+          "tableid": "TAB1110",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal studenter som tar sin första examen i högskoleutbildning på grundnivå och avancerad nivå",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB1110",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "SCB",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, SCB# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1110",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1110",
+        "label": "Antal studenter som tar sin första examen i högskolan efter kön och ålder. Uppdateras ej. Läsår 1977/78-2008/09",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2009-12-18T08:30:00Z",
+        "firstPeriod": "1977/78",
+        "lastPeriod": "2008/09",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "läsår"
+        ],
+        "source": "Universitetskanslersämbetet",
+        "subjectCode": "UF",
+        "timeUnit": "Other",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0205",
+              "label": "Studenter och examinerade i högskoleutbildning på grundnivå och avancerad nivå ",
+              "sortCode": "Studenter och examinerade i högskoleutbildning på grundnivå och avancerad nivå "
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1110?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1110/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1110/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

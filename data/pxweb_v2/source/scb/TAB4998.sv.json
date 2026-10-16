@@ -1,0 +1,496 @@
+{
+  "key": "scb/TAB4998/sv",
+  "identifier": "TAB4998",
+  "language": "sv",
+  "updated": "2019-11-22T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:47:28.146886+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Skaffat betalt arbete av privatpersoner via webbplatser eller appar efter kön och redovisningsgrupp. År 2018-2019",
+      "source": "SCB",
+      "updated": "2019-11-22T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0108"
+            },
+            "href": "https://www.scb.se/LE0108",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Tabellerna avser senaste 12 månaderna fram till mätperioden.",
+        "Två prickar (..) betyder att uppgiften är för osäker för att redovisas.",
+        "Tabellen avser personer 16-85 år."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TillfArb",
+        "Kon",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        32,
+        4,
+        2
+      ],
+      "dimension": {
+        "TillfArb": {
+          "label": "betalt arbete",
+          "category": {
+            "index": {
+              "0110": 0,
+              "0112": 1,
+              "0114": 2
+            },
+            "label": {
+              "0110": "via avsedda webbplatser eller appar",
+              "0112": "huvudsaklig inkomstkälla",
+              "0114": "extra inkomstkälla"
+            },
+            "note": {
+              "0110": [
+                "T.ex. Upwork, TaskRabbi, Freelancer, Peoplehour, Amazon Mechanical Turk"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0110": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-34": 1,
+              "35-44": 2,
+              "45-54": 3,
+              "55-64": 4,
+              "65-74": 5,
+              "75-85": 6,
+              "forgymn": 7,
+              "gymn": 8,
+              "eftergymn": 9,
+              "stud": 10,
+              "ansfor": 11,
+              "arbsok": 12,
+              "pens": 13,
+              "utanbarn": 14,
+              "medbarn": 15,
+              "envux": 16,
+              "tvavux": 17,
+              "under25": 18,
+              "over25": 19,
+              "inr": 20,
+              "utr": 21,
+              "RIKS1": 22,
+              "RIKS2": 23,
+              "RIKS3": 24,
+              "RIKS4": 25,
+              "RIKS5": 26,
+              "RIKS6": 27,
+              "RIKS7": 28,
+              "RIKS8": 29,
+              "tot16-74": 30,
+              "tot16-85": 31
+            },
+            "label": {
+              "16-24": "16–24 år",
+              "25-34": "25–34 år",
+              "35-44": "35–44 år",
+              "45-54": "45–54 år",
+              "55-64": "55–64 år",
+              "65-74": "65–74 år",
+              "75-85": "75–85 år",
+              "forgymn": "Förgymnasial utbildning",
+              "gymn": "Gymnasial utbildning",
+              "eftergymn": "Eftergymnasial utbildning",
+              "stud": "Studerande",
+              "ansfor": "Anställda/Egna företagare",
+              "arbsok": "Arbetssökande",
+              "pens": "Pensionärer och andra",
+              "utanbarn": "Hushåll utan barn",
+              "medbarn": "Hushåll med barn",
+              "envux": "Hushåll med en vuxen",
+              "tvavux": "Hushåll med minst två vuxna",
+              "under25": "Under 25 000 kr",
+              "over25": "25 000 kr eller högre",
+              "inr": "Inrikes födda",
+              "utr": "Utrikes födda",
+              "RIKS1": "Stockholm",
+              "RIKS2": "Östra Mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra Mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland",
+              "tot16-74": "Samtliga 16–74 år",
+              "tot16-85": "Samtliga 16–85 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_alder",
+                "label": "Ålder",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_alder?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_D_education",
+                "label": "Utbildningsnivå",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_D_education?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_sysselsattning",
+                "label": "Sysselsättning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_sysselsattning?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_H_hushall",
+                "label": "Hushållstyp",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_H_hushall?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_J_inkomst",
+                "label": "Inkomst",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_J_inkomst?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_L_bakgrund",
+                "label": "Bakgrund",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_L_bakgrund?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_N_region",
+                "label": "Region",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_N_region?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_P_samtl",
+                "label": "Samtliga",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_P_samtl?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002CW": 0,
+              "000002CY": 1,
+              "000002CV": 2,
+              "000002CX": 3
+            },
+            "label": {
+              "000002CW": "Antal personer",
+              "000002CY": "Antal personer felmarginal +/-",
+              "000002CV": "Andel personer, procent",
+              "000002CX": "Andel personer felmarginal +/-, procent"
+            },
+            "unit": {
+              "000002CW": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002CY": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002CV": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000002CX": {
+                "base": "procent",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002CW": "",
+              "000002CY": "",
+              "000002CV": "",
+              "000002CX": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002CW": "Flow",
+              "000002CY": "Flow",
+              "000002CV": "Flow",
+              "000002CX": "Flow"
+            },
+            "priceType": {
+              "000002CW": "NotApplicable",
+              "000002CY": "NotApplicable",
+              "000002CV": "NotApplicable",
+              "000002CX": "NotApplicable"
+            },
+            "adjustment": {
+              "000002CW": "None",
+              "000002CY": "None",
+              "000002CV": "None",
+              "000002CX": "None"
+            },
+            "alternativeText": {
+              "000002CW": "Skaffat betalt arbete via webbplatser eller appar (antal personer)",
+              "000002CY": "Skaffat betalt arbete via webbplatser eller appar (antal personer felmarginal +/-)",
+              "000002CV": "Skaffat betalt arbete via webbplatser eller appar (andel personer, procent)",
+              "000002CX": "Skaffat betalt arbete via webbplatser eller appar (andel personer felmarginal +/-)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2018": 0,
+              "2019": 1
+            },
+            "label": {
+              "2018": "2018",
+              "2019": "2019"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "LE0108",
+          "tableid": "TAB4998",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Skaffat betalt arbete av privatpersoner via webbplatser eller appar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TillfArb",
+            "Kon",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4998",
+          "subject-code": "LE",
+          "subject-area": "Levnadsförhållanden"
+        },
+        "contact": [
+          {
+            "name": "Alicja Markiewicz",
+            "organization": "SCB",
+            "phone": "010 479 46 36",
+            "mail": "alicja.markiewicz@scb.se",
+            "raw": "Alicja Markiewicz, SCB# +46 010 479 46 36#alicja.markiewicz@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) it-statistik",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "bita@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) it-statistik, SCB# - -#bita@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4998",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4998",
+        "label": "Skaffat betalt arbete av privatpersoner via webbplatser eller appar efter kön och redovisningsgrupp. År 2018-2019",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2019-11-22T08:30:00Z",
+        "firstPeriod": "2018",
+        "lastPeriod": "2019",
+        "category": "public",
+        "variableNames": [
+          "betalt arbete",
+          "kön",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Levnadsförhållanden",
+              "sortCode": "Levnadsförhållanden"
+            },
+            {
+              "id": "LE0108",
+              "label": "Befolkningens it-användning (BITA)",
+              "sortCode": "Befolkningens it-användning (BITA)"
+            },
+            {
+              "id": "LE0108O",
+              "label": "Äldre tabeller, uppdateras ej",
+              "sortCode": "017"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4998?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4998?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4998/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4998/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

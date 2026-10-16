@@ -1,0 +1,369 @@
+{
+  "key": "scb/TAB4444/sv",
+  "identifier": "TAB4444",
+  "language": "sv",
+  "updated": "2016-02-26T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:26:36.739738+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Matchningsgrad (M2). Andel anställda med matchning mellan utbildning och yrke, efter region, kön, ålder respektive födelselandsgrupp (nattbefolkning). Uppdateras ej. År 2008-2013",
+      "source": "SCB",
+      "updated": "2016-02-26T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM9906"
+            },
+            "href": "https://www.scb.se/AM9906",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Källa: SCB, Befolkningens arbetsmarknadsstatus (BAS), Registerbaserad arbetsmarknadsstatistik (RAMS), Yrkesregistret (YREG) och Registret över befolkningens utbildning (UREG). \r\n  SCB har utarbetat bedömningarna av vilka utbildnings- och yrkeskombinationer som anses stämma överens eller inte.  För mer information, se ”Dokumentation av statistiken” ovan.  Statistiken visar nattbefolkningen, dvs. antalet folkbokförda i regionen.",
+        "Tidsseriebrott fr.o.m. 2014 på grund av ny yrkesklassificering (SSYK 2012). Matchningsgraden 2008–2013 kan därför inte jämföras med matchningsgraden från 2015 och framåt.",
+        "Matchningsgrad visar andelen anställda som arbetar i yrken som stämmer väl överens med deras utbildning. För att detta ska gälla ska det dels finnas en stark överensstämmelse mellan utbildningens och yrkets ämnesinriktning (t.ex. teknikutbildning – teknikyrke) och dels ska utbildningsnivån vara rätt i förhållande till vad yrket kräver. Till skillnad från måttet matchad förvärvsgrad (E3) accepteras dock även en lägre utbildningsnivå än vad yrket normalt kräver, eftersom matchningsproblematiken på arbetsmarknaden i första hand brukar avse ”överutbildning” och inte ”underutbildning”. Dessutom kan en individ ha fått den kompetens som yrket kräver genom yrkeserfarenhet eller på annat sätt än genom formell utbildning.  Anställda som saknar eller har otillräckliga yrkes- eller utbildningsuppgifter ingår inte i matchningsmåttet (i varken täljare eller nämnare).             "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Kon",
+        "AlderFodelselandgr",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        3,
+        6,
+        1,
+        6
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "SAMANST": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "SAMANST": "samtliga anställda"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AlderFodelselandgr": {
+          "label": "ålder/födelselandgrupp",
+          "note": [
+            "Födelselandsindelningen bygger på Human Development Index (HDI) som FN tar fram årligen. I den sorteras länderna efter mycket hög, hög, medel och låg HDI. "
+          ],
+          "category": {
+            "index": {
+              "20-64": 0,
+              "20-39": 1,
+              "SE": 2,
+              "NEXS": 3,
+              "MHHDI": 4,
+              "LMHDI": 5
+            },
+            "label": {
+              "20-64": "20–64 år",
+              "20-39": "20–39 år",
+              "SE": "födelseregion: Sverige",
+              "NEXS": "födelseregion: Norden exkl. Sverige",
+              "MHHDI": "länder med hög/mycket hög HDI exkl. Norden",
+              "LMHDI": "länder med låg/medel HDI"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_FödelselandgrRMI2",
+                "label": "Födelselandgrupp",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_FödelselandgrRMI2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ÅlderRegInd",
+                "label": "Åldersfördelning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderRegInd?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000000QZ": 0
+            },
+            "label": {
+              "000000QZ": "Matchningsgrad, procent "
+            },
+            "unit": {
+              "000000QZ": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000000QZ": "31 december"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000QZ": "Stock"
+            },
+            "priceType": {
+              "000000QZ": "NotApplicable"
+            },
+            "adjustment": {
+              "000000QZ": "None"
+            },
+            "alternativeText": {
+              "000000QZ": "Matchningsgrad (M2), procent "
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2008": 0,
+              "2009": 1,
+              "2010": 2,
+              "2011": 3,
+              "2012": 4,
+              "2013": 5
+            },
+            "label": {
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM9906",
+          "tableid": "TAB4444",
+          "decimals": 1,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Matchningsgrad (M2), procent ",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Kon",
+            "AlderFodelselandgr"
+          ],
+          "matrix": "TAB4444",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Marc Doppelbauer",
+            "organization": "SCB",
+            "phone": "010-479 42 15",
+            "mail": "marc.doppelbauer@scb.se",
+            "raw": "Marc Doppelbauer, SCB# +46 010-479 42 15#marc.doppelbauer@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4444",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4444",
+        "label": "Matchningsgrad (M2). Andel anställda med matchning mellan utbildning och yrke, efter region, kön, ålder respektive födelselandsgrupp (nattbefolkning). Uppdateras ej. År 2008-2013",
+        "description": "",
+        "sortCode": "013",
+        "updated": "2016-02-26T08:30:00Z",
+        "firstPeriod": "2008",
+        "lastPeriod": "2013",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "kön",
+          "ålder/födelselandgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM9906",
+              "label": "Regionala Matchningsindikatorer",
+              "sortCode": "295"
+            },
+            {
+              "id": "AM9906O",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "05"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4444?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4444/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4444/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

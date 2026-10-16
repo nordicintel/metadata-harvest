@@ -1,0 +1,387 @@
+{
+  "key": "scb/TAB6104/sv",
+  "identifier": "TAB6104",
+  "language": "sv",
+  "updated": "2021-12-20T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:46:30.225980+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Familjestödets andel av den disponibla inkomsten för hemmaboende barn och unga 0–21 år efter kön, ålder, typ av bidrag, bakgrund och föräldrarnas utbildningsnivå. År 2014-2019",
+      "source": "SCB",
+      "updated": "2021-12-20T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0102"
+            },
+            "href": "https://www.scb.se/LE0102",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Uppgifterna avser hushåll där minst en vuxen varit folkbokförd vid såväl årets början som slut och där det finns en registrerad inkomst.",
+        "Utbildningsnivå avser ursprungliga föräldrar (biologiska eller adoptivföräldrar)."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "Typbidrag",
+        "BakgrundSvUt",
+        "UtbNivaForalder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        2,
+        6,
+        3,
+        4,
+        4,
+        6
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "5+6": 0,
+              "5": 1,
+              "6": 2
+            },
+            "label": {
+              "5+6": "båda könen",
+              "5": "pojkar",
+              "6": "flickor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "0-17": 0,
+              "0-21": 1
+            },
+            "label": {
+              "0-17": "0–17 år",
+              "0-21": "0–21 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Typbidrag": {
+          "label": "typ av bidrag",
+          "category": {
+            "index": {
+              "819": 0,
+              "820": 1,
+              "822": 2,
+              "823": 3,
+              "825": 4,
+              "827": 5
+            },
+            "label": {
+              "819": "familjestöd totalt",
+              "820": "barnbidrag",
+              "822": "bostadsbidrag",
+              "823": "underhållsstöd",
+              "825": "föräldraförsäkring",
+              "827": "ekonomiskt bistånd"
+            },
+            "note": {
+              "819": [
+                "Avser andel barn vars familj har minst ett av bidragen, alternativt hur stor andel av familjens inkomst dessa bidrag utgör."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "819": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "BakgrundSvUt": {
+          "label": "bakgrund",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "TotalC": 2
+            },
+            "label": {
+              "1": "utländsk bakgrund",
+              "2": "svensk bakgrund",
+              "TotalC": "totalt, utländsk/svensk bakgrund"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbNivaForalder": {
+          "label": "föräldrarnas utbildningsnivå",
+          "category": {
+            "index": {
+              "10": 0,
+              "20": 1,
+              "25": 2,
+              "30": 3
+            },
+            "label": {
+              "10": "förälder/föräldrar med högst gymnasial utbildning",
+              "20": "minst en förälder med eftergymnasial utbildning",
+              "25": "uppgift saknas",
+              "30": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000060T": 0,
+              "0000060U": 1,
+              "0000060V": 2,
+              "0000060W": 3
+            },
+            "label": {
+              "0000060T": "Andel av disponibel inkomst, för samtliga",
+              "0000060U": "Andel som har inkomsten",
+              "0000060V": "Andel av disponibel inkomst, för de som har inkomsten",
+              "0000060W": "Totalt antal i gruppen"
+            },
+            "unit": {
+              "0000060T": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "0000060U": {
+                "base": "andel",
+                "decimals": 0
+              },
+              "0000060V": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "0000060W": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000060T": "31 december respektive år",
+              "0000060U": "31 december respektive år",
+              "0000060V": "31 december respektive år",
+              "0000060W": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000060T": "Stock",
+              "0000060U": "Stock",
+              "0000060V": "Stock",
+              "0000060W": "Stock"
+            },
+            "priceType": {
+              "0000060T": "NotApplicable",
+              "0000060U": "NotApplicable",
+              "0000060V": "NotApplicable",
+              "0000060W": "NotApplicable"
+            },
+            "adjustment": {
+              "0000060T": "None",
+              "0000060U": "None",
+              "0000060V": "None",
+              "0000060W": "None"
+            },
+            "alternativeText": {
+              "0000060T": "Andel av disponibel inkomst, för samtliga",
+              "0000060U": "Andel som har inkomsten",
+              "0000060V": "Andel av disponibel inkomst, för de som har inkomsten",
+              "0000060W": "Totalt antal i gruppen"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "LE0102",
+          "tableid": "TAB6104",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Familjestödets andel av den disponibla inkomsten för hemmaboende barn och unga 0–21 år",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "Typbidrag",
+            "BakgrundSvUt",
+            "UtbNivaForalder"
+          ],
+          "matrix": "TAB6104",
+          "subject-code": "LE",
+          "subject-area": "Levnadsförhållanden"
+        },
+        "contact": [
+          {
+            "name": "Nikolaus Koutakis",
+            "organization": "SCB",
+            "phone": "010-479 66 65",
+            "mail": "barn-ochfamiljestatistik@scb.se",
+            "raw": "Nikolaus Koutakis, SCB# +46 010-479 66 65#barn-ochfamiljestatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6104",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6104",
+        "label": "Familjestödets andel av den disponibla inkomsten för hemmaboende barn och unga 0–21 år efter kön, ålder, typ av bidrag, bakgrund och föräldrarnas utbildningsnivå. År 2014-2019",
+        "description": "",
+        "sortCode": "14",
+        "updated": "2021-12-20T08:30:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2019",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "ålder",
+          "typ av bidrag",
+          "bakgrund",
+          "föräldrarnas utbildningsnivå",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Levnadsförhållanden",
+              "sortCode": "Levnadsförhållanden"
+            },
+            {
+              "id": "LE0102",
+              "label": "Barn- och familjestatistik",
+              "sortCode": "Barn- och familjestatistik"
+            },
+            {
+              "id": "LE0102X",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "016"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6104?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6104?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6104/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6104/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

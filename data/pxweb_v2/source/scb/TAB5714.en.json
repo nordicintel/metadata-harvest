@@ -1,0 +1,393 @@
+{
+  "key": "scb/TAB5714/en",
+  "identifier": "TAB5714",
+  "language": "en",
+  "updated": "2024-10-31T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:14:28.368109+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Government sector’s expenditure for intramural R&D by region and type of cost. SEK million, every other year 2007-2023",
+      "source": "Statistics Sweden",
+      "updated": "2024-10-31T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0301"
+            },
+            "href": "https://www.scb.se/UF0301-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "From 2013 and onwards software is included as a category under capital costs.",
+        "From 2019 and onwards the category Capital costs - other intellectual property products is collected.",
+        "Statistics on regional allocation of R&D expenditure for the local and regional R&D units are unavailable prior to the reference year 2023.",
+        "Statistics on intramural R&D expenditure allocated by type of cost for government agencies are unavailable at the regional level.",
+        "Statistics on intramural R&D expenditure allocated by type of cost for local and regional R&D units are unavailable prior to the reference year 2023.",
+        "From the reference year 2023, the sub-sector local and regional R&D units is made up of associations of local authorities."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Sektor",
+        "Typutgift",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        6,
+        10,
+        1,
+        9
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_BLän",
+                "label": "County",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2,
+              "040": 3,
+              "050": 4,
+              "060": 5
+            },
+            "label": {
+              "010": "Government sector",
+              "020": "Government agencies",
+              "030": "Region",
+              "040": "Municipality",
+              "050": "Local and regional R&D units",
+              "060": "Public non-profit sector"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Typutgift": {
+          "label": "type of cost",
+          "category": {
+            "index": {
+              "IRD_COST_T": 0,
+              "IRD_CUR_T": 1,
+              "IRD_CUR_LC": 2,
+              "IRD_CUR_LC_EXT": 3,
+              "IRD_CUR_O": 4,
+              "IRD_CAP_T": 5,
+              "IRD_CAP_LAND": 6,
+              "IRD_CAP_MACH": 7,
+              "IRD_CAP_SOFT": 8,
+              "IRD_CAP_IPP": 9
+            },
+            "label": {
+              "IRD_COST_T": "total expenditure for intramural R&D",
+              "IRD_CUR_T": "current costs - total",
+              "IRD_CUR_LC": "current costs - labour costs for internal R&D personnel",
+              "IRD_CUR_LC_EXT": "current costs - external R&D personnel",
+              "IRD_CUR_O": "current costs - other",
+              "IRD_CAP_T": "capital costs - total",
+              "IRD_CAP_LAND": "capital costs - land and buildings",
+              "IRD_CAP_MACH": "capital costs - machinery and equipment",
+              "IRD_CAP_SOFT": "capital costs - capitalised computer software",
+              "IRD_CAP_IPP": "capital costs - other intellectual property products"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000004TK": 0
+            },
+            "label": {
+              "000004TK": "Total expenditure for intramural R&D"
+            },
+            "unit": {
+              "000004TK": {
+                "base": "SEK millions",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004TK": "January 1 to December 31 of each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004TK": "Flow"
+            },
+            "priceType": {
+              "000004TK": "Current"
+            },
+            "adjustment": {
+              "000004TK": "WorkOnly"
+            },
+            "alternativeText": {
+              "000004TK": "Total expenditure for intramural R&D"
+            }
+          }
+        },
+        "Tid": {
+          "label": "every other year",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2009": 1,
+              "2011": 2,
+              "2013": 3,
+              "2015": 4,
+              "2017": 5,
+              "2019": 6,
+              "2021": 7,
+              "2023": 8
+            },
+            "label": {
+              "2007": "2007",
+              "2009": "2009",
+              "2011": "2011",
+              "2013": "2013",
+              "2015": "2015",
+              "2017": "2017",
+              "2019": "2019",
+              "2021": "2021",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "UF0301",
+          "tableid": "TAB5714",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Total expenditure for intramural R&D",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Sektor",
+            "Typutgift"
+          ],
+          "matrix": "TAB5714",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Utbildning och forskning FoU",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "FoU-statistik@scb.se",
+            "raw": "Utbildning och forskning FoU, Statistics Sweden# +46 010-479 50 00#FoU-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5714",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5714",
+        "label": "Government sector’s expenditure for intramural R&D by region and type of cost. SEK million, every other year 2007-2023",
+        "description": "",
+        "sortCode": "024",
+        "updated": "2024-10-31T07:00:00Z",
+        "firstPeriod": "2007",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "sector",
+          "type of cost",
+          "observations",
+          "every other year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0301",
+              "label": "Research and development in Sweden",
+              "sortCode": "Research and development in Sweden"
+            },
+            {
+              "id": "UF0301O",
+              "label": "Government sector",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

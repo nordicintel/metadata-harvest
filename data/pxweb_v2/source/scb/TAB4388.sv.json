@@ -1,0 +1,383 @@
+{
+  "key": "scb/TAB4388/sv",
+  "identifier": "TAB4388",
+  "language": "sv",
+  "updated": "2020-11-24T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:57:54.123926+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Användning av sammankopplade enheter eller system (Internet of Things) efter typ och redovisningsgrupp. Andel företag. År 2020",
+      "source": "SCB",
+      "updated": "2020-11-24T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I denna tabell betyder 0 att andelen är större än noll men mindre än 0,5 procent respektive att konfidensintervallet är större än 0 men mindre än 0,5 procentenheter. Tecknet .. betyder att uppgiften inte är tillgänglig eller alltför osäker för att anges."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TypenhetSys",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        24,
+        2,
+        1
+      ],
+      "dimension": {
+        "TypenhetSys": {
+          "label": "typ av enhet eller system",
+          "category": {
+            "index": {
+              "0010": 0,
+              "0020": 1,
+              "0030": 2,
+              "0040": 3,
+              "0050": 4
+            },
+            "label": {
+              "0010": "smarta termostater, lampor eller mätare för att optimera energianvändningen i lokaler ",
+              "0020": "sensorer, RFID , IP-taggar och IP-kameror för att förbättra kundservice",
+              "0030": "rörelse- eller underhållssensorer för att spåra rörelser från fordon eller produkter",
+              "0040": "sensorer eller RFID-taggar för att övervaka eller automatisera produktionsprocesser ",
+              "0050": "andra Internet of Things enheter eller system"
+            },
+            "note": {
+              "0020": [
+                "Förbättra kundservice genom att följa kundernas beteende eller individualisera köpupplevelsen."
+              ],
+              "0030": [
+                "Spåra rörelser i syfte att erbjuda skickbaserat underhåll av fordon."
+              ],
+              "0040": [
+                "Övervaka eller automatisera produktionsprocesser i syfte att hantera logistik eller spåra förflyttning av produkter."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0020": {
+                "0": true
+              },
+              "0030": {
+                "0": true
+              },
+              "0040": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "Tot250": 0,
+              "10-49": 1,
+              "50-249": 2,
+              "250-": 3,
+              "TotSNI": 4,
+              "10-33": 5,
+              "35-39": 6,
+              "41-43": 7,
+              "45-47": 8,
+              "49-53": 9,
+              "55-56": 10,
+              "58-63": 11,
+              "68": 12,
+              "69-82+95.1exkl.75": 13,
+              "IKT": 14,
+              "SE": 15,
+              "RIKS1": 16,
+              "RIKS2": 17,
+              "RIKS3": 18,
+              "RIKS4": 19,
+              "RIKS5": 20,
+              "RIKS6": 21,
+              "RIKS7": 22,
+              "RIKS8": 23
+            },
+            "label": {
+              "Tot250": "totalt 10 eller fler anställda",
+              "10-49": "10–49 anställda",
+              "50-249": "50–249 anställda",
+              "250-": "250 eller fler anställda",
+              "TotSNI": "totalt (SNI 10–63, 68–74, 77–82, 95.1) ",
+              "10-33": "tillverkningsindustri (SNI 10–33)",
+              "35-39": "energi och återvinning (SNI 35–39)",
+              "41-43": "byggindustri (SNI 41–43)",
+              "45-47": "handel; serviceverkstäder för motorfordon (SNI 45–47)",
+              "49-53": "transport- och magasineringsföretag (SNI 49–53)",
+              "55-56": "hotell och restauranger (SNI 55–56)",
+              "58-63": "informations- och kommunikationsföretag (SNI 58–63)",
+              "68": "fastighetsbolag och förvaltare (SNI 68)",
+              "69-82+95.1exkl.75": "andra tjänsteföretag (SNI 69–74, 77–82, 95.1)",
+              "IKT": "IKT-sektorn (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sverige",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Företag, 10 eller fler anställda",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Näringsgren (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000004OD": 0,
+              "000004OE": 1
+            },
+            "label": {
+              "000004OD": "Andel, procent",
+              "000004OE": "Felmarginal, ±"
+            },
+            "unit": {
+              "000004OD": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000004OE": {
+                "base": "procentenheter",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004OD": "År",
+              "000004OE": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004OD": "Stock",
+              "000004OE": "Stock"
+            },
+            "priceType": {
+              "000004OD": "NotApplicable",
+              "000004OE": "NotApplicable"
+            },
+            "adjustment": {
+              "000004OD": "None",
+              "000004OE": "None"
+            },
+            "alternativeText": {
+              "000004OD": "Andel företag som använder sammankopplade enheter eller system, procent",
+              "000004OE": "Andel företag som använder sammankopplade enheter eller system, felmarginal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2020": 0
+            },
+            "label": {
+              "2020": "2020"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB4388",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Användning av sammankopplade enheter eller system",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TypenhetSys",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4388",
+          "subject-code": "NV",
+          "subject-area": "Näringsverksamhet"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "SCB",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, SCB# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , SCB# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4388",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4388",
+        "label": "Användning av sammankopplade enheter eller system (Internet of Things) efter typ och redovisningsgrupp. Andel företag. År 2020",
+        "description": "",
+        "sortCode": "032",
+        "updated": "2020-11-24T08:30:00Z",
+        "firstPeriod": "2020",
+        "lastPeriod": "2020",
+        "category": "public",
+        "variableNames": [
+          "typ av enhet eller system",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Näringsverksamhet",
+              "sortCode": "Näringsverksamhet"
+            },
+            {
+              "id": "NV0116",
+              "label": "IT-användning i företag",
+              "sortCode": "IT-användning i företag"
+            },
+            {
+              "id": "NV0116L",
+              "label": "Internet of Things",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4388?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4388?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4388/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4388/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

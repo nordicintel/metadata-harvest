@@ -1,0 +1,415 @@
+{
+  "key": "scb/TAB4975/sv",
+  "identifier": "TAB4975",
+  "language": "sv",
+  "updated": "2024-06-20T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:46:10.398843+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Geografiskt avstånd till frånlevande förälder för hemmaboende barn och unga 0–21 år som lever skilda från en av sina biologiska föräldrar efter region, kön, ålder och avstånd till frånlevande förälder.  År 2014-2023",
+      "source": "SCB",
+      "updated": "2024-06-20T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0102"
+            },
+            "href": "https://www.scb.se/LE0102",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Tabellen ska uppdateras med SKL: komungruppsindelning 2023 under hösten 2024."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Kon",
+        "Alder",
+        "Avstand",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        31,
+        3,
+        2,
+        5,
+        1,
+        10
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21,
+              "SKLA1": 22,
+              "SKLA2": 23,
+              "SKLB3": 24,
+              "SKLB4": 25,
+              "SKLB5": 26,
+              "SKLC6": 27,
+              "SKLC7": 28,
+              "SKLC8": 29,
+              "SKLC9": 30
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län",
+              "SKLA1": "Storstäder (3)",
+              "SKLA2": "Pendlingskommun nära storstad (43)",
+              "SKLB3": "Större stad (21)",
+              "SKLB4": "Pendlingskommun nära större stad (52)",
+              "SKLB5": "Lågpendlingskommun nära större stad (35)",
+              "SKLC6": "Mindre stad/tätort (29)",
+              "SKLC7": "Pendlingskommun nära mindre stad/tätort (52)",
+              "SKLC8": "Landsbygdskommun (40)",
+              "SKLC9": "Landsbygdskommun med besöksnäring (15)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionKommungrupp2017EjAggr",
+                "label": "Kommungrupper (SKL:s), 2017 års indelning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionKommungrupp2017EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän99EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "5+6": 0,
+              "5": 1,
+              "6": 2
+            },
+            "label": {
+              "5+6": "båda könen",
+              "5": "pojkar",
+              "6": "flickor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "0-17": 0,
+              "0-21": 1
+            },
+            "label": {
+              "0-17": "0–17 år",
+              "0-21": "0–21 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Avstand": {
+          "label": "avstånd till frånlevande förälder",
+          "category": {
+            "index": {
+              "0-2": 0,
+              "2-10": 1,
+              "10-50": 2,
+              "50-": 3,
+              "Förälder": 4
+            },
+            "label": {
+              "0-2": "0–2 km",
+              "2-10": "2–10 km",
+              "10-50": "10–50 km",
+              "50-": "50– km",
+              "Förälder": "förälder bor utomlands eller avliden"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002A7": 0
+            },
+            "label": {
+              "000002A7": "Geografiskt avstånd till frånlevande förälder för hemmaboende barn och unga 0–21 år som lever skilda från en av sina biologiska föräldrar, antal"
+            },
+            "unit": {
+              "000002A7": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002A7": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002A7": "Stock"
+            },
+            "priceType": {
+              "000002A7": "NotApplicable"
+            },
+            "adjustment": {
+              "000002A7": "WorkOnly"
+            },
+            "alternativeText": {
+              "000002A7": "Geografiskt avstånd till frånlevande förälder för hemmaboende barn och unga 0–21 år som lever skilda från en av sina biologiska föräldrar, antal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8,
+              "2023": 9
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "LE0102",
+          "tableid": "TAB4975",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Geografiskt avstånd till frånlevande förälder för hemmaboende barn och unga 0–21 år som lever skilda från en av sina biologiska föräldrar, antal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Kon",
+            "Alder",
+            "Avstand"
+          ],
+          "matrix": "TAB4975",
+          "subject-code": "LE",
+          "subject-area": "Levnadsförhållanden"
+        },
+        "contact": [
+          {
+            "name": "Nikolaus Koutakis",
+            "organization": "SCB",
+            "phone": "010-479 66 65",
+            "mail": "barn-ochfamiljestatistik@scb.se",
+            "raw": "Nikolaus Koutakis, SCB# +46 010-479 66 65#barn-ochfamiljestatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4975",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4975",
+        "label": "Geografiskt avstånd till frånlevande förälder för hemmaboende barn och unga 0–21 år som lever skilda från en av sina biologiska föräldrar efter region, kön, ålder och avstånd till frånlevande förälder.  År 2014-2023",
+        "description": "",
+        "sortCode": "027",
+        "updated": "2024-06-20T06:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "kön",
+          "ålder",
+          "avstånd till frånlevande förälder",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Levnadsförhållanden",
+              "sortCode": "Levnadsförhållanden"
+            },
+            {
+              "id": "LE0102",
+              "label": "Barn- och familjestatistik",
+              "sortCode": "Barn- och familjestatistik"
+            },
+            {
+              "id": "LE0102X",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "016"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4975?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4975?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4975/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4975/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

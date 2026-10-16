@@ -1,0 +1,378 @@
+{
+  "key": "scb/TAB1068/sv",
+  "identifier": "TAB1068",
+  "language": "sv",
+  "updated": "2010-12-14T08:33:00Z",
+  "retrieved_at": "2026-10-16T17:38:57.331237+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "EU-sympati (PSU) efter region och kön. (Urvalsundersökning, se fotnoter.)  Mätmånad 1996M05-2010M11",
+      "source": "SCB",
+      "updated": "2010-12-14T08:33:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:ME0201"
+            },
+            "href": "https://www.scb.se/ME0201",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Kon",
+        "EUsymp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        3,
+        3,
+        2,
+        29
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "note": [
+            "Observera att sammansättningen av regionerna har ändras över tid och resultaten är därför inte helt jämförbara. Det gäller i synnerhet Stormalmö och Sydsverige exkl. Stor-Malmö."
+          ],
+          "category": {
+            "index": {
+              "0030": 0,
+              "SE04exkl0030": 1,
+              "SE09P": 2,
+              "1480": 3,
+              "SE0Aexkl1480": 4,
+              "0180": 5,
+              "SE01exkl0180": 6,
+              "SE02P": 7,
+              "SE06P": 8,
+              "SE07+SE08": 9
+            },
+            "label": {
+              "0030": "Stor-Malmö",
+              "SE04exkl0030": "Sydsverige exkl Stor-Malmö (län 10+12)",
+              "SE09P": "Småland med öarna (län 06-09)",
+              "1480": "Göteborg",
+              "SE0Aexkl1480": "Västsverige exkl Göteborg (län 13+14)",
+              "0180": "Stockholm",
+              "SE01exkl0180": "Stockholms län exkl Stockholm",
+              "SE02P": "Östra Mellansverige (län 03-05+18-19)",
+              "SE06P": "Norra Mellansverige (län 17+20-21)",
+              "SE07+SE08": "Mellersta och Övre Norrland (län 22-25)"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "EUsymp": {
+          "label": "EU-sympati",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "8": 2
+            },
+            "label": {
+              "1": "för EU",
+              "2": "mot EU",
+              "8": "vet ej"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "ME0201J1": 0,
+              "ME0201J2": 1
+            },
+            "label": {
+              "ME0201J1": "Svarsfördelning, procent",
+              "ME0201J2": "Felmarginal, ±"
+            },
+            "note": {
+              "ME0201J1": [
+                "Observera att Partisympatiundersökningen (PSU) bygger på intervjuer i ett stickprov som är ett rikstäckande slumpmässigt sannolikhetsurval. De redovisade procenttalen är således skattningar varför hänsyn måste tas till osäkerheten i dessa då slutsatser dras. Osäkerheten uttrycks som felmarginal och är beroende både av procenttalets storlek och av antalet intervjuade i redovisningsgruppen - ju fler intervjuade desto mindre felmarginal. Det intervall som bildas av procentskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga populationsvärdet om inga systematiska fel förekommer. ",
+                "Frågan löd:     Är du i huvudsak för eller mot det svenska medborgarskapet i EU eller har du ingen bestämt åsikt?"
+              ],
+              "ME0201J2": [
+                "Felmarginalen är lika med procentskattningens dubbla standardavvikelse. Det intervall som bildas av procentskattningen ± felmarginalen blir således ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga populationsvärdet om inga systematiska fel förekommer."
+              ]
+            },
+            "unit": {
+              "ME0201J1": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "ME0201J2": {
+                "base": "procentenheter",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "ME0201J1": {
+                "0": true,
+                "1": true
+              },
+              "ME0201J2": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "ME0201J1": "Maj och november resp år",
+              "ME0201J2": "Maj och november resp år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "ME0201J1": "Stock",
+              "ME0201J2": "Stock"
+            },
+            "priceType": {
+              "ME0201J1": "NotApplicable",
+              "ME0201J2": "NotApplicable"
+            },
+            "adjustment": {
+              "ME0201J1": "None",
+              "ME0201J2": "None"
+            },
+            "alternativeText": {
+              "ME0201J1": "EU-sympati (PSU), procent",
+              "ME0201J2": "EU-sympati (PSU), felmarginal, ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "mätmånad",
+          "category": {
+            "index": {
+              "1996M05": 0,
+              "1996M11": 1,
+              "1997M05": 2,
+              "1997M11": 3,
+              "1998M05": 4,
+              "1998M11": 5,
+              "1999M05": 6,
+              "1999M11": 7,
+              "2000M05": 8,
+              "2000M11": 9,
+              "2001M05": 10,
+              "2001M11": 11,
+              "2002M05": 12,
+              "2002M11": 13,
+              "2003M05": 14,
+              "2003M11": 15,
+              "2004M05": 16,
+              "2004M11": 17,
+              "2005M05": 18,
+              "2005M11": 19,
+              "2006M05": 20,
+              "2007M05": 21,
+              "2007M11": 22,
+              "2008M05": 23,
+              "2008M11": 24,
+              "2009M05": 25,
+              "2009M11": 26,
+              "2010M05": 27,
+              "2010M11": 28
+            },
+            "label": {
+              "1996M05": "1996M05",
+              "1996M11": "1996M11",
+              "1997M05": "1997M05",
+              "1997M11": "1997M11",
+              "1998M05": "1998M05",
+              "1998M11": "1998M11",
+              "1999M05": "1999M05",
+              "1999M11": "1999M11",
+              "2000M05": "2000M05",
+              "2000M11": "2000M11",
+              "2001M05": "2001M05",
+              "2001M11": "2001M11",
+              "2002M05": "2002M05",
+              "2002M11": "2002M11",
+              "2003M05": "2003M05",
+              "2003M11": "2003M11",
+              "2004M05": "2004M05",
+              "2004M11": "2004M11",
+              "2005M05": "2005M05",
+              "2005M11": "2005M11",
+              "2006M05": "2006M05",
+              "2007M05": "2007M05",
+              "2007M11": "2007M11",
+              "2008M05": "2008M05",
+              "2008M11": "2008M11",
+              "2009M05": "2009M05",
+              "2009M11": "2009M11",
+              "2010M05": "2010M05",
+              "2010M11": "2010M11"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "ME0201",
+          "tableid": "TAB1068",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "EU-sympati (PSU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Kon",
+            "EUsymp"
+          ],
+          "matrix": "TAB1068",
+          "subject-code": "ME",
+          "subject-area": "Demokrati"
+        },
+        "contact": [
+          {
+            "name": "Karolina Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, SCB# +46 010-479 41 76#karolina.eriksson@scb.se"
+          },
+          {
+            "name": "Mikaela Järnbert",
+            "organization": "SCB",
+            "phone": "010-479 42 43",
+            "mail": "mikaela.jarnbert@scb.se",
+            "raw": "Mikaela Järnbert, SCB# +46 010-479 42 43#mikaela.jarnbert@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1068",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1068",
+        "label": "EU-sympati (PSU) efter region och kön. (Urvalsundersökning, se fotnoter.)  Mätmånad 1996M05-2010M11",
+        "description": "",
+        "sortCode": "502",
+        "updated": "2010-12-14T08:33:00Z",
+        "firstPeriod": "1996M05",
+        "lastPeriod": "2010M11",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "kön",
+          "EU-sympati",
+          "tabellinnehåll",
+          "mätmånad"
+        ],
+        "source": "SCB",
+        "subjectCode": "ME",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "ME",
+              "label": "Demokrati",
+              "sortCode": "Demokrati"
+            },
+            {
+              "id": "ME0201",
+              "label": "Partisympatiundersökningen (PSU)",
+              "sortCode": "Partisympatiundersökningen (PSU)"
+            },
+            {
+              "id": "ME0201I",
+              "label": "Oviktade tabeller över EU-sympati t.o.m. nov 2010",
+              "sortCode": "09"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1068?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1068/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1068/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

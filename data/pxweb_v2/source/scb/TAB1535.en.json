@@ -1,0 +1,602 @@
+{
+  "key": "scb/TAB1535/en",
+  "identifier": "TAB1535",
+  "language": "en",
+  "updated": "2025-03-21T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:37:43.720451+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Number of persons by type of household, household status, age and sex. Year 2011-2024",
+      "source": "Statistics Sweden",
+      "updated": "2025-03-21T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BE0101"
+            },
+            "href": "https://www.scb.se/BE0101-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The model to estimate register-based household statistics changed in 2016. The statistics for the years 2011–2015 were also revised.",
+        "Household status indicates the individual´s relationship to other persons in the household (child, single parent, person living alone, person in a cohabiting relationship, person in a married couple/with a registered partner, not living alone (other), information is missing).  A person is defined as a child, regardless of age, when he/she is included in a household with at least one of his/her parents and does not have children or partner in the same household. A parent-child relationship exists if a person is a biological parent, adoptive parent, guardian or other person (”other person” indicates a person other than the child´s parent/guardian, such as a foster parent or other adult relative). A person who lives alone has the household status ”living alone”. People who have a child together, without being married to each other or being registered partners are counted as living together in a cohabiting couple. Furthermore, people who have no children in common are counted as living together if they are at least 18 years old, they are of the opposite sex, the age difference between them is less than 15 years, they are not closely related and only one possible cohabiting couple can be formed within the household. A person included in a household and who cannot be classified as a child, a single parent, a person in a cohabitation relationship or a person in a married couple/with a registered partner is defined as an other person. For example, this could be a person who lives with siblings/friends or single grandparents in a multigenerational household. ”Data missing” includes people who are registered at fictitious addresses such as 'Registered at the municipality' and 'Without known residence', as well as people who are part of households where all residents are younger than 16 years old.",
+        "Type of household gives the composition of the household and is broken down into Single (including Living alone), Cohabiting and Other household, all with or without children."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Hushallstyp",
+        "Hushallsstallning",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        7,
+        2,
+        101,
+        1,
+        14
+      ],
+      "dimension": {
+        "Hushallstyp": {
+          "label": "type of household",
+          "category": {
+            "index": {
+              "ESUB": 0,
+              "ESMB25": 1,
+              "ESMB24": 2,
+              "SMUB": 3,
+              "SBMB25": 4,
+              "SBMB24": 5,
+              "OVRIUB": 6,
+              "ÖMB25": 7,
+              "ÖMB24": 8,
+              "SAKNAS": 9
+            },
+            "label": {
+              "ESUB": "single without children",
+              "ESMB25": "single with children aged 0–24",
+              "ESMB24": "single with children aged 25 and older",
+              "SMUB": "cohabiting/married without children",
+              "SBMB25": "cohabiting with children aged 0–24",
+              "SBMB24": "cohabiting with children aged 25 and older",
+              "OVRIUB": "other household without children",
+              "ÖMB25": "other household with children aged 0–24",
+              "ÖMB24": "other household with children aged 25 and older",
+              "SAKNAS": "no information"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Hushallsstallning": {
+          "label": "household status",
+          "category": {
+            "index": {
+              "BBarn": 0,
+              "Bensf": 1,
+              "Bensm": 2,
+              "Bsamm": 3,
+              "Bgift": 4,
+              "Bbild": 5,
+              "Bovri": 6
+            },
+            "label": {
+              "BBarn": "children",
+              "Bensf": "lone parents",
+              "Bensm": "living alone",
+              "Bsamm": "persons in a consensual union",
+              "Bgift": "persons in marriage or registered partnership",
+              "Bbild": "not living alone, other persons",
+              "Bovri": "no information"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "men",
+              "2": "women"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8,
+              "9": 9,
+              "10": 10,
+              "11": 11,
+              "12": 12,
+              "13": 13,
+              "14": 14,
+              "15": 15,
+              "16": 16,
+              "17": 17,
+              "18": 18,
+              "19": 19,
+              "20": 20,
+              "21": 21,
+              "22": 22,
+              "23": 23,
+              "24": 24,
+              "25": 25,
+              "26": 26,
+              "27": 27,
+              "28": 28,
+              "29": 29,
+              "30": 30,
+              "31": 31,
+              "32": 32,
+              "33": 33,
+              "34": 34,
+              "35": 35,
+              "36": 36,
+              "37": 37,
+              "38": 38,
+              "39": 39,
+              "40": 40,
+              "41": 41,
+              "42": 42,
+              "43": 43,
+              "44": 44,
+              "45": 45,
+              "46": 46,
+              "47": 47,
+              "48": 48,
+              "49": 49,
+              "50": 50,
+              "51": 51,
+              "52": 52,
+              "53": 53,
+              "54": 54,
+              "55": 55,
+              "56": 56,
+              "57": 57,
+              "58": 58,
+              "59": 59,
+              "60": 60,
+              "61": 61,
+              "62": 62,
+              "63": 63,
+              "64": 64,
+              "65": 65,
+              "66": 66,
+              "67": 67,
+              "68": 68,
+              "69": 69,
+              "70": 70,
+              "71": 71,
+              "72": 72,
+              "73": 73,
+              "74": 74,
+              "75": 75,
+              "76": 76,
+              "77": 77,
+              "78": 78,
+              "79": 79,
+              "80": 80,
+              "81": 81,
+              "82": 82,
+              "83": 83,
+              "84": 84,
+              "85": 85,
+              "86": 86,
+              "87": 87,
+              "88": 88,
+              "89": 89,
+              "90": 90,
+              "91": 91,
+              "92": 92,
+              "93": 93,
+              "94": 94,
+              "95": 95,
+              "96": 96,
+              "97": 97,
+              "98": 98,
+              "99": 99,
+              "100+": 100
+            },
+            "label": {
+              "0": "0 years",
+              "1": "1 year",
+              "2": "2 years",
+              "3": "3 years",
+              "4": "4 years",
+              "5": "5 years",
+              "6": "6 years",
+              "7": "7 years",
+              "8": "8 years",
+              "9": "9 years",
+              "10": "10 years",
+              "11": "11 years",
+              "12": "12 years",
+              "13": "13 years",
+              "14": "14 years",
+              "15": "15 years",
+              "16": "16 years",
+              "17": "17 years",
+              "18": "18 years",
+              "19": "19 years",
+              "20": "20 years",
+              "21": "21 years",
+              "22": "22 years",
+              "23": "23 years",
+              "24": "24 years",
+              "25": "25 years",
+              "26": "26 years",
+              "27": "27 years",
+              "28": "28 years",
+              "29": "29 years",
+              "30": "30 years",
+              "31": "31 years",
+              "32": "32 years",
+              "33": "33 years",
+              "34": "34 years",
+              "35": "35 years",
+              "36": "36 years",
+              "37": "37 years",
+              "38": "38 years",
+              "39": "39 years",
+              "40": "40 years",
+              "41": "41 years",
+              "42": "42 years",
+              "43": "43 years",
+              "44": "44 years",
+              "45": "45 years",
+              "46": "46 years",
+              "47": "47 years",
+              "48": "48 years",
+              "49": "49 years",
+              "50": "50 years",
+              "51": "51 years",
+              "52": "52 years",
+              "53": "53 years",
+              "54": "54 years",
+              "55": "55 years",
+              "56": "56 years",
+              "57": "57 years",
+              "58": "58 years",
+              "59": "59 years",
+              "60": "60 years",
+              "61": "61 years",
+              "62": "62 years",
+              "63": "63 years",
+              "64": "64 years",
+              "65": "65 years",
+              "66": "66 years",
+              "67": "67 years",
+              "68": "68 years",
+              "69": "69 years",
+              "70": "70 years",
+              "71": "71 years",
+              "72": "72 years",
+              "73": "73 years",
+              "74": "74 years",
+              "75": "75 years",
+              "76": "76 years",
+              "77": "77 years",
+              "78": "78 years",
+              "79": "79 years",
+              "80": "80 years",
+              "81": "81 years",
+              "82": "82 years",
+              "83": "83 years",
+              "84": "84 years",
+              "85": "85 years",
+              "86": "86 years",
+              "87": "87 years",
+              "88": "88 years",
+              "89": "89 years",
+              "90": "90 years",
+              "91": "91 years",
+              "92": "92 years",
+              "93": "93 years",
+              "94": "94 years",
+              "95": "95 years",
+              "96": "96 years",
+              "97": "97 years",
+              "98": "98 years",
+              "99": "99 years",
+              "100+": "100+ years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_Ålder10årJ",
+                "label": "´10-year intervals",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Ålder10årJ?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Ålder5år",
+                "label": "5-year intervals",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Ålder5år?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Ålder1årA",
+                "label": "Age, 1 year age classes",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Ålder1årA?lang=en"
+                  }
+                ]
+              }
+            ]
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Alder": "Ålder  "
+                }
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "BE0101B§": 0
+            },
+            "label": {
+              "BE0101B§": "Number of persons"
+            },
+            "unit": {
+              "BE0101B§": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BE0101B§": "31 December each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BE0101B§": "Stock"
+            },
+            "priceType": {
+              "BE0101B§": "NotApplicable"
+            },
+            "adjustment": {
+              "BE0101B§": "None"
+            },
+            "alternativeText": {
+              "BE0101B§": "Number of persons"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2011": 0,
+              "2012": 1,
+              "2013": 2,
+              "2014": 3,
+              "2015": 4,
+              "2016": 5,
+              "2017": 6,
+              "2018": 7,
+              "2019": 8,
+              "2020": 9,
+              "2021": 10,
+              "2022": 11,
+              "2023": 12,
+              "2024": 13
+            },
+            "label": {
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "BE0101",
+          "tableid": "TAB1535",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number of persons",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Hushallstyp",
+            "Hushallsstallning",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB1535",
+          "subject-code": "BE",
+          "subject-area": "Population"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1535",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1535",
+        "label": "Number of persons by type of household, household status, age and sex. Year 2011-2024",
+        "description": "",
+        "sortCode": "011",
+        "updated": "2025-03-21T07:00:00Z",
+        "firstPeriod": "2011",
+        "lastPeriod": "2024",
+        "category": "public",
+        "variableNames": [
+          "type of household",
+          "household status",
+          "sex",
+          "age",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "BE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BE",
+              "label": "Population",
+              "sortCode": "Population"
+            },
+            {
+              "id": "BE0101",
+              "label": "Population statistics",
+              "sortCode": "15"
+            },
+            {
+              "id": "BE0101S",
+              "label": "Household",
+              "sortCode": "017"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1535?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1535?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1535/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1535/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

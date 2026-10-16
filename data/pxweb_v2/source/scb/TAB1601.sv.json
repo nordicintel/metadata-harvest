@@ -1,0 +1,346 @@
+{
+  "key": "scb/TAB1601/sv",
+  "identifier": "TAB1601",
+  "language": "sv",
+  "updated": "2003-12-22T12:00:00Z",
+  "retrieved_at": "2026-10-16T17:35:22.924201+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Taxeringsvärden, låneskulder, räntor, räntebidrag samt ombyggnadsutgifter för flerbostadshus efter region, värdeår, fastighetsägarkategori och kontoslag. (Urvalsundersökning, se fotnoter.)  År 2001-2002",
+      "source": "SCB",
+      "updated": "2003-12-22T12:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Från och med redovisningsår 2013 redovisas inte längre variablerna taxeringsvärde (kr/m2 totalyta) och taxeringsvärde (mkr). Uppgifter om taxeringsvärde finns i Statistikdatabasen under produkten Fastighetstaxeringar.  ",
+        "Från och med år 2013 redovisas inte variablerna räntebidrag (mkr), räntebidrag i % av räntor och räntebidrag kr/kvm totalyta. Det beror på att de statliga räntebidragen till ny- och ombyggnad av hyres- och bostadsrättshus har upphört helt efter en utfasning av bidragen från år 2007.",
+        "Korrigering 2015-12-07\r\nDen korrigering av felmarginal som gjordes 2015-06-09 var felaktig. Felmarginalen är nu korrekt."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Vardear",
+        "AgareA",
+        "TaxvardeSkuld",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        8,
+        6,
+        9,
+        2,
+        2
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0042": 3,
+              "0043": 4
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0042": "Kommuner med >75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)",
+              "0043": "Kommuner med <75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Vardear": {
+          "label": "värdeår",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7
+            },
+            "label": {
+              "01": "–1939",
+              "02": "1940–1949",
+              "03": "1950–1959",
+              "04": "1960–1969",
+              "05": "1970–1979",
+              "06": "1980–1989",
+              "07": "1990–1999",
+              "08": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AgareA": {
+          "label": "fastighetsägarkategori",
+          "category": {
+            "index": {
+              "001": 0,
+              "003": 1,
+              "006": 2,
+              "007": 3,
+              "36": 4,
+              "34": 5
+            },
+            "label": {
+              "001": "privatägda fastigheter; samtliga aktiebolag o.dyl.",
+              "003": "privatägda fastigheter; samtliga fysiska personer",
+              "006": "privatägda fastigheter; samtliga",
+              "007": "bostadsrättsföreningar; Riksbyggen och HSB",
+              "36": "bostadsrättsföreningar exkl. Riksbyggen och HSB",
+              "34": "samtliga bostadsrättsföreningar"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "TaxvardeSkuld": {
+          "label": "kontoslag",
+          "category": {
+            "index": {
+              "12": 0,
+              "13": 1,
+              "14": 2,
+              "15": 3,
+              "16": 4,
+              "17": 5,
+              "18": 6,
+              "19": 7,
+              "20": 8
+            },
+            "label": {
+              "12": "taxeringsvärde ( kr/m² totalyta)",
+              "13": "taxeringsvärde (mnkr)",
+              "14": "skulder ( kr/m² totalyta)",
+              "15": "skulder (mnkr)",
+              "16": "skulder i % av taxeringsvärde",
+              "17": "räntor brutto (mnkr)",
+              "18": "räntebidrag (mnkr)",
+              "19": "räntebidrag i % av räntor",
+              "20": "ombyggnad, standardförbättring (mnkr)"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0301L1": 0,
+              "BO0301L2": 1
+            },
+            "label": {
+              "BO0301L1": "Ekonomiska uppgifter",
+              "BO0301L2": "Felmarginal ±"
+            },
+            "unit": {
+              "BO0301L1": {
+                "base": "mkr",
+                "decimals": 0
+              },
+              "BO0301L2": {
+                "base": "mkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0301L1": "Kalenderår",
+              "BO0301L2": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301L1": "Flow",
+              "BO0301L2": "Flow"
+            },
+            "priceType": {
+              "BO0301L1": "Current",
+              "BO0301L2": "Current"
+            },
+            "adjustment": {
+              "BO0301L1": "None",
+              "BO0301L2": "None"
+            },
+            "alternativeText": {
+              "BO0301L1": "Ekonomiska uppgifter för flerbostadshus (IKU)",
+              "BO0301L2": "Felmarginal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2001": 0,
+              "2002": 1
+            },
+            "label": {
+              "2001": "2001",
+              "2002": "2002"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1601",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Ekonomiska uppgifter för flerbostadshus (IKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Vardear",
+            "AgareA",
+            "TaxvardeSkuld"
+          ],
+          "matrix": "TAB1601",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1601",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1601",
+        "label": "Taxeringsvärden, låneskulder, räntor, räntebidrag samt ombyggnadsutgifter för flerbostadshus efter region, värdeår, fastighetsägarkategori och kontoslag. (Urvalsundersökning, se fotnoter.)  År 2001-2002",
+        "description": "",
+        "sortCode": "17",
+        "updated": "2003-12-22T12:00:00Z",
+        "firstPeriod": "2001",
+        "lastPeriod": "2002",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "värdeår",
+          "fastighetsägarkategori",
+          "kontoslag",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0301",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)"
+            },
+            {
+              "id": "BO0301J",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1601?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1601/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1601/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

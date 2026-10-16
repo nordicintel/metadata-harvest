@@ -1,0 +1,450 @@
+{
+  "key": "scb/TAB5016/en",
+  "identifier": "TAB5016",
+  "language": "en",
+  "updated": "2026-01-23T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:24:53.790409+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Persons absent from work aged 15-74 (LFS)/hours of absence during the reference week by reason for absence, sex and age. Year 2005-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-01-23T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "For the period 2005M01–2020M12, the time series contains ´linked data´. No margins of error (uncertainty figures) are reported for the period, this is instead marked as '..' in the time series. The series 2001M01–2004M12 are macrolinked and for the period 2005M01–2020M12 they are microlinked. The estimates regarding quarter 1 2005 and its constituent months are based on a smaller number of responses than other periods. These estimates are therefore more uncertain and should be used with caution. ",
+        "In 2023, the retirement age was raised from 65 to 66 years, and in 2026, it will be raised to 67 years. This results in the reporting of more age groups in the LFS. To enable comparisons over time, the age groups 16–65, 16–66, 20–65, and 20–66 are reported back to 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Franvaroorsak",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        3,
+        10,
+        6,
+        21
+      ],
+      "dimension": {
+        "Franvaroorsak": {
+          "label": "reason for absence",
+          "note": [
+            "Only absence from the main job is included",
+            "Only absence from the main job is included",
+            "Only absence from the main job is included",
+            "Only absence from the main job is included",
+            "Only absence from the main job is included",
+            "Only absence from the main job is included"
+          ],
+          "category": {
+            "index": {
+              "FRSJUK": 0,
+              "FRSEM": 1,
+              "FROVR": 2,
+              "FRTOT": 3
+            },
+            "label": {
+              "FRSJUK": "illness",
+              "FRSEM": "holiday",
+              "FROVR": "absence beyond holiday and illness",
+              "FRTOT": "total absence"
+            },
+            "note": {
+              "FROVR": [
+                "Consists of other personal reasons, labor market reasons, as well as working time arrangements and weekends"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true
+            },
+            "categoryNoteMandatory": {
+              "FROVR": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "15-24": 0,
+              "25-54": 1,
+              "55-74": 2,
+              "tot15-74": 3,
+              "tot16-64": 4,
+              "tot16-65": 5,
+              "tot16-66": 6,
+              "tot20-64": 7,
+              "tot20-65": 8,
+              "tot20-66": 9
+            },
+            "label": {
+              "15-24": "15–24 years",
+              "25-54": "25–54 years",
+              "55-74": "55–74 years",
+              "tot15-74": "total 15–74 years",
+              "tot16-64": "total 16–64 years",
+              "tot16-65": "total 16–65 years",
+              "tot16-66": "total 16–66 years",
+              "tot20-64": "total 20–64 years",
+              "tot20-65": "total 20–65 years",
+              "tot20-66": "total 20–66 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000004B2": 0,
+              "000004B0": 1,
+              "000004B3": 2,
+              "000004B1": 3,
+              "000004B4": 4,
+              "000004AZ": 5
+            },
+            "label": {
+              "000004B2": "The whole reference week, 1000s of persons",
+              "000004B0": "Margin of error ±, the whole reference week, 1000s",
+              "000004B3": "The whole or part of the reference week, 1000s of persons",
+              "000004B1": "Margin of error ±, the whole or part of the reference week, 1000s",
+              "000004B4": "The reference week, 1000s of hours",
+              "000004AZ": "Margin of error ±, the reference week, 1000s"
+            },
+            "note": {
+              "000004B0": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ],
+              "000004B1": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ],
+              "000004AZ": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "000004B2": {
+                "base": "Thousands",
+                "decimals": 1
+              },
+              "000004B0": {
+                "base": "Thousands",
+                "decimals": 1
+              },
+              "000004B3": {
+                "base": "Thousands",
+                "decimals": 1
+              },
+              "000004B1": {
+                "base": "Thousands",
+                "decimals": 1
+              },
+              "000004B4": {
+                "base": "Thousands",
+                "decimals": 0
+              },
+              "000004AZ": {
+                "base": "Thousands",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000004B0": {
+                "0": true
+              },
+              "000004B1": {
+                "0": true
+              },
+              "000004AZ": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000004B2": "",
+              "000004B0": "",
+              "000004B3": "",
+              "000004B1": "",
+              "000004B4": "",
+              "000004AZ": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004B2": "Average",
+              "000004B0": "Average",
+              "000004B3": "Average",
+              "000004B1": "Average",
+              "000004B4": "Average",
+              "000004AZ": "Average"
+            },
+            "priceType": {
+              "000004B2": "NotApplicable",
+              "000004B0": "NotApplicable",
+              "000004B3": "NotApplicable",
+              "000004B1": "NotApplicable",
+              "000004B4": "NotApplicable",
+              "000004AZ": "NotApplicable"
+            },
+            "adjustment": {
+              "000004B2": "None",
+              "000004B0": "None",
+              "000004B3": "None",
+              "000004B1": "None",
+              "000004B4": "None",
+              "000004AZ": "None"
+            },
+            "alternativeText": {
+              "000004B2": "Persons absent from work aged 15-74, the whole reference week (LFS), 1000s",
+              "000004B0": "Margin of error ±, persons absent from work aged 15-74, the whole reference week (LFS), 1000s",
+              "000004B3": "Persons absent from work aged 15-74, the whole or part of the reference week (LFS), 1000s",
+              "000004B1": "Margin of error ±, persons absent from work aged 15-74, the whole or part of the reference week (LFS), 1000s",
+              "000004B4": "Hours of absence during the reference week, for persons aged 15-74 (LFS), 1000s",
+              "000004AZ": "Margin of error ±, hours of absence during the reference week, for persons aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15,
+              "2021": 16,
+              "2022": 17,
+              "2023": 18,
+              "2024": 19,
+              "2025": 20
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB5016",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Absence from work, persons aged 15-74 (LFS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Franvaroorsak",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB5016",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5016",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5016",
+        "label": "Persons absent from work aged 15-74 (LFS)/hours of absence during the reference week by reason for absence, sex and age. Year 2005-2025",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2026-01-23T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "reason for absence",
+          "sex",
+          "age",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0401",
+              "label": "Labour Force Surveys (LFS)",
+              "sortCode": "Labour Force Surveys (LFS)"
+            },
+            {
+              "id": "AM0401K",
+              "label": "Persons absent from work from 2005",
+              "sortCode": "007"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5016?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5016?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5016/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5016/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

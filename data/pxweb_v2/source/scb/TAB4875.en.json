@@ -1,0 +1,612 @@
+{
+  "key": "scb/TAB4875/en",
+  "identifier": "TAB4875",
+  "language": "en",
+  "updated": "2026-08-24T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:19:27.763426+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Ownership of investment fund shares by type of fund and sector. Quarter 1998K2-2026K2",
+      "source": "Swedish Financial Supervisory Authority",
+      "updated": "2026-08-24T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0403"
+            },
+            "href": "https://www.scb.se/FM0403-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "From the publication for the fourth quarter of 2024 onwards, the data has been enriched with custodian data to better describe household fund holdings, which were previously partly under financial corporations. Revisions of previously published series have been made up to and including the first quarter of 2024. As a result of this change, Statistics Sweden will not report transactions in fund units for households and financial corporations, as well as households´ fund holdings in individual pension savings (IPS).",
+        "I"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Innehall",
+        "Fondtyp",
+        "Sektor",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        8,
+        12,
+        1,
+        113
+      ],
+      "dimension": {
+        "Innehall": {
+          "label": "observations",
+          "note": [
+            "The Swedish premium pension authority (PPM) has been re-classified from the Social security sector to the Financial corporations sector. As of 1 January 2010 the Premium Pension Authority ceased to exist but holdings in the premium pension system are still included in the financial corporation sector.",
+            "During the second quarter 2014 a number of foreign registered funds became Swedish registered. Roughly SEK 130 billion were moved."
+          ],
+          "category": {
+            "index": {
+              "inbet": 0,
+              "utbet": 1,
+              "netto": 2,
+              "form": 3
+            },
+            "label": {
+              "inbet": "gross savings in funds, sales",
+              "utbet": "gross savings in funds, redemptions",
+              "netto": "net savings in funds",
+              "form": "market value of funds"
+            },
+            "note": {
+              "inbet": [
+                "Payments for sold fundshares. Reinvested dividends included."
+              ],
+              "utbet": [
+                "Payment for redeemed fundshares."
+              ],
+              "netto": [
+                "Sales less redemptions. Reinvested dividends included."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fondtyp": {
+          "label": "type of fund",
+          "note": [
+            "Two mixed funds in the Premium Pension System have been closed in the second quarter of 2010 and the holdings have been transferred to an equity fund and a bond and money market fund."
+          ],
+          "category": {
+            "index": {
+              "S1225+35": 0,
+              "S1225+35R": 1,
+              "S12251": 2,
+              "S12351": 3,
+              "S12352": 4,
+              "S12353": 5,
+              "S12354": 6,
+              "S12359": 7
+            },
+            "label": {
+              "S1225+35": "investment funds, total",
+              "S1225+35R": "Bond and money market funds",
+              "S12251": "Money market funds",
+              "S12351": "Bond funds",
+              "S12352": "Equity funds",
+              "S12353": "Mixed funds",
+              "S12354": "Fund-of-funds",
+              "S12359": "Other funds"
+            },
+            "note": {
+              "S12251": [
+                "This refers to funds containing interest bearing securities with an original period to run shorter than or equal to one year."
+              ],
+              "S12351": [
+                "This refers to funds containing interest bearing securities with an original period to run longer than one year."
+              ],
+              "S12352": [
+                "Public savings programme also included."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S11": 1,
+              "S12": 2,
+              "S12511": 3,
+              "S1254": 4,
+              "S1313": 5,
+              "S1314": 6,
+              "S14": 7,
+              "S14IPS": 8,
+              "S15": 9,
+              "S19": 10,
+              "S2": 11
+            },
+            "label": {
+              "S0": "all sectors",
+              "S11": "non-financial corporations",
+              "S12": "financial corporations; total",
+              "S12511": "financial corporations; of which unit linked",
+              "S1254": "financial corporations; of which premium pension",
+              "S1313": "local government",
+              "S1314": "social security funds",
+              "S14": "households",
+              "S14IPS": "households; of which individual pension savings, IPS",
+              "S15": "non-profit institutions serving households",
+              "S19": "Other domestic owners",
+              "S2": "rest of the world"
+            },
+            "note": {
+              "S0": [
+                "2014K4 there has been a reclassification of SEK 16 billion from the household sector to foreign owners. This affects the market values for 2014K4. The reclassification must be taken in to account when comparing the market value and net savings between 2014K3 and 2014K4."
+              ],
+              "S12": [
+                "Unit linked and the Swedish premium pension authority (PPM) are included."
+              ],
+              "S12511": [
+                "Ie unit-linked.",
+                "Unit linked includes only funds from life insurance companies. The item does not include any other unit linked funds such as  from pension institutions; According to the joint regulations of the EU for National Accounts, some ten life insurance companies have been reclassified from INSEKT sector 1281 (insurance companies) to INSEKT sector 1291 (pension institutions) during 2016."
+              ],
+              "S1254": [
+                "Included in Financial corporations."
+              ],
+              "S14": [
+                "2014K4 there has been a reclassification of SEK 16 billion from the household sector to foreign owners. This affects the market values for 2014K4. The reclassification must be taken in to account when comparing the market value and net savings between 2014K3 and 2014K4.",
+                "Individual pension savings, IPS, are included."
+              ],
+              "S2": [
+                "2014K4 there has been a reclassification of SEK 16 billion from the household sector to foreign owners. This affects the market values for 2014K4. The reclassification must be taken in to account when comparing the market value and net savings between 2014K3 and 2014K4."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "S0": {
+                "0": true
+              },
+              "S12511": {
+                "1": true
+              },
+              "S14": {
+                "0": true
+              },
+              "S2": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000001SS": 0
+            },
+            "label": {
+              "000001SS": "Ownership of investment fund, SEK million"
+            },
+            "unit": {
+              "000001SS": {
+                "base": "SEK million",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001SS": "Under the period"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001SS": "Stock"
+            },
+            "priceType": {
+              "000001SS": "NotApplicable"
+            },
+            "adjustment": {
+              "000001SS": "None"
+            },
+            "alternativeText": {
+              "000001SS": "Ownership of investment fund, SEK million"
+            }
+          }
+        },
+        "Tid": {
+          "label": "quarter",
+          "category": {
+            "index": {
+              "1998K2": 0,
+              "1998K3": 1,
+              "1998K4": 2,
+              "1999K1": 3,
+              "1999K2": 4,
+              "1999K3": 5,
+              "1999K4": 6,
+              "2000K1": 7,
+              "2000K2": 8,
+              "2000K3": 9,
+              "2000K4": 10,
+              "2001K1": 11,
+              "2001K2": 12,
+              "2001K3": 13,
+              "2001K4": 14,
+              "2002K1": 15,
+              "2002K2": 16,
+              "2002K3": 17,
+              "2002K4": 18,
+              "2003K1": 19,
+              "2003K2": 20,
+              "2003K3": 21,
+              "2003K4": 22,
+              "2004K1": 23,
+              "2004K2": 24,
+              "2004K3": 25,
+              "2004K4": 26,
+              "2005K1": 27,
+              "2005K2": 28,
+              "2005K3": 29,
+              "2005K4": 30,
+              "2006K1": 31,
+              "2006K2": 32,
+              "2006K3": 33,
+              "2006K4": 34,
+              "2007K1": 35,
+              "2007K2": 36,
+              "2007K3": 37,
+              "2007K4": 38,
+              "2008K1": 39,
+              "2008K2": 40,
+              "2008K3": 41,
+              "2008K4": 42,
+              "2009K1": 43,
+              "2009K2": 44,
+              "2009K3": 45,
+              "2009K4": 46,
+              "2010K1": 47,
+              "2010K2": 48,
+              "2010K3": 49,
+              "2010K4": 50,
+              "2011K1": 51,
+              "2011K2": 52,
+              "2011K3": 53,
+              "2011K4": 54,
+              "2012K1": 55,
+              "2012K2": 56,
+              "2012K3": 57,
+              "2012K4": 58,
+              "2013K1": 59,
+              "2013K2": 60,
+              "2013K3": 61,
+              "2013K4": 62,
+              "2014K1": 63,
+              "2014K2": 64,
+              "2014K3": 65,
+              "2014K4": 66,
+              "2015K1": 67,
+              "2015K2": 68,
+              "2015K3": 69,
+              "2015K4": 70,
+              "2016K1": 71,
+              "2016K2": 72,
+              "2016K3": 73,
+              "2016K4": 74,
+              "2017K1": 75,
+              "2017K2": 76,
+              "2017K3": 77,
+              "2017K4": 78,
+              "2018K1": 79,
+              "2018K2": 80,
+              "2018K3": 81,
+              "2018K4": 82,
+              "2019K1": 83,
+              "2019K2": 84,
+              "2019K3": 85,
+              "2019K4": 86,
+              "2020K1": 87,
+              "2020K2": 88,
+              "2020K3": 89,
+              "2020K4": 90,
+              "2021K1": 91,
+              "2021K2": 92,
+              "2021K3": 93,
+              "2021K4": 94,
+              "2022K1": 95,
+              "2022K2": 96,
+              "2022K3": 97,
+              "2022K4": 98,
+              "2023K1": 99,
+              "2023K2": 100,
+              "2023K3": 101,
+              "2023K4": 102,
+              "2024K1": 103,
+              "2024K2": 104,
+              "2024K3": 105,
+              "2024K4": 106,
+              "2025K1": 107,
+              "2025K2": 108,
+              "2025K3": 109,
+              "2025K4": 110,
+              "2026K1": 111,
+              "2026K2": 112
+            },
+            "label": {
+              "1998K2": "1998K2",
+              "1998K3": "1998K3",
+              "1998K4": "1998K4",
+              "1999K1": "1999K1",
+              "1999K2": "1999K2",
+              "1999K3": "1999K3",
+              "1999K4": "1999K4",
+              "2000K1": "2000K1",
+              "2000K2": "2000K2",
+              "2000K3": "2000K3",
+              "2000K4": "2000K4",
+              "2001K1": "2001K1",
+              "2001K2": "2001K2",
+              "2001K3": "2001K3",
+              "2001K4": "2001K4",
+              "2002K1": "2002K1",
+              "2002K2": "2002K2",
+              "2002K3": "2002K3",
+              "2002K4": "2002K4",
+              "2003K1": "2003K1",
+              "2003K2": "2003K2",
+              "2003K3": "2003K3",
+              "2003K4": "2003K4",
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "FM0403",
+          "tableid": "TAB4875",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Ownership of investment fund, SEK million",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Innehall",
+            "Fondtyp",
+            "Sektor"
+          ],
+          "matrix": "TAB4875",
+          "subject-code": "FM",
+          "subject-area": "Financial markets"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Mathias Lindström",
+            "organization": "Statistics Sweden",
+            "phone": "+46104794355",
+            "mail": "mathias.lindstrom@scb.se",
+            "raw": "Mathias Lindström, Statistics Sweden# +46 +46104794355#mathias.lindstrom@scb.se"
+          },
+          {
+            "name": "Tina Hansson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 58 15",
+            "mail": "tina.hansson@scb.se",
+            "raw": "Tina Hansson, Statistics Sweden# +46 010-479 58 15#tina.hansson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4875",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4875",
+        "label": "Ownership of investment fund shares by type of fund and sector. Quarter 1998K2-2026K2",
+        "description": "",
+        "sortCode": "Ownership of investment fund shares by type of fund and sector. Quarter 1998K2-2026K2",
+        "updated": "2026-08-24T06:00:00Z",
+        "firstPeriod": "1998K2",
+        "lastPeriod": "2026K2",
+        "category": "public",
+        "variableNames": [
+          "observations",
+          "type of fund",
+          "sector",
+          "observations",
+          "quarter"
+        ],
+        "source": "Swedish Financial Supervisory Authority",
+        "subjectCode": "FM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Financial markets",
+              "sortCode": "Financial markets"
+            },
+            {
+              "id": "FM0403",
+              "label": "Investment funds, assets and liabilities",
+              "sortCode": "Investment funds, assets and liabilities"
+            },
+            {
+              "id": "FM0403A",
+              "label": "Investment funds, assets and liabilities Quarter",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4875/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

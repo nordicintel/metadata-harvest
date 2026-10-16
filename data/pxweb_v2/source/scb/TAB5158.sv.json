@@ -1,0 +1,397 @@
+{
+  "key": "scb/TAB5158/sv",
+  "identifier": "TAB5158",
+  "language": "sv",
+  "updated": "2026-04-27T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:28:13.956329+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta personer 16–65 år efter funktionsnedsättning, yrkesställning, kön och redovisningsgrupp. År 2023-2025",
+      "source": "SCB",
+      "updated": "2026-04-27T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM7001"
+            },
+            "href": "https://www.scb.se/AM7001",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Situationen på arbetsmarknaden för personer med funktionsnedsättning (SAPF) är en urvalsundersökning som genomförs i direkt anslutning till SCB:s Arbetskraftsundersökningar (AKU). Samtliga skattningar är behäftade med osäkerhet. Mycket osäkra skattningar, där konfidensintervallet är större än antals-/andelsskattningen, har prickats. Resultat har även bedömts som osäkra och har prickats i de fall antalet svar i gruppen som ligger till grund för skattningen (i nämnaren) är färre än 50, eller om det är färre än 5 som har egenskapen (i täljaren) som ska skattas."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Funktionsnedsattning",
+        "Yrkesstallning",
+        "Kon",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        3,
+        3,
+        11,
+        4,
+        3
+      ],
+      "dimension": {
+        "Funktionsnedsattning": {
+          "label": "funktionsnedsättning",
+          "category": {
+            "index": {
+              "010": 0,
+              "030": 1,
+              "050": 2,
+              "070": 3,
+              "090": 4
+            },
+            "label": {
+              "010": "personer med funktionsnedsättning",
+              "030": "personer med funktionsnedsättning med nedsatt arbetsförmåga",
+              "050": "personer med funktionsnedsättning utan nedsatt arbetsförmåga",
+              "070": "övriga i befolkningen",
+              "090": "hela befolkningen"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Yrkesstallning": {
+          "label": "yrkesställning",
+          "category": {
+            "index": {
+              "ANST": 0,
+              "FÖR": 1,
+              "SYSTOT": 2
+            },
+            "label": {
+              "ANST": "anställda",
+              "FÖR": "företagare",
+              "SYSTOT": "sysselsatta totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "16-29": 0,
+              "30-49": 1,
+              "50-65": 2,
+              "16-65": 3,
+              "10": 4,
+              "20": 5,
+              "30": 6,
+              "50": 7,
+              "07": 8,
+              "08": 9,
+              "95": 10
+            },
+            "label": {
+              "16-29": "16–29 år",
+              "30-49": "30–49 år",
+              "50-65": "50–65 år",
+              "16-65": "16–65 år",
+              "10": "förgymnasial",
+              "20": "gymnasial",
+              "30": "eftergymnasial",
+              "50": "samtliga utbildningsnivåer",
+              "07": "inrikes födda",
+              "08": "utrikes födda",
+              "95": "inrikes och utrikes födda"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_GruppSAPF1",
+                "label": "Ålder",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_GruppSAPF1?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_GruppSAPF2",
+                "label": "Utbildningsnivå",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_GruppSAPF2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_GruppSAPF3",
+                "label": "Inrikes och utrikes född",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_GruppSAPF3?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000774": 0,
+              "00000776": 1,
+              "00000773": 2,
+              "00000775": 3
+            },
+            "label": {
+              "00000774": "antal sysselsatta i tusental",
+              "00000776": "antal sysselsatta i tusental, felmarginal",
+              "00000773": "andel sysselsatta i procent",
+              "00000775": "andel sysselsatta i procent, felmarginal"
+            },
+            "unit": {
+              "00000774": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000776": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000773": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "00000775": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000774": "År",
+              "00000776": "År",
+              "00000773": "År",
+              "00000775": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000774": "Stock",
+              "00000776": "Stock",
+              "00000773": "Stock",
+              "00000775": "Stock"
+            },
+            "priceType": {
+              "00000774": "NotApplicable",
+              "00000776": "NotApplicable",
+              "00000773": "NotApplicable",
+              "00000775": "NotApplicable"
+            },
+            "adjustment": {
+              "00000774": "None",
+              "00000776": "None",
+              "00000773": "None",
+              "00000775": "None"
+            },
+            "alternativeText": {
+              "00000774": "Antal sysselsatta 16–65 år i tusental",
+              "00000776": "Antal sysselsatta 16–65 år i tusental, felmarginal",
+              "00000773": "Andel sysselsatta 16–65 år i procent",
+              "00000775": "Andel sysselsatta 16–65 år i procent, felmarginal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2023": 0,
+              "2024": 1,
+              "2025": 2
+            },
+            "label": {
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM7001",
+          "tableid": "TAB5158",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sysselsatta personer 16–65 år",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Funktionsnedsattning",
+            "Yrkesstallning",
+            "Kon",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB5158",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Marc Doppelbauer",
+            "organization": "SCB",
+            "phone": "010-479 42 15",
+            "mail": "marc.doppelbauer@scb.se",
+            "raw": "Marc Doppelbauer, SCB# +46 010-479 42 15#marc.doppelbauer@scb.se"
+          },
+          {
+            "name": "Karolina Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, SCB# +46 010-479 41 76#karolina.eriksson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5158",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5158",
+        "label": "Sysselsatta personer 16–65 år efter funktionsnedsättning, yrkesställning, kön och redovisningsgrupp. År 2023-2025",
+        "description": "",
+        "sortCode": "005",
+        "updated": "2026-04-27T06:00:00Z",
+        "firstPeriod": "2023",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "funktionsnedsättning",
+          "yrkesställning",
+          "kön",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM7001",
+              "label": "Situationen på arbetsmarknaden för personer med funktionsnedsättning",
+              "sortCode": "Situationen på arbetsmarknaden för personer med funktionsnedsättning"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5158?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5158?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5158/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5158/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

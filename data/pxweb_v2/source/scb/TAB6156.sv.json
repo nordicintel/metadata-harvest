@@ -1,0 +1,782 @@
+{
+  "key": "scb/TAB6156/sv",
+  "identifier": "TAB6156",
+  "language": "sv",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:21:10.078979+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Frånvarande från arbetet/frånvarotimmar 15-74 år under referensveckan (AKU) efter frånvaroorsak, kön och ålder, tidigare definitioner.  Månad 2005M04-2020M12",
+      "source": "SCB",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Franvaroorsak",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        3,
+        10,
+        6,
+        189
+      ],
+      "dimension": {
+        "Franvaroorsak": {
+          "label": "frånvaroorsak",
+          "note": [
+            "Endast frånvaro i huvudsysslan ingår",
+            "Endast frånvaro i huvudsysslan ingår",
+            "Endast frånvaro i huvudsysslan ingår",
+            "Endast frånvaro i huvudsysslan ingår",
+            "Endast frånvaro i huvudsysslan ingår",
+            "Endast frånvaro i huvudsysslan ingår"
+          ],
+          "category": {
+            "index": {
+              "FRSJUK": 0,
+              "FRSEM": 1,
+              "FROVR": 2,
+              "FRTOT": 3
+            },
+            "label": {
+              "FRSJUK": "sjuk",
+              "FRSEM": "semester",
+              "FROVR": "frånvaro utöver semester och sjuk",
+              "FRTOT": "frånvaro totalt"
+            },
+            "note": {
+              "FROVR": [
+                "Består av övriga personliga skäl, arbetsmarknadsskäl samt arbetstidens förläggning och helg"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true
+            },
+            "categoryNoteMandatory": {
+              "FROVR": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "15-24": 0,
+              "25-54": 1,
+              "55-74": 2,
+              "tot15-74": 3,
+              "tot16-64": 4,
+              "tot16-65": 5,
+              "tot16-66": 6,
+              "tot20-64": 7,
+              "tot20-65": 8,
+              "tot20-66": 9
+            },
+            "label": {
+              "15-24": "15–24 år",
+              "25-54": "25–54 år",
+              "55-74": "55–74 år",
+              "tot15-74": "totalt 15–74 år",
+              "tot16-64": "totalt 16–64 år",
+              "tot16-65": "totalt 16–65 år",
+              "tot16-66": "totalt 16–66 år",
+              "tot20-64": "totalt 20–64 år",
+              "tot20-65": "totalt 20–65 år",
+              "tot20-66": "totalt 20–66 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000674": 0,
+              "00000672": 1,
+              "00000675": 2,
+              "00000673": 3,
+              "00000676": 4,
+              "00000671": 5
+            },
+            "label": {
+              "00000674": "Hela referensveckan, 1000-tal personer",
+              "00000672": "Felmarginal ±, hela referensveckan, 1000-tal",
+              "00000675": "Hela eller delar av referensveckan, 1000-tal personer",
+              "00000673": "Felmarginal ±, hela eller delar av referensveckan, 1000-tal",
+              "00000676": "Referensveckan, 1000-tal timmar",
+              "00000671": "Felmarginal ±, referensveckan, 1000-tal"
+            },
+            "note": {
+              "00000672": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ],
+              "00000673": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ],
+              "00000671": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "00000674": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "00000672": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "00000675": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "00000673": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "00000676": {
+                "base": "1000-tal",
+                "decimals": 0
+              },
+              "00000671": {
+                "base": "1000-tal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "00000672": {
+                "0": true
+              },
+              "00000673": {
+                "0": true
+              },
+              "00000671": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "00000674": "",
+              "00000672": "",
+              "00000675": "",
+              "00000673": "",
+              "00000676": "",
+              "00000671": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000674": "Average",
+              "00000672": "Average",
+              "00000675": "Average",
+              "00000673": "Average",
+              "00000676": "Average",
+              "00000671": "Average"
+            },
+            "priceType": {
+              "00000674": "NotApplicable",
+              "00000672": "NotApplicable",
+              "00000675": "NotApplicable",
+              "00000673": "NotApplicable",
+              "00000676": "NotApplicable",
+              "00000671": "NotApplicable"
+            },
+            "adjustment": {
+              "00000674": "None",
+              "00000672": "None",
+              "00000675": "None",
+              "00000673": "None",
+              "00000676": "None",
+              "00000671": "None"
+            },
+            "alternativeText": {
+              "00000674": "Tidigare definitioner. Frånvarande från arbetet 15-74 år hela referensveckan (AKU), 1000-tal",
+              "00000672": "Tidigare definitioner. Felmarginal ±, frånvarande från arbetet 15-74 år hela referensveckan (AKU), 1000-tal",
+              "00000675": "Tidigare definitioner. Frånvarande från arbetet 15-74 år hela eller delar av referensveckan (AKU), 1000-tal",
+              "00000673": "Tidigare definitioner. Felmarginal ±, frånvarande från arbetet 15-74 år hela eller delar av referensveckan (AKU), 1000-tal",
+              "00000676": "Tidigare definitioner. Frånvarotimmar under referensveckan 15-74 år (AKU), 1000-tal",
+              "00000671": "Tidigare definitioner. Felmarginal ±, frånvarotimmar under referensveckan 15-74 år (AKU), 1000-tal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "månad",
+          "category": {
+            "index": {
+              "2005M04": 0,
+              "2005M05": 1,
+              "2005M06": 2,
+              "2005M07": 3,
+              "2005M08": 4,
+              "2005M09": 5,
+              "2005M10": 6,
+              "2005M11": 7,
+              "2005M12": 8,
+              "2006M01": 9,
+              "2006M02": 10,
+              "2006M03": 11,
+              "2006M04": 12,
+              "2006M05": 13,
+              "2006M06": 14,
+              "2006M07": 15,
+              "2006M08": 16,
+              "2006M09": 17,
+              "2006M10": 18,
+              "2006M11": 19,
+              "2006M12": 20,
+              "2007M01": 21,
+              "2007M02": 22,
+              "2007M03": 23,
+              "2007M04": 24,
+              "2007M05": 25,
+              "2007M06": 26,
+              "2007M07": 27,
+              "2007M08": 28,
+              "2007M09": 29,
+              "2007M10": 30,
+              "2007M11": 31,
+              "2007M12": 32,
+              "2008M01": 33,
+              "2008M02": 34,
+              "2008M03": 35,
+              "2008M04": 36,
+              "2008M05": 37,
+              "2008M06": 38,
+              "2008M07": 39,
+              "2008M08": 40,
+              "2008M09": 41,
+              "2008M10": 42,
+              "2008M11": 43,
+              "2008M12": 44,
+              "2009M01": 45,
+              "2009M02": 46,
+              "2009M03": 47,
+              "2009M04": 48,
+              "2009M05": 49,
+              "2009M06": 50,
+              "2009M07": 51,
+              "2009M08": 52,
+              "2009M09": 53,
+              "2009M10": 54,
+              "2009M11": 55,
+              "2009M12": 56,
+              "2010M01": 57,
+              "2010M02": 58,
+              "2010M03": 59,
+              "2010M04": 60,
+              "2010M05": 61,
+              "2010M06": 62,
+              "2010M07": 63,
+              "2010M08": 64,
+              "2010M09": 65,
+              "2010M10": 66,
+              "2010M11": 67,
+              "2010M12": 68,
+              "2011M01": 69,
+              "2011M02": 70,
+              "2011M03": 71,
+              "2011M04": 72,
+              "2011M05": 73,
+              "2011M06": 74,
+              "2011M07": 75,
+              "2011M08": 76,
+              "2011M09": 77,
+              "2011M10": 78,
+              "2011M11": 79,
+              "2011M12": 80,
+              "2012M01": 81,
+              "2012M02": 82,
+              "2012M03": 83,
+              "2012M04": 84,
+              "2012M05": 85,
+              "2012M06": 86,
+              "2012M07": 87,
+              "2012M08": 88,
+              "2012M09": 89,
+              "2012M10": 90,
+              "2012M11": 91,
+              "2012M12": 92,
+              "2013M01": 93,
+              "2013M02": 94,
+              "2013M03": 95,
+              "2013M04": 96,
+              "2013M05": 97,
+              "2013M06": 98,
+              "2013M07": 99,
+              "2013M08": 100,
+              "2013M09": 101,
+              "2013M10": 102,
+              "2013M11": 103,
+              "2013M12": 104,
+              "2014M01": 105,
+              "2014M02": 106,
+              "2014M03": 107,
+              "2014M04": 108,
+              "2014M05": 109,
+              "2014M06": 110,
+              "2014M07": 111,
+              "2014M08": 112,
+              "2014M09": 113,
+              "2014M10": 114,
+              "2014M11": 115,
+              "2014M12": 116,
+              "2015M01": 117,
+              "2015M02": 118,
+              "2015M03": 119,
+              "2015M04": 120,
+              "2015M05": 121,
+              "2015M06": 122,
+              "2015M07": 123,
+              "2015M08": 124,
+              "2015M09": 125,
+              "2015M10": 126,
+              "2015M11": 127,
+              "2015M12": 128,
+              "2016M01": 129,
+              "2016M02": 130,
+              "2016M03": 131,
+              "2016M04": 132,
+              "2016M05": 133,
+              "2016M06": 134,
+              "2016M07": 135,
+              "2016M08": 136,
+              "2016M09": 137,
+              "2016M10": 138,
+              "2016M11": 139,
+              "2016M12": 140,
+              "2017M01": 141,
+              "2017M02": 142,
+              "2017M03": 143,
+              "2017M04": 144,
+              "2017M05": 145,
+              "2017M06": 146,
+              "2017M07": 147,
+              "2017M08": 148,
+              "2017M09": 149,
+              "2017M10": 150,
+              "2017M11": 151,
+              "2017M12": 152,
+              "2018M01": 153,
+              "2018M02": 154,
+              "2018M03": 155,
+              "2018M04": 156,
+              "2018M05": 157,
+              "2018M06": 158,
+              "2018M07": 159,
+              "2018M08": 160,
+              "2018M09": 161,
+              "2018M10": 162,
+              "2018M11": 163,
+              "2018M12": 164,
+              "2019M01": 165,
+              "2019M02": 166,
+              "2019M03": 167,
+              "2019M04": 168,
+              "2019M05": 169,
+              "2019M06": 170,
+              "2019M07": 171,
+              "2019M08": 172,
+              "2019M09": 173,
+              "2019M10": 174,
+              "2019M11": 175,
+              "2019M12": 176,
+              "2020M01": 177,
+              "2020M02": 178,
+              "2020M03": 179,
+              "2020M04": 180,
+              "2020M05": 181,
+              "2020M06": 182,
+              "2020M07": 183,
+              "2020M08": 184,
+              "2020M09": 185,
+              "2020M10": 186,
+              "2020M11": 187,
+              "2020M12": 188
+            },
+            "label": {
+              "2005M04": "2005M04",
+              "2005M05": "2005M05",
+              "2005M06": "2005M06",
+              "2005M07": "2005M07",
+              "2005M08": "2005M08",
+              "2005M09": "2005M09",
+              "2005M10": "2005M10",
+              "2005M11": "2005M11",
+              "2005M12": "2005M12",
+              "2006M01": "2006M01",
+              "2006M02": "2006M02",
+              "2006M03": "2006M03",
+              "2006M04": "2006M04",
+              "2006M05": "2006M05",
+              "2006M06": "2006M06",
+              "2006M07": "2006M07",
+              "2006M08": "2006M08",
+              "2006M09": "2006M09",
+              "2006M10": "2006M10",
+              "2006M11": "2006M11",
+              "2006M12": "2006M12",
+              "2007M01": "2007M01",
+              "2007M02": "2007M02",
+              "2007M03": "2007M03",
+              "2007M04": "2007M04",
+              "2007M05": "2007M05",
+              "2007M06": "2007M06",
+              "2007M07": "2007M07",
+              "2007M08": "2007M08",
+              "2007M09": "2007M09",
+              "2007M10": "2007M10",
+              "2007M11": "2007M11",
+              "2007M12": "2007M12",
+              "2008M01": "2008M01",
+              "2008M02": "2008M02",
+              "2008M03": "2008M03",
+              "2008M04": "2008M04",
+              "2008M05": "2008M05",
+              "2008M06": "2008M06",
+              "2008M07": "2008M07",
+              "2008M08": "2008M08",
+              "2008M09": "2008M09",
+              "2008M10": "2008M10",
+              "2008M11": "2008M11",
+              "2008M12": "2008M12",
+              "2009M01": "2009M01",
+              "2009M02": "2009M02",
+              "2009M03": "2009M03",
+              "2009M04": "2009M04",
+              "2009M05": "2009M05",
+              "2009M06": "2009M06",
+              "2009M07": "2009M07",
+              "2009M08": "2009M08",
+              "2009M09": "2009M09",
+              "2009M10": "2009M10",
+              "2009M11": "2009M11",
+              "2009M12": "2009M12",
+              "2010M01": "2010M01",
+              "2010M02": "2010M02",
+              "2010M03": "2010M03",
+              "2010M04": "2010M04",
+              "2010M05": "2010M05",
+              "2010M06": "2010M06",
+              "2010M07": "2010M07",
+              "2010M08": "2010M08",
+              "2010M09": "2010M09",
+              "2010M10": "2010M10",
+              "2010M11": "2010M11",
+              "2010M12": "2010M12",
+              "2011M01": "2011M01",
+              "2011M02": "2011M02",
+              "2011M03": "2011M03",
+              "2011M04": "2011M04",
+              "2011M05": "2011M05",
+              "2011M06": "2011M06",
+              "2011M07": "2011M07",
+              "2011M08": "2011M08",
+              "2011M09": "2011M09",
+              "2011M10": "2011M10",
+              "2011M11": "2011M11",
+              "2011M12": "2011M12",
+              "2012M01": "2012M01",
+              "2012M02": "2012M02",
+              "2012M03": "2012M03",
+              "2012M04": "2012M04",
+              "2012M05": "2012M05",
+              "2012M06": "2012M06",
+              "2012M07": "2012M07",
+              "2012M08": "2012M08",
+              "2012M09": "2012M09",
+              "2012M10": "2012M10",
+              "2012M11": "2012M11",
+              "2012M12": "2012M12",
+              "2013M01": "2013M01",
+              "2013M02": "2013M02",
+              "2013M03": "2013M03",
+              "2013M04": "2013M04",
+              "2013M05": "2013M05",
+              "2013M06": "2013M06",
+              "2013M07": "2013M07",
+              "2013M08": "2013M08",
+              "2013M09": "2013M09",
+              "2013M10": "2013M10",
+              "2013M11": "2013M11",
+              "2013M12": "2013M12",
+              "2014M01": "2014M01",
+              "2014M02": "2014M02",
+              "2014M03": "2014M03",
+              "2014M04": "2014M04",
+              "2014M05": "2014M05",
+              "2014M06": "2014M06",
+              "2014M07": "2014M07",
+              "2014M08": "2014M08",
+              "2014M09": "2014M09",
+              "2014M10": "2014M10",
+              "2014M11": "2014M11",
+              "2014M12": "2014M12",
+              "2015M01": "2015M01",
+              "2015M02": "2015M02",
+              "2015M03": "2015M03",
+              "2015M04": "2015M04",
+              "2015M05": "2015M05",
+              "2015M06": "2015M06",
+              "2015M07": "2015M07",
+              "2015M08": "2015M08",
+              "2015M09": "2015M09",
+              "2015M10": "2015M10",
+              "2015M11": "2015M11",
+              "2015M12": "2015M12",
+              "2016M01": "2016M01",
+              "2016M02": "2016M02",
+              "2016M03": "2016M03",
+              "2016M04": "2016M04",
+              "2016M05": "2016M05",
+              "2016M06": "2016M06",
+              "2016M07": "2016M07",
+              "2016M08": "2016M08",
+              "2016M09": "2016M09",
+              "2016M10": "2016M10",
+              "2016M11": "2016M11",
+              "2016M12": "2016M12",
+              "2017M01": "2017M01",
+              "2017M02": "2017M02",
+              "2017M03": "2017M03",
+              "2017M04": "2017M04",
+              "2017M05": "2017M05",
+              "2017M06": "2017M06",
+              "2017M07": "2017M07",
+              "2017M08": "2017M08",
+              "2017M09": "2017M09",
+              "2017M10": "2017M10",
+              "2017M11": "2017M11",
+              "2017M12": "2017M12",
+              "2018M01": "2018M01",
+              "2018M02": "2018M02",
+              "2018M03": "2018M03",
+              "2018M04": "2018M04",
+              "2018M05": "2018M05",
+              "2018M06": "2018M06",
+              "2018M07": "2018M07",
+              "2018M08": "2018M08",
+              "2018M09": "2018M09",
+              "2018M10": "2018M10",
+              "2018M11": "2018M11",
+              "2018M12": "2018M12",
+              "2019M01": "2019M01",
+              "2019M02": "2019M02",
+              "2019M03": "2019M03",
+              "2019M04": "2019M04",
+              "2019M05": "2019M05",
+              "2019M06": "2019M06",
+              "2019M07": "2019M07",
+              "2019M08": "2019M08",
+              "2019M09": "2019M09",
+              "2019M10": "2019M10",
+              "2019M11": "2019M11",
+              "2019M12": "2019M12",
+              "2020M01": "2020M01",
+              "2020M02": "2020M02",
+              "2020M03": "2020M03",
+              "2020M04": "2020M04",
+              "2020M05": "2020M05",
+              "2020M06": "2020M06",
+              "2020M07": "2020M07",
+              "2020M08": "2020M08",
+              "2020M09": "2020M09",
+              "2020M10": "2020M10",
+              "2020M11": "2020M11",
+              "2020M12": "2020M12"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6156",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Tidigare definitioner. Frånvaro från arbetet 15-74 år (AKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Franvaroorsak",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB6156",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6156",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6156",
+        "label": "Frånvarande från arbetet/frånvarotimmar 15-74 år under referensveckan (AKU) efter frånvaroorsak, kön och ålder, tidigare definitioner.  Månad 2005M04-2020M12",
+        "description": "",
+        "sortCode": "01",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2005M04",
+        "lastPeriod": "2020M12",
+        "category": "public",
+        "variableNames": [
+          "frånvaroorsak",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "månad"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0403",
+              "label": "Arbetskraftsundersökningarna, tidigare definitioner",
+              "sortCode": "025"
+            },
+            {
+              "id": "AM0403K",
+              "label": "Frånvarande 2005-2020",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6156?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6156?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6156/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6156/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

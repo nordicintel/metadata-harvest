@@ -1,0 +1,283 @@
+{
+  "key": "scb/TAB236/sv",
+  "identifier": "TAB236",
+  "language": "sv",
+  "updated": "2008-01-31T08:32:00Z",
+  "retrieved_at": "2026-10-16T17:22:09.400326+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Medelarbetstid (överenskommen) per vecka för sysselsatta 16-64 år (AKU) efter näringsgren SNI2002 och kön. År 2005-2007",
+      "source": "SCB",
+      "updated": "2008-01-31T08:32:00Z",
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "SNI2002",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        12,
+        3,
+        2,
+        3
+      ],
+      "dimension": {
+        "SNI2002": {
+          "label": "näringsgren SNI 2002",
+          "category": {
+            "index": {
+              "A-Q": 0,
+              "01+02+05": 1,
+              "10-37+40+41": 2,
+              "28-35": 3,
+              "45": 4,
+              "50-52+60-64": 5,
+              "55+90-93+95": 6,
+              "65-67+70-72+74": 7,
+              "75+99": 8,
+              "73+80": 9,
+              "85": 10,
+              "00": 11
+            },
+            "label": {
+              "A-Q": "samtliga näringsgrenar",
+              "01+02+05": "jordbruk, jakt och skogsbruk, fiske",
+              "10-37+40+41": "utvinning, tillverkning; energi- och vattenförsörjning",
+              "28-35": "verkstadsindustri",
+              "45": "byggindustri",
+              "50-52+60-64": "handel; transport, magasinering; kommunikation",
+              "55+90-93+95": "personliga och kulturella tjänster; renhållning",
+              "65-67+70-72+74": "kreditinstitut, fastighetsförvaltn, företagstjänster",
+              "75+99": "civila myndigheter, försvar; internat. organisationer",
+              "73+80": "forskning o utveckling; utbildning",
+              "85": "enheter för hälso- och sjukvård, socialtjänst; veterinärkliniker",
+              "00": "näringsgren okänd"
+            },
+            "note": {
+              "28-35": [
+                "28-35 verkstadsindustri är delmängd av 10-37+40+41 utvinning, tillverkning; energi- o vattenförsörjning"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "28-35": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402O1": 0,
+              "AM0402O2": 1
+            },
+            "label": {
+              "AM0402O1": "Medelarbetstid",
+              "AM0402O2": "Felmarginal ±"
+            },
+            "note": {
+              "AM0402O2": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM0402O1": {
+                "base": "antal timmar",
+                "decimals": 1
+              },
+              "AM0402O2": {
+                "base": "antal timmar",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0402O2": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0402O1": "",
+              "AM0402O2": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402O1": "Average",
+              "AM0402O2": "Average"
+            },
+            "priceType": {
+              "AM0402O1": "NotApplicable",
+              "AM0402O2": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402O1": "None",
+              "AM0402O2": "None"
+            },
+            "alternativeText": {
+              "AM0402O1": "Medelarbetstid (överenskommen) per vecka för sysselsatta 16-64 år (AKU), timmar",
+              "AM0402O2": "Felmarginal ±, medelarbetstid (överenskommen) per vecka för sysselsatta 16-64 år (AKU), timmar"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB236",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Medelarbetstid (överenskommen) per vecka för sysselsatta 16-64 år (AKU), timmar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "SNI2002",
+            "Kon"
+          ],
+          "matrix": "TAB236",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB236",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB236",
+        "label": "Medelarbetstid (överenskommen) per vecka för sysselsatta 16-64 år (AKU) efter näringsgren SNI2002 och kön. År 2005-2007",
+        "description": "",
+        "sortCode": "025",
+        "updated": "2008-01-31T08:32:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2007",
+        "category": "public",
+        "variableNames": [
+          "näringsgren SNI 2002",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402B",
+              "label": "Sysselsatta",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB236?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB236/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB236/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

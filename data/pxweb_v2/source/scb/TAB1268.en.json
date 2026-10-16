@@ -1,0 +1,592 @@
+{
+  "key": "scb/TAB1268/en",
+  "identifier": "TAB1268",
+  "language": "en",
+  "updated": "2026-04-17T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:20:32.647742+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Number of persons by type of housing, age and sex. Year 2012-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-04-17T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:HE0111"
+            },
+            "href": "https://www.scb.se/HE0111-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "From the reference year 2025 onwards, a small controlled random uncertainty is introduced in all reported data. The uncertainty has been added to protect individuals so that no one risks being exposed in the statistics. As a result, the reported totals are not always equal to the sum of their reported components.  \r\n \r\n  \r\nIf reported statistical values are added together to create a new total, the uncertainty is also added. There is therefore a risk that the new total contains greater uncertainty than that which – under the method – would have been added to a single value. \r\n \r\n  \r\nThe method used for disclosure control is called Cell Key Method (CKM). You can read more about the method here: [Protection methods for disclosure control](https://www.scb.se/en/documentation/statististical-methods/protection-methods-for-disclosure-control/) and here: [Development of disclosure protection](https://www.scb.se/en/documentation/statistical-areas-under-change/development-of-disclosure-protection/).",
+        "Values based on five or fewer persons or households are shown as .. (two dots) for reference years up to 2024.",
+        "Data missing includes persons registred in Sweden 31 December, but not linked to a dwelling, which is about 2–3 per cent of the population."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Boendeform",
+        "Alder",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        9,
+        92,
+        3,
+        1,
+        14
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän07EjAggr",
+                "label": "Counties",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07EjAggr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Boendeform": {
+          "label": "type of housing",
+          "note": [
+            "One- or two-dwelling buildings means detached one- and two-dwelling buildings as well as semi-detached, row and linked buildings (excluding buildings for seasonal and secondary use).  \r\nMulti-dwelling buildings means buildings with three or more apartments including balcony access housing.  \r\n  \r\nThe apartments´ type of tenure is based on the ownership and not how the residents possesses the apartments.  \r\n  \r\nOne- or two-dwelling buildings with rented dwellings means apartments owned by other than private persons, estates of deceased persons or housing cooperatives. Multi-dwelling and other buildings with rented dwelling means dwellings that are not condominiums and owned by other than housing cooperatives.  \r\n  \r\nOne- or two-dwelling buildings with tenant-owned dwellings means apartments owned by housing cooperatives. Multi-dwelling and other buildings with tenant-owned dwelling means apartments owned by housing cooperatives.  \r\n  \r\nOne- or two-dwelling buildings with owner-occupied dwellings means apartments owned by private persons or estates of deceased persons. Multi-dwelling and other buildings with owner-occupied dwelling means condominiums. ",
+            "Other housing means buildings that are not intended for residential purposes but still contains ordinary dwellings, e.g. buildings used for business or public function, and owner-occupied dwellings in multi-dwelling buildings.  It also includes dwellings where information on form of tenancy is missing. "
+          ],
+          "category": {
+            "index": {
+              "SMAG": 0,
+              "SMBO": 1,
+              "SMHY0": 2,
+              "FBBO": 3,
+              "FBHY0": 4,
+              "SPBO": 5,
+              "OB": 6,
+              "ÖVRIGT": 7,
+              "TOT": 8
+            },
+            "label": {
+              "SMAG": "one- or two-dwelling buildings, owner-occupied",
+              "SMBO": "one- or two-dwelling buildings, tenant-owned",
+              "SMHY0": "one- or two-dwelling buildings, rented",
+              "FBBO": "multi-dwelling buildings, tenant-owned",
+              "FBHY0": "multi-dwelling buildings, rented",
+              "SPBO": "special housing",
+              "OB": "other housing",
+              "ÖVRIGT": "data missing",
+              "TOT": "housing, total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8,
+              "9": 9,
+              "10": 10,
+              "11": 11,
+              "12": 12,
+              "13": 13,
+              "14": 14,
+              "15": 15,
+              "16": 16,
+              "17": 17,
+              "18": 18,
+              "19": 19,
+              "20": 20,
+              "21": 21,
+              "22": 22,
+              "23": 23,
+              "24": 24,
+              "25": 25,
+              "26": 26,
+              "27": 27,
+              "28": 28,
+              "29": 29,
+              "30": 30,
+              "31": 31,
+              "32": 32,
+              "33": 33,
+              "34": 34,
+              "35": 35,
+              "36": 36,
+              "37": 37,
+              "38": 38,
+              "39": 39,
+              "40": 40,
+              "41": 41,
+              "42": 42,
+              "43": 43,
+              "44": 44,
+              "45": 45,
+              "46": 46,
+              "47": 47,
+              "48": 48,
+              "49": 49,
+              "50": 50,
+              "51": 51,
+              "52": 52,
+              "53": 53,
+              "54": 54,
+              "55": 55,
+              "56": 56,
+              "57": 57,
+              "58": 58,
+              "59": 59,
+              "60": 60,
+              "61": 61,
+              "62": 62,
+              "63": 63,
+              "64": 64,
+              "65": 65,
+              "66": 66,
+              "67": 67,
+              "68": 68,
+              "69": 69,
+              "70": 70,
+              "71": 71,
+              "72": 72,
+              "73": 73,
+              "74": 74,
+              "75": 75,
+              "76": 76,
+              "77": 77,
+              "78": 78,
+              "79": 79,
+              "80": 80,
+              "81": 81,
+              "82": 82,
+              "83": 83,
+              "84": 84,
+              "85": 85,
+              "86": 86,
+              "87": 87,
+              "88": 88,
+              "89": 89,
+              "90+": 90,
+              "total": 91
+            },
+            "label": {
+              "0": "0 years",
+              "1": "1 year",
+              "2": "2 years",
+              "3": "3 years",
+              "4": "4 years",
+              "5": "5 years",
+              "6": "6 years",
+              "7": "7 years",
+              "8": "8 years",
+              "9": "9 years",
+              "10": "10 years",
+              "11": "11 years",
+              "12": "12 years",
+              "13": "13 years",
+              "14": "14 years",
+              "15": "15 years",
+              "16": "16 years",
+              "17": "17 years",
+              "18": "18 years",
+              "19": "19 years",
+              "20": "20 years",
+              "21": "21 years",
+              "22": "22 years",
+              "23": "23 years",
+              "24": "24 years",
+              "25": "25 years",
+              "26": "26 years",
+              "27": "27 years",
+              "28": "28 years",
+              "29": "29 years",
+              "30": "30 years",
+              "31": "31 years",
+              "32": "32 years",
+              "33": "33 years",
+              "34": "34 years",
+              "35": "35 years",
+              "36": "36 years",
+              "37": "37 years",
+              "38": "38 years",
+              "39": "39 years",
+              "40": "40 years",
+              "41": "41 years",
+              "42": "42 years",
+              "43": "43 years",
+              "44": "44 years",
+              "45": "45 years",
+              "46": "46 years",
+              "47": "47 years",
+              "48": "48 years",
+              "49": "49 years",
+              "50": "50 years",
+              "51": "51 years",
+              "52": "52 years",
+              "53": "53 years",
+              "54": "54 years",
+              "55": "55 years",
+              "56": "56 years",
+              "57": "57 years",
+              "58": "58 years",
+              "59": "59 years",
+              "60": "60 years",
+              "61": "61 years",
+              "62": "62 years",
+              "63": "63 years",
+              "64": "64 years",
+              "65": "65 years",
+              "66": "66 years",
+              "67": "67 years",
+              "68": "68 years",
+              "69": "69 years",
+              "70": "70 years",
+              "71": "71 years",
+              "72": "72 years",
+              "73": "73 years",
+              "74": "74 years",
+              "75": "75 years",
+              "76": "76 years",
+              "77": "77 years",
+              "78": "78 years",
+              "79": "79 years",
+              "80": "80 years",
+              "81": "81 years",
+              "82": "82 years",
+              "83": "83 years",
+              "84": "84 years",
+              "85": "85 years",
+              "86": "86 years",
+              "87": "87 years",
+              "88": "88 years",
+              "89": "89 years",
+              "90+": "90+ years",
+              "total": "all ages"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "4": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "4": "men and women"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "0000031S": 0
+            },
+            "label": {
+              "0000031S": "Number of persons"
+            },
+            "unit": {
+              "0000031S": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000031S": "31 December each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000031S": "Stock"
+            },
+            "priceType": {
+              "0000031S": "NotApplicable"
+            },
+            "adjustment": {
+              "0000031S": "None"
+            },
+            "alternativeText": {
+              "0000031S": "Number of persons"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2012": 0,
+              "2013": 1,
+              "2014": 2,
+              "2015": 3,
+              "2016": 4,
+              "2017": 5,
+              "2018": 6,
+              "2019": 7,
+              "2020": 8,
+              "2021": 9,
+              "2022": 10,
+              "2023": 11,
+              "2024": 12,
+              "2025": 13
+            },
+            "label": {
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "HE0111",
+          "tableid": "TAB1268",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number of persons",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Boendeform",
+            "Alder",
+            "Kon"
+          ],
+          "matrix": "TAB1268",
+          "subject-code": "HE",
+          "subject-area": "Household finances"
+        },
+        "contact": [
+          {
+            "name": "   Befolkningsstatistik",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 60 10",
+            "mail": "befolkning@scb.se",
+            "raw": "   Befolkningsstatistik, Statistics Sweden# +46 010-479 60 10#befolkning@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1268",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1268",
+        "label": "Number of persons by type of housing, age and sex. Year 2012-2025",
+        "description": "",
+        "sortCode": "13",
+        "updated": "2026-04-17T06:00:00Z",
+        "firstPeriod": "2012",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "type of housing",
+          "age",
+          "sex",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "HE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "HE",
+              "label": "Household finances",
+              "sortCode": "Household finances"
+            },
+            {
+              "id": "HE0111",
+              "label": "Households´ Housing",
+              "sortCode": "Households´ Housing"
+            },
+            {
+              "id": "HE0111A",
+              "label": "Households´ Housing",
+              "sortCode": "015"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1268?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1268?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1268/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1268/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

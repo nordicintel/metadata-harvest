@@ -1,0 +1,853 @@
+{
+  "key": "scb/TAB1193/en",
+  "identifier": "TAB1193",
+  "language": "en",
+  "updated": "2014-06-18T07:30:00Z",
+  "retrieved_at": "2026-10-16T18:19:18.793225+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Financial accounts by sector, item and counterpart-sector (ENS95) . Annually 1995-2013",
+      "source": "Swedish Financial Supervisory Authority",
+      "updated": "2014-06-18T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0103"
+            },
+            "href": "https://www.scb.se/FM0103-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Financial accounts shows financial assets and liabilities, balance sheets and transactions, for institutional sectors. For all sectors, assets and liabilities are divided by items and counterpart-sectors. Defintions and codes for Financial accounts are based on the European System of Accounts (ESA 1995). Financial assets are marked with an A in the second position of the item-code and liabilities with a L.",
+        "The annual financial accounts that are published in September have been supplemented with information that is only compiled annually and are thus more comprehensive than the first publication in March (that was based on quarterly accounts). The non-financial corporations sector is still based on the quarterly survey, and figures are thus preliminary. More definite calculations for non-financial corporations 2002 will be included in the September publication 2004. Net financial transactions in the household sector in the annual financial accounts are adjusted according to the net lending in the real accounts",
+        "In accordance with a decision by Eurostat, the EU’s statistical office, Statistics Sweden has changed the institutional sector for the premium pension system.  With the publishing of the data for preliminary data 2006 and onwards, the financial accounts will report the premium pension system under the insurance sector. The affected time series for the government, social insurance sector, insurance companies and households have been recalculated from 1995 until 2006. At the same time, revisions have been made regarding data in the temporary management of PPM funds by the National Debt Office, which has previously not been included in the financial accounts published data."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sektor",
+        "Kontopost",
+        "Motsektor",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        20,
+        69,
+        20,
+        2,
+        19
+      ],
+      "dimension": {
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S1": 1,
+              "S11": 2,
+              "S12": 3,
+              "S121": 4,
+              "S1221": 5,
+              "S1223": 6,
+              "S12241": 7,
+              "S12242": 8,
+              "S125": 9,
+              "S1251": 10,
+              "S1253": 11,
+              "S1254": 12,
+              "S129A": 13,
+              "S13": 14,
+              "S1311": 15,
+              "S1313": 16,
+              "S1314": 17,
+              "S14+15": 18,
+              "S2": 19
+            },
+            "label": {
+              "S0": "all sectors",
+              "S1": "domestic sectors",
+              "S11": "non-financial corporations",
+              "S12": "financial corporations",
+              "S121": "central bank",
+              "S1221": "banks",
+              "S1223": "housing credit institutions",
+              "S12241": "other monetary credit market corporations",
+              "S12242": "finance companies",
+              "S125": "insurance corporations",
+              "S1251": "insurance companies",
+              "S1253": "pension funds and charitable organisations",
+              "S1254": "public pension authorities",
+              "S129A": "other financial intermediaries",
+              "S13": "general government",
+              "S1311": "central government",
+              "S1313": "local government",
+              "S1314": "social security funds",
+              "S14+15": "households and non-profit institutions serving households",
+              "S2": "rest of the world"
+            },
+            "note": {
+              "S129A": [
+                "This sector was earlier referrd to as investment corporations."
+              ],
+              "S14+15": [
+                "Self-employers and non-profit institutions serving households are included."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kontopost": {
+          "label": "item",
+          "category": {
+            "index": {
+              "BF9000": 0,
+              "FA0100": 1,
+              "FA1100": 2,
+              "FA1200": 3,
+              "FA2100": 4,
+              "FA2200": 5,
+              "FA2900": 6,
+              "FA3310": 7,
+              "FA3320": 8,
+              "FA3400": 9,
+              "FA4100": 10,
+              "FA4200": 11,
+              "FA4300": 12,
+              "FA4510": 13,
+              "FA4520": 14,
+              "FA5100": 15,
+              "FA5110": 16,
+              "FA5120": 17,
+              "FA5130": 18,
+              "FA5200": 19,
+              "FA5202": 20,
+              "FA5203": 21,
+              "FA5204": 22,
+              "FA5205": 23,
+              "FA6110": 24,
+              "FA6111": 25,
+              "FA6112": 26,
+              "FA6120": 27,
+              "FA6121": 28,
+              "FA6122": 29,
+              "FA6123": 30,
+              "FA6190": 31,
+              "FA6200": 32,
+              "FA7100": 33,
+              "FA7900": 34,
+              "FL0100": 35,
+              "FL1100": 36,
+              "FL1200": 37,
+              "FL2100": 38,
+              "FL2200": 39,
+              "FL2900": 40,
+              "FL3310": 41,
+              "FL3320": 42,
+              "FL3400": 43,
+              "FL4100": 44,
+              "FL4200": 45,
+              "FL4300": 46,
+              "FL4510": 47,
+              "FL4520": 48,
+              "FL5100": 49,
+              "FL5110": 50,
+              "FL5120": 51,
+              "FL5130": 52,
+              "FL5200": 53,
+              "FL5202": 54,
+              "FL5203": 55,
+              "FL5204": 56,
+              "FL5205": 57,
+              "FL6110": 58,
+              "FL6111": 59,
+              "FL6112": 60,
+              "FL6120": 61,
+              "FL6121": 62,
+              "FL6122": 63,
+              "FL6123": 64,
+              "FL6190": 65,
+              "FL6200": 66,
+              "FL7100": 67,
+              "FL7900": 68
+            },
+            "label": {
+              "BF9000": "net financial assets",
+              "FA0100": "financial assets, total",
+              "FA1100": "monetary gold",
+              "FA1200": "special drawing rights",
+              "FA2100": "currency",
+              "FA2200": "transferable deposits",
+              "FA2900": "other deposits",
+              "FA3310": "short-term securities",
+              "FA3320": "long-term securities",
+              "FA3400": "financial derivatives",
+              "FA4100": "short-term loans",
+              "FA4200": "long-term loans",
+              "FA4300": "leasing",
+              "FA4510": "inter-company trade credits",
+              "FA4520": "inter-company loans",
+              "FA5100": "shares and other equity, excluding mutual fund shares",
+              "FA5110": "quoted shares",
+              "FA5120": "unquoted shares",
+              "FA5130": "other equity",
+              "FA5200": "mutual funds shares",
+              "FA5202": "money market funds",
+              "FA5203": "bond market funds",
+              "FA5204": "equity funds",
+              "FA5205": "other funds",
+              "FA6110": "life insurance reserves",
+              "FA6111": "life insurance reserves, non unit-linked",
+              "FA6112": "life insurance reserves, unit-linked",
+              "FA6120": "pension funds reserves",
+              "FA6121": "pension funds reserves, not PPM",
+              "FA6122": "pension funds reserves, unit linked",
+              "FA6123": "pension funds reserves, PPM",
+              "FA6190": "insurance reserves, not allocated",
+              "FA6200": "other insurance technical reserves",
+              "FA7100": "trade credits",
+              "FA7900": "other accounts receivable",
+              "FL0100": "total liabilities",
+              "FL1100": "monetary gold",
+              "FL1200": "special drawing rights",
+              "FL2100": "currency",
+              "FL2200": "transferable deposits",
+              "FL2900": "other deposits",
+              "FL3310": "short-term securities",
+              "FL3320": "long-term securities",
+              "FL3400": "financial derivatives",
+              "FL4100": "short-term loans",
+              "FL4200": "long-term loans",
+              "FL4300": "leasing",
+              "FL4510": "inter-company trade-credits",
+              "FL4520": "inter-company loans",
+              "FL5100": "shares and other equity, excluding mutual fund shares",
+              "FL5110": "quoted shares",
+              "FL5120": "unquoted shares",
+              "FL5130": "other equity",
+              "FL5200": "mutual funds shares",
+              "FL5202": "money market funds",
+              "FL5203": "bond market funds",
+              "FL5204": "equity funds",
+              "FL5205": "other funds",
+              "FL6110": "life insurance reserves",
+              "FL6111": "life insurance reserves, non unit-linked",
+              "FL6112": "life insurance reserves, unit-linked",
+              "FL6120": "pension funds reserves",
+              "FL6121": "pension funds reserves, not PPM",
+              "FL6122": "pension funds reserves, unit linked",
+              "FL6123": "pension funds reserves, PPM ",
+              "FL6190": "insurance reserves, not allocated",
+              "FL6200": "other insurance technical reserves",
+              "FL7100": "trade credits",
+              "FL7900": "other accounts payable"
+            },
+            "note": {
+              "BF9000": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nThe largest revisions are described in the section Revisions and supplementary information of Financial Accounts in the publication FM17SM 2013Q2."
+              ],
+              "FA0100": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nThe largest revisions are described in the section Revisions and supplementary information of Financial Accounts in the publication FM17SM 2013Q2."
+              ],
+              "FA2200": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FA2900": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FA3310": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Assets of non-financial corporations assets in securities other than shares are calculated residually. The recorded data is therefore uncertain."
+              ],
+              "FA3320": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Assets of non-financial corporations assets in securities other than shares are calculated residually. The recorded data is therefore uncertain."
+              ],
+              "FA3400": [
+                "Incomplete counterpart-sector information.",
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. Coverage of balance values in the Financial Accounts for financial derivatives is relatively complete, while there is a lack of complete presentation of transactions in financial derivatives. \r\nIn Sweden, the largest positions in terms of value in derivatives are between Swedish banks and the rest of the world. In recent years, the collected statistics in the Balance of Payments for derivatives have improved in quality and accuracy regarding transactions in derivatives between Swedish banks and abroad and are considered quite good. The time series for transactions in derivatives between monetary finance institutes and abroad from first quarter of 2002 onwards have therefore been introduced into the financial accounts. Financial savings will be more accurate with the introduction but are not particularly affected. This is because the transactions in derivatives are of the same size class on the asset side and the liability side and cancel each other out when the net value is calculated. For the central government, the social insurance sector and insurance companies a more detailed breakdown of counterpart sectors of transactions in derivatives has been introduced. A general review of the balance values for derivatives has been done for all the sectors, and a more detailed breakdown has been made for the counterpart sectors in all the time series back to the first quarter of 2002."
+              ],
+              "FA4100": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the Financial market statistics at www.scb.se."
+              ],
+              "FA4200": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the Financial market statistics at www.scb.se."
+              ],
+              "FA4300": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the Financial market statistics at www.scb.se."
+              ],
+              "FA5100": [
+                "Mutual funds shares are excluded."
+              ],
+              "FA5110": [
+                "Assets; counterpart-sector information for financial corporations are incomplete 1995–2000. Household assets in foreign mutual funds shares is recorded together with foreign quoted shares 1995–2000. As from 2001 household assets in foreign mutual funds shares and foreign quoted shares are recorded separately. However transactions are recorded together and noted under foreign qouted shares. Assets of other sectors in foreign shares, quoted and unquoted, are recorded together under item FA5100 1995–1997 in the balance sheet account and 1995–2000 in the transaction account."
+              ],
+              "FA5120": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to the European System of National Accounts 1995 (ESA 1995), holdings in unlisted shares are to be reported at market value. Previously the Financial Accounts have published holdings of unlisted shares at book value and households have not had any holdings at all. In connection with the publishing of the second quarter of 2013, a market valuation of unlisted shares has been introduced, according to a model from Eurostat. With the help of this model, unlisted Swedish non-financial corporations have been given a market value in relation to listed companies in the same industry. An exception for market valuation according to this model has been done for the public sector. An estimation of household holdings in unlisted shares has also been made. This estimation is based on information about households’ received dividends in unlisted limited companies in relation to the total dividends for unlisted limited companies. A more detailed breakdown of holdings of unlisted shares has also been done. In the case of banks, for example, we can now see what these own in unlisted housing credit institutions; previously all financial unlisted holdings were reported together. All these revisions have been done for the whole time series back to the first quarter of 2002."
+              ],
+              "FA5130": [
+                "Central government equity in the central bank and shares in quasi-corporations and household assets in tenant-owned flat are included. Other equity is not recorded.",
+                "Households’ assets in owner-occupied dwellings are presented in the Financial Accounts as other equity, FA.513. In connection with the publishing of the Financial Accounts for the 2nd quarter of 2012, households’ assets of owner-occupied dwellings have been revised according to a new method. The revisions have been done from the first quarter of 2003. Because the revised balance values are on a higher level than the old values, a break in the time series has occurred for households’ other equity between the fourth quarter of 2002 and the first quarter of 2003."
+              ],
+              "FA5200": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Assets; counterpart-sector information for financial corporations are incomplete 1995–2000. Household assets in foreign mutual funds shares is recorded together with foreign quoted shares 1995–2000. As from 2001 household assets in foreign mutual funds shares and foreign quoted shares are recorded separately. However transactions are recorded together and noted under foreign qouted shares. Assets of other sectors in foreign shares, quoted and unquoted, are recorded together under item FA5100 1995–1997 in the balance sheet account and 1995–2000 in the transaction account.",
+                "Division of mutual funds shares by different types is recorded in the financial accounts as from 2001. More detailed information of mutual funds shares is published in the table Värdepappersfonder/Mutual funds shares in Sweden´s Statistical Databases. All assets and transactions in money market and bond market funds are recorded as bond market funds in 2001 but are divided from 2002 and onwards."
+              ],
+              "FA5202": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Division of mutual funds shares by different types is recorded in the financial accounts as from 2001. More detailed information of mutual funds shares is published in the table Värdepappersfonder/Mutual funds shares in Sweden´s Statistical Databases. All assets and transactions in money market and bond market funds are recorded as bond market funds in 2001 but are divided from 2002 and onwards."
+              ],
+              "FA5203": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Division of mutual funds shares by different types is recorded in the financial accounts as from 2001. More detailed information of mutual funds shares is published in the table Värdepappersfonder/Mutual funds shares in Sweden´s Statistical Databases. All assets and transactions in money market and bond market funds are recorded as bond market funds in 2001 but are divided from 2002 and onwards."
+              ],
+              "FA5204": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Division of mutual funds shares by different types is recorded in the financial accounts as from 2001. More detailed information of mutual funds shares is published in the table Värdepappersfonder/Mutual funds shares in Sweden´s Statistical Databases. All assets and transactions in money market and bond market funds are recorded as bond market funds in 2001 but are divided from 2002 and onwards."
+              ],
+              "FA5205": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "Division of mutual funds shares by different types is recorded in the financial accounts as from 2001. More detailed information of mutual funds shares is published in the table Värdepappersfonder/Mutual funds shares in Sweden´s Statistical Databases. All assets and transactions in money market and bond market funds are recorded as bond market funds in 2001 but are divided from 2002 and onwards."
+              ],
+              "FA6110": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FA6111": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FA6112": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FA6120": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FA6121": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FA6122": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FA7900": [
+                "Incomplete counterpart-sector information.",
+                "In connection with the calculations of the Financial Accounts for the first quarter of   2009, accrual of taxes and social security contributions has been introduced for central government and households, including households non-profit organisations. This has been done from the first quarter of 2001 and onward. For the other sectors, the tax accrual system has existed before in the Financial Accounts as a part of the item Other accounts receivable/payable."
+              ],
+              "FL0100": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nThe largest revisions are described in the section Revisions and supplementary information of Financial Accounts in the publication FM17SM 2013Q2."
+              ],
+              "FL2200": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL2900": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL3310": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL3320": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL3400": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. Coverage of balance values in the Financial Accounts for financial derivatives is relatively complete, while there is a lack of complete presentation of transactions in financial derivatives. \r\nIn Sweden, the largest positions in terms of value in derivatives are between Swedish banks and the rest of the world. In recent years, the collected statistics in the Balance of Payments for derivatives have improved in quality and accuracy regarding transactions in derivatives between Swedish banks and abroad and are considered quite good. The time series for transactions in derivatives between monetary finance institutes and abroad from first quarter of 2002 onwards have therefore been introduced into the financial accounts. Financial savings will be more accurate with the introduction but are not particularly affected. This is because the transactions in derivatives are of the same size class on the asset side and the liability side and cancel each other out when the net value is calculated. For the central government, the social insurance sector and insurance companies a more detailed breakdown of counterpart sectors of transactions in derivatives has been introduced. A general review of the balance values for derivatives has been done for all the sectors, and a more detailed breakdown has been made for the counterpart sectors in all the time series back to the first quarter of 2002."
+              ],
+              "FL4100": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the Financial market statistics at www.scb.se."
+              ],
+              "FL4200": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency.",
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the Financial market statistics at www.scb.se."
+              ],
+              "FL4300": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to EU requirements for accounting of short-term and long-term loans in the Financial Accounts, a time series with this breakdown of lending from monetary financial institutions has been introduced from fourth quarter of 2003 onwards. Previously, the breakdown of short-term and long-term loans was presented on the basis of the counterpart sector for lending. In addition, financial leasing was presented as a separate financial instrument under lending. In the new breakdown, total lending is presented broken down by short-term loans and long-term loans according to information from Statistics Sweden´s Financial market statistics, which includes information on maturity as well as the counterpart sector. Information for leasing can instead by collected from the Financial market statistics at www.scb.se."
+              ],
+              "FL5120": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nAccording to the European System of National Accounts 1995 (ESA 1995), holdings in unlisted shares are to be reported at market value. Previously the Financial Accounts have published holdings of unlisted shares at book value and households have not had any holdings at all. In connection with the publishing of the second quarter of 2013, a market valuation of unlisted shares has been introduced, according to a model from Eurostat. With the help of this model, unlisted Swedish non-financial corporations have been given a market value in relation to listed companies in the same industry. An exception for market valuation according to this model has been done for the public sector. An estimation of household holdings in unlisted shares has also been made. This estimation is based on information about households’ received dividends in unlisted limited companies in relation to the total dividends for unlisted limited companies. A more detailed breakdown of holdings of unlisted shares has also been done. In the case of banks, for example, we can now see what these own in unlisted housing credit institutions; previously all financial unlisted holdings were reported together. All these revisions have been done for the whole time series back to the first quarter of 2002."
+              ],
+              "FL5130": [
+                "Households’ assets in owner-occupied dwellings are presented in the Financial Accounts as other equity, FA.513. In connection with the publishing of the Financial Accounts for the 2nd quarter of 2012, households’ assets of owner-occupied dwellings have been revised according to a new method. The revisions have been done from the first quarter of 2003. Because the revised balance values are on a higher level than the old values, a break in the time series has occurred for households’ other equity between the fourth quarter of 2002 and the first quarter of 2003."
+              ],
+              "FL5200": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL5202": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL5203": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL5204": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL5205": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review has been done of the revaluations for the entire time series from the first quarter of 2002 onwards. With the help of price indices and foreign currency exchange rates, the reasonability of the revaluation of the primary statistics has been checked and to a certain extent replaced. Revaluations have also been done for instruments and sectors where such have been lacking in the primary statistics. This has influenced the transactions for several financial instruments, but above all for bills, bonds and loans in foreign currency."
+              ],
+              "FL6110": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FL6111": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FL6112": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FL6120": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FL6121": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FL6122": [
+                "In connection with the publishing of the Financial Accounts for the second quarter of 2013, a number of revisions in the time series have been made back in time from the first quarter of 2002 onwards. \r\nA general review of the time series for life insurance companies has been done from 2002 onwards. New methods to estimate revaluations and balance values have been produced. The stocks for traditional occupational pensions have been particularly affected. A breakdown has also been done within the collective pension system so that collective traditional insurance has been separated from unit linked insurance. The time series called Collective pension, Unit Linked is new. The revisions that have been done for the transactions are more of a continuous character due to improved primary statistics, and are not connected with the new calculation methods."
+              ],
+              "FL7900": [
+                "In connection with the calculations of the Financial Accounts for the first quarter of   2009, accrual of taxes and social security contributions has been introduced for central government and households, including households non-profit organisations. This has been done from the first quarter of 2001 and onward. For the other sectors, the tax accrual system has existed before in the Financial Accounts as a part of the item Other accounts receivable/payable."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "BF9000": {
+                "0": true
+              },
+              "FA0100": {
+                "0": true
+              },
+              "FA2200": {
+                "0": true
+              },
+              "FA2900": {
+                "0": true
+              },
+              "FA3310": {
+                "0": true
+              },
+              "FA3320": {
+                "0": true
+              },
+              "FA3400": {
+                "1": true
+              },
+              "FA4100": {
+                "0": true,
+                "1": true
+              },
+              "FA4200": {
+                "0": true,
+                "1": true
+              },
+              "FA4300": {
+                "0": true
+              },
+              "FA5120": {
+                "0": true
+              },
+              "FA5130": {
+                "1": true
+              },
+              "FA5200": {
+                "0": true
+              },
+              "FA5202": {
+                "0": true
+              },
+              "FA5203": {
+                "0": true
+              },
+              "FA5204": {
+                "0": true
+              },
+              "FA5205": {
+                "0": true
+              },
+              "FA6110": {
+                "0": true
+              },
+              "FA6111": {
+                "0": true
+              },
+              "FA6112": {
+                "0": true
+              },
+              "FA6120": {
+                "0": true
+              },
+              "FA6121": {
+                "0": true
+              },
+              "FA6122": {
+                "0": true
+              },
+              "FA7900": {
+                "1": true
+              },
+              "FL0100": {
+                "0": true
+              },
+              "FL2200": {
+                "0": true
+              },
+              "FL2900": {
+                "0": true
+              },
+              "FL3310": {
+                "0": true
+              },
+              "FL3320": {
+                "0": true
+              },
+              "FL3400": {
+                "0": true
+              },
+              "FL4100": {
+                "0": true,
+                "1": true
+              },
+              "FL4200": {
+                "0": true,
+                "1": true
+              },
+              "FL4300": {
+                "0": true
+              },
+              "FL5120": {
+                "0": true
+              },
+              "FL5130": {
+                "0": true
+              },
+              "FL5200": {
+                "0": true
+              },
+              "FL5202": {
+                "0": true
+              },
+              "FL5203": {
+                "0": true
+              },
+              "FL5204": {
+                "0": true
+              },
+              "FL5205": {
+                "0": true
+              },
+              "FL6110": {
+                "0": true
+              },
+              "FL6111": {
+                "0": true
+              },
+              "FL6112": {
+                "0": true
+              },
+              "FL6120": {
+                "0": true
+              },
+              "FL6121": {
+                "0": true
+              },
+              "FL6122": {
+                "0": true
+              },
+              "FL7900": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Motsektor": {
+          "label": "counterpart-sector",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S1": 1,
+              "S11": 2,
+              "S12": 3,
+              "S121": 4,
+              "S1221": 5,
+              "S1223": 6,
+              "S12241": 7,
+              "S12242": 8,
+              "S125": 9,
+              "S1251": 10,
+              "S1253": 11,
+              "S1254": 12,
+              "S129A": 13,
+              "S13": 14,
+              "S1311": 15,
+              "S1313": 16,
+              "S1314": 17,
+              "S14+15": 18,
+              "S2": 19
+            },
+            "label": {
+              "S0": "all sectors",
+              "S1": "domestic sectors",
+              "S11": "non-financial corporations",
+              "S12": "financial corporations",
+              "S121": "central bank",
+              "S1221": "banks",
+              "S1223": "housing credit institutions",
+              "S12241": "other monetary credit market corporations",
+              "S12242": "finance companies",
+              "S125": "insurance corporations",
+              "S1251": "insurance companies",
+              "S1253": "pension funds and charitable organisations",
+              "S1254": "public pension authorities",
+              "S129A": "other financial intermediaries",
+              "S13": "general government",
+              "S1311": "central government",
+              "S1313": "local government",
+              "S1314": "social security funds",
+              "S14+15": "households and non-profit institutions serving households",
+              "S2": "rest of the world"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "FM0103B4": 0,
+              "FM0103B3": 1
+            },
+            "label": {
+              "FM0103B4": "Transaction",
+              "FM0103B3": "Balance"
+            },
+            "unit": {
+              "FM0103B4": {
+                "base": "SEK million",
+                "decimals": 0
+              },
+              "FM0103B3": {
+                "base": "SEK million",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0103B4": "During the year",
+              "FM0103B3": "End of year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0103B4": "Flow",
+              "FM0103B3": "Stock"
+            },
+            "priceType": {
+              "FM0103B4": "NotApplicable",
+              "FM0103B3": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0103B4": "None",
+              "FM0103B3": "None"
+            },
+            "alternativeText": {
+              "FM0103B4": "Financial accounts, transactions, SEK million",
+              "FM0103B3": "Financial accounts, balance sheets, SEK million"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1995": 0,
+              "1996": 1,
+              "1997": 2,
+              "1998": 3,
+              "1999": 4,
+              "2000": 5,
+              "2001": 6,
+              "2002": 7,
+              "2003": 8,
+              "2004": 9,
+              "2005": 10,
+              "2006": 11,
+              "2007": 12,
+              "2008": 13,
+              "2009": 14,
+              "2010": 15,
+              "2011": 16,
+              "2012": 17,
+              "2013": 18
+            },
+            "label": {
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "FM0103",
+          "tableid": "TAB1193",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Financial accounts",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sektor",
+            "Kontopost",
+            "Motsektor"
+          ],
+          "matrix": "TAB1193",
+          "subject-code": "FM",
+          "subject-area": "Financial markets"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Finansräkenskaperna",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "finansrakenskaperna@scb.se",
+            "raw": " Finansräkenskaperna, Statistics Sweden# +46 010-479 50 00#finansrakenskaperna@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1193",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1193",
+        "label": "Financial accounts by sector, item and counterpart-sector (ENS95) . Annually 1995-2013",
+        "description": "",
+        "sortCode": "Financial accounts by sector, item and counterpart-sector (ENS95) . Annually 1995-2013",
+        "updated": "2014-06-18T07:30:00Z",
+        "firstPeriod": "1995",
+        "lastPeriod": "2013",
+        "category": "public",
+        "variableNames": [
+          "sector",
+          "item",
+          "counterpart-sector",
+          "observations",
+          "year"
+        ],
+        "source": "Swedish Financial Supervisory Authority",
+        "subjectCode": "FM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Financial markets",
+              "sortCode": "Financial markets"
+            },
+            {
+              "id": "FM0103",
+              "label": "Financial accounts, quarterly and annual",
+              "sortCode": "Financial accounts, quarterly and annual"
+            },
+            {
+              "id": "FM0103B",
+              "label": "Financial accounts, older time series",
+              "sortCode": "20"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1193?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1193?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1193/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1193/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

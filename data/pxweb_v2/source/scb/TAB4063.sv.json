@@ -1,0 +1,341 @@
+{
+  "key": "scb/TAB4063/sv",
+  "identifier": "TAB4063",
+  "language": "sv",
+  "updated": "2026-10-08T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:40:36.356313+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Bruttoproduktion, installerad effekt samt antal anläggningar fördelat på elområde. År 2015-2025",
+      "source": "Statens energimyndighet",
+      "updated": "2026-10-08T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:EN0105"
+            },
+            "href": "https://www.scb.se/EN0105",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Med (..) menas att uppgiften inte är tillgänglig eller för osäker för att anges.",
+        "Avrundningar kan medföra att summeringar i tabellen inte stämmer exakt mot andra tabeller.",
+        "För vindkraften hämtas uppgifter från elcertifikatsystemets grunddata.",
+        "Vattenkraft inkluderar även pumpkraft.",
+        "För åren 2011–2021 hämtas uppgifter rörande solel från undersökningen Nätanslutna solcellsanläggningar (EN0123). Endast nätanslutna anläggningar är medräknade där en anläggning = en producerande enhet. Produktionsuppgiften för solel kan inte mätas nationellt utan skattas utifrån nätbolagens kända installerade effekt gånger 950 fullasttimmar. Från och med 2022 hämtas uppgifter för solelsproduktionen från den månatliga elstatistiken.",
+        "Redovisade värden för solkraft inkluderar beräknad egenanvänd produktion. Beräkningen och uppdateringar av ingående modellparametrar påverkar de redovisade produktionsvolymerna totalt och på elområdesnivå. Nivåer och skillnader mellan år ska därför tolkas med försiktighet."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Elomrade",
+        "Kraftslag",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        7,
+        3,
+        11
+      ],
+      "dimension": {
+        "Elomrade": {
+          "label": "elområde",
+          "category": {
+            "index": {
+              "00": 0,
+              "SE1": 1,
+              "SE2": 2,
+              "SE3": 3,
+              "SE4": 4
+            },
+            "label": {
+              "00": "Riket",
+              "SE1": "SE1",
+              "SE2": "SE2",
+              "SE3": "SE3",
+              "SE4": "SE4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kraftslag": {
+          "label": "kraftslag",
+          "category": {
+            "index": {
+              "Vattenkraft": 0,
+              "Vind": 1,
+              "sol": 2,
+              "Karnkraft": 3,
+              "Konv": 4,
+              "KonvFor": 5,
+              "KonvEjFor": 6
+            },
+            "label": {
+              "Vattenkraft": "vattenkraft",
+              "Vind": "vindkraft",
+              "sol": "solkraft",
+              "Karnkraft": "kärnkraft",
+              "Konv": "konventionell värmekraft (industriellt mottryck, kraftvärme, kondenskraft, gasturbiner, annan)",
+              "KonvFor": "- varav förnybar elproduktion",
+              "KonvEjFor": "- varav icke förnybar elproduktion"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000006HQ": 0,
+              "000006HP": 1,
+              "000006HR": 2
+            },
+            "label": {
+              "000006HQ": "Antal anläggningar",
+              "000006HP": "Installerad generatoreffekt, MW",
+              "000006HR": "Bruttoproduktion, GWh"
+            },
+            "note": {
+              "000006HQ": [
+                "Antal anläggningar: Populationen i undersökningen omfattar endast företag som har elproduktion med egen kraftkälla om sammanlagt minst 100 kW. Det medför att många mindre vattenkraftverk inte tas med. Det beräknas inte ha någon betydande inverkan på den totala produktionen eller den totala installerade effekten, men har stor inverkan på antalet anläggningar som redovisas."
+              ]
+            },
+            "unit": {
+              "000006HQ": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000006HP": {
+                "base": "mw",
+                "decimals": 0
+              },
+              "000006HR": {
+                "base": "gwh",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000006HQ": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000006HQ": "År",
+              "000006HP": "År",
+              "000006HR": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000006HQ": "Stock",
+              "000006HP": "Flow",
+              "000006HR": "Flow"
+            },
+            "priceType": {
+              "000006HQ": "NotApplicable",
+              "000006HP": "NotApplicable",
+              "000006HR": "NotApplicable"
+            },
+            "adjustment": {
+              "000006HQ": "None",
+              "000006HP": "None",
+              "000006HR": "None"
+            },
+            "alternativeText": {
+              "000006HQ": "Antal anläggningar",
+              "000006HP": "Installerad generatoreffekt, MW",
+              "000006HR": "Bruttoproduktion, GWh"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1,
+              "2017": 2,
+              "2018": 3,
+              "2019": 4,
+              "2020": 5,
+              "2021": 6,
+              "2022": 7,
+              "2023": 8,
+              "2024": 9,
+              "2025": 10
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "EN0105",
+          "tableid": "TAB4063",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Bruttoproduktion, installerad effekt samt antal anläggningar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Elomrade",
+            "Kraftslag"
+          ],
+          "matrix": "TAB4063",
+          "subject-code": "EN",
+          "subject-area": "Energi"
+        },
+        "contact": [
+          {
+            "name": "Susanne Enmalm",
+            "organization": "SCB",
+            "phone": "010-479 69 63",
+            "mail": "susanne.enmalm@scb.se",
+            "raw": "Susanne Enmalm, SCB# +46 010-479 69 63#susanne.enmalm@scb.se"
+          },
+          {
+            "name": "Evelina Viklöf",
+            "organization": "SCB",
+            "phone": "010-479 63 21",
+            "mail": "evelina.viklof@scb.se",
+            "raw": "Evelina Viklöf, SCB# +46 010-479 63 21#evelina.viklof@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4063",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4063",
+        "label": "Bruttoproduktion, installerad effekt samt antal anläggningar fördelat på elområde. År 2015-2025",
+        "description": "",
+        "sortCode": "01",
+        "updated": "2026-10-08T06:00:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "elområde",
+          "kraftslag",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "Statens energimyndighet",
+        "subjectCode": "EN",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "EN",
+              "label": "Energi",
+              "sortCode": "Energi"
+            },
+            {
+              "id": "EN0105",
+              "label": "Årlig energistatistik (el, gas och fjärrvärme)",
+              "sortCode": "Årlig energistatistik (el, gas och fjärrvärme)"
+            },
+            {
+              "id": "EN0105A",
+              "label": "Årlig energistatistik",
+              "sortCode": "016"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

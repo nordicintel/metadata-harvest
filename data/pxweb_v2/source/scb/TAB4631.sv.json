@@ -1,0 +1,351 @@
+{
+  "key": "scb/TAB4631/sv",
+  "identifier": "TAB4631",
+  "language": "sv",
+  "updated": "2026-10-01T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:52:19.833951+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Exploaterad torvmark efter region och typ av exploatering, i hektar. År 2020-2025",
+      "source": "SCB",
+      "updated": "2026-10-01T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:MI1303"
+            },
+            "href": "https://www.scb.se/MI1303",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Direkt exploatering är våtmark eller torvmark som direkt täcks av byggnad, järnvägsområde eller vägområde. \r\n \r\nIndirekt exploatering är våtmark eller torvmark som täcks av ett 20 meters influensområde runt en byggnad, järnvägsområde eller vägområde.",
+        "Torvmark enligt kartering av Sveriges geologiska undersökning (SGU), Jordartskartan. Torv bildas när blöta och syrefattiga förhållanden hindrar växtmaterial från att brytas ner helt. Förekommer främst i våtmarker av typen mossar och kärr.",
+        "Värden kan inte summeras, på grund av överlappande ytor. Det förekommer överlapp mellan exploateringstyper och mellan torvmark och våtmark.",
+        "Statistik är framtagen på uppdrag av Naturvårdsverket.",
+        "Järnvägsområden är mark med järnvägar och sidoområden som banvallar, diken och säkerhetszoner, exklusive ytor som är i tunnel/under annan infrastruktur, järnväg/byggnad etc. eller som delar mark med ett vägområde (t.ex. spårvägar, korsningar). Vid denna dubbelanvändning finns arealerna medräknade som vägar.          ",
+        "En byggnad definieras av Plan- och bygglag (2010:900) som: \r\nEn varaktig konstruktion som består av tak eller av tak och väggar och som är varaktigt placerad på mark eller helt eller delvis under mark eller är varaktigt placerad på en viss plats i vatten samt är avsedd att vara konstruerad så att människor kan uppehålla sig i den.",
+        "Vägområde för biltrafik. Det utgörs av vägbanan och sidoområden som slänter, diken och säkerhetszoner, samt i vissa fall trottoarer i tätortsmiljö. Det motsvarar den markyta som behövs för vägen. Vägområde är kopplat till markanvändningsperspektiv och redovisas därför inte om vägbanan finns i tunnel."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Exploateringstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        4,
+        2,
+        6
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän07EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Exploateringstyp": {
+          "label": "typ av exploatering",
+          "category": {
+            "index": {
+              "BYGGN": 0,
+              "JVAG": 1,
+              "VAG": 2,
+              "TOT": 3
+            },
+            "label": {
+              "BYGGN": "byggnad",
+              "JVAG": "järnväg",
+              "VAG": "väg",
+              "TOT": "totalt utan överlapp"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000703": 0,
+              "00000704": 1
+            },
+            "label": {
+              "00000703": "direkt exploatering, i hektar",
+              "00000704": "direkt och indirekt exploatering, i hektar"
+            },
+            "unit": {
+              "00000703": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000704": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000703": "",
+              "00000704": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000703": "Flow",
+              "00000704": "Flow"
+            },
+            "priceType": {
+              "00000703": "NotApplicable",
+              "00000704": "NotApplicable"
+            },
+            "adjustment": {
+              "00000703": "None",
+              "00000704": "None"
+            },
+            "alternativeText": {
+              "00000703": "Direkt exploatering, i hektar",
+              "00000704": "Direkt och indirekt exploatering, i hektar"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2020": 0,
+              "2021": 1,
+              "2022": 2,
+              "2023": 3,
+              "2024": 4,
+              "2025": 5
+            },
+            "label": {
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "MI1303",
+          "tableid": "TAB4631",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Exploaterad torvmark",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Exploateringstyp"
+          ],
+          "matrix": "TAB4631",
+          "subject-code": "MI",
+          "subject-area": "Miljö"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4631",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4631",
+        "label": "Exploaterad torvmark efter region och typ av exploatering, i hektar. År 2020-2025",
+        "description": "",
+        "sortCode": "084",
+        "updated": "2026-10-01T06:00:00Z",
+        "firstPeriod": "2020",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "typ av exploatering",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "MI",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "MI",
+              "label": "Miljö",
+              "sortCode": "Miljö"
+            },
+            {
+              "id": "MI1303",
+              "label": "Indikatorer för hållbar utveckling",
+              "sortCode": "Indikatorer för hållbar utveckling"
+            },
+            {
+              "id": "MI1303B",
+              "label": "Myllrande våtmarker",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4631?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4631?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4631/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4631/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

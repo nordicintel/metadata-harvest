@@ -1,0 +1,479 @@
+{
+  "key": "scb/TAB4210/sv",
+  "identifier": "TAB4210",
+  "language": "sv",
+  "updated": "2026-03-27T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:03:16.950668+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Antal unika deltagare på studiemotiverande folkhögskolekurser efter kön,  deltagarens utbildningsnivå, nationell bakgrund, region och ålder. År 2017-2025",
+      "source": "SCB",
+      "updated": "2026-03-27T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0601"
+            },
+            "href": "https://www.scb.se/UF0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "DeltUtbNiva",
+        "NationellBakgrund",
+        "RegionUtb",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        6,
+        5,
+        22,
+        7,
+        3,
+        9
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "DeltUtbNiva": {
+          "label": "deltagarens utbildningsnivå",
+          "category": {
+            "index": {
+              "TOTUB": 0,
+              "FORG": 1,
+              "GYMN": 2,
+              "EGYMN-3": 3,
+              "EGYMN3+": 4,
+              "US": 5
+            },
+            "label": {
+              "TOTUB": "Totalt",
+              "FORG": "Förgymnasial utbildning",
+              "GYMN": "Gymnasial utbildning",
+              "EGYMN-3": "Eftergymnasial utbildning, kortare än 3 år",
+              "EGYMN3+": "Eftergymnasial utbildning, minst 3 år",
+              "US": "Uppgift saknas"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NationellBakgrund": {
+          "label": "nationell bakgrund",
+          "category": {
+            "index": {
+              "TOTGR": 0,
+              "IF": 1,
+              "UF": 2,
+              "USGR": 3,
+              "TOT": 4
+            },
+            "label": {
+              "TOTGR": "Totalt",
+              "IF": "Inrikes född",
+              "UF": "Utrikes född",
+              "USGR": "Uppgift saknas",
+              "TOT": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_AFödelselandGr",
+                "label": "Inrikes/utrikes född",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AFödelselandGr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_DFödelselandTot",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_DFödelselandTot?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "RegionUtb": {
+          "label": "region där utbildningen bedrivs",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ARiket2",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ARiket2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BLän2",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän2?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "-17Gr": 0,
+              "18-19": 1,
+              "20-24": 2,
+              "25-44": 3,
+              "45-64": 4,
+              "65+Gr": 5,
+              "tot": 6
+            },
+            "label": {
+              "-17Gr": "–17 år",
+              "18-19": "18–19 år",
+              "20-24": "20–24 år",
+              "25-44": "25–44 år",
+              "45-64": "45–64 år",
+              "65+Gr": "65+ år",
+              "tot": "totalt ålder"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000079": 0,
+              "0000007A": 1,
+              "0000007B": 2
+            },
+            "label": {
+              "00000079": "Totalt antal unika deltagare",
+              "0000007A": "SMF, 24 år och yngre",
+              "0000007B": "SMF, 25 år och äldre"
+            },
+            "note": {
+              "0000007A": [
+                "Studiemotiverande folkhögskolekurs (kurstyp 15), deltagare från 16 till 24 år"
+              ],
+              "0000007B": [
+                "Studiemotiverande folkhögskolekurs (kurstyp 16), deltagare som är 25 år och äldre"
+              ]
+            },
+            "unit": {
+              "00000079": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "0000007A": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "0000007B": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000007A": {
+                "0": true
+              },
+              "0000007B": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "00000079": "År",
+              "0000007A": "År",
+              "0000007B": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000079": "Flow",
+              "0000007A": "Flow",
+              "0000007B": "Flow"
+            },
+            "priceType": {
+              "00000079": "NotApplicable",
+              "0000007A": "NotApplicable",
+              "0000007B": "NotApplicable"
+            },
+            "adjustment": {
+              "00000079": "None",
+              "0000007A": "None",
+              "0000007B": "None"
+            },
+            "alternativeText": {
+              "00000079": "Totalt antal unika deltagare på studiemotiverande folkhögskolekurser",
+              "0000007A": "Studiemotiverande folkhögskolekurs, deltagare från 16 till 24 år",
+              "0000007B": "Studiemotiverande folkhögskolekurs, deltagare som är 25 år och äldre"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2017": 0,
+              "2018": 1,
+              "2019": 2,
+              "2020": 3,
+              "2021": 4,
+              "2022": 5,
+              "2023": 6,
+              "2024": 7,
+              "2025": 8
+            },
+            "label": {
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "UF0601",
+          "tableid": "TAB4210",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal unika deltagare på studiemotiverande folkhögskolekurser",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "DeltUtbNiva",
+            "NationellBakgrund",
+            "RegionUtb",
+            "Alder"
+          ],
+          "matrix": "TAB4210",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Samuel Snickars",
+            "organization": "SCB",
+            "phone": "010-479 64 35",
+            "mail": "samuel.snickars@scb.se",
+            "raw": "Samuel Snickars, SCB# +46 010-479 64 35#samuel.snickars@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4210",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4210",
+        "label": "Antal unika deltagare på studiemotiverande folkhögskolekurser efter kön,  deltagarens utbildningsnivå, nationell bakgrund, region och ålder. År 2017-2025",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2026-03-27T07:00:00Z",
+        "firstPeriod": "2017",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "deltagarens utbildningsnivå",
+          "nationell bakgrund",
+          "region där utbildningen bedrivs",
+          "ålder",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0601",
+              "label": "Folkhögskolestatistik",
+              "sortCode": "Folkhögskolestatistik"
+            },
+            {
+              "id": "UF0601A",
+              "label": "Folkhögskolestatistik",
+              "sortCode": "018"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4210?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4210?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4210/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4210/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

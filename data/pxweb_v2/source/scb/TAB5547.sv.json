@@ -1,0 +1,542 @@
+{
+  "key": "scb/TAB5547/sv",
+  "identifier": "TAB5547",
+  "language": "sv",
+  "updated": "2026-05-21T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:06:04.613872+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Medianålder för studerande och studerande som slutfört vissa andra utbildningar (utbildningar med endast tillsyn) efter kön och utbildningens inriktning, längd, studieform och studietakt samt region där utbildningen bedrivs. År 2015-2025",
+      "source": "SCB",
+      "updated": "2026-05-21T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0702"
+            },
+            "href": "https://www.scb.se/UF0702",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "För att förhindra röjande av information har stokastisk avrundning applicerats på tabellen. Cellvärdena 1 och 2 har avrundats till antingen 0 eller 3 med förutbestämda sannolikheter. Därför summerar redovisningsgrupperna ibland inte till totalen.",
+        "En person räknas för varje utbildningsomgång och kan därför ingå i statistiken två eller fler gånger för samma år. Antal antagna som påbörjat studier, studerande och studerande som slutfört utbildning är därmed inte lika med antal personer.",
+        "Utbildningens inriktning avser utbildningsinriktning med 4 positioner enligt klassifikationen SUN 2020.",
+        "Uppgifterna för referensåret 2024–2025 är uppdaterade 2026-05-21.",
+        "Medianålder beräknas endast om det finns minst tre personer i varje cell."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbildnInriktn",
+        "UtbLangd",
+        "UtbFormYH",
+        "UtbTakt",
+        "RegionUtb",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        15,
+        5,
+        3,
+        3,
+        31,
+        3,
+        11
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildnInriktn": {
+          "label": "utbildningens inriktning",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "211a": 1,
+              "212a": 2,
+              "212b": 3,
+              "213d": 4,
+              "214a": 5,
+              "214x": 6,
+              "340x": 7,
+              "640x": 8,
+              "724e": 9,
+              "811c": 10,
+              "815a": 11,
+              "815b": 12,
+              "815x": 13,
+              "840d": 14
+            },
+            "label": {
+              "TOT": "Utbildningsinriktningar totalt",
+              "211a": "Bild- och formkonstnärlig utbildning (211a)",
+              "212a": "Musik (212a)",
+              "212b": "Dans, teater och dramatik (212b)",
+              "213d": "Grafisk design och foto (213d)",
+              "214a": "Modedesign (214a)",
+              "214x": "Annan utbildning inom formgivning (214x)",
+              "340x": "Annan bred utbildning i företagsekonomi, handel och administration (340x)",
+              "640x": "Annan utbildning inom djursjukvård (640x)",
+              "724e": "Tandsköterskeutbildning (724e)",
+              "811c": "Utbildning för restaurang (811c)",
+              "815a": "Utbildning inom hår- och skönhetsvård (815a)",
+              "815b": "Massageutbildning (815b)",
+              "815x": "Annan utbildning inom hår- och skönhetsvård samt massage (815x)",
+              "840d": "Utbildning för luftfart (840d)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbLangd": {
+          "label": "utbildningens längd",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "100": 1,
+              "110": 2,
+              "120": 3,
+              "130": 4
+            },
+            "label": {
+              "TOT": "totalt, samtliga utbildningslängder",
+              "100": "utbildningar kortare än 20 veckor",
+              "110": "1-åriga utbildningar (20–40 veckor)",
+              "120": "2-åriga utbildningar (41–80 veckor)",
+              "130": "3-åriga utbildningar (81–120 veckor)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbFormYH": {
+          "label": "utbildningens studieform",
+          "category": {
+            "index": {
+              "BundDist": 0,
+              "Bund": 1,
+              "Dist": 2
+            },
+            "label": {
+              "BundDist": "totalt, bunden+distans",
+              "Bund": "bunden",
+              "Dist": "distans"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbTakt": {
+          "label": "utbildningens studietakt",
+          "category": {
+            "index": {
+              "HelDel": 0,
+              "Hel": 1,
+              "Del": 2
+            },
+            "label": {
+              "HelDel": "totalt, heltid+deltid",
+              "Hel": "heltid",
+              "Del": "deltid"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "RegionUtb": {
+          "label": "region där utbildningen bedrivs",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21,
+              "SKLA1": 22,
+              "SKLA2": 23,
+              "SKLB3": 24,
+              "SKLB4": 25,
+              "SKLB5": 26,
+              "SKLC6": 27,
+              "SKLC7": 28,
+              "SKLC8": 29,
+              "SKLC9": 30
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län",
+              "SKLA1": "Storstäder (3)",
+              "SKLA2": "Pendlingskommun nära storstad (43)",
+              "SKLB3": "Större stad (21)",
+              "SKLB4": "Pendlingskommun nära större stad (52)",
+              "SKLB5": "Lågpendlingskommun nära större stad (35)",
+              "SKLC6": "Mindre stad/tätort (29)",
+              "SKLC7": "Pendlingskommun nära mindre stad/tätort (52)",
+              "SKLC8": "Landsbygdskommun (40)",
+              "SKLC9": "Landsbygdskommun med besöksnäring (15)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionKommungrupp2017EjAggr",
+                "label": "Kommungrupper (SKL:s), 2017 års indelning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionKommungrupp2017EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän07EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket07",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket07?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000040X": 0,
+              "0000040Z": 1,
+              "0000040Y": 2
+            },
+            "label": {
+              "0000040X": "Medianålder för antagna som påbörjat studier",
+              "0000040Z": "Medianålder för studerande",
+              "0000040Y": "Medianålder för studerande som slutfört utbildning"
+            },
+            "note": {
+              "0000040X": [
+                "Antagna som påbörjat studier avser alla som är studerande eller har varit studerande på en utbildningsomgång, inklusive de som har tillkommit under utbildningens gång och de som hoppat av utbildningen."
+              ],
+              "0000040Z": [
+                "Studerande avser alla aktivt studerande på utbildningsomgångar som pågått minst en dag under avsedd period. Den studerande ska heller inte ha avbrutit studierna innan avsedd period eller haft studieuppehåll hela den avsedda perioden."
+              ],
+              "0000040Y": [
+                "Studerande som slutfört utbildning avser studerande som nått kursernas mål i utbildningens alla delar. Studerande som avbrutit studierna innan utbildningsomgångens slut räknas inte som slutförda."
+              ]
+            },
+            "unit": {
+              "0000040X": {
+                "base": "median",
+                "decimals": 0
+              },
+              "0000040Z": {
+                "base": "median",
+                "decimals": 0
+              },
+              "0000040Y": {
+                "base": "median",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000040X": {
+                "0": true
+              },
+              "0000040Z": {
+                "0": true
+              },
+              "0000040Y": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "0000040X": "År",
+              "0000040Z": "År",
+              "0000040Y": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000040X": "Stock",
+              "0000040Z": "Stock",
+              "0000040Y": "Stock"
+            },
+            "priceType": {
+              "0000040X": "NotApplicable",
+              "0000040Z": "NotApplicable",
+              "0000040Y": "NotApplicable"
+            },
+            "adjustment": {
+              "0000040X": "None",
+              "0000040Z": "None",
+              "0000040Y": "None"
+            },
+            "alternativeText": {
+              "0000040X": "Medianålder för antagna som påbörjat studier inom vissa andra utbildningar (utbildningar med endast tillsyn)",
+              "0000040Z": "Medianålder för studerande inom vissa andra utbildningar (utbildningar med endast tillsyn)",
+              "0000040Y": "Medianålder för studerande som slutfört utbildning inom vissa andra utbildningar (utbildningar med endast tillsyn)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1,
+              "2017": 2,
+              "2018": 3,
+              "2019": 4,
+              "2020": 5,
+              "2021": 6,
+              "2022": 7,
+              "2023": 8,
+              "2024": 9,
+              "2025": 10
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "UF0702",
+          "tableid": "TAB5547",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Medianålder för studerande och studerande som slutfört vissa andra utbildningar (utbildningar med endast tillsyn)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbildnInriktn",
+            "UtbLangd",
+            "UtbFormYH",
+            "UtbTakt",
+            "RegionUtb"
+          ],
+          "matrix": "TAB5547",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "SCB",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, SCB# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5547",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5547",
+        "label": "Medianålder för studerande och studerande som slutfört vissa andra utbildningar (utbildningar med endast tillsyn) efter kön och utbildningens inriktning, längd, studieform och studietakt samt region där utbildningen bedrivs. År 2015-2025",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2026-05-21T06:00:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "utbildningens inriktning",
+          "utbildningens längd",
+          "utbildningens studieform",
+          "utbildningens studietakt",
+          "region där utbildningen bedrivs",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0702",
+              "label": "Konst- och kulturutbildningar och vissa andra utbildningar",
+              "sortCode": "Konst- och kulturutbildningar och vissa andra utbildningar"
+            },
+            {
+              "id": "UF0702C",
+              "label": "Vissa andra utbildningar (utbildningar med endast tillsyn)",
+              "sortCode": "014"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5547?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5547?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5547/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5547/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

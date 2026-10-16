@@ -1,0 +1,370 @@
+{
+  "key": "scb/TAB4301/sv",
+  "identifier": "TAB4301",
+  "language": "sv",
+  "updated": "2024-05-24T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:24:26.579148+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Lediga jobb och vakanser, näringslivet (KV) efter region och näringsgren SNI 2007, urvalsundersökning. Kvartal 2015K2-2024K1",
+      "source": "SCB",
+      "updated": "2024-05-24T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0701"
+            },
+            "href": "https://www.scb.se/AM0701",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Från och med 2:a kvartalet 2021 använder konjunkturstatistik över vakanser en ny hjälpinformation, det handlar om information som används i produktionens design- och estimationsfaser. Förändringen innebär att årsmedelvärde ersatt uppgiften om antal anställda på ett företag vid en enskild tidpunkt. Detta har medfört konsekvensen att företag som tidigare saknat anställda numera ingår i undersökningen. Förändringen innebär en marginell ökning av antal redovisade lediga jobb och vakanser. Förändringen har inte bedömts vara tillräckligt stor för att motivera ett tidsseriebrott."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SNI2007",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        4,
+        4,
+        36
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01+12+14": 1,
+              "17-25exkl18+19": 2,
+              "03-10+13+18+19": 3
+            },
+            "label": {
+              "00": "Riket",
+              "01+12+14": "Storstadslän",
+              "17-25exkl18+19": "Skogslän",
+              "03-10+13+18+19": "övriga län"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "SNI2007": {
+          "label": "näringsgren SNI 2007",
+          "category": {
+            "index": {
+              "A-S": 0,
+              "A+F": 1,
+              "B-E": 2,
+              "G-S": 3
+            },
+            "label": {
+              "A-S": "samtliga näringsgrenar (exkl T+U)",
+              "A+F": "jordbruk, skogsbruk och fiske; byggindustri",
+              "B-E": "tillverknings- och utvinningsindustri; företag inom energi och miljö",
+              "G-S": "tjänstebranscher m.m."
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000000GN": 0,
+              "000000GO": 1,
+              "000000GP": 2,
+              "000000GQ": 3
+            },
+            "label": {
+              "000000GN": "Lediga jobb (KV)",
+              "000000GO": "Lediga jobb (KV), felmarginal",
+              "000000GP": "Vakanser (KV)",
+              "000000GQ": "Vakanser (KV), felmarginal"
+            },
+            "note": {
+              "000000GP": [
+                ".. Uppgift inte tillgänglig eller för osäker för att anges."
+              ]
+            },
+            "unit": {
+              "000000GN": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000000GO": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000000GP": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000000GQ": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000000GP": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000000GN": "Kvartal",
+              "000000GO": "Kvartal",
+              "000000GP": "Kvartal",
+              "000000GQ": "Kvartal"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000GN": "Stock",
+              "000000GO": "Stock",
+              "000000GP": "Stock",
+              "000000GQ": "Stock"
+            },
+            "priceType": {
+              "000000GN": "NotApplicable",
+              "000000GO": "NotApplicable",
+              "000000GP": "NotApplicable",
+              "000000GQ": "NotApplicable"
+            },
+            "adjustment": {
+              "000000GN": "None",
+              "000000GO": "None",
+              "000000GP": "None",
+              "000000GQ": "None"
+            },
+            "alternativeText": {
+              "000000GN": "Lediga jobb, (KV)",
+              "000000GO": "Lediga jobb, (KV), felmarginal",
+              "000000GP": "Vakanser, (KV)",
+              "000000GQ": "Vakanser, (KV), felmarginal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2015K2": 0,
+              "2015K3": 1,
+              "2015K4": 2,
+              "2016K1": 3,
+              "2016K2": 4,
+              "2016K3": 5,
+              "2016K4": 6,
+              "2017K1": 7,
+              "2017K2": 8,
+              "2017K3": 9,
+              "2017K4": 10,
+              "2018K1": 11,
+              "2018K2": 12,
+              "2018K3": 13,
+              "2018K4": 14,
+              "2019K1": 15,
+              "2019K2": 16,
+              "2019K3": 17,
+              "2019K4": 18,
+              "2020K1": 19,
+              "2020K2": 20,
+              "2020K3": 21,
+              "2020K4": 22,
+              "2021K1": 23,
+              "2021K2": 24,
+              "2021K3": 25,
+              "2021K4": 26,
+              "2022K1": 27,
+              "2022K2": 28,
+              "2022K3": 29,
+              "2022K4": 30,
+              "2023K1": 31,
+              "2023K2": 32,
+              "2023K3": 33,
+              "2023K4": 34,
+              "2024K1": 35
+            },
+            "label": {
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM0701",
+          "tableid": "TAB4301",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Lediga jobb och vakanser, näringslivet  (KV)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SNI2007"
+          ],
+          "matrix": "TAB4301",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "ES/FRS - Förfrågningar",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "ftgsys@scb.se",
+            "raw": " ES/FRS - Förfrågningar, SCB# - -#ftgsys@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4301",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4301",
+        "label": "Lediga jobb och vakanser, näringslivet (KV) efter region och näringsgren SNI 2007, urvalsundersökning. Kvartal 2015K2-2024K1",
+        "description": "",
+        "sortCode": "Lediga jobb och vakanser, näringslivet (KV) efter region och näringsgren SNI 2007, urvalsundersökning. Kvartal 2015K2-2024K1",
+        "updated": "2024-05-24T06:00:00Z",
+        "firstPeriod": "2015K2",
+        "lastPeriod": "2024K1",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "näringsgren SNI 2007",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0701",
+              "label": "Konjunkturstatistik över vakanser (KV)",
+              "sortCode": "110"
+            },
+            {
+              "id": "AM0701A",
+              "label": "Lediga jobb och vakanser",
+              "sortCode": "010"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4301?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4301?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4301/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4301/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "key": "scb/TAB6810/sv",
+  "identifier": "TAB6810",
+  "language": "sv",
+  "updated": "2026-10-01T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:44:13.691402+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst efter kön och ålder. Löpande priser. Månad 2025M01-2026M06",
+      "source": "SCB",
+      "updated": "2026-10-01T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:HE0110"
+            },
+            "href": "https://www.scb.se/HE0110",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Statistiken klassificeras som statistik under uppbyggnad och utgör inte officiell statistik. Mer information om statistiken och dess kvalitet finns i statistikens kvalitetsdeklaration som finns på [SCB:s webbplats](https://www.scb.se/he0110).",
+        "Redovisningen avser månadsinkomster.",
+        "Statistiken redovisas för två olika populationer:  \r\n- Personer folkbokförda i Sverige sista dagen i månaden innan referensmånaden.  \r\n- Personer folkbokförda i Sverige sista dagen i månaden innan referensmånaden med värde (inkomst) skild från noll i det aktuella inkomstslaget.  ",
+        "Individuell disponibel inkomst är summan av en persons skattepliktiga och skattefria inkomster minus skatt och övriga negativa transfereringar under referensmånaden. Kapitalinkomster ingår inte i disponibel inkomst i månadsstatistiken.  ",
+        "Nedanstående inkomster saknas i administrativa månadsregister. Månadsuppgifter har i stället härletts med hjälp av modeller, varefter de inkluderats i härledningen av månatlig disponibel inkomst. De modellskattade värdena för respektive inkomstslag är behäftade med viss osäkerhet, vilken förs vidare i härledningen av disponibel inkomst.  \r\n- Företagarinkomst  \r\n- Skattepliktig privat pensionsförsäkring  \r\n- Löne- och pensionsinkomst från övriga nordiska länder för personer folkbokförda i Sverige  \r\n- Underhållsbidrag  \r\n- Tjänstepension (ca 70 procent av totalsumman saknas)  "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "Inkomstkomponenter",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        9,
+        13,
+        5,
+        18
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "20-": 0,
+              "20-66": 1,
+              "67-": 2,
+              "16-19": 3,
+              "20-29": 4,
+              "30-49": 5,
+              "50-66": 6,
+              "67-79": 7,
+              "80-": 8
+            },
+            "label": {
+              "20-": "20– år",
+              "20-66": "20–66 år",
+              "67-": "67– år",
+              "16-19": "16–19 år",
+              "20-29": "20–29 år",
+              "30-49": "30–49 år",
+              "50-66": "50–66 år",
+              "67-79": "67–79 år",
+              "80-": "80– år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Inkomstkomponenter": {
+          "label": "inkomstkomponent",
+          "category": {
+            "index": {
+              "300": 0,
+              "70": 1,
+              "20": 2,
+              "25": 3,
+              "80": 4,
+              "100": 5,
+              "140": 6,
+              "150": 7,
+              "330": 8,
+              "35": 9,
+              "360": 10,
+              "370": 11,
+              "220": 12
+            },
+            "label": {
+              "300": "löne- och företagarinkomst",
+              "70": "pensioner",
+              "20": "ersättning vid arbetslöshet",
+              "25": "ersättning i samband med sjukdom",
+              "80": "sjuk- och aktivitetsersättning",
+              "100": "föräldrapenning",
+              "140": "barnbidrag",
+              "150": "studiestöd inkl. studielån",
+              "330": "bostadsstöd",
+              "35": "ekonomiskt stöd",
+              "360": "övriga positiva transfereringar",
+              "370": "skatt och övriga negativa transfereringar",
+              "220": "disponibel inkomst"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000008KT": 0,
+              "000008KU": 1,
+              "000008KP": 2,
+              "000008KD": 3,
+              "000008KE": 4
+            },
+            "label": {
+              "000008KT": "Medelvärde, tkr",
+              "000008KU": "Medelvärde för de med inkomst, tkr",
+              "000008KP": "Andel med inkomstslag, procent",
+              "000008KD": "Antal personer",
+              "000008KE": "Antal personer med inkomst"
+            },
+            "unit": {
+              "000008KT": {
+                "base": "tkr",
+                "decimals": 1
+              },
+              "000008KU": {
+                "base": "tkr",
+                "decimals": 1
+              },
+              "000008KP": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "000008KD": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000008KE": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000008KT": "Kalenderår",
+              "000008KU": "Kalenderår",
+              "000008KP": "Kalenderår",
+              "000008KD": "Kalenderår",
+              "000008KE": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000008KT": "Stock",
+              "000008KU": "Stock",
+              "000008KP": "Stock",
+              "000008KD": "Stock",
+              "000008KE": "Stock"
+            },
+            "priceType": {
+              "000008KT": "Current",
+              "000008KU": "Current",
+              "000008KP": "Current",
+              "000008KD": "NotApplicable",
+              "000008KE": "NotApplicable"
+            },
+            "adjustment": {
+              "000008KT": "None",
+              "000008KU": "None",
+              "000008KP": "None",
+              "000008KD": "None",
+              "000008KE": "None"
+            },
+            "alternativeText": {
+              "000008KT": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst, medelvärde (tkr)",
+              "000008KU": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst, medelvärde för de med inkomst (tkr)",
+              "000008KP": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst, andel med inkomstslag (procent)",
+              "000008KD": "Antal personer",
+              "000008KE": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst, antal personer med inkomst"
+            }
+          }
+        },
+        "Tid": {
+          "label": "månad",
+          "category": {
+            "index": {
+              "2025M01": 0,
+              "2025M02": 1,
+              "2025M03": 2,
+              "2025M04": 3,
+              "2025M05": 4,
+              "2025M06": 5,
+              "2025M07": 6,
+              "2025M08": 7,
+              "2025M09": 8,
+              "2025M10": 9,
+              "2025M11": 10,
+              "2025M12": 11,
+              "2026M01": 12,
+              "2026M02": 13,
+              "2026M03": 14,
+              "2026M04": 15,
+              "2026M05": 16,
+              "2026M06": 17
+            },
+            "label": {
+              "2025M01": "2025M01",
+              "2025M02": "2025M02",
+              "2025M03": "2025M03",
+              "2025M04": "2025M04",
+              "2025M05": "2025M05",
+              "2025M06": "2025M06",
+              "2025M07": "2025M07",
+              "2025M08": "2025M08",
+              "2025M09": "2025M09",
+              "2025M10": "2025M10",
+              "2025M11": "2025M11",
+              "2025M12": "2025M12",
+              "2026M01": "2026M01",
+              "2026M02": "2026M02",
+              "2026M03": "2026M03",
+              "2026M04": "2026M04",
+              "2026M05": "2026M05",
+              "2026M06": "2026M06"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "HE0110",
+          "tableid": "TAB6810",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "Inkomstkomponenter"
+          ],
+          "matrix": "TAB6810",
+          "subject-code": "HE",
+          "subject-area": "Hushållens ekonomi"
+        },
+        "contact": [
+          {
+            "name": "Peter Gärdqvist",
+            "organization": "SCB",
+            "phone": "010-479 67 85",
+            "mail": "peter.gardqvist@scb.se",
+            "raw": "Peter Gärdqvist, SCB# +46 010-479 67 85#peter.gardqvist@scb.se"
+          },
+          {
+            "name": "Inkomststatistik",
+            "organization": "SCB",
+            "phone": ".",
+            "mail": "inkomststat@scb.se",
+            "raw": " Inkomststatistik, SCB# +46 .#inkomststat@scb.se"
+          },
+          {
+            "name": "Johan Lindberg",
+            "organization": "SCB",
+            "phone": "010-479 60 64",
+            "mail": "johan.lindberg@scb.se",
+            "raw": "Johan Lindberg, SCB# +46 010-479 60 64#johan.lindberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6810",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6810",
+        "label": "Inkomststruktur individuell disponibel inkomst exkl. kapitalinkomst efter kön och ålder. Löpande priser. Månad 2025M01-2026M06",
+        "description": "",
+        "sortCode": "004",
+        "updated": "2026-10-01T06:00:00Z",
+        "firstPeriod": "2025M01",
+        "lastPeriod": "2026M06",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "ålder",
+          "inkomstkomponent",
+          "tabellinnehåll",
+          "månad"
+        ],
+        "source": "SCB",
+        "subjectCode": "HE",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "HE",
+              "label": "Hushållens ekonomi",
+              "sortCode": "Hushållens ekonomi"
+            },
+            {
+              "id": "HE0110",
+              "label": "Inkomster och skatter",
+              "sortCode": "Inkomster och skatter"
+            },
+            {
+              "id": "HE0110M",
+              "label": "Månadsinkomster – preliminär statistik",
+              "sortCode": "011"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6810?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6810?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6810/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6810/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "key": "scb/TAB210/sv",
+  "identifier": "TAB210",
+  "language": "sv",
+  "updated": "2008-01-23T08:35:00Z",
+  "retrieved_at": "2026-10-16T17:23:20.558015+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta 16-64 år (AKU) efter faktisk medelarbetstid, frånvaro- och övertidstimmar per vecka och andel heltidsarbetande (huvudsysslan) samt efter kön, civilstånd och om det finns hemmaboende barn eller ej.  Kvartal 2005K2-2007K4",
+      "source": "SCB",
+      "updated": "2008-01-23T08:35:00Z",
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Civilstand",
+        "BarnMedUtan",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        4,
+        8,
+        11
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Civilstand": {
+          "label": "civilstånd",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "GS": 1,
+              "ENS": 2
+            },
+            "label": {
+              "TOT": "totalt",
+              "GS": "gift/sambo",
+              "ENS": "ensamstående"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "BarnMedUtan": {
+          "label": "med/utan barn",
+          "category": {
+            "index": {
+              "MBUB": 0,
+              "MBU19": 1,
+              "MBU07": 2,
+              "UBU19": 3
+            },
+            "label": {
+              "MBUB": "samtliga med/utan barn",
+              "MBU19": "med barn under 19 år",
+              "MBU07": "   därav m. b. under 7 år",
+              "UBU19": "utan barn under 19 år"
+            },
+            "note": {
+              "MBUB": [
+                "I samtliga med/utan barn ingår också uppgift saknas."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "MBUB": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402HZ": 0,
+              "AM0402IA": 1,
+              "AM0402IB": 2,
+              "AM0402IC": 3,
+              "AM0402ID": 4,
+              "AM0402IE": 5,
+              "AM0402IF": 6,
+              "AM0402IG": 7
+            },
+            "label": {
+              "AM0402HZ": "Faktiskt medelarbetstid, timmar",
+              "AM0402IA": "Felmarginal ±, faktisk medelarbetstid, timmar",
+              "AM0402IB": "Medelantal frånvarotimmar",
+              "AM0402IC": "Felmarginal ±, medelantal frånvarotimmar",
+              "AM0402ID": "Medelantal övertidstimmar",
+              "AM0402IE": "Felmarginal ±, medelantal övertidstimmar",
+              "AM0402IF": "Heltidsarbetande, procent",
+              "AM0402IG": "Felmarginal ±, heltidsarbetande,  procent"
+            },
+            "unit": {
+              "AM0402HZ": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0402IA": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0402IB": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0402IC": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0402ID": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0402IE": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0402IF": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "AM0402IG": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "AM0402HZ": "",
+              "AM0402IA": "",
+              "AM0402IB": "",
+              "AM0402IC": "",
+              "AM0402ID": "",
+              "AM0402IE": "",
+              "AM0402IF": "",
+              "AM0402IG": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402HZ": "Average",
+              "AM0402IA": "Average",
+              "AM0402IB": "Average",
+              "AM0402IC": "Average",
+              "AM0402ID": "Average",
+              "AM0402IE": "Average",
+              "AM0402IF": "Average",
+              "AM0402IG": "Average"
+            },
+            "priceType": {
+              "AM0402HZ": "NotApplicable",
+              "AM0402IA": "NotApplicable",
+              "AM0402IB": "NotApplicable",
+              "AM0402IC": "NotApplicable",
+              "AM0402ID": "NotApplicable",
+              "AM0402IE": "NotApplicable",
+              "AM0402IF": "NotApplicable",
+              "AM0402IG": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402HZ": "None",
+              "AM0402IA": "None",
+              "AM0402IB": "None",
+              "AM0402IC": "None",
+              "AM0402ID": "None",
+              "AM0402IE": "None",
+              "AM0402IF": "None",
+              "AM0402IG": "None"
+            },
+            "alternativeText": {
+              "AM0402HZ": "Faktisk medelarbetstid per vecka i huvudsysslan för sysselsatta 16-64 år (AKU), timmar",
+              "AM0402IA": "Felmarginal ±, faktisk medelarbetstid per vecka i huvudsysslan för sysselsatta 16-64 år (AKU), timmar",
+              "AM0402IB": "Medelantal frånvarotimmar per vecka i huvudsysslan för sysselsatta 16-64 år (AKU)",
+              "AM0402IC": "Felmarginal ±, medelantal frånvarotimmar per vecka i huvudsysslan för sysselsatta16-64 år (AKU)",
+              "AM0402ID": "Medelantal övertidstimmar per vecka i huvudsysslan för sysselsatta 16-64 år (AKU)",
+              "AM0402IE": "Felmarginal ±, medelantal övertidstimmar per vecka i huvudsysslan för sysselsatta 16-64 år (AKU)",
+              "AM0402IF": "Heltidsarbetande sysselsatta 16-64 år i huvudsysslan (AKU), procent",
+              "AM0402IG": "Felmarginal ±, heltidsarbetande sysselsatta 16-64 år i huvudsysslan (AKU), procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2005K2": 0,
+              "2005K3": 1,
+              "2005K4": 2,
+              "2006K1": 3,
+              "2006K2": 4,
+              "2006K3": 5,
+              "2006K4": 6,
+              "2007K1": 7,
+              "2007K2": 8,
+              "2007K3": 9,
+              "2007K4": 10
+            },
+            "label": {
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB210",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sysselsatta 16-64 år (AKU) per vecka i huvudsysslan",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Civilstand",
+            "BarnMedUtan"
+          ],
+          "matrix": "TAB210",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB210",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB210",
+        "label": "Sysselsatta 16-64 år (AKU) efter faktisk medelarbetstid, frånvaro- och övertidstimmar per vecka och andel heltidsarbetande (huvudsysslan) samt efter kön, civilstånd och om det finns hemmaboende barn eller ej.  Kvartal 2005K2-2007K4",
+        "description": "",
+        "sortCode": "011",
+        "updated": "2008-01-23T08:35:00Z",
+        "firstPeriod": "2005K2",
+        "lastPeriod": "2007K4",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "civilstånd",
+          "med/utan barn",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402H",
+              "label": "Övriga",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB210?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB210/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB210/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

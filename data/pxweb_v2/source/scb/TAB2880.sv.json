@@ -1,0 +1,583 @@
+{
+  "key": "scb/TAB2880/sv",
+  "identifier": "TAB2880",
+  "language": "sv",
+  "updated": "2026-10-16T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:19:39.926057+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Outnyttjat arbetskraftsutbud, antal personer 15-74 år och timmar (AKU) för arbetslösa, undersysselsatta och latent arbetssökande efter kön och ålder. Kvartal 2001K1-2026K3",
+      "source": "SCB",
+      "updated": "2026-10-16T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "För perioden 2001M01–2020M12 innehåller tidsserien ’länkade data’. Inga felmarginaler (osäkerhetstal) redovisas för perioden, detta markeras istället som ”..” i tidsserien. Läs under ’Aktuellt’ för mer information om de länkade serierna. Serierna 2001M01–2004M12 är makrolänkade och för perioden 2005M01–2020M12 är de mikrolänkade. Skattningarna avseende kvartal 1 2005 samt dess ingående månader baseras på en mindre svarsmängd än övriga perioder. Dessa skattningar är därför mer osäkra och bör användas med försiktighet.",
+        "År 2023 höjdes pensionsåldern från 65 till 66 år och 2026 höjs den till 67 år. Detta medför en redovisning av fler åldersgrupper i AKU. För att möjliggöra jämförelser över tid redovisas åldersgrupperna 16–65, 16–66, 20–65 och 20–66 tillbaka till 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Arbetskraftsutbud",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        3,
+        14,
+        4,
+        103
+      ],
+      "dimension": {
+        "Arbetskraftsutbud": {
+          "label": "outnyttjat arbetskraftsutbud",
+          "category": {
+            "index": {
+              "1": 0,
+              "3": 1,
+              "5": 2,
+              "totalt": 3
+            },
+            "label": {
+              "1": "arbetslösa",
+              "3": "undersysselsatta",
+              "5": "latent arbetssökande",
+              "totalt": "totalt arbetskraftsutbud"
+            },
+            "note": {
+              "3": [
+                "Personer som arbetar mindre än de skulle vilja och som kunnat arbeta mer referensveckan."
+              ],
+              "5": [
+                "Personer utanför arbetskraften som velat och kunnat arbeta referensveckan."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "3": {
+                "0": true
+              },
+              "5": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "15-19": 0,
+              "20-24": 1,
+              "25-34": 2,
+              "35-44": 3,
+              "45-54": 4,
+              "55-64": 5,
+              "65-74": 6,
+              "tot15-74": 7,
+              "tot16-64": 8,
+              "tot16-65": 9,
+              "tot16-66": 10,
+              "tot20-64": 11,
+              "tot20-65": 12,
+              "tot20-66": 13
+            },
+            "label": {
+              "15-19": "15–19 år",
+              "20-24": "20–24 år",
+              "25-34": "25–34 år",
+              "35-44": "35–44 år",
+              "45-54": "45–54 år",
+              "55-64": "55–64 år",
+              "65-74": "65–74 år",
+              "tot15-74": "totalt 15–74 år",
+              "tot16-64": "totalt 16–64 år",
+              "tot16-65": "totalt 16–65 år",
+              "tot16-66": "totalt 16–66 år",
+              "tot20-64": "totalt 20–64 år",
+              "tot20-65": "totalt 20–65 år",
+              "tot20-66": "totalt 20–66 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0401UP": 0,
+              "AM0401UQ": 1,
+              "AM0401UR": 2,
+              "AM0401US": 3
+            },
+            "label": {
+              "AM0401UP": "1000-tal personer",
+              "AM0401UQ": "Felmarginal ±, 1000-tal personer",
+              "AM0401UR": "Miljoner timmar",
+              "AM0401US": "Felmarginal ±, milj. timmar"
+            },
+            "note": {
+              "AM0401UQ": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ],
+              "AM0401US": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM0401UP": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "AM0401UQ": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "AM0401UR": {
+                "base": "miljoner timmar",
+                "decimals": 1
+              },
+              "AM0401US": {
+                "base": "miljoner timmar",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0401UQ": {
+                "0": true
+              },
+              "AM0401US": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0401UP": "",
+              "AM0401UQ": "",
+              "AM0401UR": "",
+              "AM0401US": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0401UP": "Average",
+              "AM0401UQ": "Average",
+              "AM0401UR": "Average",
+              "AM0401US": "Average"
+            },
+            "priceType": {
+              "AM0401UP": "NotApplicable",
+              "AM0401UQ": "NotApplicable",
+              "AM0401UR": "NotApplicable",
+              "AM0401US": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0401UP": "None",
+              "AM0401UQ": "None",
+              "AM0401UR": "None",
+              "AM0401US": "None"
+            },
+            "alternativeText": {
+              "AM0401UP": "Antal personer 15-74 år (AKU), 1000-tal",
+              "AM0401UQ": "Felmarginal ±, antal personer 15-74 år (AKU), 1000-tal",
+              "AM0401UR": "Antal timmar för personer 15-74 år (AKU), miljoner",
+              "AM0401US": "Felmarginal ±, antal timmar för personer 15-74 år (AKU), miljoner"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2001K1": 0,
+              "2001K2": 1,
+              "2001K3": 2,
+              "2001K4": 3,
+              "2002K1": 4,
+              "2002K2": 5,
+              "2002K3": 6,
+              "2002K4": 7,
+              "2003K1": 8,
+              "2003K2": 9,
+              "2003K3": 10,
+              "2003K4": 11,
+              "2004K1": 12,
+              "2004K2": 13,
+              "2004K3": 14,
+              "2004K4": 15,
+              "2005K1": 16,
+              "2005K2": 17,
+              "2005K3": 18,
+              "2005K4": 19,
+              "2006K1": 20,
+              "2006K2": 21,
+              "2006K3": 22,
+              "2006K4": 23,
+              "2007K1": 24,
+              "2007K2": 25,
+              "2007K3": 26,
+              "2007K4": 27,
+              "2008K1": 28,
+              "2008K2": 29,
+              "2008K3": 30,
+              "2008K4": 31,
+              "2009K1": 32,
+              "2009K2": 33,
+              "2009K3": 34,
+              "2009K4": 35,
+              "2010K1": 36,
+              "2010K2": 37,
+              "2010K3": 38,
+              "2010K4": 39,
+              "2011K1": 40,
+              "2011K2": 41,
+              "2011K3": 42,
+              "2011K4": 43,
+              "2012K1": 44,
+              "2012K2": 45,
+              "2012K3": 46,
+              "2012K4": 47,
+              "2013K1": 48,
+              "2013K2": 49,
+              "2013K3": 50,
+              "2013K4": 51,
+              "2014K1": 52,
+              "2014K2": 53,
+              "2014K3": 54,
+              "2014K4": 55,
+              "2015K1": 56,
+              "2015K2": 57,
+              "2015K3": 58,
+              "2015K4": 59,
+              "2016K1": 60,
+              "2016K2": 61,
+              "2016K3": 62,
+              "2016K4": 63,
+              "2017K1": 64,
+              "2017K2": 65,
+              "2017K3": 66,
+              "2017K4": 67,
+              "2018K1": 68,
+              "2018K2": 69,
+              "2018K3": 70,
+              "2018K4": 71,
+              "2019K1": 72,
+              "2019K2": 73,
+              "2019K3": 74,
+              "2019K4": 75,
+              "2020K1": 76,
+              "2020K2": 77,
+              "2020K3": 78,
+              "2020K4": 79,
+              "2021K1": 80,
+              "2021K2": 81,
+              "2021K3": 82,
+              "2021K4": 83,
+              "2022K1": 84,
+              "2022K2": 85,
+              "2022K3": 86,
+              "2022K4": 87,
+              "2023K1": 88,
+              "2023K2": 89,
+              "2023K3": 90,
+              "2023K4": 91,
+              "2024K1": 92,
+              "2024K2": 93,
+              "2024K3": 94,
+              "2024K4": 95,
+              "2025K1": 96,
+              "2025K2": 97,
+              "2025K3": 98,
+              "2025K4": 99,
+              "2026K1": 100,
+              "2026K2": 101,
+              "2026K3": 102
+            },
+            "label": {
+              "2001K1": "2001K1",
+              "2001K2": "2001K2",
+              "2001K3": "2001K3",
+              "2001K4": "2001K4",
+              "2002K1": "2002K1",
+              "2002K2": "2002K2",
+              "2002K3": "2002K3",
+              "2002K4": "2002K4",
+              "2003K1": "2003K1",
+              "2003K2": "2003K2",
+              "2003K3": "2003K3",
+              "2003K4": "2003K4",
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2",
+              "2026K3": "2026K3"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB2880",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal personer 15-74 år och timmar (AKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Arbetskraftsutbud",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB2880",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2880",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2880",
+        "label": "Outnyttjat arbetskraftsutbud, antal personer 15-74 år och timmar (AKU) för arbetslösa, undersysselsatta och latent arbetssökande efter kön och ålder. Kvartal 2001K1-2026K3",
+        "description": "",
+        "sortCode": "02",
+        "updated": "2026-10-16T06:00:00Z",
+        "firstPeriod": "2001K1",
+        "lastPeriod": "2026K3",
+        "category": "public",
+        "variableNames": [
+          "outnyttjat arbetskraftsutbud",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0401",
+              "label": "Arbetskraftsundersökningarna (AKU)",
+              "sortCode": "020"
+            },
+            {
+              "id": "AM0401O",
+              "label": "Outnyttjat arbetskraftsutbud från och med 2001",
+              "sortCode": "010"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2880?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2880?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2880/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2880/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

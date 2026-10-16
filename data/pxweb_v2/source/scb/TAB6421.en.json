@@ -1,0 +1,375 @@
+{
+  "key": "scb/TAB6421/en",
+  "identifier": "TAB6421",
+  "language": "en",
+  "updated": "2026-10-02T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:21:26.850357+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Rents in newly constructed buildings (rented dwellings) by region, investor and number of rooms. Year 2022-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-10-02T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0404"
+            },
+            "href": "https://www.scb.se/BO0404-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "In 2023, data for one- or two dwelling building was previously categorized by number of rooms. As of the publication dated 2025-09-17, this information is now reported under One- or two dwelling building regardless of number of rooms."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Byggherre",
+        "AntalRum",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        3,
+        6,
+        6,
+        4
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Sweden",
+              "0010": "Greater Stockholm",
+              "0020": "Greater Göteborg",
+              "0030": "Greater Malmö",
+              "0040": "Municipalities with  >75000 inhabitants (excluding metropolitan areas)",
+              "0041": "Municipalities with  <75000 inhabitants (excluding metropolitan areas)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionRiket98",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket98?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionStorstad98B",
+                "label": "Metropolitan areas and municipality groups",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionStorstad98B?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Byggherre": {
+          "label": "investor",
+          "category": {
+            "index": {
+              "1": 0,
+              "3": 1,
+              "4": 2
+            },
+            "label": {
+              "1": "Public",
+              "3": "Private enterprises and organisations",
+              "4": "Total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AntalRum": {
+          "label": "number of rooms",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "99": 4,
+              "00": 5
+            },
+            "label": {
+              "1": "Apartment 1 room",
+              "2": "Apartment 2 rooms",
+              "3": "Apartment 3 rooms",
+              "4": "Apartment 4+ rooms",
+              "99": "One- or two dwelling building regardless of number of rooms",
+              "00": "Total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000007NC": 0,
+              "000007ND": 1,
+              "000007NE": 2,
+              "000007NF": 3,
+              "000007NG": 4,
+              "000007NH": 5
+            },
+            "label": {
+              "000007NC": "new building projects with newly constructed buildings (rented dwellings)",
+              "000007ND": "dwellings",
+              "000007NE": "useful floor space per dwelling, square metres",
+              "000007NF": "annual rent per square metre, SEK",
+              "000007NG": "annual rent per dwelling, SEK",
+              "000007NH": "monthly rent (annual rent/12) per dwelling, SEK"
+            },
+            "unit": {
+              "000007NC": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000007ND": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000007NE": {
+                "base": "square metre per dwelling",
+                "decimals": 0
+              },
+              "000007NF": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "000007NG": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "000007NH": {
+                "base": "SEK",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000007NC": "31 December of each year",
+              "000007ND": "31 December of each year",
+              "000007NE": "31 December of each year",
+              "000007NF": "31 December of each year",
+              "000007NG": "31 December of each year",
+              "000007NH": "31 December of each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000007NC": "Stock",
+              "000007ND": "Stock",
+              "000007NE": "Stock",
+              "000007NF": "Stock",
+              "000007NG": "Stock",
+              "000007NH": "Stock"
+            },
+            "priceType": {
+              "000007NC": "NotApplicable",
+              "000007ND": "NotApplicable",
+              "000007NE": "NotApplicable",
+              "000007NF": "Current",
+              "000007NG": "Current",
+              "000007NH": "Current"
+            },
+            "adjustment": {
+              "000007NC": "None",
+              "000007ND": "None",
+              "000007NE": "None",
+              "000007NF": "None",
+              "000007NG": "None",
+              "000007NH": "None"
+            },
+            "alternativeText": {
+              "000007NC": "New building projects with newly constructed buildings (rented dwellings), project",
+              "000007ND": "Dwellings in newly constructed buildings (rented dwellings)",
+              "000007NE": "Useful floor space per dwelling in newly constructed buildings (rented dwellings), square metres",
+              "000007NF": "Annual rent per square metre in newly constructed buildings (rented dwellings), SEK",
+              "000007NG": "Annual rent per dwelling in newly constructed buildings (rented dwellings), SEK",
+              "000007NH": "Monthly rent (annual rent/12) per dwelling in newly constructed buildings (rented dwellings), SEK"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2022": 0,
+              "2023": 1,
+              "2024": 2,
+              "2025": 3
+            },
+            "label": {
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "BO0404",
+          "tableid": "TAB6421",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Rents in newly constructed buildings (rented dwellings)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Byggherre",
+            "AntalRum"
+          ],
+          "matrix": "TAB6421",
+          "subject-code": "BO",
+          "subject-area": "Housing, construction and building"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "Statistics Sweden",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, Statistics Sweden# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6421",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6421",
+        "label": "Rents in newly constructed buildings (rented dwellings) by region, investor and number of rooms. Year 2022-2025",
+        "description": "",
+        "sortCode": "07",
+        "updated": "2026-10-02T06:00:00Z",
+        "firstPeriod": "2022",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "investor",
+          "number of rooms",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Housing, construction and building",
+              "sortCode": "Housing, construction and building"
+            },
+            {
+              "id": "BO0404",
+              "label": "Charges/rents for newly constructed dwellings",
+              "sortCode": "Charges/rents for newly constructed dwellings"
+            },
+            {
+              "id": "BO0404A",
+              "label": "Rented dwellings and tenant-owned dwellings. Year 2022-",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6421?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6421?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6421/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6421/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

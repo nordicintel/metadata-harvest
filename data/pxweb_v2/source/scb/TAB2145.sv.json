@@ -1,0 +1,407 @@
+{
+  "key": "scb/TAB2145/sv",
+  "identifier": "TAB2145",
+  "language": "sv",
+  "updated": "2009-04-02T07:32:00Z",
+  "retrieved_at": "2026-10-16T17:33:37.607478+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Ombyggda lägenheter i flerbostadshus i riket efter ägarkategori, byggnadsperiod, lägenhetstyp och med/utan statligt stöd. Uppdateras ej. År 1989-2008",
+      "source": "SCB",
+      "updated": "2009-04-02T07:32:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0101"
+            },
+            "href": "https://www.scb.se/BO0101",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Agarkategori",
+        "Byggnadsperiod",
+        "Lagenhetstyp",
+        "Statstod",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        12,
+        10,
+        2,
+        2,
+        20
+      ],
+      "dimension": {
+        "Agarkategori": {
+          "label": "ägarkategori",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "ENSK PERS": 4,
+              "ANNAN ÄGARE": 5
+            },
+            "label": {
+              "1": "stat, region, kommun",
+              "2": "kommunägda företag",
+              "3": "HSB, Riksbyggen",
+              "4": "annan bostadsrättsförening",
+              "ENSK PERS": "enskild person",
+              "ANNAN ÄGARE": "annan ägare"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Byggnadsperiod": {
+          "label": "byggnadsperiod",
+          "note": [
+            "Med byggnadsperiod menas husets nybyggnadsår ej att förväxla med ombyggnadsår som i ombyggnadsstatistiken är färdigställandeår för ombyggnaden."
+          ],
+          "category": {
+            "index": {
+              "-1901": 0,
+              "1901-1920": 1,
+              "1921-1930": 2,
+              "1931-1940": 3,
+              "1941-1950": 4,
+              "1951-1960": 5,
+              "1961-1970": 6,
+              "1971-1980": 7,
+              "1981-1990": 8,
+              "1991-2000": 9,
+              "2001-2010": 10,
+              "2011-": 11
+            },
+            "label": {
+              "-1901": "före 1901",
+              "1901-1920": "1901–1920",
+              "1921-1930": "1921–1930",
+              "1931-1940": "1931–1940",
+              "1941-1950": "1941–1950",
+              "1951-1960": "1951–1960",
+              "1961-1970": "1961–1970",
+              "1971-1980": "1971–1980",
+              "1981-1990": "1981–1990",
+              "1991-2000": "1991–2000",
+              "2001-2010": "2001–2010",
+              "2011-": "2011–2020"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Lagenhetstyp": {
+          "label": "lägenhetstyp",
+          "note": [
+            "Redovisningen av lägenhetstyper utan kök har förändrats fr.o.m. 1999. En del specialbostäder och 2 rum utan kök redovisades före 1999 som 1 rum och kokvrå.",
+            "Redovisningen av lägenhetstyper utan kök har förändrats fr.o.m. 1999. En del specialbostäder och 2 rum utan kök redovisades före 1999 som 1 rum och kokvrå."
+          ],
+          "category": {
+            "index": {
+              "1RKV": 0,
+              "1RK": 1,
+              "2R": 2,
+              "2RK": 3,
+              "3RK": 4,
+              "4RK": 5,
+              "5RK": 6,
+              "6+RK": 7,
+              "spec1": 8,
+              "spec2": 9
+            },
+            "label": {
+              "1RKV": "1 rum och kokvrå",
+              "1RK": "1 rum och kök",
+              "2R": "2 eller fler rum utan kök ",
+              "2RK": "2 rum och kök",
+              "3RK": "3 rum och kök",
+              "4RK": "4 rum och kök",
+              "5RK": "5 rum och kök",
+              "6+RK": "6 eller flera rum och kök",
+              "spec1": "lägenhet för äldre och/eller funktionshindrade",
+              "spec2": "lägenhet för studerande samt övriga utan kokvrå"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Statstod": {
+          "label": "med/utan statligt stöd",
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1
+            },
+            "label": {
+              "0": "utan statligt stöd",
+              "1": "med statligt stöd"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0102E7": 0,
+              "BO0102E8": 1
+            },
+            "label": {
+              "BO0102E7": "Ombyggda lägenheter i flerbostadshus (färdigställda)",
+              "BO0102E8": "Ombyggda lägenheter i flerbostadshus (tillskott)"
+            },
+            "unit": {
+              "BO0102E7": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0102E8": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0102E7": "",
+              "BO0102E8": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0102E7": "Flow",
+              "BO0102E8": "Flow"
+            },
+            "priceType": {
+              "BO0102E7": "NotApplicable",
+              "BO0102E8": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0102E7": "None",
+              "BO0102E8": "None"
+            },
+            "alternativeText": {
+              "BO0102E7": "Ombyggda lägenheter i flerbostadshus (färdigställda)",
+              "BO0102E8": "Ombyggda lägenheter i flerbostadshus (tillskott)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1989": 0,
+              "1990": 1,
+              "1991": 2,
+              "1992": 3,
+              "1993": 4,
+              "1994": 5,
+              "1995": 6,
+              "1996": 7,
+              "1997": 8,
+              "1998": 9,
+              "1999": 10,
+              "2000": 11,
+              "2001": 12,
+              "2002": 13,
+              "2003": 14,
+              "2004": 15,
+              "2005": 16,
+              "2006": 17,
+              "2007": 18,
+              "2008": 19
+            },
+            "label": {
+              "1989": "1989",
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008"
+            },
+            "note": {
+              "2007": [
+                "Bostadssubventionerna togs bort 2007 vilket görs att 2008 års siffror inte kan jämföras med tidigare år. Fr.o.m. 2009 kan denna tabell inte redovisas."
+              ],
+              "2008": [
+                "Bostadssubventionerna togs bort 2007 vilket görs att 2008 års siffror inte kan jämföras med tidigare år. Fr.o.m. 2009 kan denna tabell inte redovisas."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "2007": {
+                "0": true
+              },
+              "2008": {
+                "0": true
+              }
+            },
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0101",
+          "tableid": "TAB2145",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Ombyggda lägenheter i flerbostadshus i riket",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Agarkategori",
+            "Byggnadsperiod",
+            "Lagenhetstyp",
+            "Statstod"
+          ],
+          "matrix": "TAB2145",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2145",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2145",
+        "label": "Ombyggda lägenheter i flerbostadshus i riket efter ägarkategori, byggnadsperiod, lägenhetstyp och med/utan statligt stöd. Uppdateras ej. År 1989-2008",
+        "description": "",
+        "sortCode": "09",
+        "updated": "2009-04-02T07:32:00Z",
+        "firstPeriod": "1989",
+        "lastPeriod": "2008",
+        "category": "public",
+        "variableNames": [
+          "ägarkategori",
+          "byggnadsperiod",
+          "lägenhetstyp",
+          "med/utan statligt stöd",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0101",
+              "label": "Bygglov, nybyggnad och ombyggnad",
+              "sortCode": "Bygglov, nybyggnad och ombyggnad"
+            },
+            {
+              "id": "BO0101E",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2145?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2145?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2145/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2145/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "key": "scb/TAB149/sv",
+  "identifier": "TAB149",
+  "language": "sv",
+  "updated": "2008-01-31T08:31:00Z",
+  "retrieved_at": "2026-10-16T17:22:48.046474+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Anställda 16-64 år (AKU) efter anställningsform, facklig organisation och kön. År 2005-2007",
+      "source": "SCB",
+      "updated": "2008-01-31T08:31:00Z",
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "AnstForm",
+        "FackligOrg",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        7,
+        3,
+        4,
+        3
+      ],
+      "dimension": {
+        "AnstForm": {
+          "label": "anställningsform",
+          "note": [
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt.",
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt.",
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt.",
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt."
+          ],
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "TA": 2
+            },
+            "label": {
+              "ANSTTOT": "anställda, totalt",
+              "FA": "fast anställda",
+              "TA": "tidsbegränsat anställda"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "FackligOrg": {
+          "label": "facklig huvudorganisation",
+          "category": {
+            "index": {
+              "Samtliga": 0,
+              "LO": 1,
+              "TCO": 2,
+              "SACO": 3,
+              "Ovriga": 4,
+              "Ejfack": 5,
+              "uppg saknas": 6
+            },
+            "label": {
+              "Samtliga": "samtliga",
+              "LO": "LO",
+              "TCO": "TCO",
+              "SACO": "SACO",
+              "Ovriga": "övriga",
+              "Ejfack": "ej fackanslutna anst.",
+              "uppg saknas": "uppgift saknas"
+            },
+            "note": {
+              "Ovriga": [
+                "I Övriga ingår uppgift saknas om facklig organisation"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "Ovriga": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402Z5": 0,
+              "AM0402Z6": 1,
+              "AM0402Z7": 2,
+              "AM0402Z8": 3
+            },
+            "label": {
+              "AM0402Z5": "1000-tal",
+              "AM0402Z6": "Felmarginal ±, 1000-tal",
+              "AM0402Z7": "Procent",
+              "AM0402Z8": "Felmarginal ±, procent"
+            },
+            "note": {
+              "AM0402Z6": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ],
+              "AM0402Z8": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade procenttalen är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av procentskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller den riktiga procentandelen."
+              ]
+            },
+            "unit": {
+              "AM0402Z5": {
+                "base": "1 000-tal",
+                "decimals": 1
+              },
+              "AM0402Z6": {
+                "base": "1 000-tal",
+                "decimals": 1
+              },
+              "AM0402Z7": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "AM0402Z8": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0402Z6": {
+                "0": true
+              },
+              "AM0402Z8": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0402Z5": "",
+              "AM0402Z6": "",
+              "AM0402Z7": "",
+              "AM0402Z8": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402Z5": "Average",
+              "AM0402Z6": "Average",
+              "AM0402Z7": "Average",
+              "AM0402Z8": "Average"
+            },
+            "priceType": {
+              "AM0402Z5": "NotApplicable",
+              "AM0402Z6": "NotApplicable",
+              "AM0402Z7": "NotApplicable",
+              "AM0402Z8": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402Z5": "None",
+              "AM0402Z6": "None",
+              "AM0402Z7": "None",
+              "AM0402Z8": "None"
+            },
+            "alternativeText": {
+              "AM0402Z5": "Anställda 16-64 år (AKU), 1 000-tal",
+              "AM0402Z6": "Felmarginal ±, anställda 16-64 år (AKU), 1 000-tal",
+              "AM0402Z7": "Anställda 16-64 år (AKU), procent",
+              "AM0402Z8": "Felmarginal ±, anställda 16-64 år (AKU), procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB149",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Anställda 16-64 år (AKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "AnstForm",
+            "FackligOrg",
+            "Kon"
+          ],
+          "matrix": "TAB149",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB149",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB149",
+        "label": "Anställda 16-64 år (AKU) efter anställningsform, facklig organisation och kön. År 2005-2007",
+        "description": "",
+        "sortCode": "018",
+        "updated": "2008-01-31T08:31:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2007",
+        "category": "public",
+        "variableNames": [
+          "anställningsform",
+          "facklig huvudorganisation",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402C",
+              "label": "Anställda",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB149?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB149/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB149/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

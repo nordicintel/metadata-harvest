@@ -1,0 +1,424 @@
+{
+  "key": "scb/TAB4904/sv",
+  "identifier": "TAB4904",
+  "language": "sv",
+  "updated": "2026-03-20T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:07:01.051523+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sökande till yrkeshögskolan efter kön, utbildningsinriktning och ålder. År 2014-2025",
+      "source": "SCB",
+      "updated": "2026-03-20T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0701"
+            },
+            "href": "https://www.scb.se/UF0701",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Statistiken avser de utbildningsomgångar som startade respektive år. Till exempel så avser sökande 2015 samtliga som sökte till utbildningsomgångar som startade 2015.",
+        "För att räknas som sökande ska följande uppfyllas:  \r\na) Den sökande har lämnat in en ansökan där det minst finns uppgift om den sökandes namn och personnummer (eller namn och födelsedatum).  \r\nb) Den sökande har lämnat in sin ansökan inom ansökningstiden (inom ordinarie eller förlängd ansökningsperiod). ",
+        "Statistiken över antal sökande, antal behöriga sökande och antal antagna vid start är nettoräknad. Det betyder att när antal sökande redovisas grupperat efter olika utbildningsdata som exempelvis utbildningsområde eller län räknas antalet unika sökande per redovisningsgrupp. Personer som sökt flera utbildningar inom olika redovisningsgrupper räknas en gång för varje grupp.  \r\nAntal antagna vid start avser personer som varit studerande tre veckor efter utbildningens start.",
+        "Utbildningsområde MYH avser den indelning av utbildningar i utbildningsområden som Myndigheten för yrkeshögskolan (MYH) använder. Utbildningsområdena bygger på standarden SUN 2020.",
+        "För att förhindra röjande av information har stokastisk avrundning applicerats på tabellen. Cellvärdena 1 och 2 har avrundats till antingen 0 eller 3 med förutbestämda sannolikheter. Därför summerar redovisningsgrupperna ibland inte till totalen."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbildnInriktn",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        27,
+        8,
+        3,
+        12
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildnInriktn": {
+          "label": "utbildningens inriktning",
+          "category": {
+            "index": {
+              "TOTM": 0,
+              "1M": 1,
+              "2M": 2,
+              "3M": 3,
+              "4M": 4,
+              "5M": 5,
+              "6M": 6,
+              "7M": 7,
+              "8M": 8,
+              "9M": 9,
+              "11M": 10,
+              "12M": 11,
+              "13M": 12,
+              "14M": 13,
+              "15M": 14,
+              "16": 15,
+              "TOTS": 16,
+              "1S": 17,
+              "2S": 18,
+              "3S": 19,
+              "4S": 20,
+              "5S": 21,
+              "6S": 22,
+              "7S": 23,
+              "8S": 24,
+              "17": 25,
+              "TOT": 26
+            },
+            "label": {
+              "TOTM": "Utbildningsområden totalt",
+              "1M": "Data/It",
+              "2M": "Ekonomi, administration och försäljning",
+              "3M": "Friskvård och kroppsvård",
+              "4M": "Hotell, restaurang och turism",
+              "5M": "Hälso- och sjukvård samt socialt arbete",
+              "6M": "Journalistik och information",
+              "7M": "Juridik",
+              "8M": "Kultur, media och design",
+              "9M": "Lantbruk, djurvård, trädgård, skog och fiske",
+              "11M": "Pedagogik och undervisning",
+              "12M": "Samhällsbyggnad och byggteknik",
+              "13M": "Säkerhetstjänster",
+              "14M": "Teknik och tillverkning",
+              "15M": "Transporttjänster",
+              "16": "Övrigt",
+              "TOTS": "Utbildningsinriktningar totalt",
+              "1S": "Pedagogik och lärarutbildning",
+              "2S": "Humaniora och konst",
+              "3S": "Samhällsvetenskap, juridik, handel, administration",
+              "4S": "Naturvetenskap, matematik och informations- och kommunikationsteknik (IKT)",
+              "5S": "Teknik och tillverkning",
+              "6S": "Lant- och skogsbruk samt djursjukvård",
+              "7S": "Hälso- och sjukvård samt social omsorg",
+              "8S": "Tjänster",
+              "17": "Okänt",
+              "TOT": "Utbildningsinriktningar totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CUtbInrTot",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CUtbInrTot?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AUtbOmrMYH",
+                "label": "Utbildningsområde MYH",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AUtbOmrMYH?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BUtbInrSUN",
+                "label": "Utbildningsinriktning SUN 2020, 1-siffer",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BUtbInrSUN?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "totalt": 0,
+              "-24": 1,
+              "25-29": 2,
+              "30-34": 3,
+              "35-39": 4,
+              "40-44": 5,
+              "45+": 6,
+              "us": 7
+            },
+            "label": {
+              "totalt": "totalt",
+              "-24": "–24 år",
+              "25-29": "25–29 år",
+              "30-34": "30–34 år",
+              "35-39": "35–39 år",
+              "40-44": "40–44 år",
+              "45+": "45+ år",
+              "us": "uppgift saknas"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000001YL": 0,
+              "000001TL": 1,
+              "000001YM": 2
+            },
+            "label": {
+              "000001YL": "Antal sökande",
+              "000001TL": "Antal behöriga sökande",
+              "000001YM": "Antal antagna vid start"
+            },
+            "unit": {
+              "000001YL": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000001TL": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000001YM": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001YL": "År",
+              "000001TL": "År",
+              "000001YM": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001YL": "Stock",
+              "000001TL": "Stock",
+              "000001YM": "Stock"
+            },
+            "priceType": {
+              "000001YL": "NotApplicable",
+              "000001TL": "NotApplicable",
+              "000001YM": "NotApplicable"
+            },
+            "adjustment": {
+              "000001YL": "None",
+              "000001TL": "None",
+              "000001YM": "None"
+            },
+            "alternativeText": {
+              "000001YL": "Antal sökande till yrkeshögskolan",
+              "000001TL": "Antal behöriga sökande till yrkeshögskolan",
+              "000001YM": "Antal antagna vid start, yrkeshögskolan"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8,
+              "2023": 9,
+              "2024": 10,
+              "2025": 11
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "UF0701",
+          "tableid": "TAB4904",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sökande till yrkeshögskolan",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbildnInriktn",
+            "Alder"
+          ],
+          "matrix": "TAB4904",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "SCB",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, SCB# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4904",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4904",
+        "label": "Sökande till yrkeshögskolan efter kön, utbildningsinriktning och ålder. År 2014-2025",
+        "description": "",
+        "sortCode": "01",
+        "updated": "2026-03-20T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "utbildningens inriktning",
+          "ålder",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0701",
+              "label": "Yrkeshögskolan",
+              "sortCode": "Yrkeshögskolan"
+            },
+            {
+              "id": "UF0701A",
+              "label": "Sökande (program)",
+              "sortCode": "022"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4904?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4904?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4904/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4904/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

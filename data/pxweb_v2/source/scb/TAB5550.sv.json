@@ -1,0 +1,386 @@
+{
+  "key": "scb/TAB5550/sv",
+  "identifier": "TAB5550",
+  "language": "sv",
+  "updated": "2024-07-11T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:49:14.364028+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Aktivitets - och sjukersättning efter vistelsetid, födelseregion, kön och ålder. Antal. År 2003-2022",
+      "source": "SCB",
+      "updated": "2024-07-11T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0105"
+            },
+            "href": "https://www.scb.se/LE0105",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Källa: [Databasen STATIV](https://www.scb.se/STATIV)",
+        "Beskrivning av aktivitets- och sjukersättning: [Sjuk och etableringsersättning] (https://www.scb.se/STATIV)",
+        "Vistelsetid avser total tid en person varit folkbokförd i Sverige. Anges för personer vilka immigrerat till Sverige.  Medborgare i ett land utanför EU:s medlemsstater, s.k. tredjelandsmedborgare, vilka föds i Sverige behöver vid födseln söka uppehållstillstånd. De beviljas vanligtvis uppehållstillstånd för samma tid som sina föräldrar. Om föräldrarna inte har uppehållstillstånd prövas barnets ansökan tillsammans med föräldrarnas. ",
+        "Födelseregion bygger på födelseländer i folkbokföringen och baseras på respektive års indelning.",
+        "Födelseregion: Från och med 2004 redovisas Cypern och Turkiet som Europa exkl. Sverige."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "SjukOchAktiviteters",
+        "Vistelsetid",
+        "Fodelseregion",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        5,
+        6,
+        2,
+        7,
+        1,
+        20
+      ],
+      "dimension": {
+        "SjukOchAktiviteters": {
+          "label": "Aktivitets- och sjukersättning",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1
+            },
+            "label": {
+              "010": "erhållit aktivitets - och sjukersättning",
+              "020": "ej erhållit aktivitets - och sjukersättning"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Vistelsetid": {
+          "label": "vistelsetid",
+          "category": {
+            "index": {
+              "INRF": 0,
+              "0-3": 1,
+              "4-9": 2,
+              "10-": 3,
+              "US": 4
+            },
+            "label": {
+              "INRF": "inrikes född",
+              "0-3": "0–3 år",
+              "4-9": "4–9 år",
+              "10-": "10– år",
+              "US": "uppgift saknas"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fodelseregion": {
+          "label": "födelseregion",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2,
+              "040": 3,
+              "050": 4,
+              "100": 5
+            },
+            "label": {
+              "010": "Sverige",
+              "020": "Europa exkl.Sverige",
+              "030": "Afrika",
+              "040": "Asien",
+              "050": "övriga världen, inkl. Sovjetunionen",
+              "100": "okänt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "2": 0,
+              "1": 1
+            },
+            "label": {
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "20-24": 0,
+              "25-29": 1,
+              "30-39": 2,
+              "40-49": 3,
+              "50-59": 4,
+              "60-64": 5,
+              "65-69": 6
+            },
+            "label": {
+              "20-24": "20–24 år",
+              "25-29": "25–29 år",
+              "30-39": "30–39 år",
+              "40-49": "40–49 år",
+              "50-59": "50–59 år",
+              "60-64": "60–64 år",
+              "65-69": "65–69 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002Q1": 0
+            },
+            "label": {
+              "000002Q1": "Antal i befolkningen"
+            },
+            "unit": {
+              "000002Q1": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002Q1": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002Q1": "Stock"
+            },
+            "priceType": {
+              "000002Q1": "NotApplicable"
+            },
+            "adjustment": {
+              "000002Q1": "None"
+            },
+            "alternativeText": {
+              "000002Q1": "Antal i befolkningen"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2003": 0,
+              "2004": 1,
+              "2005": 2,
+              "2006": 3,
+              "2007": 4,
+              "2008": 5,
+              "2009": 6,
+              "2010": 7,
+              "2011": 8,
+              "2012": 9,
+              "2013": 10,
+              "2014": 11,
+              "2015": 12,
+              "2016": 13,
+              "2017": 14,
+              "2018": 15,
+              "2019": 16,
+              "2020": 17,
+              "2021": 18,
+              "2022": 19
+            },
+            "label": {
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "LE0105",
+          "tableid": "TAB5550",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal i befolkningen",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "SjukOchAktiviteters",
+            "Vistelsetid",
+            "Fodelseregion",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB5550",
+          "subject-code": "LE",
+          "subject-area": "Levnadsförhållanden"
+        },
+        "contact": [
+          {
+            "name": "Malin Forsberg",
+            "organization": "SCB",
+            "phone": "010-479 69 61",
+            "mail": "malin.forsberg@scb.se",
+            "raw": "Malin Forsberg, SCB# +46 010-479 69 61#malin.forsberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5550",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5550",
+        "label": "Aktivitets - och sjukersättning efter vistelsetid, födelseregion, kön och ålder. Antal. År 2003-2022",
+        "description": "",
+        "sortCode": "011",
+        "updated": "2024-07-11T06:00:00Z",
+        "firstPeriod": "2003",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "Aktivitets- och sjukersättning",
+          "vistelsetid",
+          "födelseregion",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Levnadsförhållanden",
+              "sortCode": "Levnadsförhållanden"
+            },
+            {
+              "id": "LE0105",
+              "label": "Integration – statistik och analys",
+              "sortCode": "Integration – statistik och analys"
+            },
+            {
+              "id": "LE0105X",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "09"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5550?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5550?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5550/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5550/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

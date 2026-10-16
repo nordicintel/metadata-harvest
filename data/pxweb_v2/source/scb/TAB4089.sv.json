@@ -1,0 +1,682 @@
+{
+  "key": "scb/TAB4089/sv",
+  "identifier": "TAB4089",
+  "language": "sv",
+  "updated": "2015-02-12T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:27:55.089284+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Anställda 16-64 år med bostad i regionen (nattbef) efter län, yrke (3-siffrig SSYK 96), ålder och kön. År 2001-2013",
+      "source": "SCB",
+      "updated": "2015-02-12T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0208"
+            },
+            "href": "https://www.scb.se/AM0208",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Som förvärvsarbetande räknas alla personer som bedöms ha utfört i genomsnitt en timmes arbete per vecka under november månad. Även de som varit tillfälligt frånvarande under mätperioden, t ex på grund av sjukdom, ingår i bedömningen. Samma definition tillämpas inom den registerbaserade arbetsmarknadsstatistiken (RAMS).",
+        "Fr.o.m årgång 2004 har det gjorts några förändringar i bearbetningarna avseende sysselsättningsdata. En ny källa används för att identifiera företagare och en mindre justering av metoden för att klassificera anställda har gjorts. Mer information om förändringarna finns på www.scb.se/rams.",
+        "Jämförelser mellan enstaka år bör göras med försiktighet. Faktorer som försvårar sådana jämförelser är exempelvis tillkomst av för yrkesregistret nya källor, förändringar av samt förbättringar i källornas underliggande klassificeringar av yrke. Från 2008 härleds SSYK från en ny yrkesklassificering i kommuner och landsting, vilket har lett till vissa SSYK-förändringar."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Yrke",
+        "Alder",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        114,
+        10,
+        2,
+        1,
+        13
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            },
+            "note": {
+              "03": [
+                "Fr.o.m 2007 har Heby kommun (0331) som tidigare tillhört Västmanlands län övergått till Uppsala län. Heby kommun fick då kod 0331. Indelningen används i registret från år 2006."
+              ],
+              "19": [
+                "Fr.o.m 2007 har Heby kommun (0331) som tidigare tillhört Västmanlands län övergått till Uppsala län. Heby kommun fick då kod 0331. Indelningen används i registret från år 2006."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "03": {
+                "0": true
+              },
+              "19": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS2_1",
+                "label": "NUTS2 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_1?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3",
+                "label": "NUTS3 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän99",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Yrke": {
+          "label": "yrke",
+          "category": {
+            "index": {
+              "111": 0,
+              "112": 1,
+              "121": 2,
+              "122": 3,
+              "123": 4,
+              "131": 5,
+              "211": 6,
+              "212": 7,
+              "213": 8,
+              "214": 9,
+              "221": 10,
+              "222": 11,
+              "223": 12,
+              "231": 13,
+              "232": 14,
+              "233": 15,
+              "234": 16,
+              "235": 17,
+              "241": 18,
+              "242": 19,
+              "243": 20,
+              "244": 21,
+              "245": 22,
+              "246": 23,
+              "247": 24,
+              "248": 25,
+              "249": 26,
+              "311": 27,
+              "312": 28,
+              "313": 29,
+              "314": 30,
+              "315": 31,
+              "321": 32,
+              "322": 33,
+              "323": 34,
+              "324": 35,
+              "331": 36,
+              "332": 37,
+              "341": 38,
+              "342": 39,
+              "343": 40,
+              "344": 41,
+              "345": 42,
+              "346": 43,
+              "347": 44,
+              "348": 45,
+              "411": 46,
+              "412": 47,
+              "413": 48,
+              "414": 49,
+              "415": 50,
+              "419": 51,
+              "421": 52,
+              "422": 53,
+              "511": 54,
+              "512": 55,
+              "513": 56,
+              "514": 57,
+              "515": 58,
+              "521": 59,
+              "522": 60,
+              "611": 61,
+              "612": 62,
+              "613": 63,
+              "614": 64,
+              "615": 65,
+              "711": 66,
+              "712": 67,
+              "713": 68,
+              "714": 69,
+              "721": 70,
+              "722": 71,
+              "723": 72,
+              "724": 73,
+              "731": 74,
+              "732": 75,
+              "733": 76,
+              "734": 77,
+              "741": 78,
+              "742": 79,
+              "743": 80,
+              "744": 81,
+              "811": 82,
+              "812": 83,
+              "813": 84,
+              "814": 85,
+              "815": 86,
+              "816": 87,
+              "817": 88,
+              "821": 89,
+              "822": 90,
+              "823": 91,
+              "824": 92,
+              "825": 93,
+              "826": 94,
+              "827": 95,
+              "828": 96,
+              "829": 97,
+              "831": 98,
+              "832": 99,
+              "833": 100,
+              "834": 101,
+              "911": 102,
+              "912": 103,
+              "913": 104,
+              "914": 105,
+              "915": 106,
+              "919": 107,
+              "921": 108,
+              "931": 109,
+              "932": 110,
+              "933": 111,
+              "011": 112,
+              "0002": 113
+            },
+            "label": {
+              "111": "högre ämbetsmän och politiker",
+              "112": "chefstjänstemän i intresseorganisationer",
+              "121": "verkställande direktörer, verkschefer m.fl.",
+              "122": "drift- och verksamhetschefer",
+              "123": "chefer för särskilda funktioner",
+              "131": "chefer för mindre företag och enheter",
+              "211": "fysiker, kemister m.fl.",
+              "212": "matematiker och statistiker",
+              "213": "dataspecialister",
+              "214": "civilingenjörer, arkitekter m.fl.",
+              "221": "specialister inom biologi, jord- och skogsbruk m.m.",
+              "222": "hälso- och sjukvårdsspecialister",
+              "223": "barnmorskor; sjuksköterskor med särskild kompetens",
+              "231": "universitets- och högskollärare",
+              "232": "gymnasielärare m.fl.",
+              "233": "grundskollärare",
+              "234": "speciallärare",
+              "235": "andra pedagoger med teoretisk specialistkompetens",
+              "241": "företagsekonomer, marknadsförare och personaltjänstemän",
+              "242": "jurister",
+              "243": "arkivarier, bibliotekarier m.fl.",
+              "244": "samhälls- och språkvetare m.fl.",
+              "245": "journalister, konstnärer, skådespelare m.fl.",
+              "246": "präster",
+              "247": "administratörer i offentlig förvaltning",
+              "248": "administratörer i intresseorganistationer",
+              "249": "psykologer, socialsekreterare m.fl.",
+              "311": "ingenjörer och tekniker",
+              "312": "datatekniker och dataoperatörer",
+              "313": "fotografer; ljud- och bildtekniker, sjukhustekniker m.fl.",
+              "314": "piloter, fartygsbefäl m.fl.",
+              "315": "säkerhets- och kvalitetsinspektörer",
+              "321": "lantmästare, skogsmästare m.fl.",
+              "322": "sjukgymnaster, tandhygienister m.fl.",
+              "323": "sjuksköterskor",
+              "324": "biomedicinska analytiker",
+              "331": "förskollärare och fritidspedagoger",
+              "332": "andra lärare och instruktörer",
+              "341": "säljare, inköpare, mäklare m.fl.",
+              "342": "agenter, förmedlare m.fl.",
+              "343": "redovisningsekonomer, administrativa assistenter m.fl.",
+              "344": "tull-, taxerings- och socialförsäkringstjänstemän",
+              "345": "poliser",
+              "346": "behandlingsassistenter, fritidsledare m.fl.",
+              "347": "tecknare, underhållare, professionella idrottsutövare m.fl.",
+              "348": "pastorer",
+              "411": "kontorssekreterare och dataregistrerare",
+              "412": "bokförings- och redovisningsassistenter",
+              "413": "lager- och transportassistenter",
+              "414": "biblioteksassistenter m.fl.",
+              "415": "brevbärare m.fl.",
+              "419": "övrig kontorspersonal",
+              "421": "kassapersonal m.fl.",
+              "422": "kundinformatörer",
+              "511": "resevärdar m.fl.",
+              "512": "storhushålls- och restaurangpersonal",
+              "513": "vård- och omsorgspersonal",
+              "514": "frisörer och annan servicepersonal, personliga tjänster",
+              "515": "säkerhetspersonal",
+              "521": "fotomodeller m.fl.",
+              "522": "försäljare, detaljhandel; demonstratörer m.fl.",
+              "611": "växtodlare inom jordbruk och trädgård",
+              "612": "djuruppfödare och djurskötare",
+              "613": "växtodlare och djuruppfödare, blandad drift",
+              "614": "skogsbrukare",
+              "615": "fiskare och jägare",
+              "711": "gruv-, bergarbetare och stenhuggare",
+              "712": "byggnads- och anläggningsarbetare",
+              "713": "byggnadshantverkare",
+              "714": "målare, lackerare, skorstensfejare m.fl.",
+              "721": "gjutare, svetsare, plåtslagare m.fl.",
+              "722": "smeder, verktygsmakare m.fl.",
+              "723": "maskin- och motorreparatörer",
+              "724": "elmontörer, tele- och elektronikreparatörer m.fl.",
+              "731": "finmekaniker m.fl.",
+              "732": "drejare, glashyttearbetare, dekorationsmålare m.fl.",
+              "733": "konsthantverkare i trä, textil, läder m.m.",
+              "734": "grafiker m.fl.",
+              "741": "slaktare, bagare, konditorer m.fl.",
+              "742": "möbelsnickare, modellsnickare m.fl.",
+              "743": "skräddare, tillskärare, tapetserare m.fl.",
+              "744": "garvare, skinnberedare och skomakare",
+              "811": "malmförädlingsoperatörer, brunnsborrare m.fl.",
+              "812": "processoperatörer vid stål- o metallverk",
+              "813": "processoperatörer, glas och keramiska produkter",
+              "814": "processoperatörer, trä- och pappersindustri",
+              "815": "processoperatörer, kemisk basindistri",
+              "816": "driftmaskinister m.fl.",
+              "817": "industrirobotoperatörer",
+              "821": "maskinoperatörer, metall- och mineralbehandling",
+              "822": "maskinoperatörer, kemisk-teknisk industri",
+              "823": "maskinoperatörer, gummi- och plastindustri",
+              "824": "maskinoperatörer, trävaruindustri",
+              "825": "maskinoperatörer, grafisk industri, pappersvaruindustri",
+              "826": "maskinoperatörer, textil-, skinn- och läderindustri",
+              "827": "maskinoperatörer, livsmedelsindustri m.m.",
+              "828": "montörer",
+              "829": "övriga maskinoperatörer och montörer",
+              "831": "lokförare m.fl.",
+              "832": "fordonsförare",
+              "833": "maskinförare",
+              "834": "däckspersonal",
+              "911": "torg- och marknadsförsäljare",
+              "912": "städare m.fl.",
+              "913": "köks- och restaurangbiträden",
+              "914": "tidningsdistributörer, vaktmästare m.fl.",
+              "915": "renhållnings- och återvinningsarbetare",
+              "919": "övriga servicarbetare",
+              "921": "medhjälpare inom jordbruk, trädgård, skogsbruk och fiske",
+              "931": "grovarbetare inom bygg och anläggning",
+              "932": "handpaketerare och andra fabriksarbetare",
+              "933": "godshanterare och expressbud",
+              "011": "militärer",
+              "0002": "yrke okänt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-29": 1,
+              "30-34": 2,
+              "35-39": 3,
+              "40-44": 4,
+              "45-49": 5,
+              "50-54": 6,
+              "55-59": 7,
+              "60-64": 8,
+              "065-69": 9
+            },
+            "label": {
+              "16-24": "16–24 år",
+              "25-29": "25–29 år",
+              "30-34": "30–34 år",
+              "35-39": "35–39 år",
+              "40-44": "40–44 år",
+              "45-49": "45–49 år",
+              "50-54": "50–54 år",
+              "55-59": "55–59 år",
+              "60-64": "60–64 år",
+              "065-69": "65–69 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0208A3": 0
+            },
+            "label": {
+              "AM0208A3": "Antal"
+            },
+            "unit": {
+              "AM0208A3": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "AM0208A3": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0208A3": "Flow"
+            },
+            "priceType": {
+              "AM0208A3": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0208A3": "None"
+            },
+            "alternativeText": {
+              "AM0208A3": "Anställda 16-64 år med bostad i regionen (nattbef)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2001": 0,
+              "2002": 1,
+              "2003": 2,
+              "2004": 3,
+              "2005": 4,
+              "2006": 5,
+              "2007": 6,
+              "2008": 7,
+              "2009": 8,
+              "2010": 9,
+              "2011": 10,
+              "2012": 11,
+              "2013": 12
+            },
+            "label": {
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0208",
+          "tableid": "TAB4089",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Anställda 16-64 år med bostad i regionen (nattbef)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Yrke",
+            "Alder",
+            "Kon"
+          ],
+          "matrix": "TAB4089",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Linn Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 61 34",
+            "mail": "linn.eriksson@scb.se",
+            "raw": "Linn Eriksson, SCB# +46 010-479 61 34#linn.eriksson@scb.se"
+          },
+          {
+            "name": "Linda Karbing",
+            "organization": "SCB",
+            "phone": "010-479 66 49",
+            "mail": "linda.karbing@scb.se",
+            "raw": "Linda Karbing, SCB# +46 010-479 66 49#linda.karbing@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4089",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4089",
+        "label": "Anställda 16-64 år med bostad i regionen (nattbef) efter län, yrke (3-siffrig SSYK 96), ålder och kön. År 2001-2013",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2015-02-12T08:30:00Z",
+        "firstPeriod": "2001",
+        "lastPeriod": "2013",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "yrke",
+          "ålder",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0208",
+              "label": "Yrkesregistret med yrkesstatistik",
+              "sortCode": "320"
+            },
+            {
+              "id": "AM0208C",
+              "label": "Anställda efter bostadens belägenhet (nattbefolkning) (SSYK3)",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

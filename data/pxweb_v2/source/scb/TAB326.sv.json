@@ -1,0 +1,457 @@
+{
+  "key": "scb/TAB326/sv",
+  "identifier": "TAB326",
+  "language": "sv",
+  "updated": "2017-02-23T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:34:03.863682+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Värderingsenheter (typkod 320, 321, 325, 420-433, 520), genomsnittliga areor och taxerings-/basvärden efter län, slag av enhet och värdeårsklass. År 2000-2016",
+      "source": "SCB",
+      "updated": "2017-02-23T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0601"
+            },
+            "href": "https://www.scb.se/BO0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "För de år då det varit en förenklad fastighetstaxering sätts siffrorna till noll för typkoderna 400-890 (Industrienhet, Täktenhet, Elproduktionsenhet, Specialenhet). Siffror för dessa typkoder redovisas under tabellrubriken ” Särskild (årlig) fastighetstaxering 1998-”. För taxeringsenheter för vilka det inte görs en förenklad eller allmän fastighetstaxering görs en särskild fastighetstaxering. Vid en särskild fastighetstaxering fastställs i princip föregående års taxeringsvärden om det inte finns skäl för omtaxering.",
+        "I och med fastighetstaxeringen för år 2016 har Skatteverket ändrat på två typkoder för hyreshusenheter. Före år 2016 hade typkoderna följande beteckningar ”320 Hyreshusenhet, huvudsakligen bostäder” och ”325 Hyreshusenhet, huvudsakligen lokaler”. Från och med år 2016 har de följande beteckningar ”320 Hyreshusenhet, bostäder” och ”325 Hyreshusenhet, lokaler”.  Detta innebär att de taxeringsenheter som tidigare har innehållit både bostäder och lokaler har flyttas till typkod ”321 Hyreshusenhet, bostäder och lokaler”.",
+        "Från och med 2007-01-01 utökas Uppsala län med Heby kommun. Observera att länssiffrorna inte är jämförbara med länssiffrorna bakåt i tiden. ",
+        "  Från och med 2007-01-01 minskar Västmanlands län med Heby kommun. Observera att länssiffrorna inte är jämförbara med länssiffrorna bakåt i tiden."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SlagAvEnhet",
+        "VardeArsKlass",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        3,
+        22,
+        4,
+        6
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän07EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "SlagAvEnhet": {
+          "label": "slag av enhet",
+          "category": {
+            "index": {
+              "B": 0,
+              "L": 1,
+              "I": 2
+            },
+            "label": {
+              "B": "hyreshus, bostadsdel",
+              "L": "hyreshus, lokaldel",
+              "I": "industrienhet"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "VardeArsKlass": {
+          "label": "värdeårsklass",
+          "note": [
+            "Värdeår. Normalt är värdeår byggnadens nybyggnadsår. Har en byggnad varit föremål för om- eller tillbyggnad, som ökar byggnadens återstående livslängd, ska värdeåret jämkas."
+          ],
+          "category": {
+            "index": {
+              "98": 0,
+              "-1929": 1,
+              "1930-1934": 2,
+              "1935-1939": 3,
+              "1940-1944": 4,
+              "1945-1949": 5,
+              "1950-1954": 6,
+              "1955-1959": 7,
+              "1960-1964": 8,
+              "1965-1969": 9,
+              "1970-1974": 10,
+              "1975-1979": 11,
+              "1980-1984": 12,
+              "1985-1989": 13,
+              "1990-1994": 14,
+              "1995-1999": 15,
+              "2000-2003": 16,
+              "2004-2006": 17,
+              "2007-2009": 18,
+              "2010-2012": 19,
+              "2013-2015": 20,
+              "UB": 21
+            },
+            "label": {
+              "98": "samtliga",
+              "-1929": "–1929",
+              "1930-1934": "1930–1934",
+              "1935-1939": "1935–1939",
+              "1940-1944": "1940–1944",
+              "1945-1949": "1945–1949",
+              "1950-1954": "1950–1954",
+              "1955-1959": "1955–1959",
+              "1960-1964": "1960–1964",
+              "1965-1969": "1965–1969",
+              "1970-1974": "1970–1974",
+              "1975-1979": "1975–1979",
+              "1980-1984": "1980–1984",
+              "1985-1989": "1985–1989",
+              "1990-1994": "1990–1994",
+              "1995-1999": "1995–1999",
+              "2000-2003": "2000–2003",
+              "2004-2006": "2004–2006",
+              "2007-2009": "2007–2009",
+              "2010-2012": "2010–2012",
+              "2013-2015": "2013–2015",
+              "UB": "under byggnad"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0601C7": 0,
+              "BO0601C8": 1,
+              "BO0601C9": 2,
+              "BO0601D1": 3
+            },
+            "label": {
+              "BO0601C7": "Värderingsenheter",
+              "BO0601C8": "Genomsnittlig area, kvm",
+              "BO0601C9": "Genomsnittligt totalt taxerings-/basvärde, tkr",
+              "BO0601D1": "Genomsnittligt taxerings-/basvärde, kr/kvm"
+            },
+            "note": {
+              "BO0601C7": [
+                "Värderingsenhet är den egendom inom en taxeringsenhet som skall värderas för sig. Varje tomt utgör som regel en värderingsenhet. Varje byggnad med ett värde om minst 50 000 kronor utgör en värderingsenhet. För hyreshusenheter gäller att bostadsdelen och lokaldelen i ett hyreshus bildar separata värderingsenheter. Vart och ett av ägoslagen åkermark, betesmark, skogsmark och skogsimpediment utgör också en värderingsenhet. Varje modern ekonomibyggnad skall också utgöra en värderingsenhet."
+              ],
+              "BO0601C9": [
+                "Basvärde respektive taxeringsvärde \r\n  Under perioden 1996 till 2002 omfattades alla skattepliktiga taxeringsenheter utom industrier av det s.k. omräkningsförfarandet. Det innebar att basvärdet för varje värderingsenhet multiplicerades med ett av Skatteverket fastställt omräkningstal. Resultatet efter omräkningen benämndes taxeringsvärde."
+              ],
+              "BO0601D1": [
+                "Basvärde respektive taxeringsvärde \r\n  Under perioden 1996 till 2002 omfattades alla skattepliktiga taxeringsenheter utom industrier av det s.k. omräkningsförfarandet. Det innebar att basvärdet för varje värderingsenhet multiplicerades med ett av Skatteverket fastställt omräkningstal. Resultatet efter omräkningen benämndes taxeringsvärde."
+              ]
+            },
+            "unit": {
+              "BO0601C7": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0601C8": {
+                "base": "kvm",
+                "decimals": 0
+              },
+              "BO0601C9": {
+                "base": "tkr",
+                "decimals": 0
+              },
+              "BO0601D1": {
+                "base": "kr/kvm",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0601C7": "2000",
+              "BO0601C8": "2000",
+              "BO0601C9": "2000",
+              "BO0601D1": "2000"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0601C7": "Stock",
+              "BO0601C8": "Stock",
+              "BO0601C9": "Stock",
+              "BO0601D1": "Stock"
+            },
+            "priceType": {
+              "BO0601C7": "NotApplicable",
+              "BO0601C8": "NotApplicable",
+              "BO0601C9": "NotApplicable",
+              "BO0601D1": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0601C7": "None",
+              "BO0601C8": "None",
+              "BO0601C9": "None",
+              "BO0601D1": "None"
+            },
+            "basePeriod": {
+              "BO0601C7": "2000",
+              "BO0601C8": "2000",
+              "BO0601C9": "2000",
+              "BO0601D1": "2000"
+            },
+            "alternativeText": {
+              "BO0601C7": "Allmän och förenklad fastighetstaxering, värderingsenheter",
+              "BO0601C8": "Allmän och förenklad fastighetstaxering, genomsnittlig area, kvm",
+              "BO0601C9": "Allmän och förenklad fastighetstaxering, genomsnittligt totalt taxerings-/basvärde, tkr",
+              "BO0601D1": "Allmän och förenklad fastighetstaxering, genomsnittligt taxerings-/basvärde, kr/kvm"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år, oregelb",
+          "category": {
+            "index": {
+              "2000": 0,
+              "2004": 1,
+              "2007": 2,
+              "2010": 3,
+              "2013": 4,
+              "2016": 5
+            },
+            "label": {
+              "2000": "2000",
+              "2004": "2004",
+              "2007": "2007",
+              "2010": "2010",
+              "2013": "2013",
+              "2016": "2016"
+            },
+            "note": {
+              "2004": [
+                "Allmän fastighetstaxering görs vart sjätte år enligt ett rullande schema per fastighetstyp. Sedan 2003 görs även förenklad fastighetstaxering för fastighetstyperna småhus (typkodsserie 200) , hyreshus och ägarlägenhet (typkodsserie 300 och 500) och lantbruk (typkodsserie 100). Det görs vart sjätte år per fastighetstyp, de år då den allmänna fastighetstaxeringen inte görs. För fastighetstyper inom gruppen industri görs endast allmän fastighetstaxering vart sjätte år. Där ingår fastighetstyperna industri (typkodsserie 400), täkt (typkodsserie 600), elproduktion (typkodsserie 700) och special (typkodsserie 800). \r\n  Statistiken redovisar värden för de fastighetstyper som har genomgått allmän eller förenklad fastighetstaxering vid redovisningsåret. Det innebär redovisning vart tredje år för fastighetstyperna småhus, hyreshus, ägarlägenhet och lantbruk, och vart sjätte år för fastighetstyperna industri, täkt, elproduktion och specialenheter. \r\n  Särskild fastighetstaxering görs varje år på de fastigheter som inte taxeras genom allmän fastighetstaxering. Då fastställs föregående års taxering om det inte har skett några större förändringar på fastigheten eller om den är nybildad. "
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "2": true,
+          "3": true
+        },
+        "px": {
+          "infofile": "BO0601",
+          "tableid": "TAB326",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Allmän och förenklad fastighetstaxering",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SlagAvEnhet",
+            "VardeArsKlass"
+          ],
+          "matrix": "TAB326",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Magnus Walestad",
+            "organization": "SCB",
+            "phone": "010-479 44 18",
+            "mail": "magnus.walestad@scb.se",
+            "raw": "Magnus Walestad, SCB# +46 010-479 44 18#magnus.walestad@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB326",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB326",
+        "label": "Värderingsenheter (typkod 320, 321, 325, 420-433, 520), genomsnittliga areor och taxerings-/basvärden efter län, slag av enhet och värdeårsklass. År 2000-2016",
+        "description": "",
+        "sortCode": "07",
+        "updated": "2017-02-23T08:30:00Z",
+        "firstPeriod": "2000",
+        "lastPeriod": "2016",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "slag av enhet",
+          "värdeårsklass",
+          "tabellinnehåll",
+          "år, oregelb"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0601",
+              "label": "Fastighetstaxeringar",
+              "sortCode": "Fastighetstaxeringar"
+            },
+            {
+              "id": "BO0601D",
+              "label": "Allmän/förenklad  fastighetstaxering för hyreshus och industrier m.fl.",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB326?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB326?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB326/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB326/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

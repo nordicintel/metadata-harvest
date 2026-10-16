@@ -1,0 +1,457 @@
+{
+  "key": "scb/TAB3001/en",
+  "identifier": "TAB3001",
+  "language": "en",
+  "updated": "2026-01-23T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:25:05.230816+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Employed persons aged 15-74 (LFS) by region, degree of attachment to the labour market and sex. Year 2005-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-01-23T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "For the period 2005M01–2020M12, the time series contains ´linked data´. No margins of error (uncertainty figures) are reported for the period, this is instead marked as '..' in the time series. The series 2001M01–2004M12 are macrolinked and for the period 2005M01–2020M12 they are microlinked. The estimates regarding quarter 1 2005 and its constituent months are based on a smaller number of responses than other periods. These estimates are therefore more uncertain and should be used with caution. ",
+        "In 2023, the retirement age was raised from 65 to 66 years, and in 2026, it will be raised to 67 years. This results in the reporting of more age groups in the LFS. To enable comparisons over time, the age groups 16–65, 16–66, 20–65, and 20–66 are reported back to 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Anknytningsgrad",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        26,
+        4,
+        3,
+        2,
+        21
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0050": 1,
+              "01": 2,
+              "0180": 3,
+              "03": 4,
+              "04": 5,
+              "05": 6,
+              "06": 7,
+              "07": 8,
+              "08": 9,
+              "09": 10,
+              "10": 11,
+              "12": 12,
+              "1280": 13,
+              "13": 14,
+              "14": 15,
+              "1480": 16,
+              "17": 17,
+              "18": 18,
+              "19": 19,
+              "20": 20,
+              "21": 21,
+              "22": 22,
+              "23": 23,
+              "24": 24,
+              "25": 25
+            },
+            "label": {
+              "00": "Sweden",
+              "0050": "The whole country excluding Stockholm, Göteborg and Malmö",
+              "01": "Stockholm county",
+              "0180": "Stockholm",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "1280": "Malmö",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "1480": "Göteborg",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_Region99StorstadCEjAggr",
+                "label": "Large municipalities, division of 2003 and Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Region99StorstadCEjAggr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän99EjAggr",
+                "label": "County",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99EjAggr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Anknytningsgrad": {
+          "label": "degree of attachment to the labour market",
+          "category": {
+            "index": {
+              "FA": 0,
+              "TA": 1,
+              "FÖ+MH": 2,
+              "SYSTOT": 3
+            },
+            "label": {
+              "FA": "permanent employees",
+              "TA": "temporary employees",
+              "FÖ+MH": "self-employed + family workers",
+              "SYSTOT": "total employment"
+            },
+            "note": {
+              "FA": [
+                "Permanent and temporary employees together make up the total number of employees"
+              ],
+              "TA": [
+                "Permanent and temporary employees together make up the total number of employees"
+              ],
+              "FÖ+MH": [
+                "The self-employed group includes self-employed persons who have either some form of sole proprietorship, or persons who are freelancers. Family worker includes persons who work without pay in some company belonging to a household member."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "FA": {
+                "0": true
+              },
+              "TA": {
+                "0": true
+              },
+              "FÖ+MH": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "AM0401VJ": 0,
+              "AM0401VK": 1
+            },
+            "label": {
+              "AM0401VJ": "Thousands",
+              "AM0401VK": "Margin of error ±, 1000s"
+            },
+            "note": {
+              "AM0401VK": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "AM0401VJ": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "AM0401VK": {
+                "base": "1000s",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0401VK": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0401VJ": "",
+              "AM0401VK": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0401VJ": "Average",
+              "AM0401VK": "Average"
+            },
+            "priceType": {
+              "AM0401VJ": "NotApplicable",
+              "AM0401VK": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0401VJ": "None",
+              "AM0401VK": "None"
+            },
+            "alternativeText": {
+              "AM0401VJ": "Employed persons aged 15-74 (LFS), thousands",
+              "AM0401VK": "Margin of error ± employed persons aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15,
+              "2021": 16,
+              "2022": 17,
+              "2023": 18,
+              "2024": 19,
+              "2025": 20
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB3001",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Employed persons aged 15-74 (LFS), figures expressed in thousands",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Anknytningsgrad",
+            "Kon"
+          ],
+          "matrix": "TAB3001",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3001",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3001",
+        "label": "Employed persons aged 15-74 (LFS) by region, degree of attachment to the labour market and sex. Year 2005-2025",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2026-01-23T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "degree of attachment to the labour market",
+          "sex",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0401",
+              "label": "Labour Force Surveys (LFS)",
+              "sortCode": "Labour Force Surveys (LFS)"
+            },
+            {
+              "id": "AM0401N",
+              "label": "Regional data from 2005",
+              "sortCode": "011"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3001?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3001?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3001/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3001/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,426 @@
+{
+  "key": "scb/TAB1156/sv",
+  "identifier": "TAB1156",
+  "language": "sv",
+  "updated": "2026-06-05T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:33:43.775418+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Försålda hyreshus efter region (län, riket) och fastighetstyp. År 1989-2025",
+      "source": "SCB",
+      "updated": "2026-06-05T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0501"
+            },
+            "href": "https://www.scb.se/BO0501",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I och med fastighetstaxeringen för år 2016 har Skatteverket ändrat på två typkoder för hyreshusenheter. Före år 2016 hade typkoderna följande beteckningar ”320 Hyreshusenhet, huvudsakligen bostäder” och ”325 Hyreshusenhet, huvudsakligen lokaler”. Från och med år 2016 har de följande beteckningar ”320 Hyreshusenhet, bostäder” och ”325 Hyreshusenhet, lokaler”. Detta innebär att de taxeringsenheter som tidigare har innehållit både bostäder och lokaler har flyttas till typkod ”321 Hyreshusenhet, bostäder och lokaler”."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "geo": [
+          "Region"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Fastighetstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        4,
+        4,
+        37
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Fastighetstyp": {
+          "label": "fastighetstyp",
+          "category": {
+            "index": {
+              "32": 0,
+              "320": 1,
+              "321": 2,
+              "325": 3
+            },
+            "label": {
+              "32": "hyreshus (typkod 320, 321, 325)",
+              "320": "hyreshus med bostäder (typkod 320)",
+              "321": "hyreshus med både bostäder och lokaler (typkod 321)",
+              "325": "hyreshus med lokaler (typkod 325)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0501B1": 0,
+              "BO0501B2": 1,
+              "BO0501B3": 2,
+              "BO0501B4": 3
+            },
+            "label": {
+              "BO0501B1": "Antal",
+              "BO0501B2": "Köpeskilling, medelvärde i tkr",
+              "BO0501B3": "Bas-/taxeringsvärde, medelvärde i tkr",
+              "BO0501B4": "Köpeskillingskoefficient"
+            },
+            "note": {
+              "BO0501B3": [
+                "För åren 1988–1993 avses taxeringsvärdet enligt 1988 års fastighetstaxering. \r\n  För åren 1994–1999 avses taxeringsvärdet enligt 1994 års fastighetstaxering. \r\n  För åren 2000–2003 avses basvärdet enligt 2000 års fastighetstaxering. \r\n  För åren 2004–2006 avses taxeringsvärdet enligt 2004 års fastighetstaxering. \r\n  För åren 2007–2009 avses taxeringsvärdet enligt 2007 års fastighetstaxering. \r\n  För åren 2010–2012 avses taxeringsvärdet enligt 2010 års fastighetstaxering. \r\n  För åren 2013–2015 avses taxeringsvärdet enligt 2013 års fastighetstaxering. \r\n  För åren 2016–2018 avses taxeringsvärdet enligt 2016 års fastighetstaxering. \r\n  För åren 2019–2021 avses taxeringsvärdet enligt 2019 års fastighetstaxering. \r\n  \nFr.o.m. 2022 avses taxeringsvärdet enligt 2022 års fastighetstaxering."
+              ],
+              "BO0501B4": [
+                "Köpeskillingskoefficient = Köpeskilling dividerat med bas-/taxeringsvärde",
+                "För hyreshus sålda 1988–1993, redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 1988 års taxeringsvärde. \r\n  \r\nFör åren 1994–1999 redovisas köpeskillingskoefficienten som ett K/B-tal där man beräknat köpeskillingen i förhållande till 1994 års taxeringsvärde. \r\n  \r\nFör åren 2000–2003 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2000 års basvärde. \r\n  \r\nFör åren 2004–2006 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2004 års taxeringsvärde. \r\n  \r\nFör åren 2007–2009 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2007 års taxeringsvärde. \r\n  \r\nFör åren 2010–2012 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2010 års taxeringsvärde. \r\n  \r\nFör åren 2013–2015 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2013 års taxeringsvärde. \r\n  \r\nFör åren 2016–2018 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2016 års taxeringsvärde. \r\n \nFör åren 2019–2021 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2019 års taxeringsvärde. \r\n  \r\nFör åren 2022–2024 redovisas köpeskillingskoefficienten som ett K/T-tal där man beräknat köpeskillingen i förhållande till 2022 års taxeringsvärde. \r\n  \r\nFr.o.m. 2025 är köpeskillingskoefficienten beräknad som ett K/T-tal i förhållande till 2025 års taxeringsvärde."
+              ]
+            },
+            "unit": {
+              "BO0501B1": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0501B2": {
+                "base": "medelvärde, tusen kronor",
+                "decimals": 0
+              },
+              "BO0501B3": {
+                "base": "medelvärde, tusen kronor",
+                "decimals": 0
+              },
+              "BO0501B4": {
+                "base": "köpeskilling/basvärde, ovägt",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "BO0501B3": {
+                "0": true
+              },
+              "BO0501B4": {
+                "0": true,
+                "1": true
+              }
+            },
+            "refperiod": {
+              "BO0501B1": "Under året",
+              "BO0501B2": "Under året",
+              "BO0501B3": "Under året",
+              "BO0501B4": "Under året"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0501B1": "Stock",
+              "BO0501B2": "Stock",
+              "BO0501B3": "Stock",
+              "BO0501B4": "Stock"
+            },
+            "priceType": {
+              "BO0501B1": "NotApplicable",
+              "BO0501B2": "NotApplicable",
+              "BO0501B3": "NotApplicable",
+              "BO0501B4": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0501B1": "None",
+              "BO0501B2": "None",
+              "BO0501B3": "None",
+              "BO0501B4": "None"
+            },
+            "alternativeText": {
+              "BO0501B1": "Antal försålda hyreshus",
+              "BO0501B2": "Köpeskilling för hyreshus, medelvärde i tkr",
+              "BO0501B3": "Bas-/taxeringsvärde för hyreshus, medelvärde i tkr",
+              "BO0501B4": "Köpeskillingskoefficient för hyreshus"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1989": 0,
+              "1990": 1,
+              "1991": 2,
+              "1992": 3,
+              "1993": 4,
+              "1994": 5,
+              "1995": 6,
+              "1996": 7,
+              "1997": 8,
+              "1998": 9,
+              "1999": 10,
+              "2000": 11,
+              "2001": 12,
+              "2002": 13,
+              "2003": 14,
+              "2004": 15,
+              "2005": 16,
+              "2006": 17,
+              "2007": 18,
+              "2008": 19,
+              "2009": 20,
+              "2010": 21,
+              "2011": 22,
+              "2012": 23,
+              "2013": 24,
+              "2014": 25,
+              "2015": 26,
+              "2016": 27,
+              "2017": 28,
+              "2018": 29,
+              "2019": 30,
+              "2020": 31,
+              "2021": 32,
+              "2022": 33,
+              "2023": 34,
+              "2024": 35,
+              "2025": 36
+            },
+            "label": {
+              "1989": "1989",
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "BO0501",
+          "tableid": "TAB1156",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Försålda hyreshus",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Fastighetstyp"
+          ],
+          "matrix": "TAB1156",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Niclas Sjölund",
+            "organization": "SCB",
+            "phone": "010-479 43 42",
+            "mail": "niclas.sjolund@scb.se",
+            "raw": "Niclas Sjölund, SCB# +46 010-479 43 42#niclas.sjolund@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1156",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1156",
+        "label": "Försålda hyreshus efter region (län, riket) och fastighetstyp. År 1989-2025",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2026-06-05T06:00:00Z",
+        "firstPeriod": "1989",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "fastighetstyp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0501",
+              "label": "Fastighetspriser och lagfarter",
+              "sortCode": "Fastighetspriser och lagfarter"
+            },
+            {
+              "id": "BO0501B",
+              "label": "Prisstatistik (småhus, hyreshus, lantbruk och industrier)",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1156?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1156?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1156/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1156/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

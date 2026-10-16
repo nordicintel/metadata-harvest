@@ -1,0 +1,395 @@
+{
+  "key": "scb/TAB4512/en",
+  "identifier": "TAB4512",
+  "language": "en",
+  "updated": "2026-06-25T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:31:46.429584+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Children and young persons aged 0–21 and living at home whose parents have separated during the year by sex, age, type of family, Swedish/foreign background and parents´ level of income. Year 2015-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-06-25T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0102"
+            },
+            "href": "https://www.scb.se/LE0102-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "Familjetyp",
+        "UtlBakgrund",
+        "Foraldrarinkniv",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        2,
+        4,
+        3,
+        5,
+        3,
+        11
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "5+6": 0,
+              "5": 1,
+              "6": 2
+            },
+            "label": {
+              "5+6": "boys and girls",
+              "5": "boys",
+              "6": "girls"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "0-17": 0,
+              "0-21": 1
+            },
+            "label": {
+              "0-17": "0–17 years",
+              "0-21": "0–21 years"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Familjetyp": {
+          "label": "family type",
+          "category": {
+            "index": {
+              "BorMedUF": 0,
+              "BorMedSF": 1,
+              "Annan": 2,
+              "Total": 3
+            },
+            "label": {
+              "BorMedUF": "living with biological parents",
+              "BorMedSF": "living with one biological parent and one step parent",
+              "Annan": "living with persons other than parents",
+              "Total": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtlBakgrund": {
+          "label": "foreign/Swedish background",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "TotalC": 2
+            },
+            "label": {
+              "1": "foreign background",
+              "2": "swedish background",
+              "TotalC": "total, foreign/Swedish background"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Foraldrarinkniv": {
+          "label": "parents´ income level",
+          "note": [
+            "Statistics on parents’ income level 2015–2016 were corrected in April 2019.",
+            "Statistics on parents’ income level 2015–2016 were corrected in April 2019.",
+            "Statistics on parents’ income level 2015–2016 were corrected in April 2019."
+          ],
+          "category": {
+            "index": {
+              "10": 0,
+              "20": 1,
+              "30": 2,
+              "35": 3,
+              "40": 4
+            },
+            "label": {
+              "10": "0–60 %",
+              "20": "60–200 %",
+              "30": "200– %",
+              "35": "information missing",
+              "40": "total"
+            },
+            "note": {
+              "35": [
+                "Refers to households where at least one of the adults have not been registered in Sweden the whole year or where there is no registered income."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true,
+              "2": true
+            },
+            "categoryNoteMandatory": {
+              "35": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000000UP": 0,
+              "000000UQ": 1,
+              "000000UR": 2
+            },
+            "label": {
+              "000000UP": "Percentage of children and young persons whose parents separated during the year",
+              "000000UQ": "Number of children and young person whose parents have separated during the year",
+              "000000UR": "Total number in the group"
+            },
+            "note": {
+              "000000UR": [
+                "Refers to the number of children who had cohabiting parents in the beginning of the year. "
+              ]
+            },
+            "unit": {
+              "000000UP": {
+                "base": "percentage",
+                "decimals": 1
+              },
+              "000000UQ": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000000UR": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000000UR": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000000UP": "31 December each year",
+              "000000UQ": "31 December each year",
+              "000000UR": "31 December each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000UP": "Flow",
+              "000000UQ": "Flow",
+              "000000UR": "Stock"
+            },
+            "priceType": {
+              "000000UP": "NotApplicable",
+              "000000UQ": "NotApplicable",
+              "000000UR": "NotApplicable"
+            },
+            "adjustment": {
+              "000000UP": "None",
+              "000000UQ": "None",
+              "000000UR": "None"
+            },
+            "alternativeText": {
+              "000000UP": "Children and young persons aged 0–21 and living at home whose parents have separated during the year, percentage of children",
+              "000000UQ": "Children and young persons aged 0–21 living at home whose parents have separated during the year, number of children",
+              "000000UR": "Children and young persons aged 0–21 living at home whose parents have separated during the year, total number in the group"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1,
+              "2017": 2,
+              "2018": 3,
+              "2019": 4,
+              "2020": 5,
+              "2021": 6,
+              "2022": 7,
+              "2023": 8,
+              "2024": 9,
+              "2025": 10
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "LE0102",
+          "tableid": "TAB4512",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Children and young persons aged 0–21 and living at home whose parents have separated during the year",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "Familjetyp",
+            "UtlBakgrund",
+            "Foraldrarinkniv"
+          ],
+          "matrix": "TAB4512",
+          "subject-code": "LE",
+          "subject-area": "Living conditions"
+        },
+        "contact": [
+          {
+            "name": "Nikolaus Koutakis",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 66 65",
+            "mail": "barn-ochfamiljestatistik@scb.se",
+            "raw": "Nikolaus Koutakis, Statistics Sweden# +46 010-479 66 65#barn-ochfamiljestatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4512",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4512",
+        "label": "Children and young persons aged 0–21 and living at home whose parents have separated during the year by sex, age, type of family, Swedish/foreign background and parents´ level of income. Year 2015-2025",
+        "description": "",
+        "sortCode": "006",
+        "updated": "2026-06-25T06:00:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "age",
+          "family type",
+          "foreign/Swedish background",
+          "parents´ income level",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Living conditions",
+              "sortCode": "Living conditions"
+            },
+            {
+              "id": "LE0102",
+              "label": "Children and their Families",
+              "sortCode": "Children and their Families"
+            },
+            {
+              "id": "LE0102F",
+              "label": "Separations between parents",
+              "sortCode": "007"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4512?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4512?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4512/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4512/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

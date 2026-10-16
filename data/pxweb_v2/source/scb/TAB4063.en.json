@@ -1,0 +1,341 @@
+{
+  "key": "scb/TAB4063/en",
+  "identifier": "TAB4063",
+  "language": "en",
+  "updated": "2026-10-08T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:16:15.118058+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Gross generation, installed generator capacity and number of plants. Year 2015-2025",
+      "source": "Swedish Energy Administration",
+      "updated": "2026-10-08T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:EN0105"
+            },
+            "href": "https://www.scb.se/EN0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Data not available (..).",
+        "Summations may differ between tables due to rounding.",
+        "Wind power data are collected from the basic data of the Electricity Certificate System.",
+        "Pump storage is included in hydropower.",
+        "Data regarding 2011-2021 for Solar power are collected from another survey, Grid connected photovoltaic systems (EN0123). Only grid connected systems are included, where a system is defined as one generating unit. Electricity generation from PV systems cannot be measured on a national level. Therefore it is estimated by taking the known installed generator capacity (provided by net operators) multiplied by 950 full load hours. As of 2022, data for solar power will be taken from the monthly electricity statistics.",
+        "Reported values for solar power include estimated self-consumed generation. The calculation and updates to the underlying model parameters affect the reported production volumes both in total and at the electricity bidding area level. Levels and year-to-year differences should therefore be interpreted with caution."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Elomrade",
+        "Kraftslag",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        7,
+        3,
+        11
+      ],
+      "dimension": {
+        "Elomrade": {
+          "label": "bidding zone",
+          "category": {
+            "index": {
+              "00": 0,
+              "SE1": 1,
+              "SE2": 2,
+              "SE3": 3,
+              "SE4": 4
+            },
+            "label": {
+              "00": "Sweden",
+              "SE1": "SE1",
+              "SE2": "SE2",
+              "SE3": "SE3",
+              "SE4": "SE4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kraftslag": {
+          "label": "type of power",
+          "category": {
+            "index": {
+              "Vattenkraft": 0,
+              "Vind": 1,
+              "sol": 2,
+              "Karnkraft": 3,
+              "Konv": 4,
+              "KonvFor": 5,
+              "KonvEjFor": 6
+            },
+            "label": {
+              "Vattenkraft": "hydro",
+              "Vind": "wind",
+              "sol": "solar",
+              "Karnkraft": "nuclear",
+              "Konv": "conventional thermal power (autoproducers, main activity producers, condensing turbines, gas turbines, others)",
+              "KonvFor": "- renewable ",
+              "KonvEjFor": "- non renewable "
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000006HQ": 0,
+              "000006HP": 1,
+              "000006HR": 2
+            },
+            "label": {
+              "000006HQ": "Number of plants",
+              "000006HP": "Installed generator capacity, MW",
+              "000006HR": "Gross generation, GWh"
+            },
+            "note": {
+              "000006HQ": [
+                "Number of plants: The population in the survey only includes companies that have electricity production with their own power source of at least 100 kW. That means that that many smaller hydro power plants are excluded. This does not have any significant impact on the total production or the total installed power, but a big impact on the number of plants published."
+              ]
+            },
+            "unit": {
+              "000006HQ": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000006HP": {
+                "base": "MW",
+                "decimals": 0
+              },
+              "000006HR": {
+                "base": "GWh",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000006HQ": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000006HQ": "Year",
+              "000006HP": "Year",
+              "000006HR": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000006HQ": "Stock",
+              "000006HP": "Flow",
+              "000006HR": "Flow"
+            },
+            "priceType": {
+              "000006HQ": "NotApplicable",
+              "000006HP": "NotApplicable",
+              "000006HR": "NotApplicable"
+            },
+            "adjustment": {
+              "000006HQ": "None",
+              "000006HP": "None",
+              "000006HR": "None"
+            },
+            "alternativeText": {
+              "000006HQ": "Number of plants",
+              "000006HP": "Installed generator capacity, MW",
+              "000006HR": "Gross generation, GWh"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1,
+              "2017": 2,
+              "2018": 3,
+              "2019": 4,
+              "2020": 5,
+              "2021": 6,
+              "2022": 7,
+              "2023": 8,
+              "2024": 9,
+              "2025": 10
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "EN0105",
+          "tableid": "TAB4063",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Gross generation, installed generator capacity and number of plants",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Elomrade",
+            "Kraftslag"
+          ],
+          "matrix": "TAB4063",
+          "subject-code": "EN",
+          "subject-area": "Energy"
+        },
+        "contact": [
+          {
+            "name": "Susanne Enmalm",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 69 63",
+            "mail": "susanne.enmalm@scb.se",
+            "raw": "Susanne Enmalm, Statistics Sweden# +46 010-479 69 63#susanne.enmalm@scb.se"
+          },
+          {
+            "name": "Evelina Viklöf",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 63 21",
+            "mail": "evelina.viklof@scb.se",
+            "raw": "Evelina Viklöf, Statistics Sweden# +46 010-479 63 21#evelina.viklof@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4063",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4063",
+        "label": "Gross generation, installed generator capacity and number of plants. Year 2015-2025",
+        "description": "",
+        "sortCode": "01",
+        "updated": "2026-10-08T06:00:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "bidding zone",
+          "type of power",
+          "observations",
+          "year"
+        ],
+        "source": "Swedish Energy Administration",
+        "subjectCode": "EN",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "EN",
+              "label": "Energy",
+              "sortCode": "Energy"
+            },
+            {
+              "id": "EN0105",
+              "label": "Annual energy statistics (electricity, gas and district heating)",
+              "sortCode": "Annual energy statistics (electricity, gas and district heating)"
+            },
+            {
+              "id": "EN0105A",
+              "label": "Annual energy statistics",
+              "sortCode": "016"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4063/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

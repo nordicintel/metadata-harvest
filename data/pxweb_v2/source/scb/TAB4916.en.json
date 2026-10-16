@@ -1,0 +1,361 @@
+{
+  "key": "scb/TAB4916/en",
+  "identifier": "TAB4916",
+  "language": "en",
+  "updated": "2018-11-29T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:10:09.683101+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sent invoices by recipient and study account inggroup. Share of enterprises. Year 2015-2016",
+      "source": "Statistics Sweden",
+      "updated": "2018-11-29T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Invoices in electronic form or paper form.",
+        "In this table, 0 means that the proportion is greater than zero but less than 0.5 percent, and that the confidence interval is greater than 0, but less than 0.5 percentage points. The character .. means that the task is not available or too uncertain to indicate."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Mottagare",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        24,
+        2,
+        2
+      ],
+      "dimension": {
+        "Mottagare": {
+          "label": "recipient",
+          "category": {
+            "index": {
+              "0010": 0,
+              "0020": 1,
+              "0030": 2
+            },
+            "label": {
+              "0010": "enterprise ",
+              "0020": "public sector",
+              "0030": "private persons"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "study domain",
+          "category": {
+            "index": {
+              "Tot250": 0,
+              "10-49": 1,
+              "50-249": 2,
+              "250-": 3,
+              "TotSNI": 4,
+              "10-33": 5,
+              "35-39": 6,
+              "41-43": 7,
+              "45-47": 8,
+              "49-53": 9,
+              "55-56": 10,
+              "58-63": 11,
+              "68": 12,
+              "69-82+95.1exkl.75": 13,
+              "IKT": 14,
+              "SE": 15,
+              "RIKS1": 16,
+              "RIKS2": 17,
+              "RIKS3": 18,
+              "RIKS4": 19,
+              "RIKS5": 20,
+              "RIKS6": 21,
+              "RIKS7": 22,
+              "RIKS8": 23
+            },
+            "label": {
+              "Tot250": "10 or more employees in total",
+              "10-49": "10–49 employees",
+              "50-249": "50–249 employees",
+              "250-": "250 or more employees",
+              "TotSNI": "total (SNI 10–63, 68–74, 77–82, 95.1)",
+              "10-33": "manufacturing (SNI 10–33)",
+              "35-39": "energy and recycling (SNI 35–39)",
+              "41-43": "construction (SNI 41–43)",
+              "45-47": "trade; motor vehicle and motorcycle garages (SNI 45–47)",
+              "49-53": "transport and storage enterprises (SNI 49–53)",
+              "55-56": "accommodation and food services (SNI 55–56)",
+              "58-63": "information and communication enterprises (SNI 58–63)",
+              "68": "real estate companies and managers (SNI 68)",
+              "69-82+95.1exkl.75": "other service companies (SNI 69–74, 77–82, 95.1)",
+              "IKT": "ICT sector (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sweden",
+              "RIKS1": "Stockholm",
+              "RIKS2": "East-Central Sweden",
+              "RIKS3": "Småland and islands",
+              "RIKS4": "South Sweden",
+              "RIKS5": "West Sweden",
+              "RIKS6": "North-Central Sweden",
+              "RIKS7": "Central Norrland",
+              "RIKS8": "Upper Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (only for enterprises with 10 or more employees)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Enterprises, 10 or more employees",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Industry (only enterprises with 10 or more employees)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000001ZB": 0,
+              "000001ZC": 1
+            },
+            "label": {
+              "000001ZB": "Share, percent",
+              "000001ZC": "Margin of error, ±"
+            },
+            "unit": {
+              "000001ZB": {
+                "base": "percent",
+                "decimals": 0
+              },
+              "000001ZC": {
+                "base": "percentage points",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001ZB": "Year",
+              "000001ZC": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001ZB": "Stock",
+              "000001ZC": "Stock"
+            },
+            "priceType": {
+              "000001ZB": "NotApplicable",
+              "000001ZC": "NotApplicable"
+            },
+            "adjustment": {
+              "000001ZB": "None",
+              "000001ZC": "None"
+            },
+            "alternativeText": {
+              "000001ZB": "Share of enterprises that sent invoices, percent",
+              "000001ZC": "Share of enterprises that sent invoices, margin of error ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB4916",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Sent invoices",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Mottagare",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4916",
+          "subject-code": "NV",
+          "subject-area": "Business activities"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, Statistics Sweden# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , Statistics Sweden# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4916",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4916",
+        "label": "Sent invoices by recipient and study account inggroup. Share of enterprises. Year 2015-2016",
+        "description": "",
+        "sortCode": "022",
+        "updated": "2018-11-29T08:30:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2016",
+        "category": "public",
+        "variableNames": [
+          "recipient",
+          "study domain",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Business activities",
+              "sortCode": "Business activities"
+            },
+            {
+              "id": "NV0116",
+              "label": "ICT usage in enterprises",
+              "sortCode": "ICT usage in enterprises"
+            },
+            {
+              "id": "NV0116O",
+              "label": "Electronic Business Processes",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4916?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4916?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4916/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4916/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

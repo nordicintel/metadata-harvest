@@ -1,0 +1,378 @@
+{
+  "key": "scb/TAB3007/sv",
+  "identifier": "TAB3007",
+  "language": "sv",
+  "updated": "2026-01-23T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:19:20.031666+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta 15-74 år (AKU) efter veckoarbetstid (överenskommen), kön och ålder. År 2005-2025",
+      "source": "SCB",
+      "updated": "2026-01-23T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "För perioden 2021 till 2022 avses endast överenskommen arbetstid i huvudsysslan. Detta då överenskommen arbetstid i bisysslan inte samlats in sedan implementeringen av EU förordning 2019/1700. Från och med januari 2023 återinfördes frågan om överenskommen arbetstid i bisysslan och total överenskommen arbetstid kan återigen redovisas.",
+        "För perioden 2005M01–2020M12 innehåller tidsserien ’länkade data’. Inga felmarginaler (osäkerhetstal) redovisas för perioden, detta markeras istället som ”..” i tidsserien. Läs under ’Aktuellt’ för mer information om de länkade serierna. Skattningarna avseende kvartal 1 2005 samt dess ingående månader baseras på en mindre svarsmängd än övriga perioder. Dessa skattningar är därför mer osäkra och bör användas med försiktighet. ",
+        "På grund av bristande jämförbarhet över tid, som ej har kunnat justeras genom länkning, prickas serier avseende överenskommen arbetstid för tidsperioden 2005–2020.",
+        "År 2023 höjdes pensionsåldern från 65 till 66 år och 2026 höjs den till 67 år. Detta medför en redovisning av fler åldersgrupper i AKU. För att möjliggöra jämförelser över tid redovisas åldersgrupperna 16–65, 16–66, 20–65 och 20–66 tillbaka till 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "VeckoarbetstidO",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        3,
+        14,
+        2,
+        21
+      ],
+      "dimension": {
+        "VeckoarbetstidO": {
+          "label": "veckoarbetstid (överenskommen)",
+          "category": {
+            "index": {
+              "1-19": 0,
+              "20-34": 1,
+              "35+": 2,
+              "TotSyss": 3
+            },
+            "label": {
+              "1-19": "1-19 tim",
+              "20-34": "20-34 tim",
+              "35+": "35+ tim",
+              "TotSyss": "sysselsatta totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "15-19": 0,
+              "20-24": 1,
+              "25-34": 2,
+              "35-44": 3,
+              "45-54": 4,
+              "55-64": 5,
+              "65-74": 6,
+              "tot15-74": 7,
+              "tot16-64": 8,
+              "tot16-65": 9,
+              "tot16-66": 10,
+              "tot20-64": 11,
+              "tot20-65": 12,
+              "tot20-66": 13
+            },
+            "label": {
+              "15-19": "15–19 år",
+              "20-24": "20–24 år",
+              "25-34": "25–34 år",
+              "35-44": "35–44 år",
+              "45-54": "45–54 år",
+              "55-64": "55–64 år",
+              "65-74": "65–74 år",
+              "tot15-74": "totalt 15–74 år",
+              "tot16-64": "totalt 16–64 år",
+              "tot16-65": "totalt 16–65 år",
+              "tot16-66": "totalt 16–66 år",
+              "tot20-64": "totalt 20–64 år",
+              "tot20-65": "totalt 20–65 år",
+              "tot20-66": "totalt 20–66 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0401JW": 0,
+              "AM0401JX": 1
+            },
+            "label": {
+              "AM0401JW": "Sysselsatta",
+              "AM0401JX": "Felmarginal ±"
+            },
+            "note": {
+              "AM0401JX": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM0401JW": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "AM0401JX": {
+                "base": "1000-tal",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0401JX": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0401JW": "",
+              "AM0401JX": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0401JW": "Average",
+              "AM0401JX": "Average"
+            },
+            "priceType": {
+              "AM0401JW": "NotApplicable",
+              "AM0401JX": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0401JW": "None",
+              "AM0401JX": "None"
+            },
+            "alternativeText": {
+              "AM0401JW": "Sysselsatta 15-74 år (AKU), 1000-tal",
+              "AM0401JX": "Felmarginal ±, sysselsatta 15-74 år (AKU), 1000-tal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15,
+              "2021": 16,
+              "2022": 17,
+              "2023": 18,
+              "2024": 19,
+              "2025": 20
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB3007",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sysselsatta 15-74 år (AKU), 1000-tal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "VeckoarbetstidO",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB3007",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3007",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3007",
+        "label": "Sysselsatta 15-74 år (AKU) efter veckoarbetstid (överenskommen), kön och ålder. År 2005-2025",
+        "description": "",
+        "sortCode": "09",
+        "updated": "2026-01-23T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "veckoarbetstid (överenskommen)",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0401",
+              "label": "Arbetskraftsundersökningarna (AKU)",
+              "sortCode": "020"
+            },
+            {
+              "id": "AM0401S",
+              "label": "Arbetstid från och med 2001",
+              "sortCode": "004"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3007?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3007?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3007/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3007/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

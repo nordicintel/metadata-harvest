@@ -1,0 +1,395 @@
+{
+  "key": "scb/TAB2891/en",
+  "identifier": "TAB2891",
+  "language": "en",
+  "updated": "2026-01-23T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:24:58.157432+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Unemployed persons and of which full-time students aged 15-74 (LFS) by sex and age. Year 2001-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-01-23T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "For the period 2001M01–2020M12, the time series contains ´linked data´. No margins of error (uncertainty figures) are reported for the period, this is instead marked as '..' in the time series. The series 2001M01–2004M12 are macrolinked and for the period 2005M01–2020M12 they are microlinked. The estimates regarding quarter 1 2005 and its constituent months are based on a smaller number of responses than other periods. These estimates are therefore more uncertain and should be used with caution.",
+        "In 2023, the retirement age was raised from 65 to 66 years, and in 2026, it will be raised to 67 years. This results in the reporting of more age groups in the LFS. To enable comparisons over time, the age groups 16–65, 16–66, 20–65, and 20–66 are reported back to 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Arbetskraftstillh",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        3,
+        8,
+        4,
+        25
+      ],
+      "dimension": {
+        "Arbetskraftstillh": {
+          "label": "labour status",
+          "category": {
+            "index": {
+              "ALÖS": 0,
+              "HELTSTUDSOK": 1
+            },
+            "label": {
+              "ALÖS": "unemployed",
+              "HELTSTUDSOK": "unemployed full-time students"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "15-24": 0,
+              "tot15-74": 1,
+              "tot16-64": 2,
+              "tot16-65": 3,
+              "tot16-66": 4,
+              "tot20-64": 5,
+              "tot20-65": 6,
+              "tot20-66": 7
+            },
+            "label": {
+              "15-24": "15–24 years",
+              "tot15-74": "total 15–74 years",
+              "tot16-64": "total 16–64 years",
+              "tot16-65": "total 16–65 years",
+              "tot16-66": "total 16–66 years",
+              "tot20-64": "total 20–64 years",
+              "tot20-65": "total 20–65 years",
+              "tot20-66": "total 20–66 years"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "AM04011O": 0,
+              "AM04011P": 1,
+              "AM04011Q": 2,
+              "AM04011R": 3
+            },
+            "label": {
+              "AM04011O": "1000s",
+              "AM04011P": "Margin of error ±, 1000s",
+              "AM04011Q": "Percent",
+              "AM04011R": "Margin of error ± percent"
+            },
+            "note": {
+              "AM04011P": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ],
+              "AM04011R": [
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value.",
+                "The presented margin of error corresponds to a 95 percent confidence interval."
+              ]
+            },
+            "unit": {
+              "AM04011O": {
+                "base": "Thousands",
+                "decimals": 1
+              },
+              "AM04011P": {
+                "base": "Thousands",
+                "decimals": 1
+              },
+              "AM04011Q": {
+                "base": "percent",
+                "decimals": 1
+              },
+              "AM04011R": {
+                "base": "percent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM04011P": {
+                "0": true
+              },
+              "AM04011R": {
+                "1": true
+              }
+            },
+            "refperiod": {
+              "AM04011O": "",
+              "AM04011P": "",
+              "AM04011Q": "",
+              "AM04011R": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM04011O": "Average",
+              "AM04011P": "Average",
+              "AM04011Q": "Average",
+              "AM04011R": "Average"
+            },
+            "priceType": {
+              "AM04011O": "NotApplicable",
+              "AM04011P": "NotApplicable",
+              "AM04011Q": "NotApplicable",
+              "AM04011R": "NotApplicable"
+            },
+            "adjustment": {
+              "AM04011O": "None",
+              "AM04011P": "None",
+              "AM04011Q": "None",
+              "AM04011R": "None"
+            },
+            "alternativeText": {
+              "AM04011O": "Unemployed persons  aged 15-74 (LFS), 1000s",
+              "AM04011P": "Margin of error ±, unemployed persons  aged 15-74 (LFS), 1000s",
+              "AM04011Q": "Unemployed aged 15-74 (LFS), percent",
+              "AM04011R": "Margin of error ±, percent aged 15-74 (LFS), percent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2001": 0,
+              "2002": 1,
+              "2003": 2,
+              "2004": 3,
+              "2005": 4,
+              "2006": 5,
+              "2007": 6,
+              "2008": 7,
+              "2009": 8,
+              "2010": 9,
+              "2011": 10,
+              "2012": 11,
+              "2013": 12,
+              "2014": 13,
+              "2015": 14,
+              "2016": 15,
+              "2017": 16,
+              "2018": 17,
+              "2019": 18,
+              "2020": 19,
+              "2021": 20,
+              "2022": 21,
+              "2023": 22,
+              "2024": 23,
+              "2025": 24
+            },
+            "label": {
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB2891",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Unemployed persons  aged 15-74 (LFS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Arbetskraftstillh",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB2891",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2891",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2891",
+        "label": "Unemployed persons and of which full-time students aged 15-74 (LFS) by sex and age. Year 2001-2025",
+        "description": "",
+        "sortCode": "09",
+        "updated": "2026-01-23T07:00:00Z",
+        "firstPeriod": "2001",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "labour status",
+          "sex",
+          "age",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0401",
+              "label": "Labour Force Surveys (LFS)",
+              "sortCode": "Labour Force Surveys (LFS)"
+            },
+            {
+              "id": "AM0401L",
+              "label": "Unemployed persons from 2001",
+              "sortCode": "008"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2891?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2891?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2891/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2891/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

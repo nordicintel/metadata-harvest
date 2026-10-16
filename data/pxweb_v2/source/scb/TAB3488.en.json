@@ -1,0 +1,393 @@
+{
+  "key": "scb/TAB3488/en",
+  "identifier": "TAB3488",
+  "language": "en",
+  "updated": "2011-03-30T07:30:00Z",
+  "retrieved_at": "2026-10-16T18:27:32.053613+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Population 16+ years (RAMS) at national level, employment, country of birth, latest year of immigration, age and sex. 1993-2003",
+      "source": "Statistics Sweden",
+      "updated": "2011-03-30T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0207"
+            },
+            "href": "https://www.scb.se/AM0207-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Latest year of immigrations indicates the year in which the individual was last registered in Sweden. Individuals who have never immigrated are reported in the group Missing value. This means that persons that are born in Sweden and been registered there their whole life are reported in that group. The group Missing value also contains those individuals who have immigrated to Sweden but data on time for immigration are missing."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sysselsattning",
+        "Fodelseregion",
+        "Invandringsar",
+        "Alder",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        9,
+        5,
+        8,
+        2,
+        1,
+        11
+      ],
+      "dimension": {
+        "Sysselsattning": {
+          "label": "employment status",
+          "category": {
+            "index": {
+              "FÖRV": 0,
+              "EJFÖRV": 1
+            },
+            "label": {
+              "FÖRV": "gainfully employed population",
+              "EJFÖRV": "not gainfully employed population"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fodelseregion": {
+          "label": "region of birth",
+          "category": {
+            "index": {
+              "AFR": 0,
+              "ASI": 1,
+              "ÖEU": 2,
+              "NAMA": 3,
+              "OCEA": 4,
+              "SAM": 5,
+              "SE": 6,
+              "NEXS": 7,
+              "ÖOF": 8
+            },
+            "label": {
+              "AFR": "Africa",
+              "ASI": "Asia",
+              "ÖEU": "Europe, excluding the Nordic countries",
+              "NAMA": "North and Central America",
+              "OCEA": "Oceania",
+              "SAM": "South America",
+              "SE": "Sweden",
+              "NEXS": "The Nordic countries, excluding Sweden",
+              "ÖOF": "unknown country of birth"
+            },
+            "note": {
+              "ÖEU": [
+                "The Soviet Union is included in the group called Europe excluding the Nordic Countries."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ÖEU": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Invandringsar": {
+          "label": "latest year of immigration",
+          "category": {
+            "index": {
+              "-1969": 0,
+              "1970-79": 1,
+              "1980-89": 2,
+              "1990-": 3,
+              "9000": 4
+            },
+            "label": {
+              "-1969": "–1969",
+              "1970-79": "1970–1979",
+              "1980-89": "1980–1989",
+              "1990-": "1990–",
+              "9000": "no information available"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "16-19": 0,
+              "20-24": 1,
+              "25-34": 2,
+              "35-44": 3,
+              "45-54": 4,
+              "55-59": 5,
+              "60-64": 6,
+              "65+": 7
+            },
+            "label": {
+              "16-19": "16–19 years",
+              "20-24": "20–24 years",
+              "25-34": "25–34 years",
+              "35-44": "35–44 years",
+              "45-54": "45–54 years",
+              "55-59": "55–59 years",
+              "60-64": "60–64 years",
+              "65+": "65+ years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "men",
+              "2": "women"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "AM0207C1": 0
+            },
+            "label": {
+              "AM0207C1": "Population 16+ years (RAMS)"
+            },
+            "unit": {
+              "AM0207C1": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "AM0207C1": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0207C1": "Flow"
+            },
+            "priceType": {
+              "AM0207C1": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0207C1": "None"
+            },
+            "alternativeText": {
+              "AM0207C1": "Population 16+ years (RAMS)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1993": 0,
+              "1994": 1,
+              "1995": 2,
+              "1996": 3,
+              "1997": 4,
+              "1998": 5,
+              "1999": 6,
+              "2000": 7,
+              "2001": 8,
+              "2002": 9,
+              "2003": 10
+            },
+            "label": {
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM0207",
+          "tableid": "TAB3488",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Population 16+ years (RAMS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sysselsattning",
+            "Fodelseregion",
+            "Invandringsar",
+            "Alder",
+            "Kon"
+          ],
+          "matrix": "TAB3488",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Sofia Löfgren",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 65 86",
+            "mail": "sofia.lofgren@scb.se",
+            "raw": "Sofia Löfgren, Statistics Sweden# +46 010-479 65 86#sofia.lofgren@scb.se"
+          },
+          {
+            "name": "Lukas Gamerov",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 64 88",
+            "mail": "Lukas.Gamerov@scb.se",
+            "raw": "Lukas Gamerov, Statistics Sweden# +46 010-479 64 88#Lukas.Gamerov@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3488",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3488",
+        "label": "Population 16+ years (RAMS) at national level, employment, country of birth, latest year of immigration, age and sex. 1993-2003",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2011-03-30T07:30:00Z",
+        "firstPeriod": "1993",
+        "lastPeriod": "2003",
+        "category": "public",
+        "variableNames": [
+          "employment status",
+          "region of birth",
+          "latest year of immigration",
+          "age",
+          "sex",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0207",
+              "label": "Labour statistics based on administrative sources",
+              "sortCode": "Labour statistics based on administrative sources"
+            },
+            {
+              "id": "AM0207A",
+              "label": "Population 16+ years, 1993-2003",
+              "sortCode": "120"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3488?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3488?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3488/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3488/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

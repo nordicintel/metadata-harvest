@@ -1,0 +1,432 @@
+{
+  "key": "scb/TAB1586/en",
+  "identifier": "TAB1586",
+  "language": "en",
+  "updated": "2017-06-02T07:30:00Z",
+  "retrieved_at": "2026-10-16T18:23:26.961901+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Revenues and expenditure survey for multi-dwelling buildings by region, year of construction/valuation, year range, type of property ownership and type of revenue/expenditure. (Sample survey, see footnotes). Year 2003-2015",
+      "source": "Statistics Sweden",
+      "updated": "2017-06-02T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Correction 2015-06-09\r\n For a number of observations, the type of ownership has been coded incorrectly within the groups of natural persons and limited companies and similar. The statistics in type of ownership do not hold sufficiently good quality and therefore all statistics published for these categories have been removed for the years 2003-2012. No statistics are published for type of ownership from 2013. The group of privately owned properties are not affected.",
+        "Correction 2015-06-09, in the column for margin of error, the standard deviation has been erroneously reported for 2003-2012. This has been corrected.",
+        "As from 2013, the following variables are no longer reported: interest subsidies (SEK millions), interest subsidies in percent of interest rates, and interest subsidies SEK/sqm total area. This is because government interest rate subsidies for new construction and conversion of rental and tenant-owned multi-dwelling buildings have been discontinued completely following a subsidy phase-out that started in 2007.",
+        "The margin of error amendment made on 9 June 2015 was incorrect. The margin of error is now correct.",
+        "There are no statistics for 2014 because the survey was not carried out that year.",
+        "For 2012, the year of valuation/construction for 2010 are reported only in column all."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "NybyggArVardeAr",
+        "Arsintervall",
+        "AgareA",
+        "IntakterKostnader",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        2,
+        7,
+        4,
+        23,
+        2,
+        12
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Sweden",
+              "0010": "Greater Stockholm",
+              "0020": "Greater Gothenburg",
+              "0030": "Greater Malmö",
+              "0040": "Municipalities with >75000 inhabitants (excluding metropolitan areas)",
+              "0041": "Municipalities with <75000 inhabitants (excluding metropolitan areas)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "NybyggArVardeAr": {
+          "label": "year of construction/valuation",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1
+            },
+            "label": {
+              "01": "year of construction",
+              "02": "year of valuation"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Arsintervall": {
+          "label": "year",
+          "category": {
+            "index": {
+              "031": 0,
+              "041": 1,
+              "06": 2,
+              "07": 3,
+              "071": 4,
+              "072": 5,
+              "08": 6
+            },
+            "label": {
+              "031": "–1959",
+              "041": "1960–1979",
+              "06": "1980–1989",
+              "07": "1990–1999",
+              "071": "2000–2009",
+              "072": "2010–",
+              "08": "all"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AgareA": {
+          "label": "type of ownership",
+          "category": {
+            "index": {
+              "009": 0,
+              "006": 1,
+              "001": 2,
+              "003": 3
+            },
+            "label": {
+              "009": "housing cooperatives",
+              "006": "privately owned  real estate; all",
+              "001": "privately owned  real estate; all limited companies and similar",
+              "003": "privately owned real estate; all natural persons"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "IntakterKostnader": {
+          "label": "type of revenue/expenditure",
+          "category": {
+            "index": {
+              "001": 0,
+              "002": 1,
+              "003": 2,
+              "004": 3,
+              "008": 4,
+              "005": 5,
+              "007": 6,
+              "10": 7,
+              "06": 8,
+              "20": 9,
+              "21": 10,
+              "22": 11,
+              "23": 12,
+              "24": 13,
+              "30": 14,
+              "40": 15,
+              "42": 16,
+              "41": 17,
+              "034": 18,
+              "45": 19,
+              "044": 20,
+              "050": 21,
+              "070": 22
+            },
+            "label": {
+              "001": "revenue for dwellings (gross), SEK per square metre, total floor space",
+              "002": "revenue for dwellings (gross), SEK per square metre, dwelling space",
+              "003": "revenue for non-residential premises (gross), SEK per square metre, total floor space",
+              "004": "revenue for non-residential premises (gross), SEK per square metre, non-residential floor space",
+              "008": "revenue for garage and car park (gross), SEK per square metre, total floor space",
+              "005": "revenue others (not interest subsidies), SEK per square metre, total floor space",
+              "007": "total revenue (gross), SEK per square metre, total floor space",
+              "10": "total rental losses, SEK per square metre, total floor space",
+              "06": "total revenue (gross), SEK per square metre, total floor space",
+              "20": "operating costs: maintenance, adm, SEK per square metre, total floor space",
+              "21": "operating costs: heating, SEK per square metre, total floor space",
+              "22": "operating costs: costs linked to tariffs, SEK per square metre, total floor space",
+              "23": "operating costs: other, SEK per square metre, total floor space",
+              "24": "total operating costs: SEK per square metre, total floor space",
+              "30": "maintenance and repairs, SEK per square metre, total floor space",
+              "40": "capital: interest (gross), SEK per square metre, total floor space",
+              "42": "capital: depreciation, SEK per square metre, total floor space",
+              "41": "capital: ground rent, SEK per square metre, total floor space",
+              "034": "capital: other capital costs, SEK per square metre, total floor space (not specified for the private)",
+              "45": "real estate tax, SEK per square metre, total floor space",
+              "044": "deduction: interest subsidies, SEK per square metre, total floor space",
+              "050": "total expenditures, SEK per square metre, total floor space",
+              "070": "income tax  of housing cooperatives, SEK per square metre, total floor space"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "BO0301X3": 0,
+              "BO0301X4": 1
+            },
+            "label": {
+              "BO0301X3": "Revenues and expenditure",
+              "BO0301X4": "Margin of error ±"
+            },
+            "note": {
+              "BO0301X3": [
+                "For private real estate, data on interest rates, depreciation, and loans are not collected as from 2007 due to difficulties in collection, as separate reporting by property is missing more and more frequently. This does not apply for municipal housing companies and housing cooperatives, in which data is collected from the company or association"
+              ]
+            },
+            "unit": {
+              "BO0301X3": {
+                "base": "SEK per square metre",
+                "decimals": 0
+              },
+              "BO0301X4": {
+                "base": "SEK per square metre",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "BO0301X3": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "BO0301X3": "Year",
+              "BO0301X4": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301X3": "Flow",
+              "BO0301X4": "Flow"
+            },
+            "priceType": {
+              "BO0301X3": "Current",
+              "BO0301X4": "Current"
+            },
+            "adjustment": {
+              "BO0301X3": "None",
+              "BO0301X4": "None"
+            },
+            "alternativeText": {
+              "BO0301X3": "Revenues and expenditure survey for multi-dwelling buildings (IKU), SEK per square metre",
+              "BO0301X4": "Margin of error ±, SEK per square metre"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2003": 0,
+              "2004": 1,
+              "2005": 2,
+              "2006": 3,
+              "2007": 4,
+              "2008": 5,
+              "2009": 6,
+              "2010": 7,
+              "2011": 8,
+              "2012": 9,
+              "2013": 10,
+              "2015": 11
+            },
+            "label": {
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2015": "2015"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1586",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Revenues and expenditure survey for multi-dwelling buildings (IKU), SEK per square metre",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "NybyggArVardeAr",
+            "Arsintervall",
+            "AgareA",
+            "IntakterKostnader"
+          ],
+          "matrix": "TAB1586",
+          "subject-code": "BO",
+          "subject-area": "Housing, construction and building"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "Statistics Sweden",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, Statistics Sweden# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1586",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1586",
+        "label": "Revenues and expenditure survey for multi-dwelling buildings by region, year of construction/valuation, year range, type of property ownership and type of revenue/expenditure. (Sample survey, see footnotes). Year 2003-2015",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2017-06-02T07:30:00Z",
+        "firstPeriod": "2003",
+        "lastPeriod": "2015",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "year of construction/valuation",
+          "year",
+          "type of ownership",
+          "type of revenue/expenditure",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Housing, construction and building",
+              "sortCode": "Housing, construction and building"
+            },
+            {
+              "id": "BO0301",
+              "label": "Revenues and expenditure survey for multi-dwelling buildings",
+              "sortCode": "Revenues and expenditure survey for multi-dwelling buildings"
+            },
+            {
+              "id": "BO0301A",
+              "label": "Revenues and expenditure survey for multi-dwelling buildings",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

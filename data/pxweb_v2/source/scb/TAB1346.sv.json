@@ -1,0 +1,417 @@
+{
+  "key": "scb/TAB1346/sv",
+  "identifier": "TAB1346",
+  "language": "sv",
+  "updated": "2018-10-12T07:30:00Z",
+  "retrieved_at": "2026-10-16T18:03:46.305155+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Totala utgifter för FoU-uppdrag och FoU-understöd (utlagd FoU) efter typ av enhet, region och mottagande enheter. Vartannat år 2007-2017",
+      "source": "SCB",
+      "updated": "2018-10-12T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0301"
+            },
+            "href": "https://www.scb.se/UF0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I landstingens utgifter för utlagd FoU ingår ALF-medel som även återfinns i FoU för universitets- och högskolesektorn."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "LoKEnheter",
+        "MottagEnhet",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        3,
+        13,
+        2,
+        6
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1_2008",
+                "label": "NUTS1 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS2_2008",
+                "label": "NUTS2 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3_2008",
+                "label": "NUTS3 fr.o.m. 2008",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3_2008?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän07",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "LoKEnheter": {
+          "label": "landsting, kommuner och FoU-enheter",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2
+            },
+            "label": {
+              "01": "kommuner",
+              "02": "landsting",
+              "03": "lokala och regionala FoU-enheter"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "MottagEnhet": {
+          "label": "mottagande enheter",
+          "category": {
+            "index": {
+              "04": 0,
+              "051": 1,
+              "053": 2,
+              "0005": 3,
+              "0006": 4,
+              "01": 5,
+              "02": 6,
+              "06": 7,
+              "0008": 8,
+              "0009": 9,
+              "07": 10,
+              "08": 11,
+              "0012": 12
+            },
+            "label": {
+              "04": "svenska universitet och högskolor",
+              "051": "försvarsmyndigheter",
+              "053": "civila myndigheter",
+              "0005": "landsting och kommuner",
+              "0006": "lokala och regionala FoU-enheter",
+              "01": "svenska företag",
+              "02": "branschorganisationer",
+              "06": "privata institutioner, forskare",
+              "0008": "utländska företag",
+              "0009": "utländska universitet och högskolor",
+              "07": "internationella organisationer",
+              "08": "utländska statliga enheter",
+              "0012": "övriga utländska privata enheter"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002JM": 0,
+              "000002JL": 1
+            },
+            "label": {
+              "000002JM": "FoU-uppdrag",
+              "000002JL": "FoU-understöd"
+            },
+            "unit": {
+              "000002JM": {
+                "base": "mnkr",
+                "decimals": 0
+              },
+              "000002JL": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002JM": "1 januari - 31 december",
+              "000002JL": "1 januari - 31 december "
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002JM": "Flow",
+              "000002JL": "Flow"
+            },
+            "priceType": {
+              "000002JM": "Current",
+              "000002JL": "Current"
+            },
+            "adjustment": {
+              "000002JM": "None",
+              "000002JL": "None"
+            },
+            "alternativeText": {
+              "000002JM": "Totala utgifter inom landsting och kommuner för FoU-uppdrag, mnkr",
+              "000002JL": "Totala utgifter inom landsting och kommuner för FoU-understöd, mnkr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "vartannat år",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2009": 1,
+              "2011": 2,
+              "2013": 3,
+              "2015": 4,
+              "2017": 5
+            },
+            "label": {
+              "2007": "2007",
+              "2009": "2009",
+              "2011": "2011",
+              "2013": "2013",
+              "2015": "2015",
+              "2017": "2017"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "UF0301",
+          "tableid": "TAB1346",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Utgifter inom landsting och kommuner för utlagd FoU, mnkr",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "LoKEnheter",
+            "MottagEnhet"
+          ],
+          "matrix": "TAB1346",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Utbildning och forskning FoU",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "FoU-statistik@scb.se",
+            "raw": "Utbildning och forskning FoU, SCB# +46 010-479 50 00#FoU-statistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1346",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1346",
+        "label": "Totala utgifter för FoU-uppdrag och FoU-understöd (utlagd FoU) efter typ av enhet, region och mottagande enheter. Vartannat år 2007-2017",
+        "description": "",
+        "sortCode": "29",
+        "updated": "2018-10-12T07:30:00Z",
+        "firstPeriod": "2007",
+        "lastPeriod": "2017",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "landsting, kommuner och FoU-enheter",
+          "mottagande enheter",
+          "tabellinnehåll",
+          "vartannat år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0301",
+              "label": "Forskning och utveckling i Sverige",
+              "sortCode": "Forskning och utveckling i Sverige"
+            },
+            {
+              "id": "UF0301Z",
+              "label": "FoU – Äldre serier",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1346?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1346?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1346/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1346/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

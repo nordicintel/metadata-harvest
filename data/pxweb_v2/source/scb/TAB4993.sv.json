@@ -1,0 +1,500 @@
+{
+  "key": "scb/TAB4993/sv",
+  "identifier": "TAB4993",
+  "language": "sv",
+  "updated": "2019-11-22T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:47:55.978939+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Tillgång till internet utanför hemmet och arbetet efter typ av utrustning, kön och redovisningsgrupp. År 2018-2019",
+      "source": "SCB",
+      "updated": "2019-11-22T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0108"
+            },
+            "href": "https://www.scb.se/LE0108",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Tabellerna avser första kvartalet i undersökningsåret.",
+        "Två prickar (..) betyder att uppgiften är för osäker för att redovisas.",
+        "Tabellen avser personer 16-85 år."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TypUtrustning",
+        "Kon",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        3,
+        32,
+        4,
+        2
+      ],
+      "dimension": {
+        "TypUtrustning": {
+          "label": "typ av utrustning",
+          "category": {
+            "index": {
+              "0046": 0,
+              "0042": 1,
+              "0044": 2,
+              "0048": 3,
+              "0050": 4
+            },
+            "label": {
+              "0046": "mobiltelefon eller smartphone",
+              "0042": "bärbar dator/laptop",
+              "0044": "surfplatta, ej läsplatta",
+              "0048": "annan enhet ansluten till internet",
+              "0050": "har inte anslutit till internet"
+            },
+            "note": {
+              "0048": [
+                "T.ex. smart-tv, smarta högtalare, spelkonsol, läsplatta eller smart klocka"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0048": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-34": 1,
+              "35-44": 2,
+              "45-54": 3,
+              "55-64": 4,
+              "65-74": 5,
+              "75-85": 6,
+              "forgymn": 7,
+              "gymn": 8,
+              "eftergymn": 9,
+              "stud": 10,
+              "ansfor": 11,
+              "arbsok": 12,
+              "pens": 13,
+              "utanbarn": 14,
+              "medbarn": 15,
+              "envux": 16,
+              "tvavux": 17,
+              "under25": 18,
+              "over25": 19,
+              "inr": 20,
+              "utr": 21,
+              "RIKS1": 22,
+              "RIKS2": 23,
+              "RIKS3": 24,
+              "RIKS4": 25,
+              "RIKS5": 26,
+              "RIKS6": 27,
+              "RIKS7": 28,
+              "RIKS8": 29,
+              "tot16-74": 30,
+              "tot16-85": 31
+            },
+            "label": {
+              "16-24": "16–24 år",
+              "25-34": "25–34 år",
+              "35-44": "35–44 år",
+              "45-54": "45–54 år",
+              "55-64": "55–64 år",
+              "65-74": "65–74 år",
+              "75-85": "75–85 år",
+              "forgymn": "Förgymnasial utbildning",
+              "gymn": "Gymnasial utbildning",
+              "eftergymn": "Eftergymnasial utbildning",
+              "stud": "Studerande",
+              "ansfor": "Anställda/Egna företagare",
+              "arbsok": "Arbetssökande",
+              "pens": "Pensionärer och andra",
+              "utanbarn": "Hushåll utan barn",
+              "medbarn": "Hushåll med barn",
+              "envux": "Hushåll med en vuxen",
+              "tvavux": "Hushåll med minst två vuxna",
+              "under25": "Under 25 000 kr",
+              "over25": "25 000 kr eller högre",
+              "inr": "Inrikes födda",
+              "utr": "Utrikes födda",
+              "RIKS1": "Stockholm",
+              "RIKS2": "Östra Mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra Mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland",
+              "tot16-74": "Samtliga 16–74 år",
+              "tot16-85": "Samtliga 16–85 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_alder",
+                "label": "Ålder",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_alder?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_D_education",
+                "label": "Utbildningsnivå",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_D_education?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_sysselsattning",
+                "label": "Sysselsättning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_sysselsattning?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_H_hushall",
+                "label": "Hushållstyp",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_H_hushall?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_J_inkomst",
+                "label": "Inkomst",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_J_inkomst?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_L_bakgrund",
+                "label": "Bakgrund",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_L_bakgrund?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_N_region",
+                "label": "Region",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_N_region?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_P_samtl",
+                "label": "Samtliga",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_P_samtl?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002CB": 0,
+              "000002CD": 1,
+              "000002CA": 2,
+              "000002CC": 3
+            },
+            "label": {
+              "000002CB": "Antal personer",
+              "000002CD": "Antal personer felmarginal +/-",
+              "000002CA": "Andel personer, procent",
+              "000002CC": "Andel personer felmarginal +/-, procent"
+            },
+            "unit": {
+              "000002CB": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002CD": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002CA": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000002CC": {
+                "base": "procent",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002CB": "",
+              "000002CD": "",
+              "000002CA": "",
+              "000002CC": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002CB": "Flow",
+              "000002CD": "Flow",
+              "000002CA": "Flow",
+              "000002CC": "Flow"
+            },
+            "priceType": {
+              "000002CB": "NotApplicable",
+              "000002CD": "NotApplicable",
+              "000002CA": "NotApplicable",
+              "000002CC": "NotApplicable"
+            },
+            "adjustment": {
+              "000002CB": "None",
+              "000002CD": "None",
+              "000002CA": "None",
+              "000002CC": "None"
+            },
+            "alternativeText": {
+              "000002CB": "Tillgång till internet utanför hemmet och arbetet (antal personer)",
+              "000002CD": "Tillgång till internet utanför hemmet och arbetet (antal personer felmarginal +/-)",
+              "000002CA": "Tillgång till internet utanför hemmet och arbetet (andel personer, procent)",
+              "000002CC": "Tillgång till internet utanför hemmet och arbetet (andel personer felmarginal +/-)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2018": 0,
+              "2019": 1
+            },
+            "label": {
+              "2018": "2018",
+              "2019": "2019"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "LE0108",
+          "tableid": "TAB4993",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Tillgång till internet utanför hemmet och arbetet",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TypUtrustning",
+            "Kon",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4993",
+          "subject-code": "LE",
+          "subject-area": "Levnadsförhållanden"
+        },
+        "contact": [
+          {
+            "name": "Alicja Markiewicz",
+            "organization": "SCB",
+            "phone": "010 479 46 36",
+            "mail": "alicja.markiewicz@scb.se",
+            "raw": "Alicja Markiewicz, SCB# +46 010 479 46 36#alicja.markiewicz@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) it-statistik",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "bita@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) it-statistik, SCB# - -#bita@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4993",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4993",
+        "label": "Tillgång till internet utanför hemmet och arbetet efter typ av utrustning, kön och redovisningsgrupp. År 2018-2019",
+        "description": "",
+        "sortCode": "28",
+        "updated": "2019-11-22T08:30:00Z",
+        "firstPeriod": "2018",
+        "lastPeriod": "2019",
+        "category": "public",
+        "variableNames": [
+          "typ av utrustning",
+          "kön",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Levnadsförhållanden",
+              "sortCode": "Levnadsförhållanden"
+            },
+            {
+              "id": "LE0108",
+              "label": "Befolkningens it-användning (BITA)",
+              "sortCode": "Befolkningens it-användning (BITA)"
+            },
+            {
+              "id": "LE0108O",
+              "label": "Äldre tabeller, uppdateras ej",
+              "sortCode": "017"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4993?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4993?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4993/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4993/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

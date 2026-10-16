@@ -1,0 +1,413 @@
+{
+  "key": "scb/TAB4337/sv",
+  "identifier": "TAB4337",
+  "language": "sv",
+  "updated": "2015-12-18T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:51:52.272839+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Behandlat avfall efter typ av behandling och avfallsslag (uppdateras ej). Vartannat år 2004-2008",
+      "source": "Naturvårdsverket",
+      "updated": "2015-12-18T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:MI0305"
+            },
+            "href": "https://www.scb.se/MI0305",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Stora förändringar har skett mellan åren - exempelvis:\r\n • EU:s avfallskoder ändrades delvis inför rapporteringsåret 2010 . Det innebär tex. att vissa koder togs bort och att vissa avfallsslag inkluderades under nya koder.\r\n• Den ekonomiska näringslivsindelningen ändrades inför rapporteringsåret 2010.\r\n• Mellan 2006 och 2008 ändrades avfallsdefinitionen när det gäller biprodukter. Det innebär att vissa typer av avfall kom att klassificeras som biprodukter och inte avfall.",
+        "Med (..) avses att uppgiften ej kan förekomma eller är borttagen av sekretesskäl.  Exempel på att uppgiften ej kan förekomma kan vara att vissa avfallsslag aldrig behandlas genom rötning och kompostering eller att vissa avfallslag alltid klassificeras som farligt avfall och därav inte kan förekomma som icke-farligt avfall. \r\n  Siffran noll (0) innebär att värdet har avrundats till noll, eller är noll. \r\n  Metodik för att ta fram statistik skiljer sig mellan branscher, t.ex. används enkäter och anläggningars miljörapporter. I de fall branschers data återanvänds från föregående år kan värden vara lika över åren.",
+        "Data avseende 2004–2008 är hämtad från Eurostat."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "BehTyp",
+        "Avfallsslag",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        8,
+        34,
+        2,
+        3
+      ],
+      "dimension": {
+        "BehTyp": {
+          "label": "behandlingstyp",
+          "category": {
+            "index": {
+              "10": 0,
+              "20": 1,
+              "30": 2,
+              "40": 3,
+              "50": 4,
+              "60": 5,
+              "70": 6,
+              "90": 7
+            },
+            "label": {
+              "10": "BIOLOGISK BEHANDLING",
+              "20": "ÅTERFYLLNING",
+              "30": "ANNAN ÅTERVINNING",
+              "40": "FÖRBRÄNNING MED ENERGIÅTERVINNING",
+              "50": "FÖRBRÄNNING UTAN ENERGIÅTERVINNING",
+              "60": "DEPONERING",
+              "70": "ANNAT BORTSKAFFANDE",
+              "90": "FÖRBEHANDLING OCH SORTERING"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_Atervinning",
+                "label": "Återvinning",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Atervinning?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Forbranning",
+                "label": "Förbränning",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Forbranning?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Deponering",
+                "label": "Deponering",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Deponering?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Forbehandling",
+                "label": "Förbehandling och Sortering",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Forbehandling?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Behandlingstyp",
+                "label": "All behandling",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Behandlingstyp?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Avfallsslag": {
+          "label": "avfallsslag enligt EWC-Stat",
+          "category": {
+            "index": {
+              "01-05": 0,
+              "01.1": 1,
+              "01.2": 2,
+              "01.3": 3,
+              "01.4,02,03.1": 4,
+              "03.2": 5,
+              "05": 6,
+              "06": 7,
+              "07.1": 8,
+              "07.2": 9,
+              "07.3": 10,
+              "07.4": 11,
+              "07.5": 12,
+              "07.6": 13,
+              "07.7": 14,
+              "08 ex 08.1,41": 15,
+              "08.1": 16,
+              "08.41": 17,
+              "09.1,2": 18,
+              "09.3": 19,
+              "10.1": 20,
+              "10.2": 21,
+              "10.3": 22,
+              "11,12.7": 23,
+              "11": 24,
+              "12 ex 12.7 IF": 25,
+              "12.2,3,5": 26,
+              "12.4": 27,
+              "12.7": 28,
+              "12.6,7": 29,
+              "12.A": 30,
+              "13": 31,
+              "100": 32,
+              "TOT": 33
+            },
+            "label": {
+              "01-05": "kemiskt avfall, oljeavfall, industriellt slam, sjukvårdsavfall och biologiskt avfall",
+              "01.1": "lösningsmedelavfall",
+              "01.2": "surt, alkaliskt eller salthaltigt avfall",
+              "01.3": "oljeavfall",
+              "01.4,02,03.1": "kemiska rester",
+              "03.2": "avloppsslam från industrier (torrvikt)",
+              "05": "sjukvårdsavfall och biologiskt avfall",
+              "06": "metallavfall",
+              "07.1": "glasavfall",
+              "07.2": "pappers- och pappavfall",
+              "07.3": "gummiavfall",
+              "07.4": "plastavfall",
+              "07.5": "träavfall",
+              "07.6": "textilavfall",
+              "07.7": "avfall innehållande PCB",
+              "08 ex 08.1,41": "kasserad utrustning (exkl. kasserade fordon, batterier och ackumulatorer)",
+              "08.1": "uttjänta fordon",
+              "08.41": "batterier och ackumulatorer",
+              "09.1,2": "animaliskt och vegetabiliskt avfall",
+              "09.3": "animalisk faeces, animalisk urin och gödsel",
+              "10.1": "hushållsavfall och liknande avfall",
+              "10.2": "blandade och ej differentierade material",
+              "10.3": "sorteringsrester",
+              "11,12.7": "vanligt slam och muddermassor",
+              "11": "vanligt slam (torrvikt)",
+              "12 ex 12.7 IF": "mineralavfall utom muddermassor",
+              "12.2,3,5": "annat mineralavfall",
+              "12.4": "avfall från förbränning",
+              "12.7": "muddermassor (torrvikt)",
+              "12.6,7": "förorenade jord- och muddermassor",
+              "12.A": "mineralavfall exkl. förorenade jord- och muddermassor",
+              "13": "stelnat, stabiliserat och förglasat avfall",
+              "100": "övrigt ospecificerat avfall",
+              "TOT": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000000JB": 0,
+              "000000JF": 1
+            },
+            "label": {
+              "000000JB": "Behandlat avfall, farligt (ton)",
+              "000000JF": "Behandlat avfall, icke-farligt (ton)"
+            },
+            "unit": {
+              "000000JB": {
+                "base": "ton",
+                "decimals": 0
+              },
+              "000000JF": {
+                "base": "ton",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000000JB": "",
+              "000000JF": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000JB": "Flow",
+              "000000JF": "Flow"
+            },
+            "priceType": {
+              "000000JB": "NotApplicable",
+              "000000JF": "NotApplicable"
+            },
+            "adjustment": {
+              "000000JB": "None",
+              "000000JF": "None"
+            },
+            "alternativeText": {
+              "000000JB": "Behandlat avfall, farligt (ton)",
+              "000000JF": "Behandlat avfall, icke-farligt (ton)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "vartannat år",
+          "category": {
+            "index": {
+              "2004": 0,
+              "2006": 1,
+              "2008": 2
+            },
+            "label": {
+              "2004": "2004",
+              "2006": "2006",
+              "2008": "2008"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "MI0305",
+          "tableid": "TAB4337",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Behandlat avfall",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "BehTyp",
+            "Avfallsslag"
+          ],
+          "matrix": "TAB4337",
+          "subject-code": "MI",
+          "subject-area": "Miljö"
+        },
+        "contact": [
+          {
+            "name": "Avfallstatistik Naturvårdsverket",
+            "organization": "Naturvårdsverket",
+            "phone": "-",
+            "mail": "avfallsstatistik@naturvardsverket.se",
+            "raw": "Avfallstatistik Naturvårdsverket, Naturvårdsverket# - -#avfallsstatistik@naturvardsverket.se"
+          },
+          {
+            "name": "Miljöstatistik",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "miljostatistik@scb.se ",
+            "raw": " Miljöstatistik, SCB# - -#miljostatistik@scb.se "
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4337",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4337",
+        "label": "Behandlat avfall efter typ av behandling och avfallsslag (uppdateras ej). Vartannat år 2004-2008",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2015-12-18T08:30:00Z",
+        "firstPeriod": "2004",
+        "lastPeriod": "2008",
+        "category": "public",
+        "variableNames": [
+          "behandlingstyp",
+          "avfallsslag enligt EWC-Stat",
+          "tabellinnehåll",
+          "vartannat år"
+        ],
+        "discontinued": true,
+        "source": "Naturvårdsverket",
+        "subjectCode": "MI",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "MI",
+              "label": "Miljö",
+              "sortCode": "Miljö"
+            },
+            {
+              "id": "MI0305",
+              "label": "Avfall, uppkommet och behandlat",
+              "sortCode": "Avfall, uppkommet och behandlat"
+            },
+            {
+              "id": "MI0305A",
+              "label": "Äldre tabeller med tidigare definition av avfall och indelning av olika branscher- uppdateras ej",
+              "sortCode": "07"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4337?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4337?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4337/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4337/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

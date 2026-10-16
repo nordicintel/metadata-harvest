@@ -1,0 +1,325 @@
+{
+  "key": "scb/TAB103/sv",
+  "identifier": "TAB103",
+  "language": "sv",
+  "updated": "2008-01-23T08:33:00Z",
+  "retrieved_at": "2026-10-16T17:22:15.989693+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Antal arbetstimmar (faktiskt arbetad tid) per vecka för personer 16-64 år (AKU) efter anknytningsgrad till arbetsmarknaden, sektor och kön. Kvartal 2005K2-2007K4",
+      "source": "SCB",
+      "updated": "2008-01-23T08:33:00Z",
+      "note": [
+        "För anställda och sysselsatta ingår faktiskt arbetade timmar både i huvudsysslan och i bisysslan, medan enbart timmar i huvudsysslan ingår för fast anställda. Timmar per sektor redovisas för arbete utfört i Sverige."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Anknytningsgrad",
+        "Sektor",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        7,
+        3,
+        2,
+        11
+      ],
+      "dimension": {
+        "Anknytningsgrad": {
+          "label": "anknytningsgrad till arbetsmarknaden",
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "SYSTOT": 2
+            },
+            "label": {
+              "ANSTTOT": "anställda, totalt",
+              "FA": "fast anställda",
+              "SYSTOT": "sysselsatta totalt"
+            },
+            "note": {
+              "FA": [
+                "Fast och tidsbegränsat anställda utgör tillsammans anställda totalt"
+              ],
+              "SYSTOT": [
+                "I sysselsatta totalt ingår anställda samt företagare och medhjälpande hushållsmedlemmar"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "FA": {
+                "0": true
+              },
+              "SYSTOT": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Sektor": {
+          "label": "sektor",
+          "category": {
+            "index": {
+              "6": 0,
+              "1": 1,
+              "2": 2,
+              "206": 3,
+              "UT": 4,
+              "6UT": 5,
+              "US": 6
+            },
+            "label": {
+              "6": "samtliga sektorer",
+              "1": "statlig",
+              "2": "kommunal",
+              "206": "privat",
+              "UT": "utlandsarbete",
+              "6UT": "samtliga sektorer inkl. utlandsarbete",
+              "US": "uppgift saknas"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402BM": 0,
+              "AM0402BL": 1
+            },
+            "label": {
+              "AM0402BM": "Arbetstimmar",
+              "AM0402BL": "Felmarginal ±"
+            },
+            "note": {
+              "AM0402BL": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM0402BM": {
+                "base": "10 000-tal",
+                "decimals": 0
+              },
+              "AM0402BL": {
+                "base": "10 000-tal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0402BL": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0402BM": "",
+              "AM0402BL": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402BM": "Average",
+              "AM0402BL": "Average"
+            },
+            "priceType": {
+              "AM0402BM": "NotApplicable",
+              "AM0402BL": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402BM": "None",
+              "AM0402BL": "None"
+            },
+            "alternativeText": {
+              "AM0402BM": "Antal arbetstimmar (faktisk arbetad tid) per vecka för personer 16-64 år (AKU), 10 000-tal",
+              "AM0402BL": "Felmarginal ±, antal arbetstimmar (faktiskt arbetad tid) per vecka för personer 16 64 år (AKU), 10 000-tal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2005K2": 0,
+              "2005K3": 1,
+              "2005K4": 2,
+              "2006K1": 3,
+              "2006K2": 4,
+              "2006K3": 5,
+              "2006K4": 6,
+              "2007K1": 7,
+              "2007K2": 8,
+              "2007K3": 9,
+              "2007K4": 10
+            },
+            "label": {
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB103",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal arbetstimmar (faktiskt arbetad tid) per vecka för personer 16-64 år (AKU), 10 000-tal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Anknytningsgrad",
+            "Sektor",
+            "Kon"
+          ],
+          "matrix": "TAB103",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB103",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB103",
+        "label": "Antal arbetstimmar (faktiskt arbetad tid) per vecka för personer 16-64 år (AKU) efter anknytningsgrad till arbetsmarknaden, sektor och kön. Kvartal 2005K2-2007K4",
+        "description": "",
+        "sortCode": "042",
+        "updated": "2008-01-23T08:33:00Z",
+        "firstPeriod": "2005K2",
+        "lastPeriod": "2007K4",
+        "category": "public",
+        "variableNames": [
+          "anknytningsgrad till arbetsmarknaden",
+          "sektor",
+          "kön",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402B",
+              "label": "Sysselsatta",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB103?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB103/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB103/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

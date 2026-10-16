@@ -1,0 +1,486 @@
+{
+  "key": "scb/TAB6176/en",
+  "identifier": "TAB6176",
+  "language": "en",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:25:55.817197+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Not in the labour force, number of persons aged 15-74 (LFS) by reason, sex and age, previous definitions. Quarter 2005K2-2020K4",
+      "source": "Statistics Sweden",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "As of 1 January 2021, the LFS is carried out in accordance with the new EU framework regulation. This means there is a break in time series between 2020 and 2021.  \r\n[The Statistical Database, data from 2021](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401/)  \r\n[The Statistical Database, data up to and including 2020](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0403/)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "EjiakOrsak",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        9,
+        3,
+        7,
+        2,
+        63
+      ],
+      "dimension": {
+        "EjiakOrsak": {
+          "label": "reason",
+          "category": {
+            "index": {
+              "STUDHEL": 0,
+              "HEMARB": 1,
+              "ARBSOK": 2,
+              "VPL": 3,
+              "LEDIG": 4,
+              "PENSION": 5,
+              "FRSJUK": 6,
+              "OVR": 7,
+              "EJIAKTOT": 8
+            },
+            "label": {
+              "STUDHEL": "full-time student",
+              "HEMARB": "household worker",
+              "ARBSOK": "job seeker",
+              "VPL": "conscripts in military service",
+              "LEDIG": "free",
+              "PENSION": "retirement",
+              "FRSJUK": "illness",
+              "OVR": "other reasons",
+              "EJIAKTOT": "not in the labour force, total"
+            },
+            "note": {
+              "ARBSOK": [
+                "Classifies himself/herself as job seeker but does not fulfil the criteria for unemployment."
+              ],
+              "VPL": [
+                "Conscripts in military service are no longer included in the target population of LFS and are therefore not reported."
+              ],
+              "PENSION": [
+                "Early retirement pension for health reasons is included in illness."
+              ],
+              "FRSJUK": [
+                "Early retirement pension for health reasons is included in illness."
+              ],
+              "OVR": [
+                "Conscripts in military service are no longer included in the target population of LFS and are therefore not reported."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ARBSOK": {
+                "0": true
+              },
+              "VPL": {
+                "0": true
+              },
+              "PENSION": {
+                "0": true
+              },
+              "FRSJUK": {
+                "0": true
+              },
+              "OVR": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "tot15-74": 0,
+              "tot16-64": 1,
+              "tot16-65": 2,
+              "tot16-66": 3,
+              "tot20-64": 4,
+              "tot20-65": 5,
+              "tot20-66": 6
+            },
+            "label": {
+              "tot15-74": "total 15–74 years",
+              "tot16-64": "total 16–64 years",
+              "tot16-65": "total 16–65 years",
+              "tot16-66": "total 16–66 years",
+              "tot20-64": "total 20–64 years",
+              "tot20-65": "total 20–65 years",
+              "tot20-66": "total 20–66 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "00000695": 0,
+              "00000696": 1
+            },
+            "label": {
+              "00000695": "1000s",
+              "00000696": "Margin of error ±, 1000s"
+            },
+            "note": {
+              "00000696": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "00000695": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "00000696": {
+                "base": "1000s",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "00000696": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "00000695": "",
+              "00000696": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000695": "Average",
+              "00000696": "Average"
+            },
+            "priceType": {
+              "00000695": "NotApplicable",
+              "00000696": "NotApplicable"
+            },
+            "adjustment": {
+              "00000695": "None",
+              "00000696": "None"
+            },
+            "alternativeText": {
+              "00000695": "Previous definitions. Number of persons not in the labour force aged 15-74 (LFS), 1000s",
+              "00000696": "Previous definitions. Margin of error ±, number of persons not in the labour force aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "quarter",
+          "category": {
+            "index": {
+              "2005K2": 0,
+              "2005K3": 1,
+              "2005K4": 2,
+              "2006K1": 3,
+              "2006K2": 4,
+              "2006K3": 5,
+              "2006K4": 6,
+              "2007K1": 7,
+              "2007K2": 8,
+              "2007K3": 9,
+              "2007K4": 10,
+              "2008K1": 11,
+              "2008K2": 12,
+              "2008K3": 13,
+              "2008K4": 14,
+              "2009K1": 15,
+              "2009K2": 16,
+              "2009K3": 17,
+              "2009K4": 18,
+              "2010K1": 19,
+              "2010K2": 20,
+              "2010K3": 21,
+              "2010K4": 22,
+              "2011K1": 23,
+              "2011K2": 24,
+              "2011K3": 25,
+              "2011K4": 26,
+              "2012K1": 27,
+              "2012K2": 28,
+              "2012K3": 29,
+              "2012K4": 30,
+              "2013K1": 31,
+              "2013K2": 32,
+              "2013K3": 33,
+              "2013K4": 34,
+              "2014K1": 35,
+              "2014K2": 36,
+              "2014K3": 37,
+              "2014K4": 38,
+              "2015K1": 39,
+              "2015K2": 40,
+              "2015K3": 41,
+              "2015K4": 42,
+              "2016K1": 43,
+              "2016K2": 44,
+              "2016K3": 45,
+              "2016K4": 46,
+              "2017K1": 47,
+              "2017K2": 48,
+              "2017K3": 49,
+              "2017K4": 50,
+              "2018K1": 51,
+              "2018K2": 52,
+              "2018K3": 53,
+              "2018K4": 54,
+              "2019K1": 55,
+              "2019K2": 56,
+              "2019K3": 57,
+              "2019K4": 58,
+              "2020K1": 59,
+              "2020K2": 60,
+              "2020K3": 61,
+              "2020K4": 62
+            },
+            "label": {
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6176",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Previous definitions. Number of persons not in the labour force aged 15-74 (LFS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "EjiakOrsak",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB6176",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6176",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6176",
+        "label": "Not in the labour force, number of persons aged 15-74 (LFS) by reason, sex and age, previous definitions. Quarter 2005K2-2020K4",
+        "description": "",
+        "sortCode": "02",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2005K2",
+        "lastPeriod": "2020K4",
+        "category": "public",
+        "variableNames": [
+          "reason",
+          "sex",
+          "age",
+          "observations",
+          "quarter"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0403",
+              "label": "Labour Force Surveys, previous definitions",
+              "sortCode": "Labour Force Surveys, previous definitions"
+            },
+            {
+              "id": "AM0403M",
+              "label": "Persons not in the labour force 2005-2020",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6176?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6176?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6176/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6176/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

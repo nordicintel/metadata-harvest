@@ -1,0 +1,338 @@
+{
+  "key": "scb/TAB1590/sv",
+  "identifier": "TAB1590",
+  "language": "sv",
+  "updated": "2001-12-21T12:00:00Z",
+  "retrieved_at": "2026-10-16T17:35:14.744687+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Intäkter och kostnader i flerbostadshus (IKU), kommunägda bostadsföretag, efter region, lägenhetsantal samt intäkts- och kostnadsslag.  (Urvalsundersökning, se fotnoter.) År 1999-2000",
+      "source": "SCB",
+      "updated": "2001-12-21T12:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "11) Totalyta = bostadsytan + lokalytan. 2) Uteblivna siffror betyder att antalet objekt i beräkningsunderlaget är 0-1 st.",
+        "Undersökningen bygger på intervjuer i ett rikstäckande sannolikhetsurval. De redovisade talen är således skattningar varför hänsyn måste tas till osäkerheten i dessa då slutsatser dras. Skattningar som är behäftade med alltför stor osäkerhet är ersatta med två punkter."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "StorlekLgh",
+        "IntakterKostnader",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        6,
+        29,
+        1,
+        2
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0042": 3,
+              "0043": 4
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0042": "Kommuner med >75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)",
+              "0043": "Kommuner med <75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "StorlekLgh": {
+          "label": "lägenhetsantal",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "001": 5
+            },
+            "label": {
+              "01": "–499 bostadslägenheter",
+              "02": "500–999 bostadslägenheter",
+              "03": "1 000–4 999 bostadslägenheter",
+              "04": "5 000–9 999 bostadslägenheter",
+              "05": "10 000– bostadslägenheter",
+              "001": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "IntakterKostnader": {
+          "label": "intäkts-/kostnadsslag",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2,
+              "04": 3,
+              "041": 4,
+              "042": 5,
+              "043": 6,
+              "05": 7,
+              "06": 8,
+              "07": 9,
+              "08": 10,
+              "091": 11,
+              "10": 12,
+              "15": 13,
+              "16": 14,
+              "21": 15,
+              "22": 16,
+              "23": 17,
+              "24": 18,
+              "30": 19,
+              "40": 20,
+              "42": 21,
+              "41": 22,
+              "43": 23,
+              "44": 24,
+              "45": 25,
+              "50": 26,
+              "71": 27,
+              "72": 28
+            },
+            "label": {
+              "01": "intäkt bostäder (netto), kr/kvm totalyta",
+              "02": "intäkt  bostäder (netto), kr/kvm boyta",
+              "03": "intäkt lokaler (netto), kr/kvm totalyta",
+              "04": "intäkt lokaler (netto), kr/kvm lokalyta",
+              "041": "intäkt garage-, p-platser (netto), kr/kvm totalyta",
+              "042": "intäkt statl. o kommun. bidrag, kr/kvm totalyta",
+              "043": "intäkt finansiella, kr/kvm totalyta",
+              "05": "intäkt övrigt (inte räntebidrag), kr/kvm totalyta",
+              "06": "s:a intäkter (netto), kr/kvm totalyta",
+              "07": "hyresbortfall outhyrda bostäder, kr/kvm totalyta",
+              "08": "hyresbortfall outhyrda lokaler, kr/kvm totalyta",
+              "091": "hyresbortfall övrigt (bilar m.m.), kr/kvm totalyta",
+              "10": "s:a hyresbortfall, kr/kvm totalyta",
+              "15": "drift: skötsel, kr/kvm totalyta",
+              "16": "drift: administration, kr/kvm totalyta",
+              "21": "drift: värme, kr/kvm totalyta",
+              "22": "drift: taxebundna kostnader, kr/kvm totalyta",
+              "23": "drift: övrigt, kr/kvm totalyta",
+              "24": "s:a drift, kr/kvm totalyta",
+              "30": "underhåll och reparation, kr/kvm totalyta",
+              "40": "kapital: räntor (brutto), kr/kvm totalyta",
+              "42": "kapital: avskrivningar, kr/kvm totalyta",
+              "41": "kapital: tomträttsavgäld, kr/kvm totalyta",
+              "43": "s:a kapitalkostn. totalt (brutto), kr/kvm totalyta",
+              "44": "räntebidrag och räntestöd, kr/kvm totalyta",
+              "45": "fastighetsskatt, kr/kvm totalyta",
+              "50": "s:a kostnader (netto), kr/kvm totalyta",
+              "71": "övrig verksamhet: intäkter,  kr/kvm totalyta",
+              "72": "övrig verksamhet: kostnader,  kr/kvm totalyta"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0301I1": 0
+            },
+            "label": {
+              "BO0301I1": "Intäkter och kostnader i flerbostadshus (IKU), kommunägda bostadsföretag"
+            },
+            "unit": {
+              "BO0301I1": {
+                "base": "kronor",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0301I1": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301I1": "Flow"
+            },
+            "priceType": {
+              "BO0301I1": "Current"
+            },
+            "adjustment": {
+              "BO0301I1": "None"
+            },
+            "alternativeText": {
+              "BO0301I1": "Intäkter och kostnader i flerbostadshus (IKU), kommunägda bostadsföretag"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1999": 0,
+              "2000": 1
+            },
+            "label": {
+              "1999": "1999",
+              "2000": "2000"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1590",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Intäkter och kostnader i flerbostadshus (IKU), kommunägda bostadsföretag",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "StorlekLgh",
+            "IntakterKostnader"
+          ],
+          "matrix": "TAB1590",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1590",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1590",
+        "label": "Intäkter och kostnader i flerbostadshus (IKU), kommunägda bostadsföretag, efter region, lägenhetsantal samt intäkts- och kostnadsslag.  (Urvalsundersökning, se fotnoter.) År 1999-2000",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2001-12-21T12:00:00Z",
+        "firstPeriod": "1999",
+        "lastPeriod": "2000",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "lägenhetsantal",
+          "intäkts-/kostnadsslag",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0301",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)"
+            },
+            {
+              "id": "BO0301J",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1590?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1590/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1590/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

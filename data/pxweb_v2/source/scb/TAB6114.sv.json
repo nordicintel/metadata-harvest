@@ -1,0 +1,394 @@
+{
+  "key": "scb/TAB6114/sv",
+  "identifier": "TAB6114",
+  "language": "sv",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:20:42.233949+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta 15-74 år (AKU) efter anknytningsgrad till arbetsmarknaden, yrke SSYK 2012 och kön, tidigare definitioner. Kvartal 2015K1-2020K4",
+      "source": "SCB",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "Från och med 1 januari 2021 genomfördes en förändring av AKU, enligt förordning (2019/1700). I och med denna förändring av AKU finns ett tidsseriebrott mellan 2020 och 2021.  \r\n[Statistikdatabasen, serier från och med 2021](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401/)  \r\n[Statistikdatabasen, serier t.o.m. 2020](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0403/)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Anknytningsgrad",
+        "Yrke",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        12,
+        3,
+        2,
+        24
+      ],
+      "dimension": {
+        "Anknytningsgrad": {
+          "label": "anknytningsgrad till arbetsmarknaden",
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "SYSTOT": 2
+            },
+            "label": {
+              "ANSTTOT": "anställda, totalt",
+              "FA": "fast anställda",
+              "SYSTOT": "sysselsatta totalt"
+            },
+            "note": {
+              "ANSTTOT": [
+                "I anställda totalt ingår fast och tidsbegränsat anställda"
+              ],
+              "FA": [
+                "Fast och tidsbegränsat anställda utgör tillsammans anställda totalt"
+              ],
+              "SYSTOT": [
+                "I sysselsatta totalt ingår anställda samt företagare och medhjälpande hushållsmedlemmar"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ANSTTOT": {
+                "0": true
+              },
+              "FA": {
+                "0": true
+              },
+              "SYSTOT": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Yrke": {
+          "label": "yrke",
+          "category": {
+            "index": {
+              "0000": 0,
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8,
+              "9": 9,
+              "0": 10,
+              "0002": 11
+            },
+            "label": {
+              "0000": "Samtliga yrken",
+              "1": "Chefsyrken",
+              "2": "Yrken med krav på fördjupad högskolekompetens",
+              "3": "Yrken med krav på högskolekompetens eller motsvarande",
+              "4": "Yrken inom administration och kundtjänst",
+              "5": "Service-, omsorgs- och försäljningsyrken",
+              "6": "Yrken inom lantbruk, trädgård, skogsbruk och fiske",
+              "7": "Yrken inom byggverksamhet och tillverkning",
+              "8": "Yrken inom maskinell tillverkning och transport m.m.",
+              "9": "Yrken med krav på kortare utbildning eller introduktion",
+              "0": "Militära yrken",
+              "0002": "yrke okänt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000063D": 0,
+              "0000063C": 1
+            },
+            "label": {
+              "0000063D": "Sysselsatta",
+              "0000063C": "Felmarginal ±"
+            },
+            "note": {
+              "0000063C": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "0000063D": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "0000063C": {
+                "base": "1000-tal",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000063C": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "0000063D": "",
+              "0000063C": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000063D": "Average",
+              "0000063C": "Average"
+            },
+            "priceType": {
+              "0000063D": "NotApplicable",
+              "0000063C": "NotApplicable"
+            },
+            "adjustment": {
+              "0000063D": "None",
+              "0000063C": "None"
+            },
+            "alternativeText": {
+              "0000063D": "Tidigare definitioner. Employed persons aged 15-74 (LFS), 1000s",
+              "0000063C": "Tidigare definitioner. Margin of error ±, employed persons aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2015K1": 0,
+              "2015K2": 1,
+              "2015K3": 2,
+              "2015K4": 3,
+              "2016K1": 4,
+              "2016K2": 5,
+              "2016K3": 6,
+              "2016K4": 7,
+              "2017K1": 8,
+              "2017K2": 9,
+              "2017K3": 10,
+              "2017K4": 11,
+              "2018K1": 12,
+              "2018K2": 13,
+              "2018K3": 14,
+              "2018K4": 15,
+              "2019K1": 16,
+              "2019K2": 17,
+              "2019K3": 18,
+              "2019K4": 19,
+              "2020K1": 20,
+              "2020K2": 21,
+              "2020K3": 22,
+              "2020K4": 23
+            },
+            "label": {
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6114",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Tidigare definitioner. Sysselsatta 15-74 år (AKU), 1000-tal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Anknytningsgrad",
+            "Yrke",
+            "Kon"
+          ],
+          "matrix": "TAB6114",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6114",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6114",
+        "label": "Sysselsatta 15-74 år (AKU) efter anknytningsgrad till arbetsmarknaden, yrke SSYK 2012 och kön, tidigare definitioner. Kvartal 2015K1-2020K4",
+        "description": "",
+        "sortCode": "11",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2015K1",
+        "lastPeriod": "2020K4",
+        "category": "public",
+        "variableNames": [
+          "anknytningsgrad till arbetsmarknaden",
+          "yrke",
+          "kön",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0403",
+              "label": "Arbetskraftsundersökningarna, tidigare definitioner",
+              "sortCode": "025"
+            },
+            {
+              "id": "AM0403I",
+              "label": "Sysselsatta 1970-2020",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6114?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6114?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6114/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6114/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

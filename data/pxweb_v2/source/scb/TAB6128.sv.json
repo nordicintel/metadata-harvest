@@ -1,0 +1,616 @@
+{
+  "key": "scb/TAB6128/sv",
+  "identifier": "TAB6128",
+  "language": "sv",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:21:08.171996+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Medelarbetstid (överenskommen) per vecka för sysselsatta 15-74 år (AKU) efter näringsgren SNI2007 och kön, tidigare definitioner. Månad 2009M01-2020M12",
+      "source": "SCB",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "Från och med 1 januari 2021 genomfördes en förändring av AKU, enligt förordning (2019/1700). I och med denna förändring av AKU finns ett tidsseriebrott mellan 2020 och 2021.  \r\n[Statistikdatabasen, serier från och med 2021](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401/)  \r\n[Statistikdatabasen, serier t.o.m. 2020](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0403/)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "SNI2007",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        17,
+        3,
+        2,
+        144
+      ],
+      "dimension": {
+        "SNI2007": {
+          "label": "näringsgren SNI 2007",
+          "note": [
+            "Ny näringsgrensindelning SNI 2007 ersätter SNI 2002 från och med  2009. Från och med 2009 redovisas uppgifter per näringsgren enbart för arbete utfört i Sverige.",
+            "Ny näringsgrensindelning SNI 2007 ersätter SNI 2002 från och med  2009. Från och med 2009 redovisas uppgifter per näringsgren enbart för arbete utfört i Sverige."
+          ],
+          "category": {
+            "index": {
+              "A-U": 0,
+              "A-U+UT": 1,
+              "01-03": 2,
+              "05-33+35-39": 3,
+              "25-30+33": 4,
+              "41-43": 5,
+              "45-47": 6,
+              "49-53": 7,
+              "55-56": 8,
+              "58-63": 9,
+              "64-82": 10,
+              "84+99": 11,
+              "85": 12,
+              "86-88": 13,
+              "90-98": 14,
+              "UT": 15,
+              "US": 16
+            },
+            "label": {
+              "A-U": "samtliga näringsgrenar",
+              "A-U+UT": "samtliga näringsgrenar inkl. utlandsarbete",
+              "01-03": "jordbruk, skogsbruk och fiske",
+              "05-33+35-39": "tillverkning och utvinning, energi och miljö",
+              "25-30+33": "tillverkning av verkstadsvaror",
+              "41-43": "byggverksamhet",
+              "45-47": "handel",
+              "49-53": "transport",
+              "55-56": "hotell och restaurang",
+              "58-63": "information och kommunikation",
+              "64-82": "finansiell verksamhet, företagstjänster",
+              "84+99": "offentlig förvaltning m.m.",
+              "85": "utbildning",
+              "86-88": "vård och omsorg",
+              "90-98": "personliga och kulturella tjänster",
+              "UT": "utlandsarbete",
+              "US": "uppgift saknas"
+            },
+            "note": {
+              "25-30+33": [
+                "25-30+33 tillverkning av verkstadsvaror är en delmängd av 05-33+35-39 tillverkning och utvinning,  energi och miljö"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true
+            },
+            "categoryNoteMandatory": {
+              "25-30+33": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000064I": 0,
+              "0000064H": 1
+            },
+            "label": {
+              "0000064I": "Medelarbetstid",
+              "0000064H": "Felmarginal ±"
+            },
+            "note": {
+              "0000064H": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "0000064I": {
+                "base": "antal timmar",
+                "decimals": 1
+              },
+              "0000064H": {
+                "base": "antal timmar",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000064H": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "0000064I": "",
+              "0000064H": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000064I": "Average",
+              "0000064H": "Average"
+            },
+            "priceType": {
+              "0000064I": "NotApplicable",
+              "0000064H": "NotApplicable"
+            },
+            "adjustment": {
+              "0000064I": "None",
+              "0000064H": "None"
+            },
+            "alternativeText": {
+              "0000064I": "Tidigare definitioner. Medelarbetstid (överenskommen) per vecka för sysselsatta 15-74 år (AKU), timmar",
+              "0000064H": "Tidigare definitioner. Felmarginal ±, medelarbetstid (överenskommen) per vecka för sysselsatta 15-74 år (AKU), timmar"
+            }
+          }
+        },
+        "Tid": {
+          "label": "månad",
+          "category": {
+            "index": {
+              "2009M01": 0,
+              "2009M02": 1,
+              "2009M03": 2,
+              "2009M04": 3,
+              "2009M05": 4,
+              "2009M06": 5,
+              "2009M07": 6,
+              "2009M08": 7,
+              "2009M09": 8,
+              "2009M10": 9,
+              "2009M11": 10,
+              "2009M12": 11,
+              "2010M01": 12,
+              "2010M02": 13,
+              "2010M03": 14,
+              "2010M04": 15,
+              "2010M05": 16,
+              "2010M06": 17,
+              "2010M07": 18,
+              "2010M08": 19,
+              "2010M09": 20,
+              "2010M10": 21,
+              "2010M11": 22,
+              "2010M12": 23,
+              "2011M01": 24,
+              "2011M02": 25,
+              "2011M03": 26,
+              "2011M04": 27,
+              "2011M05": 28,
+              "2011M06": 29,
+              "2011M07": 30,
+              "2011M08": 31,
+              "2011M09": 32,
+              "2011M10": 33,
+              "2011M11": 34,
+              "2011M12": 35,
+              "2012M01": 36,
+              "2012M02": 37,
+              "2012M03": 38,
+              "2012M04": 39,
+              "2012M05": 40,
+              "2012M06": 41,
+              "2012M07": 42,
+              "2012M08": 43,
+              "2012M09": 44,
+              "2012M10": 45,
+              "2012M11": 46,
+              "2012M12": 47,
+              "2013M01": 48,
+              "2013M02": 49,
+              "2013M03": 50,
+              "2013M04": 51,
+              "2013M05": 52,
+              "2013M06": 53,
+              "2013M07": 54,
+              "2013M08": 55,
+              "2013M09": 56,
+              "2013M10": 57,
+              "2013M11": 58,
+              "2013M12": 59,
+              "2014M01": 60,
+              "2014M02": 61,
+              "2014M03": 62,
+              "2014M04": 63,
+              "2014M05": 64,
+              "2014M06": 65,
+              "2014M07": 66,
+              "2014M08": 67,
+              "2014M09": 68,
+              "2014M10": 69,
+              "2014M11": 70,
+              "2014M12": 71,
+              "2015M01": 72,
+              "2015M02": 73,
+              "2015M03": 74,
+              "2015M04": 75,
+              "2015M05": 76,
+              "2015M06": 77,
+              "2015M07": 78,
+              "2015M08": 79,
+              "2015M09": 80,
+              "2015M10": 81,
+              "2015M11": 82,
+              "2015M12": 83,
+              "2016M01": 84,
+              "2016M02": 85,
+              "2016M03": 86,
+              "2016M04": 87,
+              "2016M05": 88,
+              "2016M06": 89,
+              "2016M07": 90,
+              "2016M08": 91,
+              "2016M09": 92,
+              "2016M10": 93,
+              "2016M11": 94,
+              "2016M12": 95,
+              "2017M01": 96,
+              "2017M02": 97,
+              "2017M03": 98,
+              "2017M04": 99,
+              "2017M05": 100,
+              "2017M06": 101,
+              "2017M07": 102,
+              "2017M08": 103,
+              "2017M09": 104,
+              "2017M10": 105,
+              "2017M11": 106,
+              "2017M12": 107,
+              "2018M01": 108,
+              "2018M02": 109,
+              "2018M03": 110,
+              "2018M04": 111,
+              "2018M05": 112,
+              "2018M06": 113,
+              "2018M07": 114,
+              "2018M08": 115,
+              "2018M09": 116,
+              "2018M10": 117,
+              "2018M11": 118,
+              "2018M12": 119,
+              "2019M01": 120,
+              "2019M02": 121,
+              "2019M03": 122,
+              "2019M04": 123,
+              "2019M05": 124,
+              "2019M06": 125,
+              "2019M07": 126,
+              "2019M08": 127,
+              "2019M09": 128,
+              "2019M10": 129,
+              "2019M11": 130,
+              "2019M12": 131,
+              "2020M01": 132,
+              "2020M02": 133,
+              "2020M03": 134,
+              "2020M04": 135,
+              "2020M05": 136,
+              "2020M06": 137,
+              "2020M07": 138,
+              "2020M08": 139,
+              "2020M09": 140,
+              "2020M10": 141,
+              "2020M11": 142,
+              "2020M12": 143
+            },
+            "label": {
+              "2009M01": "2009M01",
+              "2009M02": "2009M02",
+              "2009M03": "2009M03",
+              "2009M04": "2009M04",
+              "2009M05": "2009M05",
+              "2009M06": "2009M06",
+              "2009M07": "2009M07",
+              "2009M08": "2009M08",
+              "2009M09": "2009M09",
+              "2009M10": "2009M10",
+              "2009M11": "2009M11",
+              "2009M12": "2009M12",
+              "2010M01": "2010M01",
+              "2010M02": "2010M02",
+              "2010M03": "2010M03",
+              "2010M04": "2010M04",
+              "2010M05": "2010M05",
+              "2010M06": "2010M06",
+              "2010M07": "2010M07",
+              "2010M08": "2010M08",
+              "2010M09": "2010M09",
+              "2010M10": "2010M10",
+              "2010M11": "2010M11",
+              "2010M12": "2010M12",
+              "2011M01": "2011M01",
+              "2011M02": "2011M02",
+              "2011M03": "2011M03",
+              "2011M04": "2011M04",
+              "2011M05": "2011M05",
+              "2011M06": "2011M06",
+              "2011M07": "2011M07",
+              "2011M08": "2011M08",
+              "2011M09": "2011M09",
+              "2011M10": "2011M10",
+              "2011M11": "2011M11",
+              "2011M12": "2011M12",
+              "2012M01": "2012M01",
+              "2012M02": "2012M02",
+              "2012M03": "2012M03",
+              "2012M04": "2012M04",
+              "2012M05": "2012M05",
+              "2012M06": "2012M06",
+              "2012M07": "2012M07",
+              "2012M08": "2012M08",
+              "2012M09": "2012M09",
+              "2012M10": "2012M10",
+              "2012M11": "2012M11",
+              "2012M12": "2012M12",
+              "2013M01": "2013M01",
+              "2013M02": "2013M02",
+              "2013M03": "2013M03",
+              "2013M04": "2013M04",
+              "2013M05": "2013M05",
+              "2013M06": "2013M06",
+              "2013M07": "2013M07",
+              "2013M08": "2013M08",
+              "2013M09": "2013M09",
+              "2013M10": "2013M10",
+              "2013M11": "2013M11",
+              "2013M12": "2013M12",
+              "2014M01": "2014M01",
+              "2014M02": "2014M02",
+              "2014M03": "2014M03",
+              "2014M04": "2014M04",
+              "2014M05": "2014M05",
+              "2014M06": "2014M06",
+              "2014M07": "2014M07",
+              "2014M08": "2014M08",
+              "2014M09": "2014M09",
+              "2014M10": "2014M10",
+              "2014M11": "2014M11",
+              "2014M12": "2014M12",
+              "2015M01": "2015M01",
+              "2015M02": "2015M02",
+              "2015M03": "2015M03",
+              "2015M04": "2015M04",
+              "2015M05": "2015M05",
+              "2015M06": "2015M06",
+              "2015M07": "2015M07",
+              "2015M08": "2015M08",
+              "2015M09": "2015M09",
+              "2015M10": "2015M10",
+              "2015M11": "2015M11",
+              "2015M12": "2015M12",
+              "2016M01": "2016M01",
+              "2016M02": "2016M02",
+              "2016M03": "2016M03",
+              "2016M04": "2016M04",
+              "2016M05": "2016M05",
+              "2016M06": "2016M06",
+              "2016M07": "2016M07",
+              "2016M08": "2016M08",
+              "2016M09": "2016M09",
+              "2016M10": "2016M10",
+              "2016M11": "2016M11",
+              "2016M12": "2016M12",
+              "2017M01": "2017M01",
+              "2017M02": "2017M02",
+              "2017M03": "2017M03",
+              "2017M04": "2017M04",
+              "2017M05": "2017M05",
+              "2017M06": "2017M06",
+              "2017M07": "2017M07",
+              "2017M08": "2017M08",
+              "2017M09": "2017M09",
+              "2017M10": "2017M10",
+              "2017M11": "2017M11",
+              "2017M12": "2017M12",
+              "2018M01": "2018M01",
+              "2018M02": "2018M02",
+              "2018M03": "2018M03",
+              "2018M04": "2018M04",
+              "2018M05": "2018M05",
+              "2018M06": "2018M06",
+              "2018M07": "2018M07",
+              "2018M08": "2018M08",
+              "2018M09": "2018M09",
+              "2018M10": "2018M10",
+              "2018M11": "2018M11",
+              "2018M12": "2018M12",
+              "2019M01": "2019M01",
+              "2019M02": "2019M02",
+              "2019M03": "2019M03",
+              "2019M04": "2019M04",
+              "2019M05": "2019M05",
+              "2019M06": "2019M06",
+              "2019M07": "2019M07",
+              "2019M08": "2019M08",
+              "2019M09": "2019M09",
+              "2019M10": "2019M10",
+              "2019M11": "2019M11",
+              "2019M12": "2019M12",
+              "2020M01": "2020M01",
+              "2020M02": "2020M02",
+              "2020M03": "2020M03",
+              "2020M04": "2020M04",
+              "2020M05": "2020M05",
+              "2020M06": "2020M06",
+              "2020M07": "2020M07",
+              "2020M08": "2020M08",
+              "2020M09": "2020M09",
+              "2020M10": "2020M10",
+              "2020M11": "2020M11",
+              "2020M12": "2020M12"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6128",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Tidigare definitioner. Medelarbetstid (överenskommen) per vecka för sysselsatta 15-74 år (AKU), timmar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "SNI2007",
+            "Kon"
+          ],
+          "matrix": "TAB6128",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6128",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6128",
+        "label": "Medelarbetstid (överenskommen) per vecka för sysselsatta 15-74 år (AKU) efter näringsgren SNI2007 och kön, tidigare definitioner. Månad 2009M01-2020M12",
+        "description": "",
+        "sortCode": "07",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2009M01",
+        "lastPeriod": "2020M12",
+        "category": "public",
+        "variableNames": [
+          "näringsgren SNI 2007",
+          "kön",
+          "tabellinnehåll",
+          "månad"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0403",
+              "label": "Arbetskraftsundersökningarna, tidigare definitioner",
+              "sortCode": "025"
+            },
+            {
+              "id": "AM0403B",
+              "label": "Arbetstid efter näringsgren (SNI2007) 2009-2020",
+              "sortCode": "05"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6128?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6128?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6128/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6128/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

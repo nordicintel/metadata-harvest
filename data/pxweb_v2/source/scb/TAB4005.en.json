@@ -1,0 +1,444 @@
+{
+  "key": "scb/TAB4005/en",
+  "identifier": "TAB4005",
+  "language": "en",
+  "updated": "2022-04-28T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:13:27.855426+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Immigrants 16–74 years of age by sex, age, national background, type of migration, level of educational attainment and field of education. Year of immigration 1990-2021",
+      "source": "Statistics Sweden",
+      "updated": "2022-04-28T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0506"
+            },
+            "href": "https://www.scb.se/UF0506-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Data on emigration after immigration refer to the time until the latest year in the time series.",
+        "type of migration indicates the number of persons that after immigrating the year reported have emigrated. Data on emigration after immigration is updated until the latest year in the time series.",
+        "In the Swedish Register of Education 2017, the annual survey “Education in a country other than Sweden” has been sent only to immigrants during the last year who don´t have information on educational attainment registered at the Swedish public employment service. The highest level of education registered at the source “Swedish public employment service” is “post-secondary education less than 3 years”."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "NationellBakgrund",
+        "Migrationstyp",
+        "UtbildningsNiva",
+        "UtbinriktnSUN2000",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        6,
+        2,
+        5,
+        6,
+        6,
+        1,
+        32
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "men",
+              "2": "women"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-34": 1,
+              "35-44": 2,
+              "45-54": 3,
+              "55-64": 4,
+              "65-74": 5
+            },
+            "label": {
+              "16-24": "16–24 years",
+              "25-34": "25–34 years",
+              "35-44": "35–44 years",
+              "45-54": "45–54 years",
+              "55-64": "55–64 years",
+              "65-74": "65–74 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NationellBakgrund": {
+          "label": "national background",
+          "category": {
+            "index": {
+              "S": 0,
+              "U": 1
+            },
+            "label": {
+              "S": "born in Sweden",
+              "U": "born abroad"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Migrationstyp": {
+          "label": "type of migration",
+          "category": {
+            "index": {
+              "4": 0,
+              "IR13": 1,
+              "IR45": 2,
+              "IR68": 3,
+              "IR90": 4
+            },
+            "label": {
+              "4": "immigrants still in the country",
+              "IR13": "immigrated and thereafter emigrated within 3 years",
+              "IR45": "immigrated and emigrated 4–5 years after immigration",
+              "IR68": "immigrated and emigrated 6–8 years after immigration",
+              "IR90": "immigrated and emigrated 9+ years after immigration"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildningsNiva": {
+          "label": "level of education",
+          "note": [
+            "The classification by level of educational attainment is according to the Swedish national educational classification (SUN)"
+          ],
+          "category": {
+            "index": {
+              "21": 0,
+              "3+4": 1,
+              "5": 2,
+              "6": 3,
+              "7": 4,
+              "US": 5
+            },
+            "label": {
+              "21": "primary and lower secondary education",
+              "3+4": "upper secondary education",
+              "5": "post-secondary education, less than 3 years (ISCED97 4+5B)",
+              "6": "post-secondary education 3 years or more (ISCED97 5A)",
+              "7": "post-graduate education (ISCED97 6)",
+              "US": "no information about level of educational attainment"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbinriktnSUN2000": {
+          "label": "field of education SUN 2000",
+          "category": {
+            "index": {
+              "000": 0,
+              "0+1+2+8": 1,
+              "3": 2,
+              "4+5+6": 3,
+              "7": 4,
+              "9": 5
+            },
+            "label": {
+              "000": "All educational orientations",
+              "0+1+2+8": "general education, teaching, humanities and services",
+              "3": "social sciences, law, commerce, administration",
+              "4+5+6": "science, technology, manufacturing, agriculture",
+              "7": "health care and nursing, social care",
+              "9": "unknown"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "UF0506I1": 0
+            },
+            "label": {
+              "UF0506I1": "Immigrants"
+            },
+            "unit": {
+              "UF0506I1": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "UF0506I1": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "UF0506I1": "Flow"
+            },
+            "priceType": {
+              "UF0506I1": "NotApplicable"
+            },
+            "adjustment": {
+              "UF0506I1": "None"
+            },
+            "alternativeText": {
+              "UF0506I1": "Immigrants 16–74 years of age"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1990": 0,
+              "1991": 1,
+              "1992": 2,
+              "1993": 3,
+              "1994": 4,
+              "1995": 5,
+              "1996": 6,
+              "1997": 7,
+              "1998": 8,
+              "1999": 9,
+              "2000": 10,
+              "2001": 11,
+              "2002": 12,
+              "2003": 13,
+              "2004": 14,
+              "2005": 15,
+              "2006": 16,
+              "2007": 17,
+              "2008": 18,
+              "2009": 19,
+              "2010": 20,
+              "2011": 21,
+              "2012": 22,
+              "2013": 23,
+              "2014": 24,
+              "2015": 25,
+              "2016": 26,
+              "2017": 27,
+              "2018": 28,
+              "2019": 29,
+              "2020": 30,
+              "2021": 31
+            },
+            "label": {
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "UF0506",
+          "tableid": "TAB4005",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Immigrants 16–74 years of age",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "NationellBakgrund",
+            "Migrationstyp",
+            "UtbildningsNiva",
+            "UtbinriktnSUN2000"
+          ],
+          "matrix": "TAB4005",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Tomas Westling",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 61 78",
+            "mail": "tomas.westling@scb.se",
+            "raw": "Tomas Westling, Statistics Sweden# +46 010-479 61 78#tomas.westling@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4005",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4005",
+        "label": "Immigrants 16–74 years of age by sex, age, national background, type of migration, level of educational attainment and field of education. Year of immigration 1990-2021",
+        "description": "",
+        "sortCode": "11",
+        "updated": "2022-04-28T06:00:00Z",
+        "firstPeriod": "1990",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "age",
+          "national background",
+          "type of migration",
+          "level of education",
+          "field of education SUN 2000",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0506",
+              "label": "Educational attainment of the population",
+              "sortCode": "Educational attainment of the population"
+            },
+            {
+              "id": "UF0506B",
+              "label": "Educational attainment of the population",
+              "sortCode": "003"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4005?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4005?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4005/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4005/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

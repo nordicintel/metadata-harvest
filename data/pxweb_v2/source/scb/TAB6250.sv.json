@@ -1,0 +1,412 @@
+{
+  "key": "scb/TAB6250/sv",
+  "identifier": "TAB6250",
+  "language": "sv",
+  "updated": "2026-03-24T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:45:58.389701+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Familjestödets andel av den disponibla inkomsten bland hemmaboende barn och unga 0–21 år efter kön, ålder, typ av bidrag, familjetyp och antal hemmaboende syskon. År 2014-2024",
+      "source": "SCB",
+      "updated": "2026-03-24T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0102"
+            },
+            "href": "https://www.scb.se/LE0102",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Uppgifterna avser hushåll där minst en vuxen varit folkbokförd vid såväl årets början som slut och där det finns en registrerad inkomst.",
+        "Uppgifter om barnfamiljers ekonomi som publicerats år 2022 eller senare inkluderar löne- och pensionsinkomster från övriga nordiska länder. Tidigare publicerade uppgifter för år 2014–2019 reviderades 2022 för att inkludera dessa inkomster."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "Typbidrag",
+        "Familjetyp",
+        "Antalsyskon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        6,
+        6,
+        4,
+        4,
+        4,
+        11
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "5+6": 0,
+              "5": 1,
+              "6": 2
+            },
+            "label": {
+              "5+6": "båda könen",
+              "5": "pojkar",
+              "6": "flickor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "0-17": 0,
+              "0-21": 1,
+              "0-5": 2,
+              "6-12": 3,
+              "13-17": 4,
+              "18-21": 5
+            },
+            "label": {
+              "0-17": "0–17 år",
+              "0-21": "0–21 år",
+              "0-5": "0–5 år",
+              "6-12": "6–12 år",
+              "13-17": "13–17 år",
+              "18-21": "18–21 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Typbidrag": {
+          "label": "typ av bidrag",
+          "category": {
+            "index": {
+              "819": 0,
+              "820": 1,
+              "822": 2,
+              "823": 3,
+              "825": 4,
+              "827": 5
+            },
+            "label": {
+              "819": "familjestöd totalt",
+              "820": "barnbidrag",
+              "822": "bostadsbidrag",
+              "823": "underhållsstöd",
+              "825": "föräldraförsäkring",
+              "827": "ekonomiskt bistånd"
+            },
+            "note": {
+              "819": [
+                "Avser andel barn vars familj har minst ett av bidragen, alternativt hur stor andel av familjens inkomst dessa bidrag utgör."
+              ],
+              "823": [
+                "Posten Underhållsstöd består både av underhållsstöd (som administreras av Försäkringskassan) och underhållsbidrag (som hanteras direkt av föräldrarna). Uppgift om underhållsbidrag finns inte i administrativa register, utan är baserat på en modell. För statistik som avser år 2021 har denna modell uppdaterats, vilket innebär att andelen barn som har underhållsbidrag blir lägre, medan andel av disponibel inkomst för de med underhållsbidrag blir högre. "
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "819": {
+                "0": true
+              },
+              "823": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Familjetyp": {
+          "label": "familjetyp",
+          "category": {
+            "index": {
+              "SamboTot": 0,
+              "EnsamMor": 1,
+              "EnsamFar": 2,
+              "Total": 3
+            },
+            "label": {
+              "SamboTot": "sammanboende föräldrar",
+              "EnsamMor": "ensamstående mor",
+              "EnsamFar": "ensamstående far",
+              "Total": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Antalsyskon": {
+          "label": "antal hemmaboende syskon",
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1,
+              "2+": 2,
+              "999": 3
+            },
+            "label": {
+              "0": "0",
+              "1": "1",
+              "2+": "2+",
+              "999": "totalt "
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000006G2": 0,
+              "000006G4": 1,
+              "000006G3": 2,
+              "000006G5": 3
+            },
+            "label": {
+              "000006G2": "Andel av disponibel inkomst, för samtliga",
+              "000006G4": "Andel som har inkomsten",
+              "000006G3": "Andel av disponibel inkomst, för de som har inkomsten",
+              "000006G5": "Totalt antal i gruppen"
+            },
+            "unit": {
+              "000006G2": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "000006G4": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000006G3": {
+                "base": "antal",
+                "decimals": 1
+              },
+              "000006G5": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000006G2": "31 december respektive år",
+              "000006G4": "31 december respektive år",
+              "000006G3": "31 december respektive år",
+              "000006G5": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000006G2": "Stock",
+              "000006G4": "Stock",
+              "000006G3": "Stock",
+              "000006G5": "Stock"
+            },
+            "priceType": {
+              "000006G2": "NotApplicable",
+              "000006G4": "NotApplicable",
+              "000006G3": "NotApplicable",
+              "000006G5": "NotApplicable"
+            },
+            "adjustment": {
+              "000006G2": "None",
+              "000006G4": "None",
+              "000006G3": "None",
+              "000006G5": "None"
+            },
+            "alternativeText": {
+              "000006G2": "Andel av disponibel inkomst, för samtliga",
+              "000006G4": "Andel som har inkomsten",
+              "000006G3": "Andel av disponibel inkomst, för de som har inkomsten",
+              "000006G5": "Totalt antal i gruppen"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8,
+              "2023": 9,
+              "2024": 10
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "LE0102",
+          "tableid": "TAB6250",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Familjestödets andel av den disponibla inkomsten för hemmaboende barn och unga 0–21 år",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "Typbidrag",
+            "Familjetyp",
+            "Antalsyskon"
+          ],
+          "matrix": "TAB6250",
+          "subject-code": "LE",
+          "subject-area": "Levnadsförhållanden"
+        },
+        "contact": [
+          {
+            "name": "Nikolaus Koutakis",
+            "organization": "SCB",
+            "phone": "010-479 66 65",
+            "mail": "barn-ochfamiljestatistik@scb.se",
+            "raw": "Nikolaus Koutakis, SCB# +46 010-479 66 65#barn-ochfamiljestatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6250",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6250",
+        "label": "Familjestödets andel av den disponibla inkomsten bland hemmaboende barn och unga 0–21 år efter kön, ålder, typ av bidrag, familjetyp och antal hemmaboende syskon. År 2014-2024",
+        "description": "",
+        "sortCode": "25",
+        "updated": "2026-03-24T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2024",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "ålder",
+          "typ av bidrag",
+          "familjetyp",
+          "antal hemmaboende syskon",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Levnadsförhållanden",
+              "sortCode": "Levnadsförhållanden"
+            },
+            {
+              "id": "LE0102",
+              "label": "Barn- och familjestatistik",
+              "sortCode": "Barn- och familjestatistik"
+            },
+            {
+              "id": "LE0102L",
+              "label": "Barnfamiljers ekonomi",
+              "sortCode": "012"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6250?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6250?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6250/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6250/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

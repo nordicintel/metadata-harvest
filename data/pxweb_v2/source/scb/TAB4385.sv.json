@@ -1,0 +1,441 @@
+{
+  "key": "scb/TAB4385/sv",
+  "identifier": "TAB4385",
+  "language": "sv",
+  "updated": "2025-10-14T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:33:16.039262+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Avgifter och insatser i nybyggda hus (bostadsrätt) efter regional indelning NUTS, byggherre och antal rum. År 2022-2024",
+      "source": "SCB",
+      "updated": "2025-10-14T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0404"
+            },
+            "href": "https://www.scb.se/BO0404",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "AntalRum",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        33,
+        6,
+        8,
+        2
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "SE1": 1,
+              "SE11": 2,
+              "SE110": 3,
+              "SE12": 4,
+              "SE121": 5,
+              "SE122": 6,
+              "SE123": 7,
+              "SE124": 8,
+              "SE125": 9,
+              "SE2": 10,
+              "SE21": 11,
+              "SE211": 12,
+              "SE212": 13,
+              "SE213": 14,
+              "SE214": 15,
+              "SE22": 16,
+              "SE221": 17,
+              "SE224": 18,
+              "SE23": 19,
+              "SE231": 20,
+              "SE232": 21,
+              "SE3": 22,
+              "SE31": 23,
+              "SE311": 24,
+              "SE312": 25,
+              "SE313": 26,
+              "SE32": 27,
+              "SE321": 28,
+              "SE322": 29,
+              "SE33": 30,
+              "SE331": 31,
+              "SE332": 32
+            },
+            "label": {
+              "00": "Riket",
+              "SE1": "Östra Sverige",
+              "SE11": "Stockholm",
+              "SE110": "Stockholms län",
+              "SE12": "Östra Mellansverige",
+              "SE121": "Uppsala län",
+              "SE122": "Södermanlands län",
+              "SE123": "Östergötlands län",
+              "SE124": "Örebro län",
+              "SE125": "Västmanlands län",
+              "SE2": "Södra Sverige",
+              "SE21": "Småland med öarna",
+              "SE211": "Jönköpings län",
+              "SE212": "Kronobergs län",
+              "SE213": "Kalmar län",
+              "SE214": "Gotlands län",
+              "SE22": "Sydsverige",
+              "SE221": "Blekinge län",
+              "SE224": "Skåne län",
+              "SE23": "Västsverige",
+              "SE231": "Hallands län",
+              "SE232": "Västra Götalands län",
+              "SE3": "Norra Sverige",
+              "SE31": "Norra Mellansverige",
+              "SE311": "Värmlands län",
+              "SE312": "Dalarnas län",
+              "SE313": "Gävleborgs län",
+              "SE32": "Mellersta Norrland",
+              "SE321": "Västernorrlands län",
+              "SE322": "Jämtlands län",
+              "SE33": "Övre Norrland",
+              "SE331": "Västerbottens län",
+              "SE332": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_ARiket",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ARiket?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_NUTS12008EjAggr",
+                "label": "NUTS 1",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_NUTS12008EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_NUTS22008EjAggr2",
+                "label": "NUTS 2",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_NUTS22008EjAggr2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_NUTS32008EjAggr",
+                "label": "NUTS 3",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_NUTS32008EjAggr?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "AntalRum": {
+          "label": "antal rum",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "99": 4,
+              "00": 5
+            },
+            "label": {
+              "1": "Lägenhet 1 rum",
+              "2": "Lägenhet 2 rum",
+              "3": "Lägenhet 3 rum",
+              "4": "Lägenhet 4+ rum",
+              "99": "Småhus oavsett antal rum",
+              "00": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000088Z": 0,
+              "00000890": 1,
+              "00000891": 2,
+              "0000089B": 3,
+              "0000089C": 4,
+              "0000089A": 5,
+              "0000089D": 6,
+              "0000089E": 7
+            },
+            "label": {
+              "0000088Z": "nybyggnadsprojekt, antal färdigställda projekt som prisstatistiken baseras på",
+              "00000890": "lägenheter, antal lägenheter som prisstatistiken baseras på",
+              "00000891": "bostadsyta per lägenhet, kvm",
+              "0000089B": "årsavgift per kvadratmeter, kr",
+              "0000089C": "årsavgift per lägenhet, kr",
+              "0000089A": "månadsavgift (årsavgift/12) per lägenhet, kr",
+              "0000089D": "insats per kvadratmeter, kr",
+              "0000089E": "insats per lägenhet, kr"
+            },
+            "unit": {
+              "0000088Z": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000890": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000891": {
+                "base": "kvadratmeter per lägenhet",
+                "decimals": 0
+              },
+              "0000089B": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000089C": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000089A": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000089D": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000089E": {
+                "base": "kronor",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000088Z": "31 december respektive år",
+              "00000890": "31 december respektive år",
+              "00000891": "31 december respektive år",
+              "0000089B": "31 december respektive år",
+              "0000089C": "31 december respektive år",
+              "0000089A": "31 december respektive år",
+              "0000089D": "31 december respektive år",
+              "0000089E": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000088Z": "Stock",
+              "00000890": "Stock",
+              "00000891": "Stock",
+              "0000089B": "Stock",
+              "0000089C": "Stock",
+              "0000089A": "Stock",
+              "0000089D": "Stock",
+              "0000089E": "Stock"
+            },
+            "priceType": {
+              "0000088Z": "NotApplicable",
+              "00000890": "NotApplicable",
+              "00000891": "NotApplicable",
+              "0000089B": "Current",
+              "0000089C": "Current",
+              "0000089A": "Current",
+              "0000089D": "Current",
+              "0000089E": "Current"
+            },
+            "adjustment": {
+              "0000088Z": "None",
+              "00000890": "None",
+              "00000891": "None",
+              "0000089B": "None",
+              "0000089C": "None",
+              "0000089A": "None",
+              "0000089D": "None",
+              "0000089E": "None"
+            },
+            "alternativeText": {
+              "0000088Z": "Färdigställda nybyggnadsprojekt, antal färdigställda nybyggnadsprojekt som prisstatistiken baseras på",
+              "00000890": "Lägenheter i nybyggda hus (bostadsrätt), antal lägenheter som prisstatistiken baseras på",
+              "00000891": "Bostadsyta per lägenhet i nybyggda hus (bostadsätt), kvm",
+              "0000089B": "Årsavgift per kvadratmeter i nybyggda hus (bostadsrätt), kr",
+              "0000089C": "Årsavgift per lägenhet i nybyggda hus (bostadsrätt), kr",
+              "0000089A": "Månadsavgift (årsavgift/12) per lägenhet i nybyggda hus (bostadsrätt), kr",
+              "0000089D": "Insats per kvadratmeter i nybyggda hus (bostadsrätt), kr",
+              "0000089E": "Insats per lägenhet i nybyggda hus (bostadsrätt), kr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2022": 0,
+              "2024": 1
+            },
+            "label": {
+              "2022": "2022",
+              "2024": "2024"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0404",
+          "tableid": "TAB4385",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Avgifter och insatser i nybyggda hus (bostadsrätt)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "AntalRum"
+          ],
+          "matrix": "TAB4385",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4385",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4385",
+        "label": "Avgifter och insatser i nybyggda hus (bostadsrätt) efter regional indelning NUTS, byggherre och antal rum. År 2022-2024",
+        "description": "",
+        "sortCode": "09",
+        "updated": "2025-10-14T06:00:00Z",
+        "firstPeriod": "2022",
+        "lastPeriod": "2024",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "antal rum",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0404",
+              "label": "Avgifter/hyror för nybyggda lägenheter",
+              "sortCode": "Avgifter/hyror för nybyggda lägenheter"
+            },
+            {
+              "id": "BO0404A",
+              "label": "Hyresrätter och bostadsrätter. År 2022-",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4385?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4385?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4385/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4385/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

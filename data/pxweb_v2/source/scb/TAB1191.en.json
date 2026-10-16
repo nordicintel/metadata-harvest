@@ -1,0 +1,384 @@
+{
+  "key": "scb/TAB1191/en",
+  "identifier": "TAB1191",
+  "language": "en",
+  "updated": "2026-05-27T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:19:19.405272+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Income statements for financial enterprises by kind of financial institute and item. Year 1996-2025",
+      "source": "Swedish Financial Supervisory Authority",
+      "updated": "2026-05-27T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0402"
+            },
+            "href": "https://www.scb.se/FM0402-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "2021-05-28: Data has been corrected for the period 2008–2019.",
+        "In 2018 a banking company ceased to exist and a foreign bank branch in Sweden was added to the population.",
+        "In 2017, one credit market institution was converted into a banking corporation."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Finansinstitut",
+        "Kontopost",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        25,
+        1,
+        30
+      ],
+      "dimension": {
+        "Finansinstitut": {
+          "label": "Kind of financial institute",
+          "category": {
+            "index": {
+              "S201": 0,
+              "S212": 1,
+              "S2121": 2,
+              "S2123": 3,
+              "S2125": 4,
+              "S21KMB": 5,
+              "S214": 6,
+              "S215": 7,
+              "S221": 8,
+              "S223": 9
+            },
+            "label": {
+              "S201": "financial enterprises, total",
+              "S212": "banks, total",
+              "S2121": "commercial banks",
+              "S2123": "foreign banks´branches in Sweden",
+              "S2125": "saving banks",
+              "S21KMB": "credit market companies, total",
+              "S214": "housing credit institutions",
+              "S215": "other mortgage institutions",
+              "S221": "other credit market companies",
+              "S223": "securities brokerage companies"
+            },
+            "note": {
+              "S2121": [
+                "Incl. co-operative banks."
+              ],
+              "S21KMB": [
+                "The data regarding leasing income (B2) and taxes (B26) have been revised for 2006 at the time for publishing 2007 (2008-05-21)."
+              ],
+              "S221": [
+                "Former financial companies."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "S21KMB": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kontopost": {
+          "label": "item",
+          "category": {
+            "index": {
+              "E00089": 0,
+              "E00120": 1,
+              "E03140": 2,
+              "E00013": 3,
+              "E00130": 4,
+              "E00133": 5,
+              "E00134": 6,
+              "E00135": 7,
+              "E00145": 8,
+              "E00040": 9,
+              "E00148": 10,
+              "E00149": 11,
+              "E00051": 12,
+              "E00155": 13,
+              "E00156": 14,
+              "E00050": 15,
+              "E00157": 16,
+              "EXX159": 17,
+              "E00057": 18,
+              "E00058": 19,
+              "E00061": 20,
+              "E00170": 21,
+              "E00113": 22,
+              "E00167": 23,
+              "E00132 ": 24
+            },
+            "label": {
+              "E00089": "B29 Profit for the year",
+              "E00120": "B1 Interest income",
+              "E03140": "B2 Leasing income",
+              "E00013": "B3 Interest expense",
+              "E00130": "B4 Dividends received",
+              "E00133": "B5 Commission income",
+              "E00134": "B6 Commission expense",
+              "E00135": "B7 Net result on financial operations",
+              "E00145": "B8 Other operating income",
+              "E00040": "B9 Total income",
+              "E00148": "B10 General administrative expenses",
+              "E00149": "B11 Depreciation and write-down in value",
+              "E00051": "B12 Other operating expenses",
+              "E00155": "B13 Total expenses before loan losses",
+              "E00156": "B14 Profit before loan losses ",
+              "E00050": "B15 Loan losses net",
+              "E00157": "B16X Change in value of proprty taken over",
+              "EXX159": "B16–17 Write down of financial fixed assets incl. recoveries  ",
+              "E00057": "B20 Operating profit",
+              "E00058": "B21 Extraordinary income",
+              "E00061": "B22 Extraordinary expense",
+              "E00170": "B23 Profit earned before acquistion  ",
+              "E00113": "B24 Appropriations",
+              "E00167": "B25 Taxes ",
+              "E00132 ": "I3 Dividends from group companies (incl in B4) "
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "FM0402B1": 0
+            },
+            "label": {
+              "FM0402B1": "SEK million"
+            },
+            "unit": {
+              "FM0402B1": {
+                "base": "SEK million",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0402B1": "Income statements for the year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0402B1": "Flow"
+            },
+            "priceType": {
+              "FM0402B1": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0402B1": "None"
+            },
+            "alternativeText": {
+              "FM0402B1": "Income statements, financial enterprises, SEK million"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1996": 0,
+              "1997": 1,
+              "1998": 2,
+              "1999": 3,
+              "2000": 4,
+              "2001": 5,
+              "2002": 6,
+              "2003": 7,
+              "2004": 8,
+              "2005": 9,
+              "2006": 10,
+              "2007": 11,
+              "2008": 12,
+              "2009": 13,
+              "2010": 14,
+              "2011": 15,
+              "2012": 16,
+              "2013": 17,
+              "2014": 18,
+              "2015": 19,
+              "2016": 20,
+              "2017": 21,
+              "2018": 22,
+              "2019": 23,
+              "2020": 24,
+              "2021": 25,
+              "2022": 26,
+              "2023": 27,
+              "2024": 28,
+              "2025": 29
+            },
+            "label": {
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "FM0402",
+          "tableid": "TAB1191",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Income statements, financial enterprises, SEK million",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Finansinstitut",
+            "Kontopost"
+          ],
+          "matrix": "TAB1191",
+          "subject-code": "FM",
+          "subject-area": "Financial markets"
+        },
+        "contact": [
+          {
+            "name": "Nils-Henrik Jansson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 41 15",
+            "mail": "nils-henrik.jansson@scb.se",
+            "raw": "Nils-Henrik Jansson, Statistics Sweden# +46 010-479 41 15#nils-henrik.jansson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1191",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1191",
+        "label": "Income statements for financial enterprises by kind of financial institute and item. Year 1996-2025",
+        "description": "",
+        "sortCode": "Income statements for financial enterprises by kind of financial institute and item. Year 1996-2025",
+        "updated": "2026-05-27T06:00:00Z",
+        "firstPeriod": "1996",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "Kind of financial institute",
+          "item",
+          "observations",
+          "year"
+        ],
+        "source": "Swedish Financial Supervisory Authority",
+        "subjectCode": "FM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Financial markets",
+              "sortCode": "Financial markets"
+            },
+            {
+              "id": "FM0402",
+              "label": "Financial enterprises, annual financial data",
+              "sortCode": "Financial enterprises, annual financial data"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

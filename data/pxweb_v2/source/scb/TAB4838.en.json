@@ -1,0 +1,429 @@
+{
+  "key": "scb/TAB4838/en",
+  "identifier": "TAB4838",
+  "language": "en",
+  "updated": "2026-08-27T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:19:30.051257+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Ownership of shares in companies quoted on Swedish marketplaces by sector and marketplace (from 2006M12). Twice a year 2006M12-2026M06",
+      "source": "Swedish Financial Supervisory Authority",
+      "updated": "2026-08-27T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0201"
+            },
+            "href": "https://www.scb.se/FM0201-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As of the second half of 2014, owners in the shareholder statistics are classified according to INSEKT 2014.",
+        "In the autumn of 2006 the A-list and O-list on the Stockholm Stock Exchange where replaced by the lists Large cap, Mid cap and Small cap. The statistics on these lists covers the Stockholm market. From 200612 to 200806 shares on the Göteborg list is presented together with shares on the NGM Nordic MTF because shares quoted on the Göteborg list also is traded on NGM Nordic MTF.",
+        "Aktietorget ceased to be an authorised marketplace in March 2007 and is from the publication of June 2007 figures included under other marketplaces.",
+        "Shares on the Göteborgslista are from December 2008 reported on the list where they are also traded.",
+        "The considerable drop of household s share wealth during the first half of 2011 is largely due to transfers of share holdings from the household sector to the non-financial corporation sector."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sektor",
+        "Marknadsplats",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        14,
+        10,
+        2,
+        40
+      ],
+      "dimension": {
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "S0": 0,
+              "S11": 1,
+              "S12": 2,
+              "S123+124": 3,
+              "S1254": 4,
+              "S128+129": 5,
+              "S12X": 6,
+              "S13": 7,
+              "S1311": 8,
+              "S1313": 9,
+              "S1314": 10,
+              "S14": 11,
+              "S15": 12,
+              "S2": 13
+            },
+            "label": {
+              "S0": "All sectors",
+              "S11": "Non-financial corporations",
+              "S12": "Financial corporations",
+              "S123+124": "Investment funds",
+              "S1254": "Investment corporations",
+              "S128+129": "Insurance corporations and pensions funds",
+              "S12X": "Other financial corporations",
+              "S13": "General government",
+              "S1311": "Central government",
+              "S1313": "Local government",
+              "S1314": "Social security funds",
+              "S14": "Households",
+              "S15": "Non-profit institutions serving households",
+              "S2": "Rest of the world"
+            },
+            "note": {
+              "S11": [
+                "Includes non-profit organisations serving this sector."
+              ],
+              "S128+129": [
+                "Includes pension funds."
+              ],
+              "S12X": [
+                "Includes banks, housing credit institutions, other credit market enterprises and financial auxiliaries."
+              ],
+              "S14": [
+                "Includes employers and own-account workers. The statistics on households excludes estates of deceased persons (which is included in Other financial corporations)."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Marknadsplats": {
+          "label": "marketplace",
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "BORSOMLCAP": 1,
+              "BORSOMMCAP": 2,
+              "BORSOMSCAP": 3,
+              "BORSOMSPAC": 4,
+              "BORSNGMEQNGMEQ": 5,
+              "AUKTMPTORGTORG": 6,
+              "OVRMPTORG2TORG": 7,
+              "OVRMPFIRSTNFIRSTN": 8,
+              "OVRMPNGMNONGMNO": 9
+            },
+            "label": {
+              "TOTALT": "marketplaces, total",
+              "BORSOMLCAP": "exchange, OMX Stockholm Large cap",
+              "BORSOMMCAP": "exchange, OMX Stockholm Mid cap",
+              "BORSOMSCAP": "exchange, OMX Stockholm Small cap",
+              "BORSOMSPAC": "exchange, OMX Stockholm SPAC",
+              "BORSNGMEQNGMEQ": "exchange, NGM Main Regulated Market",
+              "AUKTMPTORGTORG": "authorised marketplace, Aktietorget",
+              "OVRMPTORG2TORG": "other marketplace, Spotlight Stock Market",
+              "OVRMPFIRSTNFIRSTN": "other marketplace, First North ",
+              "OVRMPNGMNONGMNO": "other marketplace, NGM Nordic SME"
+            },
+            "note": {
+              "BORSNGMEQNGMEQ": [
+                "NGM Equity has been exchange since spring 2003, before this NGM were an authorized marketplace."
+              ],
+              "AUKTMPTORGTORG": [
+                "Older time serie exists in the corresponding table up to 2006M06.",
+                "In May 2018 Aktietorget changed its name to Spotlight Stock Market."
+              ],
+              "OVRMPTORG2TORG": [
+                "In May 2018 Aktietorget changed its name to Spotlight Stock Market."
+              ],
+              "OVRMPFIRSTNFIRSTN": [
+                "Older time serie exists in the corresponding table up to 2006M06 (Other marketplace, Nya marknaden)."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "AUKTMPTORGTORG": {
+                "1": true
+              },
+              "OVRMPTORG2TORG": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000001OJ": 0,
+              "000001OK": 1
+            },
+            "label": {
+              "000001OJ": "Outstanding values, SEK millions",
+              "000001OK": "Outstanding values, by marketplace, percent"
+            },
+            "unit": {
+              "000001OJ": {
+                "base": "SEK millions",
+                "decimals": 0
+              },
+              "000001OK": {
+                "base": "Percent",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001OJ": "At 30/6 resp 31/12",
+              "000001OK": "At 30/6 resp 31/12"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001OJ": "Stock",
+              "000001OK": "Stock"
+            },
+            "priceType": {
+              "000001OJ": "NotApplicable",
+              "000001OK": "NotApplicable"
+            },
+            "adjustment": {
+              "000001OJ": "None",
+              "000001OK": "None"
+            },
+            "alternativeText": {
+              "000001OJ": "Ownership of shares in companies quoted on Swedish marketplaces, outstanding values, SEK millions",
+              "000001OK": "Ownership of shares in companies quoted on Swedish marketplaces, outstanding values, by marketplace, percent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "two times per year",
+          "category": {
+            "index": {
+              "2006M12": 0,
+              "2007M06": 1,
+              "2007M12": 2,
+              "2008M06": 3,
+              "2008M12": 4,
+              "2009M06": 5,
+              "2009M12": 6,
+              "2010M06": 7,
+              "2010M12": 8,
+              "2011M06": 9,
+              "2011M12": 10,
+              "2012M06": 11,
+              "2012M12": 12,
+              "2013M06": 13,
+              "2013M12": 14,
+              "2014M06": 15,
+              "2014M12": 16,
+              "2015M06": 17,
+              "2015M12": 18,
+              "2016M06": 19,
+              "2016M12": 20,
+              "2017M06": 21,
+              "2017M12": 22,
+              "2018M06": 23,
+              "2018M12": 24,
+              "2019M06": 25,
+              "2019M12": 26,
+              "2020M06": 27,
+              "2020M12": 28,
+              "2021M06": 29,
+              "2021M12": 30,
+              "2022M06": 31,
+              "2022M12": 32,
+              "2023M06": 33,
+              "2023M12": 34,
+              "2024M06": 35,
+              "2024M12": 36,
+              "2025M06": 37,
+              "2025M12": 38,
+              "2026M06": 39
+            },
+            "label": {
+              "2006M12": "2006M12",
+              "2007M06": "2007M06",
+              "2007M12": "2007M12",
+              "2008M06": "2008M06",
+              "2008M12": "2008M12",
+              "2009M06": "2009M06",
+              "2009M12": "2009M12",
+              "2010M06": "2010M06",
+              "2010M12": "2010M12",
+              "2011M06": "2011M06",
+              "2011M12": "2011M12",
+              "2012M06": "2012M06",
+              "2012M12": "2012M12",
+              "2013M06": "2013M06",
+              "2013M12": "2013M12",
+              "2014M06": "2014M06",
+              "2014M12": "2014M12",
+              "2015M06": "2015M06",
+              "2015M12": "2015M12",
+              "2016M06": "2016M06",
+              "2016M12": "2016M12",
+              "2017M06": "2017M06",
+              "2017M12": "2017M12",
+              "2018M06": "2018M06",
+              "2018M12": "2018M12",
+              "2019M06": "2019M06",
+              "2019M12": "2019M12",
+              "2020M06": "2020M06",
+              "2020M12": "2020M12",
+              "2021M06": "2021M06",
+              "2021M12": "2021M12",
+              "2022M06": "2022M06",
+              "2022M12": "2022M12",
+              "2023M06": "2023M06",
+              "2023M12": "2023M12",
+              "2024M06": "2024M06",
+              "2024M12": "2024M12",
+              "2025M06": "2025M06",
+              "2025M12": "2025M12",
+              "2026M06": "2026M06"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "FM0201",
+          "tableid": "TAB4838",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Ownership of shares in companies quoted on Swedish marketplaces",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sektor",
+            "Marknadsplats"
+          ],
+          "matrix": "TAB4838",
+          "subject-code": "FM",
+          "subject-area": "Financial markets"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Aktieägarstatistik",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aktieagarstatistik@scb.se",
+            "raw": " Aktieägarstatistik, Statistics Sweden# +46 010-479 50 00#aktieagarstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4838",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4838",
+        "label": "Ownership of shares in companies quoted on Swedish marketplaces by sector and marketplace (from 2006M12). Twice a year 2006M12-2026M06",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2026-08-27T06:00:00Z",
+        "firstPeriod": "2006M12",
+        "lastPeriod": "2026M06",
+        "category": "public",
+        "variableNames": [
+          "sector",
+          "marketplace",
+          "observations",
+          "two times per year"
+        ],
+        "source": "Swedish Financial Supervisory Authority",
+        "subjectCode": "FM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Financial markets",
+              "sortCode": "Financial markets"
+            },
+            {
+              "id": "FM0201",
+              "label": "Shareholders statistics",
+              "sortCode": "Shareholders statistics"
+            },
+            {
+              "id": "FM0201A",
+              "label": "Shareholding on Swedish marketplace",
+              "sortCode": "015"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4838?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4838?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4838/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4838/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

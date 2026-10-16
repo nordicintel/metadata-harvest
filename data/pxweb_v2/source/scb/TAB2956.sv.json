@@ -1,0 +1,551 @@
+{
+  "key": "scb/TAB2956/sv",
+  "identifier": "TAB2956",
+  "language": "sv",
+  "updated": "2026-10-16T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:20:20.696138+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta 15-74 ÅR (AKU) efter faktisk medelarbetstid, frånvaro- och övertidstimmar per vecka och andel heltidsarbetande (huvudsysslan) samt efter inrikes -/utrikes född, kön och ålder. Kvartal 2005K1-2026K3",
+      "source": "SCB",
+      "updated": "2026-10-16T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "För perioden 2005M01–2020M12 innehåller tidsserien ’länkade data’. Inga felmarginaler (osäkerhetstal) redovisas för perioden, detta markeras istället som ”..” i tidsserien. Läs under ’Aktuellt’ för mer information om de länkade serierna. Skattningarna avseende kvartal 1 2005 samt dess ingående månader baseras på en mindre svarsmängd än övriga perioder. Dessa skattningar är därför mer osäkra och bör användas med försiktighet. ",
+        "År 2023 höjdes pensionsåldern från 65 till 66 år och 2026 höjs den till 67 år. Detta medför en redovisning av fler åldersgrupper i AKU. För att möjliggöra jämförelser över tid redovisas åldersgrupperna 16–65, 16–66, 20–65 och 20–66 tillbaka till 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "InrikesUtrikes",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        10,
+        8,
+        87
+      ],
+      "dimension": {
+        "InrikesUtrikes": {
+          "label": "inrikes/utrikes född",
+          "category": {
+            "index": {
+              "13": 0,
+              "23": 1,
+              "83": 2
+            },
+            "label": {
+              "13": "inrikes födda",
+              "23": "utrikes födda",
+              "83": "inrikes och utrikes födda"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "15-24": 0,
+              "25-54": 1,
+              "55-74": 2,
+              "tot15-74": 3,
+              "tot16-64": 4,
+              "tot16-65": 5,
+              "tot16-66": 6,
+              "tot20-64": 7,
+              "tot20-65": 8,
+              "tot20-66": 9
+            },
+            "label": {
+              "15-24": "15–24 år",
+              "25-54": "25–54 år",
+              "55-74": "55–74 år",
+              "tot15-74": "totalt 15–74 år",
+              "tot16-64": "totalt 16–64 år",
+              "tot16-65": "totalt 16–65 år",
+              "tot16-66": "totalt 16–66 år",
+              "tot20-64": "totalt 20–64 år",
+              "tot20-65": "totalt 20–65 år",
+              "tot20-66": "totalt 20–66 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0401ZU": 0,
+              "AM0401ZV": 1,
+              "AM0401ZW": 2,
+              "AM0401ZX": 3,
+              "AM0401ZY": 4,
+              "AM0401ZZ": 5,
+              "AM0401BH": 6,
+              "AM0401BK": 7
+            },
+            "label": {
+              "AM0401ZU": "Faktisk medelarbetstid, timmar",
+              "AM0401ZV": "Felmarginal ±, faktiskt medelarbetstid, timmar",
+              "AM0401ZW": "Medelantal frånvarotimmar",
+              "AM0401ZX": "Felmarginal ±, medelantal frånvarotimmar",
+              "AM0401ZY": "Medelantal övertidstimmar",
+              "AM0401ZZ": "Felmarginal ±, medelantal övertidstimmar",
+              "AM0401BH": "Heltidsarbetande, procent",
+              "AM0401BK": "Felmarginal ±, heltidsarbetande, procent"
+            },
+            "unit": {
+              "AM0401ZU": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0401ZV": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0401ZW": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0401ZX": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0401ZY": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0401ZZ": {
+                "base": "timmar",
+                "decimals": 1
+              },
+              "AM0401BH": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "AM0401BK": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "AM0401ZU": "",
+              "AM0401ZV": "",
+              "AM0401ZW": "",
+              "AM0401ZX": "",
+              "AM0401ZY": "",
+              "AM0401ZZ": "",
+              "AM0401BH": "",
+              "AM0401BK": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0401ZU": "Average",
+              "AM0401ZV": "Average",
+              "AM0401ZW": "Average",
+              "AM0401ZX": "Average",
+              "AM0401ZY": "Average",
+              "AM0401ZZ": "Average",
+              "AM0401BH": "Average",
+              "AM0401BK": "Average"
+            },
+            "priceType": {
+              "AM0401ZU": "NotApplicable",
+              "AM0401ZV": "NotApplicable",
+              "AM0401ZW": "NotApplicable",
+              "AM0401ZX": "NotApplicable",
+              "AM0401ZY": "NotApplicable",
+              "AM0401ZZ": "NotApplicable",
+              "AM0401BH": "NotApplicable",
+              "AM0401BK": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0401ZU": "None",
+              "AM0401ZV": "None",
+              "AM0401ZW": "None",
+              "AM0401ZX": "None",
+              "AM0401ZY": "None",
+              "AM0401ZZ": "None",
+              "AM0401BH": "None",
+              "AM0401BK": "None"
+            },
+            "alternativeText": {
+              "AM0401ZU": "Faktisk medelarbetstid per vecka i huvudsysslan för sysselsatta 15-74 år (AKU), timmar",
+              "AM0401ZV": "Felmarginal ±, faktisk medelarbetstid per vecka i huvudsysslan för sysselsatta 15-74 år (AKU), timmar",
+              "AM0401ZW": "Medelantal frånvarotimmar per vecka i huvudsysslan för sysselsatta 15-74 år (AKU)",
+              "AM0401ZX": "Felmarginal ±, medelantal frånvarotimmar per vecka i huvudsysslan för sysselsatta 15-74 år (AKU)",
+              "AM0401ZY": "Medelantal övertidstimmar per vecka i huvudsysslan för sysselsatta 15-74 år (AKU)",
+              "AM0401ZZ": "Felmarginal ±, medelantal övertidstimmar per vecka i huvudsysslan för sysselsatta 15-74 år (AKU)",
+              "AM0401BH": "Heltidsarbetande sysselsatta i huvudsysslan 15-74 år (AKU), procent",
+              "AM0401BK": "Felmarginal ±, heltidsarbetande sysselsatta i huvudsysslan 15-74 år (AKU), procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2005K1": 0,
+              "2005K2": 1,
+              "2005K3": 2,
+              "2005K4": 3,
+              "2006K1": 4,
+              "2006K2": 5,
+              "2006K3": 6,
+              "2006K4": 7,
+              "2007K1": 8,
+              "2007K2": 9,
+              "2007K3": 10,
+              "2007K4": 11,
+              "2008K1": 12,
+              "2008K2": 13,
+              "2008K3": 14,
+              "2008K4": 15,
+              "2009K1": 16,
+              "2009K2": 17,
+              "2009K3": 18,
+              "2009K4": 19,
+              "2010K1": 20,
+              "2010K2": 21,
+              "2010K3": 22,
+              "2010K4": 23,
+              "2011K1": 24,
+              "2011K2": 25,
+              "2011K3": 26,
+              "2011K4": 27,
+              "2012K1": 28,
+              "2012K2": 29,
+              "2012K3": 30,
+              "2012K4": 31,
+              "2013K1": 32,
+              "2013K2": 33,
+              "2013K3": 34,
+              "2013K4": 35,
+              "2014K1": 36,
+              "2014K2": 37,
+              "2014K3": 38,
+              "2014K4": 39,
+              "2015K1": 40,
+              "2015K2": 41,
+              "2015K3": 42,
+              "2015K4": 43,
+              "2016K1": 44,
+              "2016K2": 45,
+              "2016K3": 46,
+              "2016K4": 47,
+              "2017K1": 48,
+              "2017K2": 49,
+              "2017K3": 50,
+              "2017K4": 51,
+              "2018K1": 52,
+              "2018K2": 53,
+              "2018K3": 54,
+              "2018K4": 55,
+              "2019K1": 56,
+              "2019K2": 57,
+              "2019K3": 58,
+              "2019K4": 59,
+              "2020K1": 60,
+              "2020K2": 61,
+              "2020K3": 62,
+              "2020K4": 63,
+              "2021K1": 64,
+              "2021K2": 65,
+              "2021K3": 66,
+              "2021K4": 67,
+              "2022K1": 68,
+              "2022K2": 69,
+              "2022K3": 70,
+              "2022K4": 71,
+              "2023K1": 72,
+              "2023K2": 73,
+              "2023K3": 74,
+              "2023K4": 75,
+              "2024K1": 76,
+              "2024K2": 77,
+              "2024K3": 78,
+              "2024K4": 79,
+              "2025K1": 80,
+              "2025K2": 81,
+              "2025K3": 82,
+              "2025K4": 83,
+              "2026K1": 84,
+              "2026K2": 85,
+              "2026K3": 86
+            },
+            "label": {
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2",
+              "2026K3": "2026K3"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB2956",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sysselsatta 15-74 ÅR (AKU) per vecka i huvudsysslan",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "InrikesUtrikes",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB2956",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2956",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2956",
+        "label": "Sysselsatta 15-74 ÅR (AKU) efter faktisk medelarbetstid, frånvaro- och övertidstimmar per vecka och andel heltidsarbetande (huvudsysslan) samt efter inrikes -/utrikes född, kön och ålder. Kvartal 2005K1-2026K3",
+        "description": "",
+        "sortCode": "021",
+        "updated": "2026-10-16T06:00:00Z",
+        "firstPeriod": "2005K1",
+        "lastPeriod": "2026K3",
+        "category": "public",
+        "variableNames": [
+          "inrikes/utrikes född",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0401",
+              "label": "Arbetskraftsundersökningarna (AKU)",
+              "sortCode": "020"
+            },
+            {
+              "id": "AM0401R",
+              "label": "Inrikes och utrikes födda från och med 2005",
+              "sortCode": "014"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2956?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2956?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2956/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2956/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

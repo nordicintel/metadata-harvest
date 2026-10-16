@@ -1,0 +1,387 @@
+{
+  "key": "scb/TAB1373/sv",
+  "identifier": "TAB1373",
+  "language": "sv",
+  "updated": "2016-02-15T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:01:10.304257+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Byggkostnadsindex för bostäder inkl. löneglidning, 2004=100, efter hustyp och kostnadsslag (uppdateras ej). Kvartal 2004K1-2015K4",
+      "source": "SCB",
+      "updated": "2016-02-15T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:PR0502"
+            },
+            "href": "https://www.scb.se/PR0502",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Faktorprisindex inklusive löneglidning för flerbostadshus och gruppbyggda småhus med basår 2004=100 beräknas inte längre. Vi hänvisar istället till index med basår 1968=100 eller 2015=100. Om du ändå vill fortsätta att följa index med 2004 som bas kan du använda följande omräkningsfaktorer. Multiplicera index med basår 2015=100 med omräkningsfaktorerna för att räkna om till index med basår 2004=100. \r\n\r\nFaktorprisindex inklusive löneglidning för flerbostadshus:\r\ntotalt inkl. mervärdesskatt                                 1,391\r\ntotalt exkl. mervärdesskatt                                1,391\r\narbetslön                                                           1,347\r\n\r\nFaktorprisindex inklusive löneglidning för gruppbyggda småhus:\r\ntotalt inkl. mervärdesskatt                                1,360\r\ntotalt exkl. mervärdesskatt                               1,357\r\narbetslön                                                          1,350\r\n"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Hustyp",
+        "Kostnadsslag",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        3,
+        1,
+        48
+      ],
+      "dimension": {
+        "Hustyp": {
+          "label": "hustyp",
+          "note": [
+            "20140822 Index har reviderats med anledning av ett tidigare fel i beräkningarna för 2014K1"
+          ],
+          "category": {
+            "index": {
+              "FLERBO": 0,
+              "GRUPPSMÅ": 1
+            },
+            "label": {
+              "FLERBO": "flerbostadshus",
+              "GRUPPSMÅ": "gruppbyggda småhus"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kostnadsslag": {
+          "label": "kostnadsslag",
+          "category": {
+            "index": {
+              "TOTIM": 0,
+              "TOTEM": 1,
+              "ARBL": 2
+            },
+            "label": {
+              "TOTIM": "totalt inkl. mervärdesskatt",
+              "TOTEM": "totalt exkl. mervärdesskatt",
+              "ARBL": "arbetslön"
+            },
+            "note": {
+              "TOTIM": [
+                "20140822 Index har reviderats med anledning av ett tidigare fel i beräkningarna för 2014K1"
+              ],
+              "TOTEM": [
+                "20140822 Index har reviderats med anledning av ett tidigare fel i beräkningarna för 2014K1"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "TOTIM": {
+                "0": true
+              },
+              "TOTEM": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "PR0502A7": 0
+            },
+            "label": {
+              "PR0502A7": "Index"
+            },
+            "unit": {
+              "PR0502A7": {
+                "base": "index",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "PR0502A7": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "PR0502A7": "Other"
+            },
+            "priceType": {
+              "PR0502A7": "NotApplicable"
+            },
+            "adjustment": {
+              "PR0502A7": "None"
+            },
+            "basePeriod": {
+              "PR0502A7": "2004"
+            },
+            "alternativeText": {
+              "PR0502A7": "Byggkostnadsindex (BKI) för bostäder inkl. löneglidning, 2004=100"
+            }
+          }
+        },
+        "Tid": {
+          "label": "kvartal",
+          "category": {
+            "index": {
+              "2004K1": 0,
+              "2004K2": 1,
+              "2004K3": 2,
+              "2004K4": 3,
+              "2005K1": 4,
+              "2005K2": 5,
+              "2005K3": 6,
+              "2005K4": 7,
+              "2006K1": 8,
+              "2006K2": 9,
+              "2006K3": 10,
+              "2006K4": 11,
+              "2007K1": 12,
+              "2007K2": 13,
+              "2007K3": 14,
+              "2007K4": 15,
+              "2008K1": 16,
+              "2008K2": 17,
+              "2008K3": 18,
+              "2008K4": 19,
+              "2009K1": 20,
+              "2009K2": 21,
+              "2009K3": 22,
+              "2009K4": 23,
+              "2010K1": 24,
+              "2010K2": 25,
+              "2010K3": 26,
+              "2010K4": 27,
+              "2011K1": 28,
+              "2011K2": 29,
+              "2011K3": 30,
+              "2011K4": 31,
+              "2012K1": 32,
+              "2012K2": 33,
+              "2012K3": 34,
+              "2012K4": 35,
+              "2013K1": 36,
+              "2013K2": 37,
+              "2013K3": 38,
+              "2013K4": 39,
+              "2014K1": 40,
+              "2014K2": 41,
+              "2014K3": 42,
+              "2014K4": 43,
+              "2015K1": 44,
+              "2015K2": 45,
+              "2015K3": 46,
+              "2015K4": 47
+            },
+            "label": {
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4"
+            },
+            "note": {
+              "2012K2": [
+                "Korrigering 2013-02-15. Posterna Totalt inkl. respektive exkl. mervärdesskatt för Flerbostadshus samt Gruppbyggda småhus har korrigerats."
+              ],
+              "2012K3": [
+                "Korrigering 2013-02-15. Posterna Totalt inkl. respektive exkl. mervärdesskatt för Flerbostadshus samt Gruppbyggda småhus har korrigerats."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "2012K2": {
+                "0": true
+              },
+              "2012K3": {
+                "0": true
+              }
+            },
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "PR0502",
+          "tableid": "TAB1373",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Byggkostnadsindex (BKI) för bostäder inkl. löneglidning, 2004=100",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Hustyp",
+            "Kostnadsslag"
+          ],
+          "matrix": "TAB1373",
+          "subject-code": "PR",
+          "subject-area": "Priser och konsumtion"
+        },
+        "contact": [
+          {
+            "name": "Jonas Jonsson",
+            "organization": "SCB",
+            "phone": "010-479 40 65",
+            "mail": "jonas.jonsson@scb.se",
+            "raw": "Jonas Jonsson, SCB# +46 010-479 40 65#jonas.jonsson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1373",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1373",
+        "label": "Byggkostnadsindex för bostäder inkl. löneglidning, 2004=100, efter hustyp och kostnadsslag (uppdateras ej). Kvartal 2004K1-2015K4",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2016-02-15T08:30:00Z",
+        "firstPeriod": "2004K1",
+        "lastPeriod": "2015K4",
+        "category": "public",
+        "variableNames": [
+          "hustyp",
+          "kostnadsslag",
+          "tabellinnehåll",
+          "kvartal"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "PR",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "PR",
+              "label": "Priser och konsumtion",
+              "sortCode": "Priser och konsumtion"
+            },
+            {
+              "id": "PR0502",
+              "label": "Byggkostnadsindex för byggnader (BKI)",
+              "sortCode": "Byggkostnadsindex för byggnader (BKI)"
+            },
+            {
+              "id": "PR0502X",
+              "label": "Äldre tabeller som ej uppdateras",
+              "sortCode": "003"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1373?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1373?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1373/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1373/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

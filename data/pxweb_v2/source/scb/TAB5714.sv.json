@@ -1,0 +1,393 @@
+{
+  "key": "scb/TAB5714/sv",
+  "identifier": "TAB5714",
+  "language": "sv",
+  "updated": "2024-10-31T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:03:26.903056+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Offentliga sektorns utgifter för egen FoU efter region och typ av utgift. Mnkr, vartannat år 2007-2023",
+      "source": "SCB",
+      "updated": "2024-10-31T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0301"
+            },
+            "href": "https://www.scb.se/UF0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Utgiftstypen investeringar - programvaror samlas in från och med referensår 2013.",
+        "Utgiftstypen investeringar - andra immateriella anläggningstillgångar samlas in från och med referensår 2019.",
+        "Ingen länsfördelning gjordes för lokala och regionala FoU-enheter före referensåret 2023.",
+        "Ingen fördelning efter typ av utgift görs för statliga myndigheter på regional nivå.",
+        "Ingen fördelning efter typ av utgift gjordes för lokala och regionala FoU-enheter före referensåret 2023.",
+        "Från och med referensåret 2023 utgörs delsektorn lokala och regionala FoU-enheter av kommunalförbund."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Sektor",
+        "Typutgift",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        6,
+        10,
+        1,
+        9
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_BLän",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Sektor": {
+          "label": "sektor",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2,
+              "040": 3,
+              "050": 4,
+              "060": 5
+            },
+            "label": {
+              "010": "Offentliga sektorn",
+              "020": "Statliga myndigheter",
+              "030": "Regioner",
+              "040": "Kommuner",
+              "050": "Lokala och regionala FoU-enheter",
+              "060": "Offentliga icke-vinstdrivande organisationer"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Typutgift": {
+          "label": "typ av utgift",
+          "category": {
+            "index": {
+              "IRD_COST_T": 0,
+              "IRD_CUR_T": 1,
+              "IRD_CUR_LC": 2,
+              "IRD_CUR_LC_EXT": 3,
+              "IRD_CUR_O": 4,
+              "IRD_CAP_T": 5,
+              "IRD_CAP_LAND": 6,
+              "IRD_CAP_MACH": 7,
+              "IRD_CAP_SOFT": 8,
+              "IRD_CAP_IPP": 9
+            },
+            "label": {
+              "IRD_COST_T": "totala utgifter för egen FoU",
+              "IRD_CUR_T": "rörelsekostnader - totalt",
+              "IRD_CUR_LC": "rörelsekostnader - ersättning till anställda",
+              "IRD_CUR_LC_EXT": "rörelsekostnader - kostnader för konsulter och inhyrd personal",
+              "IRD_CUR_O": "rörelsekostnader - övriga",
+              "IRD_CAP_T": "investeringar - totalt",
+              "IRD_CAP_LAND": "investeringar - byggnader, mark och fastigheter",
+              "IRD_CAP_MACH": "investeringar - maskiner och inventarier",
+              "IRD_CAP_SOFT": "investeringar - programvaror",
+              "IRD_CAP_IPP": "investeringar - andra immateriella anläggningstillgångar"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000004TK": 0
+            },
+            "label": {
+              "000004TK": "Totala utgifter för egen FoU-verksamhet"
+            },
+            "unit": {
+              "000004TK": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004TK": "1 januari - 31 december resp år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004TK": "Flow"
+            },
+            "priceType": {
+              "000004TK": "Current"
+            },
+            "adjustment": {
+              "000004TK": "WorkOnly"
+            },
+            "alternativeText": {
+              "000004TK": "Totala utgifter för egen FoU-verksamhet"
+            }
+          }
+        },
+        "Tid": {
+          "label": "vartannat år",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2009": 1,
+              "2011": 2,
+              "2013": 3,
+              "2015": 4,
+              "2017": 5,
+              "2019": 6,
+              "2021": 7,
+              "2023": 8
+            },
+            "label": {
+              "2007": "2007",
+              "2009": "2009",
+              "2011": "2011",
+              "2013": "2013",
+              "2015": "2015",
+              "2017": "2017",
+              "2019": "2019",
+              "2021": "2021",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "UF0301",
+          "tableid": "TAB5714",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Totala utgifter för egen FoU-verksamhet",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Sektor",
+            "Typutgift"
+          ],
+          "matrix": "TAB5714",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Utbildning och forskning FoU",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "FoU-statistik@scb.se",
+            "raw": "Utbildning och forskning FoU, SCB# +46 010-479 50 00#FoU-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5714",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5714",
+        "label": "Offentliga sektorns utgifter för egen FoU efter region och typ av utgift. Mnkr, vartannat år 2007-2023",
+        "description": "",
+        "sortCode": "024",
+        "updated": "2024-10-31T07:00:00Z",
+        "firstPeriod": "2007",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "sektor",
+          "typ av utgift",
+          "tabellinnehåll",
+          "vartannat år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0301",
+              "label": "Forskning och utveckling i Sverige",
+              "sortCode": "Forskning och utveckling i Sverige"
+            },
+            {
+              "id": "UF0301O",
+              "label": "FoU i offentliga sektorn",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5714/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

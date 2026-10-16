@@ -1,0 +1,413 @@
+{
+  "key": "scb/TAB5142/en",
+  "identifier": "TAB5142",
+  "language": "en",
+  "updated": "2022-11-24T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:10:14.743228+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Computer use, by type of equipment and accounting group. Percentage of employees.  Year 2014-2022",
+      "source": "Statistics Sweden",
+      "updated": "2022-11-24T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "In this table, 0 means that the proportion is greater than zero but less than 0.5 percent, and that the confidence interval is greater than 0, but less than 0.5 percentage points. The character .. means that the task is not available or too uncertain to indicate."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TypUtrustning",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        30,
+        2,
+        9
+      ],
+      "dimension": {
+        "TypUtrustning": {
+          "label": "type of device",
+          "category": {
+            "index": {
+              "0010": 0,
+              "0020": 1
+            },
+            "label": {
+              "0010": "computers",
+              "0020": "portable devices that can be connected to the internet via the mobile phone network"
+            },
+            "note": {
+              "0010": [
+                "Computers refer to personal computers, laptops, tablets or smartphones"
+              ],
+              "0020": [
+                "Portable devices refer to laptops, tablets or smartphones",
+                "In 2019, it was included in the question that enterprises would respond only if the enterprise provides both the laptop, phone, tablet etc. and pays for subscriptions."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0010": {
+                "0": true
+              },
+              "0020": {
+                "0": true,
+                "1": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "study domain",
+          "category": {
+            "index": {
+              "Tot1-9": 0,
+              "0": 1,
+              "0-4": 2,
+              "0-9": 3,
+              "1-4": 4,
+              "5-9": 5,
+              "Tot250": 6,
+              "10-49": 7,
+              "50-249": 8,
+              "250-": 9,
+              "TotSNI": 10,
+              "10-33": 11,
+              "35-39": 12,
+              "41-43": 13,
+              "45-47": 14,
+              "49-53": 15,
+              "55-56": 16,
+              "58-63": 17,
+              "68": 18,
+              "69-82+95.1exkl.75": 19,
+              "IKT": 20,
+              "SE": 21,
+              "RIKS1": 22,
+              "RIKS2": 23,
+              "RIKS3": 24,
+              "RIKS4": 25,
+              "RIKS5": 26,
+              "RIKS6": 27,
+              "RIKS7": 28,
+              "RIKS8": 29
+            },
+            "label": {
+              "Tot1-9": "1–9 employees in total",
+              "0": "0 employees",
+              "0-4": "0–4 employees",
+              "0-9": "0–9 employees",
+              "1-4": "1–4 employees",
+              "5-9": "5–9 employees",
+              "Tot250": "10 or more employees in total",
+              "10-49": "10–49 employees",
+              "50-249": "50–249 employees",
+              "250-": "250 or more employees",
+              "TotSNI": "total (SNI 10–63, 68–74, 77–82, 95.1)",
+              "10-33": "manufacturing (SNI 10–33)",
+              "35-39": "energy and recycling (SNI 35–39)",
+              "41-43": "construction (SNI 41–43)",
+              "45-47": "trade; motor vehicle and motorcycle garages (SNI 45–47)",
+              "49-53": "transport and storage enterprises (SNI 49–53)",
+              "55-56": "accommodation and food services (SNI 55–56)",
+              "58-63": "information and communication enterprises (SNI 58–63)",
+              "68": "real estate companies and managers (SNI 68)",
+              "69-82+95.1exkl.75": "other service companies (SNI 69–74, 77–82, 95.1)",
+              "IKT": "ICT sector (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sweden",
+              "RIKS1": "Stockholm",
+              "RIKS2": "East-Central Sweden",
+              "RIKS3": "Småland and islands",
+              "RIKS4": "South Sweden",
+              "RIKS5": "West Sweden",
+              "RIKS6": "North-Central Sweden",
+              "RIKS7": "Central Norrland",
+              "RIKS8": "Upper Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (only for enterprises with 10 or more employees)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_D_foretags",
+                "label": "Enterprise, 0-9 employees",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_D_foretags?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Enterprises, 10 or more employees",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Industry (only enterprises with 10 or more employees)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002WN": 0,
+              "000002WO": 1
+            },
+            "label": {
+              "000002WN": "Percentage of employees, percent",
+              "000002WO": "Margin of error, ±"
+            },
+            "unit": {
+              "000002WN": {
+                "base": "percent",
+                "decimals": 0
+              },
+              "000002WO": {
+                "base": "percentage points",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002WN": "Year",
+              "000002WO": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002WN": "Stock",
+              "000002WO": "Stock"
+            },
+            "priceType": {
+              "000002WN": "NotApplicable",
+              "000002WO": "NotApplicable"
+            },
+            "adjustment": {
+              "000002WN": "None",
+              "000002WO": "None"
+            },
+            "alternativeText": {
+              "000002WN": "Percentage of employees who use computers for work, percent",
+              "000002WO": "Percentage of employees who use computers for work, margin of error ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB5142",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Computer use",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TypUtrustning",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB5142",
+          "subject-code": "NV",
+          "subject-area": "Business activities"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, Statistics Sweden# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , Statistics Sweden# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5142",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5142",
+        "label": "Computer use, by type of equipment and accounting group. Percentage of employees.  Year 2014-2022",
+        "description": "",
+        "sortCode": "024",
+        "updated": "2022-11-24T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "type of device",
+          "study domain",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Business activities",
+              "sortCode": "Business activities"
+            },
+            {
+              "id": "NV0116",
+              "label": "ICT usage in enterprises",
+              "sortCode": "ICT usage in enterprises"
+            },
+            {
+              "id": "NV0116A",
+              "label": "Computers and networks",
+              "sortCode": "09"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

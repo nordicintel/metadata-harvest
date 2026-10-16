@@ -1,0 +1,364 @@
+{
+  "key": "scb/TAB1010/en",
+  "identifier": "TAB1010",
+  "language": "en",
+  "updated": "2026-10-08T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:16:17.380216+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Electricity supply in Sweden by type of power plants. Year 1986-2025",
+      "source": "Swedish Energy Administration",
+      "updated": "2026-10-08T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:EN0105"
+            },
+            "href": "https://www.scb.se/EN0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As of 2018, collected values are reported instead of model calculations of own use for pumped storage.",
+        "Data not available (..).",
+        "Summations may differ between tables due to rounding.",
+        "Wind power data are collected from the basic data of the Electricity Certificate System.",
+        "Data regarding 2011-2021 for Solar power are collected from another survey, Grid connected photovoltaic systems (EN0123). Only grid connected systems are included, where a system is defined as one generating unit. Electricity generation from PV systems cannot be measured on a national level. Therefore it is estimated by taking the known installed generator capacity (provided by net operators) multiplied by 950 full load hours. As of 2022, data for solar power will be taken from the monthly electricity statistics.",
+        "Data on power exchange across the borders is provided by Svenska Kraftnät.",
+        "Import refers to electricity transfer to Sweden from other countries. Loop force is excluded."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Prodslag",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        11,
+        3,
+        40
+      ],
+      "dimension": {
+        "Prodslag": {
+          "label": "type of power plants",
+          "category": {
+            "index": {
+              "Tot": 0,
+              "Vattenkraft": 1,
+              "Pumpkraft": 2,
+              "Karnkraft": 3,
+              "Kraftvf": 4,
+              "Kraftvi": 5,
+              "Vind": 6,
+              "sol": 7,
+              "Kondens": 8,
+              "Gast": 9,
+              "Imp": 10
+            },
+            "label": {
+              "Tot": "sum of supply",
+              "Vattenkraft": "hydro",
+              "Pumpkraft": "pumped storage",
+              "Karnkraft": "nuclear",
+              "Kraftvf": "main activity producer CHP",
+              "Kraftvi": "autoproducer CHP",
+              "Vind": "wind",
+              "sol": "solar",
+              "Kondens": "condensing turbines",
+              "Gast": "gas-turbines for reserve and others",
+              "Imp": "import"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "EN0105A1": 0,
+              "EN0105A4": 1,
+              "EN0105A5": 2
+            },
+            "label": {
+              "EN0105A1": "Gross",
+              "EN0105A4": "Net",
+              "EN0105A5": "Own use"
+            },
+            "unit": {
+              "EN0105A1": {
+                "base": "GWh",
+                "decimals": 0
+              },
+              "EN0105A4": {
+                "base": "GWh",
+                "decimals": 0
+              },
+              "EN0105A5": {
+                "base": "GWH",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "EN0105A1": "Year",
+              "EN0105A4": "Year",
+              "EN0105A5": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "EN0105A1": "Flow",
+              "EN0105A4": "Flow",
+              "EN0105A5": "Flow"
+            },
+            "priceType": {
+              "EN0105A1": "NotApplicable",
+              "EN0105A4": "NotApplicable",
+              "EN0105A5": "NotApplicable"
+            },
+            "adjustment": {
+              "EN0105A1": "None",
+              "EN0105A4": "None",
+              "EN0105A5": "None"
+            },
+            "alternativeText": {
+              "EN0105A1": "Gross electricity supply, GWh",
+              "EN0105A4": "Net, Electricity supply, GWh",
+              "EN0105A5": "Own use, Electricity supply, GWh"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1986": 0,
+              "1987": 1,
+              "1988": 2,
+              "1989": 3,
+              "1990": 4,
+              "1991": 5,
+              "1992": 6,
+              "1993": 7,
+              "1994": 8,
+              "1995": 9,
+              "1996": 10,
+              "1997": 11,
+              "1998": 12,
+              "1999": 13,
+              "2000": 14,
+              "2001": 15,
+              "2002": 16,
+              "2003": 17,
+              "2004": 18,
+              "2005": 19,
+              "2006": 20,
+              "2007": 21,
+              "2008": 22,
+              "2009": 23,
+              "2010": 24,
+              "2011": 25,
+              "2012": 26,
+              "2013": 27,
+              "2014": 28,
+              "2015": 29,
+              "2016": 30,
+              "2017": 31,
+              "2018": 32,
+              "2019": 33,
+              "2020": 34,
+              "2021": 35,
+              "2022": 36,
+              "2023": 37,
+              "2024": 38,
+              "2025": 39
+            },
+            "label": {
+              "1986": "1986",
+              "1987": "1987",
+              "1988": "1988",
+              "1989": "1989",
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "EN0105",
+          "tableid": "TAB1010",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Electricity supply, GWh",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Prodslag"
+          ],
+          "matrix": "TAB1010",
+          "subject-code": "EN",
+          "subject-area": "Energy"
+        },
+        "contact": [
+          {
+            "name": "Susanne Enmalm",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 69 63",
+            "mail": "susanne.enmalm@scb.se",
+            "raw": "Susanne Enmalm, Statistics Sweden# +46 010-479 69 63#susanne.enmalm@scb.se"
+          },
+          {
+            "name": "Evelina Viklöf",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 63 21",
+            "mail": "evelina.viklof@scb.se",
+            "raw": "Evelina Viklöf, Statistics Sweden# +46 010-479 63 21#evelina.viklof@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1010",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1010",
+        "label": "Electricity supply in Sweden by type of power plants. Year 1986-2025",
+        "description": "",
+        "sortCode": "08",
+        "updated": "2026-10-08T06:00:00Z",
+        "firstPeriod": "1986",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "type of power plants",
+          "observations",
+          "year"
+        ],
+        "source": "Swedish Energy Administration",
+        "subjectCode": "EN",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "EN",
+              "label": "Energy",
+              "sortCode": "Energy"
+            },
+            {
+              "id": "EN0105",
+              "label": "Annual energy statistics (electricity, gas and district heating)",
+              "sortCode": "Annual energy statistics (electricity, gas and district heating)"
+            },
+            {
+              "id": "EN0105A",
+              "label": "Annual energy statistics",
+              "sortCode": "016"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1010?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1010?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1010/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1010/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

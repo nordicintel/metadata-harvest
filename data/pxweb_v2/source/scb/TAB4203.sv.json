@@ -1,0 +1,399 @@
+{
+  "key": "scb/TAB4203/sv",
+  "identifier": "TAB4203",
+  "language": "sv",
+  "updated": "2026-03-27T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:03:16.335030+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Antal deltagare i folkhögskolekurser som uppnått behörighet på särskild kurs genom intyg om fullföljd eftergymnasial yrkesutbildning efter kön, nationell bakgrund och region. År 2017-2025",
+      "source": "SCB",
+      "updated": "2026-03-27T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0601"
+            },
+            "href": "https://www.scb.se/UF0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "NationellBakgrund",
+        "RegionUtb",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        9,
+        22,
+        1,
+        9
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NationellBakgrund": {
+          "label": "nationell bakgrund",
+          "category": {
+            "index": {
+              "TOTGR": 0,
+              "IF": 1,
+              "UF": 2,
+              "USGR": 3,
+              "TOTBAKGR": 4,
+              "SB": 5,
+              "UB": 6,
+              "USBAKGR": 7,
+              "TOT": 8
+            },
+            "label": {
+              "TOTGR": "Totalt",
+              "IF": "Inrikes född",
+              "UF": "Utrikes född",
+              "USGR": "Uppgift saknas",
+              "TOTBAKGR": "Totalt",
+              "SB": "Svensk bakgrund",
+              "UB": "Utländsk bakgrund",
+              "USBAKGR": "Uppgift saknas",
+              "TOT": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_AFödelselandGr",
+                "label": "Inrikes/utrikes född",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AFödelselandGr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_CFödelselandBakgr",
+                "label": "Svensk/utländsk bakgrund",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CFödelselandBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_DFödelselandTot",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_DFödelselandTot?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "RegionUtb": {
+          "label": "region där utbildningen bedrivs",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ARiket2",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ARiket2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BLän2",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän2?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000078": 0
+            },
+            "label": {
+              "00000078": "Antal"
+            },
+            "unit": {
+              "00000078": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000078": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000078": "Flow"
+            },
+            "priceType": {
+              "00000078": "NotApplicable"
+            },
+            "adjustment": {
+              "00000078": "None"
+            },
+            "alternativeText": {
+              "00000078": "Antal deltagare i folkhögskolekurser som uppnått behörighet på särskild kurs genom intyg om fullföljd eftergymnasial yrkesutbildning"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2017": 0,
+              "2018": 1,
+              "2019": 2,
+              "2020": 3,
+              "2021": 4,
+              "2022": 5,
+              "2023": 6,
+              "2024": 7,
+              "2025": 8
+            },
+            "label": {
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "UF0601",
+          "tableid": "TAB4203",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal deltagare i folkhögskolekurser som uppnått behörighet på särskild kurs genom intyg om fullföljd eftergymnasial yrkesutbildning",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "NationellBakgrund",
+            "RegionUtb"
+          ],
+          "matrix": "TAB4203",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Samuel Snickars",
+            "organization": "SCB",
+            "phone": "010-479 64 35",
+            "mail": "samuel.snickars@scb.se",
+            "raw": "Samuel Snickars, SCB# +46 010-479 64 35#samuel.snickars@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4203",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4203",
+        "label": "Antal deltagare i folkhögskolekurser som uppnått behörighet på särskild kurs genom intyg om fullföljd eftergymnasial yrkesutbildning efter kön, nationell bakgrund och region. År 2017-2025",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2026-03-27T07:00:00Z",
+        "firstPeriod": "2017",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "nationell bakgrund",
+          "region där utbildningen bedrivs",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0601",
+              "label": "Folkhögskolestatistik",
+              "sortCode": "Folkhögskolestatistik"
+            },
+            {
+              "id": "UF0601A",
+              "label": "Folkhögskolestatistik",
+              "sortCode": "018"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4203?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4203?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4203/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4203/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

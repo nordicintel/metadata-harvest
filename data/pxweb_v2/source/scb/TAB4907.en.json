@@ -1,0 +1,408 @@
+{
+  "key": "scb/TAB4907/en",
+  "identifier": "TAB4907",
+  "language": "en",
+  "updated": "2023-06-21T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:34:03.057545+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Persons aged 20–74 by occupation, grounds for settlement, number of years in Sweden, region of birth, sex and age. Year 2019-2021",
+      "source": "Statistics Sweden",
+      "updated": "2023-06-21T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:LE0105"
+            },
+            "href": "https://www.scb.se/LE0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Source: [Labour statistics based on administrative sources](https://www.scb.se/am0207-en)",
+        "Description of gainfully employed: [Labour statistics based on administrative sources](https://www.scb.se/am0207-en)",
+        "If the number is 3 or less, it will be replaced by (..). ",
+        "Duration of residence refers to the total amount of time that a person has been registered in the population in Sweden and is specified for persons who have immigrated to Sweden.  Certain foreign citizens who are born in Sweden must apply for a residence permit. They are usually granted a residence permit for the same period as their parents. If the parents do not have a residence permit, the child´s application is examined together with the parent´s application. ",
+        "Occupation: Time series break, as from reference year 2019, a new data source and method are used to produce the statistics. The monthly employer reports at individual level (AGI) have replaced the annual statements of earnings (KU) and gainfully employed persons are now classified based on wages/salaries paid in November. Further information on the changes is available at [Labour statistics based on administrative sources](https://www.scb.se/am0207-en)",
+        "Statistics for 2018 and previous years, see [Old tables, not updated](https://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__LE__LE0105__LE0105X)",
+        "The region of birth is based on the country of birth listed in the population register and based on the distribution of each year.",
+        "In order to be classified as ´gainfully employed´, the person must have earned income exceeding an estimated limit, or have submitted tax returns for business activity during the year concerned. The limit that determines whether or not an employed person is gainfully employed is estimated using a model-based method. The aim is to find a level of earned income that, as far as possible, corresponds to the definition of ´employment´ of the International Labour Organization (ILO). People with earned income that is higher than the limit are assumed to be gainfully employed.",
+        "Region of birth: From 2004, Cyprus and Turkey are reported under Europe excluding Sweden."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sysselsattning",
+        "Bosattning",
+        "Vistelsetid",
+        "Fodelseregion",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        6,
+        6,
+        7,
+        3,
+        9,
+        1,
+        3
+      ],
+      "dimension": {
+        "Sysselsattning": {
+          "label": "employment status",
+          "category": {
+            "index": {
+              "total": 0,
+              "EJFÖRV": 1,
+              "FÖRV": 2
+            },
+            "label": {
+              "total": "total",
+              "EJFÖRV": "not gainfully employed population",
+              "FÖRV": "gainfully employed population"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Bosattning": {
+          "label": "grounds for settlement",
+          "note": [
+            "Grounds for settlement (GFS) is the grounds for the residence permit. For people born in Sweden, GFS ´not relevant´ can be stated if the person does not need a residence permit. The table shows the latest registered grounds for residency (according to the grouping) for the person. Note that a person can have a basis for a decision that is several years old. As of 1 May 2014, EU citizens no longer need to register their right of residency with the Swedish Migration Agency. \r\n   \r\n  In this table, the following grouping is used: \r\n   \r\n  Relatives \r\n  - not refugees \r\n  - relatives of EU/EEA citizens \r\n  - relatives of non-EU/EEA citizens, labour market grounds \r\n  - relatives of non-EU/EEA citizens \r\n  - adopted children non-EU/EEA citizens \r\n   \r\n  Labour market/students \r\n  - labour market, non-EU/EEA citizens \r\n   - employees, EU/EEA citizens \r\n   - self-employed, EU/EEA citizens \r\n  - students, non-EU/EEA citizens \r\n  - students, EU/EEA citizens \r\n   \r\n  Refugees/persons in need of subsidiary protection/relatives \r\n  - refugees under the Geneva Convention \r\n  - persons in need of subsidiary protection \r\n  - particular humanitarian and compassionate grounds \r\n  - permits under temporary legislation, non-EU/EEA citizens  \r\n  - other permits, refugees non-EU/EEA citizens \r\n  - relatives of refugees \r\n   \r\n  Other \r\n  - non-EU/EEA citizens registered in another EU country \r\n  - sufficient funds, EU/EEA citizens \r\n  - other permit, non-EU/EEA citizens \r\n  - permanent right of residency"
+          ],
+          "category": {
+            "index": {
+              "500": 0,
+              "100": 1,
+              "115": 2,
+              "125": 3,
+              "155": 4,
+              "160": 5
+            },
+            "label": {
+              "500": "total",
+              "100": "relatives – not refugees",
+              "115": "labour market/students",
+              "125": "refugees/persons in need of subsidiary protection/relatives ",
+              "155": "other/GFS not relevant",
+              "160": "data not available"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Vistelsetid": {
+          "label": "number of years in Sweden",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "INRF": 1,
+              "0-3": 2,
+              "4-9": 3,
+              "10-": 4,
+              "US": 5
+            },
+            "label": {
+              "TOT": "total",
+              "INRF": "born in Sweden",
+              "0-3": "0–3 years",
+              "4-9": "4–9 years",
+              "10-": "10– years",
+              "US": "data not available"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fodelseregion": {
+          "label": "region of birth",
+          "category": {
+            "index": {
+              "200": 0,
+              "010": 1,
+              "020": 2,
+              "030": 3,
+              "040": 4,
+              "050": 5,
+              "100": 6
+            },
+            "label": {
+              "200": "total",
+              "010": "Sweden",
+              "020": "Europe, excl. Sweden",
+              "030": "Africa",
+              "040": "Asia",
+              "050": "rest of the world, incl. Soviet Union",
+              "100": "unknown"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "100": 1,
+              "200": 2
+            },
+            "label": {
+              "1+2": "total",
+              "100": "women",
+              "200": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "totalt": 0,
+              "20-24": 1,
+              "25-29": 2,
+              "30-39": 3,
+              "40-49": 4,
+              "50-59": 5,
+              "60-64": 6,
+              "65-69": 7,
+              "70-74": 8
+            },
+            "label": {
+              "totalt": "total",
+              "20-24": "20–24 years",
+              "25-29": "25–29 years",
+              "30-39": "30–39 years",
+              "40-49": "40–49 years",
+              "50-59": "50–59 years",
+              "60-64": "60–64 years",
+              "65-69": "65–69 years",
+              "70-74": "70–74 years"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002YP": 0
+            },
+            "label": {
+              "000002YP": "Number in population"
+            },
+            "unit": {
+              "000002YP": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002YP": "31 december"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002YP": "Stock"
+            },
+            "priceType": {
+              "000002YP": "NotApplicable"
+            },
+            "adjustment": {
+              "000002YP": "None"
+            },
+            "alternativeText": {
+              "000002YP": "Number in population"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2019": 0,
+              "2020": 1,
+              "2021": 2
+            },
+            "label": {
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true
+        },
+        "px": {
+          "infofile": "LE0105",
+          "tableid": "TAB4907",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number in population",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sysselsattning",
+            "Bosattning",
+            "Vistelsetid",
+            "Fodelseregion",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB4907",
+          "subject-code": "LE",
+          "subject-area": "Living conditions"
+        },
+        "contact": [
+          {
+            "name": "Malin Forsberg",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 69 61",
+            "mail": "malin.forsberg@scb.se",
+            "raw": "Malin Forsberg, Statistics Sweden# +46 010-479 69 61#malin.forsberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4907",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4907",
+        "label": "Persons aged 20–74 by occupation, grounds for settlement, number of years in Sweden, region of birth, sex and age. Year 2019-2021",
+        "description": "",
+        "sortCode": "007",
+        "updated": "2023-06-21T06:00:00Z",
+        "firstPeriod": "2019",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "employment status",
+          "grounds for settlement",
+          "number of years in Sweden",
+          "region of birth",
+          "sex",
+          "age",
+          "observations",
+          "year"
+        ],
+        "discontinued": true,
+        "source": "Statistics Sweden",
+        "subjectCode": "LE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "LE",
+              "label": "Living conditions",
+              "sortCode": "Living conditions"
+            },
+            {
+              "id": "LE0105",
+              "label": "Integration – statistics and analysis",
+              "sortCode": "Integration – statistics and analysis"
+            },
+            {
+              "id": "LE0105X",
+              "label": "Old tables, not updated",
+              "sortCode": "09"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4907?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4907?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4907/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4907/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "key": "scb/TAB859/sv",
+  "identifier": "TAB859",
+  "language": "sv",
+  "updated": "2013-12-12T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:56:07.911358+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Bruttoregionprodukt (BRP), sysselsatta och löner (ENS95) efter region (riksområde) och näringsgren SNI 2007. År 2000-2011",
+      "source": "SCB",
+      "updated": "2013-12-12T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NR0105"
+            },
+            "href": "https://www.scb.se/NR0105",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SNI2007",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        20,
+        3,
+        12
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "RIKS1": 1,
+              "RIKS2": 2,
+              "RIKS3": 3,
+              "RIKS4": 4,
+              "RIKS5": 5,
+              "RIKS6": 6,
+              "RIKS7": 7,
+              "RIKS8": 8,
+              "90": 9
+            },
+            "label": {
+              "00": "Riket",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland",
+              "90": "Extra region"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1-2x",
+                "label": "NUTS1-2x",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1-2x?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Region99RiksX",
+                "label": "Riksområden inkl extra region + Hela riket. Innehåller gruppering.",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Region99RiksX?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "SNI2007": {
+          "label": "näringsgren SNI 2007",
+          "category": {
+            "index": {
+              "0002": 0,
+              "A01-T98exkl": 1,
+              "A01-F43": 2,
+              "A01-A03": 3,
+              "B05-C33": 4,
+              "D35-E39": 5,
+              "F41-F43": 6,
+              "G45-T98": 7,
+              "G45-G47": 8,
+              "H49-H53": 9,
+              "I55-I56": 10,
+              "J58-J63": 11,
+              "K64-K66": 12,
+              "L68": 13,
+              "M69-N82": 14,
+              "O84": 15,
+              "P85": 16,
+              "Q86-Q88": 17,
+              "R90-T98": 18,
+              "Y0114": 19
+            },
+            "label": {
+              "0002": "hela ekonomin, totalt",
+              "A01-T98exkl": "Hela ekonomin, exkl. ej branschfördelat",
+              "A01-F43": "varuproducenter",
+              "A01-A03": "jordbruk, skogsbruk och fiske",
+              "B05-C33": "gruvor, mineralutvinnings- och tillverkningsindustri",
+              "D35-E39": "försörjning av el, gas, värme och kyla samt vattenförsörjning, avloppsrening, avfallshantering och sanering",
+              "F41-F43": "byggverksamhet",
+              "G45-T98": "tjänsteproducenter",
+              "G45-G47": "handel",
+              "H49-H53": "transport och magasinering",
+              "I55-I56": "hotell- och restaurang",
+              "J58-J63": "informations- och kommunikationsverksamhet",
+              "K64-K66": "finans- och försäkringsverksamhet",
+              "L68": "fastighetsbolag och fastighetsförvaltare",
+              "M69-N82": "verksamhet inom juridik, ekonomi, vetenskap, teknik; uthyrning fastighetsservice, resetjänster och andra stödtjänster",
+              "O84": "civila myndigheter och försvaret",
+              "P85": "utbildning",
+              "Q86-Q88": "vård och omsorg",
+              "R90-T98": "personliga och kulturella tjänster",
+              "Y0114": "ej branschfördelade poster"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "NR0105AD": 0,
+              "NR0105AE": 1,
+              "NR0105AF": 2
+            },
+            "label": {
+              "NR0105AD": "BRP, löpande priser, mnkr",
+              "NR0105AE": "Antalet sysselsatta, personer i 1000-tal",
+              "NR0105AF": "Löner, löpande priser, mnkr"
+            },
+            "unit": {
+              "NR0105AD": {
+                "base": "mnkr",
+                "decimals": 0
+              },
+              "NR0105AE": {
+                "base": "1000-tal",
+                "decimals": 1
+              },
+              "NR0105AF": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "NR0105AD": "Under kalenderåret",
+              "NR0105AE": "Under kalenderåret",
+              "NR0105AF": "Under kalenderåret"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "NR0105AD": "Flow",
+              "NR0105AE": "Flow",
+              "NR0105AF": "Flow"
+            },
+            "priceType": {
+              "NR0105AD": "Current",
+              "NR0105AE": "NotApplicable",
+              "NR0105AF": "Current"
+            },
+            "adjustment": {
+              "NR0105AD": "None",
+              "NR0105AE": "None",
+              "NR0105AF": "None"
+            },
+            "alternativeText": {
+              "NR0105AD": "Bruttoregionprodukt (BRP, ENS95), löpande priser, mnkr",
+              "NR0105AE": "Antalet sysselsatta (ENS95), personer i 1000-tal",
+              "NR0105AF": "Löner, löpande priser (ENS95), mnkr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2000": 0,
+              "2001": 1,
+              "2002": 2,
+              "2003": 3,
+              "2004": 4,
+              "2005": 5,
+              "2006": 6,
+              "2007": 7,
+              "2008": 8,
+              "2009": 9,
+              "2010": 10,
+              "2011": 11
+            },
+            "label": {
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "NR0105",
+          "tableid": "TAB859",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Bruttoregionprodukt (BRP), sysselsatta och löner (ENS95)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SNI2007"
+          ],
+          "matrix": "TAB859",
+          "subject-code": "NR",
+          "subject-area": "Nationalräkenskaper"
+        },
+        "contact": [
+          {
+            "name": "Torkel Brinkenfeldt",
+            "organization": "SCB",
+            "phone": "010-479 46 59",
+            "mail": "nrinfo@scb.se",
+            "raw": "Torkel Brinkenfeldt, SCB# +46 010-479 46 59#nrinfo@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB859",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB859",
+        "label": "Bruttoregionprodukt (BRP), sysselsatta och löner (ENS95) efter region (riksområde) och näringsgren SNI 2007. År 2000-2011",
+        "description": "",
+        "sortCode": "007",
+        "updated": "2013-12-12T08:30:00Z",
+        "firstPeriod": "2000",
+        "lastPeriod": "2011",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "näringsgren SNI 2007",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NR",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NR",
+              "label": "Nationalräkenskaper",
+              "sortCode": "Nationalräkenskaper"
+            },
+            {
+              "id": "NR0105",
+              "label": "Regionalräkenskaper",
+              "sortCode": "Regionalräkenskaper"
+            },
+            {
+              "id": "NR0105B",
+              "label": "Regionalräkenskaper, årsdata, äldre serier",
+              "sortCode": "020"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB859/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,606 @@
+{
+  "key": "scb/TAB4879/sv",
+  "identifier": "TAB4879",
+  "language": "sv",
+  "updated": "2026-08-31T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:32:20.011442+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Femårig livslängdstabell efter län, utbildningsnivå, kön och ålder. Årsintervall (2012-2016)-(2021-2025)",
+      "source": "SCB",
+      "updated": "2026-08-31T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BE0701"
+            },
+            "href": "https://www.scb.se/BE0701",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Tabellen avkortas med en summering för enskilda åldrar över 95 år, 95+. I ett sådant öppet åldersintervall är dödsrisken 1 000 promille.",
+        "Livslängdstabellerna avser befolkningen född i Sverige. Det är samma begränsning som använts i SCB:s tidigare redovisningar av återstående medellivslängd vid 30 och 65 års ålder efter utbildningsnivå och län.",
+        "Från och med referensperioden 2021–2025 redovisas inte längre antal döda i livslängdstabell, tid i ålder samt tid i ålder och däröver.",
+        "Ingen livslängdsberäkning redovisas om antalet döda i gruppen är mindre än 100. Det gäller i flera län för de som saknar uppgift om utbildningsnivå.",
+        "Från och med referensåret 2025 och framåt är en liten kontrollerad slumpmässig osäkerhet införd i uppgifterna över medelfolkmängd, döda och döda efter födelsedagen. Osäkerheten har tillförts för att skydda enskilda personer så att ingen riskerar att röjas i statistiken. Till följd av detta så är inte alltid de redovisade totalerna lika med summan av deras redovisade delar.  \r\n  \r\nOm redovisade statistikvärden adderas för att skapa en ny total, så adderas även osäkerheten. Det finns därför risk för att den nya totalen innehåller större osäkerhet än vad som, enligt metoden, skulle ha tillförts ett enskilt statistikvärde.  \r\n  \r\nMetoden som används för röjandekontroll heter Cell Key Method (CKM). Du kan läsa mer om metoden här: [Skyddsmetoder för röjandekontroll](https://www.scb.se/dokumentation/statistiska-metoder/skyddsmetoder-for-rojandekontroll/) och här: [Utveckling av röjandeskyddet](https://www.scb.se/dokumentation/statistikomraden-under-forandring/utveckling-av-rojandeskyddet/), samt i demografisk analys dokumentation (kvalitetsdeklaration, avsnitt 2.2.6 och Statistikens framställning, avsnitt 2.7.4).  \r\n  \r\nFAQ om CKM-metoden hittar du här: [Frågor och svar om röjandeskydd i befolkningsstatistiken](https://www.scb.se/FAQ-CKM)",
+        "Korrigering 2026-08-31: Uppgifter för år 2025 gällande dödsrisker för åldrar 95 år och äldre korrigerades.",
+        "Dödsriskerna i de högsta åldrarna, 90 år och äldre, baseras på en utjämningsmodell. Det är samma utjämningsmodell som används i befolkningsstatistiken."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "geo": [
+          "Region"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "UtbildningsNiva",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        5,
+        3,
+        66,
+        10,
+        10
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "UtbildningsNiva": {
+          "label": "utbildningsnivå",
+          "note": [
+            "Nivåklassificeringen är gjord enligt Svensk Utbildningsnomenklatur (SUN)."
+          ],
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "21": 1,
+              "3+4": 2,
+              "8": 3,
+              "US": 4
+            },
+            "label": {
+              "TOTALT": "samtliga utbildningsnivåer",
+              "21": "förgymnasial utbildning",
+              "3+4": "gymnasial utbildning",
+              "8": "eftergymnasial utbildning",
+              "US": "uppgift om utbildningsnivå saknas"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2
+            },
+            "label": {
+              "010": "samtliga män och kvinnor",
+              "020": "män",
+              "030": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "30": 0,
+              "31": 1,
+              "32": 2,
+              "33": 3,
+              "34": 4,
+              "35": 5,
+              "36": 6,
+              "37": 7,
+              "38": 8,
+              "39": 9,
+              "40": 10,
+              "41": 11,
+              "42": 12,
+              "43": 13,
+              "44": 14,
+              "45": 15,
+              "46": 16,
+              "47": 17,
+              "48": 18,
+              "49": 19,
+              "50": 20,
+              "51": 21,
+              "52": 22,
+              "53": 23,
+              "54": 24,
+              "55": 25,
+              "56": 26,
+              "57": 27,
+              "58": 28,
+              "59": 29,
+              "60": 30,
+              "61": 31,
+              "62": 32,
+              "63": 33,
+              "64": 34,
+              "65": 35,
+              "66": 36,
+              "67": 37,
+              "68": 38,
+              "69": 39,
+              "70": 40,
+              "71": 41,
+              "72": 42,
+              "73": 43,
+              "74": 44,
+              "75": 45,
+              "76": 46,
+              "77": 47,
+              "78": 48,
+              "79": 49,
+              "80": 50,
+              "81": 51,
+              "82": 52,
+              "83": 53,
+              "84": 54,
+              "85": 55,
+              "86": 56,
+              "87": 57,
+              "88": 58,
+              "89": 59,
+              "90": 60,
+              "91": 61,
+              "92": 62,
+              "93": 63,
+              "94": 64,
+              "95+": 65
+            },
+            "label": {
+              "30": "30 år",
+              "31": "31 år",
+              "32": "32 år",
+              "33": "33 år",
+              "34": "34 år",
+              "35": "35 år",
+              "36": "36 år",
+              "37": "37 år",
+              "38": "38 år",
+              "39": "39 år",
+              "40": "40 år",
+              "41": "41 år",
+              "42": "42 år",
+              "43": "43 år",
+              "44": "44 år",
+              "45": "45 år",
+              "46": "46 år",
+              "47": "47 år",
+              "48": "48 år",
+              "49": "49 år",
+              "50": "50 år",
+              "51": "51 år",
+              "52": "52 år",
+              "53": "53 år",
+              "54": "54 år",
+              "55": "55 år",
+              "56": "56 år",
+              "57": "57 år",
+              "58": "58 år",
+              "59": "59 år",
+              "60": "60 år",
+              "61": "61 år",
+              "62": "62 år",
+              "63": "63 år",
+              "64": "64 år",
+              "65": "65 år",
+              "66": "66 år",
+              "67": "67 år",
+              "68": "68 år",
+              "69": "69 år",
+              "70": "70 år",
+              "71": "71 år",
+              "72": "72 år",
+              "73": "73 år",
+              "74": "74 år",
+              "75": "75 år",
+              "76": "76 år",
+              "77": "77 år",
+              "78": "78 år",
+              "79": "79 år",
+              "80": "80 år",
+              "81": "81 år",
+              "82": "82 år",
+              "83": "83 år",
+              "84": "84 år",
+              "85": "85 år",
+              "86": "86 år",
+              "87": "87 år",
+              "88": "88 år",
+              "89": "89 år",
+              "90": "90 år",
+              "91": "91 år",
+              "92": "92 år",
+              "93": "93 år",
+              "94": "94 år",
+              "95+": "95+ år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002FE": 0,
+              "000002F6": 1,
+              "000002F8": 2,
+              "000002FC": 3,
+              "000002FB": 4,
+              "000002FD": 5,
+              "000002FA": 6,
+              "000002FF": 7,
+              "000002FG": 8,
+              "000002F9": 9
+            },
+            "label": {
+              "000002FE": "Medelfolkmängd",
+              "000002F6": "Antal döda",
+              "000002F8": "Antal döda efter födelsedagen",
+              "000002FC": "Dödstal per 1 000",
+              "000002FB": "Dödsrisk per 1 000",
+              "000002FD": "Kvarlevande av 100 000 i 30 års ålder",
+              "000002FA": "Döda i livslängdstabell",
+              "000002FF": "Tid i ålder",
+              "000002FG": "Tid i ålder och däröver",
+              "000002F9": "Antal återstående år"
+            },
+            "unit": {
+              "000002FE": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002F6": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002F8": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002FC": {
+                "base": "andel",
+                "decimals": 2
+              },
+              "000002FB": {
+                "base": "andel",
+                "decimals": 2
+              },
+              "000002FD": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002FA": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002FF": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002FG": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002F9": {
+                "base": "antal",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002FE": "",
+              "000002F6": "",
+              "000002F8": "",
+              "000002FC": "",
+              "000002FB": "",
+              "000002FD": "",
+              "000002FA": "",
+              "000002FF": "",
+              "000002FG": "",
+              "000002F9": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002FE": "Flow",
+              "000002F6": "Flow",
+              "000002F8": "Flow",
+              "000002FC": "Flow",
+              "000002FB": "Flow",
+              "000002FD": "Flow",
+              "000002FA": "Flow",
+              "000002FF": "Flow",
+              "000002FG": "Flow",
+              "000002F9": "Flow"
+            },
+            "priceType": {
+              "000002FE": "NotApplicable",
+              "000002F6": "NotApplicable",
+              "000002F8": "NotApplicable",
+              "000002FC": "NotApplicable",
+              "000002FB": "NotApplicable",
+              "000002FD": "NotApplicable",
+              "000002FA": "NotApplicable",
+              "000002FF": "NotApplicable",
+              "000002FG": "NotApplicable",
+              "000002F9": "NotApplicable"
+            },
+            "adjustment": {
+              "000002FE": "None",
+              "000002F6": "None",
+              "000002F8": "None",
+              "000002FC": "None",
+              "000002FB": "None",
+              "000002FD": "None",
+              "000002FA": "None",
+              "000002FF": "None",
+              "000002FG": "None",
+              "000002F9": "None"
+            },
+            "alternativeText": {
+              "000002FE": "Medelfolkmängd",
+              "000002F6": "Antal döda",
+              "000002F8": "Antal döda efter födelsedagen",
+              "000002FC": "Dödstal per 1 000",
+              "000002FB": "Dödsrisk per 1 000",
+              "000002FD": "Kvarlevande av 100 000 i 30 års ålder",
+              "000002FA": "Döda i livslängdstabell",
+              "000002FF": "Tid i ålder",
+              "000002FG": "Tid i ålder och däröver",
+              "000002F9": "Antal återstående år"
+            }
+          }
+        },
+        "Tid": {
+          "label": "årsintervall",
+          "category": {
+            "index": {
+              "2012-2016": 0,
+              "2013-2017": 1,
+              "2014-2018": 2,
+              "2015-2019": 3,
+              "2016-2020": 4,
+              "2017-2021": 5,
+              "2018-2022": 6,
+              "2019-2023": 7,
+              "2020-2024": 8,
+              "2021-2025": 9
+            },
+            "label": {
+              "2012-2016": "2012-2016",
+              "2013-2017": "2013-2017",
+              "2014-2018": "2014-2018",
+              "2015-2019": "2015-2019",
+              "2016-2020": "2016-2020",
+              "2017-2021": "2017-2021",
+              "2018-2022": "2018-2022",
+              "2019-2023": "2019-2023",
+              "2020-2024": "2020-2024",
+              "2021-2025": "2021-2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "BE0701",
+          "tableid": "TAB4879",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Ettåriga livslängdstabeller",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "UtbildningsNiva",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB4879",
+          "subject-code": "BE",
+          "subject-area": "Befolkning"
+        },
+        "contact": [
+          {
+            "name": "Demografi -",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "demografi@scb.se",
+            "raw": "Demografi -, SCB# - -#demografi@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4879",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4879",
+        "label": "Femårig livslängdstabell efter län, utbildningsnivå, kön och ålder. Årsintervall (2012-2016)-(2021-2025)",
+        "description": "",
+        "sortCode": "001",
+        "updated": "2026-08-31T06:00:00Z",
+        "firstPeriod": "2012-2016",
+        "lastPeriod": "2021-2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "utbildningsnivå",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "årsintervall"
+        ],
+        "source": "SCB",
+        "subjectCode": "BE",
+        "timeUnit": "Other",
+        "paths": [
+          [
+            {
+              "id": "BE",
+              "label": "Befolkning",
+              "sortCode": "Befolkning"
+            },
+            {
+              "id": "BE0701",
+              "label": "Demografisk analys",
+              "sortCode": "Demografisk analys"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

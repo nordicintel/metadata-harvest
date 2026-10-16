@@ -1,0 +1,402 @@
+{
+  "key": "scb/TAB123/sv",
+  "identifier": "TAB123",
+  "language": "sv",
+  "updated": "2005-01-26T12:04:00Z",
+  "retrieved_at": "2026-10-16T17:23:09.720078+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Sysselsatta 16-64 år (AKU) efter region och näringsgren SNI2002 (SNI92). År 1987-2004",
+      "source": "SCB",
+      "updated": "2005-01-26T12:04:00Z",
+      "note": [
+        "Tidsseriebrott mellan 1996 och 1997. Värdena för 1997 och 1998 är reviderade på grund av ny skattningsmetodik fr o m 1999."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SNI2002",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        25,
+        11,
+        1,
+        18
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "note": [
+            "I tabellen ingår tom 1996 Habo och Mullsjö i Västra Götalands län"
+          ],
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "0180": 2,
+              "03": 3,
+              "04": 4,
+              "05": 5,
+              "06": 6,
+              "07": 7,
+              "08": 8,
+              "09": 9,
+              "10": 10,
+              "12": 11,
+              "1280": 12,
+              "13": 13,
+              "14": 14,
+              "1480": 15,
+              "17": 16,
+              "18": 17,
+              "19": 18,
+              "20": 19,
+              "21": 20,
+              "22": 21,
+              "23": 22,
+              "24": 23,
+              "25": 24
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "0180": "Stockholm",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "1280": "Malmö",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "1480": "Göteborg",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS2_1",
+                "label": "NUTS2 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_1?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3",
+                "label": "NUTS3 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän99",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionStorstäder99",
+                "label": "Storstadsområden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionStorstäder99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "SNI2002": {
+          "label": "näringsgren SNI 2002",
+          "note": [
+            "Vid klassificering av näringsgren används för perioden 1987–2002 standarden SNI 92, där 1987–1994 är omkörda enligt SNI 92-standarden. Ny reviderad standard, SNI 2002, används i AKU from april 2003. Förskolan hänförs i SNI 2002 till grupp M i stället för till grupp N."
+          ],
+          "category": {
+            "index": {
+              "A-Q": 0,
+              "A+B": 1,
+              "C-E": 2,
+              "28-35": 3,
+              "F": 4,
+              "G+I": 5,
+              "H+O+P": 6,
+              "J+Kexkl73": 7,
+              "L+Q": 8,
+              "M+73": 9,
+              "N": 10
+            },
+            "label": {
+              "A-Q": "samtliga näringsgrenar",
+              "A+B": "jordbruk, skogsbruk, jakt, fiske",
+              "C-E": "utvinning, tillverkning; energi- o vattenförsörjning",
+              "28-35": "verkstadsindustri",
+              "F": "byggindustri",
+              "G+I": "handel; transport, magasinering; kommunikation",
+              "H+O+P": "personliga och kulturella tjänster; renhållning",
+              "J+Kexkl73": "kreditinstitut, fastighetsförvaltn, företagstjänster",
+              "L+Q": "civila myndigheter, försvar; internat. organisationer",
+              "M+73": "forskning o utveckling; utbildning",
+              "N": "enh för hälso- och sjukvård, socialtjänst; veterinärer"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402N3": 0
+            },
+            "label": {
+              "AM0402N3": "Sysselsatta (AKU), 100-tal"
+            },
+            "unit": {
+              "AM0402N3": {
+                "base": "100-tal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "AM0402N3": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402N3": "Average"
+            },
+            "priceType": {
+              "AM0402N3": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402N3": "None"
+            },
+            "alternativeText": {
+              "AM0402N3": "Sysselsatta (AKU), 100-tal"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1987": 0,
+              "1988": 1,
+              "1989": 2,
+              "1990": 3,
+              "1991": 4,
+              "1992": 5,
+              "1993": 6,
+              "1994": 7,
+              "1995": 8,
+              "1996": 9,
+              "1997": 10,
+              "1998": 11,
+              "1999": 12,
+              "2000": 13,
+              "2001": 14,
+              "2002": 15,
+              "2003": 16,
+              "2004": 17
+            },
+            "label": {
+              "1987": "1987",
+              "1988": "1988",
+              "1989": "1989",
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB123",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Sysselsatta (AKU), 100-tal",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SNI2002"
+          ],
+          "matrix": "TAB123",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB123",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB123",
+        "label": "Sysselsatta 16-64 år (AKU) efter region och näringsgren SNI2002 (SNI92). År 1987-2004",
+        "description": "",
+        "sortCode": "820",
+        "updated": "2005-01-26T12:04:00Z",
+        "firstPeriod": "1987",
+        "lastPeriod": "2004",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "näringsgren SNI 2002",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402F",
+              "label": "Regionala tabeller",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB123?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB123/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB123/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

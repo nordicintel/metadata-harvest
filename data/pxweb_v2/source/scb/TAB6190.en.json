@@ -1,0 +1,385 @@
+{
+  "key": "scb/TAB6190/en",
+  "identifier": "TAB6190",
+  "language": "en",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:25:28.245578+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Population aged 15-74 (LFS) by labour status, field of education (SUN 2000) and sex, previous definitions. Year 2005-2020",
+      "source": "Statistics Sweden",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "As of 1 January 2021, the LFS is carried out in accordance with the new EU framework regulation. This means there is a break in time series between 2020 and 2021.  \r\n[The Statistical Database, data from 2021](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401/)  \r\n[The Statistical Database, data up to and including 2020](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0403/)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Arbetskraftstillh",
+        "UtbinriktnSUN2000",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        11,
+        3,
+        4,
+        16
+      ],
+      "dimension": {
+        "Arbetskraftstillh": {
+          "label": "labour status",
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "ALÖS": 1,
+              "EIAKR": 2,
+              "SYS": 3
+            },
+            "label": {
+              "TOTALT": "total",
+              "ALÖS": "unemployed",
+              "EIAKR": "not in the labour force",
+              "SYS": "employed"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbinriktnSUN2000": {
+          "label": "field of education SUN 2000",
+          "category": {
+            "index": {
+              "000": 0,
+              "0": 1,
+              "1": 2,
+              "2": 3,
+              "3": 4,
+              "4": 5,
+              "5": 6,
+              "6": 7,
+              "7": 8,
+              "8": 9,
+              "9": 10
+            },
+            "label": {
+              "000": "All educational orientations",
+              "0": "general education",
+              "1": "teaching methods and teacher education",
+              "2": "humanities and arts",
+              "3": "social sciences, law, commerce, administration",
+              "4": "natural sciences, mathematics and computing",
+              "5": "engineering and manufacturing",
+              "6": "agriculture and forestry, veterinary medicine",
+              "7": "health care and nursing, social care",
+              "8": "services",
+              "9": "unknown"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000006AC": 0,
+              "000006AE": 1,
+              "000006AB": 2,
+              "000006AD": 3
+            },
+            "label": {
+              "000006AC": "1000s",
+              "000006AE": "Margin of error ±, 1000s",
+              "000006AB": "Percent",
+              "000006AD": "Margin of error ±, percent"
+            },
+            "note": {
+              "000006AE": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ],
+              "000006AD": [
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value.",
+                "The presented margin of error corresponds to a 95 percent confidence interval."
+              ]
+            },
+            "unit": {
+              "000006AC": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "000006AE": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "000006AB": {
+                "base": "percent",
+                "decimals": 1
+              },
+              "000006AD": {
+                "base": "percent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000006AE": {
+                "0": true
+              },
+              "000006AD": {
+                "1": true
+              }
+            },
+            "refperiod": {
+              "000006AC": "",
+              "000006AE": "",
+              "000006AB": "",
+              "000006AD": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000006AC": "Average",
+              "000006AE": "Average",
+              "000006AB": "Average",
+              "000006AD": "Average"
+            },
+            "priceType": {
+              "000006AC": "NotApplicable",
+              "000006AE": "NotApplicable",
+              "000006AB": "NotApplicable",
+              "000006AD": "NotApplicable"
+            },
+            "adjustment": {
+              "000006AC": "None",
+              "000006AE": "None",
+              "000006AB": "None",
+              "000006AD": "None"
+            },
+            "alternativeText": {
+              "000006AC": "Previous definitions. Population aged 15-74 (LFS), 1000s",
+              "000006AE": "Previous definitions. Margin of error ±, population aged 15-74 (LFS), 1000s",
+              "000006AB": "Previous definitions. Population aged 15-74 (LFS), percent",
+              "000006AD": "Previous definitions. Margin of error ±, population aged 15-74 (LFS), percent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6190",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Previous definitions. Population aged 15-74 (LFS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Arbetskraftstillh",
+            "UtbinriktnSUN2000",
+            "Kon"
+          ],
+          "matrix": "TAB6190",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6190",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6190",
+        "label": "Population aged 15-74 (LFS) by labour status, field of education (SUN 2000) and sex, previous definitions. Year 2005-2020",
+        "description": "",
+        "sortCode": "02",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2020",
+        "category": "public",
+        "variableNames": [
+          "labour status",
+          "field of education SUN 2000",
+          "sex",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0403",
+              "label": "Labour Force Surveys, previous definitions",
+              "sortCode": "Labour Force Surveys, previous definitions"
+            },
+            {
+              "id": "AM0403P",
+              "label": "Level and field of Education 2005-2020",
+              "sortCode": "011"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6190?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6190?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6190/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6190/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

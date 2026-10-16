@@ -1,0 +1,388 @@
+{
+  "key": "scb/TAB4212/en",
+  "identifier": "TAB4212",
+  "language": "en",
+  "updated": "2026-03-27T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:13:54.988483+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Number of unique participants in establishment course for new arrivals by sex, participants level of education, region and age. Year 2017-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-03-27T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0601"
+            },
+            "href": "https://www.scb.se/UF0601-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "DeltUtbNiva",
+        "RegionUtb",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        6,
+        22,
+        7,
+        1,
+        9
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "total",
+              "2": "women",
+              "1": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "DeltUtbNiva": {
+          "label": "level of educational attainment of the participant",
+          "category": {
+            "index": {
+              "TOTUB": 0,
+              "FORG": 1,
+              "GYMN": 2,
+              "EGYMN-3": 3,
+              "EGYMN3+": 4,
+              "US": 5
+            },
+            "label": {
+              "TOTUB": "Total",
+              "FORG": "Compulsory education",
+              "GYMN": "Upper secondary education",
+              "EGYMN-3": "Post-secondary education, less than 3 years",
+              "EGYMN3+": "Post-secondary education, minimum 3 years",
+              "US": "Data not available"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "RegionUtb": {
+          "label": "region where the course is held",
+          "category": {
+            "index": {
+              "03": 0,
+              "04": 1,
+              "05": 2,
+              "06": 3,
+              "07": 4,
+              "08": 5,
+              "09": 6,
+              "10": 7,
+              "12": 8,
+              "13": 9,
+              "14": 10,
+              "17": 11,
+              "18": 12,
+              "19": 13,
+              "20": 14,
+              "21": 15,
+              "22": 16,
+              "23": 17,
+              "24": 18,
+              "25": 19,
+              "00": 20,
+              "01": 21
+            },
+            "label": {
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county",
+              "00": "Sweden",
+              "01": "Stockholm county"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ARiket2",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ARiket2?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BLän2",
+                "label": "Counties",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän2?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "-17Gr": 0,
+              "18-19": 1,
+              "20-24": 2,
+              "25-44": 3,
+              "45-64": 4,
+              "65+Gr": 5,
+              "tot": 6
+            },
+            "label": {
+              "-17Gr": "–17 years",
+              "18-19": "18–19 years",
+              "20-24": "20–24 years",
+              "25-44": "25–44 years",
+              "45-64": "45–64 years",
+              "65+Gr": "65+ years",
+              "tot": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "0000007C": 0
+            },
+            "label": {
+              "0000007C": "Number"
+            },
+            "unit": {
+              "0000007C": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000007C": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000007C": "Flow"
+            },
+            "priceType": {
+              "0000007C": "NotApplicable"
+            },
+            "adjustment": {
+              "0000007C": "None"
+            },
+            "alternativeText": {
+              "0000007C": "Number of unique participants in establishment course for new arrivals"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2017": 0,
+              "2018": 1,
+              "2019": 2,
+              "2020": 3,
+              "2021": 4,
+              "2022": 5,
+              "2023": 6,
+              "2024": 7,
+              "2025": 8
+            },
+            "label": {
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "UF0601",
+          "tableid": "TAB4212",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number of unique participants in establishment course for new arrivals",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "DeltUtbNiva",
+            "RegionUtb",
+            "Alder"
+          ],
+          "matrix": "TAB4212",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Samuel Snickars",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 64 35",
+            "mail": "samuel.snickars@scb.se",
+            "raw": "Samuel Snickars, Statistics Sweden# +46 010-479 64 35#samuel.snickars@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4212",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4212",
+        "label": "Number of unique participants in establishment course for new arrivals by sex, participants level of education, region and age. Year 2017-2025",
+        "description": "",
+        "sortCode": "07",
+        "updated": "2026-03-27T07:00:00Z",
+        "firstPeriod": "2017",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "level of educational attainment of the participant",
+          "region where the course is held",
+          "age",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0601",
+              "label": "Folk high school statistics",
+              "sortCode": "Folk high school statistics"
+            },
+            {
+              "id": "UF0601A",
+              "label": "Folk high school statistics",
+              "sortCode": "018"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4212?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4212?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4212/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4212/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

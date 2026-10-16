@@ -1,0 +1,400 @@
+{
+  "key": "scb/TAB4618/en",
+  "identifier": "TAB4618",
+  "language": "en",
+  "updated": "2026-10-02T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:23:22.117875+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Rent in rented dwellings by region, number of rooms and ownership. Year 2016-2026",
+      "source": "Statistics Sweden",
+      "updated": "2026-10-02T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0406"
+            },
+            "href": "https://www.scb.se/BO0406-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Correction 2023-04-27. Data for 2022 have been corrected.",
+        "X",
+        "X"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "AntalRum",
+        "Agarkategori",
+        "Hyresuppg",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        6,
+        3,
+        4,
+        4,
+        11
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Sweden",
+              "0010": "Greater Stockholm",
+              "0020": "Greater Gothenburg",
+              "0030": "Greater Malmö",
+              "0040": "Municipalities with >75000 inhabitants (excluding metropolitan areas)",
+              "0041": "Municipalities with <75000 inhabitants (excluding metropolitan areas)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "AntalRum": {
+          "label": "number of rooms",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "5": 4,
+              "00": 5
+            },
+            "label": {
+              "1": "Apartment 1 room",
+              "2": "Apartment 2 rooms",
+              "3": "Apartment 3 rooms",
+              "4": "Apartment 4+ rooms",
+              "5": "One- or two dwelling building, regardless of number of rooms",
+              "00": "Total"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Agarkategori": {
+          "label": "type of ownership",
+          "category": {
+            "index": {
+              "PrivOovriga": 0,
+              "ALLMNB": 1,
+              "00": 2
+            },
+            "label": {
+              "PrivOovriga": "private and other house owners ",
+              "ALLMNB": "municipal housing companies",
+              "00": "all"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Hyresuppg": {
+          "label": "rental data",
+          "category": {
+            "index": {
+              "Ah_lgh": 0,
+              "Ah_kvm": 1,
+              "Mh_lgh": 2,
+              "Mh_kvm": 3
+            },
+            "label": {
+              "Ah_lgh": "Annual rent per dwelling",
+              "Ah_kvm": "Annual rent per square metre",
+              "Mh_lgh": "New rent per dwelling",
+              "Mh_kvm": "New rent per square metre"
+            },
+            "note": {
+              "Ah_lgh": [
+                "X"
+              ],
+              "Ah_kvm": [
+                "X"
+              ],
+              "Mh_lgh": [
+                "X"
+              ],
+              "Mh_kvm": [
+                "X"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "Ah_lgh": {
+                "0": true
+              },
+              "Ah_kvm": {
+                "0": true
+              },
+              "Mh_lgh": {
+                "0": true
+              },
+              "Mh_kvm": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "00000145": 0,
+              "00000142": 1,
+              "00000147": 2,
+              "00000146": 3
+            },
+            "label": {
+              "00000145": "Median rent in rented dwellings",
+              "00000142": "Margin of error ± , median rent",
+              "00000147": "Average rent in rented dwelling ",
+              "00000146": "Margin of error ± , average rent"
+            },
+            "unit": {
+              "00000145": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "00000142": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "00000147": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "00000146": {
+                "base": "SEK",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000145": "",
+              "00000142": "",
+              "00000147": "",
+              "00000146": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000145": "Flow",
+              "00000142": "Flow",
+              "00000147": "Flow",
+              "00000146": "Flow"
+            },
+            "priceType": {
+              "00000145": "NotApplicable",
+              "00000142": "NotApplicable",
+              "00000147": "NotApplicable",
+              "00000146": "NotApplicable"
+            },
+            "adjustment": {
+              "00000145": "None",
+              "00000142": "None",
+              "00000147": "None",
+              "00000146": "None"
+            },
+            "alternativeText": {
+              "00000145": "Median rent in rented dwellings ",
+              "00000142": "Margin of error ± , median rent in rented dwelling ",
+              "00000147": "Average rent in rented dwelling",
+              "00000146": "Margin of error ± , average rent in rented dwelling "
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2016": 0,
+              "2017": 1,
+              "2018": 2,
+              "2019": 3,
+              "2020": 4,
+              "2021": 5,
+              "2022": 6,
+              "2023": 7,
+              "2024": 8,
+              "2025": 9,
+              "2026": 10
+            },
+            "label": {
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025",
+              "2026": "2026"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "BO0406",
+          "tableid": "TAB4618",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Rent in rented dwelling",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "AntalRum",
+            "Agarkategori",
+            "Hyresuppg"
+          ],
+          "matrix": "TAB4618",
+          "subject-code": "BO",
+          "subject-area": "Housing, construction and building"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "Statistics Sweden",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, Statistics Sweden# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4618",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4618",
+        "label": "Rent in rented dwellings by region, number of rooms and ownership. Year 2016-2026",
+        "description": "",
+        "sortCode": "07",
+        "updated": "2026-10-02T06:00:00Z",
+        "firstPeriod": "2016",
+        "lastPeriod": "2026",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "number of rooms",
+          "type of ownership",
+          "rental data",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Housing, construction and building",
+              "sortCode": "Housing, construction and building"
+            },
+            {
+              "id": "BO0406",
+              "label": "Rents for dwellings",
+              "sortCode": "Rents for dwellings"
+            },
+            {
+              "id": "BO0406E",
+              "label": "Rents 2016 -",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4618?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4618?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4618/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4618/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

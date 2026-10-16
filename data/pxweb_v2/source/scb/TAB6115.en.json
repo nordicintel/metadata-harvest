@@ -1,0 +1,490 @@
+{
+  "key": "scb/TAB6115/en",
+  "identifier": "TAB6115",
+  "language": "en",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:25:32.929548+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Employed persons aged 15-74 (LFS) by attachment to the labour market, occupation SSYK 2012 and sex, previous definitions. Month 2015M01-2020M12",
+      "source": "Statistics Sweden",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "As of 1 January 2021, the LFS is carried out in accordance with the new EU framework regulation. This means there is a break in time series between 2020 and 2021.  \r\n[The Statistical Database, data from 2021](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401/)  \r\n[The Statistical Database, data up to and including 2020](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0403/)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Anknytningsgrad",
+        "Yrke",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        12,
+        3,
+        2,
+        72
+      ],
+      "dimension": {
+        "Anknytningsgrad": {
+          "label": "degree of attachment to the labour market",
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "SYSTOT": 2
+            },
+            "label": {
+              "ANSTTOT": "employees, total",
+              "FA": "permanent employees",
+              "SYSTOT": "total employment"
+            },
+            "note": {
+              "ANSTTOT": [
+                "Employees, total incluedes both permanent and temporary employees"
+              ],
+              "FA": [
+                "Permanent and temporary employees together make up the total number of employees"
+              ],
+              "SYSTOT": [
+                "The employed include employees as well as self-employed persons and assisting family members"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ANSTTOT": {
+                "0": true
+              },
+              "FA": {
+                "0": true
+              },
+              "SYSTOT": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Yrke": {
+          "label": "occupation",
+          "category": {
+            "index": {
+              "0000": 0,
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8,
+              "9": 9,
+              "0": 10,
+              "0002": 11
+            },
+            "label": {
+              "0000": "All",
+              "1": "Managers",
+              "2": "Occupations requiring advanced level of higher education",
+              "3": "Occupations requiring higher education qualifications or equivalent",
+              "4": "Administration and customer service clerks",
+              "5": "Service, care and shop sales workers",
+              "6": "Agricultural, horticultural, forestry and fishery workers",
+              "7": "Building and manufacturing workers",
+              "8": "Mechanical manufacturing and transport workers, etc.",
+              "9": "Elementary occupations",
+              "0": "Armed forces occupations",
+              "0002": "occupations unidentifiable"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "0000063F": 0,
+              "0000063E": 1
+            },
+            "label": {
+              "0000063F": "Employed persons",
+              "0000063E": "Margin of error ±"
+            },
+            "note": {
+              "0000063E": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "0000063F": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "0000063E": {
+                "base": "1000s",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0000063E": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "0000063F": "",
+              "0000063E": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000063F": "Average",
+              "0000063E": "Average"
+            },
+            "priceType": {
+              "0000063F": "NotApplicable",
+              "0000063E": "NotApplicable"
+            },
+            "adjustment": {
+              "0000063F": "None",
+              "0000063E": "None"
+            },
+            "alternativeText": {
+              "0000063F": "Previous definitions. Employed persons aged 15-74 (LFS), 1000s",
+              "0000063E": "Previous definitions. Margin of error ±, employed persons aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "month",
+          "category": {
+            "index": {
+              "2015M01": 0,
+              "2015M02": 1,
+              "2015M03": 2,
+              "2015M04": 3,
+              "2015M05": 4,
+              "2015M06": 5,
+              "2015M07": 6,
+              "2015M08": 7,
+              "2015M09": 8,
+              "2015M10": 9,
+              "2015M11": 10,
+              "2015M12": 11,
+              "2016M01": 12,
+              "2016M02": 13,
+              "2016M03": 14,
+              "2016M04": 15,
+              "2016M05": 16,
+              "2016M06": 17,
+              "2016M07": 18,
+              "2016M08": 19,
+              "2016M09": 20,
+              "2016M10": 21,
+              "2016M11": 22,
+              "2016M12": 23,
+              "2017M01": 24,
+              "2017M02": 25,
+              "2017M03": 26,
+              "2017M04": 27,
+              "2017M05": 28,
+              "2017M06": 29,
+              "2017M07": 30,
+              "2017M08": 31,
+              "2017M09": 32,
+              "2017M10": 33,
+              "2017M11": 34,
+              "2017M12": 35,
+              "2018M01": 36,
+              "2018M02": 37,
+              "2018M03": 38,
+              "2018M04": 39,
+              "2018M05": 40,
+              "2018M06": 41,
+              "2018M07": 42,
+              "2018M08": 43,
+              "2018M09": 44,
+              "2018M10": 45,
+              "2018M11": 46,
+              "2018M12": 47,
+              "2019M01": 48,
+              "2019M02": 49,
+              "2019M03": 50,
+              "2019M04": 51,
+              "2019M05": 52,
+              "2019M06": 53,
+              "2019M07": 54,
+              "2019M08": 55,
+              "2019M09": 56,
+              "2019M10": 57,
+              "2019M11": 58,
+              "2019M12": 59,
+              "2020M01": 60,
+              "2020M02": 61,
+              "2020M03": 62,
+              "2020M04": 63,
+              "2020M05": 64,
+              "2020M06": 65,
+              "2020M07": 66,
+              "2020M08": 67,
+              "2020M09": 68,
+              "2020M10": 69,
+              "2020M11": 70,
+              "2020M12": 71
+            },
+            "label": {
+              "2015M01": "2015M01",
+              "2015M02": "2015M02",
+              "2015M03": "2015M03",
+              "2015M04": "2015M04",
+              "2015M05": "2015M05",
+              "2015M06": "2015M06",
+              "2015M07": "2015M07",
+              "2015M08": "2015M08",
+              "2015M09": "2015M09",
+              "2015M10": "2015M10",
+              "2015M11": "2015M11",
+              "2015M12": "2015M12",
+              "2016M01": "2016M01",
+              "2016M02": "2016M02",
+              "2016M03": "2016M03",
+              "2016M04": "2016M04",
+              "2016M05": "2016M05",
+              "2016M06": "2016M06",
+              "2016M07": "2016M07",
+              "2016M08": "2016M08",
+              "2016M09": "2016M09",
+              "2016M10": "2016M10",
+              "2016M11": "2016M11",
+              "2016M12": "2016M12",
+              "2017M01": "2017M01",
+              "2017M02": "2017M02",
+              "2017M03": "2017M03",
+              "2017M04": "2017M04",
+              "2017M05": "2017M05",
+              "2017M06": "2017M06",
+              "2017M07": "2017M07",
+              "2017M08": "2017M08",
+              "2017M09": "2017M09",
+              "2017M10": "2017M10",
+              "2017M11": "2017M11",
+              "2017M12": "2017M12",
+              "2018M01": "2018M01",
+              "2018M02": "2018M02",
+              "2018M03": "2018M03",
+              "2018M04": "2018M04",
+              "2018M05": "2018M05",
+              "2018M06": "2018M06",
+              "2018M07": "2018M07",
+              "2018M08": "2018M08",
+              "2018M09": "2018M09",
+              "2018M10": "2018M10",
+              "2018M11": "2018M11",
+              "2018M12": "2018M12",
+              "2019M01": "2019M01",
+              "2019M02": "2019M02",
+              "2019M03": "2019M03",
+              "2019M04": "2019M04",
+              "2019M05": "2019M05",
+              "2019M06": "2019M06",
+              "2019M07": "2019M07",
+              "2019M08": "2019M08",
+              "2019M09": "2019M09",
+              "2019M10": "2019M10",
+              "2019M11": "2019M11",
+              "2019M12": "2019M12",
+              "2020M01": "2020M01",
+              "2020M02": "2020M02",
+              "2020M03": "2020M03",
+              "2020M04": "2020M04",
+              "2020M05": "2020M05",
+              "2020M06": "2020M06",
+              "2020M07": "2020M07",
+              "2020M08": "2020M08",
+              "2020M09": "2020M09",
+              "2020M10": "2020M10",
+              "2020M11": "2020M11",
+              "2020M12": "2020M12"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6115",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Previous definitions. Employed persons aged 15-74 (LFS), 1000s",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Anknytningsgrad",
+            "Yrke",
+            "Kon"
+          ],
+          "matrix": "TAB6115",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6115",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6115",
+        "label": "Employed persons aged 15-74 (LFS) by attachment to the labour market, occupation SSYK 2012 and sex, previous definitions. Month 2015M01-2020M12",
+        "description": "",
+        "sortCode": "10",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2015M01",
+        "lastPeriod": "2020M12",
+        "category": "public",
+        "variableNames": [
+          "degree of attachment to the labour market",
+          "occupation",
+          "sex",
+          "observations",
+          "month"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0403",
+              "label": "Labour Force Surveys, previous definitions",
+              "sortCode": "Labour Force Surveys, previous definitions"
+            },
+            {
+              "id": "AM0403I",
+              "label": "Employed 1970-2020",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6115?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6115?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6115/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6115/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

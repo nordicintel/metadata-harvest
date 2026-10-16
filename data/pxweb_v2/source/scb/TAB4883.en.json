@@ -1,0 +1,419 @@
+{
+  "key": "scb/TAB4883/en",
+  "identifier": "TAB4883",
+  "language": "en",
+  "updated": "2022-11-30T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:18:59.412185+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Households water use, by type of water supply and region. Every fifth year 1995-2020",
+      "source": "Statistics Sweden",
+      "updated": "2022-11-30T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:MI0902"
+            },
+            "href": "https://www.scb.se/MI0902-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Water use by households comprises water from both public supply and self-supply. It includes water use by permanent dwellings as well as holiday homes.",
+        "The table contains data on water abstraction by country, county and river basin district according to current regional divisions. Figures according to older regional divisions have been restated in order to facilitate comparisons over time. "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "VattenforsTyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        27,
+        5,
+        1,
+        6
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21,
+              "VD01": 22,
+              "VD02": 23,
+              "VD03": 24,
+              "VD04": 25,
+              "VD05": 26
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county",
+              "VD01": "Bothnian Bay",
+              "VD02": "Bothnian Sea",
+              "VD03": "North Baltic Sea",
+              "VD04": "South Baltic Sea",
+              "VD05": "Skagerrak and Kattegat"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1_2008",
+                "label": "NUTS 1 level 2008-",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1_2008?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS2_2008",
+                "label": "NUTS 2 level 2008-",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_2008?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3_2008",
+                "label": "NUTS 3 level 2008-",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3_2008?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän07",
+                "label": "County",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionVattendistrikt",
+                "label": "River Basin District",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionVattendistrikt?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "VattenforsTyp": {
+          "label": "type of water supply",
+          "category": {
+            "index": {
+              "KN": 0,
+              "EVTP": 1,
+              "EVTF": 2,
+              "EVT": 3,
+              "HTOT": 4
+            },
+            "label": {
+              "KN": "public water supply",
+              "EVTP": "self-supply, residential",
+              "EVTF": "self-supply, holiday homes",
+              "EVT": "total self-supply",
+              "HTOT": "totalt hushåll"
+            },
+            "note": {
+              "KN": [
+                "Public water supply is drinking water distributed through the public water network."
+              ],
+              "EVTP": [
+                "Self-supply, residential is water from own or common source used in dwellings with a permanent resident population."
+              ],
+              "EVTF": [
+                "Self-supply, holiday homes is water from own or common source used in holiday homes."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "KN": {
+                "0": true
+              },
+              "EVTP": {
+                "0": true
+              },
+              "EVTF": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000001TA": 0
+            },
+            "label": {
+              "000001TA": "1000 cubic meters"
+            },
+            "unit": {
+              "000001TA": {
+                "base": "1000 cubic meters",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001TA": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001TA": "Flow"
+            },
+            "priceType": {
+              "000001TA": "NotApplicable"
+            },
+            "adjustment": {
+              "000001TA": "None"
+            },
+            "alternativeText": {
+              "000001TA": "Water use, 1000 cubic meters"
+            }
+          }
+        },
+        "Tid": {
+          "label": "every fifth year",
+          "category": {
+            "index": {
+              "1995": 0,
+              "2000": 1,
+              "2005": 2,
+              "2010": 3,
+              "2015": 4,
+              "2020": 5
+            },
+            "label": {
+              "1995": "1995",
+              "2000": "2000",
+              "2005": "2005",
+              "2010": "2010",
+              "2015": "2015",
+              "2020": "2020"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "MI0902",
+          "tableid": "TAB4883",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Water use, 1000 cubic meters",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "VattenforsTyp"
+          ],
+          "matrix": "TAB4883",
+          "subject-code": "MI",
+          "subject-area": "Environment"
+        },
+        "contact": [
+          {
+            "name": "Jerker Moström",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 40 31",
+            "mail": "mark.vatten.gis@scb.se",
+            "raw": "Jerker Moström, Statistics Sweden# +46 010-479 40 31#mark.vatten.gis@scb.se"
+          },
+          {
+            "name": "Linus Rispling",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 45 69",
+            "mail": "mark.vatten.gis@scb.se",
+            "raw": "Linus Rispling, Statistics Sweden# +46 010-479 45 69#mark.vatten.gis@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4883",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4883",
+        "label": "Households water use, by type of water supply and region. Every fifth year 1995-2020",
+        "description": "",
+        "sortCode": "Households water use, by type of water supply and region. Every fifth year 1995-2020",
+        "updated": "2022-11-30T07:00:00Z",
+        "firstPeriod": "1995",
+        "lastPeriod": "2020",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "type of water supply",
+          "observations",
+          "every fifth year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "MI",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "MI",
+              "label": "Environment",
+              "sortCode": "Environment"
+            },
+            {
+              "id": "MI0902",
+              "label": "Water withdrawal and water use in Sweden",
+              "sortCode": "Water withdrawal and water use in Sweden"
+            },
+            {
+              "id": "MI0902E",
+              "label": "Water use",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4883?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4883?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4883/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4883/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

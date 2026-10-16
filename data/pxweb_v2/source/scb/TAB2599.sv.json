@@ -1,0 +1,340 @@
+{
+  "key": "scb/TAB2599/sv",
+  "identifier": "TAB2599",
+  "language": "sv",
+  "updated": "2008-11-27T08:34:00Z",
+  "retrieved_at": "2026-10-16T17:52:37.996293+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Markanvändningen i Sverige efter region och markanvändningsklass. Äldre serie som inte uppdateras. Vart 5:e år 2000-2005",
+      "source": "SCB",
+      "updated": "2008-11-27T08:34:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:MI0803"
+            },
+            "href": "https://www.scb.se/MI0803",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Markanvandningsklass",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        10,
+        1,
+        2
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "note": [
+            "Uppgifter för 2005 redovisas enligt länsindelningen 2007."
+          ],
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true
+            },
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän99EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Markanvandningsklass": {
+          "label": "markanvändningsklass",
+          "category": {
+            "index": {
+              "1": 0,
+              "21": 1,
+              "3": 2,
+              "3225": 3,
+              "3824": 4,
+              "42": 5,
+              "53": 6,
+              "6113": 7,
+              "7": 8,
+              "91": 9
+            },
+            "label": {
+              "1": "jordbruksmark",
+              "21": "skogsmark",
+              "3": "bebyggd och anlagd mark ",
+              "3225": "täkter",
+              "3824": "golfbanor och skidpistar",
+              "42": "öppen myr exkl. torvtäkter",
+              "53": "naturligt gräsbevuxen mark, hedmark o. dyl.",
+              "6113": "berg i dagen och övrig mark",
+              "7": "inlandsvatten",
+              "91": "total areal"
+            },
+            "note": {
+              "3": [
+                "I riksstotalen för bebyggd mark och tillhörande mark ingår ca 12 000 hektar som ej är länsfördelade."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "MI0803B1": 0
+            },
+            "label": {
+              "MI0803B1": "Markanvändningen, hektar"
+            },
+            "unit": {
+              "MI0803B1": {
+                "base": "hektar",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "MI0803B1": "Medeltal för resp år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "MI0803B1": "Average"
+            },
+            "priceType": {
+              "MI0803B1": "NotApplicable"
+            },
+            "adjustment": {
+              "MI0803B1": "None"
+            },
+            "alternativeText": {
+              "MI0803B1": "Markanvändningen i Sverige, hektar"
+            }
+          }
+        },
+        "Tid": {
+          "label": "vart 5:e år",
+          "category": {
+            "index": {
+              "2000": 0,
+              "2005": 1
+            },
+            "label": {
+              "2000": "2000",
+              "2005": "2005"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "MI0803",
+          "tableid": "TAB2599",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Markanvändningen i Sverige, hektar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Markanvandningsklass"
+          ],
+          "matrix": "TAB2599",
+          "subject-code": "MI",
+          "subject-area": "Miljö"
+        },
+        "contact": [
+          {
+            "name": "Jerker Moström",
+            "organization": "SCB",
+            "phone": "010-479 40 31",
+            "mail": "mark.vatten.gis@scb.se",
+            "raw": "Jerker Moström, SCB# +46 010-479 40 31#mark.vatten.gis@scb.se"
+          },
+          {
+            "name": "Linus Rispling",
+            "organization": "SCB",
+            "phone": "010-479 45 69",
+            "mail": "mark.vatten.gis@scb.se",
+            "raw": "Linus Rispling, SCB# +46 010-479 45 69#mark.vatten.gis@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2599",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2599",
+        "label": "Markanvändningen i Sverige efter region och markanvändningsklass. Äldre serie som inte uppdateras. Vart 5:e år 2000-2005",
+        "description": "",
+        "sortCode": "041",
+        "updated": "2008-11-27T08:34:00Z",
+        "firstPeriod": "2000",
+        "lastPeriod": "2005",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "markanvändningsklass",
+          "tabellinnehåll",
+          "vart 5:e år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "MI",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "MI",
+              "label": "Miljö",
+              "sortCode": "Miljö"
+            },
+            {
+              "id": "MI0803",
+              "label": "Markanvändningen i Sverige",
+              "sortCode": "Markanvändningen i Sverige"
+            },
+            {
+              "id": "MI0803X",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2599?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2599/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2599/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

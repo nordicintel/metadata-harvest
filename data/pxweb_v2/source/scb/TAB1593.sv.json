@@ -1,0 +1,303 @@
+{
+  "key": "scb/TAB1593/sv",
+  "identifier": "TAB1593",
+  "language": "sv",
+  "updated": "2001-12-21T12:00:00Z",
+  "retrieved_at": "2026-10-16T17:35:20.885581+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Taxeringsvärden, låneskulder, räntor, räntebidrag och ombyggnadsutgifter (IKU), kommunägda bostadsföretag, efter region och lägenhetsantal.  (Urvalsundersökning, se fotnoter.) År 1999-2000",
+      "source": "SCB",
+      "updated": "2001-12-21T12:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "1) Totalyta = bostadsytan + lokalytan. 2) Den allmänna fastighetstaxeringen år 2000 medförde i visa fall betydande justeringar av taxeringsvärdena, både uppåt och nedåt. 3) Uteblivna siffror betyder att antalet företag i beräkningsunderlaget är 0-1 st. 4) Siffrorna avser endast de företag som ingår i beräkningsunderlaget. Ingen justering för bortfall.",
+        "Undersökningen bygger på intervjuer i ett rikstäckande sannolikhetsurval. De redovisade talen är således skattningar varför hänsyn måste tas till osäkerheten i dessa då slutsatser dras. Skattningar som är behäftade med alltför stor osäkerhet är ersatta med två punkter."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "StorlekLgh",
+        "TaxvardeSkuld",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        6,
+        6,
+        2,
+        2
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0042": 3,
+              "0043": 4
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0042": "Kommuner med >75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)",
+              "0043": "Kommuner med <75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "StorlekLgh": {
+          "label": "lägenhetsantal",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "001": 5
+            },
+            "label": {
+              "01": "–499 bostadslägenheter",
+              "02": "500–999 bostadslägenheter",
+              "03": "1 000–4 999 bostadslägenheter",
+              "04": "5 000–9 999 bostadslägenheter",
+              "05": "10 000– bostadslägenheter",
+              "001": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "TaxvardeSkuld": {
+          "label": "kontoslag",
+          "category": {
+            "index": {
+              "01": 0,
+              "03": 1,
+              "05": 2,
+              "07": 3,
+              "09": 4,
+              "11": 5
+            },
+            "label": {
+              "01": "taxeringsvärde",
+              "03": "långfristiga låneskulder",
+              "05": "räntor (brutto)",
+              "07": "räntebidrag",
+              "09": "ombyggnad och förbättringar",
+              "11": "nybyggnad"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0301J1": 0,
+              "BO0301J2": 1
+            },
+            "label": {
+              "BO0301J1": "Ekonomiska uppgifter för flerbostadshus (IKU), kommungäda bostadsföretag, mkr",
+              "BO0301J2": "Ekonomiska uppgifter för flerbostadshus (IKU), kommungäda bostadsföretag, kr/kvm"
+            },
+            "unit": {
+              "BO0301J1": {
+                "base": "mkr",
+                "decimals": 0
+              },
+              "BO0301J2": {
+                "base": "kronor",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0301J1": "Kalenderår",
+              "BO0301J2": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301J1": "Flow",
+              "BO0301J2": "Flow"
+            },
+            "priceType": {
+              "BO0301J1": "Current",
+              "BO0301J2": "Current"
+            },
+            "adjustment": {
+              "BO0301J1": "None",
+              "BO0301J2": "None"
+            },
+            "alternativeText": {
+              "BO0301J1": "Ekonomiska uppgifter för flerbostadshus (IKU), kommungäda bostadsföretag, mkr",
+              "BO0301J2": "Ekonomiska uppgifter för flerbostadshus (IKU), kommungäda bostadsföretag, kr/kvm"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1999": 0,
+              "2000": 1
+            },
+            "label": {
+              "1999": "1999",
+              "2000": "2000"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1593",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Ekonomiska uppgifter (IKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "StorlekLgh",
+            "TaxvardeSkuld"
+          ],
+          "matrix": "TAB1593",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1593",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1593",
+        "label": "Taxeringsvärden, låneskulder, räntor, räntebidrag och ombyggnadsutgifter (IKU), kommunägda bostadsföretag, efter region och lägenhetsantal.  (Urvalsundersökning, se fotnoter.) År 1999-2000",
+        "description": "",
+        "sortCode": "14",
+        "updated": "2001-12-21T12:00:00Z",
+        "firstPeriod": "1999",
+        "lastPeriod": "2000",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "lägenhetsantal",
+          "kontoslag",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0301",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)"
+            },
+            {
+              "id": "BO0301J",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1593?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1593/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1593/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

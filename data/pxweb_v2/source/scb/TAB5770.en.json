@@ -1,0 +1,762 @@
+{
+  "key": "scb/TAB5770/en",
+  "identifier": "TAB5770",
+  "language": "en",
+  "updated": "2026-03-20T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:14:06.057115+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Students and graduates of higher vocational education, by sex, educational orientation, study region, study rate, form of study, programme length and  type of degree. Year 2005-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-03-20T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0701"
+            },
+            "href": "https://www.scb.se/UF0701-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "To prevent disclosure of information, random rounding off was applied in the table.  Cell values 1 and 2 have been rounded off to either 0 or 3 with predetermined probabilities. This is why the study domains sometimes do not add up to the total.",
+        "The statistics refer to study sessions that started, were ongoing or finished each year respectively. For example, students in 2017 refer to all those who studied in sessions that were ongoing in 2017.",
+        "The number of admitted students refers to persons who have been students three weeks after the start of the program. Those who have been added during the course of the education and those who have dropped out of the education are included. This means that everyone who has participated in at least one list of students for a study program is included.",
+        "The number of students refers to active students on study programmes that have been going on for at least one day during an intended period. An active student must at least be on one student list for an intended period. \r\n  The start and end dates for a student are set after the start or end date of the study programme or the requisition period, since there is no exact information about when a student starts and stops studying. \r\n  From 2018 onwards, actual students are reported, taking into account the student´s graduation date, start, interruptions, and study breaks.",
+        "Graduates refer to higher vocational education entrants who have fulfilled all conditions for the degree. Graduates are reported to the end year of a study program. \r\n  For graduates, there is a lag in the statistics due to late additions. Data for the latest reference year are therefore reported in November.",
+        "Graduation rate is calculated as the percentage of graduates of high vocational education entrants who conducted studies on programs that give the degree.",
+        "One person is counted once for each study programme and can thus be included in statistics twice for the same year.",
+        "Field of education MYH refers to the classification of programmes in the fields of education used by the Swedish National Agency for Higher Vocational Education (MYH). The fields of education are based on the SUN 2020 classification.",
+        "Length of programme is recalculated to full-time, where 40 weeks corresponds to one year of full-time studies."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbildnInriktn",
+        "RegionUtb",
+        "UtbTakt",
+        "UtbFormYH",
+        "UtbLangd",
+        "UtbExam",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        27,
+        86,
+        3,
+        3,
+        7,
+        5,
+        4,
+        21
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "total",
+              "2": "women",
+              "1": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildnInriktn": {
+          "label": "educational orientation",
+          "category": {
+            "index": {
+              "TOTM": 0,
+              "1M": 1,
+              "2M": 2,
+              "3M": 3,
+              "4M": 4,
+              "5M": 5,
+              "6M": 6,
+              "7M": 7,
+              "8M": 8,
+              "9M": 9,
+              "11M": 10,
+              "12M": 11,
+              "13M": 12,
+              "14M": 13,
+              "15M": 14,
+              "16": 15,
+              "TOTS": 16,
+              "1S": 17,
+              "2S": 18,
+              "3S": 19,
+              "4S": 20,
+              "5S": 21,
+              "6S": 22,
+              "7S": 23,
+              "8S": 24,
+              "17": 25,
+              "TOT": 26
+            },
+            "label": {
+              "TOTM": "All fields of education",
+              "1M": "Computers/IT",
+              "2M": "Economics, administration and sales",
+              "3M": "Fitness and wellness",
+              "4M": "Hotel, restaurant and tourism",
+              "5M": "Health and medical care and social services",
+              "6M": "Journalism and information",
+              "7M": "Law",
+              "8M": "Culture, media and design",
+              "9M": "Agriculture, veterinary medicine, forestry and fisheries",
+              "11M": "Teaching methods and teaching",
+              "12M": "Civil and structural engineering",
+              "13M": "Security services",
+              "14M": "Technology and manufacturing",
+              "15M": "Transport services",
+              "16": "Other",
+              "TOTS": "All educational orientations",
+              "1S": "Teaching methods and teacher training",
+              "2S": "Humanities and the arts",
+              "3S": "Social science, law, trade, administration",
+              "4S": "Natural sciences, mathematics and Information and Communication Technologies (ICTs)",
+              "5S": "Technology and manufacturing",
+              "6S": "Agriculture and forestry, veterinary medicine",
+              "7S": "Health and medical care and social care",
+              "8S": "Services",
+              "17": "Unknown",
+              "TOT": "All educational orientations"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CUtbInrTot",
+                "label": "Total",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CUtbInrTot?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AUtbOmrMYH",
+                "label": "Field of education MYH",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AUtbOmrMYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BUtbInrSUN",
+                "label": "Educational orientation SUN 2020, 1-digit ",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BUtbInrSUN?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "RegionUtb": {
+          "label": "region where the course is held",
+          "category": {
+            "index": {
+              "FATOT": 0,
+              "FA01": 1,
+              "FA02": 2,
+              "FA03": 3,
+              "FA04": 4,
+              "FA05": 5,
+              "FA06": 6,
+              "FA07": 7,
+              "FA08": 8,
+              "FA09": 9,
+              "FA10": 10,
+              "FA11": 11,
+              "FA12": 12,
+              "FA13": 13,
+              "FA14": 14,
+              "FA15": 15,
+              "FA16": 16,
+              "FA17": 17,
+              "FA18": 18,
+              "FA19": 19,
+              "FA20": 20,
+              "FA21": 21,
+              "FA22": 22,
+              "FA23": 23,
+              "FA24": 24,
+              "FA25": 25,
+              "FA26": 26,
+              "FA27": 27,
+              "FA28": 28,
+              "FA29": 29,
+              "FA30": 30,
+              "FA31": 31,
+              "FA32": 32,
+              "FA33": 33,
+              "FA34": 34,
+              "FA35": 35,
+              "FA36": 36,
+              "FA37": 37,
+              "FA38": 38,
+              "FA39": 39,
+              "FA40": 40,
+              "FA41": 41,
+              "FA42": 42,
+              "FA43": 43,
+              "FA44": 44,
+              "FA45": 45,
+              "FA46": 46,
+              "FA47": 47,
+              "FA48": 48,
+              "FA49": 49,
+              "FA50": 50,
+              "FA51": 51,
+              "FA52": 52,
+              "FA53": 53,
+              "FA54": 54,
+              "FA55": 55,
+              "FA56": 56,
+              "FA57": 57,
+              "FA58": 58,
+              "FA59": 59,
+              "FA60": 60,
+              "FA99": 61,
+              "LANTOT": 62,
+              "01": 63,
+              "03": 64,
+              "04": 65,
+              "05": 66,
+              "06": 67,
+              "07": 68,
+              "08": 69,
+              "09": 70,
+              "10": 71,
+              "12": 72,
+              "13": 73,
+              "14": 74,
+              "17": 75,
+              "18": 76,
+              "19": 77,
+              "20": 78,
+              "21": 79,
+              "22": 80,
+              "23": 81,
+              "24": 82,
+              "25": 83,
+              "TOT": 84,
+              "99": 85
+            },
+            "label": {
+              "FATOT": "All FA regions",
+              "FA01": "Malmö-Lund",
+              "FA02": "Kristianstad-Hässleholm",
+              "FA03": "Karlskrona",
+              "FA04": "Älmhult-Osby",
+              "FA05": "Ljungby",
+              "FA06": "Halmstad",
+              "FA07": "Värnamo",
+              "FA08": "Växjö",
+              "FA09": "Kalmar",
+              "FA10": "Oskarshamn",
+              "FA11": "Västervik",
+              "FA12": "Vimmerby",
+              "FA13": "Jönköping",
+              "FA14": "Borås",
+              "FA15": "Göteborg",
+              "FA16": "Trollhättan-Vänersborg",
+              "FA17": "Lidköping-Götene",
+              "FA18": "Skövde-Skara",
+              "FA19": "Linköping-Norrköping",
+              "FA20": "Gotland",
+              "FA21": "Nyköping-Oxelösund",
+              "FA22": "Eskilstuna",
+              "FA23": "Stockholm",
+              "FA24": "Västerås",
+              "FA25": "Örebro",
+              "FA26": "Karlskoga",
+              "FA27": "Karlstad",
+              "FA28": "Västlandet",
+              "FA29": "Torsby",
+              "FA30": "Malung-Sälen",
+              "FA31": "Vansbro",
+              "FA32": "Ludvika",
+              "FA33": "Avesta-Hedemora",
+              "FA34": "Falun-Borlänge",
+              "FA35": "Mora",
+              "FA36": "Gävle",
+              "FA37": "Bollnäs-Ovanåker",
+              "FA38": "Hudiksvall",
+              "FA39": "Ljusdal",
+              "FA40": "Härjedalen",
+              "FA41": "Östersund",
+              "FA42": "Sundsvall",
+              "FA43": "Kramfors",
+              "FA44": "Örnsköldsvik",
+              "FA45": "Sollefteå",
+              "FA46": "Strömsund",
+              "FA47": "Åsele",
+              "FA48": "Umeå",
+              "FA49": "Lycksele",
+              "FA50": "Vilhelmina",
+              "FA51": "Storuman",
+              "FA52": "Skellefteå",
+              "FA53": "Arvidsjaur",
+              "FA54": "Arjeplog",
+              "FA55": "Luleå",
+              "FA56": "Haparanda",
+              "FA57": "Överkalix",
+              "FA58": "Jokkmokk",
+              "FA59": "Gällivare",
+              "FA60": "Kiruna",
+              "FA99": "Data not available",
+              "LANTOT": "All counties",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county",
+              "TOT": "Total",
+              "99": "Data not available"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CTOTYH",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CTOTYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ALANYH",
+                "label": "County in which the education is arranged",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ALANYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BFAYH",
+                "label": "Functional analysis region (FA) on-site",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BFAYH?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "UtbTakt": {
+          "label": "study rate of the programme",
+          "category": {
+            "index": {
+              "TOTHD": 0,
+              "HT": 1,
+              "DT": 2
+            },
+            "label": {
+              "TOTHD": "All study rates",
+              "HT": "Full time",
+              "DT": "Part time"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbFormYH": {
+          "label": "form of study of the programme",
+          "category": {
+            "index": {
+              "TOTBD": 0,
+              "BU": 1,
+              "DI": 2
+            },
+            "label": {
+              "TOTBD": "All forms of study",
+              "BU": "Traditional",
+              "DI": "Distance learning"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbLangd": {
+          "label": "programme length",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "0,5-1": 1,
+              "1-1,5": 2,
+              "1,5-2": 3,
+              "2-2,5": 4,
+              "2,5-3": 5,
+              "3-3,5": 6
+            },
+            "label": {
+              "TOT": "All programme length",
+              "0,5-1": "Minimum 0.5 year less than 1 year",
+              "1-1,5": "Minimum 1 year less than 1.5 years",
+              "1,5-2": "Minimum 1.5 years less than 2 years",
+              "2-2,5": "Minimum 2 years less than 2.5 years",
+              "2,5-3": "Minimum 2.5 years less than 3 years",
+              "3-3,5": "Minimum 3 years, maximum 3.5 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbExam": {
+          "label": "degree type of education",
+          "category": {
+            "index": {
+              "TOTTYP": 0,
+              "EjExam": 1,
+              "YHExam": 2,
+              "KvYH": 3,
+              "KvKY": 4
+            },
+            "label": {
+              "TOTTYP": "All types of degree",
+              "EjExam": "No degree",
+              "YHExam": "Higher Vocational Education Diploma",
+              "KvYH": "Advanced Higher Vocational Education Diploma",
+              "KvKY": "Diploma in Advanced Vocational Education and Training"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000004Z1": 0,
+              "000004Z8": 1,
+              "000004Z6": 2,
+              "000004Z7": 3
+            },
+            "label": {
+              "000004Z1": "Number of admitted students",
+              "000004Z8": "Number of students",
+              "000004Z6": "Number of graduates",
+              "000004Z7": "Graduation rate"
+            },
+            "unit": {
+              "000004Z1": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000004Z8": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000004Z6": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000004Z7": {
+                "base": "percent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004Z1": "Year",
+              "000004Z8": "Year",
+              "000004Z6": "Year",
+              "000004Z7": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004Z1": "Stock",
+              "000004Z8": "Stock",
+              "000004Z6": "Stock",
+              "000004Z7": "Stock"
+            },
+            "priceType": {
+              "000004Z1": "NotApplicable",
+              "000004Z8": "NotApplicable",
+              "000004Z6": "NotApplicable",
+              "000004Z7": "NotApplicable"
+            },
+            "adjustment": {
+              "000004Z1": "None",
+              "000004Z8": "None",
+              "000004Z6": "None",
+              "000004Z7": "None"
+            },
+            "alternativeText": {
+              "000004Z1": "Students and graduates of higher vocational education. Number of admitted students",
+              "000004Z8": "Students and graduates of higher vocational education. Number of students",
+              "000004Z6": "Students and graduates of higher vocational education. Number of graduates",
+              "000004Z7": "Students and graduates of higher vocational education. Graduation rate"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15,
+              "2021": 16,
+              "2022": 17,
+              "2023": 18,
+              "2024": 19,
+              "2025": 20
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true
+        },
+        "px": {
+          "infofile": "UF0701",
+          "tableid": "TAB5770",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Students and graduates of higher vocational education",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbildnInriktn",
+            "RegionUtb",
+            "UtbTakt",
+            "UtbFormYH",
+            "UtbLangd",
+            "UtbExam"
+          ],
+          "matrix": "TAB5770",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Evalena Andersson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 61 50",
+            "mail": "evalena.andersson@scb.se",
+            "raw": "Evalena Andersson, Statistics Sweden# +46 010-479 61 50#evalena.andersson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5770",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5770",
+        "label": "Students and graduates of higher vocational education, by sex, educational orientation, study region, study rate, form of study, programme length and  type of degree. Year 2005-2025",
+        "description": "",
+        "sortCode": "02",
+        "updated": "2026-03-20T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "educational orientation",
+          "region where the course is held",
+          "study rate of the programme",
+          "form of study of the programme",
+          "programme length",
+          "degree type of education",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0701",
+              "label": "Higher Vocational Education",
+              "sortCode": "Higher Vocational Education"
+            },
+            {
+              "id": "UF0701B",
+              "label": "Students and graduates",
+              "sortCode": "023"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5770?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5770?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5770/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5770/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

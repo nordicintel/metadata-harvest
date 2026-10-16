@@ -1,0 +1,381 @@
+{
+  "key": "scb/TAB860/sv",
+  "identifier": "TAB860",
+  "language": "sv",
+  "updated": "2010-12-22T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:56:09.249443+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Bruttoregionprodukt (BRP), sysselsatta och löner (ENS95) efter region (riksområde) och näringsgren SNI 2002. År 1993-2008",
+      "source": "SCB",
+      "updated": "2010-12-22T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NR0105"
+            },
+            "href": "https://www.scb.se/NR0105",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "För år 2007 baseras uppgifterna på preliminär statistik. Definitiva regionalräkenskaper avseende år 2007 kommer att publiceras i december 2010."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SNI2002",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        18,
+        3,
+        16
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "RIKS1": 1,
+              "RIKS2": 2,
+              "RIKS3": 3,
+              "RIKS4": 4,
+              "RIKS5": 5,
+              "RIKS6": 6,
+              "RIKS7": 7,
+              "RIKS8": 8,
+              "90": 9
+            },
+            "label": {
+              "00": "Riket",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland",
+              "90": "Extra region"
+            },
+            "note": {
+              "90": [
+                "Delar av det ekonomiska territoriet vilka inte direkt kan knytas till en enskild region, t ex ambassader och konsulat."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1-2x",
+                "label": "NUTS1-2x",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1-2x?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Region99RiksX",
+                "label": "Riksområden inkl extra region + Hela riket. Innehåller gruppering.",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Region99RiksX?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "SNI2002": {
+          "label": "näringsgren SNI 2002",
+          "note": [
+            "Offentliga myndigheter och hushållens icke-vinstdrivande organisationer är utfördelade efter näringsgren. För berörda näringsgrenar framgår det i texten att hela ekonomin avses och SNI-koden efterföljs av ett A.",
+            "Offentliga myndigheter och hushållens icke-vinstdrivande organisationer är utfördelade efter näringsgren. För berörda näringsgrenar framgår det i texten att hela ekonomin avses och SNI-koden efterföljs av ett A.",
+            "Offentliga myndigheter och hushållens icke-vinstdrivande organisationer är utfördelade efter näringsgren. För berörda näringsgrenar framgår det i texten att hela ekonomin avses och SNI-koden efterföljs av ett A."
+          ],
+          "category": {
+            "index": {
+              "TOT": 0,
+              "01-95A": 1,
+              "01-45": 2,
+              "01-05": 3,
+              "10-37": 4,
+              "40+41": 5,
+              "45": 6,
+              "50-95A": 7,
+              "50-52": 8,
+              "55": 9,
+              "60-64A": 10,
+              "65-67": 11,
+              "70-74A": 12,
+              "75A": 13,
+              "80A": 14,
+              "85A": 15,
+              "90-95A": 16,
+              "EJSNI": 17
+            },
+            "label": {
+              "TOT": "Hela ekonomin, totalt",
+              "01-95A": "Hela ekonomin, exkl ej branschfördelat",
+              "01-45": "01-45 Varuproducenter",
+              "01-05": "01-05 Jordbruk, jakt, skogsbruk o fiske",
+              "10-37": "10-37 Gruvor, mineralutvinnings- o tillverkningsindustri",
+              "40+41": "40+41 El- gas- värme- o vattenverk",
+              "45": "45 Byggindustri",
+              "50-95A": "50-95A Tjänsteproducenter, hela ekonomin",
+              "50-52": "50-52 Parti- o detaljhandel m m",
+              "55": "55 Hotell- och restauranger",
+              "60-64A": "60-64A Transport- magasinerings- o kommunikationsföretag, hela ekonomin",
+              "65-67": "65-67 Kreditinstitut o försäkringsbolag",
+              "70-74A": "70-74A Fastighetsbolag, uthyrnings- o företagsservicefirmor, hela ekonomin",
+              "75A": "75A Civila myndigheter o försvaret, hela ekonomin",
+              "80A": "80A Utbildningsväsendet, hela ekonomin",
+              "85A": "85A Hälso o sjukvård, socialtjänst; veterinärkliniker, hela ekonomin",
+              "90-95A": "90-95A Andra samhälleliga o personliga tjänster o förvärvsarbete i hushåll, hela ekonomin",
+              "EJSNI": "Ej branschfördelade poster"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "NR0105C1": 0,
+              "NR0105C2": 1,
+              "NR0105C3": 2
+            },
+            "label": {
+              "NR0105C1": "BRP, löpande priser, mnkr",
+              "NR0105C2": "Antalet sysselsatta, personer i 1000-tal",
+              "NR0105C3": "Löner, löpande priser, mnkr"
+            },
+            "unit": {
+              "NR0105C1": {
+                "base": "mnkr",
+                "decimals": 0
+              },
+              "NR0105C2": {
+                "base": "1000-tal           ",
+                "decimals": 1
+              },
+              "NR0105C3": {
+                "base": "mnkr            ",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "NR0105C1": "Under kalenderåret",
+              "NR0105C2": "Under kalenderåret",
+              "NR0105C3": "Under kalenderåret"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "NR0105C1": "Flow",
+              "NR0105C2": "Flow",
+              "NR0105C3": "Flow"
+            },
+            "priceType": {
+              "NR0105C1": "Current",
+              "NR0105C2": "NotApplicable",
+              "NR0105C3": "Current"
+            },
+            "adjustment": {
+              "NR0105C1": "None",
+              "NR0105C2": "None",
+              "NR0105C3": "None"
+            },
+            "alternativeText": {
+              "NR0105C1": "Bruttoregionprodukt (BRP, ENS95), löpande priser, mnkr",
+              "NR0105C2": "Antalet sysselsatta (ENS95), personer i 1000-tal",
+              "NR0105C3": "Löner, löpande priser (ENS95), mnkr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1993": 0,
+              "1994": 1,
+              "1995": 2,
+              "1996": 3,
+              "1997": 4,
+              "1998": 5,
+              "1999": 6,
+              "2000": 7,
+              "2001": 8,
+              "2002": 9,
+              "2003": 10,
+              "2004": 11,
+              "2005": 12,
+              "2006": 13,
+              "2007": 14,
+              "2008": 15
+            },
+            "label": {
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "NR0105",
+          "tableid": "TAB860",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Bruttoregionprodukt (BRP), sysselsatta och löner (ENS95)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SNI2002"
+          ],
+          "matrix": "TAB860",
+          "subject-code": "NR",
+          "subject-area": "Nationalräkenskaper"
+        },
+        "contact": [
+          {
+            "name": "Henrik Nyman",
+            "organization": "SCB",
+            "phone": "010-479 45 96",
+            "mail": "henrik.nyman@scb.se",
+            "raw": "Henrik Nyman, SCB# +46 010-479 45 96#henrik.nyman@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB860",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB860",
+        "label": "Bruttoregionprodukt (BRP), sysselsatta och löner (ENS95) efter region (riksområde) och näringsgren SNI 2002. År 1993-2008",
+        "description": "",
+        "sortCode": "011",
+        "updated": "2010-12-22T08:30:00Z",
+        "firstPeriod": "1993",
+        "lastPeriod": "2008",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "näringsgren SNI 2002",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NR",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NR",
+              "label": "Nationalräkenskaper",
+              "sortCode": "Nationalräkenskaper"
+            },
+            {
+              "id": "NR0105",
+              "label": "Regionalräkenskaper",
+              "sortCode": "Regionalräkenskaper"
+            },
+            {
+              "id": "NR0105B",
+              "label": "Regionalräkenskaper, årsdata, äldre serier",
+              "sortCode": "020"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB860?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB860?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB860/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB860/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

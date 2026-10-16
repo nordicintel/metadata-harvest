@@ -1,0 +1,375 @@
+{
+  "key": "scb/TAB4918/sv",
+  "identifier": "TAB4918",
+  "language": "sv",
+  "updated": "2021-11-25T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:58:01.187019+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Automatiserat informationsutbyte inom företaget efter system och redovisningsgrupp. Andel företag. År 2014-2021",
+      "source": "SCB",
+      "updated": "2021-11-25T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I denna tabell betyder 0 att andelen är större än noll men mindre än 0,5 procent respektive att konfidensintervallet är större än 0 men mindre än 0,5 procentenheter. Tecknet .. betyder att uppgiften inte är tillgänglig eller alltför osäker för att anges."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "System",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        24,
+        2,
+        5
+      ],
+      "dimension": {
+        "System": {
+          "label": "system",
+          "category": {
+            "index": {
+              "0090": 0,
+              "0100": 1,
+              "0110": 2
+            },
+            "label": {
+              "0090": "ERP för att dela information inom företaget",
+              "0100": "CRM för insamling och lagring av kunduppgifter",
+              "0110": "CRM för att analysera information om kunder för marknadsföringssyfte"
+            },
+            "note": {
+              "0090": [
+                "Under 2019 förändrades frågan jämfört med 2017. Exempel och förklaring på ERP lades till i frågan."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0090": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "Tot250": 0,
+              "10-49": 1,
+              "50-249": 2,
+              "250-": 3,
+              "TotSNI": 4,
+              "10-33": 5,
+              "35-39": 6,
+              "41-43": 7,
+              "45-47": 8,
+              "49-53": 9,
+              "55-56": 10,
+              "58-63": 11,
+              "68": 12,
+              "69-82+95.1exkl.75": 13,
+              "IKT": 14,
+              "SE": 15,
+              "RIKS1": 16,
+              "RIKS2": 17,
+              "RIKS3": 18,
+              "RIKS4": 19,
+              "RIKS5": 20,
+              "RIKS6": 21,
+              "RIKS7": 22,
+              "RIKS8": 23
+            },
+            "label": {
+              "Tot250": "totalt 10 eller fler anställda",
+              "10-49": "10–49 anställda",
+              "50-249": "50–249 anställda",
+              "250-": "250 eller fler anställda",
+              "TotSNI": "totalt (SNI 10–63, 68–74, 77–82, 95.1) ",
+              "10-33": "tillverkningsindustri (SNI 10–33)",
+              "35-39": "energi och återvinning (SNI 35–39)",
+              "41-43": "byggindustri (SNI 41–43)",
+              "45-47": "handel; serviceverkstäder för motorfordon (SNI 45–47)",
+              "49-53": "transport- och magasineringsföretag (SNI 49–53)",
+              "55-56": "hotell och restauranger (SNI 55–56)",
+              "58-63": "informations- och kommunikationsföretag (SNI 58–63)",
+              "68": "fastighetsbolag och förvaltare (SNI 68)",
+              "69-82+95.1exkl.75": "andra tjänsteföretag (SNI 69–74, 77–82, 95.1)",
+              "IKT": "IKT-sektorn (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sverige",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Företag, 10 eller fler anställda",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Näringsgren (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000001ZF": 0,
+              "000001ZG": 1
+            },
+            "label": {
+              "000001ZF": "Andel, procent",
+              "000001ZG": "Felmarginal, ±"
+            },
+            "unit": {
+              "000001ZF": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000001ZG": {
+                "base": "procentenheter",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000001ZF": "År",
+              "000001ZG": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000001ZF": "Stock",
+              "000001ZG": "Stock"
+            },
+            "priceType": {
+              "000001ZF": "NotApplicable",
+              "000001ZG": "NotApplicable"
+            },
+            "adjustment": {
+              "000001ZF": "None",
+              "000001ZG": "None"
+            },
+            "alternativeText": {
+              "000001ZF": "Andel företag med automatiserat informationsutbyte inom företaget, procent",
+              "000001ZG": "Andel företag med automatiserat informationsutbyte inom företaget, felmarginal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2017": 2,
+              "2019": 3,
+              "2021": 4
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2017": "2017",
+              "2019": "2019",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB4918",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Automatiserat informationsutbyte inom företaget",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "System",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB4918",
+          "subject-code": "NV",
+          "subject-area": "Näringsverksamhet"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "SCB",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, SCB# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , SCB# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4918",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4918",
+        "label": "Automatiserat informationsutbyte inom företaget efter system och redovisningsgrupp. Andel företag. År 2014-2021",
+        "description": "",
+        "sortCode": "024",
+        "updated": "2021-11-25T08:30:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "system",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Näringsverksamhet",
+              "sortCode": "Näringsverksamhet"
+            },
+            {
+              "id": "NV0116",
+              "label": "IT-användning i företag",
+              "sortCode": "IT-användning i företag"
+            },
+            {
+              "id": "NV0116O",
+              "label": "Elektroniska affärsprocesser",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4918/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

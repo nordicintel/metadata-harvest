@@ -1,0 +1,436 @@
+{
+  "key": "scb/TAB1240/sv",
+  "identifier": "TAB1240",
+  "language": "sv",
+  "updated": "2026-09-04T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:40:53.111792+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Utlandsställning. Tillgångar och skulder efter valuta och kontopost. År 1982-2025",
+      "source": "Sveriges riksbank",
+      "updated": "2026-09-04T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0001"
+            },
+            "href": "https://www.scb.se/FM0001",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Nya källor har använts till sammanställningen av Sveriges utlandsställning för innehav i portföljinvesteringar samt för räntebärande värdepapper i valutareserven från och med första kvartalet 2019. Detta påverkar jämförelsen mot föregående perioder. För ytterligare information se dokument Nya källor för värdepapperstatistik under Fördjupad information.",
+        "För kvartal två 2023, har en korrigering av fel utöver de revideringar som ingår i den ordinarie revideringspolicyn utförts. Detta påverkar utlandsställning för perioden 2018kv1-2023kv1, svenska tillgångar mot utlandet, sektor icke-finansiella företag och kontopost 4.1 sedlar, mynt och inlåning. Anledningen till korrigeringen är att felaktiga uppgifter har lämnats in till SCB, dessa uppgifter har i samband med publicering av 2023kv2 rättats upp.",
+        "Uppgifter avseende svenskars innehav av utländska aktier och fondandelar samt utlandets innehav av svenska räntebärande värdepapper emitterade i valuta har uppdaterats med nya uppgifter för åren 2013–2018. För mer information se dokumentation [Fortsatt hantering av tidsserier för värdepappersstatistik, 2023-09-04](https://www.scb.se/hitta-statistik/statistik-efter-amne/betalningsbalans-och-utlandsstallning/betalningsbalans-och-utlandsstallning/betalningsbalansen-bop/produktrelaterat/Fordjupad-information/fortsatt-hantering-av-tidsserier-for-vardepappersstatistik-2023-09-04/)."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TillgangSkuld",
+        "DenomValuta",
+        "Kontopost",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        16,
+        1,
+        44
+      ],
+      "dimension": {
+        "TillgangSkuld": {
+          "label": "tillgångar/skulder",
+          "category": {
+            "index": {
+              "X0": 0,
+              "X1": 1,
+              "X2": 2
+            },
+            "label": {
+              "X0": "netto",
+              "X1": "svenska tillgångar i utlandet",
+              "X2": "svenska skulder mot utlandet"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "DenomValuta": {
+          "label": "valuta",
+          "category": {
+            "index": {
+              "v0": 0,
+              "v1": 1,
+              "v2": 2
+            },
+            "label": {
+              "v0": "Total valuta",
+              "v1": "Utländsk valuta",
+              "v2": "Svenska kronor"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kontopost": {
+          "label": "kontopost",
+          "category": {
+            "index": {
+              "I0": 0,
+              "I1": 1,
+              "I1.1": 2,
+              "I1.2": 3,
+              "I2": 4,
+              "I2.1": 5,
+              "I2.2": 6,
+              "I2.2.1": 7,
+              "I2.2.2": 8,
+              "I3": 9,
+              "I4": 10,
+              "I4.1": 11,
+              "I4.2": 12,
+              "I4.3": 13,
+              "I4.4": 14,
+              "I5": 15
+            },
+            "label": {
+              "I0": "utlandsställning, totalt",
+              "I1": "1 direktinvesteringar",
+              "I1.1": "1.1 eget kapital",
+              "I1.2": "1.2 lån",
+              "I2": "2 portföljinvesteringar",
+              "I2.1": "2.1 aktier och fondandelar",
+              "I2.2": "2.2 räntebärande värdepapper",
+              "I2.2.1": "2.2.1 lång löptid",
+              "I2.2.2": "2.2.2 kort löptid",
+              "I3": "3 finansiella derivat",
+              "I4": "4 övriga investeringar",
+              "I4.1": "4.1 sedlar, mynt och inlåning",
+              "I4.2": "4.2 lån",
+              "I4.3": "4.3 handelskrediter",
+              "I4.4": "4.4 övrigt",
+              "I5": "5 valutareserv"
+            },
+            "note": {
+              "I1": [
+                "Årsuppgift för direktinvesteringar utgörs av utfallet från den årliga direktinvesteringsenkäten. För perioder då utfall inte finns har en skattning gjorts."
+              ],
+              "I1.1": [
+                "I eget kapital inkluderas även fritidshus och kommersiella fastigheter."
+              ],
+              "I1.2": [
+                "Koncernlån inom direktinvesteringar publiceras i utlandsställningen enligt riktningsprincipen, vilket avspeglar riktning och inflytande över investeringen.",
+                "Lån för utgående direktinvesteringar redovisas netto dvs. fordringar minus skulder. Lån för ingående direktinvesteringar redovisas netto dvs. skulder minus fordringar. Även handelskrediter mellan företag i direktinvesteringsförhållande inkluderas."
+              ],
+              "I3": [
+                "Detaljeringsgraden i finansiella derivat medger inte relevant valutafördelning. Finansiella derivat presenteras denominerat i SEK."
+              ],
+              "I4.4": [
+                "Övrigt inom övriga investeringar inkluderar andelar i internationella organisationer samt liv- och kapitalförsäkringar och övriga andelar som inte ingår i andra delposter."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "I1": {
+                "0": true
+              },
+              "I1.1": {
+                "0": true
+              },
+              "I1.2": {
+                "0": true,
+                "1": true
+              },
+              "I3": {
+                "0": true
+              },
+              "I4.4": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "FM0001AZ": 0
+            },
+            "label": {
+              "FM0001AZ": "Tillgångar och skulder, miljarder kronor"
+            },
+            "unit": {
+              "FM0001AZ": {
+                "base": "utlandsställning, miljarder kr",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0001AZ": "31 december respektive år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0001AZ": "Stock"
+            },
+            "priceType": {
+              "FM0001AZ": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0001AZ": "None"
+            },
+            "alternativeText": {
+              "FM0001AZ": "Utlandsställning. Tillgångar och skulder i miljarder kronor"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1982": 0,
+              "1983": 1,
+              "1984": 2,
+              "1985": 3,
+              "1986": 4,
+              "1987": 5,
+              "1988": 6,
+              "1989": 7,
+              "1990": 8,
+              "1991": 9,
+              "1992": 10,
+              "1993": 11,
+              "1994": 12,
+              "1995": 13,
+              "1996": 14,
+              "1997": 15,
+              "1998": 16,
+              "1999": 17,
+              "2000": 18,
+              "2001": 19,
+              "2002": 20,
+              "2003": 21,
+              "2004": 22,
+              "2005": 23,
+              "2006": 24,
+              "2007": 25,
+              "2008": 26,
+              "2009": 27,
+              "2010": 28,
+              "2011": 29,
+              "2012": 30,
+              "2013": 31,
+              "2014": 32,
+              "2015": 33,
+              "2016": 34,
+              "2017": 35,
+              "2018": 36,
+              "2019": 37,
+              "2020": 38,
+              "2021": 39,
+              "2022": 40,
+              "2023": 41,
+              "2024": 42,
+              "2025": 43
+            },
+            "label": {
+              "1982": "1982",
+              "1983": "1983",
+              "1984": "1984",
+              "1985": "1985",
+              "1986": "1986",
+              "1987": "1987",
+              "1988": "1988",
+              "1989": "1989",
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "FM0001",
+          "tableid": "TAB1240",
+          "decimals": 1,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Utlandsställning. Tillgångar och skulder i miljarder kronor",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TillgangSkuld",
+            "DenomValuta",
+            "Kontopost"
+          ],
+          "matrix": "TAB1240",
+          "subject-code": "FM",
+          "subject-area": "Finansmarknad"
+        },
+        "contact": [
+          {
+            "name": "Jörgen Bromé",
+            "organization": "SCB",
+            "phone": "010-479 45 33",
+            "mail": "jorgen.brome@scb.se",
+            "raw": "Jörgen Bromé, SCB# +46 010-479 45 33#jorgen.brome@scb.se"
+          },
+          {
+            "name": "Viktor Penna",
+            "organization": "SCB",
+            "phone": "010-479 41 29",
+            "mail": "viktor.penna@scb.se",
+            "raw": "Viktor Penna, SCB# +46 010-479 41 29#viktor.penna@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1240",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1240",
+        "label": "Utlandsställning. Tillgångar och skulder efter valuta och kontopost. År 1982-2025",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2026-09-04T06:00:00Z",
+        "firstPeriod": "1982",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "tillgångar/skulder",
+          "valuta",
+          "kontopost",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "Sveriges riksbank",
+        "subjectCode": "FM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Finansmarknad",
+              "sortCode": "Finansmarknad"
+            },
+            {
+              "id": "FM0001",
+              "label": "Betalningsbalansen",
+              "sortCode": "Betalningsbalansen"
+            },
+            {
+              "id": "FM0001B",
+              "label": "Utlandsställning",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1240?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1240?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1240/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1240/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "key": "scb/TAB396/sv",
+  "identifier": "TAB396",
+  "language": "sv",
+  "updated": "2012-02-27T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:34:24.017515+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Taxeringsenheter (typkod 110,120,121), totalt taxeringsvärde år 2007, totalt taxeringsvärde år 2008 samt vägd och ovägd förändring efter län och typkod. År 2008",
+      "source": "SCB",
+      "updated": "2012-02-27T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0601"
+            },
+            "href": "https://www.scb.se/BO0601",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Typkod",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        4,
+        5,
+        1
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän99EjAggr",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99EjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Typkod": {
+          "label": "typ av fastighet",
+          "category": {
+            "index": {
+              "Tot": 0,
+              "110": 1,
+              "120": 2,
+              "121": 3
+            },
+            "label": {
+              "Tot": "Totalt",
+              "110": "Lantbruksenhet, obebyggd",
+              "120": "Lantbruksenhet, bebyggd",
+              "121": "Lantbruksenhet, som endast utgörs av växthus/djurstall"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0601D9": 0,
+              "BO0601Q9": 1,
+              "BO0601U9": 2,
+              "BO0601V1": 3,
+              "BO0601X2": 4
+            },
+            "label": {
+              "BO0601D9": "Taxeringsenheter",
+              "BO0601Q9": "Totalt taxeringsvärde år 2007, mnkr",
+              "BO0601U9": "Totalt taxeringsvärde år 2008, mnkr",
+              "BO0601V1": "Vägd förändring mellan år 2007 och 2008",
+              "BO0601X2": "Ovägd förändring mellan år 2007 och 2008"
+            },
+            "unit": {
+              "BO0601D9": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0601Q9": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "BO0601U9": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "BO0601V1": {
+                "base": "procent",
+                "decimals": 2
+              },
+              "BO0601X2": {
+                "base": "procent",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0601D9": "2008",
+              "BO0601Q9": "2007",
+              "BO0601U9": "2008",
+              "BO0601V1": "2008",
+              "BO0601X2": "2008"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0601D9": "Stock",
+              "BO0601Q9": "Stock",
+              "BO0601U9": "Stock",
+              "BO0601V1": "Stock",
+              "BO0601X2": "Stock"
+            },
+            "priceType": {
+              "BO0601D9": "NotApplicable",
+              "BO0601Q9": "NotApplicable",
+              "BO0601U9": "NotApplicable",
+              "BO0601V1": "NotApplicable",
+              "BO0601X2": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0601D9": "None",
+              "BO0601Q9": "None",
+              "BO0601U9": "None",
+              "BO0601V1": "None",
+              "BO0601X2": "None"
+            },
+            "basePeriod": {
+              "BO0601D9": "2008",
+              "BO0601Q9": "2007",
+              "BO0601U9": "2008",
+              "BO0601V1": "2008",
+              "BO0601X2": "2008"
+            },
+            "alternativeText": {
+              "BO0601D9": "Allmän fastighetstaxering för lantbruk, taxeringsenheter",
+              "BO0601Q9": "Allmän fastighetstaxering för lantbruk, totalt taxeringsvärde år 2007, mnkr",
+              "BO0601U9": "Allmän fastighetstaxering för lantbruk, totalt taxeringsvärde år 2008, mnkr",
+              "BO0601V1": "Allmän fastighetstaxering för lantbruk, vägd förändring mellan år 2007 och 2008",
+              "BO0601X2": "Allmän fastighetstaxering för lantbruk, ovägd förändring mellan år 2007 och 2008"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år, oregelb",
+          "category": {
+            "index": {
+              "2008": 0
+            },
+            "label": {
+              "2008": "2008"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0601",
+          "tableid": "TAB396",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Allmän fastighetstaxering för lantbruk",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Typkod"
+          ],
+          "matrix": "TAB396",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Magnus Walestad",
+            "organization": "SCB",
+            "phone": "010-479 44 18",
+            "mail": "magnus.walestad@scb.se",
+            "raw": "Magnus Walestad, SCB# +46 010-479 44 18#magnus.walestad@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB396",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB396",
+        "label": "Taxeringsenheter (typkod 110,120,121), totalt taxeringsvärde år 2007, totalt taxeringsvärde år 2008 samt vägd och ovägd förändring efter län och typkod. År 2008",
+        "description": "",
+        "sortCode": "09",
+        "updated": "2012-02-27T08:30:00Z",
+        "firstPeriod": "2008",
+        "lastPeriod": "2008",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "typ av fastighet",
+          "tabellinnehåll",
+          "år, oregelb"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0601",
+              "label": "Fastighetstaxeringar",
+              "sortCode": "Fastighetstaxeringar"
+            },
+            {
+              "id": "BO0601G",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "07"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB396?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB396?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB396/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB396/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

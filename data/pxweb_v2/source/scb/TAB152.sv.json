@@ -1,0 +1,319 @@
+{
+  "key": "scb/TAB152/sv",
+  "identifier": "TAB152",
+  "language": "sv",
+  "updated": "2008-01-31T08:31:00Z",
+  "retrieved_at": "2026-10-16T17:22:14.255278+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Medelarbetstid (faktisk) per vecka för sysselsatta 16-64 år (AKU) efter anknytningsgrad till arbetsmarknaden, kön och ålder. År 2005-2007",
+      "source": "SCB",
+      "updated": "2008-01-31T08:31:00Z",
+      "note": [
+        "Medelarbetstid, faktiskt arbetade timmar i relation till antalet i respektive grupp."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Anknytningsgrad",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        3,
+        4,
+        2,
+        3
+      ],
+      "dimension": {
+        "Anknytningsgrad": {
+          "label": "anknytningsgrad till arbetsmarknaden",
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "TA": 2,
+              "FÖ+MH": 3,
+              "SYSTOT": 4
+            },
+            "label": {
+              "ANSTTOT": "anställda, totalt",
+              "FA": "fast anställda",
+              "TA": "tidsbegränsat anställda",
+              "FÖ+MH": "företagare + medhj hushållsmedlem",
+              "SYSTOT": "sysselsatta totalt"
+            },
+            "note": {
+              "FA": [
+                "Fast och tidsbegränsat anställda utgör tillsammans anställda totalt"
+              ],
+              "TA": [
+                "Fast och tidsbegränsat anställda utgör tillsammans anställda totalt"
+              ],
+              "FÖ+MH": [
+                "Till gruppen företagare räknas dels egna företagare som har någon form av enskild firma, dels personer som är fria yrkesutövare. Som medhjälpande hushållsmedlem räknas personer som oavlönat arbetar i någon hushållsmedlems företag."
+              ],
+              "SYSTOT": [
+                "I sysselsatta totalt ingår anställda samt företagare och medhjälpande hushållsmedlemmar"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "FA": {
+                "0": true
+              },
+              "TA": {
+                "0": true
+              },
+              "FÖ+MH": {
+                "0": true
+              },
+              "SYSTOT": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-54": 1,
+              "55-64": 2,
+              "tot16-64": 3
+            },
+            "label": {
+              "16-24": "16–24 år",
+              "25-54": "25–54 år",
+              "55-64": "55–64 år",
+              "tot16-64": "totalt 16–64 år"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0402T8": 0,
+              "AM0402T9": 1
+            },
+            "label": {
+              "AM0402T8": "Medelarbetstid",
+              "AM0402T9": "Felmarginal ±"
+            },
+            "note": {
+              "AM0402T9": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ]
+            },
+            "unit": {
+              "AM0402T8": {
+                "base": "antal timmar",
+                "decimals": 1
+              },
+              "AM0402T9": {
+                "base": "antal timmar",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0402T9": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0402T8": "",
+              "AM0402T9": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0402T8": "Average",
+              "AM0402T9": "Average"
+            },
+            "priceType": {
+              "AM0402T8": "NotApplicable",
+              "AM0402T9": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0402T8": "None",
+              "AM0402T9": "None"
+            },
+            "alternativeText": {
+              "AM0402T8": "Medelarbetstid (faktisk) per vecka för sysselsatta (AKU), timmar",
+              "AM0402T9": "Felmarginal ±, medelarbetstid (faktiskt) per vecka för sysselsatta (AKU), timmar"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM0402",
+          "tableid": "TAB152",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Medelarbetstid (faktisk) per vecka för sysselsatta (AKU), timmar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Anknytningsgrad",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB152",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB152",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB152",
+        "label": "Medelarbetstid (faktisk) per vecka för sysselsatta 16-64 år (AKU) efter anknytningsgrad till arbetsmarknaden, kön och ålder. År 2005-2007",
+        "description": "",
+        "sortCode": "037",
+        "updated": "2008-01-31T08:31:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2007",
+        "category": "public",
+        "variableNames": [
+          "anknytningsgrad till arbetsmarknaden",
+          "kön",
+          "ålder",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0402",
+              "label": "Arbetskraftsundersökningar, äldre serier (AKU)",
+              "sortCode": "030"
+            },
+            {
+              "id": "AM0402B",
+              "label": "Sysselsatta",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB152?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB152/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB152/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

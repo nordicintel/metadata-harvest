@@ -1,0 +1,320 @@
+{
+  "key": "scb/TAB862/en",
+  "identifier": "TAB862",
+  "language": "en",
+  "updated": "2013-12-12T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:36:17.620193+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Gross fixed capital formation (ESA95) by region (NUTS2) and activity SNI2007. Year 2000-2011",
+      "source": "Statistics Sweden",
+      "updated": "2013-12-12T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NR0105"
+            },
+            "href": "https://www.scb.se/NR0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "SNI2007",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        9,
+        5,
+        1,
+        12
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "RIKS1": 1,
+              "RIKS2": 2,
+              "RIKS3": 3,
+              "RIKS4": 4,
+              "RIKS5": 5,
+              "RIKS6": 6,
+              "RIKS7": 7,
+              "RIKS8": 8
+            },
+            "label": {
+              "00": "Sweden",
+              "RIKS1": "Stockholm production county",
+              "RIKS2": "Eastern Central Sweden",
+              "RIKS3": "Småland with the islands",
+              "RIKS4": "South Sweden",
+              "RIKS5": "West Sweden",
+              "RIKS6": "Northern Central Sweden",
+              "RIKS7": "Central Norrland",
+              "RIKS8": "Upper Norrland"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS1-2",
+                "label": "NUTS1-2",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS1-2?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Region99Riks",
+                "label": "NUTS1  and  NUTS2",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Region99Riks?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "SNI2007": {
+          "label": "industrial classification (NACE Rev. 2)",
+          "category": {
+            "index": {
+              "0002": 0,
+              "A01-F43": 1,
+              "G45-T98": 2,
+              "Y0114": 3,
+              "OFMHIO": 4
+            },
+            "label": {
+              "0002": "total economy",
+              "A01-F43": "producers of goods",
+              "G45-T98": "producers of services",
+              "Y0114": "unallocated",
+              "OFMHIO": "non-market producers"
+            },
+            "note": {
+              "G45-T98": [
+                "In producers of services (G45-T98) only services from market producers are counted. Government services are only included in non-market producers (OFMHIO)."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "G45-T98": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "NR0105AG": 0
+            },
+            "label": {
+              "NR0105AG": "Gross fixed capital formation, current prices, million SEK"
+            },
+            "unit": {
+              "NR0105AG": {
+                "base": "million SEK",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "NR0105AG": "During the calendar year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "NR0105AG": "Flow"
+            },
+            "priceType": {
+              "NR0105AG": "Current"
+            },
+            "adjustment": {
+              "NR0105AG": "None"
+            },
+            "alternativeText": {
+              "NR0105AG": "Gross fixed capital formation (ESA95), current prices, million SEK"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2000": 0,
+              "2001": 1,
+              "2002": 2,
+              "2003": 3,
+              "2004": 4,
+              "2005": 5,
+              "2006": 6,
+              "2007": 7,
+              "2008": 8,
+              "2009": 9,
+              "2010": 10,
+              "2011": 11
+            },
+            "label": {
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "NR0105",
+          "tableid": "TAB862",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Gross fixed capital formation (ESA95), current prices, million SEK",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "SNI2007"
+          ],
+          "matrix": "TAB862",
+          "subject-code": "NR",
+          "subject-area": "National accounts"
+        },
+        "contact": [
+          {
+            "name": "Mikael Mellberg",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 41 49",
+            "mail": "mikael.mellberg@scb.se",
+            "raw": "Mikael Mellberg, Statistics Sweden# +46 010-479 41 49#mikael.mellberg@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB862",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB862",
+        "label": "Gross fixed capital formation (ESA95) by region (NUTS2) and activity SNI2007. Year 2000-2011",
+        "description": "",
+        "sortCode": "008",
+        "updated": "2013-12-12T08:30:00Z",
+        "firstPeriod": "2000",
+        "lastPeriod": "2011",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "industrial classification (NACE Rev. 2)",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "NR",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NR",
+              "label": "National accounts",
+              "sortCode": "National accounts"
+            },
+            {
+              "id": "NR0105",
+              "label": "Regional accounts",
+              "sortCode": "Regional accounts"
+            },
+            {
+              "id": "NR0105B",
+              "label": "Regional accounts, annual estimates, older series",
+              "sortCode": "020"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB862?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB862?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB862/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB862/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

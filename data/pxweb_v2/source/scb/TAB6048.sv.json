@@ -1,0 +1,695 @@
+{
+  "key": "scb/TAB6048/sv",
+  "identifier": "TAB6048",
+  "language": "sv",
+  "updated": "2026-09-30T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:18:39.191918+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Lönesummor, förmåner, arbetsgivaravgifter och preliminär A-skatt i näringslivet efter region och näringsgren (SNI 2007).  Månad 2020M01-2026M07",
+      "source": "SCB",
+      "updated": "2026-09-30T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0211"
+            },
+            "href": "https://www.scb.se/AM0211",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Näringsgrenskategorin ”00 övriga näringsgrenar, samt okänd” innefattar följande näringsgrenar: O - Offentlig förvaltning och försvar; obligatorisk socialförsäkring; T - Förvärvsarbete i hushåll; hushållens produktion av diverse varor och tjänster för eget bruk och U - Verksamhet vid internationella organisationer, utländska ambassader o.d.; samt okänd.",
+        "Observera att data för tidigare tidpunkter kan revideras i samband med att ny statistik publiceras.   "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "NaringsgrenAM0211",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        27,
+        70,
+        8,
+        79
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "0": 0,
+              "00": 1,
+              "001": 2,
+              "002": 3,
+              "01": 4,
+              "03": 5,
+              "04": 6,
+              "05": 7,
+              "06": 8,
+              "07": 9,
+              "08": 10,
+              "09": 11,
+              "10": 12,
+              "12": 13,
+              "13": 14,
+              "14": 15,
+              "17": 16,
+              "18": 17,
+              "19": 18,
+              "20": 19,
+              "21": 20,
+              "22": 21,
+              "23": 22,
+              "24": 23,
+              "25": 24,
+              "26": 25,
+              "27": 26
+            },
+            "label": {
+              "0": "Totalt",
+              "00": "Riket",
+              "001": "Utrikes",
+              "002": "Okänd",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län",
+              "26": "Utrikes",
+              "27": "Okänd"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_ARegRiketN",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ARegRiketN?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BRegionLän",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BRegionLän?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "NaringsgrenAM0211": {
+          "label": "näringsgren (SNI 2007)",
+          "category": {
+            "index": {
+              "A-U": 0,
+              "A-S": 1,
+              "A": 2,
+              "B": 3,
+              "C": 4,
+              "10-12": 5,
+              "13-15": 6,
+              "16": 7,
+              "17": 8,
+              "18": 9,
+              "19-21": 10,
+              "22": 11,
+              "23": 12,
+              "24": 13,
+              "25": 14,
+              "26": 15,
+              "27": 16,
+              "28": 17,
+              "29": 18,
+              "30": 19,
+              "31": 20,
+              "32": 21,
+              "33": 22,
+              "D": 23,
+              "E": 24,
+              "F": 25,
+              "41": 26,
+              "42": 27,
+              "43": 28,
+              "G": 29,
+              "45": 30,
+              "46": 31,
+              "47": 32,
+              "H": 33,
+              "49": 34,
+              "50-51": 35,
+              "52": 36,
+              "53": 37,
+              "I": 38,
+              "J": 39,
+              "58": 40,
+              "59-60": 41,
+              "61": 42,
+              "62": 43,
+              "63": 44,
+              "K": 45,
+              "64": 46,
+              "65": 47,
+              "66": 48,
+              "L": 49,
+              "M": 50,
+              "69": 51,
+              "70": 52,
+              "71": 53,
+              "72": 54,
+              "73-75": 55,
+              "N": 56,
+              "77": 57,
+              "78": 58,
+              "79": 59,
+              "80": 60,
+              "81": 61,
+              "82": 62,
+              "P": 63,
+              "Q": 64,
+              "86": 65,
+              "87-88": 66,
+              "R": 67,
+              "S": 68,
+              "00": 69
+            },
+            "label": {
+              "A-U": "samtliga näringsgrenar (inkl. okänd)",
+              "A-S": "samtliga näringsgrenar (exkl. O, T och U, samt okänd)",
+              "A": "företag inom jordbruk, skogsbruk och fiske",
+              "B": "gruvor och mineralutvinningsindustri",
+              "C": "tillverkningsindustri",
+              "10-12": "livsmedels-, dryckesvaru- och tobaksindustri",
+              "13-15": "textil-, beklädnads-, läder - och lädervaruindustri",
+              "16": "industri för trä och varor av trä, kork och rotting o.d. utom möbler",
+              "17": "massa-, pappers- och pappersvaruindustri",
+              "18": "grafisk och annan reproduktionsindustri",
+              "19-21": "kemisk industri, petroleumprodukter och läkemedelsindustri",
+              "22": "gummi- och plastvaruindustri",
+              "23": "industri för andra icke-metalliska mineraliska produkter",
+              "24": "stål- och metallverk",
+              "25": "industri för metallvaror utom maskiner och apparater",
+              "26": "industri för datorer, elektronikvaror och optik",
+              "27": "industri för elapparatur",
+              "28": "övrig maskinindustri",
+              "29": "industri för motorfordon, släpfordon och påhängsvagnar",
+              "30": "annan transportmedelsindustri",
+              "31": "möbelindustri",
+              "32": "annan tillverkningsindustri",
+              "33": "reparationsverkstäder och installationsföretag för maskiner och apparater",
+              "D": "el-, gas- och värmeverk",
+              "E": "vattenverk; reningsverk o.d., avfallsanläggningar",
+              "F": "byggindustri",
+              "41": "byggentreprenörer",
+              "42": "anläggningsentreprenörer",
+              "43": "specialiserade bygg- och anläggningsentreprenörer",
+              "G": "handel; serviceverkstäder för motorfordon och motorcyklar",
+              "45": "handel med och serviceverkstäder för motorfordon och motorcyklar",
+              "46": "parti - och provisionshandel utom med motorfordon",
+              "47": "detaljhandel utom med motorfordon och motorcyklar",
+              "H": "transport- och magasineringsföretag",
+              "49": "landtransportföretag; rörtransportföretag",
+              "50-51": "rederier och flygbolag",
+              "52": "magasin och serviceföretag till transport",
+              "53": "post- och kurirföretag",
+              "I": "hotell och restauranger",
+              "J": "informations- och kommunikationsföretag",
+              "58": "förlag",
+              "59-60": "film-, video och TV-programföretag; radio-och TV-bolag",
+              "61": "telekommunikationsbolag",
+              "62": "programvaruproducenter, datakonsulter o.d.",
+              "63": "informationstjänstföretag",
+              "K": "kreditinstitut och försäkringsbolag m.m.",
+              "64": "banker och andra kreditinstitut",
+              "65": "försäkrings- och återförsäkringsbolag, pensionsfonder",
+              "66": "serviceföretag till finans- och försäkringsverksamhet",
+              "L": "fastighetsbolag och fastighetsförvaltare",
+              "M": "företag inom juridik, ekonomi, vetenskap och teknik",
+              "69": "juridiska och ekonomiska konsultbyråer",
+              "70": "huvudkontor; konsultbyråer inom pr och kommunikation samt företags organisation",
+              "71": "arkitektkontor, tekniska konsultbyråer, tekniska provnings- och analysföretag",
+              "72": "forsknings- och utvecklingsinstitutioner",
+              "73-75": "reklam och marknadsföringsbyråer m.m. och veterinärkliniker",
+              "N": "företag inom uthyrning, fastighetsservice, resetjänster och andra stödtjänster",
+              "77": "uthyrningsfirmor   ",
+              "78": "arbetsförmedlingar, rekryteringsföretag, personaluthyrningsföretag o.d.",
+              "79": "resebyråer och researrangörer; turistbyråer",
+              "80": "företag för bevakning och säkerhetstjänst, detektivbyråer",
+              "81": "företag för fastighetsservice samt skötsel och underhåll av grönytor",
+              "82": "kontors- och andra företagstjänstföretag",
+              "P": "utbildningsväsendet",
+              "Q": "enheter för vård och omsorg, socialtjänst",
+              "86": "enheter för hälso- och sjukvård",
+              "87-88": "vårdhem och bostäder med omsorg; sociala öppenvårdsenheter, socialkontor",
+              "R": "enheter för kultur, nöje och fritid",
+              "S": "andra serviceföretag",
+              "00": "övriga näringsgrenar, samt okänd"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000005VK": 0,
+              "000005VJ": 1,
+              "000005VE": 2,
+              "000005VL": 3,
+              "000005VH": 4,
+              "000005VG": 5,
+              "000005VF": 6,
+              "000005VI": 7
+            },
+            "label": {
+              "000005VK": "Lönesummor, tkr",
+              "000005VJ": "Förmåner, tkr",
+              "000005VE": "Arbetsgivaravgifter, tkr",
+              "000005VL": "Preliminär A-skatt, tkr",
+              "000005VH": "Årlig förändring av lönesummor, procent",
+              "000005VG": "Årlig förändring av förmåner, procent",
+              "000005VF": "Årlig förändring av arbetsgivaravgifter, procent",
+              "000005VI": "Årlig förändring av preliminär A-skatt , procent"
+            },
+            "unit": {
+              "000005VK": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000005VJ": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000005VE": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000005VL": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000005VH": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "000005VG": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "000005VF": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "000005VI": {
+                "base": "andel",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000005VK": "Månad",
+              "000005VJ": "Månad",
+              "000005VE": "Månad",
+              "000005VL": "Månad",
+              "000005VH": "Månad",
+              "000005VG": "Månad",
+              "000005VF": "Månad",
+              "000005VI": "Månad"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000005VK": "Flow",
+              "000005VJ": "Flow",
+              "000005VE": "Flow",
+              "000005VL": "Flow",
+              "000005VH": "Flow",
+              "000005VG": "Flow",
+              "000005VF": "Flow",
+              "000005VI": "Flow"
+            },
+            "priceType": {
+              "000005VK": "NotApplicable",
+              "000005VJ": "NotApplicable",
+              "000005VE": "NotApplicable",
+              "000005VL": "NotApplicable",
+              "000005VH": "NotApplicable",
+              "000005VG": "NotApplicable",
+              "000005VF": "NotApplicable",
+              "000005VI": "NotApplicable"
+            },
+            "adjustment": {
+              "000005VK": "None",
+              "000005VJ": "None",
+              "000005VE": "None",
+              "000005VL": "None",
+              "000005VH": "None",
+              "000005VG": "None",
+              "000005VF": "None",
+              "000005VI": "None"
+            },
+            "alternativeText": {
+              "000005VK": "Lönesummor, tkr",
+              "000005VJ": "Förmåner, tkr",
+              "000005VE": "Arbetsgivaravgifter, tkr",
+              "000005VL": "Preliminär A-skatt, tkr",
+              "000005VH": "Årlig förändring av lönesummor, procent",
+              "000005VG": "Årlig förändring av förmåner, procent",
+              "000005VF": "Årlig förändring av arbetsgivaravgifter, procent",
+              "000005VI": "Årlig förändring av preliminär A-skatt , procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "månad",
+          "category": {
+            "index": {
+              "2020M01": 0,
+              "2020M02": 1,
+              "2020M03": 2,
+              "2020M04": 3,
+              "2020M05": 4,
+              "2020M06": 5,
+              "2020M07": 6,
+              "2020M08": 7,
+              "2020M09": 8,
+              "2020M10": 9,
+              "2020M11": 10,
+              "2020M12": 11,
+              "2021M01": 12,
+              "2021M02": 13,
+              "2021M03": 14,
+              "2021M04": 15,
+              "2021M05": 16,
+              "2021M06": 17,
+              "2021M07": 18,
+              "2021M08": 19,
+              "2021M09": 20,
+              "2021M10": 21,
+              "2021M11": 22,
+              "2021M12": 23,
+              "2022M01": 24,
+              "2022M02": 25,
+              "2022M03": 26,
+              "2022M04": 27,
+              "2022M05": 28,
+              "2022M06": 29,
+              "2022M07": 30,
+              "2022M08": 31,
+              "2022M09": 32,
+              "2022M10": 33,
+              "2022M11": 34,
+              "2022M12": 35,
+              "2023M01": 36,
+              "2023M02": 37,
+              "2023M03": 38,
+              "2023M04": 39,
+              "2023M05": 40,
+              "2023M06": 41,
+              "2023M07": 42,
+              "2023M08": 43,
+              "2023M09": 44,
+              "2023M10": 45,
+              "2023M11": 46,
+              "2023M12": 47,
+              "2024M01": 48,
+              "2024M02": 49,
+              "2024M03": 50,
+              "2024M04": 51,
+              "2024M05": 52,
+              "2024M06": 53,
+              "2024M07": 54,
+              "2024M08": 55,
+              "2024M09": 56,
+              "2024M10": 57,
+              "2024M11": 58,
+              "2024M12": 59,
+              "2025M01": 60,
+              "2025M02": 61,
+              "2025M03": 62,
+              "2025M04": 63,
+              "2025M05": 64,
+              "2025M06": 65,
+              "2025M07": 66,
+              "2025M08": 67,
+              "2025M09": 68,
+              "2025M10": 69,
+              "2025M11": 70,
+              "2025M12": 71,
+              "2026M01": 72,
+              "2026M02": 73,
+              "2026M03": 74,
+              "2026M04": 75,
+              "2026M05": 76,
+              "2026M06": 77,
+              "2026M07": 78
+            },
+            "label": {
+              "2020M01": "2020M01",
+              "2020M02": "2020M02",
+              "2020M03": "2020M03",
+              "2020M04": "2020M04",
+              "2020M05": "2020M05",
+              "2020M06": "2020M06",
+              "2020M07": "2020M07",
+              "2020M08": "2020M08",
+              "2020M09": "2020M09",
+              "2020M10": "2020M10",
+              "2020M11": "2020M11",
+              "2020M12": "2020M12",
+              "2021M01": "2021M01",
+              "2021M02": "2021M02",
+              "2021M03": "2021M03",
+              "2021M04": "2021M04",
+              "2021M05": "2021M05",
+              "2021M06": "2021M06",
+              "2021M07": "2021M07",
+              "2021M08": "2021M08",
+              "2021M09": "2021M09",
+              "2021M10": "2021M10",
+              "2021M11": "2021M11",
+              "2021M12": "2021M12",
+              "2022M01": "2022M01",
+              "2022M02": "2022M02",
+              "2022M03": "2022M03",
+              "2022M04": "2022M04",
+              "2022M05": "2022M05",
+              "2022M06": "2022M06",
+              "2022M07": "2022M07",
+              "2022M08": "2022M08",
+              "2022M09": "2022M09",
+              "2022M10": "2022M10",
+              "2022M11": "2022M11",
+              "2022M12": "2022M12",
+              "2023M01": "2023M01",
+              "2023M02": "2023M02",
+              "2023M03": "2023M03",
+              "2023M04": "2023M04",
+              "2023M05": "2023M05",
+              "2023M06": "2023M06",
+              "2023M07": "2023M07",
+              "2023M08": "2023M08",
+              "2023M09": "2023M09",
+              "2023M10": "2023M10",
+              "2023M11": "2023M11",
+              "2023M12": "2023M12",
+              "2024M01": "2024M01",
+              "2024M02": "2024M02",
+              "2024M03": "2024M03",
+              "2024M04": "2024M04",
+              "2024M05": "2024M05",
+              "2024M06": "2024M06",
+              "2024M07": "2024M07",
+              "2024M08": "2024M08",
+              "2024M09": "2024M09",
+              "2024M10": "2024M10",
+              "2024M11": "2024M11",
+              "2024M12": "2024M12",
+              "2025M01": "2025M01",
+              "2025M02": "2025M02",
+              "2025M03": "2025M03",
+              "2025M04": "2025M04",
+              "2025M05": "2025M05",
+              "2025M06": "2025M06",
+              "2025M07": "2025M07",
+              "2025M08": "2025M08",
+              "2025M09": "2025M09",
+              "2025M10": "2025M10",
+              "2025M11": "2025M11",
+              "2025M12": "2025M12",
+              "2026M01": "2026M01",
+              "2026M02": "2026M02",
+              "2026M03": "2026M03",
+              "2026M04": "2026M04",
+              "2026M05": "2026M05",
+              "2026M06": "2026M06",
+              "2026M07": "2026M07"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0211",
+          "tableid": "TAB6048",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Lönesummor, förmåner, arbetsgivaravgifter och preliminär A-skatt",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "NaringsgrenAM0211"
+          ],
+          "matrix": "TAB6048",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Anställningar",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "anstallningar@scb.se",
+            "raw": " Anställningar, SCB# +46 010-479 50 00#anstallningar@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6048",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6048",
+        "label": "Lönesummor, förmåner, arbetsgivaravgifter och preliminär A-skatt i näringslivet efter region och näringsgren (SNI 2007).  Månad 2020M01-2026M07",
+        "description": "",
+        "sortCode": "12",
+        "updated": "2026-09-30T06:00:00Z",
+        "firstPeriod": "2020M01",
+        "lastPeriod": "2026M07",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "näringsgren (SNI 2007)",
+          "tabellinnehåll",
+          "månad"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0211",
+              "label": "Anställningar",
+              "sortCode": "005"
+            },
+            {
+              "id": "AM0211E",
+              "label": "Lönesummor, förmåner, arbetsgivaravgifter och preliminär A-skatt",
+              "sortCode": "005"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6048?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6048?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6048/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6048/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

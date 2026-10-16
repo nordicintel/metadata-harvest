@@ -1,0 +1,411 @@
+{
+  "key": "scb/TAB2934/sv",
+  "identifier": "TAB2934",
+  "language": "sv",
+  "updated": "2026-01-23T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:19:12.053953+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Anställda 15-74 år (AKU) efter anställningsform, facklig organisation och kön. År 2005-2025",
+      "source": "SCB",
+      "updated": "2026-01-23T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på månads- eller kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]. ",
+        "För perioden 2005M01–2020M12 innehåller tidsserien ’länkade data’. Inga felmarginaler (osäkerhetstal) redovisas för perioden, detta markeras istället som ”..” i tidsserien. Läs under ’Aktuellt’ för mer information om de länkade serierna. Skattningarna avseende kvartal 1 2005 samt dess ingående månader baseras på en mindre svarsmängd än övriga perioder. Dessa skattningar är därför mer osäkra och bör användas med försiktighet. ",
+        "För perioden 2015M01–2020M12 innehåller tidsserien ’länkade data’. Inga felmarginaler (osäkerhetstal) redovisas för perioden, detta markeras istället som ”..” i tidsserien. Läs under ’Aktuellt’ för mer information om de länkade serierna. ",
+        "Korrigering 2025-03-14: Data för facklig huvudorganisation har korrigerats, januari 2022–januari 2023."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "AnstForm",
+        "FackligOrg",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        7,
+        3,
+        4,
+        21
+      ],
+      "dimension": {
+        "AnstForm": {
+          "label": "anställningsform",
+          "note": [
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt.",
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt.",
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt.",
+            "Fast anställda och tidsbegränsat anställda utgör tillsammans anställda totalt."
+          ],
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "TA": 2
+            },
+            "label": {
+              "ANSTTOT": "anställda, totalt",
+              "FA": "fast anställda",
+              "TA": "tidsbegränsat anställda"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "FackligOrg": {
+          "label": "facklig huvudorganisation",
+          "category": {
+            "index": {
+              "Samtliga": 0,
+              "LO": 1,
+              "TCO": 2,
+              "SACO": 3,
+              "Ovriga": 4,
+              "Ejfack": 5,
+              "uppg saknas": 6
+            },
+            "label": {
+              "Samtliga": "samtliga",
+              "LO": "LO",
+              "TCO": "TCO",
+              "SACO": "SACO",
+              "Ovriga": "övriga",
+              "Ejfack": "ej fackanslutna anst.",
+              "uppg saknas": "uppgift saknas"
+            },
+            "note": {
+              "Ovriga": [
+                "I Övriga ingår uppgift saknas om facklig organisation"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "Ovriga": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "AM0401RX": 0,
+              "AM0401RY": 1,
+              "AM0401RZ": 2,
+              "AM0401SA": 3
+            },
+            "label": {
+              "AM0401RX": "1000-tal",
+              "AM0401RY": "Felmarginal ±, 1000-tal",
+              "AM0401RZ": "Procent",
+              "AM0401SA": "Felmarginal ±, procent"
+            },
+            "note": {
+              "AM0401RY": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade uppgifterna är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av nivåskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller det riktiga värdet."
+              ],
+              "AM0401SA": [
+                "Den redovisade felmarginalen motsvarar ett 95-procentigt konfidensintervall",
+                "Eftersom AKU är en urvalsundersökning baserad på ett rikstäckande slumpmässigt sannolikhetsurval har den en viss beräkningsbar osäkerhet. De redovisade procenttalen är skattningar och hänsyn måste tas till osäkerheten/felmarginalen i dessa då slutsatser dras. Det intervall som bildas av procentskattningen ± felmarginalen blir här ett 95-procentigt konfidensintervall d.v.s. ett intervall som med 95 procents sannolikhet innehåller den riktiga procentandelen."
+              ]
+            },
+            "unit": {
+              "AM0401RX": {
+                "base": "1 000-tal",
+                "decimals": 1
+              },
+              "AM0401RY": {
+                "base": "1 000-tal",
+                "decimals": 1
+              },
+              "AM0401RZ": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "AM0401SA": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0401RY": {
+                "0": true
+              },
+              "AM0401SA": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0401RX": "",
+              "AM0401RY": "",
+              "AM0401RZ": "",
+              "AM0401SA": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0401RX": "Average",
+              "AM0401RY": "Average",
+              "AM0401RZ": "Average",
+              "AM0401SA": "Average"
+            },
+            "priceType": {
+              "AM0401RX": "NotApplicable",
+              "AM0401RY": "NotApplicable",
+              "AM0401RZ": "NotApplicable",
+              "AM0401SA": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0401RX": "None",
+              "AM0401RY": "None",
+              "AM0401RZ": "None",
+              "AM0401SA": "None"
+            },
+            "alternativeText": {
+              "AM0401RX": "Anställda 15-74 år (AKU), 1000-tal",
+              "AM0401RY": "Felmarginal ±, anställda 15-74 år (AKU),1 000-tal",
+              "AM0401RZ": "Anställda 15-74 år (AKU), procent",
+              "AM0401SA": "Felmarginal ±, anställda 15-74 år (AKU), procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15,
+              "2021": 16,
+              "2022": 17,
+              "2023": 18,
+              "2024": 19,
+              "2025": 20
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB2934",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Anställda 15-74 år (AKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "AnstForm",
+            "FackligOrg",
+            "Kon"
+          ],
+          "matrix": "TAB2934",
+          "subject-code": "AM",
+          "subject-area": "Arbetsmarknad"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), SCB# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2934",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2934",
+        "label": "Anställda 15-74 år (AKU) efter anställningsform, facklig organisation och kön. År 2005-2025",
+        "description": "",
+        "sortCode": "006",
+        "updated": "2026-01-23T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "anställningsform",
+          "facklig huvudorganisation",
+          "kön",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Arbetsmarknad",
+              "sortCode": "Arbetsmarknad"
+            },
+            {
+              "id": "AM0401",
+              "label": "Arbetskraftsundersökningarna (AKU)",
+              "sortCode": "020"
+            },
+            {
+              "id": "AM0401J",
+              "label": "Anställda från och med 2005",
+              "sortCode": "003"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2934?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2934?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2934/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2934/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

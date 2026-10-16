@@ -1,0 +1,379 @@
+{
+  "key": "scb/TAB3677/sv",
+  "identifier": "TAB3677",
+  "language": "sv",
+  "updated": "2023-11-30T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:58:02.511614+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Fakturor som företag skickade efter typ och redovisningsgrupp. Andel företag. År 2019-2022",
+      "source": "SCB",
+      "updated": "2023-11-30T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I denna tabell betyder 0 att andelen är större än noll men mindre än 0,5 procent respektive att konfidensintervallet är större än 0 men mindre än 0,5 procentenheter. Tecknet .. betyder att uppgiften inte är tillgänglig eller alltför osäker för att anges.",
+        "Från och med 2023 inkluderas SNI 75 i totalen och i branschgrupp andra tjänsteföretag "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "FakturaTyp",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        25,
+        2,
+        2
+      ],
+      "dimension": {
+        "FakturaTyp": {
+          "label": "typ av faktura",
+          "category": {
+            "index": {
+              "0180": 0,
+              "0190": 1,
+              "0200": 2
+            },
+            "label": {
+              "0180": "elektroniska fakturor som kan processas automatiskt i mottagarens it-system",
+              "0190": "elektroniska fakturor som inte kan processas automatiskt i mottagarens it-system",
+              "0200": "pappersfakturor"
+            },
+            "note": {
+              "0180": [
+                "Fakturor som kan processas automatiskt i mottagarens it-system är exempelvis XML, EDIFACT."
+              ],
+              "0190": [
+                "Fakturor som inte kan processas automatiskt i mottagarens it-system är exempelvis fakturor i pdf-format som skickas med e-post."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0180": {
+                "0": true
+              },
+              "0190": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "Tot250": 0,
+              "10-49": 1,
+              "50-249": 2,
+              "250-": 3,
+              "TotSNI": 4,
+              "10-33": 5,
+              "35-39": 6,
+              "41-43": 7,
+              "45-47": 8,
+              "49-53": 9,
+              "55-56": 10,
+              "58-63": 11,
+              "68": 12,
+              "69-82+95.1exkl.75": 13,
+              "69-75, 77-82, 95.1": 14,
+              "IKT": 15,
+              "SE": 16,
+              "RIKS1": 17,
+              "RIKS2": 18,
+              "RIKS3": 19,
+              "RIKS4": 20,
+              "RIKS5": 21,
+              "RIKS6": 22,
+              "RIKS7": 23,
+              "RIKS8": 24
+            },
+            "label": {
+              "Tot250": "totalt 10 eller fler anställda",
+              "10-49": "10–49 anställda",
+              "50-249": "50–249 anställda",
+              "250-": "250 eller fler anställda",
+              "TotSNI": "totalt (SNI 10–63, 68–75, 77–82, 95.1) ",
+              "10-33": "tillverkningsindustri (SNI 10–33)",
+              "35-39": "energi och återvinning (SNI 35–39)",
+              "41-43": "byggindustri (SNI 41–43)",
+              "45-47": "handel; serviceverkstäder för motorfordon (SNI 45–47)",
+              "49-53": "transport- och magasineringsföretag (SNI 49–53)",
+              "55-56": "hotell och restauranger (SNI 55–56)",
+              "58-63": "informations- och kommunikationsföretag (SNI 58–63)",
+              "68": "fastighetsbolag och förvaltare (SNI 68)",
+              "69-82+95.1exkl.75": "andra tjänsteföretag (SNI 69–74, 77–82, 95.1)",
+              "69-75, 77-82, 95.1": "andra tjänsteföretag (SNI 69–75, 77–82, 95.1)",
+              "IKT": "IKT-sektorn (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sverige",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region2",
+                "label": "Region (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl2",
+                "label": "Företag, 10 eller fler anställda",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV00",
+                "label": "Näringsgren (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV00?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000004NZ": 0,
+              "000004O0": 1
+            },
+            "label": {
+              "000004NZ": "Andel, procent",
+              "000004O0": "Felmarginal, ±"
+            },
+            "unit": {
+              "000004NZ": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000004O0": {
+                "base": "procentenheter",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004NZ": "År",
+              "000004O0": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004NZ": "Stock",
+              "000004O0": "Stock"
+            },
+            "priceType": {
+              "000004NZ": "NotApplicable",
+              "000004O0": "NotApplicable"
+            },
+            "adjustment": {
+              "000004NZ": "None",
+              "000004O0": "None"
+            },
+            "alternativeText": {
+              "000004NZ": "Andel företag som skickade fakturor, procent",
+              "000004O0": "Andel företag som skickade fakturor, felmarginal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2019": 0,
+              "2022": 1
+            },
+            "label": {
+              "2019": "2019",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB3677",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Skickade fakturor",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "FakturaTyp",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB3677",
+          "subject-code": "NV",
+          "subject-area": "Näringsverksamhet"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "SCB",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, SCB# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , SCB# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3677",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3677",
+        "label": "Fakturor som företag skickade efter typ och redovisningsgrupp. Andel företag. År 2019-2022",
+        "description": "",
+        "sortCode": "027",
+        "updated": "2023-11-30T07:00:00Z",
+        "firstPeriod": "2019",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "typ av faktura",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Näringsverksamhet",
+              "sortCode": "Näringsverksamhet"
+            },
+            {
+              "id": "NV0116",
+              "label": "IT-användning i företag",
+              "sortCode": "IT-användning i företag"
+            },
+            {
+              "id": "NV0116O",
+              "label": "Elektroniska affärsprocesser",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3677?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3677?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3677/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3677/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,547 @@
+{
+  "key": "scb/TAB5788/sv",
+  "identifier": "TAB5788",
+  "language": "sv",
+  "updated": "2026-03-20T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:07:08.304407+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Examinerade, fullföljare och avhoppare inom yrkeshögskolan efter kön, utbildningsinriktning, nationell bakgrund och studieform År 2016-2024",
+      "source": "SCB",
+      "updated": "2026-03-20T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0701"
+            },
+            "href": "https://www.scb.se/UF0701",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "För att förhindra röjande av information har stokastisk avrundning applicerats på tabellen. Cellvärdena 1 och 2 har avrundats till antingen 0 eller 3 med förutbestämda sannolikheter. Därför summerar redovisningsgrupperna ibland inte till totalen.",
+        "Examinerade avser antagna som har uppfyllt alla villkor för examen. Examinerade hänförs till det slutår som en utbildningsomgång har. \r\n  För examinerade finns en eftersläpning i statistiken på grund av sena kompletteringar. Uppgifter för det senaste referensåret redovisas därför i november. ",
+        "Examensgrad beräknas som andel examinerade av antagna som bedrivit studier på utbildningar som ger examen. ",
+        "En person räknas en gång för varje utbildningsomgång och kan således ingå i statistiken två eller fler gånger för samma år.",
+        "Fullföljare avser antagna som inte är examinerade, men som finns med på sista studerandelistan med rekvisition och som inte har något avbrottsdatum. De får heller inte ha en uppehållsperiod som sträcker sig längre än dagen innan utbildningsomgångens slutdatum. En del fullföljare kompletterar senare och kan då flyttas till examinerade, förutsatt att utbildningen ger examen.",
+        "Med avhoppare avses antagna som inte är examinerade eller fullföljare."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbildnInriktn",
+        "NationellBakgrund",
+        "UtbFormYH",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        27,
+        15,
+        3,
+        6,
+        9
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildnInriktn": {
+          "label": "utbildningens inriktning",
+          "category": {
+            "index": {
+              "TOTM": 0,
+              "1M": 1,
+              "2M": 2,
+              "3M": 3,
+              "4M": 4,
+              "5M": 5,
+              "6M": 6,
+              "7M": 7,
+              "8M": 8,
+              "9M": 9,
+              "11M": 10,
+              "12M": 11,
+              "13M": 12,
+              "14M": 13,
+              "15M": 14,
+              "16": 15,
+              "TOTS": 16,
+              "1S": 17,
+              "2S": 18,
+              "3S": 19,
+              "4S": 20,
+              "5S": 21,
+              "6S": 22,
+              "7S": 23,
+              "8S": 24,
+              "17": 25,
+              "TOT": 26
+            },
+            "label": {
+              "TOTM": "Utbildningsområden totalt",
+              "1M": "Data/It",
+              "2M": "Ekonomi, administration och försäljning",
+              "3M": "Friskvård och kroppsvård",
+              "4M": "Hotell, restaurang och turism",
+              "5M": "Hälso- och sjukvård samt socialt arbete",
+              "6M": "Journalistik och information",
+              "7M": "Juridik",
+              "8M": "Kultur, media och design",
+              "9M": "Lantbruk, djurvård, trädgård, skog och fiske",
+              "11M": "Pedagogik och undervisning",
+              "12M": "Samhällsbyggnad och byggteknik",
+              "13M": "Säkerhetstjänster",
+              "14M": "Teknik och tillverkning",
+              "15M": "Transporttjänster",
+              "16": "Övrigt",
+              "TOTS": "Utbildningsinriktningar totalt",
+              "1S": "Pedagogik och lärarutbildning",
+              "2S": "Humaniora och konst",
+              "3S": "Samhällsvetenskap, juridik, handel, administration",
+              "4S": "Naturvetenskap, matematik och informations- och kommunikationsteknik (IKT)",
+              "5S": "Teknik och tillverkning",
+              "6S": "Lant- och skogsbruk samt djursjukvård",
+              "7S": "Hälso- och sjukvård samt social omsorg",
+              "8S": "Tjänster",
+              "17": "Okänt",
+              "TOT": "Utbildningsinriktningar totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CUtbInrTot",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CUtbInrTot?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AUtbOmrMYH",
+                "label": "Utbildningsområde MYH",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AUtbOmrMYH?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BUtbInrSUN",
+                "label": "Utbildningsinriktning SUN 2020, 1-siffer",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BUtbInrSUN?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "NationellBakgrund": {
+          "label": "nationell bakgrund",
+          "category": {
+            "index": {
+              "TOTGR": 0,
+              "IF": 1,
+              "UF": 2,
+              "USGR": 3,
+              "TOTDET": 4,
+              "FS": 5,
+              "FN": 6,
+              "FEU": 7,
+              "FÖ": 8,
+              "USDET": 9,
+              "TOTBAKGR": 10,
+              "SB": 11,
+              "UB": 12,
+              "USBAKGR": 13,
+              "TOT": 14
+            },
+            "label": {
+              "TOTGR": "Totalt",
+              "IF": "Inrikes född",
+              "UF": "Utrikes född",
+              "USGR": "Uppgift saknas",
+              "TOTDET": "Totalt",
+              "FS": "Född i Sverige",
+              "FN": "Född i Norden utom Sverige",
+              "FEU": "Född i EU utom Norden",
+              "FÖ": "Född i övriga världen",
+              "USDET": "Uppgift saknas",
+              "TOTBAKGR": "Totalt",
+              "SB": "Svensk bakgrund",
+              "UB": "Utländsk bakgrund",
+              "USBAKGR": "Uppgift saknas",
+              "TOT": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_DFödelselandTot",
+                "label": "Totalt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_DFödelselandTot?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AFödelselandGr",
+                "label": "Inrikes/utrikes född",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AFödelselandGr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BFödelselandGrp",
+                "label": "Födelseland, grupperad",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BFödelselandGrp?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_CFödelselandBakgr",
+                "label": "Svensk/utländsk bakgrund",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CFödelselandBakgr?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "UtbFormYH": {
+          "label": "utbildningens studieform",
+          "category": {
+            "index": {
+              "TOTBD": 0,
+              "BU": 1,
+              "DI": 2
+            },
+            "label": {
+              "TOTBD": "Studieform totalt",
+              "BU": "Bunden",
+              "DI": "Distans"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000503": 0,
+              "00000502": 1,
+              "00000505": 2,
+              "00000504": 3,
+              "00000506": 4,
+              "00000507": 5
+            },
+            "label": {
+              "00000503": "Antal examinerade",
+              "00000502": "Antal fullföljare",
+              "00000505": "Antal avhoppare",
+              "00000504": "Examensgrad",
+              "00000506": "Andel fullföljare",
+              "00000507": "Andel avhoppare"
+            },
+            "unit": {
+              "00000503": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000502": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000505": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000504": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "00000506": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "00000507": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000503": "År",
+              "00000502": "År",
+              "00000505": "År",
+              "00000504": "År",
+              "00000506": "År",
+              "00000507": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000503": "Stock",
+              "00000502": "Stock",
+              "00000505": "Stock",
+              "00000504": "Stock",
+              "00000506": "Stock",
+              "00000507": "Stock"
+            },
+            "priceType": {
+              "00000503": "NotApplicable",
+              "00000502": "NotApplicable",
+              "00000505": "NotApplicable",
+              "00000504": "NotApplicable",
+              "00000506": "NotApplicable",
+              "00000507": "NotApplicable"
+            },
+            "adjustment": {
+              "00000503": "None",
+              "00000502": "None",
+              "00000505": "None",
+              "00000504": "None",
+              "00000506": "None",
+              "00000507": "None"
+            },
+            "alternativeText": {
+              "00000503": "Studerande och examinerade inom yrkeshögskolan. Antal examinerade",
+              "00000502": "Studerande och examinerade inom yrkeshögskolan. Antal fullföljare",
+              "00000505": "Studerande och examinerade inom yrkeshögskolan. Antal avhoppare",
+              "00000504": "Studerande och examinerade inom yrkeshögskolan. Examensgrad",
+              "00000506": "Studerande och examinerade inom yrkeshögskolan. Andel fullföljare",
+              "00000507": "Studerande och examinerade inom yrkeshögskolan. Andel avhoppare"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2016": 0,
+              "2017": 1,
+              "2018": 2,
+              "2019": 3,
+              "2020": 4,
+              "2021": 5,
+              "2022": 6,
+              "2023": 7,
+              "2024": 8
+            },
+            "label": {
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "UF0701",
+          "tableid": "TAB5788",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Examinerade, fullföljare och avhoppare inom yrkeshögskolan",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbildnInriktn",
+            "NationellBakgrund",
+            "UtbFormYH"
+          ],
+          "matrix": "TAB5788",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Evalena Andersson",
+            "organization": "SCB",
+            "phone": "010-479 61 50",
+            "mail": "evalena.andersson@scb.se",
+            "raw": "Evalena Andersson, SCB# +46 010-479 61 50#evalena.andersson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5788",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5788",
+        "label": "Examinerade, fullföljare och avhoppare inom yrkeshögskolan efter kön, utbildningsinriktning, nationell bakgrund och studieform År 2016-2024",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2026-03-20T07:00:00Z",
+        "firstPeriod": "2016",
+        "lastPeriod": "2024",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "utbildningens inriktning",
+          "nationell bakgrund",
+          "utbildningens studieform",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0701",
+              "label": "Yrkeshögskolan",
+              "sortCode": "Yrkeshögskolan"
+            },
+            {
+              "id": "UF0701B",
+              "label": "Studerande och examinerade (program)",
+              "sortCode": "023"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5788?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5788?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5788/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5788/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

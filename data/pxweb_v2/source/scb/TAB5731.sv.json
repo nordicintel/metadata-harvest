@@ -1,0 +1,407 @@
+{
+  "key": "scb/TAB5731/sv",
+  "identifier": "TAB5731",
+  "language": "sv",
+  "updated": "2024-10-31T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:03:29.532029+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Offentliga sektorns utgifter för utlagd FoU efter region och socio-ekonomiskt ändamål NABS 2007. Mnkr, vartannat år 2007-2023",
+      "source": "SCB",
+      "updated": "2024-10-31T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0301"
+            },
+            "href": "https://www.scb.se/UF0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Från och med referensåret 2023 utgörs delsektorn lokala och regionala FoU-enheter av kommunalförbund.",
+        "Utgifter för utlagd FoU redovisas inte för lokala och regionala FoU-enheter före referensåret 2023.",
+        "Ingen länsfördelning görs för statliga myndigheter."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Sektor",
+        "SocioEkonAndamal",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        6,
+        20,
+        1,
+        9
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_BLän",
+                "label": "Län",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BLän?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Sektor": {
+          "label": "sektor",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2,
+              "040": 3,
+              "050": 4,
+              "060": 5
+            },
+            "label": {
+              "010": "Offentliga sektorn",
+              "020": "Statliga myndigheter",
+              "030": "Regioner",
+              "040": "Kommuner",
+              "050": "Lokala och regionala FoU-enheter",
+              "060": "Offentliga icke-vinstdrivande organisationer"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "SocioEkonAndamal": {
+          "label": "socio-ekonomiskt ändamål",
+          "category": {
+            "index": {
+              "NABS_T": 0,
+              "NABS01": 1,
+              "NABS02": 2,
+              "NABS03": 3,
+              "NABS04": 4,
+              "NABS05": 5,
+              "NABS06": 6,
+              "NABS07": 7,
+              "NABS08": 8,
+              "NABS09": 9,
+              "NABS10": 10,
+              "NABS11": 11,
+              "NABS13": 12,
+              "NABS131": 13,
+              "NABS132": 14,
+              "NABS133": 15,
+              "NABS134": 16,
+              "NABS135": 17,
+              "NABS136": 18,
+              "NABS14": 19
+            },
+            "label": {
+              "NABS_T": "Samtliga socio-ekonomiska ändamål",
+              "NABS01": "Utforskande och utnyttjande av jorden ",
+              "NABS02": "Miljö",
+              "NABS03": "Utforskande och utnyttjande av rymden ",
+              "NABS04": "Transport, telekommunikationer och annan infrastruktur",
+              "NABS05": "Energi",
+              "NABS06": "Industriell produktion och teknik ",
+              "NABS07": "Hälsa",
+              "NABS08": "Jordruk",
+              "NABS09": "Utbildning",
+              "NABS10": "Kultur, rekreation, religion och massmedia ",
+              "NABS11": "Politiska och sociala system, strukturer och processer",
+              "NABS13": "Allmän vetenskaplig utveckling: FoU finansierat av andra anslag än statliga ramanslag till universitet och högskolor",
+              "NABS131": "därav FoU inom naturvetenskap",
+              "NABS132": "därav FoU inom teknik",
+              "NABS133": "därav FoU inom medicin och hälsovetenskap",
+              "NABS134": "därav FoU inom lantbruksvetenskap och veterinärmedicin",
+              "NABS135": "därav FoU inom samhällsvetenskap",
+              "NABS136": "därav FoU inom humanoria och konst",
+              "NABS14": "Försvar"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000004VK": 0
+            },
+            "label": {
+              "000004VK": "Offentliga sektorns utgifter för utlagd FoU"
+            },
+            "unit": {
+              "000004VK": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000004VK": "1 januari - 31 december resp år"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000004VK": "Flow"
+            },
+            "priceType": {
+              "000004VK": "Current"
+            },
+            "adjustment": {
+              "000004VK": "WorkOnly"
+            },
+            "alternativeText": {
+              "000004VK": "Offentliga sektorns utgifter för utlagd FoU"
+            }
+          }
+        },
+        "Tid": {
+          "label": "vartannat år",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2009": 1,
+              "2011": 2,
+              "2013": 3,
+              "2015": 4,
+              "2017": 5,
+              "2019": 6,
+              "2021": 7,
+              "2023": 8
+            },
+            "label": {
+              "2007": "2007",
+              "2009": "2009",
+              "2011": "2011",
+              "2013": "2013",
+              "2015": "2015",
+              "2017": "2017",
+              "2019": "2019",
+              "2021": "2021",
+              "2023": "2023"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "UF0301",
+          "tableid": "TAB5731",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Offentliga sektorns utgifter för utlagd FoU",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Sektor",
+            "SocioEkonAndamal"
+          ],
+          "matrix": "TAB5731",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Utbildning och forskning FoU",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "FoU-statistik@scb.se",
+            "raw": "Utbildning och forskning FoU, SCB# +46 010-479 50 00#FoU-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5731",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5731",
+        "label": "Offentliga sektorns utgifter för utlagd FoU efter region och socio-ekonomiskt ändamål NABS 2007. Mnkr, vartannat år 2007-2023",
+        "description": "",
+        "sortCode": "033",
+        "updated": "2024-10-31T07:00:00Z",
+        "firstPeriod": "2007",
+        "lastPeriod": "2023",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "sektor",
+          "socio-ekonomiskt ändamål",
+          "tabellinnehåll",
+          "vartannat år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0301",
+              "label": "Forskning och utveckling i Sverige",
+              "sortCode": "Forskning och utveckling i Sverige"
+            },
+            {
+              "id": "UF0301O",
+              "label": "FoU i offentliga sektorn",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5731?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5731?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5731/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5731/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

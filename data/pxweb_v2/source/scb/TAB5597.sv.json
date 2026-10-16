@@ -1,0 +1,521 @@
+{
+  "key": "scb/TAB5597/sv",
+  "identifier": "TAB5597",
+  "language": "sv",
+  "updated": "2023-09-01T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:36:47.507624+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Nominerade och valda  i kommunfullmäktigeval efter kön, parti och bakgrundsvariabler. Valår 1991-2022",
+      "source": "SCB",
+      "updated": "2023-09-01T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:ME0107"
+            },
+            "href": "https://www.scb.se/ME0107",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Uppdatering 2023-09-01: Data för Haninge kommun har uppdaterats på grund av omräkning.",
+        "Indikatorn Skillnaden mot röstberättigade i procentenheter visar skillnader mellan nominerade eller valda kandidater och de röstberättigade utifrån olika variabler, som ålder och födelseland. Skillnaden avser fördelningen i den specifika gruppen jämfört med de röstberättigade. Om talet är positivt är andelen bland politikerna större än motsvarande andel bland de röstberättigade. Om talet är negativt är andelen bland politikerna mindre än motsvarande andel bland de röstberättigade. För totaler som summerar samtliga variabelvärden för en viss bakgrundsvariabel, exempelvis samtliga åldrar, redovisas inga skillnader."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Parti",
+        "BakgrVar",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        10,
+        27,
+        8,
+        9
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2
+            },
+            "label": {
+              "010": "samtliga män och kvinnor",
+              "020": "män",
+              "030": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Parti": {
+          "label": "parti",
+          "category": {
+            "index": {
+              "M": 0,
+              "C": 1,
+              "L": 2,
+              "KD": 3,
+              "MP": 4,
+              "S": 5,
+              "V": 6,
+              "SD": 7,
+              "ÖVRIGA": 8,
+              "TOTALT": 9
+            },
+            "label": {
+              "M": "Moderaterna",
+              "C": "Centerpartiet",
+              "L": "Liberalerna",
+              "KD": "Kristdemokraterna",
+              "MP": "Miljöpartiet",
+              "S": "Socialdemokraterna",
+              "V": "Vänsterpartiet",
+              "SD": "Sverigedemokraterna",
+              "ÖVRIGA": "övriga partier",
+              "TOTALT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "BakgrVar": {
+          "label": "bakgrundsvariabel",
+          "category": {
+            "index": {
+              "18-29": 0,
+              "30-49": 1,
+              "50-64": 2,
+              "65+": 3,
+              "samald": 4,
+              "barnihh": 5,
+              "ejbarnihh": 6,
+              "totbarnihh": 7,
+              "giftsambo": 8,
+              "ejgiftsambo": 9,
+              "totgiftsambo": 10,
+              "forgymn": 11,
+              "gymn": 12,
+              "eftergymn-3": 13,
+              "eftergymn+3": 14,
+              "usutb": 15,
+              "samutb": 16,
+              "inrfodd": 17,
+              "utrfodd": 18,
+              "samiu": 19,
+              "us0": 20,
+              "0/20": 21,
+              "21/40": 22,
+              "41/60": 23,
+              "61/80": 24,
+              "81/100": 25,
+              "samink": 26
+            },
+            "label": {
+              "18-29": "18–29 år",
+              "30-49": "30–49 år",
+              "50-64": "50–64 år",
+              "65+": "65+ år",
+              "samald": "samtliga åldrar",
+              "barnihh": "barn under 18 år i hushållet",
+              "ejbarnihh": "inget barn under 18 år i hushållet",
+              "totbarnihh": "totalt, barn/inget barn under 18 år i hushållet",
+              "giftsambo": "gift eller sambo med barn",
+              "ejgiftsambo": "ej gift eller sambo med barn",
+              "totgiftsambo": "totalt, gift eller sambo, ej gift eller sambo med barn",
+              "forgymn": "förgymnasial utbildning",
+              "gymn": "gymnasial utbildning",
+              "eftergymn-3": "eftergymnasial utbildning – mindre än tre år",
+              "eftergymn+3": "eftergymnasial utbildning – 3 år eller mer",
+              "usutb": "uppgift saknas",
+              "samutb": "samtliga utbildningsnivåer",
+              "inrfodd": "inrikes födda",
+              "utrfodd": "utrikes födda",
+              "samiu": "samtliga inrikes och utrikes födda",
+              "us0": "nolltaxerare och uppgift saknas",
+              "0/20": "0–20 %",
+              "21/40": "21–40 %",
+              "41/60": "41–60 %",
+              "61/80": "61–80 %",
+              "81/100": "81–100 %",
+              "samink": "samtliga inkomstkvintiler"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_AlderBakgr",
+                "label": "Ålder",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_AlderBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_D_Familjeställning",
+                "label": "Familjeställning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_D_Familjeställning?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_H_Barnhushall",
+                "label": "Barn",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_H_Barnhushall?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_J_FodelselandBakgr",
+                "label": "Födelseland",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_J_FodelselandBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_O_UtbildnBakgr",
+                "label": "Utbildning",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_O_UtbildnBakgr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Q_InkomstkvBakgr",
+                "label": "Inkomstkvintiler",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Q_InkomstkvBakgr?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000487": 0,
+              "00000485": 1,
+              "0000048B": 2,
+              "00000489": 3,
+              "00000488": 4,
+              "00000486": 5,
+              "0000048C": 6,
+              "0000048A": 7
+            },
+            "label": {
+              "00000487": "Antal nominerade",
+              "00000485": "Andel nominerade, fördelning",
+              "0000048B": "Skillnad mot röstberättigade i procentenheter - nominerade",
+              "00000489": "Könsfördelning bland nominerade",
+              "00000488": "Antal valda",
+              "00000486": "Andel valda, fördelning",
+              "0000048C": "Skillnad mot röstberättigade i procentenheter - valda",
+              "0000048A": "Könsfördelning bland valda"
+            },
+            "unit": {
+              "00000487": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000485": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "0000048B": {
+                "base": "procentenhet",
+                "decimals": 0
+              },
+              "00000489": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "00000488": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000486": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "0000048C": {
+                "base": "procentenhet",
+                "decimals": 0
+              },
+              "0000048A": {
+                "base": "procent",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "00000487": "Valår",
+              "00000485": "Valår",
+              "0000048B": "Valår",
+              "00000489": "Valår",
+              "00000488": "Valår",
+              "00000486": "Valår",
+              "0000048C": "Valår",
+              "0000048A": "Valår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000487": "Stock",
+              "00000485": "Stock",
+              "0000048B": "Stock",
+              "00000489": "Stock",
+              "00000488": "Stock",
+              "00000486": "Stock",
+              "0000048C": "Stock",
+              "0000048A": "Stock"
+            },
+            "priceType": {
+              "00000487": "NotApplicable",
+              "00000485": "NotApplicable",
+              "0000048B": "NotApplicable",
+              "00000489": "NotApplicable",
+              "00000488": "NotApplicable",
+              "00000486": "NotApplicable",
+              "0000048C": "NotApplicable",
+              "0000048A": "NotApplicable"
+            },
+            "adjustment": {
+              "00000487": "None",
+              "00000485": "None",
+              "0000048B": "None",
+              "00000489": "None",
+              "00000488": "None",
+              "00000486": "None",
+              "0000048C": "None",
+              "0000048A": "None"
+            },
+            "alternativeText": {
+              "00000487": "Antal nominerade i kommunfullmäktigeval",
+              "00000485": "Andel nominerade i kommunfullmäktigeval, fördelning",
+              "0000048B": "Skillnad mot röstberättigade i procentenheter - nominerade i kommunfullmäktigeval",
+              "00000489": "Könsfördelning bland nominerade i kommunfullmäktigeval",
+              "00000488": "Antal valda i kommunfullmäktigeval",
+              "00000486": "Andel valda i kommunfullmäktigeval, fördelning",
+              "0000048C": "Skillnad mot röstberättigade i procentenheter - valda i kommunfullmäktigeval",
+              "0000048A": "Könsfördelning bland valda i kommunfullmäktigeval"
+            }
+          }
+        },
+        "Tid": {
+          "label": "valår",
+          "category": {
+            "index": {
+              "1991": 0,
+              "1994": 1,
+              "1998": 2,
+              "2002": 3,
+              "2006": 4,
+              "2010": 5,
+              "2014": 6,
+              "2018": 7,
+              "2022": 8
+            },
+            "label": {
+              "1991": "1991",
+              "1994": "1994",
+              "1998": "1998",
+              "2002": "2002",
+              "2006": "2006",
+              "2010": "2010",
+              "2014": "2014",
+              "2018": "2018",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "ME0107",
+          "tableid": "TAB5597",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Nominerade och valda  i kommunfullmäktigeval",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Parti",
+            "BakgrVar"
+          ],
+          "matrix": "TAB5597",
+          "subject-code": "ME",
+          "subject-area": "Demokrati"
+        },
+        "contact": [
+          {
+            "name": "Jonas Olofsson",
+            "organization": "SCB",
+            "phone": "010-479 47 18",
+            "mail": "jonas.olofsson@scb.se",
+            "raw": "Jonas Olofsson, SCB# +46 010-479 47 18#jonas.olofsson@scb.se"
+          },
+          {
+            "name": "Karolina Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, SCB# +46 010-479 41 76#karolina.eriksson@scb.se"
+          },
+          {
+            "name": "  Valstatistik",
+            "organization": "SCB",
+            "phone": "010-479 44 10",
+            "mail": "valstatistik@scb.se",
+            "raw": "  Valstatistik, SCB# +46 010-479 44 10#valstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5597",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5597",
+        "label": "Nominerade och valda  i kommunfullmäktigeval efter kön, parti och bakgrundsvariabler. Valår 1991-2022",
+        "description": "",
+        "sortCode": "Nominerade och valda  i kommunfullmäktigeval efter kön, parti och bakgrundsvariabler. Valår 1991-2022",
+        "updated": "2023-09-01T06:00:00Z",
+        "firstPeriod": "1991",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "parti",
+          "bakgrundsvariabel",
+          "tabellinnehåll",
+          "valår"
+        ],
+        "source": "SCB",
+        "subjectCode": "ME",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "ME",
+              "label": "Demokrati",
+              "sortCode": "Demokrati"
+            },
+            {
+              "id": "ME0107",
+              "label": "Allmänna val, nominerade och valda",
+              "sortCode": "Allmänna val, nominerade och valda"
+            },
+            {
+              "id": "ME0107A",
+              "label": "Kommunfullmäktigval",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5597?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5597?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5597/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5597/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

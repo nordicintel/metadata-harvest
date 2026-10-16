@@ -1,0 +1,413 @@
+{
+  "key": "scb/TAB5142/sv",
+  "identifier": "TAB5142",
+  "language": "sv",
+  "updated": "2022-11-24T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:58:06.370855+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Användning av datorer efter typ av utrustning och redovisningsgrupp. Andel anställda.  År 2014-2022",
+      "source": "SCB",
+      "updated": "2022-11-24T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:NV0116"
+            },
+            "href": "https://www.scb.se/NV0116",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I denna tabell betyder 0 att andelen är större än noll men mindre än 0,5 procent respektive att konfidensintervallet är större än 0 men mindre än 0,5 procentenheter. Tecknet .. betyder att uppgiften inte är tillgänglig eller alltför osäker för att anges."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "TypUtrustning",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        30,
+        2,
+        9
+      ],
+      "dimension": {
+        "TypUtrustning": {
+          "label": "typ av utrustning",
+          "category": {
+            "index": {
+              "0010": 0,
+              "0020": 1
+            },
+            "label": {
+              "0010": "datorer",
+              "0020": "bärbara enheter som kan anslutas till internet via mobiltelefonnätet"
+            },
+            "note": {
+              "0010": [
+                "Med datorer avses persondatorer, bärbara datorer, surfplattor eller smartphones"
+              ],
+              "0020": [
+                "Med bärbara enheter avses bärbara datorer, surfplattor eller smartphones",
+                "Under 2019 inkluderades i frågan att företag skulle svara endast om företaget både tillhandahåller den bärbara datorn, telefonen, surfplattan etc. och betalar för abonnemang."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "0010": {
+                "0": true
+              },
+              "0020": {
+                "0": true,
+                "1": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "redovisningsgrupp",
+          "category": {
+            "index": {
+              "Tot1-9": 0,
+              "0": 1,
+              "0-4": 2,
+              "0-9": 3,
+              "1-4": 4,
+              "5-9": 5,
+              "Tot250": 6,
+              "10-49": 7,
+              "50-249": 8,
+              "250-": 9,
+              "TotSNI": 10,
+              "10-33": 11,
+              "35-39": 12,
+              "41-43": 13,
+              "45-47": 14,
+              "49-53": 15,
+              "55-56": 16,
+              "58-63": 17,
+              "68": 18,
+              "69-82+95.1exkl.75": 19,
+              "IKT": 20,
+              "SE": 21,
+              "RIKS1": 22,
+              "RIKS2": 23,
+              "RIKS3": 24,
+              "RIKS4": 25,
+              "RIKS5": 26,
+              "RIKS6": 27,
+              "RIKS7": 28,
+              "RIKS8": 29
+            },
+            "label": {
+              "Tot1-9": "totalt 1–9 anställda",
+              "0": "0 anställda",
+              "0-4": "0–4 anställda",
+              "0-9": "0–9 anställda",
+              "1-4": "1–4 anställda",
+              "5-9": "5–9 anställda",
+              "Tot250": "totalt 10 eller fler anställda",
+              "10-49": "10–49 anställda",
+              "50-249": "50–249 anställda",
+              "250-": "250 eller fler anställda",
+              "TotSNI": "totalt (SNI 10–63, 68–74, 77–82, 95.1) ",
+              "10-33": "tillverkningsindustri (SNI 10–33)",
+              "35-39": "energi och återvinning (SNI 35–39)",
+              "41-43": "byggindustri (SNI 41–43)",
+              "45-47": "handel; serviceverkstäder för motorfordon (SNI 45–47)",
+              "49-53": "transport- och magasineringsföretag (SNI 49–53)",
+              "55-56": "hotell och restauranger (SNI 55–56)",
+              "58-63": "informations- och kommunikationsföretag (SNI 58–63)",
+              "68": "fastighetsbolag och förvaltare (SNI 68)",
+              "69-82+95.1exkl.75": "andra tjänsteföretag (SNI 69–74, 77–82, 95.1)",
+              "IKT": "IKT-sektorn (SNI 26.1–26.4, 26.8, 46.5, 58.2, 61–62, 63.1, 95.1)",
+              "SE": "Sverige",
+              "RIKS1": "Stockholms län",
+              "RIKS2": "Östra mellansverige",
+              "RIKS3": "Småland med öarna",
+              "RIKS4": "Sydsverige",
+              "RIKS5": "Västsverige",
+              "RIKS6": "Norra mellansverige",
+              "RIKS7": "Mellersta Norrland",
+              "RIKS8": "Övre Norrland"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_B_region",
+                "label": "Region (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_B_region?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_D_foretags",
+                "label": "Företag, 0-9 anställda",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_D_foretags?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_F_foretagl",
+                "label": "Företag, 10 eller fler anställda",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_F_foretagl?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_SNINV",
+                "label": "Näringsgren (endast för företag med 10 eller fler anställda)",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_SNINV?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002WN": 0,
+              "000002WO": 1
+            },
+            "label": {
+              "000002WN": "Andel anställda, procent",
+              "000002WO": "Felmarginal, ±"
+            },
+            "unit": {
+              "000002WN": {
+                "base": "procent",
+                "decimals": 0
+              },
+              "000002WO": {
+                "base": "procentenheter",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002WN": "År",
+              "000002WO": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002WN": "Stock",
+              "000002WO": "Stock"
+            },
+            "priceType": {
+              "000002WN": "NotApplicable",
+              "000002WO": "NotApplicable"
+            },
+            "adjustment": {
+              "000002WN": "None",
+              "000002WO": "None"
+            },
+            "alternativeText": {
+              "000002WN": "Andel anställda som i arbetet använder datorer, procent",
+              "000002WO": "Andel anställda som i arbetet använder datorer, felmarginal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "NV0116",
+          "tableid": "TAB5142",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Användning av datorer",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "TypUtrustning",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB5142",
+          "subject-code": "NV",
+          "subject-area": "Näringsverksamhet"
+        },
+        "contact": [
+          {
+            "name": "Robin Petersson",
+            "organization": "SCB",
+            "phone": "010-479 68 19",
+            "mail": "robin.petersson@scb.se",
+            "raw": "Robin Petersson, SCB# +46 010-479 68 19#robin.petersson@scb.se"
+          },
+          {
+            "name": "Statistiska centralbyrån (SCB) It-statistik, ",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "It-statistik@scb.se",
+            "raw": "Statistiska centralbyrån (SCB) It-statistik, , SCB# +46 010-479 50 00#It-statistik@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5142",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5142",
+        "label": "Användning av datorer efter typ av utrustning och redovisningsgrupp. Andel anställda.  År 2014-2022",
+        "description": "",
+        "sortCode": "024",
+        "updated": "2022-11-24T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "typ av utrustning",
+          "redovisningsgrupp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "NV",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "NV",
+              "label": "Näringsverksamhet",
+              "sortCode": "Näringsverksamhet"
+            },
+            {
+              "id": "NV0116",
+              "label": "IT-användning i företag",
+              "sortCode": "IT-användning i företag"
+            },
+            {
+              "id": "NV0116A",
+              "label": "Datorer och nätverk",
+              "sortCode": "09"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5142/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

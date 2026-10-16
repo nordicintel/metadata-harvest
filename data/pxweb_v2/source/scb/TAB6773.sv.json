@@ -1,0 +1,411 @@
+{
+  "key": "scb/TAB6773/sv",
+  "identifier": "TAB6773",
+  "language": "sv",
+  "updated": "2026-09-25T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:41:04.099281+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Andel av utlåningsvolymer och räntor till hushåll efter belåningsgrad, typ av hushåll, säkerhet och avtal. Månad 2023M03-2026M08",
+      "source": "Sveriges riksbank",
+      "updated": "2026-09-25T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM5001"
+            },
+            "href": "https://www.scb.se/FM5001",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Insamlingen av belåningsgrader infördes mars 2023 och för perioden mars 2023 till februari 2025 var den nedre gränsen inkluderad i det halvöppna intervallet. Från och med mars 2025 är i stället den övre gränsen inkluderad i det halvöppna intervallet, och inte den nedre. Exempelvis ingår 70 i intervallet 50-70 men 50 exkluderas (50 < x = 70) från och med mars 2025.",
+        "2025-03-31: Från och med mars 2025 är den övre gränsen är inkluderad i det halvöppna intervallet för belåningsgrader. Exempelvis ingår 70 i intervallet 50-70 men 50 exkluderas (50 < x = 70).",
+        "2025-09-30: Revideringar avseende belåningsgrader har gjorts för perioderna mars 2023 till och med augusti 2025. Dessa revideringar påverkar både utlåningsvolymer som andel av utlåning till hushåll och räntor fördelade på belåningsgrader."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Motpartssektor",
+        "MFIsakerhet",
+        "Belaningsgrad",
+        "Avtal",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        3,
+        7,
+        2,
+        2,
+        42
+      ],
+      "dimension": {
+        "Motpartssektor": {
+          "label": "motpartssektor",
+          "category": {
+            "index": {
+              "2c": 0,
+              "2d": 1,
+              "2e": 2
+            },
+            "label": {
+              "2c": "1 hushåll",
+              "2d": "1.1 företagarhushåll",
+              "2e": "1.2 övriga hushåll"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "MFIsakerhet": {
+          "label": "säkerhet",
+          "category": {
+            "index": {
+              "05": 0,
+              "108": 1,
+              "109": 2
+            },
+            "label": {
+              "05": "totalt för alla säkerheter",
+              "108": "bostad",
+              "109": "övriga säkerheter"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Belaningsgrad": {
+          "label": "belåningsgrad",
+          "category": {
+            "index": {
+              "020": 0,
+              "030": 1,
+              "040": 2,
+              "045": 3,
+              "050": 4,
+              "055": 5,
+              "060": 6
+            },
+            "label": {
+              "020": "<=50",
+              "030": "50–70",
+              "040": "70–85",
+              "045": "70–90",
+              "050": "85–100",
+              "055": "90–100",
+              "060": ">100"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Avtal": {
+          "label": "avtal",
+          "category": {
+            "index": {
+              "0150": 0,
+              "0200": 1
+            },
+            "label": {
+              "0150": "nya avtal",
+              "0200": "utestående avtal"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000008GO": 0,
+              "000008GT": 1
+            },
+            "label": {
+              "000008GO": "Andel av utlåningsvolymer, procent",
+              "000008GT": "Utlåningsräntor efter belåningsgrad, procent"
+            },
+            "unit": {
+              "000008GO": {
+                "base": "procent",
+                "decimals": 2
+              },
+              "000008GT": {
+                "base": "procent",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000008GO": "Månad",
+              "000008GT": "Månad"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000008GO": "Stock",
+              "000008GT": "Stock"
+            },
+            "priceType": {
+              "000008GO": "NotApplicable",
+              "000008GT": "NotApplicable"
+            },
+            "adjustment": {
+              "000008GO": "None",
+              "000008GT": "None"
+            },
+            "alternativeText": {
+              "000008GO": "Andel av utlåningsvolymer för hushåll efter belåningsgrad, procent",
+              "000008GT": "Utlåningsräntor till hushåll fördelade efter belåningsgrad, procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "månad",
+          "category": {
+            "index": {
+              "2023M03": 0,
+              "2023M04": 1,
+              "2023M05": 2,
+              "2023M06": 3,
+              "2023M07": 4,
+              "2023M08": 5,
+              "2023M09": 6,
+              "2023M10": 7,
+              "2023M11": 8,
+              "2023M12": 9,
+              "2024M01": 10,
+              "2024M02": 11,
+              "2024M03": 12,
+              "2024M04": 13,
+              "2024M05": 14,
+              "2024M06": 15,
+              "2024M07": 16,
+              "2024M08": 17,
+              "2024M09": 18,
+              "2024M10": 19,
+              "2024M11": 20,
+              "2024M12": 21,
+              "2025M01": 22,
+              "2025M02": 23,
+              "2025M03": 24,
+              "2025M04": 25,
+              "2025M05": 26,
+              "2025M06": 27,
+              "2025M07": 28,
+              "2025M08": 29,
+              "2025M09": 30,
+              "2025M10": 31,
+              "2025M11": 32,
+              "2025M12": 33,
+              "2026M01": 34,
+              "2026M02": 35,
+              "2026M03": 36,
+              "2026M04": 37,
+              "2026M05": 38,
+              "2026M06": 39,
+              "2026M07": 40,
+              "2026M08": 41
+            },
+            "label": {
+              "2023M03": "2023M03",
+              "2023M04": "2023M04",
+              "2023M05": "2023M05",
+              "2023M06": "2023M06",
+              "2023M07": "2023M07",
+              "2023M08": "2023M08",
+              "2023M09": "2023M09",
+              "2023M10": "2023M10",
+              "2023M11": "2023M11",
+              "2023M12": "2023M12",
+              "2024M01": "2024M01",
+              "2024M02": "2024M02",
+              "2024M03": "2024M03",
+              "2024M04": "2024M04",
+              "2024M05": "2024M05",
+              "2024M06": "2024M06",
+              "2024M07": "2024M07",
+              "2024M08": "2024M08",
+              "2024M09": "2024M09",
+              "2024M10": "2024M10",
+              "2024M11": "2024M11",
+              "2024M12": "2024M12",
+              "2025M01": "2025M01",
+              "2025M02": "2025M02",
+              "2025M03": "2025M03",
+              "2025M04": "2025M04",
+              "2025M05": "2025M05",
+              "2025M06": "2025M06",
+              "2025M07": "2025M07",
+              "2025M08": "2025M08",
+              "2025M09": "2025M09",
+              "2025M10": "2025M10",
+              "2025M11": "2025M11",
+              "2025M12": "2025M12",
+              "2026M01": "2026M01",
+              "2026M02": "2026M02",
+              "2026M03": "2026M03",
+              "2026M04": "2026M04",
+              "2026M05": "2026M05",
+              "2026M06": "2026M06",
+              "2026M07": "2026M07",
+              "2026M08": "2026M08"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "FM5001",
+          "tableid": "TAB6773",
+          "decimals": 2,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Andel av utlåningsvolymer",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Motpartssektor",
+            "MFIsakerhet",
+            "Belaningsgrad",
+            "Avtal"
+          ],
+          "matrix": "TAB6773",
+          "subject-code": "FM",
+          "subject-area": "Finansmarknad"
+        },
+        "contact": [
+          {
+            "name": "Tove Åkerrén",
+            "organization": "SCB",
+            "phone": "010-479 42 12",
+            "mail": "tove.akerren@scb.se",
+            "raw": "Tove Åkerrén, SCB# +46 010-479 42 12#tove.akerren@scb.se"
+          },
+          {
+            "name": "Finansmarknadsstatistik",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "fmr@scb.se",
+            "raw": " Finansmarknadsstatistik, SCB# +46 010-479 50 00#fmr@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6773",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6773",
+        "label": "Andel av utlåningsvolymer och räntor till hushåll efter belåningsgrad, typ av hushåll, säkerhet och avtal. Månad 2023M03-2026M08",
+        "description": "",
+        "sortCode": "006",
+        "updated": "2026-09-25T06:00:00Z",
+        "firstPeriod": "2023M03",
+        "lastPeriod": "2026M08",
+        "category": "public",
+        "variableNames": [
+          "motpartssektor",
+          "säkerhet",
+          "belåningsgrad",
+          "avtal",
+          "tabellinnehåll",
+          "månad"
+        ],
+        "source": "Sveriges riksbank",
+        "subjectCode": "FM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Finansmarknad",
+              "sortCode": "Finansmarknad"
+            },
+            {
+              "id": "FM5001",
+              "label": "Finansmarknadsstatistik",
+              "sortCode": "Finansmarknadsstatistik"
+            },
+            {
+              "id": "FM5001A",
+              "label": "Finansmarknadsstatistik",
+              "sortCode": "001"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6773?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6773?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6773/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6773/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

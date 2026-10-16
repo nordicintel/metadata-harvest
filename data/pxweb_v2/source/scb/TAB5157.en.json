@@ -1,0 +1,399 @@
+{
+  "key": "scb/TAB5157/en",
+  "identifier": "TAB5157",
+  "language": "en",
+  "updated": "2026-04-27T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:28:58.158324+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Employed people aged 16–65 years by disability, weekly working hours, sex and study domain. Year 2023-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-04-27T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM7001"
+            },
+            "href": "https://www.scb.se/AM7001-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The labour market situation for people with disability (SAPF) is a sample survey that is conducted directly after the Labour Force Survey (LFS). All estimates are subject to uncertainty. Very uncertain estimates, where the confidence interval is larger than the number/proportion estimate, have been dotted. Results have also been assessed as uncertain and have been dotted in cases where the number of responses in the group on which the estimate is based (in the denominator) is less than 50, or if there are fewer than 5 who have the characteristic (in the numerator) to be estimated."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Funktionsnedsattning",
+        "Veckoarbetstid",
+        "Kon",
+        "Redovisningsgrupp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        5,
+        4,
+        3,
+        11,
+        4,
+        3
+      ],
+      "dimension": {
+        "Funktionsnedsattning": {
+          "label": "disability",
+          "category": {
+            "index": {
+              "010": 0,
+              "030": 1,
+              "050": 2,
+              "070": 3,
+              "090": 4
+            },
+            "label": {
+              "010": "people with disability",
+              "030": "people with disability with reduced ability to work",
+              "050": "people with disability without reduced ability to work",
+              "070": "rest of the population",
+              "090": "total population"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Veckoarbetstid": {
+          "label": "weekly working hours",
+          "category": {
+            "index": {
+              "HT35+": 0,
+              "DT20-34": 1,
+              "DT1-19": 2,
+              "SAM": 3
+            },
+            "label": {
+              "HT35+": "fulltime, 35– hours",
+              "DT20-34": "parttime, 20–34 hours",
+              "DT1-19": "parttime, 1–19 hours",
+              "SAM": "all weekly working hours"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Redovisningsgrupp": {
+          "label": "study domain",
+          "category": {
+            "index": {
+              "16-29": 0,
+              "30-49": 1,
+              "50-65": 2,
+              "16-65": 3,
+              "10": 4,
+              "20": 5,
+              "30": 6,
+              "50": 7,
+              "07": 8,
+              "08": 9,
+              "95": 10
+            },
+            "label": {
+              "16-29": "16–29 years",
+              "30-49": "30–49 years",
+              "50-65": "50–65 years",
+              "16-65": "16–65 years",
+              "10": "compulsory",
+              "20": "secondary",
+              "30": "tertiary",
+              "50": "all levels of education",
+              "07": "born in Sweden",
+              "08": "foreign born",
+              "95": "born in Sweden and foreign born"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_GruppSAPF1",
+                "label": "Age",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_GruppSAPF1?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_GruppSAPF2",
+                "label": "Level of education",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_GruppSAPF2?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_GruppSAPF3",
+                "label": "Born in Sweden and foreign born",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_GruppSAPF3?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "0000076W": 0,
+              "00000772": 1,
+              "0000076V": 2,
+              "00000771": 3
+            },
+            "label": {
+              "0000076W": "number of employed people in thousands",
+              "00000772": "number of employed people in thousands, margin of error",
+              "0000076V": "share of employed people in percent",
+              "00000771": "share of employed people in percent, margin of error"
+            },
+            "unit": {
+              "0000076W": {
+                "base": "number",
+                "decimals": 0
+              },
+              "00000772": {
+                "base": "number",
+                "decimals": 0
+              },
+              "0000076V": {
+                "base": "percent",
+                "decimals": 1
+              },
+              "00000771": {
+                "base": "percent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000076W": "Year",
+              "00000772": "Year",
+              "0000076V": "Year",
+              "00000771": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000076W": "Stock",
+              "00000772": "Stock",
+              "0000076V": "Stock",
+              "00000771": "Stock"
+            },
+            "priceType": {
+              "0000076W": "NotApplicable",
+              "00000772": "NotApplicable",
+              "0000076V": "NotApplicable",
+              "00000771": "NotApplicable"
+            },
+            "adjustment": {
+              "0000076W": "None",
+              "00000772": "None",
+              "0000076V": "None",
+              "00000771": "None"
+            },
+            "alternativeText": {
+              "0000076W": "Number of employed people 16–65 years in thousands",
+              "00000772": "Number of employed people 16–65 years in thousands, margin of error",
+              "0000076V": "Share of employed people 16–65 years in percent",
+              "00000771": "Share of employed people 16–65 years in percent, margin of error"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2023": 0,
+              "2024": 1,
+              "2025": 2
+            },
+            "label": {
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "AM7001",
+          "tableid": "TAB5157",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Employed people aged 16–65 years",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Funktionsnedsattning",
+            "Veckoarbetstid",
+            "Kon",
+            "Redovisningsgrupp"
+          ],
+          "matrix": "TAB5157",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Marc Doppelbauer",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 42 15",
+            "mail": "marc.doppelbauer@scb.se",
+            "raw": "Marc Doppelbauer, Statistics Sweden# +46 010-479 42 15#marc.doppelbauer@scb.se"
+          },
+          {
+            "name": "Karolina Eriksson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, Statistics Sweden# +46 010-479 41 76#karolina.eriksson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5157",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5157",
+        "label": "Employed people aged 16–65 years by disability, weekly working hours, sex and study domain. Year 2023-2025",
+        "description": "",
+        "sortCode": "004",
+        "updated": "2026-04-27T06:00:00Z",
+        "firstPeriod": "2023",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "disability",
+          "weekly working hours",
+          "sex",
+          "study domain",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM7001",
+              "label": "The labour market situation for people with disability",
+              "sortCode": "The labour market situation for people with disability"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5157?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5157?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5157/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5157/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

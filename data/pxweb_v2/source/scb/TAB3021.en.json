@@ -1,0 +1,432 @@
+{
+  "key": "scb/TAB3021/en",
+  "identifier": "TAB3021",
+  "language": "en",
+  "updated": "2016-01-28T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:25:37.721812+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Employed aged 15-74 (LFS) by degree of attachment to the labour market, occupation SSYK 96 and sex. Quarter 2005K2-2015K4",
+      "source": "Statistics Sweden",
+      "updated": "2016-01-28T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "For the period 2007M01–2020M12, the time series contains ´linked data´. No margins of error (uncertainty figures) are reported for the period, this is instead marked as '..' in the time series. "
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Anknytningsgrad",
+        "Yrke",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        12,
+        3,
+        2,
+        43
+      ],
+      "dimension": {
+        "Anknytningsgrad": {
+          "label": "degree of attachment to the labour market",
+          "category": {
+            "index": {
+              "ANSTTOT": 0,
+              "FA": 1,
+              "SYSTOT": 2
+            },
+            "label": {
+              "ANSTTOT": "employees, total",
+              "FA": "permanent employees",
+              "SYSTOT": "total employment"
+            },
+            "note": {
+              "ANSTTOT": [
+                "Employees, total incluedes both permanent and temporary employees"
+              ],
+              "FA": [
+                "Permanent and temporary employees together make up the total number of employees"
+              ],
+              "SYSTOT": [
+                "The employed include employees as well as self-employed persons and assisting family members"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ANSTTOT": {
+                "0": true
+              },
+              "FA": {
+                "0": true
+              },
+              "SYSTOT": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Yrke": {
+          "label": "occupation",
+          "category": {
+            "index": {
+              "0000": 0,
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8,
+              "9": 9,
+              "0": 10,
+              "0002": 11
+            },
+            "label": {
+              "0000": "All",
+              "1": "management work",
+              "2": "work requiring a shorter university education or similar skills",
+              "3": "Technicians and associate professionals",
+              "4": "clerical and customer service work",
+              "5": "service workers, caregivers and sales work",
+              "6": "work in agriculture, horticulture, forestry and fishing",
+              "7": "craft and related trades workers",
+              "8": "plant and machine operators and assemblers",
+              "9": "elementary occupations",
+              "0": "armed forces",
+              "0002": "occupations unidentifiable"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "AM0401OE": 0,
+              "AM0401OF": 1
+            },
+            "label": {
+              "AM0401OE": "Employed",
+              "AM0401OF": "Margin of error ±"
+            },
+            "note": {
+              "AM0401OF": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "AM0401OE": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "AM0401OF": {
+                "base": "1000s",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM0401OF": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM0401OE": "",
+              "AM0401OF": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0401OE": "Average",
+              "AM0401OF": "Average"
+            },
+            "priceType": {
+              "AM0401OE": "NotApplicable",
+              "AM0401OF": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0401OE": "None",
+              "AM0401OF": "None"
+            },
+            "alternativeText": {
+              "AM0401OE": "Employed aged 15-74 (LFS), 1000s",
+              "AM0401OF": "Margin of error ±, employed aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "quarter",
+          "category": {
+            "index": {
+              "2005K2": 0,
+              "2005K3": 1,
+              "2005K4": 2,
+              "2006K1": 3,
+              "2006K2": 4,
+              "2006K3": 5,
+              "2006K4": 6,
+              "2007K1": 7,
+              "2007K2": 8,
+              "2007K3": 9,
+              "2007K4": 10,
+              "2008K1": 11,
+              "2008K2": 12,
+              "2008K3": 13,
+              "2008K4": 14,
+              "2009K1": 15,
+              "2009K2": 16,
+              "2009K3": 17,
+              "2009K4": 18,
+              "2010K1": 19,
+              "2010K2": 20,
+              "2010K3": 21,
+              "2010K4": 22,
+              "2011K1": 23,
+              "2011K2": 24,
+              "2011K3": 25,
+              "2011K4": 26,
+              "2012K1": 27,
+              "2012K2": 28,
+              "2012K3": 29,
+              "2012K4": 30,
+              "2013K1": 31,
+              "2013K2": 32,
+              "2013K3": 33,
+              "2013K4": 34,
+              "2014K1": 35,
+              "2014K2": 36,
+              "2014K3": 37,
+              "2014K4": 38,
+              "2015K1": 39,
+              "2015K2": 40,
+              "2015K3": 41,
+              "2015K4": 42
+            },
+            "label": {
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB3021",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Employed aged 15-74 (LFS), 1000s",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Anknytningsgrad",
+            "Yrke",
+            "Kon"
+          ],
+          "matrix": "TAB3021",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3021",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3021",
+        "label": "Employed aged 15-74 (LFS) by degree of attachment to the labour market, occupation SSYK 96 and sex. Quarter 2005K2-2015K4",
+        "description": "",
+        "sortCode": "23",
+        "updated": "2016-01-28T08:30:00Z",
+        "firstPeriod": "2005K2",
+        "lastPeriod": "2015K4",
+        "category": "public",
+        "variableNames": [
+          "degree of attachment to the labour market",
+          "occupation",
+          "sex",
+          "observations",
+          "quarter"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0403",
+              "label": "Labour Force Surveys, previous definitions",
+              "sortCode": "Labour Force Surveys, previous definitions"
+            },
+            {
+              "id": "AM0403I",
+              "label": "Employed 1970-2020",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3021?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3021?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3021/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3021/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

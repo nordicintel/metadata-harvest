@@ -1,0 +1,347 @@
+{
+  "key": "scb/TAB4622/sv",
+  "identifier": "TAB4622",
+  "language": "sv",
+  "updated": "2026-10-02T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:34:52.115272+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Hyresförändring i hyreslägenheter efter region, antal rum och ägarkategori. År 2016-2026",
+      "source": "SCB",
+      "updated": "2026-10-02T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0406"
+            },
+            "href": "https://www.scb.se/BO0406",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "I statistiken över hyresförändringar ingår inte lägenheter som har genomgått större ombyggnad/förändring under året och där hyresförändringen har påverkats.",
+        "Hyresförändring avser förändring i hyra mellan föregående år och aktuellt år. Från 2016 baseras den på decemberhyra föregående år och ny månadshyra för året."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "geo": [
+          "Region"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "AntalRum",
+        "Agarkategori",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        6,
+        3,
+        4,
+        11
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0030": "Stor-Malmö",
+              "0040": "Kommuner med >75 000 inv. (exkl. storstadsområden)",
+              "0041": "Kommuner med <75 000 inv. (exkl. storstadsområden)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "AntalRum": {
+          "label": "antal rum",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "5": 4,
+              "00": 5
+            },
+            "label": {
+              "1": "Lägenhet 1 rum",
+              "2": "Lägenhet 2 rum",
+              "3": "Lägenhet 3 rum",
+              "4": "Lägenhet 4+ rum",
+              "5": "Småhus, oavsett antal rum",
+              "00": "Totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Agarkategori": {
+          "label": "ägarkategori",
+          "category": {
+            "index": {
+              "PrivOovriga": 0,
+              "ALLMNB": 1,
+              "00": 2
+            },
+            "label": {
+              "PrivOovriga": "privata och övriga fastighetsägare",
+              "ALLMNB": "allmännyttiga bostadsföretag",
+              "00": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000014L": 0,
+              "0000014K": 1,
+              "0000014N": 2,
+              "0000014M": 3
+            },
+            "label": {
+              "0000014L": "Median för hyresförändring, procent",
+              "0000014K": "± Felmarginal, median för hyresförändring, procent",
+              "0000014N": "Medelvärde för hyresförändring, procent",
+              "0000014M": "± Felmarginal, medelvärde för hyresförändring, procent"
+            },
+            "unit": {
+              "0000014L": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "0000014K": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "0000014N": {
+                "base": "procent",
+                "decimals": 1
+              },
+              "0000014M": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000014L": "",
+              "0000014K": "",
+              "0000014N": "",
+              "0000014M": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000014L": "Flow",
+              "0000014K": "Flow",
+              "0000014N": "Flow",
+              "0000014M": "Flow"
+            },
+            "priceType": {
+              "0000014L": "NotApplicable",
+              "0000014K": "NotApplicable",
+              "0000014N": "NotApplicable",
+              "0000014M": "NotApplicable"
+            },
+            "adjustment": {
+              "0000014L": "None",
+              "0000014K": "None",
+              "0000014N": "None",
+              "0000014M": "None"
+            },
+            "alternativeText": {
+              "0000014L": "Median för hyresförändring, procent",
+              "0000014K": "± Felmarginal, median för hyresförändring, procent",
+              "0000014N": "Medelvärde för hyresförändring, procent",
+              "0000014M": "± Felmarginal, medelvärde för hyresförändring, procent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2016": 0,
+              "2017": 1,
+              "2018": 2,
+              "2019": 3,
+              "2020": 4,
+              "2021": 5,
+              "2022": 6,
+              "2023": 7,
+              "2024": 8,
+              "2025": 9,
+              "2026": 10
+            },
+            "label": {
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025",
+              "2026": "2026"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "BO0406",
+          "tableid": "TAB4622",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Hyresförändring i hyreslägenheter",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "AntalRum",
+            "Agarkategori"
+          ],
+          "matrix": "TAB4622",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4622",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4622",
+        "label": "Hyresförändring i hyreslägenheter efter region, antal rum och ägarkategori. År 2016-2026",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2026-10-02T06:00:00Z",
+        "firstPeriod": "2016",
+        "lastPeriod": "2026",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "antal rum",
+          "ägarkategori",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0406",
+              "label": "Hyror i bostadslägenheter",
+              "sortCode": "Hyror i bostadslägenheter"
+            },
+            {
+              "id": "BO0406F",
+              "label": "Hyresförändringar 2016 –",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4622?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4622?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4622/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4622/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "key": "scb/TAB754/sv",
+  "identifier": "TAB754",
+  "language": "sv",
+  "updated": "2015-10-01T07:30:00Z",
+  "retrieved_at": "2026-10-16T17:34:57.732218+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Årshyra per lägenhet, årshyra per kvadratmeter efter region, ägarkategori, nybyggår/värdeår, årsintervall och lägenhetstyp. (Urvalsundersökning, se fotnoter.) År 2003-2014",
+      "source": "SCB",
+      "updated": "2015-10-01T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0406"
+            },
+            "href": "https://www.scb.se/BO0406",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Agarkategori",
+        "NybyggArVardeAr",
+        "Arsintervall",
+        "Lagenhetstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        4,
+        2,
+        10,
+        7,
+        4,
+        12
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0035": 1,
+              "0043": 2
+            },
+            "label": {
+              "00": "Riket",
+              "0035": "Kommuner med >75 000 inv. samt Stor-Stockholm och Stor-Göteborg",
+              "0043": "Kommuner med <75 000 inv. (exkl. Stor-Stockholm och Stor-Göteborg)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Agarkategori": {
+          "label": "ägarkategori",
+          "note": [
+            "I ägarkategorin övriga ingår lägenheter ägda av bl a stat, landsting och bostadsrättsföreningar.",
+            "I ägarkategorin övriga ingår lägenheter ägda av bl a stat, landsting och bostadsrättsföreningar."
+          ],
+          "category": {
+            "index": {
+              "ALLMN": 0,
+              "PRIV": 1,
+              "OVRIG": 2,
+              "TOT": 3
+            },
+            "label": {
+              "ALLMN": "allmännyttigt bostadsföretag",
+              "PRIV": "privata",
+              "OVRIG": "övriga",
+              "TOT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "noteMandatory": {
+              "0": true,
+              "1": true
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NybyggArVardeAr": {
+          "label": "nybyggår/värdeår",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1
+            },
+            "label": {
+              "01": "nybyggnadsår",
+              "02": "värdeår"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Arsintervall": {
+          "label": "årsintervall",
+          "category": {
+            "index": {
+              "01": 0,
+              "020": 1,
+              "025": 2,
+              "03": 3,
+              "04": 4,
+              "05": 5,
+              "06": 6,
+              "065": 7,
+              "07": 8,
+              "99": 9
+            },
+            "label": {
+              "01": "–1940",
+              "020": "1941–1950",
+              "025": "1951–1960",
+              "03": "1961–1970",
+              "04": "1971–1980",
+              "05": "1981–1985",
+              "06": "1986–1990",
+              "065": "1991–1995",
+              "07": "1991–",
+              "99": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Lagenhetstyp": {
+          "label": "lägenhetstyp",
+          "category": {
+            "index": {
+              "1RK": 0,
+              "2RK": 1,
+              "3RK": 2,
+              "4RK": 3,
+              "5+RK": 4,
+              "ÖVRIGA": 5,
+              "TOTALT": 6
+            },
+            "label": {
+              "1RK": "1 rum och kök",
+              "2RK": "2 rum och kök",
+              "3RK": "3 rum och kök",
+              "4RK": "4 rum och kök",
+              "5+RK": "5 eller flera rum och kök",
+              "ÖVRIGA": "övriga",
+              "TOTALT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0406E8": 0,
+              "BO0406D3": 1,
+              "BO0406E9": 2,
+              "BO0406D4": 3
+            },
+            "label": {
+              "BO0406E8": "Genomsnittlig årshyra per lägenhet, kr",
+              "BO0406D3": "Felmarginal för årshyra per lägenhet, kr",
+              "BO0406E9": "Genomsnittlig årshyra per kvm, kr",
+              "BO0406D4": "Felmarginal för årshyra per kvm, kr"
+            },
+            "note": {
+              "BO0406E8": [
+                "Undersökningen är en urvalsundersökning som bygger på ett sannolikhetsurval. De redovisade talen är således skattningar varför hänsyn måste tas till osäkerheten i dessa då slutsatser dras. Skattningar som är behäftade med alltför stor osäkerhet är ersatta med två punkter."
+              ],
+              "BO0406E9": [
+                "Undersökningen är en urvalsundersökning som bygger på ett sannolikhetsurval. De redovisade talen är således skattningar varför hänsyn måste tas till osäkerheten i dessa då slutsatser dras. Skattningar som är behäftade med alltför stor osäkerhet är ersatta med två punkter."
+              ]
+            },
+            "unit": {
+              "BO0406E8": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "BO0406D3": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "BO0406E9": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "BO0406D4": {
+                "base": "kronor",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0406E8": "",
+              "BO0406D3": "",
+              "BO0406E9": "",
+              "BO0406D4": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0406E8": "Flow",
+              "BO0406D3": "Flow",
+              "BO0406E9": "Flow",
+              "BO0406D4": "Flow"
+            },
+            "priceType": {
+              "BO0406E8": "NotApplicable",
+              "BO0406D3": "NotApplicable",
+              "BO0406E9": "NotApplicable",
+              "BO0406D4": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0406E8": "None",
+              "BO0406D3": "None",
+              "BO0406E9": "None",
+              "BO0406D4": "None"
+            },
+            "alternativeText": {
+              "BO0406E8": "Genomsnittlig årshyra per lägenhet, kr",
+              "BO0406D3": "Felmarginal för årshyra per lägenhet, kr",
+              "BO0406E9": "Genomsnittlig årshyra per kvm, kr",
+              "BO0406D4": "Felmarginal för årshyra per kvm, kr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2003": 0,
+              "2004": 1,
+              "2005": 2,
+              "2006": 3,
+              "2007": 4,
+              "2008": 5,
+              "2009": 6,
+              "2010": 7,
+              "2011": 8,
+              "2012": 9,
+              "2013": 10,
+              "2014": 11
+            },
+            "label": {
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0406",
+          "tableid": "TAB754",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Årshyra per lägenhet, årshyra per kvm",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Agarkategori",
+            "NybyggArVardeAr",
+            "Arsintervall",
+            "Lagenhetstyp"
+          ],
+          "matrix": "TAB754",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB754",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB754",
+        "label": "Årshyra per lägenhet, årshyra per kvadratmeter efter region, ägarkategori, nybyggår/värdeår, årsintervall och lägenhetstyp. (Urvalsundersökning, se fotnoter.) År 2003-2014",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2015-10-01T07:30:00Z",
+        "firstPeriod": "2003",
+        "lastPeriod": "2014",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "ägarkategori",
+          "nybyggår/värdeår",
+          "årsintervall",
+          "lägenhetstyp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0406",
+              "label": "Hyror i bostadslägenheter",
+              "sortCode": "Hyror i bostadslägenheter"
+            },
+            {
+              "id": "BO0406A",
+              "label": "Hyror m.m. för hyreslägenheter 2003-2015",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB754?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB754/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB754/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

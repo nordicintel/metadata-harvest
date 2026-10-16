@@ -1,0 +1,351 @@
+{
+  "key": "scb/TAB4312/en",
+  "identifier": "TAB4312",
+  "language": "en",
+  "updated": "2026-10-01T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:18:01.456932+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Exploitation of wetlands by region and type of exploitation, in hectares. Year 2020-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-10-01T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:MI1303"
+            },
+            "href": "https://www.scb.se/MI1303-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Direct exploitation is wetland or peatland that is directly covered by a building, railway area or road area. \r\n \r\nIndirect exploitation is wetland or peatland that is covered by a 20 meter influence area around a building, railway area or road area.",
+        "Wetland is land where the water for a large part of the year is close by, in or just above the ground surface. Definition accordning to National Land Cover Database (NMD). All types of wetlands are included. ",
+        "Values cannot be summed, because overlapping areas. There are overlaps between exploitation types and between peatland and wetland.",
+        "Statistics are produced on behalf of the Swedish Environmental Protection Agency.",
+        "Railway areas are land used for railways, including embankments, ditches and safety zones, but excluding areas in tunnels/ under roads, other railways/buildings etc. or that share land use with road traffic, i.e. trams. In this case of multiple land use the transport area is regarded as road area.           ",
+        "A building is defined by the Swedish Planning and Building Act as:\r\nA permanent structure intended for occupation by people consisting of a roof and/or walls and is permanently placed on the ground or completely or partially below the ground or permanently placed in water.",
+        "Road area for car traffic. Includes peripheral areas such as ditches and safety zones, and, in some densely populated areas, sidewalks. Road area in tunnels is not per se connected to land use and therefore excluded."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Exploateringstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        4,
+        2,
+        6
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLän07EjAggr",
+                "label": "Counties",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän07EjAggr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Exploateringstyp": {
+          "label": "type of exploitation",
+          "category": {
+            "index": {
+              "BYGGN": 0,
+              "JVAG": 1,
+              "VAG": 2,
+              "TOT": 3
+            },
+            "label": {
+              "BYGGN": "building",
+              "JVAG": "railway",
+              "VAG": "road",
+              "TOT": "total, excluding overlap"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000006WZ": 0,
+              "000006WX": 1
+            },
+            "label": {
+              "000006WZ": "direct exploitation, in hectares",
+              "000006WX": "direct and indirect exploitation, in hectares"
+            },
+            "unit": {
+              "000006WZ": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000006WX": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000006WZ": "",
+              "000006WX": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000006WZ": "Flow",
+              "000006WX": "Flow"
+            },
+            "priceType": {
+              "000006WZ": "NotApplicable",
+              "000006WX": "NotApplicable"
+            },
+            "adjustment": {
+              "000006WZ": "None",
+              "000006WX": "None"
+            },
+            "alternativeText": {
+              "000006WZ": "Direct exploitation, in hectares",
+              "000006WX": "Direct and indirect exploitation, in hectares"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2020": 0,
+              "2021": 1,
+              "2022": 2,
+              "2023": 3,
+              "2024": 4,
+              "2025": 5
+            },
+            "label": {
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "MI1303",
+          "tableid": "TAB4312",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Exploitation of wetlands",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Exploateringstyp"
+          ],
+          "matrix": "TAB4312",
+          "subject-code": "MI",
+          "subject-area": "Environment"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4312",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4312",
+        "label": "Exploitation of wetlands by region and type of exploitation, in hectares. Year 2020-2025",
+        "description": "",
+        "sortCode": "082",
+        "updated": "2026-10-01T06:00:00Z",
+        "firstPeriod": "2020",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "type of exploitation",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "MI",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "MI",
+              "label": "Environment",
+              "sortCode": "Environment"
+            },
+            {
+              "id": "MI1303",
+              "label": "Sustainable Development Indicators",
+              "sortCode": "Sustainable Development Indicators"
+            },
+            {
+              "id": "MI1303B",
+              "label": "Thriving Wetlands",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4312?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4312?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4312/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4312/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

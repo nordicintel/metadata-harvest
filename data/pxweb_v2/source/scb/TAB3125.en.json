@@ -1,0 +1,399 @@
+{
+  "key": "scb/TAB3125/en",
+  "identifier": "TAB3125",
+  "language": "en",
+  "updated": "2026-10-08T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:16:16.412539+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Consumption of fuels in electricity generation by type of commodities and power plant. Year 1990-2025",
+      "source": "Swedish Energy Administration",
+      "updated": "2026-10-08T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:EN0105"
+            },
+            "href": "https://www.scb.se/EN0105-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Starting with reference year 2022, various kinds of wood waste are included in the category ”wood chips, wood waste, saw dust et al.”. Previous years, these have been included in the ”other fuels” category.",
+        "Starting with the reference year 2023, liquid biofuels (excl. black liquor, tall oil and pitch oil) are reported separately. In previous years this has been included in other fuels.",
+        "A redistribution from Heat only production to CHP production occurs when ORC technology is installed.",
+        "The data on fuel consumption for the production of electricity, steam and hot water for the years 1990-2008 has been corrected on 2010-12-09."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Prodslag",
+        "Bransle",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        8,
+        26,
+        1,
+        36
+      ],
+      "dimension": {
+        "Prodslag": {
+          "label": "type of power plants",
+          "category": {
+            "index": {
+              "Kraftvindkr": 0,
+              "Kraftvindkond": 1,
+              "Kraftvvarmkr": 2,
+              "Kravarmkond": 3,
+              "Kondensst": 4,
+              "Gasturbin": 5,
+              "Annan": 6,
+              "Sum": 7
+            },
+            "label": {
+              "Kraftvindkr": "autoproducer CHP-plants, Non-CHP",
+              "Kraftvindkond": "main activity producers CHP-plants, CHP ",
+              "Kraftvvarmkr": "main activity producers CHP plants, CHP production",
+              "Kravarmkond": "main activity producers CHP plants, CHP",
+              "Kondensst": "condensing power plants",
+              "Gasturbin": "gas-turbines (for reserve)",
+              "Annan": "other cycles",
+              "Sum": "sum"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Bransle": {
+          "label": "type of fuel",
+          "category": {
+            "index": {
+              "EO1": 0,
+              "E02": 1,
+              "E2-3": 2,
+              "E3-5": 3,
+              "E4": 4,
+              "E5": 5,
+              "bioolj": 6,
+              "skol": 7,
+              "torva": 8,
+              "trädbra": 9,
+              "trädbrb": 10,
+              "fot": 11,
+              "dies": 12,
+              "natgas": 13,
+              "deponi": 14,
+              "kok": 15,
+              "mas": 16,
+              "svart": 17,
+              "prop": 18,
+              "karn": 19,
+              "sop": 20,
+              "annat": 21,
+              "suma": 22,
+              "over": 23,
+              "sumb": 24,
+              "vkrprod": 25
+            },
+            "label": {
+              "EO1": "no. 1 Fuel oil",
+              "E02": "no. 2 Fuel oil",
+              "E2-3": "no. 2 and 3 Fuel oil",
+              "E3-5": "no. 3–5 Fuel oil",
+              "E4": "no. 4 Fuel oil",
+              "E5": "no 5 and heavier Fuel oils",
+              "bioolj": "liquid biofuels (excl. black liquor, spent liquor, tall oil and pitch oil)",
+              "skol": "hard coal",
+              "torva": "peat and peat briquettes",
+              "trädbra": "wood briquettes and pellets",
+              "trädbrb": "wood chips, wood waste, saw dust, et. Al",
+              "fot": "kerosene",
+              "dies": "diesel oil",
+              "natgas": "natural gas",
+              "deponi": "biogas",
+              "kok": "coke oven gas",
+              "mas": "blast furnace gas incl. LD-gas",
+              "svart": "black liquor, spent liquor, tall oil and pitch oil ",
+              "prop": "liquid petroleum gas (LPG)",
+              "karn": "nuclear fuel",
+              "sop": "municipal waste",
+              "annat": "other fuels",
+              "suma": "sum of fuels",
+              "over": "surplus steam",
+              "sumb": "sum of fuels and steam",
+              "vkrprod": "condensing power plants (incl. nuclear power)"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000005GI": 0
+            },
+            "label": {
+              "000005GI": "TJ"
+            },
+            "unit": {
+              "000005GI": {
+                "base": "TJ",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000005GI": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000005GI": "Flow"
+            },
+            "priceType": {
+              "000005GI": "NotApplicable"
+            },
+            "adjustment": {
+              "000005GI": "None"
+            },
+            "alternativeText": {
+              "000005GI": "Consumption of fuels in electricity generation, TJ"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1990": 0,
+              "1991": 1,
+              "1992": 2,
+              "1993": 3,
+              "1994": 4,
+              "1995": 5,
+              "1996": 6,
+              "1997": 7,
+              "1998": 8,
+              "1999": 9,
+              "2000": 10,
+              "2001": 11,
+              "2002": 12,
+              "2003": 13,
+              "2004": 14,
+              "2005": 15,
+              "2006": 16,
+              "2007": 17,
+              "2008": 18,
+              "2009": 19,
+              "2010": 20,
+              "2011": 21,
+              "2012": 22,
+              "2013": 23,
+              "2014": 24,
+              "2015": 25,
+              "2016": 26,
+              "2017": 27,
+              "2018": 28,
+              "2019": 29,
+              "2020": 30,
+              "2021": 31,
+              "2022": 32,
+              "2023": 33,
+              "2024": 34,
+              "2025": 35
+            },
+            "label": {
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true
+        },
+        "px": {
+          "infofile": "EN0105",
+          "tableid": "TAB3125",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Consumption of fuels in electricity generation, TJ",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Prodslag",
+            "Bransle"
+          ],
+          "matrix": "TAB3125",
+          "subject-code": "EN",
+          "subject-area": "Energy"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Evelina Viklöf",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 63 21",
+            "mail": "evelina.viklof@scb.se",
+            "raw": "Evelina Viklöf, Statistics Sweden# +46 010-479 63 21#evelina.viklof@scb.se"
+          },
+          {
+            "name": "Susanne Enmalm",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 69 63",
+            "mail": "susanne.enmalm@scb.se",
+            "raw": "Susanne Enmalm, Statistics Sweden# +46 010-479 69 63#susanne.enmalm@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3125",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3125",
+        "label": "Consumption of fuels in electricity generation by type of commodities and power plant. Year 1990-2025",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2026-10-08T06:00:00Z",
+        "firstPeriod": "1990",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "type of power plants",
+          "type of fuel",
+          "observations",
+          "year"
+        ],
+        "source": "Swedish Energy Administration",
+        "subjectCode": "EN",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "EN",
+              "label": "Energy",
+              "sortCode": "Energy"
+            },
+            {
+              "id": "EN0105",
+              "label": "Annual energy statistics (electricity, gas and district heating)",
+              "sortCode": "Annual energy statistics (electricity, gas and district heating)"
+            },
+            {
+              "id": "EN0105A",
+              "label": "Annual energy statistics",
+              "sortCode": "016"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3125?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3125?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3125/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3125/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

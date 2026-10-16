@@ -1,0 +1,348 @@
+{
+  "key": "scb/TAB1610/sv",
+  "identifier": "TAB1610",
+  "language": "sv",
+  "updated": "2015-12-07T08:30:00Z",
+  "retrieved_at": "2026-10-16T17:35:23.749675+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Ytor och antal för bostadslägenheter och lokaler i flerbostadshus efter region och fastighetsägarkategori.  (Urvalsundersökning, se fotnoter.) År 2003-2012",
+      "source": "SCB",
+      "updated": "2015-12-07T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Korrigering 2015-06-09\r\n För ett flertal observationer har ägarkategori kodats felaktigt inom grupperna Fysiska personer och Aktiebolag och dyl. Den presenterade statistiken i dessa ägarkategorier håller inte tillräckligt god kvalitet och därför har all statistik som publicerats för dessa ägarkategorier tagits bort för åren 2003-2012. Ingen statistik publiceras för dessa ägarkategorier från och med redovisningsår 2013. Redovisningsgruppen privatägda fastighter samtliga påverkas inte",
+        "Korrigering 2015-06-09\r\n I kolumnen för felmarginal har av misstag standardavvikelsen redovisats för åren 2003-2012. Detta är nu korrigerat.",
+        "Korrigering 2015-12-07\r\nDen korrigering av felmarginal som gjordes 2015-06-09 var felaktig. Felmarginalen är nu korrekt.",
+        "Med allmännyttigt bostadsföretag avses i denna redovisning aktiebolag, ekonomisk förening eller stiftelse som i sin verksamhet huvudsakligen förvaltar fastigheter  med bostadslägenheter upplåtna med hyresrätt och som tidigare godkänts som allmännyttigt bostadsföretag.",
+        "För allmännyttiga bostadsföretag påverkas totalbelopp av bortfall och övertäckning i populationen under respektive år. Antal företag i populationen varierar exempelvis på grund av sammanslagningar och uppdelningar av företag eller ändrad andel lokaler i beståndet. Resultatet i olika redovisningsgrupper påverkas också när företag hamnar i en ny storleksgrupp och av att olika företag ingår i bortfallet från år till år. Resultatet speglar inte hela beståndet av allmännyttiga bostadsföretag utan avser endast de allmännyttiga bostadsföretag som ingår i populationen för respektive år."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "AgareA",
+        "Lagenhetstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        8,
+        3,
+        4,
+        10
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0030": "Stor-Malmö",
+              "0040": "Kommuner med >75 000 inv. (exkl. storstadsområden)",
+              "0041": "Kommuner med <75 000 inv. (exkl. storstadsområden)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "AgareA": {
+          "label": "fastighetsägarkategori",
+          "category": {
+            "index": {
+              "37": 0,
+              "009": 1,
+              "006": 2,
+              "001": 3,
+              "003": 4,
+              "002": 5,
+              "004": 6,
+              "29": 7
+            },
+            "label": {
+              "37": "allmännyttiga bostadsföretag",
+              "009": "bostadsrättsföreningar",
+              "006": "privatägda fastigheter; samtliga",
+              "001": "privatägda fastigheter; samtliga aktiebolag o.dyl.",
+              "003": "privatägda fastigheter; samtliga fysiska personer",
+              "002": "privatägda fastigheter; aktiebolag o.dyl., fastigheter utan lokaler",
+              "004": "privatägda fastigheter; fysiska personer, fastigheter utan lokaler",
+              "29": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Lagenhetstyp": {
+          "label": "lägenhetstyp",
+          "category": {
+            "index": {
+              "10": 0,
+              "20": 1,
+              "TOTALT": 2
+            },
+            "label": {
+              "10": "bostadslägenheter",
+              "20": "lokaler",
+              "TOTALT": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0301M5": 0,
+              "BO0301M6": 1,
+              "BO0301M7": 2,
+              "BO0301M8": 3
+            },
+            "label": {
+              "BO0301M5": "Ytor, kvm",
+              "BO0301M6": "Felmarginal ytor ±",
+              "BO0301M7": "Antal",
+              "BO0301M8": "Felmarginal antal ±"
+            },
+            "unit": {
+              "BO0301M5": {
+                "base": "kvm",
+                "decimals": 0
+              },
+              "BO0301M6": {
+                "base": "kvm",
+                "decimals": 0
+              },
+              "BO0301M7": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "BO0301M8": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0301M5": "Kalenderår",
+              "BO0301M6": "Kalenderår",
+              "BO0301M7": "Kalenderår",
+              "BO0301M8": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301M5": "Stock",
+              "BO0301M6": "Stock",
+              "BO0301M7": "Stock",
+              "BO0301M8": "Stock"
+            },
+            "priceType": {
+              "BO0301M5": "NotApplicable",
+              "BO0301M6": "NotApplicable",
+              "BO0301M7": "NotApplicable",
+              "BO0301M8": "NotApplicable"
+            },
+            "adjustment": {
+              "BO0301M5": "None",
+              "BO0301M6": "None",
+              "BO0301M7": "None",
+              "BO0301M8": "None"
+            },
+            "alternativeText": {
+              "BO0301M5": "Ytor för lägenheter och lokaler i flerbostadshus (IKU), kvm",
+              "BO0301M6": "Felmarginal ytor ±, kvm",
+              "BO0301M7": "Antal lägenheter och lokaler i flerbostadshus (IKU)",
+              "BO0301M8": "Felmarginal antal ±"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2003": 0,
+              "2004": 1,
+              "2005": 2,
+              "2006": 3,
+              "2007": 4,
+              "2008": 5,
+              "2009": 6,
+              "2010": 7,
+              "2011": 8,
+              "2012": 9
+            },
+            "label": {
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1610",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Ytor och antal för lägenheter och lokaler i flerbostadshus (IKU)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "AgareA",
+            "Lagenhetstyp"
+          ],
+          "matrix": "TAB1610",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1610",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1610",
+        "label": "Ytor och antal för bostadslägenheter och lokaler i flerbostadshus efter region och fastighetsägarkategori.  (Urvalsundersökning, se fotnoter.) År 2003-2012",
+        "description": "",
+        "sortCode": "18",
+        "updated": "2015-12-07T08:30:00Z",
+        "firstPeriod": "2003",
+        "lastPeriod": "2012",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "fastighetsägarkategori",
+          "lägenhetstyp",
+          "tabellinnehåll",
+          "år"
+        ],
+        "discontinued": true,
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0301",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)"
+            },
+            {
+              "id": "BO0301J",
+              "label": "Äldre tabeller som inte uppdateras",
+              "sortCode": "03"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1610?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1610/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1610/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

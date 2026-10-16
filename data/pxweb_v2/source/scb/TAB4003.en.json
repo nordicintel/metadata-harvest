@@ -1,0 +1,454 @@
+{
+  "key": "scb/TAB4003/en",
+  "identifier": "TAB4003",
+  "language": "en",
+  "updated": "2022-04-28T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:13:27.169493+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Immigrants and emigrants 16–74 years of age by sex, age, national background, level of educational attainment and field of education (ISCED97, first digit). Year 1990-2021",
+      "source": "Statistics Sweden",
+      "updated": "2022-04-28T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0506"
+            },
+            "href": "https://www.scb.se/UF0506-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "For the 2000 version, the Swedish Register of Education underwent extensive quality improvements which led to a break in the time series and this means that comparisons with previous versions of the register must be done very carefully!     -1) SUN, the Swedish Educational Terminology, was adapted to the international terminology ISCED 97 (International Standard Classification of Education) with the new SUN 2000.    -2) A number of new data sources were added to the register. The most important new sources were:   -*Total higher education points from 1993 from the Higher Education Register*    -*Total KOMVUX (adult education) points from 1988*    -*Foreign educational programmes which are recognised by the National Agency for Higher Education*    -*The National Board of Healths register of healthcare and medical staff*."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "NationellBakgrund",
+        "UtbildningsNiva",
+        "UtbinriktnSUN2000",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        2,
+        6,
+        2,
+        8,
+        10,
+        2,
+        32
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "men",
+              "2": "women"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-34": 1,
+              "35-44": 2,
+              "45-54": 3,
+              "55-64": 4,
+              "65-74": 5
+            },
+            "label": {
+              "16-24": "16–24 years",
+              "25-34": "25–34 years",
+              "35-44": "35–44 years",
+              "45-54": "45–54 years",
+              "55-64": "55–64 years",
+              "65-74": "65–74 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "NationellBakgrund": {
+          "label": "national background",
+          "category": {
+            "index": {
+              "S": 0,
+              "U": 1
+            },
+            "label": {
+              "S": "born in Sweden",
+              "U": "born abroad"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildningsNiva": {
+          "label": "level of education",
+          "note": [
+            "The classification by level of educational attainment is according to the Swedish national educational classification (SUN)"
+          ],
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "5": 4,
+              "6": 5,
+              "7": 6,
+              "US": 7
+            },
+            "label": {
+              "1": "primary and secondary education less than 9 years (ISCED97 1)",
+              "2": "primary and secondary education 9-10 years (ISCED97 2)",
+              "3": "upper secondary education, 2 years or less (ISCED97 3C)",
+              "4": "upper secondary education 3 years (ISCED97 3A)",
+              "5": "post-secondary education, less than 3 years (ISCED97 4+5B)",
+              "6": "post-secondary education 3 years or more (ISCED97 5A)",
+              "7": "post-graduate education (ISCED97 6)",
+              "US": "no information about level of educational attainment"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbinriktnSUN2000": {
+          "label": "field of education SUN 2000",
+          "category": {
+            "index": {
+              "0": 0,
+              "1": 1,
+              "2": 2,
+              "3": 3,
+              "4": 4,
+              "5": 5,
+              "6": 6,
+              "7": 7,
+              "8": 8,
+              "9": 9
+            },
+            "label": {
+              "0": "general education",
+              "1": "teaching methods and teacher education",
+              "2": "humanities and arts",
+              "3": "social sciences, law, commerce, administration",
+              "4": "natural sciences, mathematics and computing",
+              "5": "engineering and manufacturing",
+              "6": "agriculture and forestry, veterinary medicine",
+              "7": "health care and nursing, social care",
+              "8": "services",
+              "9": "unknown"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "UF0506M7": 0,
+              "UF0506M8": 1
+            },
+            "label": {
+              "UF0506M7": "Immigrants",
+              "UF0506M8": "Emigrants"
+            },
+            "note": {
+              "UF0506M7": [
+                "Level of educational attainment for immigrants refer to the year after the immigration or education completed abroad that has later been reported to Statistics Sweden. Data for the latest year will be completed the following year. Education attained abroad is self-reported while education attained in Sweden in most cases are reported by educational institutions. A change in the question about level of attainment in the annual survey of educational background for recent immigrants 2003 affects comparability with earlier years for ISCED97 level 6.",
+                "In the Swedish Register of Education 2017, the annual survey “Education in a country other than Sweden” has been sent only to immigrants during the last year who don´t have information on educational attainment registered at the Swedish public employment service. The highest level of education registered at the source “Swedish public employment service” is “post-secondary education less than 3 years”."
+              ],
+              "UF0506M8": [
+                "Level of educational attainment for emmigrants refer to programs completed not later than the year of the emigration. Data for the latest year are not complete at the first time of publishing and are therefore updated the subsequent year."
+              ]
+            },
+            "unit": {
+              "UF0506M7": {
+                "base": "number of persons",
+                "decimals": 0
+              },
+              "UF0506M8": {
+                "base": "number of persons",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "UF0506M7": {
+                "0": true,
+                "1": true
+              },
+              "UF0506M8": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "UF0506M7": "Year",
+              "UF0506M8": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "UF0506M7": "Flow",
+              "UF0506M8": "Flow"
+            },
+            "priceType": {
+              "UF0506M7": "NotApplicable",
+              "UF0506M8": "NotApplicable"
+            },
+            "adjustment": {
+              "UF0506M7": "None",
+              "UF0506M8": "None"
+            },
+            "alternativeText": {
+              "UF0506M7": "Immigrants 16–74 years of age",
+              "UF0506M8": "Emigrants 16–74 years of age"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1990": 0,
+              "1991": 1,
+              "1992": 2,
+              "1993": 3,
+              "1994": 4,
+              "1995": 5,
+              "1996": 6,
+              "1997": 7,
+              "1998": 8,
+              "1999": 9,
+              "2000": 10,
+              "2001": 11,
+              "2002": 12,
+              "2003": 13,
+              "2004": 14,
+              "2005": 15,
+              "2006": 16,
+              "2007": 17,
+              "2008": 18,
+              "2009": 19,
+              "2010": 20,
+              "2011": 21,
+              "2012": 22,
+              "2013": 23,
+              "2014": 24,
+              "2015": 25,
+              "2016": 26,
+              "2017": 27,
+              "2018": 28,
+              "2019": 29,
+              "2020": 30,
+              "2021": 31
+            },
+            "label": {
+              "1990": "1990",
+              "1991": "1991",
+              "1992": "1992",
+              "1993": "1993",
+              "1994": "1994",
+              "1995": "1995",
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true
+        },
+        "px": {
+          "infofile": "UF0506",
+          "tableid": "TAB4003",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Immigrants and emigrants 16–74 years of age",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "NationellBakgrund",
+            "UtbildningsNiva",
+            "UtbinriktnSUN2000"
+          ],
+          "matrix": "TAB4003",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Tomas Westling",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 61 78",
+            "mail": "tomas.westling@scb.se",
+            "raw": "Tomas Westling, Statistics Sweden# +46 010-479 61 78#tomas.westling@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4003",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4003",
+        "label": "Immigrants and emigrants 16–74 years of age by sex, age, national background, level of educational attainment and field of education (ISCED97, first digit). Year 1990-2021",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2022-04-28T06:00:00Z",
+        "firstPeriod": "1990",
+        "lastPeriod": "2021",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "age",
+          "national background",
+          "level of education",
+          "field of education SUN 2000",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0506",
+              "label": "Educational attainment of the population",
+              "sortCode": "Educational attainment of the population"
+            },
+            {
+              "id": "UF0506B",
+              "label": "Educational attainment of the population",
+              "sortCode": "003"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4003?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4003?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4003/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4003/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,606 @@
+{
+  "key": "scb/TAB4879/en",
+  "identifier": "TAB4879",
+  "language": "en",
+  "updated": "2026-08-31T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:37:59.141233+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Life tables by level of education, county, sex and age. Period (2012-2016)-(2021-2025)",
+      "source": "Statistics Sweden",
+      "updated": "2026-08-31T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BE0701"
+            },
+            "href": "https://www.scb.se/BE0701-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The table is abridged with a summary for each age above 95, 95+. In this age interval the mortality risk is 1 000 per mille.",
+        "Life tables concern the population born in Sweden. This limitation has also been used in previous publications by Statistics Sweden on life expectancy at age 30 and 65 by level of education and county.",
+        "From 2021-2025 onwards, life table deaths, time in age, as well as time in age and above are no longer presented.",
+        "No calculation of life length is shown if the total number of deaths in the group is less than 100. This applies in most counties for women and men where there is no information about the level of educational attainment.",
+        "From the reference year 2025 onwards, a small controlled random uncertainty is introduced in reported data on mean population, number of deaths and number of deaths after the birthday. The uncertainty has been added to protect individuals so that no one risks being exposed in the statistics. As a result, the reported totals are not always equal to the sum of their reported components.  \r\n  \r\nIf reported statistical values are added together to create a new total, the uncertainty is also added. There is therefore a risk that the new total contains greater uncertainty than that which – under the method – would have been added to a single value.  \r\n  \r\nThe method used for disclosure control is called Cell Key Method (CKM). You can read more about the method here: [Protection methods for disclosure control] (https://www.scb.se/en/documentation/statististical-methods/protection-methods-for-disclosure-control/) and here: [Development of disclosure protection] (https://www.scb.se/en/documentation/statistical-areas-under-change/development-of-disclosure-protection/).",
+        "Correction 2026-08-31: Information for period 2021-2025 on mortality risks for ages 95 and older was revised.",
+        "Mortality risks in the highest ages, 90 and older, are based on a smoothing model. This is the same smoothing model that is used in the population statistics."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "geo": [
+          "Region"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "UtbildningsNiva",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        5,
+        3,
+        66,
+        10,
+        10
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "UtbildningsNiva": {
+          "label": "level of education",
+          "note": [
+            "The classification by level of educational attainment is according to the Swedish national educational classification (SUN)"
+          ],
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "21": 1,
+              "3+4": 2,
+              "8": 3,
+              "US": 4
+            },
+            "label": {
+              "TOTALT": "All educational levels",
+              "21": "primary and lower secondary education",
+              "3+4": "upper secondary education",
+              "8": "post secondary education",
+              "US": "no information about level of educational attainment"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2
+            },
+            "label": {
+              "010": "total men and women",
+              "020": "men",
+              "030": "women"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "30": 0,
+              "31": 1,
+              "32": 2,
+              "33": 3,
+              "34": 4,
+              "35": 5,
+              "36": 6,
+              "37": 7,
+              "38": 8,
+              "39": 9,
+              "40": 10,
+              "41": 11,
+              "42": 12,
+              "43": 13,
+              "44": 14,
+              "45": 15,
+              "46": 16,
+              "47": 17,
+              "48": 18,
+              "49": 19,
+              "50": 20,
+              "51": 21,
+              "52": 22,
+              "53": 23,
+              "54": 24,
+              "55": 25,
+              "56": 26,
+              "57": 27,
+              "58": 28,
+              "59": 29,
+              "60": 30,
+              "61": 31,
+              "62": 32,
+              "63": 33,
+              "64": 34,
+              "65": 35,
+              "66": 36,
+              "67": 37,
+              "68": 38,
+              "69": 39,
+              "70": 40,
+              "71": 41,
+              "72": 42,
+              "73": 43,
+              "74": 44,
+              "75": 45,
+              "76": 46,
+              "77": 47,
+              "78": 48,
+              "79": 49,
+              "80": 50,
+              "81": 51,
+              "82": 52,
+              "83": 53,
+              "84": 54,
+              "85": 55,
+              "86": 56,
+              "87": 57,
+              "88": 58,
+              "89": 59,
+              "90": 60,
+              "91": 61,
+              "92": 62,
+              "93": 63,
+              "94": 64,
+              "95+": 65
+            },
+            "label": {
+              "30": "30 years",
+              "31": "31 years",
+              "32": "32 years",
+              "33": "33 years",
+              "34": "34 years",
+              "35": "35 years",
+              "36": "36 years",
+              "37": "37 years",
+              "38": "38 years",
+              "39": "39 years",
+              "40": "40 years",
+              "41": "41 years",
+              "42": "42 years",
+              "43": "43 years",
+              "44": "44 years",
+              "45": "45 years",
+              "46": "46 years",
+              "47": "47 years",
+              "48": "48 years",
+              "49": "49 years",
+              "50": "50 years",
+              "51": "51 years",
+              "52": "52 years",
+              "53": "53 years",
+              "54": "54 years",
+              "55": "55 years",
+              "56": "56 years",
+              "57": "57 years",
+              "58": "58 years",
+              "59": "59 years",
+              "60": "60 years",
+              "61": "61 years",
+              "62": "62 years",
+              "63": "63 years",
+              "64": "64 years",
+              "65": "65 years",
+              "66": "66 years",
+              "67": "67 years",
+              "68": "68 years",
+              "69": "69 years",
+              "70": "70 years",
+              "71": "71 years",
+              "72": "72 years",
+              "73": "73 years",
+              "74": "74 years",
+              "75": "75 years",
+              "76": "76 years",
+              "77": "77 years",
+              "78": "78 years",
+              "79": "79 years",
+              "80": "80 years",
+              "81": "81 years",
+              "82": "82 years",
+              "83": "83 years",
+              "84": "84 years",
+              "85": "85 years",
+              "86": "86 years",
+              "87": "87 years",
+              "88": "88 years",
+              "89": "89 years",
+              "90": "90 years",
+              "91": "91 years",
+              "92": "92 years",
+              "93": "93 years",
+              "94": "94 years",
+              "95+": "95+ years"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002FE": 0,
+              "000002F6": 1,
+              "000002F8": 2,
+              "000002FC": 3,
+              "000002FB": 4,
+              "000002FD": 5,
+              "000002FA": 6,
+              "000002FF": 7,
+              "000002FG": 8,
+              "000002F9": 9
+            },
+            "label": {
+              "000002FE": "Mean population",
+              "000002F6": "Numbr of deaths",
+              "000002F8": "Number of deaths after the birthday",
+              "000002FC": "Mortality rate per 1 000",
+              "000002FB": "Mortality risk per 1 000",
+              "000002FD": "Out of 100 000 persons aged 30, number of persons still living ",
+              "000002FA": "Life table deaths",
+              "000002FF": "Time in age",
+              "000002FG": "Time in age and above",
+              "000002F9": "Number of remaining years"
+            },
+            "unit": {
+              "000002FE": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002F6": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002F8": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002FC": {
+                "base": "proportion",
+                "decimals": 2
+              },
+              "000002FB": {
+                "base": "proportion",
+                "decimals": 2
+              },
+              "000002FD": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002FA": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002FF": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002FG": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002F9": {
+                "base": "number",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002FE": "",
+              "000002F6": "",
+              "000002F8": "",
+              "000002FC": "",
+              "000002FB": "",
+              "000002FD": "",
+              "000002FA": "",
+              "000002FF": "",
+              "000002FG": "",
+              "000002F9": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002FE": "Flow",
+              "000002F6": "Flow",
+              "000002F8": "Flow",
+              "000002FC": "Flow",
+              "000002FB": "Flow",
+              "000002FD": "Flow",
+              "000002FA": "Flow",
+              "000002FF": "Flow",
+              "000002FG": "Flow",
+              "000002F9": "Flow"
+            },
+            "priceType": {
+              "000002FE": "NotApplicable",
+              "000002F6": "NotApplicable",
+              "000002F8": "NotApplicable",
+              "000002FC": "NotApplicable",
+              "000002FB": "NotApplicable",
+              "000002FD": "NotApplicable",
+              "000002FA": "NotApplicable",
+              "000002FF": "NotApplicable",
+              "000002FG": "NotApplicable",
+              "000002F9": "NotApplicable"
+            },
+            "adjustment": {
+              "000002FE": "None",
+              "000002F6": "None",
+              "000002F8": "None",
+              "000002FC": "None",
+              "000002FB": "None",
+              "000002FD": "None",
+              "000002FA": "None",
+              "000002FF": "None",
+              "000002FG": "None",
+              "000002F9": "None"
+            },
+            "alternativeText": {
+              "000002FE": "Mean population",
+              "000002F6": "Numbr of deaths",
+              "000002F8": "Number of deaths after the birthday",
+              "000002FC": "Mortality rate per 1 000",
+              "000002FB": "Mortality risk per 1 000",
+              "000002FD": "Out of 100 000 persons aged 30, number of persons still living ",
+              "000002FA": "Life table deaths",
+              "000002FF": "Time in age",
+              "000002FG": "Time in age and above",
+              "000002F9": "Number of remaining years"
+            }
+          }
+        },
+        "Tid": {
+          "label": "period",
+          "category": {
+            "index": {
+              "2012-2016": 0,
+              "2013-2017": 1,
+              "2014-2018": 2,
+              "2015-2019": 3,
+              "2016-2020": 4,
+              "2017-2021": 5,
+              "2018-2022": 6,
+              "2019-2023": 7,
+              "2020-2024": 8,
+              "2021-2025": 9
+            },
+            "label": {
+              "2012-2016": "2012-2016",
+              "2013-2017": "2013-2017",
+              "2014-2018": "2014-2018",
+              "2015-2019": "2015-2019",
+              "2016-2020": "2016-2020",
+              "2017-2021": "2017-2021",
+              "2018-2022": "2018-2022",
+              "2019-2023": "2019-2023",
+              "2020-2024": "2020-2024",
+              "2021-2025": "2021-2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "BE0701",
+          "tableid": "TAB4879",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Life tables",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "UtbildningsNiva",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB4879",
+          "subject-code": "BE",
+          "subject-area": "Population"
+        },
+        "contact": [
+          {
+            "name": "Demografi -",
+            "organization": "Statistics Sweden",
+            "phone": "-",
+            "mail": "demografi@scb.se",
+            "raw": "Demografi -, Statistics Sweden# - -#demografi@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4879",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4879",
+        "label": "Life tables by level of education, county, sex and age. Period (2012-2016)-(2021-2025)",
+        "description": "",
+        "sortCode": "001",
+        "updated": "2026-08-31T06:00:00Z",
+        "firstPeriod": "2012-2016",
+        "lastPeriod": "2021-2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "level of education",
+          "sex",
+          "age",
+          "observations",
+          "period"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "BE",
+        "timeUnit": "Other",
+        "paths": [
+          [
+            {
+              "id": "BE",
+              "label": "Population",
+              "sortCode": "Population"
+            },
+            {
+              "id": "BE0701",
+              "label": "Demographic Analysis",
+              "sortCode": "Demographic Analysis"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4879/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

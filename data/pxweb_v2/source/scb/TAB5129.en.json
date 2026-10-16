@@ -1,0 +1,467 @@
+{
+  "key": "scb/TAB5129/en",
+  "identifier": "TAB5129",
+  "language": "en",
+  "updated": "2026-03-20T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:14:03.002245+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Median age of applicants to higher vocational education, by sex, educational orientation and national background. Year 2014-2025",
+      "source": "Statistics Sweden",
+      "updated": "2026-03-20T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0701"
+            },
+            "href": "https://www.scb.se/UF0701-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The statistics refer to study sessions that started each year respectively. For example, applicants in 2015 refers to all those who applied to study sessions that began in 2015.",
+        "An applicant is defined by the following criteria:  \r\na) The applicant must have submitted an application that at the very least contains information about the applicant’s name and personal identity number (or name and date of birth).  \r\nb) The applicant has submitted their application within the application period (within the ordinary or extended application period). ",
+        "Statistics is counted net as the number of applicants,the number of qualified applicants and the number of admitted students at the start. This means that once the number of applicants is reported, grouped by various education data, such as field of education or county, the number of unique applicants per study domain is counted. Persons who have applied to several study programmes in different study domains are counted once in each domain.  \r\nThe number of admitted students at the start refers to the number of persons studying three weeks after the study session began.",
+        "Field of education MYH refers to the classification of programmes in the fields of education used by the Swedish National Agency for Higher Vocational Education (MYH). The fields of education are based on the SUN 2020 standard.",
+        "Swedish background: Persons born in Sweden with at least one parent also born in Sweden.\r\nForeign background: Persons born in Sweden whose parents were both born abroad, and persons born abroad.",
+        "To prevent disclosure of information, random rounding off was applied in the table.  Cell values 1 and 2 have been rounded off to either 0 or 3 with predetermined probabilities. This is why the study domains sometimes do not add up to the total.",
+        "Median age is calculated only if there are at least three people in each cell."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbildnInriktn",
+        "NationellBakgrund",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        27,
+        9,
+        3,
+        12
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "total",
+              "2": "women",
+              "1": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildnInriktn": {
+          "label": "educational orientation",
+          "category": {
+            "index": {
+              "TOTM": 0,
+              "1M": 1,
+              "2M": 2,
+              "3M": 3,
+              "4M": 4,
+              "5M": 5,
+              "6M": 6,
+              "7M": 7,
+              "8M": 8,
+              "9M": 9,
+              "11M": 10,
+              "12M": 11,
+              "13M": 12,
+              "14M": 13,
+              "15M": 14,
+              "16": 15,
+              "TOTS": 16,
+              "1S": 17,
+              "2S": 18,
+              "3S": 19,
+              "4S": 20,
+              "5S": 21,
+              "6S": 22,
+              "7S": 23,
+              "8S": 24,
+              "17": 25,
+              "TOT": 26
+            },
+            "label": {
+              "TOTM": "All fields of education",
+              "1M": "Computers/IT",
+              "2M": "Economics, administration and sales",
+              "3M": "Fitness and wellness",
+              "4M": "Hotel, restaurant and tourism",
+              "5M": "Health and medical care and social services",
+              "6M": "Journalism and information",
+              "7M": "Law",
+              "8M": "Culture, media and design",
+              "9M": "Agriculture, veterinary medicine, forestry and fisheries",
+              "11M": "Teaching methods and teaching",
+              "12M": "Civil and structural engineering",
+              "13M": "Security services",
+              "14M": "Technology and manufacturing",
+              "15M": "Transport services",
+              "16": "Other",
+              "TOTS": "All educational orientations",
+              "1S": "Teaching methods and teacher training",
+              "2S": "Humanities and the arts",
+              "3S": "Social science, law, trade, administration",
+              "4S": "Natural sciences, mathematics and Information and Communication Technologies (ICTs)",
+              "5S": "Technology and manufacturing",
+              "6S": "Agriculture and forestry, veterinary medicine",
+              "7S": "Health and medical care and social care",
+              "8S": "Services",
+              "17": "Unknown",
+              "TOT": "All educational orientations"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CUtbInrTot",
+                "label": "Total",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CUtbInrTot?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AUtbOmrMYH",
+                "label": "Field of education MYH",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AUtbOmrMYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BUtbInrSUN",
+                "label": "Educational orientation SUN 2020, 1-digit ",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BUtbInrSUN?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "NationellBakgrund": {
+          "label": "national background",
+          "category": {
+            "index": {
+              "TOTGR": 0,
+              "IF": 1,
+              "UF": 2,
+              "USGR": 3,
+              "TOTBAKGR": 4,
+              "SB": 5,
+              "UB": 6,
+              "USBAKGR": 7,
+              "TOT": 8
+            },
+            "label": {
+              "TOTGR": "Total",
+              "IF": "Swedish born",
+              "UF": "Foreign born",
+              "USGR": "Data not available",
+              "TOTBAKGR": "Total",
+              "SB": "Swedish background",
+              "UB": "Foreign background",
+              "USBAKGR": "Data not available",
+              "TOT": "Total"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_DFödelselandTot",
+                "label": "Total",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_DFödelselandTot?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AFödelselandGr",
+                "label": "Swedish/foreign born",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AFödelselandGr?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_CFödelselandBakgr",
+                "label": "Swedish/foreign background",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CFödelselandBakgr?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002YL": 0,
+              "000002YK": 1,
+              "000002YM": 2
+            },
+            "label": {
+              "000002YL": "Median age of applicants",
+              "000002YK": "Median age of qualified applicants",
+              "000002YM": "Median age of admitted students at start"
+            },
+            "unit": {
+              "000002YL": {
+                "base": "median",
+                "decimals": 1
+              },
+              "000002YK": {
+                "base": "median",
+                "decimals": 1
+              },
+              "000002YM": {
+                "base": "median",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002YL": "Year",
+              "000002YK": "Year",
+              "000002YM": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002YL": "Stock",
+              "000002YK": "Stock",
+              "000002YM": "Stock"
+            },
+            "priceType": {
+              "000002YL": "NotApplicable",
+              "000002YK": "NotApplicable",
+              "000002YM": "NotApplicable"
+            },
+            "adjustment": {
+              "000002YL": "None",
+              "000002YK": "None",
+              "000002YM": "None"
+            },
+            "alternativeText": {
+              "000002YL": "Median age of applicants to higher vocational education",
+              "000002YK": "Median age of qualified applicants to higher vocational education",
+              "000002YM": "Median age of admitted students at start, vocational higher education"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8,
+              "2023": 9,
+              "2024": 10,
+              "2025": 11
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "UF0701",
+          "tableid": "TAB5129",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Median age of applicants to higher vocational education",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbildnInriktn",
+            "NationellBakgrund"
+          ],
+          "matrix": "TAB5129",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, Statistics Sweden# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5129",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5129",
+        "label": "Median age of applicants to higher vocational education, by sex, educational orientation and national background. Year 2014-2025",
+        "description": "",
+        "sortCode": "11",
+        "updated": "2026-03-20T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "educational orientation",
+          "national background",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0701",
+              "label": "Higher Vocational Education",
+              "sortCode": "Higher Vocational Education"
+            },
+            {
+              "id": "UF0701A",
+              "label": "Applicants",
+              "sortCode": "022"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5129?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5129?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5129/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5129/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

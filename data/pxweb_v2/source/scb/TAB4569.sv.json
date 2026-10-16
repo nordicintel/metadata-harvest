@@ -1,0 +1,812 @@
+{
+  "key": "scb/TAB4569/sv",
+  "identifier": "TAB4569",
+  "language": "sv",
+  "updated": "2026-08-28T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:00:40.709569+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Regionernas köp och försäljning av verksamhet efter verksamhetsområde. År 2012-2025",
+      "source": "SCB",
+      "updated": "2026-08-28T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:OE0107"
+            },
+            "href": "https://www.scb.se/OE0107",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Rikstotalen för regionerna är exklusive Region Gotland.",
+        "Uppgifter avseende det senaste redovisningsåret är preliminära fram till den publicering som sker i augusti/september. Därefter ska uppgifterna för det senaste redovisningsåret, samt uppgifter avseende äldre år, betraktas som slutliga.  \r\n  \r\nFör mer information om årets planerade publiceringar, se publiceringskalendern.",
+        "2026-04-28: På grund av ett tekniskt fel vid publiceringen i augusti 2025 har uppgifter för region Dalarna (och därmed även uppgifter för riket) avseende årgång 2024 korrigerats."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Verksomrkom",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        41,
+        20,
+        14
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01L": 1,
+              "03L": 2,
+              "04L": 3,
+              "05L": 4,
+              "06L": 5,
+              "07L": 6,
+              "08L": 7,
+              "0980L": 8,
+              "10L": 9,
+              "12L": 10,
+              "13L": 11,
+              "14L": 12,
+              "17L": 13,
+              "18L": 14,
+              "19L": 15,
+              "20L": 16,
+              "21L": 17,
+              "22L": 18,
+              "23L": 19,
+              "24L": 20,
+              "25L": 21
+            },
+            "label": {
+              "00": "Riket",
+              "01L": "Region Stockholm",
+              "03L": "Region Uppsala",
+              "04L": "Region Sörmland",
+              "05L": "Region Östergötland",
+              "06L": "Region Jönköpings län",
+              "07L": "Region Kronoberg",
+              "08L": "Region Kalmar län",
+              "0980L": "Region Gotland",
+              "10L": "Region Blekinge",
+              "12L": "Region Skåne",
+              "13L": "Region Halland",
+              "14L": "Västra Götalandsregionen",
+              "17L": "Region Värmland",
+              "18L": "Region Örebro län",
+              "19L": "Region Västmanland",
+              "20L": "Region Dalarna",
+              "21L": "Region Gävleborg",
+              "22L": "Region Västernorrland",
+              "23L": "Region Jämtland Härjedalen",
+              "24L": "Region Västerbotten",
+              "25L": "Region Norrbotten"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionLandsting99ejAggr",
+                "label": "Regioner",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLandsting99ejAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Verksomrkom": {
+          "label": "verksamhetsområde",
+          "category": {
+            "index": {
+              "0": 0,
+              "010": 1,
+              "015": 2,
+              "020": 3,
+              "025": 4,
+              "030": 5,
+              "060": 6,
+              "080": 7,
+              "090": 8,
+              "1": 9,
+              "110": 10,
+              "120": 11,
+              "160": 12,
+              "180": 13,
+              "2": 14,
+              "210": 15,
+              "220": 16,
+              "260": 17,
+              "280": 18,
+              "3": 19,
+              "310": 20,
+              "320": 21,
+              "330": 22,
+              "340": 23,
+              "4": 24,
+              "410": 25,
+              "420": 26,
+              "430": 27,
+              "440": 28,
+              "450": 29,
+              "470": 30,
+              "490": 31,
+              "910": 32,
+              "5": 33,
+              "6": 34,
+              "7": 35,
+              "8": 36,
+              "920": 37,
+              "940-980": 38,
+              "Jamf": 39,
+              "0-9": 40
+            },
+            "label": {
+              "0": "PRIMÄRVÅRD, TOTALT",
+              "010": "Allmänläkarvård inkl. jourverksamhet",
+              "015": "Sjuksköterskevård inkl. jourverksamhet",
+              "020": "Mödrahälsovård",
+              "025": "Barnhälsovård",
+              "030": "Fysioterapi och arbetsterapi",
+              "060": "Primärvårdsansluten hemsjukvård",
+              "080": "Sluten primärvård",
+              "090": "Övrig primärvård",
+              "1": "SPECIALISERAD SOMATISK VÅRD, TOTALT",
+              "110": "Somatisk mottagningsverksamhet",
+              "120": "Somatisk dagsjukvård",
+              "160": "Somatisk hemsjukvård ",
+              "180": "Somatisk sluten vård ",
+              "2": "SPECIALISERAD PSYKIATRISK VÅRD, TOTALT",
+              "210": "Psykiatrisk mottagningsverksamhet ",
+              "220": "Psykiatrisk dagsjukvård",
+              "260": "Psykiatrisk hemsjukvård ",
+              "280": "Psykiatrisk sluten vård",
+              "3": "TANDVÅRD, TOTALT (exkl moms) ",
+              "310": "Allmäntandvård vuxna",
+              "320": "Regionens tandvårdsstöd ",
+              "330": "Allmäntandvård barn o ungdomar ",
+              "340": "Specialisttandvård ",
+              "4": "ÖVRIG HÄLSO- OCH SJUKVÅRD, TOTALT",
+              "410": "Ambulans- och sjuktransporter",
+              "420": "Sjukresor ",
+              "430": "Funktionshinder- /hjälpmedelsverksamhet",
+              "440": "Social verksamhet",
+              "450": "Folkhälsofrågor",
+              "470": "FoU avseende hälso- och sjukvård ",
+              "490": "Övrigt, övrig hälso- och sjukvård",
+              "910": "POLITISK VERKSAMHET AVSEENDE HÄLSO- OCH SJUKVÅRD",
+              "5": "UTBILDNING, TOTALT",
+              "6": "KULTUR, TOTALT",
+              "7": "TRAFIK OCH INFRASTRUKTUR, TOTALT",
+              "8": "ALLMÄN REGIONAL UTVECKLING, TOTALT",
+              "920": "POLITISK VERKSAMHET AVSEENDE REGIONAL UTVECKLING",
+              "940-980": "SERVICEVERKSAMHETER, TOTALT ",
+              "Jamf": "JÄMFÖRELSESTÖRANDE POSTER",
+              "0-9": "TOTALSUMMA"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_AggNivå2",
+                "label": "Aggregerad nivå",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_AggNivå2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Allmän2",
+                "label": "Allmän regional utveckling",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Allmän2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Kultur2",
+                "label": "Kultur",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Kultur2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_PolitiskHälso2",
+                "label": "Politisk verksamhet avseende hälso- och sjukvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_PolitiskHälso2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Regionutv2",
+                "label": "Politisk verksamhet avseende regional utveckling",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Regionutv2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Primärvård2",
+                "label": "Primärvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Primärvård2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Service2",
+                "label": "Serviceverksamhet",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Service2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SpecialPsy2",
+                "label": "Specialiserad psykiatrisk vård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SpecialPsy2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Specialiserad2",
+                "label": "Specialiserad somatisk vård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Specialiserad2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Tandvård2",
+                "label": "Tandvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Tandvård2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Totsum2",
+                "label": "Totalsumma",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Totsum2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Trafik2",
+                "label": "Trafik och infrastruktur",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Trafik2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_Utbildning2",
+                "label": "Utbildning",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_Utbildning2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_OvrigHälso2",
+                "label": "Övrig hälso- och sjukvård",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_OvrigHälso2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_VerksOmrKopLt",
+                "label": "Verksamhetsområden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_VerksOmrKopLt?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000000W9": 0,
+              "000000WB": 1,
+              "000000WC": 2,
+              "000000WD": 3,
+              "000000WE": 4,
+              "000000WF": 5,
+              "000000WG": 6,
+              "000000WH": 7,
+              "000000WI": 8,
+              "000000WJ": 9,
+              "000000ZC": 10,
+              "000000YQ": 11,
+              "000000Z9": 12,
+              "000000YP": 13,
+              "000000YO": 14,
+              "000000ZA": 15,
+              "000000ZB": 16,
+              "000000YM": 17,
+              "000000YN": 18,
+              "000000ZD": 19
+            },
+            "label": {
+              "000000W9": "Totalt köp av verksamhet",
+              "000000WB": "Köp från regioner",
+              "000000WC": "Köp från regionägda företag i egen KCR",
+              "000000WD": "Köp från kommuner inkl. Gotland",
+              "000000WE": "Köp från kommunalförbund",
+              "000000WF": "Köp från privata företag/vårdgivare",
+              "000000WG": "Köp från staten",
+              "000000WH": "Köp från ideella föreningar och stiftelser",
+              "000000WI": "Köp från hushåll och individer",
+              "000000WJ": "Köp från utlandet",
+              "000000ZC": "Totalt försäljning av verksamhet",
+              "000000YQ": "Försäljning till regioner",
+              "000000Z9": "Försäljning till regionägda företag i egen KCR",
+              "000000YP": "Försäljning till kommuner inkl. Gotland",
+              "000000YO": "Försäljning till kommunalförbund",
+              "000000ZA": "Försäljning till privata företag/vårdgivare",
+              "000000ZB": "Försäljning till staten",
+              "000000YM": "Försäljning till ideella föreingar och stiftelser",
+              "000000YN": "Försäljning till hushåll och individer",
+              "000000ZD": "Försäljning till utlandet"
+            },
+            "unit": {
+              "000000W9": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WB": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WC": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WD": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WE": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WF": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WG": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WH": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WI": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000WJ": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000ZC": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000YQ": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000Z9": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000YP": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000YO": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000ZA": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000ZB": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000YM": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000YN": {
+                "base": "miljoner kr",
+                "decimals": 0
+              },
+              "000000ZD": {
+                "base": "miljoner kr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000000W9": "Under året",
+              "000000WB": "Under året",
+              "000000WC": "Under året",
+              "000000WD": "Under året",
+              "000000WE": "Under året",
+              "000000WF": "Under året",
+              "000000WG": "Under året",
+              "000000WH": "Under året",
+              "000000WI": "Under året",
+              "000000WJ": "Under året",
+              "000000ZC": "Under året",
+              "000000YQ": "Under året",
+              "000000Z9": "Under året",
+              "000000YP": "Under året",
+              "000000YO": "Under året",
+              "000000ZA": "Under året",
+              "000000ZB": "Under året",
+              "000000YM": "Under året",
+              "000000YN": "Under året",
+              "000000ZD": "Under året"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000W9": "Flow",
+              "000000WB": "Flow",
+              "000000WC": "Flow",
+              "000000WD": "Flow",
+              "000000WE": "Flow",
+              "000000WF": "Flow",
+              "000000WG": "Flow",
+              "000000WH": "Flow",
+              "000000WI": "Flow",
+              "000000WJ": "Flow",
+              "000000ZC": "Flow",
+              "000000YQ": "Flow",
+              "000000Z9": "Flow",
+              "000000YP": "Flow",
+              "000000YO": "Flow",
+              "000000ZA": "Flow",
+              "000000ZB": "Flow",
+              "000000YM": "Flow",
+              "000000YN": "Flow",
+              "000000ZD": "Flow"
+            },
+            "priceType": {
+              "000000W9": "Current",
+              "000000WB": "Current",
+              "000000WC": "Current",
+              "000000WD": "Current",
+              "000000WE": "Current",
+              "000000WF": "Current",
+              "000000WG": "Current",
+              "000000WH": "Current",
+              "000000WI": "Current",
+              "000000WJ": "Current",
+              "000000ZC": "Current",
+              "000000YQ": "Current",
+              "000000Z9": "Current",
+              "000000YP": "Current",
+              "000000YO": "Current",
+              "000000ZA": "Current",
+              "000000ZB": "Current",
+              "000000YM": "Current",
+              "000000YN": "Current",
+              "000000ZD": "Current"
+            },
+            "adjustment": {
+              "000000W9": "None",
+              "000000WB": "None",
+              "000000WC": "None",
+              "000000WD": "None",
+              "000000WE": "None",
+              "000000WF": "None",
+              "000000WG": "None",
+              "000000WH": "None",
+              "000000WI": "None",
+              "000000WJ": "None",
+              "000000ZC": "None",
+              "000000YQ": "None",
+              "000000Z9": "None",
+              "000000YP": "None",
+              "000000YO": "None",
+              "000000ZA": "None",
+              "000000ZB": "None",
+              "000000YM": "None",
+              "000000YN": "None",
+              "000000ZD": "None"
+            },
+            "alternativeText": {
+              "000000W9": "Totala köp av verksamhet av regioner, mnkr, löpande priser",
+              "000000WB": "Köp av regioner från regioner i mnkr, löpande priser",
+              "000000WC": "Köp av regioner från regionägda företag i egen KCR i mnkr, löpande priser",
+              "000000WD": "Köp av regioner från kommuner inkl. Gotland i mnkr, löpande priser",
+              "000000WE": "Köp av regioner från kommunalförbund i mnkr, löpande priser",
+              "000000WF": "Köp av regioner från privata företag/vårdgivare i mnkr, löpande priser",
+              "000000WG": "Köp av regioner från staten i mnkr, löpande priser",
+              "000000WH": "Köp av regioner från ideella föreningar och stiftelser i mnkr, löpande priser",
+              "000000WI": "Köp av regioner från hushåll och individer i mnkr, löpande priser",
+              "000000WJ": "Köp av regioner från utlandet i mnkr, löpande priser",
+              "000000ZC": "Totalt försäljning av verksamhet i mnkr, löpande priser",
+              "000000YQ": "Försäljning till regioner i mnkr, löpande priser",
+              "000000Z9": "Försäljning till regionägda företag i egen KCR i mnkr, löpande priser",
+              "000000YP": "Försäljning till kommuner inkl. Gotland i mnkr, löpande priser",
+              "000000YO": "Försäljning till kommunalförbund i mnkr, löpande priser",
+              "000000ZA": "Försäljning till privata företag/vårdgivare i mnkr, löpande priser",
+              "000000ZB": "Försäljning till staten i mnkr, löpande priser",
+              "000000YM": "Försäljning till ideella föreingar och stiftelser i mnkr, löpande priser",
+              "000000YN": "Försäljning till hushåll och individer i mnkr, löpande priser",
+              "000000ZD": "Försäljning till utlandet i mnkr, löpande priser"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2012": 0,
+              "2013": 1,
+              "2014": 2,
+              "2015": 3,
+              "2016": 4,
+              "2017": 5,
+              "2018": 6,
+              "2019": 7,
+              "2020": 8,
+              "2021": 9,
+              "2022": 10,
+              "2023": 11,
+              "2024": 12,
+              "2025": 13
+            },
+            "label": {
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "OE0107",
+          "tableid": "TAB4569",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Regionernas köp och försäljning av verksamhet i mnkr, löpande priser",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Verksomrkom"
+          ],
+          "matrix": "TAB4569",
+          "subject-code": "OE",
+          "subject-area": "Offentlig ekonomi"
+        },
+        "contact": [
+          {
+            "name": "Barbro von Hofsten",
+            "organization": "SCB",
+            "phone": "010-479 67 24",
+            "mail": "barbro.vonhofsten@scb.se",
+            "raw": "Barbro von Hofsten, SCB# +46 010-479 67 24#barbro.vonhofsten@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4569",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4569",
+        "label": "Regionernas köp och försäljning av verksamhet efter verksamhetsområde. År 2012-2025",
+        "description": "",
+        "sortCode": "390",
+        "updated": "2026-08-28T06:00:00Z",
+        "firstPeriod": "2012",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "verksamhetsområde",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "OE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "OE",
+              "label": "Offentlig ekonomi",
+              "sortCode": "Offentlig ekonomi"
+            },
+            {
+              "id": "OE0107",
+              "label": "Räkenskapssammandrag för kommuner och regioner",
+              "sortCode": "Räkenskapssammandrag för kommuner och regioner"
+            },
+            {
+              "id": "OE0107D",
+              "label": "Verksamhetsindelad statistik för regioner",
+              "sortCode": "04"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4569?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4569?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4569/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4569/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

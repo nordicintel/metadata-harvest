@@ -1,0 +1,390 @@
+{
+  "key": "scb/TAB4282/en",
+  "identifier": "TAB4282",
+  "language": "en",
+  "updated": "2023-10-04T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:21:28.748863+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Costs and price in newly constructed buildings (tenant-owned dwellings) by region and dwelling type. Year 2014-2022",
+      "source": "Statistics Sweden",
+      "updated": "2023-10-04T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0404"
+            },
+            "href": "https://www.scb.se/BO0404-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Lagenhetstyp",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        9,
+        7,
+        9
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Sweden",
+              "0010": "Greater Stockholm",
+              "0020": "Greater Göteborg",
+              "0030": "Greater Malmö",
+              "0040": "Municipalities with  >75000 inhabitants (excluding metropolitan areas)",
+              "0041": "Municipalities with  <75000 inhabitants (excluding metropolitan areas)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_RegionRiket98",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket98?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionStorstad98B",
+                "label": "Metropolitan areas and municipality groups",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionStorstad98B?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Lagenhetstyp": {
+          "label": "size of dwelling",
+          "category": {
+            "index": {
+              "1RKV": 0,
+              "1RK": 1,
+              "2RK": 2,
+              "3RK": 3,
+              "4RK": 4,
+              "5RK": 5,
+              "6+RK": 6,
+              "ÖVRIGA": 7,
+              "TOT": 8
+            },
+            "label": {
+              "1RKV": "1 room and kitchenette",
+              "1RK": "1 room and kitchen",
+              "2RK": "2 rooms and kitchen",
+              "3RK": "3 rooms and kitchen",
+              "4RK": "4 rooms and kitchen",
+              "5RK": "5 rooms and kitchen",
+              "6+RK": "6 or more rooms and kitchen",
+              "ÖVRIGA": "other",
+              "TOT": "all dwelling types"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000000E7": 0,
+              "000000E8": 1,
+              "000000E9": 2,
+              "000000EA": 3,
+              "000000EB": 4,
+              "000000EC": 5,
+              "000000ED": 6
+            },
+            "label": {
+              "000000E7": "Dwellings, number",
+              "000000E8": "Useful floor space per dwelling, square metres",
+              "000000E9": "Annual cost per square metre, SEK",
+              "000000EA": "Annual cost per dwelling, SEK",
+              "000000EB": "Monthly cost (annual cost/12) per dwelling, SEK",
+              "000000EC": "Price per square metre, SEK",
+              "000000ED": "Price per dwelling, SEK"
+            },
+            "note": {
+              "000000E7": [
+                "From the 2014 survey onwards, we do not provide a count of dwellings in the statistics. Please note that the figures for number of dwellings are not comparable with the figures for number of dwellings back in time."
+              ]
+            },
+            "unit": {
+              "000000E7": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000000E8": {
+                "base": "square metre per dwelling",
+                "decimals": 0
+              },
+              "000000E9": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "000000EA": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "000000EB": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "000000EC": {
+                "base": "SEK",
+                "decimals": 0
+              },
+              "000000ED": {
+                "base": "SEK",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "000000E7": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "000000E7": "31 December of each year",
+              "000000E8": "31 December of each year",
+              "000000E9": "31 December of each year",
+              "000000EA": "31 December of each year",
+              "000000EB": "31 December of each year",
+              "000000EC": "31 December of each year",
+              "000000ED": "31 December of each year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000000E7": "Stock",
+              "000000E8": "Stock",
+              "000000E9": "Stock",
+              "000000EA": "Stock",
+              "000000EB": "Stock",
+              "000000EC": "Stock",
+              "000000ED": "Stock"
+            },
+            "priceType": {
+              "000000E7": "NotApplicable",
+              "000000E8": "NotApplicable",
+              "000000E9": "Current",
+              "000000EA": "Current",
+              "000000EB": "Current",
+              "000000EC": "Current",
+              "000000ED": "Current"
+            },
+            "adjustment": {
+              "000000E7": "None",
+              "000000E8": "None",
+              "000000E9": "None",
+              "000000EA": "None",
+              "000000EB": "None",
+              "000000EC": "None",
+              "000000ED": "None"
+            },
+            "alternativeText": {
+              "000000E7": "Dwellings in newly constructed buildings (tenant-owned dwellings)",
+              "000000E8": "Useful floor space per dwelling in newly constructed buildings (tenant-owned dwellings), square metres",
+              "000000E9": "Annual dwelling costs per square metre in newly constructed buildings, (tenant-owned dwellings), SEK",
+              "000000EA": "Annual dwelling costs per dwelling in newly constructed buildings (tenant-owned dwellings) SEK",
+              "000000EB": "Monthly cost (annual cost/12) per dwelling in newly constructed buildings (tenant-owned dwellings), SEK",
+              "000000EC": "Price per square metre in newly constructed buildings (tenant-owned dwellings), SEK",
+              "000000ED": "Price per dwelling in newly constructed buildings (tenant-owned dwellings), SEK"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5,
+              "2020": 6,
+              "2021": 7,
+              "2022": 8
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "BO0404",
+          "tableid": "TAB4282",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Newly constructed buildings (tenant-owned dwellings)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Lagenhetstyp"
+          ],
+          "matrix": "TAB4282",
+          "subject-code": "BO",
+          "subject-area": "Housing, construction and building"
+        },
+        "contact": [
+          {
+            "name": "Tommy Lindkvist",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 47 26",
+            "mail": "tommy.lindkvist@scb.se",
+            "raw": "Tommy Lindkvist, Statistics Sweden# +46 010-479 47 26#tommy.lindkvist@scb.se"
+          },
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "Statistics Sweden",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, Statistics Sweden# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4282",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4282",
+        "label": "Costs and price in newly constructed buildings (tenant-owned dwellings) by region and dwelling type. Year 2014-2022",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2023-10-04T06:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2022",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "size of dwelling",
+          "observations",
+          "year"
+        ],
+        "discontinued": true,
+        "source": "Statistics Sweden",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Housing, construction and building",
+              "sortCode": "Housing, construction and building"
+            },
+            {
+              "id": "BO0404",
+              "label": "Charges/rents for newly constructed dwellings",
+              "sortCode": "Charges/rents for newly constructed dwellings"
+            },
+            {
+              "id": "BO0404B",
+              "label": "Rented dwellings and tenant-owned dwellings. Old tables – not updated. Year 2014-2022",
+              "sortCode": "02"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4282?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4282?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4282/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4282/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

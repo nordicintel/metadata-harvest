@@ -1,0 +1,496 @@
+{
+  "key": "scb/TAB2982/en",
+  "identifier": "TAB2982",
+  "language": "en",
+  "updated": "2026-10-16T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:24:52.413546+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Average number of working hours (by agreement) per week for employed persons aged 15-74 (LFS) by industrial classification NACE Rev. 2.0 and sex. Quarter 2005K1-2026K3",
+      "source": "Statistics Sweden",
+      "updated": "2026-10-16T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "For the period 2021 to 2022, only agreed working hours in the main occupation are intended. This then agreed working time in the secondary job has not been collected since the implementation of EU regulation 2019/1700. As of January 2023, the question regarding agreed working hours in secondary jobs was reintroduced and total agreed working hours is thus reported.",
+        "Due to a lack of comparability over time, which has not been able to be adjusted through linking, series regarding agreed working hours for the time period 2005–2020 are dotted."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "SNI2007",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        17,
+        3,
+        2,
+        87
+      ],
+      "dimension": {
+        "SNI2007": {
+          "label": "industrial classification (NACE Rev. 2)",
+          "category": {
+            "index": {
+              "A-U": 0,
+              "A-U+UT": 1,
+              "01-03": 2,
+              "05-33+35-39": 3,
+              "25-30+33": 4,
+              "41-43": 5,
+              "45-47": 6,
+              "49-53": 7,
+              "55-56": 8,
+              "58-63": 9,
+              "64-82": 10,
+              "84+99": 11,
+              "85": 12,
+              "86-88": 13,
+              "90-98": 14,
+              "UT": 15,
+              "US": 16
+            },
+            "label": {
+              "A-U": "all industries",
+              "A-U+UT": "all sectors including work abroad",
+              "01-03": "agriculture, forestry, fishing",
+              "05-33+35-39": "manufacturing, mining and quarrying, energy and environment",
+              "25-30+33": "manufacturing of metal products, machinery and equipment",
+              "41-43": "construction",
+              "45-47": "trade",
+              "49-53": "transport",
+              "55-56": "accommodation and food services",
+              "58-63": "information and communication",
+              "64-82": "financial operations, business services",
+              "84+99": "public administration etc.",
+              "85": "education",
+              "86-88": "human health and social work activities",
+              "90-98": "personal and cultural services",
+              "UT": "work abroad",
+              "US": "information missing"
+            },
+            "note": {
+              "25-30+33": [
+                "25-30+33 manufacturing of metal products, machinery and equipment is a subset of 05-33+35-39 manufacturing, mining and quarrying, energy and environment"
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "25-30+33": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "AM04013A": 0,
+              "AM04013B": 1
+            },
+            "label": {
+              "AM04013A": "Average number of working hours",
+              "AM04013B": "Margin of error ±"
+            },
+            "note": {
+              "AM04013B": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "AM04013A": {
+                "base": "number of hours",
+                "decimals": 1
+              },
+              "AM04013B": {
+                "base": "number of hours",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "AM04013B": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "AM04013A": "",
+              "AM04013B": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM04013A": "Average",
+              "AM04013B": "Average"
+            },
+            "priceType": {
+              "AM04013A": "NotApplicable",
+              "AM04013B": "NotApplicable"
+            },
+            "adjustment": {
+              "AM04013A": "None",
+              "AM04013B": "None"
+            },
+            "alternativeText": {
+              "AM04013A": "Average number of working hours (by agreement) per week for employed persons aged 15-74 (LFS)",
+              "AM04013B": "Margin of error ±, average number of working hours (by agreement) per week for employed persons aged 15-74 (LFS)"
+            }
+          }
+        },
+        "Tid": {
+          "label": "quarter",
+          "category": {
+            "index": {
+              "2005K1": 0,
+              "2005K2": 1,
+              "2005K3": 2,
+              "2005K4": 3,
+              "2006K1": 4,
+              "2006K2": 5,
+              "2006K3": 6,
+              "2006K4": 7,
+              "2007K1": 8,
+              "2007K2": 9,
+              "2007K3": 10,
+              "2007K4": 11,
+              "2008K1": 12,
+              "2008K2": 13,
+              "2008K3": 14,
+              "2008K4": 15,
+              "2009K1": 16,
+              "2009K2": 17,
+              "2009K3": 18,
+              "2009K4": 19,
+              "2010K1": 20,
+              "2010K2": 21,
+              "2010K3": 22,
+              "2010K4": 23,
+              "2011K1": 24,
+              "2011K2": 25,
+              "2011K3": 26,
+              "2011K4": 27,
+              "2012K1": 28,
+              "2012K2": 29,
+              "2012K3": 30,
+              "2012K4": 31,
+              "2013K1": 32,
+              "2013K2": 33,
+              "2013K3": 34,
+              "2013K4": 35,
+              "2014K1": 36,
+              "2014K2": 37,
+              "2014K3": 38,
+              "2014K4": 39,
+              "2015K1": 40,
+              "2015K2": 41,
+              "2015K3": 42,
+              "2015K4": 43,
+              "2016K1": 44,
+              "2016K2": 45,
+              "2016K3": 46,
+              "2016K4": 47,
+              "2017K1": 48,
+              "2017K2": 49,
+              "2017K3": 50,
+              "2017K4": 51,
+              "2018K1": 52,
+              "2018K2": 53,
+              "2018K3": 54,
+              "2018K4": 55,
+              "2019K1": 56,
+              "2019K2": 57,
+              "2019K3": 58,
+              "2019K4": 59,
+              "2020K1": 60,
+              "2020K2": 61,
+              "2020K3": 62,
+              "2020K4": 63,
+              "2021K1": 64,
+              "2021K2": 65,
+              "2021K3": 66,
+              "2021K4": 67,
+              "2022K1": 68,
+              "2022K2": 69,
+              "2022K3": 70,
+              "2022K4": 71,
+              "2023K1": 72,
+              "2023K2": 73,
+              "2023K3": 74,
+              "2023K4": 75,
+              "2024K1": 76,
+              "2024K2": 77,
+              "2024K3": 78,
+              "2024K4": 79,
+              "2025K1": 80,
+              "2025K2": 81,
+              "2025K3": 82,
+              "2025K4": 83,
+              "2026K1": 84,
+              "2026K2": 85,
+              "2026K3": 86
+            },
+            "label": {
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2",
+              "2026K3": "2026K3"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB2982",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Average number of working hours (by agreement) per week for employed persons aged 15-74 (LFS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "SNI2007",
+            "Kon"
+          ],
+          "matrix": "TAB2982",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2982",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2982",
+        "label": "Average number of working hours (by agreement) per week for employed persons aged 15-74 (LFS) by industrial classification NACE Rev. 2.0 and sex. Quarter 2005K1-2026K3",
+        "description": "",
+        "sortCode": "008",
+        "updated": "2026-10-16T06:00:00Z",
+        "firstPeriod": "2005K1",
+        "lastPeriod": "2026K3",
+        "category": "public",
+        "variableNames": [
+          "industrial classification (NACE Rev. 2)",
+          "sex",
+          "observations",
+          "quarter"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0401",
+              "label": "Labour Force Surveys (LFS)",
+              "sortCode": "Labour Force Surveys (LFS)"
+            },
+            {
+              "id": "AM0401B",
+              "label": "Hours worked by industrial classification (NACE Rev. 2) from 2005",
+              "sortCode": "005"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2982?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2982?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2982/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2982/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

@@ -1,0 +1,682 @@
+{
+  "key": "scb/TAB4089/en",
+  "identifier": "TAB4089",
+  "language": "en",
+  "updated": "2015-02-12T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:29:23.517177+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Employees 16-64 years by region of residence, occupation (3-digit SSYK 96), age and sex. Year 2001-2013",
+      "source": "Statistics Sweden",
+      "updated": "2015-02-12T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0208"
+            },
+            "href": "https://www.scb.se/AM0208-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The gainfully employed population comprises any person who has worked for at least one hour per week during the month of November. Those temporarily absent during the survey period, for instance due to sick leave, are also included. The same definition is being used in the register-based labour market statistics (RAMS).",
+        "Some changes have been done as from 2004 years version regarding data over employment. A new source to identify entrepreneurs has been used as well as a minor adjustment to classify employees. For more information see www.scb.se/yrke.",
+        "Comparisons between separate years should be done with caution. Factors that may complicate such comparisons are new data sources for the Swedish Standard Classification of Occupations (SSYK), improvements and changes in the sources underlying classifications. Starting in 2008 SSYK is based on new classification for municipalities and counties. As a result, several changes have been made in SSYK."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Yrke",
+        "Alder",
+        "Kon",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        22,
+        114,
+        10,
+        2,
+        1,
+        13
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21
+            },
+            "label": {
+              "00": "Sweden",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county"
+            },
+            "note": {
+              "03": [
+                "Heby municipality was transferred from Västmanland county to Uppsala county, in 2007. The new code for Heby municipality is 0331. The new classification can be used from year 2006."
+              ],
+              "19": [
+                "Heby municipality was transferred from Västmanland county to Uppsala county, in 2007. The new code for Heby municipality is 0331. The new classification can be used from year 2006."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "03": {
+                "0": true
+              },
+              "19": {
+                "0": true
+              }
+            },
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS2_1",
+                "label": "NUTS 2 level -2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_1?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3",
+                "label": "NUTS 3 level -2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän99",
+                "label": "County",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionRiket99",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionRiket99?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Yrke": {
+          "label": "occupation",
+          "category": {
+            "index": {
+              "011": 0,
+              "111": 1,
+              "112": 2,
+              "121": 3,
+              "122": 4,
+              "123": 5,
+              "131": 6,
+              "211": 7,
+              "212": 8,
+              "213": 9,
+              "214": 10,
+              "221": 11,
+              "222": 12,
+              "223": 13,
+              "231": 14,
+              "232": 15,
+              "233": 16,
+              "234": 17,
+              "235": 18,
+              "241": 19,
+              "242": 20,
+              "243": 21,
+              "244": 22,
+              "245": 23,
+              "246": 24,
+              "247": 25,
+              "248": 26,
+              "249": 27,
+              "311": 28,
+              "312": 29,
+              "313": 30,
+              "314": 31,
+              "315": 32,
+              "321": 33,
+              "322": 34,
+              "323": 35,
+              "324": 36,
+              "331": 37,
+              "332": 38,
+              "341": 39,
+              "342": 40,
+              "343": 41,
+              "344": 42,
+              "345": 43,
+              "346": 44,
+              "347": 45,
+              "348": 46,
+              "411": 47,
+              "412": 48,
+              "413": 49,
+              "414": 50,
+              "415": 51,
+              "419": 52,
+              "421": 53,
+              "422": 54,
+              "511": 55,
+              "512": 56,
+              "513": 57,
+              "514": 58,
+              "515": 59,
+              "521": 60,
+              "522": 61,
+              "611": 62,
+              "612": 63,
+              "613": 64,
+              "614": 65,
+              "615": 66,
+              "711": 67,
+              "712": 68,
+              "713": 69,
+              "714": 70,
+              "721": 71,
+              "722": 72,
+              "723": 73,
+              "724": 74,
+              "731": 75,
+              "732": 76,
+              "733": 77,
+              "734": 78,
+              "741": 79,
+              "742": 80,
+              "743": 81,
+              "744": 82,
+              "811": 83,
+              "812": 84,
+              "813": 85,
+              "814": 86,
+              "815": 87,
+              "816": 88,
+              "817": 89,
+              "821": 90,
+              "822": 91,
+              "823": 92,
+              "824": 93,
+              "825": 94,
+              "826": 95,
+              "827": 96,
+              "828": 97,
+              "829": 98,
+              "831": 99,
+              "832": 100,
+              "833": 101,
+              "834": 102,
+              "911": 103,
+              "912": 104,
+              "913": 105,
+              "914": 106,
+              "915": 107,
+              "919": 108,
+              "921": 109,
+              "931": 110,
+              "932": 111,
+              "933": 112,
+              "0002": 113
+            },
+            "label": {
+              "011": "Armed forces",
+              "111": "Legislators and senior government officials",
+              "112": "Senior officials of special-interest organisations",
+              "121": "Directors and chief executives",
+              "122": "Production and operations managers",
+              "123": "Other specialist managers",
+              "131": "Managers of small enterprises",
+              "211": "Physicists, chemists and related professionals",
+              "212": "Mathematicians and statisticians",
+              "213": "Computing professionals",
+              "214": "Architects, engineers and related professionals",
+              "221": "Life science professionals",
+              "222": "Health professionals (except nursing)",
+              "223": "Nursing and midwifery professionals",
+              "231": "College, university and higher education teaching professionals",
+              "232": "Secondary education teaching professionals",
+              "233": "Primary education teaching professionals",
+              "234": "Special education teaching professionals",
+              "235": "Other teaching professionals",
+              "241": "Business professionals",
+              "242": "Legal professionals",
+              "243": "Archivists, librarians and related information professionals",
+              "244": "Social science and linguistics professionals (except social work professionals)",
+              "245": "Writers and creative or performing artists",
+              "246": "Religious professionals",
+              "247": "Public service administrative professionals",
+              "248": "Administrative professionals of special-interest organisations",
+              "249": "Psychologists, social work and related professionals",
+              "311": "Physical and engineering science technicians",
+              "312": "Computer associate professionals",
+              "313": "Optical and electronic equipment operators",
+              "314": "Ship and aircraft controllers and technicians",
+              "315": "Safety and quality inspectors",
+              "321": "Agronomy and forestry technicians",
+              "322": "Health associate professionals (except nursing)",
+              "323": "Nursing associate professionals",
+              "324": "Life science technicians",
+              "331": "Pre-primary education teaching associate professionals",
+              "332": "Other teaching associate professionals",
+              "341": "Finance and sales associate professionals",
+              "342": "Business services agents and trade brokers",
+              "343": "Administrative associate professionals",
+              "344": "Customs, tax and related government associate professionals",
+              "345": "Police officers and detectives",
+              "346": "Social work associate professionals",
+              "347": "Artistic, entertainment and sports associate professionals",
+              "348": "Religious associate professionals",
+              "411": "Office secretaries and data entry operators",
+              "412": "Numerical clerks",
+              "413": "Stores and transport clerks",
+              "414": "Library and filing clerks",
+              "415": "Mail carriers and sorting clerks",
+              "419": "Other office clerks",
+              "421": "Cashiers, tellers and related clerks",
+              "422": "Client information clerks",
+              "511": "Travel attendants and related workers",
+              "512": "Housekeeping and restaurant services workers",
+              "513": "Personal care and related workers",
+              "514": "Other personal services workers",
+              "515": "Protective services workers",
+              "521": "Fashion and other models",
+              "522": "Shop and stall salespersons and demonstrators",
+              "611": "Market gardeners and crop growers",
+              "612": "Animal producers and related workers",
+              "613": "Crop and animal producers",
+              "614": "Forestry and related workers",
+              "615": "Fishery workers, hunters and trappers",
+              "711": "Miners, shot firers, stonecutters and carvers",
+              "712": "Building frame and related trades workers",
+              "713": "Building finishers and related trades workers",
+              "714": "Painters, building structure cleaners and related trades workers",
+              "721": "Metal moulders, welders, sheet-metal workers, structural-metal preparers and related trades workers",
+              "722": "Blacksmiths, tool-makers and related trades workers",
+              "723": "Machinery mechanics and fitters",
+              "724": "Electrical and electronic equipment mechanics and fitters",
+              "731": "Precision workers in metal and related materials",
+              "732": "Potters, glass-makers and related trades workers",
+              "733": "Handicraft workers in wood, textile, leather and related materials",
+              "734": "Craft printing and related trades workers",
+              "741": "Food processing and related trades workers",
+              "742": "Wood treaters, cabinet-makers and related trades workers",
+              "743": "Garment and related trades workers",
+              "744": "Pelt, leather and shoemaking trades workers",
+              "811": "Mineral-processing-plant operators",
+              "812": "Metal-processing-plant operators",
+              "813": "Glass, ceramics and related plant operators",
+              "814": "Wood-processing- and papermaking-plant operators",
+              "815": "Chemical-processing-plant operators",
+              "816": "Power-production and related plant operators",
+              "817": "Industrial-robot operators",
+              "821": "Metal- and mineral-products machine operators",
+              "822": "Chemical-products machine operators",
+              "823": "Rubber- and plastic-products machine operators",
+              "824": "Wood-products machine operators",
+              "825": "Printing-, binding- and paper-products machine operators",
+              "826": "Textile-, fur- and leather-products machine operators",
+              "827": "Food and related products machine operators",
+              "828": "Assemblers",
+              "829": "Other machine operators and assemblers",
+              "831": "Locomotive-engine drivers and related worker",
+              "832": "Motor-vehicle drivers",
+              "833": "Agricultural and other mobile-plant operators",
+              "834": "Ships´ deck crews and related workers",
+              "911": "Street vendors and market salespersons",
+              "912": "Helpers and cleaners",
+              "913": "Helpers in restaurants",
+              "914": "Doorkeepers, newspaper and package deliverers and related workers",
+              "915": "Garbage collectors and related labourers",
+              "919": "Other sales and services elementary occupations",
+              "921": "Agricultural, fishery and related labourers",
+              "931": "Mining and construction labourers",
+              "932": "Manufacturing labourers",
+              "933": "Transport labourers and freight handlers",
+              "0002": "occupations unidentifiable"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "16-24": 0,
+              "25-29": 1,
+              "30-34": 2,
+              "35-39": 3,
+              "40-44": 4,
+              "45-49": 5,
+              "50-54": 6,
+              "55-59": 7,
+              "60-64": 8,
+              "065-69": 9
+            },
+            "label": {
+              "16-24": "16–24 years",
+              "25-29": "25–29 years",
+              "30-34": "30–34 years",
+              "35-39": "35–39 years",
+              "40-44": "40–44 years",
+              "45-49": "45–49 years",
+              "50-54": "50–54 years",
+              "55-59": "55–59 years",
+              "60-64": "60–64 years",
+              "065-69": "65–69 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1
+            },
+            "label": {
+              "1": "men",
+              "2": "women"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          },
+          "link": {
+            "describedby": [
+              {
+                "extension": {
+                  "Kon": "Kön"
+                }
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "AM0208A3": 0
+            },
+            "label": {
+              "AM0208A3": "Number"
+            },
+            "unit": {
+              "AM0208A3": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "AM0208A3": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "AM0208A3": "Flow"
+            },
+            "priceType": {
+              "AM0208A3": "NotApplicable"
+            },
+            "adjustment": {
+              "AM0208A3": "None"
+            },
+            "alternativeText": {
+              "AM0208A3": "Employees 16-64 years by region of residence"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2001": 0,
+              "2002": 1,
+              "2003": 2,
+              "2004": 3,
+              "2005": 4,
+              "2006": 5,
+              "2007": 6,
+              "2008": 7,
+              "2009": 8,
+              "2010": 9,
+              "2011": 10,
+              "2012": 11,
+              "2013": 12
+            },
+            "label": {
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "AM0208",
+          "tableid": "TAB4089",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Employees 16-64 years by region of residence",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Yrke",
+            "Alder",
+            "Kon"
+          ],
+          "matrix": "TAB4089",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Linn Eriksson",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 61 34",
+            "mail": "linn.eriksson@scb.se",
+            "raw": "Linn Eriksson, Statistics Sweden# +46 010-479 61 34#linn.eriksson@scb.se"
+          },
+          {
+            "name": "Linda Karbing",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 66 49",
+            "mail": "linda.karbing@scb.se",
+            "raw": "Linda Karbing, Statistics Sweden# +46 010-479 66 49#linda.karbing@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4089",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4089",
+        "label": "Employees 16-64 years by region of residence, occupation (3-digit SSYK 96), age and sex. Year 2001-2013",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2015-02-12T08:30:00Z",
+        "firstPeriod": "2001",
+        "lastPeriod": "2013",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "occupation",
+          "age",
+          "sex",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0208",
+              "label": "The Swedish Occupational Register with statistics",
+              "sortCode": "The Swedish Occupational Register with statistics"
+            },
+            {
+              "id": "AM0208C",
+              "label": "Employed population by region of residence (SSYK3)",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4089/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

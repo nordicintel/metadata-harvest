@@ -1,0 +1,415 @@
+{
+  "key": "scb/TAB4611/sv",
+  "identifier": "TAB4611",
+  "language": "sv",
+  "updated": "2026-10-02T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:34:49.580175+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Hyra i hyreslägenheter efter byggår för större kommuner samt stadsområden i Stockholm. År 2016-2026",
+      "source": "SCB",
+      "updated": "2026-10-02T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0406"
+            },
+            "href": "https://www.scb.se/BO0406",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Hyran anges inklusive uppvärmning och vatten, men exklusive hushållsel och garage-/bilplats.",
+        "I populationen ingår bostadslägenheter som upplåts med hyresrätt och som färdigställts till och med året före undersökningsåret. Specialbostäder som exempelvis äldreboenden, studentbostäder och gruppboenden samt lägenheter uthyrda med specialavtal som till exempel avtal om blockuthyrning ingår inte."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "ByggAr",
+        "Hyresuppg",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        20,
+        8,
+        2,
+        4,
+        11
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "0180": 0,
+              "0380": 1,
+              "0484": 2,
+              "0580": 3,
+              "0581": 4,
+              "0680": 5,
+              "1280": 6,
+              "1281": 7,
+              "1283": 8,
+              "1380": 9,
+              "1480": 10,
+              "1490": 11,
+              "1780": 12,
+              "1880": 13,
+              "1980": 14,
+              "2180": 15,
+              "2480": 16,
+              "I": 17,
+              "S": 18,
+              "V": 19
+            },
+            "label": {
+              "0180": "Stockholm",
+              "0380": "Uppsala",
+              "0484": "Eskilstuna",
+              "0580": "Linköping",
+              "0581": "Norrköping",
+              "0680": "Jönköping",
+              "1280": "Malmö",
+              "1281": "Lund",
+              "1283": "Helsingborg",
+              "1380": "Halmstad",
+              "1480": "Göteborg",
+              "1490": "Borås",
+              "1780": "Karlstad",
+              "1880": "Örebro",
+              "1980": "Västerås",
+              "2180": "Gävle",
+              "2480": "Umeå",
+              "I": "Inre staden",
+              "S": "Söderort",
+              "V": "Västerort"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "vs_StadsOmr",
+                "label": "Stadsområden i Stockholm",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_StadsOmr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_Stkommun",
+                "label": "Större kommuner",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_Stkommun?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ByggAr": {
+          "label": "byggår",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "3": 2,
+              "4": 3,
+              "5": 4,
+              "6": 5,
+              "7": 6,
+              "00": 7
+            },
+            "label": {
+              "1": "–1940",
+              "2": "1941–1960",
+              "3": "1961–1980",
+              "4": "1981–2000",
+              "5": "2001–2010",
+              "6": "2011–2020",
+              "7": "2021–",
+              "00": "Alla byggår"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Hyresuppg": {
+          "label": "hyresuppgift",
+          "category": {
+            "index": {
+              "Ah_kvm": 0,
+              "Mh_kvm": 1
+            },
+            "label": {
+              "Ah_kvm": "Årshyra per kvm",
+              "Mh_kvm": "Ny månadshyra per kvm"
+            },
+            "note": {
+              "Ah_kvm": [
+                "Årshyra avser hyran för hela året. Den baseras på decemberhyra föregående år och den nya månadshyran för året samt den månad som den hyran började gälla."
+              ],
+              "Mh_kvm": [
+                "Ny månadshyra innebär den hyran som har börjat gälla efter den årliga hyresförändringen. Om hyran inte ändras under året är ny månadshyra samma som decemberhyra föregående år."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "Ah_kvm": {
+                "0": true
+              },
+              "Mh_kvm": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "0000013Q": 0,
+              "0000013P": 1,
+              "0000013S": 2,
+              "0000013R": 3
+            },
+            "label": {
+              "0000013Q": "Medianhyra i hyreslägenhet",
+              "0000013P": "± Felmarginal, medianhyra",
+              "0000013S": "Medelhyra i hyreslägenhet",
+              "0000013R": "± Felmarginal, medelhyra"
+            },
+            "unit": {
+              "0000013Q": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000013P": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000013S": {
+                "base": "kronor",
+                "decimals": 0
+              },
+              "0000013R": {
+                "base": "kronor",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "0000013Q": "",
+              "0000013P": "",
+              "0000013S": "",
+              "0000013R": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "0000013Q": "Flow",
+              "0000013P": "Flow",
+              "0000013S": "Flow",
+              "0000013R": "Flow"
+            },
+            "priceType": {
+              "0000013Q": "NotApplicable",
+              "0000013P": "NotApplicable",
+              "0000013S": "NotApplicable",
+              "0000013R": "NotApplicable"
+            },
+            "adjustment": {
+              "0000013Q": "None",
+              "0000013P": "None",
+              "0000013S": "None",
+              "0000013R": "None"
+            },
+            "alternativeText": {
+              "0000013Q": "Medianhyra i hyreslägenhet",
+              "0000013P": "Felmarginal ± , medianvärde hyra i hyreslägenhet",
+              "0000013S": "Medelhyra i hyreslägenhet",
+              "0000013R": "Felmarginal ±, medelhyra i hyreslägenhet"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2016": 0,
+              "2017": 1,
+              "2018": 2,
+              "2019": 3,
+              "2020": 4,
+              "2021": 5,
+              "2022": 6,
+              "2023": 7,
+              "2024": 8,
+              "2025": 9,
+              "2026": 10
+            },
+            "label": {
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025",
+              "2026": "2026"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "BO0406",
+          "tableid": "TAB4611",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Hyra i hyreslägenhet",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "ByggAr",
+            "Hyresuppg"
+          ],
+          "matrix": "TAB4611",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB4611",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB4611",
+        "label": "Hyra i hyreslägenheter efter byggår för större kommuner samt stadsområden i Stockholm. År 2016-2026",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2026-10-02T06:00:00Z",
+        "firstPeriod": "2016",
+        "lastPeriod": "2026",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "byggår",
+          "hyresuppgift",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0406",
+              "label": "Hyror i bostadslägenheter",
+              "sortCode": "Hyror i bostadslägenheter"
+            },
+            {
+              "id": "BO0406E",
+              "label": "Hyror 2016 -  ",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4611?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4611?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4611/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB4611/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

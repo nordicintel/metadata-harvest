@@ -1,0 +1,408 @@
+{
+  "key": "scb/TAB3961/sv",
+  "identifier": "TAB3961",
+  "language": "sv",
+  "updated": "2012-12-17T08:30:00Z",
+  "retrieved_at": "2026-10-16T18:03:59.719179+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Antal FoU-årsverken utförda av anställda vid universitet och högskolor efter region, kön och vetenskapsområde. Vartannat år 2005-2011",
+      "source": "SCB",
+      "updated": "2012-12-17T08:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0301"
+            },
+            "href": "https://www.scb.se/UF0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "Kon",
+        "VetOmr",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        30,
+        3,
+        7,
+        2,
+        5
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "06": 5,
+              "07": 6,
+              "08": 7,
+              "09": 8,
+              "10": 9,
+              "12": 10,
+              "13": 11,
+              "14": 12,
+              "17": 13,
+              "18": 14,
+              "19": 15,
+              "20": 16,
+              "21": 17,
+              "22": 18,
+              "23": 19,
+              "24": 20,
+              "25": 21,
+              "99": 22,
+              "HR1": 23,
+              "HR2": 24,
+              "HR3": 25,
+              "HR4": 26,
+              "HR5": 27,
+              "HR6": 28,
+              "HR7": 29
+            },
+            "label": {
+              "00": "Riket",
+              "01": "Stockholms län",
+              "03": "Uppsala län",
+              "04": "Södermanlands län",
+              "05": "Östergötlands län",
+              "06": "Jönköpings län",
+              "07": "Kronobergs län",
+              "08": "Kalmar län",
+              "09": "Gotlands län",
+              "10": "Blekinge län",
+              "12": "Skåne län",
+              "13": "Hallands län",
+              "14": "Västra Götalands län",
+              "17": "Värmlands län",
+              "18": "Örebro län",
+              "19": "Västmanlands län",
+              "20": "Dalarnas län",
+              "21": "Gävleborgs län",
+              "22": "Västernorrlands län",
+              "23": "Jämtlands län",
+              "24": "Västerbottens län",
+              "25": "Norrbottens län",
+              "99": "län okänt",
+              "HR1": "Stockholms högskoleregion",
+              "HR2": "Uppsala högskoleregion",
+              "HR3": "Linköpings högskoleregion",
+              "HR4": "Lunds högskoleregion",
+              "HR5": "Göteborgs högskoleregion",
+              "HR6": "Umeå högskoleregion",
+              "HR7": "okänd högskoleregion"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code_value",
+            "codelists": [
+              {
+                "id": "agg_RegionNUTS2_2",
+                "label": "NUTS2 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS2_2?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "agg_RegionNUTS3_1",
+                "label": "NUTS3 t.o.m. 2007",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_RegionNUTS3_1?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_HelaRiket",
+                "label": "Riket",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_HelaRiket?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionHögskole99+okänd",
+                "label": "Högskoleregioner, 2003 års indelning ",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionHögskole99+okänd?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_RegionLän99US",
+                "label": "Län och län okänt",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_RegionLän99US?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "VetOmr": {
+          "label": "vetenskapsområde",
+          "category": {
+            "index": {
+              "00": 0,
+              "01": 1,
+              "02": 2,
+              "03": 3,
+              "04": 4,
+              "05": 5,
+              "06": 6
+            },
+            "label": {
+              "00": "samtliga vetenskapsområden",
+              "01": "humanistiskt/samhällsvetenskapligt",
+              "02": "medicinskt",
+              "03": "naturvetenskapligt",
+              "04": "tekniskt",
+              "05": "SLU",
+              "06": "övrigt/gemensamt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000002L0": 0,
+              "000002L1": 1
+            },
+            "label": {
+              "000002L0": "Antal FoU-årsverken",
+              "000002L1": "Felmarginal (±) för antal FoU-årsverken. Felmarginal ±"
+            },
+            "unit": {
+              "000002L0": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000002L1": {
+                "base": "antal",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002L0": "År",
+              "000002L1": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002L0": "Flow",
+              "000002L1": "Flow"
+            },
+            "priceType": {
+              "000002L0": "NotApplicable",
+              "000002L1": "NotApplicable"
+            },
+            "adjustment": {
+              "000002L0": "None",
+              "000002L1": "None"
+            },
+            "alternativeText": {
+              "000002L0": "Antal FoU-årsverken utförda av anställda vid universitet och högskolor",
+              "000002L1": "Felmarginal (±) för antal FoU-årsverken utförda av anställda vid universitet och högskolor"
+            }
+          }
+        },
+        "Tid": {
+          "label": "vartannat år",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2009": 3,
+              "2011": 4
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2009": "2009",
+              "2011": "2011"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "UF0301",
+          "tableid": "TAB3961",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Antal FoU-årsverken av utförda anställda vid universitet och högskolor",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "Kon",
+            "VetOmr"
+          ],
+          "matrix": "TAB3961",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Utbildning och forskning FoU",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "FoU-statistik@scb.se",
+            "raw": "Utbildning och forskning FoU, SCB# +46 010-479 50 00#FoU-statistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB3961",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB3961",
+        "label": "Antal FoU-årsverken utförda av anställda vid universitet och högskolor efter region, kön och vetenskapsområde. Vartannat år 2005-2011",
+        "description": "",
+        "sortCode": "65",
+        "updated": "2012-12-17T08:30:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2011",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "kön",
+          "vetenskapsområde",
+          "tabellinnehåll",
+          "vartannat år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0301",
+              "label": "Forskning och utveckling i Sverige",
+              "sortCode": "Forskning och utveckling i Sverige"
+            },
+            {
+              "id": "UF0301Z",
+              "label": "FoU – Äldre serier",
+              "sortCode": "06"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3961?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3961/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB3961/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

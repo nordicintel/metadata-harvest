@@ -1,0 +1,651 @@
+{
+  "key": "scb/TAB6522/en",
+  "identifier": "TAB6522",
+  "language": "en",
+  "updated": "2026-10-16T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:24:50.446533+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Number of hours actually worked per week for persons aged 15-74 (LFS) by degree of attachment to the labour market, industrial classification NACE Rev. 2.0, type of data, sex and age. Quarter 2001K1-2026K3",
+      "source": "Statistics Sweden",
+      "updated": "2026-10-16T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0401"
+            },
+            "href": "https://www.scb.se/AM0401-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "For the period 2001M01–2020M12, the time series contains ´linked data´. No margins of error (uncertainty figures) are reported for the period, this is instead marked as '..' in the time series. The series 2001M01–2004M12 are macrolinked and for the period 2005M01–2020M12 they are microlinked. The estimates regarding quarter 1 2005 and its constituent months are based on a smaller number of responses than other periods. These estimates are therefore more uncertain and should be used with caution.",
+        "In 2023, the retirement age was raised from 65 to 66 years, and in 2026, it will be raised to 67 years. This results in the reporting of more age groups in the LFS. To enable comparisons over time, the age groups 16–65, 16–66, 20–65, and 20–66 are reported back to 2021.",
+        "Non-seasonally adjusted data\r\nAs the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "Seasonally adjusted data\r\nSeasonally adjusted values are data that have been adjusted for the annual variation in labor market activity that recurs for a given month. Like non-seasonally adjusted and calendar-adjusted values, seasonally adjusted values can also be affected by, for example, sampling errors and time-specific influences.\r\nSeasonally adjusted values are updated retrospectively at each new publication date.",
+        "Seasonally adjusted and smoothed data\r\nSeasonally adjusted and smoothed values are less affected by random errors and short-term variations.\r\nSeasonally adjusted and smoothed values are updated retrospectively at each new publication date.",
+        "Hours actually worked for employees are for both main job and extra job, while only hours in main job are included for permanent employees. Hours per sector are presented for work done in Sweden.",
+        "Calendar-corrected data\r\nCalendar-corrected values ??are non-seasonally adjusted values ??that have been adjusted taking into account that e.g. weekends and the number of working days vary between years for the same measurement month. Information on calendar-related absence in the LFS has been used to correct the values. The data has been adjusted especially in 2009, when the distribution of the LFS measurement months differs from the surrounding years. Calendar-corrected values ??are those used to produce seasonally adjusted values.",
+        "The annual change rate for seasonally adjusted and smoothed describes the rate of change in one year if the change between adjacent quarters is repeated over four quarters. \r\n4 · (value<sup>t<sup> - value<sup>t-1<sup>)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Anknytningsgrad",
+        "SNI2007",
+        "TypData",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        17,
+        8,
+        3,
+        4,
+        1,
+        103
+      ],
+      "dimension": {
+        "Anknytningsgrad": {
+          "label": "degree of attachment to the labour market",
+          "category": {
+            "index": {
+              "FA": 0,
+              "ANSTTOT": 1,
+              "SYSTOT": 2
+            },
+            "label": {
+              "FA": "permanent employees",
+              "ANSTTOT": "employees, total",
+              "SYSTOT": "total employment"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "SNI2007": {
+          "label": "industrial classification (NACE Rev. 2)",
+          "category": {
+            "index": {
+              "A-U": 0,
+              "A-U+UT": 1,
+              "01-03": 2,
+              "05-33+35-39": 3,
+              "25-30+33": 4,
+              "41-43": 5,
+              "45-47": 6,
+              "49-53": 7,
+              "55-56": 8,
+              "58-63": 9,
+              "64-82": 10,
+              "84+99": 11,
+              "85": 12,
+              "86-88": 13,
+              "90-98": 14,
+              "UT": 15,
+              "US": 16
+            },
+            "label": {
+              "A-U": "all industries",
+              "A-U+UT": "all sectors including work abroad",
+              "01-03": "agriculture, forestry, fishing",
+              "05-33+35-39": "manufacturing, mining and quarrying, energy and environment",
+              "25-30+33": "manufacturing of metal products, machinery and equipment",
+              "41-43": "construction",
+              "45-47": "trade",
+              "49-53": "transport",
+              "55-56": "accommodation and food services",
+              "58-63": "information and communication",
+              "64-82": "financial operations, business services",
+              "84+99": "public administration etc.",
+              "85": "education",
+              "86-88": "human health and social work activities",
+              "90-98": "personal and cultural services",
+              "UT": "work abroad",
+              "US": "information missing"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "TypData": {
+          "label": "type of data",
+          "category": {
+            "index": {
+              "O_DATA": 0,
+              "O_FEL_NIVÅ": 1,
+              "O_FÖR_ÅR": 2,
+              "O_FEL_ÅR": 3,
+              "K_DATA": 4,
+              "SR_DATA": 5,
+              "TC_DATA": 6,
+              "TC_FÖR_ÅR": 7
+            },
+            "label": {
+              "O_DATA": "non-seasonally adjusted",
+              "O_FEL_NIVÅ": "non-seasonally adjusted, margin of error ±",
+              "O_FÖR_ÅR": "non-seasonally adjusted, annual change",
+              "O_FEL_ÅR": "non-seasonally adjusted, annual change margin of error ±",
+              "K_DATA": "calendar corrected",
+              "SR_DATA": "seasonally adjusted",
+              "TC_DATA": "seasonally adjusted and smoothed",
+              "TC_FÖR_ÅR": "seasonaly adjusted and smoothed, annual change rate"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "agg_ISD2",
+                "label": "Non-seasonally adjusted data",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_ISD2?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_KALK",
+                "label": "Calendar corrected data",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_KALK?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SD2",
+                "label": "Seasonally adjusted data",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SD2?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "agg_SUDT2",
+                "label": "Seasonally adjusted and smoothed data",
+                "type": "Aggregation",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/agg_SUDT2?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AKUTD002",
+                "label": "all types",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AKUTD002?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "tot15-74": 0,
+              "tot16-64": 1,
+              "tot16-65": 2,
+              "tot16-66": 3
+            },
+            "label": {
+              "tot15-74": "total 15–74 years",
+              "tot16-64": "total 16–64 years",
+              "tot16-65": "total 16–65 years",
+              "tot16-66": "total 16–66 years"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000007V9": 0
+            },
+            "label": {
+              "000007V9": "Number of million hours actually worked per week"
+            },
+            "unit": {
+              "000007V9": {
+                "base": "millions of hours",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000007V9": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000007V9": "Average"
+            },
+            "priceType": {
+              "000007V9": "NotApplicable"
+            },
+            "adjustment": {
+              "000007V9": "WorkAndSes"
+            },
+            "alternativeText": {
+              "000007V9": "Number of million hours actually worked per week for persons aged 15-74"
+            }
+          }
+        },
+        "Tid": {
+          "label": "quarter",
+          "category": {
+            "index": {
+              "2001K1": 0,
+              "2001K2": 1,
+              "2001K3": 2,
+              "2001K4": 3,
+              "2002K1": 4,
+              "2002K2": 5,
+              "2002K3": 6,
+              "2002K4": 7,
+              "2003K1": 8,
+              "2003K2": 9,
+              "2003K3": 10,
+              "2003K4": 11,
+              "2004K1": 12,
+              "2004K2": 13,
+              "2004K3": 14,
+              "2004K4": 15,
+              "2005K1": 16,
+              "2005K2": 17,
+              "2005K3": 18,
+              "2005K4": 19,
+              "2006K1": 20,
+              "2006K2": 21,
+              "2006K3": 22,
+              "2006K4": 23,
+              "2007K1": 24,
+              "2007K2": 25,
+              "2007K3": 26,
+              "2007K4": 27,
+              "2008K1": 28,
+              "2008K2": 29,
+              "2008K3": 30,
+              "2008K4": 31,
+              "2009K1": 32,
+              "2009K2": 33,
+              "2009K3": 34,
+              "2009K4": 35,
+              "2010K1": 36,
+              "2010K2": 37,
+              "2010K3": 38,
+              "2010K4": 39,
+              "2011K1": 40,
+              "2011K2": 41,
+              "2011K3": 42,
+              "2011K4": 43,
+              "2012K1": 44,
+              "2012K2": 45,
+              "2012K3": 46,
+              "2012K4": 47,
+              "2013K1": 48,
+              "2013K2": 49,
+              "2013K3": 50,
+              "2013K4": 51,
+              "2014K1": 52,
+              "2014K2": 53,
+              "2014K3": 54,
+              "2014K4": 55,
+              "2015K1": 56,
+              "2015K2": 57,
+              "2015K3": 58,
+              "2015K4": 59,
+              "2016K1": 60,
+              "2016K2": 61,
+              "2016K3": 62,
+              "2016K4": 63,
+              "2017K1": 64,
+              "2017K2": 65,
+              "2017K3": 66,
+              "2017K4": 67,
+              "2018K1": 68,
+              "2018K2": 69,
+              "2018K3": 70,
+              "2018K4": 71,
+              "2019K1": 72,
+              "2019K2": 73,
+              "2019K3": 74,
+              "2019K4": 75,
+              "2020K1": 76,
+              "2020K2": 77,
+              "2020K3": 78,
+              "2020K4": 79,
+              "2021K1": 80,
+              "2021K2": 81,
+              "2021K3": 82,
+              "2021K4": 83,
+              "2022K1": 84,
+              "2022K2": 85,
+              "2022K3": 86,
+              "2022K4": 87,
+              "2023K1": 88,
+              "2023K2": 89,
+              "2023K3": 90,
+              "2023K4": 91,
+              "2024K1": 92,
+              "2024K2": 93,
+              "2024K3": 94,
+              "2024K4": 95,
+              "2025K1": 96,
+              "2025K2": 97,
+              "2025K3": 98,
+              "2025K4": 99,
+              "2026K1": 100,
+              "2026K2": 101,
+              "2026K3": 102
+            },
+            "label": {
+              "2001K1": "2001K1",
+              "2001K2": "2001K2",
+              "2001K3": "2001K3",
+              "2001K4": "2001K4",
+              "2002K1": "2002K1",
+              "2002K2": "2002K2",
+              "2002K3": "2002K3",
+              "2002K4": "2002K4",
+              "2003K1": "2003K1",
+              "2003K2": "2003K2",
+              "2003K3": "2003K3",
+              "2003K4": "2003K4",
+              "2004K1": "2004K1",
+              "2004K2": "2004K2",
+              "2004K3": "2004K3",
+              "2004K4": "2004K4",
+              "2005K1": "2005K1",
+              "2005K2": "2005K2",
+              "2005K3": "2005K3",
+              "2005K4": "2005K4",
+              "2006K1": "2006K1",
+              "2006K2": "2006K2",
+              "2006K3": "2006K3",
+              "2006K4": "2006K4",
+              "2007K1": "2007K1",
+              "2007K2": "2007K2",
+              "2007K3": "2007K3",
+              "2007K4": "2007K4",
+              "2008K1": "2008K1",
+              "2008K2": "2008K2",
+              "2008K3": "2008K3",
+              "2008K4": "2008K4",
+              "2009K1": "2009K1",
+              "2009K2": "2009K2",
+              "2009K3": "2009K3",
+              "2009K4": "2009K4",
+              "2010K1": "2010K1",
+              "2010K2": "2010K2",
+              "2010K3": "2010K3",
+              "2010K4": "2010K4",
+              "2011K1": "2011K1",
+              "2011K2": "2011K2",
+              "2011K3": "2011K3",
+              "2011K4": "2011K4",
+              "2012K1": "2012K1",
+              "2012K2": "2012K2",
+              "2012K3": "2012K3",
+              "2012K4": "2012K4",
+              "2013K1": "2013K1",
+              "2013K2": "2013K2",
+              "2013K3": "2013K3",
+              "2013K4": "2013K4",
+              "2014K1": "2014K1",
+              "2014K2": "2014K2",
+              "2014K3": "2014K3",
+              "2014K4": "2014K4",
+              "2015K1": "2015K1",
+              "2015K2": "2015K2",
+              "2015K3": "2015K3",
+              "2015K4": "2015K4",
+              "2016K1": "2016K1",
+              "2016K2": "2016K2",
+              "2016K3": "2016K3",
+              "2016K4": "2016K4",
+              "2017K1": "2017K1",
+              "2017K2": "2017K2",
+              "2017K3": "2017K3",
+              "2017K4": "2017K4",
+              "2018K1": "2018K1",
+              "2018K2": "2018K2",
+              "2018K3": "2018K3",
+              "2018K4": "2018K4",
+              "2019K1": "2019K1",
+              "2019K2": "2019K2",
+              "2019K3": "2019K3",
+              "2019K4": "2019K4",
+              "2020K1": "2020K1",
+              "2020K2": "2020K2",
+              "2020K3": "2020K3",
+              "2020K4": "2020K4",
+              "2021K1": "2021K1",
+              "2021K2": "2021K2",
+              "2021K3": "2021K3",
+              "2021K4": "2021K4",
+              "2022K1": "2022K1",
+              "2022K2": "2022K2",
+              "2022K3": "2022K3",
+              "2022K4": "2022K4",
+              "2023K1": "2023K1",
+              "2023K2": "2023K2",
+              "2023K3": "2023K3",
+              "2023K4": "2023K4",
+              "2024K1": "2024K1",
+              "2024K2": "2024K2",
+              "2024K3": "2024K3",
+              "2024K4": "2024K4",
+              "2025K1": "2025K1",
+              "2025K2": "2025K2",
+              "2025K3": "2025K3",
+              "2025K4": "2025K4",
+              "2026K1": "2026K1",
+              "2026K2": "2026K2",
+              "2026K3": "2026K3"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true
+        },
+        "px": {
+          "infofile": "AM0401",
+          "tableid": "TAB6522",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number of million hours actually worked per week for persons aged 15-74",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Anknytningsgrad",
+            "SNI2007",
+            "TypData",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB6522",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6522",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6522",
+        "label": "Number of hours actually worked per week for persons aged 15-74 (LFS) by degree of attachment to the labour market, industrial classification NACE Rev. 2.0, type of data, sex and age. Quarter 2001K1-2026K3",
+        "description": "",
+        "sortCode": "002",
+        "updated": "2026-10-16T06:00:00Z",
+        "firstPeriod": "2001K1",
+        "lastPeriod": "2026K3",
+        "category": "public",
+        "variableNames": [
+          "degree of attachment to the labour market",
+          "industrial classification (NACE Rev. 2)",
+          "type of data",
+          "sex",
+          "age",
+          "observations",
+          "quarter"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Quarterly",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0401",
+              "label": "Labour Force Surveys (LFS)",
+              "sortCode": "Labour Force Surveys (LFS)"
+            },
+            {
+              "id": "AM0401B",
+              "label": "Hours worked by industrial classification (NACE Rev. 2) from 2005",
+              "sortCode": "005"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6522?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6522?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6522/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6522/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

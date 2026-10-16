@@ -1,0 +1,351 @@
+{
+  "key": "scb/TAB75/en",
+  "identifier": "TAB75",
+  "language": "en",
+  "updated": "2006-09-04T07:30:00Z",
+  "retrieved_at": "2026-10-16T18:19:30.385097+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Ownership of shares in companies quoted on Swedish marketplaces by sector and marketplace (up to 2006M06). Twice a year 1999M12-2006M06",
+      "source": "Swedish Financial Supervisory Authority",
+      "updated": "2006-09-04T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0201"
+            },
+            "href": "https://www.scb.se/FM0201-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The time scale refers to 31 December and 30 June. The shares are valued at the prices at the according turn of the  year."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Sektor",
+        "Marknadsplats",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        14,
+        7,
+        2,
+        14
+      ],
+      "dimension": {
+        "Sektor": {
+          "label": "sector",
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "100": 1,
+              "200": 2,
+              "210--240": 3,
+              "216+222": 4,
+              "224": 5,
+              "230": 6,
+              "300-500": 7,
+              "300": 8,
+              "400": 9,
+              "500": 10,
+              "600": 11,
+              "700": 12,
+              "800": 13
+            },
+            "label": {
+              "TOTALT": "All sectors",
+              "100": "Non-financial corporations",
+              "200": "Financial corporations",
+              "210--240": "Banks, credit institutions etc",
+              "216+222": "Mutual funds",
+              "224": "Investment corporations",
+              "230": "Insurance companies",
+              "300-500": "General government",
+              "300": "Central government",
+              "400": "Local government",
+              "500": "Social security funds",
+              "600": "Households",
+              "700": "Non-profit institutions serving households",
+              "800": "Foreign owners"
+            },
+            "note": {
+              "100": [
+                "Includes non-profit organisations serving this sector."
+              ],
+              "200": [
+                "Includes non-profit organisations serving this sector."
+              ],
+              "210--240": [
+                "Includes banks, housing credit institutions, other credit market enterprises and financial auxiliaries."
+              ],
+              "230": [
+                "Includes pension funds."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Marknadsplats": {
+          "label": "marketplace",
+          "category": {
+            "index": {
+              "TOTALT": 0,
+              "BORSOMA": 1,
+              "BORSOMO": 2,
+              "AUKTMPTORGTORG": 3,
+              "AUKTMPNGMNGM": 4,
+              "OVRMPNYAMNYAM": 5,
+              "OVRMPTKGTB": 6
+            },
+            "label": {
+              "TOTALT": "marketplaces, total",
+              "BORSOMA": "Swedish Stock Exchange, A list",
+              "BORSOMO": "Swedish Stock Exchange, O list",
+              "AUKTMPTORGTORG": "authorised marketplace, Aktietorget",
+              "AUKTMPNGMNGM": "authorised marketplace, NGM",
+              "OVRMPNYAMNYAM": "other marketplace, Nya marknaden",
+              "OVRMPTKGTB": "other marketplace, Göteborgs OTC list"
+            },
+            "note": {
+              "BORSOMO": [
+                "Values from the O list on the Stockholm Stock Exchange are for the period up to June 2000 and are the sum of the O list and the OTC list."
+              ],
+              "AUKTMPTORGTORG": [
+                "In May 2018 Aktietorget changed its name to Spotlight Stock Market."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "AUKTMPTORGTORG": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "FM0201C1": 0,
+              "FM0201C2": 1
+            },
+            "label": {
+              "FM0201C1": "Outstanding values, SEK millions",
+              "FM0201C2": "Outstanding values, by marketplace, percent"
+            },
+            "unit": {
+              "FM0201C1": {
+                "base": "SEK millions",
+                "decimals": 0
+              },
+              "FM0201C2": {
+                "base": "Percent",
+                "decimals": 2
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0201C1": "At 30/6 resp 31/12",
+              "FM0201C2": "At 30/6 resp 31/12"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0201C1": "Stock",
+              "FM0201C2": "Stock"
+            },
+            "priceType": {
+              "FM0201C1": "NotApplicable",
+              "FM0201C2": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0201C1": "None",
+              "FM0201C2": "None"
+            },
+            "alternativeText": {
+              "FM0201C1": "Ownership of shares in companies quoted on Swedish marketplaces, outstanding values, SEK millions",
+              "FM0201C2": "Ownership of shares in companies quoted on Swedish marketplaces, outstanding values, by marketplace, percent"
+            }
+          }
+        },
+        "Tid": {
+          "label": "two times per year",
+          "category": {
+            "index": {
+              "1999M12": 0,
+              "2000M06": 1,
+              "2000M12": 2,
+              "2001M06": 3,
+              "2001M12": 4,
+              "2002M06": 5,
+              "2002M12": 6,
+              "2003M06": 7,
+              "2003M12": 8,
+              "2004M06": 9,
+              "2004M12": 10,
+              "2005M06": 11,
+              "2005M12": 12,
+              "2006M06": 13
+            },
+            "label": {
+              "1999M12": "1999M12",
+              "2000M06": "2000M06",
+              "2000M12": "2000M12",
+              "2001M06": "2001M06",
+              "2001M12": "2001M12",
+              "2002M06": "2002M06",
+              "2002M12": "2002M12",
+              "2003M06": "2003M06",
+              "2003M12": "2003M12",
+              "2004M06": "2004M06",
+              "2004M12": "2004M12",
+              "2005M06": "2005M06",
+              "2005M12": "2005M12",
+              "2006M06": "2006M06"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "FM0201",
+          "tableid": "TAB75",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "en",
+          "contents": "Ownership of shares in companies quoted on Swedish marketplaces",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Sektor",
+            "Marknadsplats"
+          ],
+          "matrix": "TAB75",
+          "subject-code": "FM",
+          "subject-area": "Financial markets"
+        },
+        "contact": [
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Aktieägarstatistik",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aktieagarstatistik@scb.se",
+            "raw": " Aktieägarstatistik, Statistics Sweden# +46 010-479 50 00#aktieagarstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB75",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB75",
+        "label": "Ownership of shares in companies quoted on Swedish marketplaces by sector and marketplace (up to 2006M06). Twice a year 1999M12-2006M06",
+        "description": "",
+        "sortCode": "08",
+        "updated": "2006-09-04T07:30:00Z",
+        "firstPeriod": "1999M12",
+        "lastPeriod": "2006M06",
+        "category": "public",
+        "variableNames": [
+          "sector",
+          "marketplace",
+          "observations",
+          "two times per year"
+        ],
+        "source": "Swedish Financial Supervisory Authority",
+        "subjectCode": "FM",
+        "timeUnit": "Monthly",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Financial markets",
+              "sortCode": "Financial markets"
+            },
+            {
+              "id": "FM0201",
+              "label": "Shareholders statistics",
+              "sortCode": "Shareholders statistics"
+            },
+            {
+              "id": "FM0201A",
+              "label": "Shareholding on Swedish marketplace",
+              "sortCode": "015"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB75/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

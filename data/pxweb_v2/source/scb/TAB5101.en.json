@@ -1,0 +1,733 @@
+{
+  "key": "scb/TAB5101/en",
+  "identifier": "TAB5101",
+  "language": "en",
+  "updated": "2022-03-24T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:14:01.944845+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Number of applicants per place to higher vocational education, by sex, educational orientation, study region, study rate, form of study and programme length. Year 2014-2019",
+      "source": "Statistics Sweden",
+      "updated": "2022-03-24T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0701"
+            },
+            "href": "https://www.scb.se/UF0701-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "The statistics refer to study sessions that started each year respectively. For example, applicants in 2015 refers to all those who applied to study sessions that began in 2015.",
+        "An applicant is defined by the following criteria:  \r\na) The applicant must have submitted an application that at the very least contains information about the applicant’s name and personal identity number (or name and date of birth).  \r\nb) The applicant has submitted their application within the application period (within the ordinary or extended application period). ",
+        "Statistics is counted net as the number of applicants,the number of qualified applicants and the number of admitted students at the start. This means that once the number of applicants is reported, grouped by various education data, such as field of education or county, the number of unique applicants per study domain is counted. Persons who have applied to several study programmes in different study domains are counted once in each domain.  \r\nThe number of admitted students at the start refers to the number of persons studying three weeks after the study session began.",
+        "The number of applications refers to all applications received by the course organiser. Each application is counted once. \r\n\r\nThe number of places refers to the number of allocated places in the study sessions referred to in the relevant retrieval.",
+        "Field of education MYH refers to the classification of programmes in the fields of education used by the Swedish National Agency for Higher Vocational Education (MYH). The fields of education are based on the SUN 2020 standard.",
+        "To prevent disclosure of information, random rounding off was applied in the table.  Cell values 1 and 2 have been rounded off to either 0 or 3 with predetermined probabilities. This is why the study domains sometimes do not add up to the total.",
+        "Only totals are published for data on counties and FA regions for the reference year 2020 and 2021."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbildnInriktn",
+        "RegionUtb",
+        "UtbTakt",
+        "UtbFormYH",
+        "UtbLangd",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        27,
+        86,
+        3,
+        3,
+        7,
+        7,
+        6
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "total",
+              "2": "women",
+              "1": "men"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbildnInriktn": {
+          "label": "educational orientation",
+          "category": {
+            "index": {
+              "TOTM": 0,
+              "1M": 1,
+              "2M": 2,
+              "3M": 3,
+              "4M": 4,
+              "5M": 5,
+              "6M": 6,
+              "7M": 7,
+              "8M": 8,
+              "9M": 9,
+              "11M": 10,
+              "12M": 11,
+              "13M": 12,
+              "14M": 13,
+              "15M": 14,
+              "16": 15,
+              "TOTS": 16,
+              "1S": 17,
+              "2S": 18,
+              "3S": 19,
+              "4S": 20,
+              "5S": 21,
+              "6S": 22,
+              "7S": 23,
+              "8S": 24,
+              "17": 25,
+              "TOT": 26
+            },
+            "label": {
+              "TOTM": "All fields of education",
+              "1M": "Computers/IT",
+              "2M": "Economics, administration and sales",
+              "3M": "Fitness and wellness",
+              "4M": "Hotel, restaurant and tourism",
+              "5M": "Health and medical care and social services",
+              "6M": "Journalism and information",
+              "7M": "Law",
+              "8M": "Culture, media and design",
+              "9M": "Agriculture, veterinary medicine, forestry and fisheries",
+              "11M": "Teaching methods and teaching",
+              "12M": "Civil and structural engineering",
+              "13M": "Security services",
+              "14M": "Technology and manufacturing",
+              "15M": "Transport services",
+              "16": "Other",
+              "TOTS": "All educational orientations",
+              "1S": "Teaching methods and teacher training",
+              "2S": "Humanities and the arts",
+              "3S": "Social science, law, trade, administration",
+              "4S": "Natural sciences, mathematics and Information and Communication Technologies (ICTs)",
+              "5S": "Technology and manufacturing",
+              "6S": "Agriculture and forestry, veterinary medicine",
+              "7S": "Health and medical care and social care",
+              "8S": "Services",
+              "17": "Unknown",
+              "TOT": "All educational orientations"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CUtbInrTot",
+                "label": "Total",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CUtbInrTot?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_AUtbOmrMYH",
+                "label": "Field of education MYH",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_AUtbOmrMYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BUtbInrSUN",
+                "label": "Educational orientation SUN 2020, 1-digit ",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BUtbInrSUN?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "RegionUtb": {
+          "label": "region where the course is held",
+          "category": {
+            "index": {
+              "FATOT": 0,
+              "FA01": 1,
+              "FA02": 2,
+              "FA03": 3,
+              "FA04": 4,
+              "FA05": 5,
+              "FA06": 6,
+              "FA07": 7,
+              "FA08": 8,
+              "FA09": 9,
+              "FA10": 10,
+              "FA11": 11,
+              "FA12": 12,
+              "FA13": 13,
+              "FA14": 14,
+              "FA15": 15,
+              "FA16": 16,
+              "FA17": 17,
+              "FA18": 18,
+              "FA19": 19,
+              "FA20": 20,
+              "FA21": 21,
+              "FA22": 22,
+              "FA23": 23,
+              "FA24": 24,
+              "FA25": 25,
+              "FA26": 26,
+              "FA27": 27,
+              "FA28": 28,
+              "FA29": 29,
+              "FA30": 30,
+              "FA31": 31,
+              "FA32": 32,
+              "FA33": 33,
+              "FA34": 34,
+              "FA35": 35,
+              "FA36": 36,
+              "FA37": 37,
+              "FA38": 38,
+              "FA39": 39,
+              "FA40": 40,
+              "FA41": 41,
+              "FA42": 42,
+              "FA43": 43,
+              "FA44": 44,
+              "FA45": 45,
+              "FA46": 46,
+              "FA47": 47,
+              "FA48": 48,
+              "FA49": 49,
+              "FA50": 50,
+              "FA51": 51,
+              "FA52": 52,
+              "FA53": 53,
+              "FA54": 54,
+              "FA55": 55,
+              "FA56": 56,
+              "FA57": 57,
+              "FA58": 58,
+              "FA59": 59,
+              "FA60": 60,
+              "FA99": 61,
+              "LANTOT": 62,
+              "01": 63,
+              "03": 64,
+              "04": 65,
+              "05": 66,
+              "06": 67,
+              "07": 68,
+              "08": 69,
+              "09": 70,
+              "10": 71,
+              "12": 72,
+              "13": 73,
+              "14": 74,
+              "17": 75,
+              "18": 76,
+              "19": 77,
+              "20": 78,
+              "21": 79,
+              "22": 80,
+              "23": 81,
+              "24": 82,
+              "25": 83,
+              "TOT": 84,
+              "99": 85
+            },
+            "label": {
+              "FATOT": "All FA regions",
+              "FA01": "Malmö-Lund",
+              "FA02": "Kristianstad-Hässleholm",
+              "FA03": "Karlskrona",
+              "FA04": "Älmhult-Osby",
+              "FA05": "Ljungby",
+              "FA06": "Halmstad",
+              "FA07": "Värnamo",
+              "FA08": "Växjö",
+              "FA09": "Kalmar",
+              "FA10": "Oskarshamn",
+              "FA11": "Västervik",
+              "FA12": "Vimmerby",
+              "FA13": "Jönköping",
+              "FA14": "Borås",
+              "FA15": "Göteborg",
+              "FA16": "Trollhättan-Vänersborg",
+              "FA17": "Lidköping-Götene",
+              "FA18": "Skövde-Skara",
+              "FA19": "Linköping-Norrköping",
+              "FA20": "Gotland",
+              "FA21": "Nyköping-Oxelösund",
+              "FA22": "Eskilstuna",
+              "FA23": "Stockholm",
+              "FA24": "Västerås",
+              "FA25": "Örebro",
+              "FA26": "Karlskoga",
+              "FA27": "Karlstad",
+              "FA28": "Västlandet",
+              "FA29": "Torsby",
+              "FA30": "Malung-Sälen",
+              "FA31": "Vansbro",
+              "FA32": "Ludvika",
+              "FA33": "Avesta-Hedemora",
+              "FA34": "Falun-Borlänge",
+              "FA35": "Mora",
+              "FA36": "Gävle",
+              "FA37": "Bollnäs-Ovanåker",
+              "FA38": "Hudiksvall",
+              "FA39": "Ljusdal",
+              "FA40": "Härjedalen",
+              "FA41": "Östersund",
+              "FA42": "Sundsvall",
+              "FA43": "Kramfors",
+              "FA44": "Örnsköldsvik",
+              "FA45": "Sollefteå",
+              "FA46": "Strömsund",
+              "FA47": "Åsele",
+              "FA48": "Umeå",
+              "FA49": "Lycksele",
+              "FA50": "Vilhelmina",
+              "FA51": "Storuman",
+              "FA52": "Skellefteå",
+              "FA53": "Arvidsjaur",
+              "FA54": "Arjeplog",
+              "FA55": "Luleå",
+              "FA56": "Haparanda",
+              "FA57": "Överkalix",
+              "FA58": "Jokkmokk",
+              "FA59": "Gällivare",
+              "FA60": "Kiruna",
+              "FA99": "Data not available",
+              "LANTOT": "All counties",
+              "01": "Stockholm county",
+              "03": "Uppsala county",
+              "04": "Södermanland county",
+              "05": "Östergötland county",
+              "06": "Jönköping county",
+              "07": "Kronoberg county",
+              "08": "Kalmar county",
+              "09": "Gotland county",
+              "10": "Blekinge county",
+              "12": "Skåne county",
+              "13": "Halland county",
+              "14": "Västra Götaland county",
+              "17": "Värmland county",
+              "18": "Örebro county",
+              "19": "Västmanland county",
+              "20": "Dalarna county",
+              "21": "Gävleborg county",
+              "22": "Västernorrland county",
+              "23": "Jämtland county",
+              "24": "Västerbotten county",
+              "25": "Norrbotten county",
+              "TOT": "Total",
+              "99": "Data not available"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_CTOTYH",
+                "label": "Sweden",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_CTOTYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ALANYH",
+                "label": "County in which the education is arranged",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ALANYH?lang=en"
+                  }
+                ]
+              },
+              {
+                "id": "vs_BFAYH",
+                "label": "Functional analysis region (FA) on-site",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "en",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_BFAYH?lang=en"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "UtbTakt": {
+          "label": "study rate of the programme",
+          "category": {
+            "index": {
+              "TOTHD": 0,
+              "HT": 1,
+              "DT": 2
+            },
+            "label": {
+              "TOTHD": "All study rates",
+              "HT": "Full time",
+              "DT": "Part time"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbFormYH": {
+          "label": "form of study of the programme",
+          "category": {
+            "index": {
+              "TOTBD": 0,
+              "BU": 1,
+              "DI": 2
+            },
+            "label": {
+              "TOTBD": "All forms of study",
+              "BU": "Traditional",
+              "DI": "Distance learning"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbLangd": {
+          "label": "programme length",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "0,5-1": 1,
+              "1-1,5": 2,
+              "1,5-2": 3,
+              "2-2,5": 4,
+              "2,5-3": 5,
+              "3-3,5": 6
+            },
+            "label": {
+              "TOT": "All programme length",
+              "0,5-1": "Minimum 0.5 year less than 1 year",
+              "1-1,5": "Minimum 1 year less than 1.5 years",
+              "1,5-2": "Minimum 1.5 years less than 2 years",
+              "2-2,5": "Minimum 2 years less than 2.5 years",
+              "2,5-3": "Minimum 2.5 years less than 3 years",
+              "3-3,5": "Minimum 3 years, maximum 3.5 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "000002VG": 0,
+              "000002VD": 1,
+              "000002KL": 2,
+              "000002VI": 3,
+              "000002VJ": 4,
+              "000002X4": 5,
+              "000002VF": 6
+            },
+            "label": {
+              "000002VG": "Number of applications",
+              "000002VD": "Number of applicants",
+              "000002KL": "Number of qualified applicants",
+              "000002VI": "Number of places",
+              "000002VJ": "Number of applicants per place",
+              "000002X4": "Number of qualified applicants per place",
+              "000002VF": "Number of admitted students at start"
+            },
+            "unit": {
+              "000002VG": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002VD": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002KL": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002VI": {
+                "base": "number",
+                "decimals": 0
+              },
+              "000002VJ": {
+                "base": "number",
+                "decimals": 1
+              },
+              "000002X4": {
+                "base": "number",
+                "decimals": 1
+              },
+              "000002VF": {
+                "base": "number",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000002VG": "Year",
+              "000002VD": "Year",
+              "000002KL": "Year",
+              "000002VI": "Year",
+              "000002VJ": "Year",
+              "000002X4": "Year",
+              "000002VF": "Year"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000002VG": "Stock",
+              "000002VD": "Stock",
+              "000002KL": "Stock",
+              "000002VI": "Stock",
+              "000002VJ": "Stock",
+              "000002X4": "Stock",
+              "000002VF": "Stock"
+            },
+            "priceType": {
+              "000002VG": "NotApplicable",
+              "000002VD": "NotApplicable",
+              "000002KL": "NotApplicable",
+              "000002VI": "NotApplicable",
+              "000002VJ": "NotApplicable",
+              "000002X4": "NotApplicable",
+              "000002VF": "NotApplicable"
+            },
+            "adjustment": {
+              "000002VG": "None",
+              "000002VD": "WorkOnly",
+              "000002KL": "None",
+              "000002VI": "None",
+              "000002VJ": "None",
+              "000002X4": "None",
+              "000002VF": "None"
+            },
+            "alternativeText": {
+              "000002VG": "Number of applications to higher vocational education",
+              "000002VD": "Number of applicants to higher vocational education",
+              "000002KL": "Number of qualified applicants to higher vocational education",
+              "000002VI": "Number of places in higher vocational education",
+              "000002VJ": "Number of applicants per place to higher vocational education",
+              "000002X4": "Number of qualified applicants per place to higher vocational education",
+              "000002VF": "Number of admitted students at start, higher vocational education"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2014": 0,
+              "2015": 1,
+              "2016": 2,
+              "2017": 3,
+              "2018": 4,
+              "2019": 5
+            },
+            "label": {
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true
+        },
+        "px": {
+          "infofile": "UF0701",
+          "tableid": "TAB5101",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Number of applicants per place to higher vocational education",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbildnInriktn",
+            "RegionUtb",
+            "UtbTakt",
+            "UtbFormYH",
+            "UtbLangd"
+          ],
+          "matrix": "TAB5101",
+          "subject-code": "UF",
+          "subject-area": "Education and research"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, Statistics Sweden# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5101",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5101",
+        "label": "Number of applicants per place to higher vocational education, by sex, educational orientation, study region, study rate, form of study and programme length. Year 2014-2019",
+        "description": "",
+        "sortCode": "05",
+        "updated": "2022-03-24T07:00:00Z",
+        "firstPeriod": "2014",
+        "lastPeriod": "2019",
+        "category": "public",
+        "variableNames": [
+          "sex",
+          "educational orientation",
+          "region where the course is held",
+          "study rate of the programme",
+          "form of study of the programme",
+          "programme length",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Education and research",
+              "sortCode": "Education and research"
+            },
+            {
+              "id": "UF0701",
+              "label": "Higher Vocational Education",
+              "sortCode": "Higher Vocational Education"
+            },
+            {
+              "id": "UF0701A",
+              "label": "Applicants",
+              "sortCode": "022"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5101?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5101?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5101/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5101/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

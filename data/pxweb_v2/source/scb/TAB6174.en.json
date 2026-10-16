@@ -1,0 +1,392 @@
+{
+  "key": "scb/TAB6174/en",
+  "identifier": "TAB6174",
+  "language": "en",
+  "updated": "2022-02-18T07:00:00Z",
+  "retrieved_at": "2026-10-16T18:25:56.147847+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Not in the labour force, number of persons aged 15-74 (LFS) by reason, sex and age, previous definitions. Year 2005-2020",
+      "source": "Statistics Sweden",
+      "updated": "2022-02-18T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:AM0403"
+            },
+            "href": "https://www.scb.se/AM0403-en",
+            "label": "Statistics page",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "As the LFS is a sample survey, all estimations are subject to uncertainty. Uncertainty in estimations based on fewer than 20 observations on a monthly or quarterly basis or fewer than 40 observations on a yearly basis may be considered too large and the estimation is not reported. In these cases, the value is replaced with two periods [..].",
+        "As of 1 January 2021, the LFS is carried out in accordance with the new EU framework regulation. This means there is a break in time series between 2020 and 2021.  \r\n[The Statistical Database, data from 2021](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0401/)  \r\n[The Statistical Database, data up to and including 2020](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0403/)"
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "EjiakOrsak",
+        "Kon",
+        "Alder",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        9,
+        3,
+        7,
+        2,
+        16
+      ],
+      "dimension": {
+        "EjiakOrsak": {
+          "label": "reason",
+          "category": {
+            "index": {
+              "STUDHEL": 0,
+              "HEMARB": 1,
+              "ARBSOK": 2,
+              "VPL": 3,
+              "LEDIG": 4,
+              "PENSION": 5,
+              "FRSJUK": 6,
+              "OVR": 7,
+              "EJIAKTOT": 8
+            },
+            "label": {
+              "STUDHEL": "full-time student",
+              "HEMARB": "household worker",
+              "ARBSOK": "job seeker",
+              "VPL": "conscripts in military service",
+              "LEDIG": "free",
+              "PENSION": "retirement",
+              "FRSJUK": "illness",
+              "OVR": "other reasons",
+              "EJIAKTOT": "not in the labour force, total"
+            },
+            "note": {
+              "ARBSOK": [
+                "Classifies himself/herself as job seeker but does not fulfil the criteria for unemployment."
+              ],
+              "VPL": [
+                "Conscripts in military service are no longer included in the target population of LFS and are therefore not reported."
+              ],
+              "PENSION": [
+                "Early retirement pension for health reasons is included in illness."
+              ],
+              "FRSJUK": [
+                "Early retirement pension for health reasons is included in illness."
+              ],
+              "OVR": [
+                "Conscripts in military service are no longer included in the target population of LFS and are therefore not reported."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "ARBSOK": {
+                "0": true
+              },
+              "VPL": {
+                "0": true
+              },
+              "PENSION": {
+                "0": true
+              },
+              "FRSJUK": {
+                "0": true
+              },
+              "OVR": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "sex",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "men",
+              "2": "women",
+              "1+2": "total"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "age",
+          "category": {
+            "index": {
+              "tot15-74": 0,
+              "tot16-64": 1,
+              "tot16-65": 2,
+              "tot16-66": 3,
+              "tot20-64": 4,
+              "tot20-65": 5,
+              "tot20-66": 6
+            },
+            "label": {
+              "tot15-74": "total 15–74 years",
+              "tot16-64": "total 16–64 years",
+              "tot16-65": "total 16–65 years",
+              "tot16-66": "total 16–66 years",
+              "tot20-64": "total 20–64 years",
+              "tot20-65": "total 20–65 years",
+              "tot20-66": "total 20–66 years"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "observations",
+          "category": {
+            "index": {
+              "00000691": 0,
+              "00000692": 1
+            },
+            "label": {
+              "00000691": "1000s",
+              "00000692": "Margin of error ±, 1000s"
+            },
+            "note": {
+              "00000692": [
+                "The presented margin of error corresponds to a 95 percent confidence interval.",
+                "Because the LFS is a sample survey based on a national random probability sample, there is a degree of uncertainty that can be calculated. The presented information consists of estimations and consideration must be taken to uncertainty/margin of error when drawing conclusions. The interval that is created by the level estimation ± margin of error here is a 95 percent confidence interval, which is an interval with a 95 percent probability including the actual value."
+              ]
+            },
+            "unit": {
+              "00000691": {
+                "base": "1000s",
+                "decimals": 1
+              },
+              "00000692": {
+                "base": "1000s",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "00000692": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "00000691": "",
+              "00000692": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000691": "Average",
+              "00000692": "Average"
+            },
+            "priceType": {
+              "00000691": "NotApplicable",
+              "00000692": "NotApplicable"
+            },
+            "adjustment": {
+              "00000691": "None",
+              "00000692": "None"
+            },
+            "alternativeText": {
+              "00000691": "Previous definitions. Number of persons not in the labour force aged 15-74 (LFS), 1000s",
+              "00000692": "Previous definitions. Margin of error ±, number of persons not in the labour force aged 15-74 (LFS), 1000s"
+            }
+          }
+        },
+        "Tid": {
+          "label": "year",
+          "category": {
+            "index": {
+              "2005": 0,
+              "2006": 1,
+              "2007": 2,
+              "2008": 3,
+              "2009": 4,
+              "2010": 5,
+              "2011": 6,
+              "2012": 7,
+              "2013": 8,
+              "2014": 9,
+              "2015": 10,
+              "2016": 11,
+              "2017": 12,
+              "2018": 13,
+              "2019": 14,
+              "2020": 15
+            },
+            "label": {
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true
+        },
+        "px": {
+          "infofile": "AM0403",
+          "tableid": "TAB6174",
+          "decimals": 1,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "en",
+          "contents": "Previous definitions. Number of persons not in the labour force aged 15-74 (LFS)",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "EjiakOrsak",
+            "Kon",
+            "Alder"
+          ],
+          "matrix": "TAB6174",
+          "subject-code": "AM",
+          "subject-area": "Labour market"
+        },
+        "contact": [
+          {
+            "name": "Arbetskraftsundersökningarna (AKU)",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "aku@scb.se",
+            "raw": "Arbetskraftsundersökningarna (AKU), Statistics Sweden# +46 010-479 50 00#aku@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "Statistics Sweden",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, Statistics Sweden# +46 010-479 50 00#information@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6174",
+      "language": "en",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6174",
+        "label": "Not in the labour force, number of persons aged 15-74 (LFS) by reason, sex and age, previous definitions. Year 2005-2020",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2022-02-18T07:00:00Z",
+        "firstPeriod": "2005",
+        "lastPeriod": "2020",
+        "category": "public",
+        "variableNames": [
+          "reason",
+          "sex",
+          "age",
+          "observations",
+          "year"
+        ],
+        "source": "Statistics Sweden",
+        "subjectCode": "AM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "AM",
+              "label": "Labour market",
+              "sortCode": "Labour market"
+            },
+            {
+              "id": "AM0403",
+              "label": "Labour Force Surveys, previous definitions",
+              "sortCode": "Labour Force Surveys, previous definitions"
+            },
+            {
+              "id": "AM0403M",
+              "label": "Persons not in the labour force 2005-2020",
+              "sortCode": "08"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6174?lang=en"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6174?lang=sv"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6174/metadata?lang=en"
+          },
+          {
+            "rel": "data",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6174/data?lang=en&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

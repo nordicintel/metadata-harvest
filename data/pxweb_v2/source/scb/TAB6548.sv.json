@@ -1,0 +1,456 @@
+{
+  "key": "scb/TAB6548/sv",
+  "identifier": "TAB6548",
+  "language": "sv",
+  "updated": "2026-02-25T07:00:00Z",
+  "retrieved_at": "2026-10-16T17:43:52.448305+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Självförsörjning efter kön, ålder, födelseregion, arbetsmarknadsstatus och huvudsaklig inkomstkälla. År 2020-2024",
+      "source": "SCB",
+      "updated": "2026-02-25T07:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:HE0000"
+            },
+            "href": "https://www.scb.se/HE0000",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "För att skydda enskilda personers uppgifter i den redovisade statistiken används statistiska metoder. På grund av detta är inte alltid de redovisade totalerna lika med summan av deras redovisade delar. Se vidare avsnitt 2.2.6 Modellantaganden, i dokumentationen Kvalitetsdeklaration på SCB:s webbplats.",
+        "Individer med en självförsörjningsgrundande inkomst som understiger tre inkomstbasbelopp under ett år klassificeras som ej självförsörjande. Heltidsstuderande eller värnpliktiga med en självförsörjningsgrundande inkomst som understiger tre inkomstbasbelopp ingår dock inte i kategorin ej självförsörjande, de ingår istället i kategorin studerande/värnpliktiga. Ytterligare information finns i dokumentationen Kvalitetsdeklaration.",
+        "I samband med redovisningen av ny statistik för 2024, reviderades tidigare publicerad statistik.  \r\n• Populationsavgränsningen har ändrats från att baseras på helårshushåll (hushåll där samtliga vuxna är folkbokförda hela året) till att baseras på helårsindivider (respektive individ är folkbokförd hela året). Revideringen resulterar i att populationen ökar med 1,1–1,8 procent per år i åldersgruppen 20–65 år.  \r\n• Löneinkomst från övriga nordiska länder inkluderas i den självförsörjningsgrundande inkomsten under samtliga år, dvs 2013–2024. Vid den initiala redovisningen ingick dessa inkomster endast från och med år 2020.  \r\nYtterligare information om revideringen finns i statistikens kvalitetsdeklaration."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "Alder",
+        "Fodelseregion",
+        "ArbMStat",
+        "HuvInkKalla",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        12,
+        5,
+        7,
+        10,
+        7,
+        5
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "1": 1,
+              "2": 2
+            },
+            "label": {
+              "1+2": "män och kvinnor totalt",
+              "1": "män",
+              "2": "kvinnor"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Alder": {
+          "label": "ålder",
+          "category": {
+            "index": {
+              "20-64": 0,
+              "20-65": 1,
+              "20-24": 2,
+              "25-29": 3,
+              "30-34": 4,
+              "35-39": 5,
+              "40-44": 6,
+              "45-49": 7,
+              "50-54": 8,
+              "55-59": 9,
+              "60-64": 10,
+              "60-65": 11
+            },
+            "label": {
+              "20-64": "20–64 år",
+              "20-65": "20–65 år",
+              "20-24": "20–24 år",
+              "25-29": "25–29 år",
+              "30-34": "30–34 år",
+              "35-39": "35–39 år",
+              "40-44": "40–44 år",
+              "45-49": "45–49 år",
+              "50-54": "50–54 år",
+              "55-59": "55–59 år",
+              "60-64": "60–64 år",
+              "60-65": "60–65 år"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Fodelseregion": {
+          "label": "födelseregion",
+          "category": {
+            "index": {
+              "samt": 0,
+              "in": 1,
+              "ut": 2,
+              "ute": 3,
+              "utee": 4
+            },
+            "label": {
+              "samt": "samtliga födelseregioner",
+              "in": "inrikes född",
+              "ut": "utrikes född",
+              "ute": "utrikes född, Europa",
+              "utee": "utrikes född, exkl. Europa"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ArbMStat": {
+          "label": "arbetsmarknadsstatus",
+          "category": {
+            "index": {
+              "Tot": 0,
+              "Sy": 1,
+              "Al": 2,
+              "St": 3,
+              "Pe": 4,
+              "Sj": 5,
+              "Ov": 6
+            },
+            "label": {
+              "Tot": "arbetsmarknadsstatus totalt",
+              "Sy": "sysselsatt",
+              "Al": "arbetslös",
+              "St": "studerande",
+              "Pe": "pensionär",
+              "Sj": "sjuk",
+              "Ov": "övrig"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "HuvInkKalla": {
+          "label": "huvudsaklig inkomstkälla",
+          "category": {
+            "index": {
+              "InkTot": 0,
+              "EA": 1,
+              "EAL": 2,
+              "ES": 3,
+              "EP": 4,
+              "ELA": 5,
+              "ESJ": 6,
+              "EF": 7,
+              "EST": 8,
+              "SE": 9
+            },
+            "label": {
+              "InkTot": "inkomstkällor totalt",
+              "EA": "ersättning för arbete",
+              "EAL": "ersättning vid arbetslöshet",
+              "ES": "ersättning för studier",
+              "EP": "pension",
+              "ELA": "ersättning vid långvarigt nedsatt arbetsförmåga",
+              "ESJ": "ersättning vid sjukdom",
+              "EF": "ersättning vid föräldraledighet/närståendeomvårdnad",
+              "EST": "ekonomiskt stöd",
+              "SE": "saknar ersättning"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "000007X0": 0,
+              "000007WY": 1,
+              "000007WX": 2,
+              "000007WZ": 3,
+              "000007WV": 4,
+              "000007WU": 5,
+              "000007WW": 6
+            },
+            "label": {
+              "000007X0": "Antal personer totalt",
+              "000007WY": "Antal självförsörjande",
+              "000007WX": "Antal ej självförsörjande",
+              "000007WZ": "Antal studerande/värnpliktiga",
+              "000007WV": "Andel självförsörjande personer",
+              "000007WU": "Andel ej självförsörjande",
+              "000007WW": "Andel studerande/värnpliktiga"
+            },
+            "unit": {
+              "000007X0": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000007WY": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000007WX": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000007WZ": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "000007WV": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "000007WU": {
+                "base": "andel",
+                "decimals": 1
+              },
+              "000007WW": {
+                "base": "andel",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "000007X0": "",
+              "000007WY": "",
+              "000007WX": "",
+              "000007WZ": "",
+              "000007WV": "",
+              "000007WU": "",
+              "000007WW": ""
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "000007X0": "Average",
+              "000007WY": "Average",
+              "000007WX": "Average",
+              "000007WZ": "Average",
+              "000007WV": "Average",
+              "000007WU": "Average",
+              "000007WW": "Average"
+            },
+            "priceType": {
+              "000007X0": "NotApplicable",
+              "000007WY": "NotApplicable",
+              "000007WX": "NotApplicable",
+              "000007WZ": "NotApplicable",
+              "000007WV": "NotApplicable",
+              "000007WU": "NotApplicable",
+              "000007WW": "NotApplicable"
+            },
+            "adjustment": {
+              "000007X0": "None",
+              "000007WY": "None",
+              "000007WX": "None",
+              "000007WZ": "None",
+              "000007WV": "None",
+              "000007WU": "None",
+              "000007WW": "None"
+            },
+            "alternativeText": {
+              "000007X0": "Antal personer totalt",
+              "000007WY": "Antal självförsörjande personer",
+              "000007WX": "Antal ej självförsörjande personer",
+              "000007WZ": "Antal studerande/värnpliktiga personer",
+              "000007WV": "Andel självförsörjande personer",
+              "000007WU": "Andel ej självförsörjande personer",
+              "000007WW": "Andel studerande/värnpliktiga personer"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2020": 0,
+              "2021": 1,
+              "2022": 2,
+              "2023": 3,
+              "2024": 4
+            },
+            "label": {
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "HE0000",
+          "tableid": "TAB6548",
+          "decimals": 0,
+          "official-statistics": false,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Självförsörjning",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "Alder",
+            "Fodelseregion",
+            "ArbMStat",
+            "HuvInkKalla"
+          ],
+          "matrix": "TAB6548",
+          "subject-code": "HE",
+          "subject-area": "Hushållens ekonomi"
+        },
+        "contact": [
+          {
+            "name": "Johan Lindberg",
+            "organization": "SCB",
+            "phone": "010-479 60 64",
+            "mail": "johan.lindberg@scb.se",
+            "raw": "Johan Lindberg, SCB# +46 010-479 60 64#johan.lindberg@scb.se"
+          },
+          {
+            "name": "Statistikservice",
+            "organization": "SCB",
+            "phone": "010-479 50 00",
+            "mail": "information@scb.se",
+            "raw": " Statistikservice, SCB# +46 010-479 50 00#information@scb.se"
+          },
+          {
+            "name": "Peter Gärdqvist",
+            "organization": "SCB",
+            "phone": "010-479 67 85",
+            "mail": "peter.gardqvist@scb.se",
+            "raw": "Peter Gärdqvist, SCB# +46 010-479 67 85#peter.gardqvist@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB6548",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB6548",
+        "label": "Självförsörjning efter kön, ålder, födelseregion, arbetsmarknadsstatus och huvudsaklig inkomstkälla. År 2020-2024",
+        "description": "",
+        "sortCode": "034",
+        "updated": "2026-02-25T07:00:00Z",
+        "firstPeriod": "2020",
+        "lastPeriod": "2024",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "ålder",
+          "födelseregion",
+          "arbetsmarknadsstatus",
+          "huvudsaklig inkomstkälla",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "HE",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "HE",
+              "label": "Hushållens ekonomi",
+              "sortCode": "Hushållens ekonomi"
+            },
+            {
+              "id": "HE0000",
+              "label": "Hushållens ekonomi allmän statistik",
+              "sortCode": "Hushållens ekonomi allmän statistik"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6548?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6548?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6548/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB6548/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

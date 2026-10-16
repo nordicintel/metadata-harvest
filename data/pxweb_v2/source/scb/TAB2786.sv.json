@@ -1,0 +1,375 @@
+{
+  "key": "scb/TAB2786/sv",
+  "identifier": "TAB2786",
+  "language": "sv",
+  "updated": "2024-08-30T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:37:57.533294+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Europaparlamentsval - röstberättigade efter rösträttsgrupp, kön och ålder/förstagångsväljare. Valår 2004-2024",
+      "source": "SCB",
+      "updated": "2024-08-30T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:ME0109"
+            },
+            "href": "https://www.scb.se/ME0109",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Rostrattsgr",
+        "Kon",
+        "AlderForstagangsv",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        4,
+        3,
+        19,
+        2,
+        5
+      ],
+      "dimension": {
+        "Rostrattsgr": {
+          "label": "rösträttsgrupp",
+          "category": {
+            "index": {
+              "010": 0,
+              "020": 1,
+              "030": 2,
+              "040": 3
+            },
+            "label": {
+              "010": "svenska medborgare i Sverige",
+              "020": "svenska medborgare utomlands",
+              "030": "utländska EU-medborgare",
+              "040": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1": 0,
+              "2": 1,
+              "1+2": 2
+            },
+            "label": {
+              "1": "män",
+              "2": "kvinnor",
+              "1+2": "totalt"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AlderForstagangsv": {
+          "label": "ålder/förstagångsväljare",
+          "category": {
+            "index": {
+              "18-24": 0,
+              "18-29": 1,
+              "25-29": 2,
+              "30-34": 3,
+              "30-49": 4,
+              "35-39": 5,
+              "40-44": 6,
+              "45-49": 7,
+              "50-54": 8,
+              "50-64": 9,
+              "55-59": 10,
+              "60-64": 11,
+              "65-69": 12,
+              "65+": 13,
+              "70-74": 14,
+              "75-79": 15,
+              "80+": 16,
+              "f": 17,
+              "if": 18
+            },
+            "label": {
+              "18-24": "18–24 år",
+              "18-29": "18–29 år",
+              "25-29": "25–29 år",
+              "30-34": "30–34 år",
+              "30-49": "30–49 år",
+              "35-39": "35–39 år",
+              "40-44": "40–44 år",
+              "45-49": "45–49 år",
+              "50-54": "50–54 år",
+              "50-64": "50–64 år",
+              "55-59": "55–59 år",
+              "60-64": "60–64 år",
+              "65-69": "65–69 år",
+              "65+": "65+ år",
+              "70-74": "70–74 år",
+              "75-79": "75–79 år",
+              "80+": "80+ år",
+              "f": "förstagångsväljare",
+              "if": "ej förstagångsväljare"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": [
+              {
+                "id": "vs_ÅlderEUValEjAggr",
+                "label": "Ålder, 5-årsklasser",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderEUValEjAggr?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ÅlderVal4Klasser",
+                "label": "Ålder, 4 grupper",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderVal4Klasser?lang=sv"
+                  }
+                ]
+              },
+              {
+                "id": "vs_ÅlderValFörstagångsv",
+                "label": "Förstagångsväljare eller ej",
+                "type": "Valueset",
+                "links": [
+                  {
+                    "rel": "metadata",
+                    "hreflang": "sv",
+                    "href": "https://statistikdatabasen.scb.se/api/v2/codeLists/vs_ÅlderValFörstagångsv?lang=sv"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "ME0109AA": 0,
+              "ME0109AB": 1
+            },
+            "label": {
+              "ME0109AA": "Antal röstberättigade",
+              "ME0109AB": "Andel röstberättigade"
+            },
+            "unit": {
+              "ME0109AA": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "ME0109AB": {
+                "base": "procent",
+                "decimals": 1
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "ME0109AA": "Valår",
+              "ME0109AB": "Valår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "ME0109AA": "Stock",
+              "ME0109AB": "Stock"
+            },
+            "priceType": {
+              "ME0109AA": "NotApplicable",
+              "ME0109AB": "NotApplicable"
+            },
+            "adjustment": {
+              "ME0109AA": "None",
+              "ME0109AB": "None"
+            },
+            "alternativeText": {
+              "ME0109AA": "Europaparlamentsval - antal röstberättigade",
+              "ME0109AB": "Europaparlamentsval - andel röstberättigade"
+            }
+          }
+        },
+        "Tid": {
+          "label": "valår",
+          "category": {
+            "index": {
+              "2004": 0,
+              "2009": 1,
+              "2014": 2,
+              "2019": 3,
+              "2024": 4
+            },
+            "label": {
+              "2004": "2004",
+              "2009": "2009",
+              "2014": "2014",
+              "2019": "2019",
+              "2024": "2024"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "px": {
+          "infofile": "ME0109",
+          "tableid": "TAB2786",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Europaparlamentsval - röstberättigade",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Rostrattsgr",
+            "Kon",
+            "AlderForstagangsv"
+          ],
+          "matrix": "TAB2786",
+          "subject-code": "ME",
+          "subject-area": "Demokrati"
+        },
+        "contact": [
+          {
+            "name": "Jonas Olofsson",
+            "organization": "SCB",
+            "phone": "010-479 47 18",
+            "mail": "jonas.olofsson@scb.se",
+            "raw": "Jonas Olofsson, SCB# +46 010-479 47 18#jonas.olofsson@scb.se"
+          },
+          {
+            "name": "Karolina Eriksson",
+            "organization": "SCB",
+            "phone": "010-479 41 76",
+            "mail": "karolina.eriksson@scb.se",
+            "raw": "Karolina Eriksson, SCB# +46 010-479 41 76#karolina.eriksson@scb.se"
+          },
+          {
+            "name": "  Valstatistik",
+            "organization": "SCB",
+            "phone": "010-479 44 10",
+            "mail": "valstatistik@scb.se",
+            "raw": "  Valstatistik, SCB# +46 010-479 44 10#valstatistik@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB2786",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB2786",
+        "label": "Europaparlamentsval - röstberättigade efter rösträttsgrupp, kön och ålder/förstagångsväljare. Valår 2004-2024",
+        "description": "",
+        "sortCode": "017",
+        "updated": "2024-08-30T06:00:00Z",
+        "firstPeriod": "2004",
+        "lastPeriod": "2024",
+        "category": "public",
+        "variableNames": [
+          "rösträttsgrupp",
+          "kön",
+          "ålder/förstagångsväljare",
+          "tabellinnehåll",
+          "valår"
+        ],
+        "source": "SCB",
+        "subjectCode": "ME",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "ME",
+              "label": "Demokrati",
+              "sortCode": "Demokrati"
+            },
+            {
+              "id": "ME0109",
+              "label": "Europaparlamentsval, valresultat",
+              "sortCode": "Europaparlamentsval, valresultat"
+            },
+            {
+              "id": "ME0109B",
+              "label": "Röstberättigade",
+              "sortCode": "Röstberättigade"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2786?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2786?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2786/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB2786/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

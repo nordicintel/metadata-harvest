@@ -1,0 +1,432 @@
+{
+  "key": "scb/TAB1586/sv",
+  "identifier": "TAB1586",
+  "language": "sv",
+  "updated": "2017-06-02T07:30:00Z",
+  "retrieved_at": "2026-10-16T17:35:06.257410+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Intäkter och kostnader för flerbostadshus efter region, nybyggår/värdeår, årsintervall, fastighetsägarkategori och intäkts-/kostnadsslag. (Urvalsundersökning, se fotnoter). År 2003-2015",
+      "source": "SCB",
+      "updated": "2017-06-02T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Korrigering 2015-06-09\r\n För ett flertal observationer har ägarkategori kodats felaktigt inom grupperna Fysiska personer och Aktiebolag och dyl. Den presenterade statistiken i dessa ägarkategorier håller inte tillräckligt god kvalitet och därför har all statistik som publicerats för dessa ägarkategorier tagits bort för åren 2003-2012. Ingen statistik publiceras för dessa ägarkategorier från och med redovisningsår 2013. Redovisningsgruppen privatägda fastighter samtliga påverkas inte",
+        "Korrigering 2015-06-09\r\n I kolumnen för felmarginal har av misstag standardavvikelsen redovisats för åren 2003-2012. Detta är nu korrigerat.",
+        "Från och med år 2013 redovisas inte variablerna räntebidrag (mkr), räntebidrag i % av räntor och räntebidrag kr/kvm totalyta. Det beror på att de statliga räntebidragen till ny- och ombyggnad av hyres- och bostadsrättshus har upphört helt efter en utfasning av bidragen från år 2007.",
+        "Korrigering 2015-12-07\r\nDen korrigering av felmarginal som gjordes 2015-06-09 var felaktig. Felmarginalen är nu korrekt.",
+        "Det finns ingen statistik för år 2014 på grund av att undersökningen inte genomfördes.",
+        "För undersökningsår 2012 redovisas värdeår/nybyggnadsår 2010 endast i kolumnen samtliga."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "NybyggArVardeAr",
+        "Arsintervall",
+        "AgareA",
+        "IntakterKostnader",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        2,
+        7,
+        4,
+        23,
+        2,
+        12
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0030": "Stor-Malmö",
+              "0040": "Kommuner med >75 000 inv. (exkl. storstadsområden)",
+              "0041": "Kommuner med <75 000 inv. (exkl. storstadsområden)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "NybyggArVardeAr": {
+          "label": "nybyggår/värdeår",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1
+            },
+            "label": {
+              "01": "nybyggnadsår",
+              "02": "värdeår"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Arsintervall": {
+          "label": "årsintervall",
+          "category": {
+            "index": {
+              "031": 0,
+              "041": 1,
+              "06": 2,
+              "07": 3,
+              "071": 4,
+              "072": 5,
+              "08": 6
+            },
+            "label": {
+              "031": "–1959",
+              "041": "1960–1979",
+              "06": "1980–1989",
+              "07": "1990–1999",
+              "071": "2000–2009",
+              "072": "2010–",
+              "08": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "AgareA": {
+          "label": "fastighetsägarkategori",
+          "category": {
+            "index": {
+              "009": 0,
+              "006": 1,
+              "001": 2,
+              "003": 3
+            },
+            "label": {
+              "009": "bostadsrättsföreningar",
+              "006": "privatägda fastigheter; samtliga",
+              "001": "privatägda fastigheter; samtliga aktiebolag o.dyl.",
+              "003": "privatägda fastigheter; samtliga fysiska personer"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "IntakterKostnader": {
+          "label": "intäkts-/kostnadsslag",
+          "category": {
+            "index": {
+              "001": 0,
+              "002": 1,
+              "003": 2,
+              "004": 3,
+              "008": 4,
+              "005": 5,
+              "007": 6,
+              "10": 7,
+              "06": 8,
+              "20": 9,
+              "21": 10,
+              "22": 11,
+              "23": 12,
+              "24": 13,
+              "30": 14,
+              "40": 15,
+              "42": 16,
+              "41": 17,
+              "034": 18,
+              "45": 19,
+              "044": 20,
+              "050": 21,
+              "070": 22
+            },
+            "label": {
+              "001": "intäkt bostäder (brutto), kr/kvm totalyta",
+              "002": "intäkt bostäder (brutto), kr/kvm boyta",
+              "003": "intäkt lokaler (brutto),  kr/kvm totalyta",
+              "004": "intäkt lokaler (brutto),  kr/kvm lokalyta",
+              "008": "intäkt garage o bilplats (brutto), kr/kvm totalyta",
+              "005": "intäkt övrigt (inte räntebidrag), kr/kvm totalyta",
+              "007": "summa intäkter (brutto), kr/kvm totalyta",
+              "10": "s:a hyresbortfall, kr/kvm totalyta",
+              "06": "s:a intäkter (netto), kr/kvm totalyta",
+              "20": "drift: skötsel, adm, kr/kvm totalyta",
+              "21": "drift: värme, kr/kvm totalyta",
+              "22": "drift: taxebundna kostnader, kr/kvm totalyta",
+              "23": "drift: övrigt, kr/kvm totalyta",
+              "24": "s:a drift, kr/kvm totalyta",
+              "30": "underhåll och reparation, kr/kvm totalyta",
+              "40": "kapital: räntor (brutto), kr/kvm totalyta",
+              "42": "kapital: avskrivningar, kr/kvm totalyta",
+              "41": "kapital: tomträttsavgäld, kr/kvm totalyta",
+              "034": "kapital: övriga kapitalkostnader, kr/kvm totalyta (specificeras ej för privata)",
+              "45": "fastighetsskatt, kr/kvm totalyta",
+              "044": "avdrag: räntebidrag, kr/kvm totalyta",
+              "050": "summa kostnader, kr/kvm totalyta",
+              "070": "föreningens inkomstskatt, kr/kvm totalyta (endast brf)"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0301X3": 0,
+              "BO0301X4": 1
+            },
+            "label": {
+              "BO0301X3": "Intäkter och kostnader",
+              "BO0301X4": "Felmarginal ±"
+            },
+            "note": {
+              "BO0301X3": [
+                "För Privatägda fastigheter inhämtas fr.o.m. 2007 inte data avseende räntor, avskrivningar och lån p.g.a. svårigheter att inhämta dessa då särredovisning på fastighet allt oftare saknas. Detta gäller inte Allmännyttiga bostadsföretag och Bostadsrättsföreningar där data inhämtas för företaget respektive föreningen."
+              ]
+            },
+            "unit": {
+              "BO0301X3": {
+                "base": "kr/kvm",
+                "decimals": 0
+              },
+              "BO0301X4": {
+                "base": "kr/kvm",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "BO0301X3": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "BO0301X3": "Kalenderår",
+              "BO0301X4": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301X3": "Flow",
+              "BO0301X4": "Flow"
+            },
+            "priceType": {
+              "BO0301X3": "Current",
+              "BO0301X4": "Current"
+            },
+            "adjustment": {
+              "BO0301X3": "None",
+              "BO0301X4": "None"
+            },
+            "alternativeText": {
+              "BO0301X3": "Intäkter och kostnader för flerbostadshus (IKU), kr/kvm",
+              "BO0301X4": "Felmarginal ±, kr/kvm"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2003": 0,
+              "2004": 1,
+              "2005": 2,
+              "2006": 3,
+              "2007": 4,
+              "2008": 5,
+              "2009": 6,
+              "2010": 7,
+              "2011": 8,
+              "2012": 9,
+              "2013": 10,
+              "2015": 11
+            },
+            "label": {
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2015": "2015"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1586",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Intäkter och kostnader för flerbostadhus (IKU), kr/kvm",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "NybyggArVardeAr",
+            "Arsintervall",
+            "AgareA",
+            "IntakterKostnader"
+          ],
+          "matrix": "TAB1586",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1586",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1586",
+        "label": "Intäkter och kostnader för flerbostadshus efter region, nybyggår/värdeår, årsintervall, fastighetsägarkategori och intäkts-/kostnadsslag. (Urvalsundersökning, se fotnoter). År 2003-2015",
+        "description": "",
+        "sortCode": "03",
+        "updated": "2017-06-02T07:30:00Z",
+        "firstPeriod": "2003",
+        "lastPeriod": "2015",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "nybyggår/värdeår",
+          "årsintervall",
+          "fastighetsägarkategori",
+          "intäkts-/kostnadsslag",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0301",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)"
+            },
+            {
+              "id": "BO0301A",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1586/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

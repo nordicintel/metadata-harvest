@@ -1,0 +1,408 @@
+{
+  "key": "scb/TAB5540/sv",
+  "identifier": "TAB5540",
+  "language": "sv",
+  "updated": "2026-05-21T06:00:00Z",
+  "retrieved_at": "2026-10-16T18:06:02.239941+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Studerande och studerande som slutfört utbildning i konst- och kulturutbildningar efter kön och utbildningens syfte och längd och den studerandes tidigare utbildningsnivå. År 2015-2025",
+      "source": "SCB",
+      "updated": "2026-05-21T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:UF0702"
+            },
+            "href": "https://www.scb.se/UF0702",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "För att förhindra röjande av information har stokastisk avrundning applicerats på tabellen. Cellvärdena 1 och 2 har avrundats till antingen 0 eller 3 med förutbestämda sannolikheter. Därför summerar redovisningsgrupperna ibland inte till totalen.",
+        "En person räknas för varje utbildningsomgång och kan därför ingå i statistiken två eller fler gånger för samma år. Antal antagna som påbörjat studier, studerande och studerande som slutfört utbildning är därmed inte lika med antal personer.",
+        "Uppgifterna för referensåret 2024–2025 är uppdaterade 2026-05-21."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Kon",
+        "UtbSyfte",
+        "UtbLangd",
+        "SokUtbNiv",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        3,
+        4,
+        5,
+        6,
+        4,
+        11
+      ],
+      "dimension": {
+        "Kon": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "1+2": 0,
+              "2": 1,
+              "1": 2
+            },
+            "label": {
+              "1+2": "totalt",
+              "2": "kvinnor",
+              "1": "män"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbSyfte": {
+          "label": "utbildningens syfte",
+          "category": {
+            "index": {
+              "00": 0,
+              "10": 1,
+              "20": 2,
+              "30": 3
+            },
+            "label": {
+              "00": "totalt",
+              "10": "högskoleförberedande utbildningar inom det konstnärliga området",
+              "20": "yrkesinriktade utbildningar inom det konstnärliga och kulturella området",
+              "30": "utbildningar inom kulturarvsområdet"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "UtbLangd": {
+          "label": "utbildningens längd",
+          "category": {
+            "index": {
+              "TOT": 0,
+              "010": 1,
+              "020": 2,
+              "030": 3,
+              "040": 4
+            },
+            "label": {
+              "TOT": "totalt, samtliga utbildningslängder",
+              "010": "korta utbildningar",
+              "020": "övriga utbildningar - varav 1-åriga utbildningar (20–40 veckor)",
+              "030": "övriga utbildningar - varav 2-åriga utbildningar (41–80 veckor)",
+              "040": "övriga utbildningar - varav 3-åriga utbildningar (81–120 veckor)"
+            },
+            "note": {
+              "010": [
+                "Utbildningar som regleras enligt 8 § Förordningen (2013:871) om stöd för konst och kulturutbildningar och vissa andra utbildningar definieras som korta utbildningar. Dessa utbildningar kan omfatta allt från någon dag till 30 veckors heltidsstudier i utbildningslängd."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "010": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "SokUtbNiv": {
+          "label": "den studerandes tidigare utbildningsnivå",
+          "category": {
+            "index": {
+              "TOTUB": 0,
+              "FORG": 1,
+              "GYMN": 2,
+              "EGYMN-3": 3,
+              "EGYMN3+": 4,
+              "US": 5
+            },
+            "label": {
+              "TOTUB": "Totalt",
+              "FORG": "Förgymnasial utbildning",
+              "GYMN": "Gymnasial utbildning",
+              "EGYMN-3": "Eftergymnasial utbildning, kortare än 3 år",
+              "EGYMN3+": "Eftergymnasial utbildning, minst 3 år",
+              "US": "Uppgift saknas"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "00000407": 0,
+              "0000040A": 1,
+              "00000408": 2,
+              "00000409": 3
+            },
+            "label": {
+              "00000407": "Antal antagna som påbörjat studier",
+              "0000040A": "Antal studerande",
+              "00000408": "Antal studerande som slutfört utbildning",
+              "00000409": "Slutförandegrad"
+            },
+            "note": {
+              "00000407": [
+                "Antagna som påbörjat studier avser alla som är studerande eller har varit studerande på en utbildningsomgång, inklusive de som har tillkommit under utbildningens gång och de som hoppat av utbildningen."
+              ],
+              "0000040A": [
+                "Studerande avser alla aktivt studerande på utbildningsomgångar som pågått minst en dag under avsedd period. Den studerande ska heller inte ha avbrutit studierna innan avsedd period eller haft studieuppehåll hela den avsedda perioden."
+              ],
+              "00000408": [
+                "Studerande som slutfört utbildning avser studerande som nått kursernas mål i utbildningens alla delar. Studerande som avbrutit studierna innan utbildningsomgångens slut räknas inte som slutförda."
+              ],
+              "00000409": [
+                "Slutförandegrad används här för att benämna andelen studerande som slutfört sin utbildning. Avser andel studerande som slutfört utbildningen i procent av alla som bedrivit studier på de utbildningsomgångar som avslutats under ett år."
+              ]
+            },
+            "unit": {
+              "00000407": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "0000040A": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000408": {
+                "base": "antal",
+                "decimals": 0
+              },
+              "00000409": {
+                "base": "procent",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "categoryNoteMandatory": {
+              "00000407": {
+                "0": true
+              },
+              "0000040A": {
+                "0": true
+              },
+              "00000408": {
+                "0": true
+              },
+              "00000409": {
+                "0": true
+              }
+            },
+            "refperiod": {
+              "00000407": "År",
+              "0000040A": "År",
+              "00000408": "År",
+              "00000409": "År"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "00000407": "Stock",
+              "0000040A": "Stock",
+              "00000408": "Stock",
+              "00000409": "Stock"
+            },
+            "priceType": {
+              "00000407": "NotApplicable",
+              "0000040A": "NotApplicable",
+              "00000408": "NotApplicable",
+              "00000409": "NotApplicable"
+            },
+            "adjustment": {
+              "00000407": "None",
+              "0000040A": "None",
+              "00000408": "None",
+              "00000409": "None"
+            },
+            "alternativeText": {
+              "00000407": "Antal antagna som påbörjat studier inom konst- och kulturutbildningar",
+              "0000040A": "Antal studerande inom konst- och kulturutbildningar",
+              "00000408": "Antal studerande som slutfört utbildning inom konst- och kulturutbildningar",
+              "00000409": "Slutförandegrad inom konst- och kulturutbildningar"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2015": 0,
+              "2016": 1,
+              "2017": 2,
+              "2018": 3,
+              "2019": 4,
+              "2020": 5,
+              "2021": 6,
+              "2022": 7,
+              "2023": 8,
+              "2024": 9,
+              "2025": 10
+            },
+            "label": {
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "UF0702",
+          "tableid": "TAB5540",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": false,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Studerande och studerande som slutfört utbildning i konst- och kulturutbildningar",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Kon",
+            "UtbSyfte",
+            "UtbLangd",
+            "SokUtbNiv"
+          ],
+          "matrix": "TAB5540",
+          "subject-code": "UF",
+          "subject-area": "Utbildning och forskning"
+        },
+        "contact": [
+          {
+            "name": "Anna Gärdqvist",
+            "organization": "SCB",
+            "phone": "010-479 65 45",
+            "mail": "hogskolestat@scb.se",
+            "raw": "Anna Gärdqvist, SCB# +46 010-479 65 45#hogskolestat@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB5540",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB5540",
+        "label": "Studerande och studerande som slutfört utbildning i konst- och kulturutbildningar efter kön och utbildningens syfte och längd och den studerandes tidigare utbildningsnivå. År 2015-2025",
+        "description": "",
+        "sortCode": "06",
+        "updated": "2026-05-21T06:00:00Z",
+        "firstPeriod": "2015",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "kön",
+          "utbildningens syfte",
+          "utbildningens längd",
+          "den studerandes tidigare utbildningsnivå",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "UF",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "UF",
+              "label": "Utbildning och forskning",
+              "sortCode": "Utbildning och forskning"
+            },
+            {
+              "id": "UF0702",
+              "label": "Konst- och kulturutbildningar och vissa andra utbildningar",
+              "sortCode": "Konst- och kulturutbildningar och vissa andra utbildningar"
+            },
+            {
+              "id": "UF0702A",
+              "label": "Konst- och kulturutbildningar",
+              "sortCode": "013"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5540?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5540?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5540/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB5540/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

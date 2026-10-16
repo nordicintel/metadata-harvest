@@ -1,0 +1,373 @@
+{
+  "key": "scb/TAB1591/sv",
+  "identifier": "TAB1591",
+  "language": "sv",
+  "updated": "2017-06-02T07:30:00Z",
+  "retrieved_at": "2026-10-16T17:35:06.569236+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Intäkter och kostnader för flerbostadshus (IKU), allmännyttiga bostadsföretag efter region, lägenhetsantal och intäkts-/kostnadsslag. (Urvalsundersökning, se fotnoter). År 2001-2015",
+      "source": "SCB",
+      "updated": "2017-06-02T07:30:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:BO0301"
+            },
+            "href": "https://www.scb.se/BO0301",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "Från och med år 2013 redovisas inte variablerna räntebidrag (mkr), räntebidrag i % av räntor och räntebidrag kr/kvm totalyta. Det beror på att de statliga räntebidragen till ny- och ombyggnad av hyres- och bostadsrättshus har upphört helt efter en utfasning av bidragen från år 2007.",
+        "Det finns ingen statistik för år 2014 på grund av att undersökningen inte genomfördes.",
+        "Administrationskostnader. SABO (som från den egna undersökningen Ekonomiska statistik SABO-företagen efter databeredningen vidarebefordrar data till SCB) har från 2007 övergått till att mäta kostnader för administration med två mätvariabler, Fastighetsanknuten administration och Central administration, i stället för med en mätvariabel Administration. Den totala genomsnittliga administrationskostnaden år 2007 för kommunala bostadsföretag är avsevärt högre än året innan (83 kr/m2 totalyta mot 71 kr/m2 totalyta) vilket sannolikt huvudsakligen är en effekt av att data inom SABO inhämtats för två variabler.",
+        "Med allmännyttigt bostadsföretag avses i denna redovisning aktiebolag, ekonomisk förening eller stiftelse som i sin verksamhet huvudsakligen förvaltar fastigheter  med bostadslägenheter upplåtna med hyresrätt och som tidigare godkänts som allmännyttigt bostadsföretag."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Region",
+        "StorlekLgh",
+        "IntakterKostnader",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        6,
+        6,
+        29,
+        1,
+        14
+      ],
+      "dimension": {
+        "Region": {
+          "label": "region",
+          "category": {
+            "index": {
+              "00": 0,
+              "0010": 1,
+              "0020": 2,
+              "0030": 3,
+              "0040": 4,
+              "0041": 5
+            },
+            "label": {
+              "00": "Riket",
+              "0010": "Stor-Stockholm",
+              "0020": "Stor-Göteborg",
+              "0030": "Stor-Malmö",
+              "0040": "Kommuner med >75 000 inv. (exkl. storstadsområden)",
+              "0041": "Kommuner med <75 000 inv. (exkl. storstadsområden)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "code_value",
+            "codelists": []
+          }
+        },
+        "StorlekLgh": {
+          "label": "lägenhetsantal",
+          "category": {
+            "index": {
+              "01": 0,
+              "02": 1,
+              "03": 2,
+              "04": 3,
+              "05": 4,
+              "001": 5
+            },
+            "label": {
+              "01": "–499 bostadslägenheter",
+              "02": "500–999 bostadslägenheter",
+              "03": "1 000–4 999 bostadslägenheter",
+              "04": "5 000–9 999 bostadslägenheter",
+              "05": "10 000– bostadslägenheter",
+              "001": "samtliga"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "IntakterKostnader": {
+          "label": "intäkts-/kostnadsslag",
+          "category": {
+            "index": {
+              "001": 0,
+              "002": 1,
+              "003": 2,
+              "004": 3,
+              "008": 4,
+              "051": 5,
+              "052": 6,
+              "005": 7,
+              "007": 8,
+              "10": 9,
+              "06": 10,
+              "15": 11,
+              "16": 12,
+              "21": 13,
+              "22": 14,
+              "025": 15,
+              "23": 16,
+              "24": 17,
+              "30": 18,
+              "31": 19,
+              "40": 20,
+              "42": 21,
+              "41": 22,
+              "034": 23,
+              "45": 24,
+              "044": 25,
+              "050": 26,
+              "71": 27,
+              "72": 28
+            },
+            "label": {
+              "001": "intäkt bostäder (brutto), kr/kvm totalyta",
+              "002": "intäkt bostäder (brutto), kr/kvm boyta",
+              "003": "intäkt lokaler (brutto),  kr/kvm totalyta",
+              "004": "intäkt lokaler (brutto),  kr/kvm lokalyta",
+              "008": "intäkt garage o bilplats (brutto), kr/kvm totalyta",
+              "051": "intäkt statl o komm bidrag, kr/kvm totalyta",
+              "052": "intäkt finansiella, kr/kvm totalyta",
+              "005": "intäkt övrigt (inte räntebidrag), kr/kvm totalyta",
+              "007": "summa intäkter (brutto), kr/kvm totalyta",
+              "10": "s:a hyresbortfall, kr/kvm totalyta",
+              "06": "s:a intäkter (netto), kr/kvm totalyta",
+              "15": "drift: skötsel, kr/kvm totalyta",
+              "16": "drift: administration, kr/kvm totalyta",
+              "21": "drift: värme, kr/kvm totalyta",
+              "22": "drift: taxebundna kostnader, kr/kvm totalyta",
+              "025": "drift: försäkring , totalyta",
+              "23": "drift: övrigt, kr/kvm totalyta",
+              "24": "s:a drift, kr/kvm totalyta",
+              "30": "underhåll och reparation, kr/kvm totalyta",
+              "31": "enbart reparation, kr/kvm totalyta",
+              "40": "kapital: räntor (brutto), kr/kvm totalyta",
+              "42": "kapital: avskrivningar, kr/kvm totalyta",
+              "41": "kapital: tomträttsavgäld, kr/kvm totalyta",
+              "034": "kapital: övriga kapitalkostnader, kr/kvm totalyta (specificeras ej för privata)",
+              "45": "fastighetsskatt, kr/kvm totalyta",
+              "044": "avdrag: räntebidrag, kr/kvm totalyta",
+              "050": "summa kostnader, kr/kvm totalyta",
+              "71": "övrig verksamhet: intäkter,  kr/kvm totalyta",
+              "72": "övrig verksamhet: kostnader,  kr/kvm totalyta"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "BO0301FA": 0
+            },
+            "label": {
+              "BO0301FA": "Intäkter och kostnader"
+            },
+            "unit": {
+              "BO0301FA": {
+                "base": "kr/kvm",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "BO0301FA": "Kalenderår"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "BO0301FA": "Flow"
+            },
+            "priceType": {
+              "BO0301FA": "Current"
+            },
+            "adjustment": {
+              "BO0301FA": "None"
+            },
+            "alternativeText": {
+              "BO0301FA": "Intäkter och kostnader i flerbostadshus (IKU), allmännyttiga bostadsföretag, kr/kvm"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2001": 0,
+              "2002": 1,
+              "2003": 2,
+              "2004": 3,
+              "2005": 4,
+              "2006": 5,
+              "2007": 6,
+              "2008": 7,
+              "2009": 8,
+              "2010": 9,
+              "2011": 10,
+              "2012": 11,
+              "2013": 12,
+              "2015": 13
+            },
+            "label": {
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2015": "2015"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true
+        },
+        "px": {
+          "infofile": "BO0301",
+          "tableid": "TAB1591",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Intäkter och kostnader i flerbostadshus (IKU), allmännyttiga bostadsföretag, kr/kvm",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Region",
+            "StorlekLgh",
+            "IntakterKostnader"
+          ],
+          "matrix": "TAB1591",
+          "subject-code": "BO",
+          "subject-area": "Boende, byggande och bebyggelse"
+        },
+        "contact": [
+          {
+            "name": "Byggande och bebyggelse",
+            "organization": "SCB",
+            "phone": "-",
+            "mail": "byggande.bebyggelse@scb.se",
+            "raw": " Byggande och bebyggelse, SCB# - -#byggande.bebyggelse@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1591",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1591",
+        "label": "Intäkter och kostnader för flerbostadshus (IKU), allmännyttiga bostadsföretag efter region, lägenhetsantal och intäkts-/kostnadsslag. (Urvalsundersökning, se fotnoter). År 2001-2015",
+        "description": "",
+        "sortCode": "04",
+        "updated": "2017-06-02T07:30:00Z",
+        "firstPeriod": "2001",
+        "lastPeriod": "2015",
+        "category": "public",
+        "variableNames": [
+          "region",
+          "lägenhetsantal",
+          "intäkts-/kostnadsslag",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "SCB",
+        "subjectCode": "BO",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "BO",
+              "label": "Boende, byggande och bebyggelse",
+              "sortCode": "Boende, byggande och bebyggelse"
+            },
+            {
+              "id": "BO0301",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)"
+            },
+            {
+              "id": "BO0301A",
+              "label": "Intäkts- och kostnadsundersökning för flerbostadshus (IKU)",
+              "sortCode": "01"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1591?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1591?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1591/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1591/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}

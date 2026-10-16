@@ -1,0 +1,384 @@
+{
+  "key": "scb/TAB1191/sv",
+  "identifier": "TAB1191",
+  "language": "sv",
+  "updated": "2026-05-27T06:00:00Z",
+  "retrieved_at": "2026-10-16T17:41:01.839733+00:00",
+  "responses": {
+    "metadata": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Resultaträkning för finansiella företag efter typ av finansinstitut och kontopost. År 1996-2025",
+      "source": "Finansinspektionen",
+      "updated": "2026-05-27T06:00:00Z",
+      "link": {
+        "related": [
+          {
+            "extension": {
+              "relation": "statistics-homepage",
+              "metaid": "PRODUCTCODE:FM0402"
+            },
+            "href": "https://www.scb.se/FM0402",
+            "label": "Statistiksida",
+            "type": "text/html"
+          }
+        ]
+      },
+      "note": [
+        "2021-05-28: Data har korrigerats för perioden 2008–2019.",
+        "Under 2018 upphörde ett bankaktiebolag och en utländsk bankfilial tillkom.",
+        "2017 ombildades ett kreditmarknadsföretag till ett bankaktiebolag."
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      },
+      "id": [
+        "Finansinstitut",
+        "Kontopost",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        10,
+        25,
+        1,
+        30
+      ],
+      "dimension": {
+        "Finansinstitut": {
+          "label": "typ av finansinstitut",
+          "category": {
+            "index": {
+              "S201": 0,
+              "S212": 1,
+              "S2121": 2,
+              "S2123": 3,
+              "S2125": 4,
+              "S21KMB": 5,
+              "S214": 6,
+              "S215": 7,
+              "S221": 8,
+              "S223": 9
+            },
+            "label": {
+              "S201": "finansiella företag, totalt",
+              "S212": "banker, totalt",
+              "S2121": "bankaktiebolag",
+              "S2123": "utlandsägda bankfilialer i Sverige",
+              "S2125": "sparbanker",
+              "S21KMB": "kreditmarknadsföretag, totalt",
+              "S214": "bostadsinstitut",
+              "S215": "företagsinstitut",
+              "S221": "övriga kreditmarknadsföretag",
+              "S223": "värdepappersbolag"
+            },
+            "note": {
+              "S2121": [
+                "Inkl. medlemsbanker."
+              ],
+              "S21KMB": [
+                "Uppgifterna avseende leasingintäkter (B2) och skatt (B26)  har reviderats avseende 2006 i samband med publiceringen avseende 2007 (2008-05-21)."
+              ],
+              "S221": [
+                "F.d. finansbolag."
+              ]
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "categoryNoteMandatory": {
+              "S21KMB": {
+                "0": true
+              }
+            },
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "Kontopost": {
+          "label": "kontopost",
+          "category": {
+            "index": {
+              "E00120": 0,
+              "E03140": 1,
+              "E00013": 2,
+              "E00130": 3,
+              "E00133": 4,
+              "E00134": 5,
+              "E00135": 6,
+              "E00145": 7,
+              "E00040": 8,
+              "E00148": 9,
+              "E00149": 10,
+              "E00051": 11,
+              "E00155": 12,
+              "E00156": 13,
+              "E00050": 14,
+              "E00157": 15,
+              "EXX159": 16,
+              "E00057": 17,
+              "E00058": 18,
+              "E00061": 19,
+              "E00170": 20,
+              "E00113": 21,
+              "E00167": 22,
+              "E00089": 23,
+              "E00132": 24
+            },
+            "label": {
+              "E00120": "B1 Ränteintäkter",
+              "E03140": "B2 Leasingintäkter",
+              "E00013": "B3 Räntekostnader",
+              "E00130": "B4 Erhållna utdelningar",
+              "E00133": "B5 Provisionsintäkter",
+              "E00134": "B6 Provisionskostnader",
+              "E00135": "B7 Nettoresultat av finansiella transaktioner",
+              "E00145": "B8 Övriga rörelseintäkter",
+              "E00040": "B9 Summa intäkter",
+              "E00148": "B10 Allmänna administrationskostnader",
+              "E00149": "B11 Av-/nedskrivningar, materiella och immateriella anläggn tillgångar",
+              "E00051": "B12 Övriga rörelsekostnader",
+              "E00155": "B13 Summa kostnader före kreditförluster",
+              "E00156": "B14 Resultat före kreditförluster",
+              "E00050": "B15 Kreditförluster netto",
+              "E00157": "B16X Värdeförändring för övertagen egendom",
+              "EXX159": "B16–17 Nedskrivning finansiella anläggn.tillgångar inkl. återföringar",
+              "E00057": "B20 Rörelseresultat",
+              "E00058": "B21 Extraordinära intäkter",
+              "E00061": "B22 Extraordinära kostnader",
+              "E00170": "B23 Resultat intjänat före förvärv",
+              "E00113": "B24 Bokslutsdispositioner",
+              "E00167": "B25 Skatt",
+              "E00089": "B29 Årets resultat",
+              "E00132": "I3 Utdelning från koncernföretag (ingår i B4)"
+            }
+          },
+          "extension": {
+            "elimination": true,
+            "show": "value",
+            "codelists": []
+          }
+        },
+        "ContentsCode": {
+          "label": "tabellinnehåll",
+          "category": {
+            "index": {
+              "FM0402B1": 0
+            },
+            "label": {
+              "FM0402B1": "mnkr"
+            },
+            "unit": {
+              "FM0402B1": {
+                "base": "mnkr",
+                "decimals": 0
+              }
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "refperiod": {
+              "FM0402B1": "Resultat under året"
+            },
+            "show": "value",
+            "codelists": [],
+            "measuringType": {
+              "FM0402B1": "Flow"
+            },
+            "priceType": {
+              "FM0402B1": "NotApplicable"
+            },
+            "adjustment": {
+              "FM0402B1": "None"
+            },
+            "alternativeText": {
+              "FM0402B1": "Resultaträkning, finansiella företag, mnkr"
+            }
+          }
+        },
+        "Tid": {
+          "label": "år",
+          "category": {
+            "index": {
+              "1996": 0,
+              "1997": 1,
+              "1998": 2,
+              "1999": 3,
+              "2000": 4,
+              "2001": 5,
+              "2002": 6,
+              "2003": 7,
+              "2004": 8,
+              "2005": 9,
+              "2006": 10,
+              "2007": 11,
+              "2008": 12,
+              "2009": 13,
+              "2010": 14,
+              "2011": 15,
+              "2012": 16,
+              "2013": 17,
+              "2014": 18,
+              "2015": 19,
+              "2016": 20,
+              "2017": 21,
+              "2018": 22,
+              "2019": 23,
+              "2020": 24,
+              "2021": 25,
+              "2022": 26,
+              "2023": 27,
+              "2024": 28,
+              "2025": 29
+            },
+            "label": {
+              "1996": "1996",
+              "1997": "1997",
+              "1998": "1998",
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "elimination": false,
+            "show": "code",
+            "codelists": []
+          }
+        }
+      },
+      "extension": {
+        "noteMandatory": {
+          "0": true,
+          "1": true,
+          "2": true
+        },
+        "px": {
+          "infofile": "FM0402",
+          "tableid": "TAB1191",
+          "decimals": 0,
+          "official-statistics": true,
+          "aggregallowed": true,
+          "copyright": false,
+          "language": "sv",
+          "contents": "Resultaträkning, finansiella företag, mnkr",
+          "descriptiondefault": false,
+          "heading": [
+            "ContentsCode",
+            "Tid"
+          ],
+          "stub": [
+            "Finansinstitut",
+            "Kontopost"
+          ],
+          "matrix": "TAB1191",
+          "subject-code": "FM",
+          "subject-area": "Finansmarknad"
+        },
+        "contact": [
+          {
+            "name": "Nils-Henrik Jansson",
+            "organization": "SCB",
+            "phone": "010-479 41 15",
+            "mail": "nils-henrik.jansson@scb.se",
+            "raw": "Nils-Henrik Jansson, SCB# +46 010-479 41 15#nils-henrik.jansson@scb.se"
+          }
+        ]
+      },
+      "value": []
+    },
+    "table": {
+      "provider_code": "scb",
+      "dataset_code": "TAB1191",
+      "language": "sv",
+      "base_api_url": "https://statistikdatabasen.scb.se/api/v2",
+      "catalogue": {
+        "id": "TAB1191",
+        "label": "Resultaträkning för finansiella företag efter typ av finansinstitut och kontopost. År 1996-2025",
+        "description": "",
+        "sortCode": "Resultaträkning för finansiella företag efter typ av finansinstitut och kontopost. År 1996-2025",
+        "updated": "2026-05-27T06:00:00Z",
+        "firstPeriod": "1996",
+        "lastPeriod": "2025",
+        "category": "public",
+        "variableNames": [
+          "typ av finansinstitut",
+          "kontopost",
+          "tabellinnehåll",
+          "år"
+        ],
+        "source": "Finansinspektionen",
+        "subjectCode": "FM",
+        "timeUnit": "Annual",
+        "paths": [
+          [
+            {
+              "id": "FM",
+              "label": "Finansmarknad",
+              "sortCode": "Finansmarknad"
+            },
+            {
+              "id": "FM0402",
+              "label": "Finansiella företag, årsbokslut",
+              "sortCode": "Finansiella företag, årsbokslut"
+            }
+          ]
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191?lang=sv"
+          },
+          {
+            "rel": "alternate",
+            "hreflang": "en",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191?lang=en"
+          },
+          {
+            "rel": "metadata",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191/metadata?lang=sv"
+          },
+          {
+            "rel": "data",
+            "hreflang": "sv",
+            "href": "https://statistikdatabasen.scb.se/api/v2/tables/TAB1191/data?lang=sv&outputFormat=json-stat2"
+          }
+        ]
+      }
+    }
+  },
+  "derived": {
+    "max_cells": 150000
+  }
+}
