@@ -11,6 +11,7 @@ modules run from this checkout using one root `pyproject.toml` and `uv.lock`.
 | `apps/configuration.py` | Load authoritative configuration, validate supported adapters and resolve execution settings |
 | `apps/harvest/` | Metadata collection, accepted contributions, worker persistence and source identity resolution |
 | `apps/harvest/metadata_adapters/` | Twelve adapters with their native clients, parsing, discovery, coverage probes, retry and pacing policy |
+| `apps/parsing/` | Offline, unscheduled conversion of harvested source files into accepted StatDCAT collections |
 | `apps/catalog/` | Offline grouping, matching, enrichment, filtering, quality findings, fingerprints and candidate construction |
 | `apps/portal/` | Import, refresh and validate the accepted oppnadata snapshot |
 | `apps/publication/` | Streaming archives, integrity and size checks, explicit promotion and scoped Git publication |
@@ -29,7 +30,8 @@ Historical profile readers do not execute migration commands.
 ## Dependencies and data flow
 
 ```text
-model + configuration -> harvest -> accepted contributions
+model + configuration -> harvest -> source files + manifest
+source files + manifest -> parsing -> accepted contributions
 portal -> accepted portal snapshot
 accepted contributions + accepted snapshot -> catalog candidate
 catalog candidate -> explicit publication -> production artifacts
@@ -89,6 +91,7 @@ Run `uv run python -m apps.operations.<module> --help` from the checkout.
 | Module | Role |
 | --- | --- |
 | `harvest` | Adapter workers, collection and scoped publication |
+| `parsing` | Manual build/apply of accepted collections from source files |
 | `catalog` | Offline candidate build and explicit production promotion |
 | `portal` | Accepted snapshot import, refresh and publication |
 | `scheduling` | Resolve schedules and synchronize workflow blocks |
