@@ -9,15 +9,13 @@ import registry
 
 
 def test_v2_runner_selects_own_config_data_and_full_mode(monkeypatch, capsys):
-    from apps.harvest.metadata_adapters.pxweb_v2 import workflow
-
     received = {}
 
-    async def run(provider, data, output, **options):
-        received.update(provider=provider, data=data, output=output, **options)
+    async def run(adapter, provider, data, output, *, selection):
+        received.update(provider=provider, data=data, output=output, **selection)
         return {"run_id": "r", "status": "success", "counts": {}}
 
-    monkeypatch.setattr(workflow, "run", run)
+    monkeypatch.setattr(runner.lifecycle, "run", run)
     monkeypatch.setattr(
         sys, "argv", ["runner", "run", "--adapter", "pxweb_v2", "--full"]
     )

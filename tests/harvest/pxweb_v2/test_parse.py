@@ -2,8 +2,7 @@
 
 from pathlib import Path
 
-from tests.harvest.test_pxweb_v2 import PROVIDER
-from tests.harvest.test_pxweb_v2_workflow import Source, harvest
+from tests.support.pxweb_v2 import PROVIDER, Source, harvest
 
 GOLDEN = Path("tests/fixtures/pxweb_v2/accepted")
 

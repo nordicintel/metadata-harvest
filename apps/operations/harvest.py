@@ -18,7 +18,6 @@ from apps.harvest.metadata_adapters.pxweb_v1.workflow import (
     provider_row,
     refresh_provider,
 )
-from apps.harvest.metadata_adapters.pxweb_v2 import workflow as v2_workflow
 from apps.harvest.storage import read
 from apps.publication.git import publish
 from harvest import lifecycle
@@ -50,7 +49,13 @@ def run_adapter(args, adapter):
         )
     else:
         result = lifecycle.collect(adapter, args.data, args.output)
-    outputs({k: result[k] for k in ("run_id", "status", "continue", "counts")})
+    outputs(
+        {
+            k: result[k]
+            for k in ("run_id", "status", "continue", "counts")
+            if k in result
+        }
+    )
 
 
 def outputs(values):
@@ -98,36 +103,13 @@ def main():
     module = load(args.adapter)
     if args.full and module is not None and "full" not in module.ADAPTER.options:
         parser.error(f"{args.adapter} does not support --full; use its normal refresh")
-    is_v2 = args.adapter == "pxweb_v2"
     args.data = args.data or Path("data") / args.adapter
     args.registry = registry.load(args.config)
     if module is not None and args.command in {"run", "collect"}:
         run_adapter(args, module.ADAPTER)
         return
-    args.output = args.output or Path("output/pxweb_v2" if is_v2 else "output/provider")
+    args.output = args.output or Path("output/provider")
     bindings = args.registry.bindings(args.adapter)
-    if is_v2 and args.command not in {"run", "collect", "publish"}:
-        parser.error("PXWeb v2 uses run, collect and publish")
-    if args.command in {"run", "collect"}:
-        if not is_v2 or len(bindings) != 1:
-            parser.error("run/collect require the SCB-only pxweb_v2 configuration")
-        if args.command == "run":
-            result = asyncio.run(
-                v2_workflow.run(
-                    bindings[0],
-                    args.data,
-                    args.output,
-                    full=args.full,
-                    budget_seconds=args.budget_seconds,
-                )
-            )
-        else:
-            artifact = read(args.output / "result.json")
-            result = v2_workflow.collect(
-                args.data, args.output, args.run_id or artifact["run_id"]
-            )
-        outputs({k: result[k] for k in ("run_id", "status", "counts")})
-        return
     providers = [provider_row(binding) for binding in bindings]
     if args.command == "prepare":
         plan = prepare(args.data, providers)

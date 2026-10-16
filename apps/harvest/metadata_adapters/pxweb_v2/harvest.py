@@ -1,6 +1,8 @@
 """SCB worker and validating collector: current state, no metadata archives.
 
-A run lists both language catalogues, fetches metadata only for tables whose
+PXWeb v2 keeps a loop of its own (catalogue-driven refresh, grouped codelist and
+table-record collections, a reconciling collect) and uses the lifecycle's
+prepare for the worker output. A run lists both language catalogues, fetches metadata only for tables whose
 catalogue entry changed (or everything in full mode), fetches referenced codelists
 once, and writes the candidate exactly once at the end. Work left over when the
 time budget runs out is reported as failed and picked up by the next run. Native
@@ -23,7 +25,7 @@ import httpx
 from apps.harvest.artifacts import report_status
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
 from apps.harvest.metadata_adapters.pxweb_v2.discovery import discover_provider
-from apps.harvest.metadata_adapters.pxweb_v2.metadata import (
+from apps.harvest.metadata_adapters.pxweb_v2.mapping import (
     fetch_codelist,
     fetch_source,
 )
@@ -39,14 +41,15 @@ from apps.harvest.source_store import (
     split_key,
 )
 from apps.harvest.storage import JsonlStore, filename, now, read, write
-from apps.operations.progress import Progress
 from apps.publication.artifacts import manifest
+from harvest import lifecycle
+from harvest.lifecycle import Adapter
 from registry import ServiceBinding
 
 logger = logging.getLogger("pxweb_v2_logger")
 
 REMOVED_CODELIST = "Codelist confirmed removed at the source (HTTP 404)"
-ADAPTER = "pxweb_v2"
+NAME = "pxweb_v2"
 
 
 def entry_key(row: dict) -> str:
@@ -89,7 +92,7 @@ def code_key(code: str, language: str) -> str:
 
 def load_stores(root: Path) -> tuple[SourceStore, JsonlStore, JsonlStore]:
     return (
-        SourceStore(root / "source", ADAPTER),
+        SourceStore(root / "source", NAME),
         JsonlStore(root / "codelists", identify=code_identity, compressed=True),
         JsonlStore(root / "table-records"),
     )
@@ -190,31 +193,27 @@ async def run(
     data: str | Path,
     output: str | Path,
     *,
-    full: bool = False,
-    budget_seconds: float = 19_200,
+    selection: dict | None = None,
     client: Client | None = None,
+    clock=None,
 ) -> dict:
-    """Build a complete candidate artifact; only collect() changes published data."""
+    """Build a complete candidate artifact; only collect() changes published data.
+
+    ``selection`` may hold ``full`` and ``budget_seconds``.
+    """
     validate_binding(binding)
-    data, output = Path(data), Path(output)
-    if (
-        data.resolve() == output.resolve()
-        or data.resolve() in output.resolve().parents
-        or output.resolve() in data.resolve().parents
-    ):
-        raise ValueError("Worker output must be separate from published data")
-    if output.exists() and any(output.iterdir()):
-        raise ValueError("Worker output must be empty")
+    selection = dict(selection or {})
+    full = bool(selection.get("full"))
+    budget_seconds = selection.get("budget_seconds") or 19_200
     if client is None:
         async with Client(binding.endpoint_url) as owned:
             return await run(
-                binding,
-                data,
-                output,
-                full=full,
-                budget_seconds=budget_seconds,
-                client=owned,
+                binding, data, output, selection=selection, client=owned, clock=clock
             )
+    this = lifecycle.prepare(
+        ADAPTER, binding, data, output, selection=selection, client=client, clock=clock
+    )
+    data, output, store, progress = this.data, this.output, this.store, this.progress
     logger.info(
         "PXWeb v2 run starting: provider=%s languages=%s mode=%s budget=%.0fs",
         binding.source_code,
@@ -223,21 +222,15 @@ async def run(
         budget_seconds,
     )
     deadline = time.monotonic() + budget_seconds
-    progress = Progress("pxweb_v2", binding.source_code)
     progress.update(phase="loading", full=full)
-    base = harvest_manifest(data)
-    if (data / "source").exists():
-        shutil.copytree(data / "source", output / "source")
-    _, codes, listings = load_stores(data)
-    store = SourceStore(output / "source", ADAPTER)
+    base = this.baseline
+    _, codes, listings = load_stores(output)  # the baseline copy holds them
     logger.info(
         "Published state loaded: %d stored tables, %d codelists, %d table records",
         len(store.entries()),
         len(codes.records),
         len(listings.records),
     )
-    for grouped in (codes, listings):
-        grouped._legacy.clear()
     previous_report = data / "reports/harvest.json"
     report = read(previous_report) if previous_report.exists() else {}
     failed = {e.get("filename") for e in report.get("errors", []) if e.get("filename")}
@@ -665,11 +658,11 @@ def _validate_reconciliation(result, output, store, codes, listings, previous):
         raise ValueError("Unresolved or unreferenced codelists in candidate")
 
 
-def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
+def collect(data: str | Path, output: str | Path) -> dict:
     """Validate the entire artifact before applying it; Git publishes all files together."""
     data, output = Path(data), Path(output)
     result = read(output / "result.json")
-    if result["run_id"] != run_id or harvest_manifest(data) != result["base"]:
+    if harvest_manifest(data) != result["base"]:
         raise ValueError("Stale worker artifact or changed published state")
     if manifest(output) != result["manifest"]:
         raise ValueError("Worker artifact content does not match its manifest")
@@ -703,7 +696,7 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
             )
     store, codes, listings = load_stores(output)
     failed = {e.get("filename") for e in result["errors"]}
-    previous = SourceStore(data / "source", ADAPTER)
+    previous = SourceStore(data / "source", NAME)
     _validate_reconciliation(result, output, store, codes, listings, previous)
     names = names_of(store)
     for name, key in names.items():
@@ -773,3 +766,26 @@ def collect(data: str | Path, output: str | Path, run_id: str) -> dict:
             "Collected state differs from validated artifact; do not publish"
         )
     return result
+
+
+ADAPTER = Adapter(
+    name=NAME,
+    provider_code="scb",
+    workflow_file="harvest-pxweb-v2.yml",
+    client=lambda binding: Client(binding.endpoint_url),
+    run=run,
+    collect=collect,
+    options={"full": "full", "budget-seconds": "budget_seconds"},
+    languages=("sv", "en"),
+    paths=(
+        "codelists/",
+        "table-records/",
+        "reports/harvest.json",
+        "reports/refresh.json",
+    ),
+    scope_failures=lambda report: [
+        scope["language"]
+        for scope in report.get("scopes") or []
+        if not scope.get("complete")
+    ],
+)

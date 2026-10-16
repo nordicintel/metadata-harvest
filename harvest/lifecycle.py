@@ -115,6 +115,8 @@ class Adapter:
     """An adapter with a loop of its own; it uses :func:`prepare` and :func:`finish`."""
     many: bool = False
     """Whether ``run`` takes every configured binding instead of one."""
+    collect: Callable[[Path, Path], dict] | None = None
+    """An adapter with a collect of its own (the pxweb_v2 collections)."""
     options: dict[str, str] = field(default_factory=dict)
     """CLI flag to selection name, for example ``{"subject": "subjects"}``."""
     languages: tuple[str, ...] = ("sv",)
@@ -541,6 +543,8 @@ async def run(
 
 def collect(adapter: Adapter, data: Path, output: Path) -> dict:
     """Verify the artifact against the unchanged published baseline, then apply it."""
+    if adapter.collect is not None:
+        return adapter.collect(Path(data), Path(output))
     data, output = Path(data), Path(output)
     log = logging.getLogger(f"{adapter.name}_logger")
     result = read(output / "result.json")

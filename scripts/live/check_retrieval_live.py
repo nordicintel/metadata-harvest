@@ -13,7 +13,7 @@ from apps.harvest.metadata_adapters.pxweb_v1.discovery import discover_provider
 from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
 from apps.harvest.metadata_adapters.pxweb_v1.workflow import provider_row
 from apps.harvest.metadata_adapters.pxweb_v2.client import Client
-from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_metadata
+from apps.harvest.metadata_adapters.pxweb_v2.mapping import fetch_metadata
 from apps.harvest.storage import JsonlStore, now, write
 from retrieval._semantics import category_codes
 from schema.validation import validate_metadata, validate_retrieval

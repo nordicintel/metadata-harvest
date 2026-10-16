@@ -4,7 +4,7 @@ from copy import deepcopy
 
 import pytest
 
-from tests.harvest.test_pxweb_v2 import metadata, record
+from tests.support.pxweb_v2 import metadata, record
 
 
 def test_native_mapping_produces_shared_identity_and_preserves_source_fields():

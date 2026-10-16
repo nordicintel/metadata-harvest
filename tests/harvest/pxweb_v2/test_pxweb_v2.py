@@ -6,104 +6,16 @@ from copy import deepcopy
 import httpx
 import pytest
 
-from tests.support.binding import binding
-
-PROVIDER = binding(
-    "pxweb_v2",
-    "scb",
-    "https://example.test/api/v2",
-    languages=["sv", "en"],
-    page_size=2,
+from tests.support.pxweb_v2 import (
+    CONFIG,
+    PROVIDER,
+    Time,
+    client_for,
+    codelist,
+    metadata,
+    record,
+    table,
 )
-CONFIG = {
-    "languages": [{"id": "sv"}, {"id": "en"}],
-    "maxCallsPerTimeWindow": 30,
-    "timeWindow": 10,
-}
-
-
-def table(code="T1"):
-    return {
-        "id": code,
-        "label": "Catalogue title",
-        "updated": "2026-10-01T06:00:00Z",
-        "firstPeriod": "2020",
-        "lastPeriod": "2026",
-        "paths": [],
-        "links": [],
-        "category": "public",
-        "variableNames": ["region"],
-        "source": "SCB",
-    }
-
-
-def record(code="T1", language="sv"):
-    return {
-        "provider_code": "scb",
-        "dataset_code": code,
-        "language": language,
-        "base_api_url": PROVIDER.endpoint_url,
-        "catalogue": table(code),
-    }
-
-
-def metadata(code="T1", language="sv"):
-    return {
-        "class": "dataset",
-        "version": "2.0",
-        "label": "Native metadata title",
-        "updated": "2026-10-01T06:00:00Z",
-        "id": ["Region"],
-        "size": [2],
-        "dimension": {
-            "Region": {
-                "label": "region",
-                "category": {
-                    "index": {"01": 0, "02": 1},
-                    "label": {"01": "One", "02": "Two"},
-                },
-                "extension": {"codelists": [{"id": "vs_region", "type": "Valueset"}]},
-            }
-        },
-        "extension": {"px": {"tableid": code, "language": language}, "contact": []},
-        "value": [],
-        "note": ["Source note"],
-    }
-
-
-def codelist(language="sv"):
-    return {
-        "id": "vs_region",
-        "language": language,
-        "languages": ["sv", "en"],
-        "label": "Regions",
-        "type": "Valueset",
-        "links": [],
-        "values": [{"code": "01", "label": "One", "valueMap": ["01"]}],
-    }
-
-
-class Time:
-    def __init__(self):
-        self.value = 0.0
-
-    def now(self):
-        return self.value
-
-    async def sleep(self, delay):
-        self.value += delay
-
-
-def client_for(handler):
-    from apps.harvest.metadata_adapters.pxweb_v2.client import Client
-
-    clock = Time()
-    return Client(
-        PROVIDER.endpoint_url,
-        transport=httpx.MockTransport(handler),
-        clock=clock.now,
-        sleep=clock.sleep,
-    ), clock
 
 
 def test_client_paces_requests_and_retries_under_stricter_config():
@@ -186,7 +98,7 @@ def test_discovery_proves_complete_pagination_per_language(failure):
 
 
 def test_metadata_preserves_native_payload_and_fetches_encoded_codelist():
-    from apps.harvest.metadata_adapters.pxweb_v2.metadata import (
+    from apps.harvest.metadata_adapters.pxweb_v2.mapping import (
         fetch_codelist,
         fetch_metadata,
     )
@@ -243,7 +155,7 @@ def test_invalid_metadata_is_rejected(defect):
 
 
 def test_metadata_retries_source_change_with_fresh_catalogue():
-    from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_metadata
+    from apps.harvest.metadata_adapters.pxweb_v2.mapping import fetch_metadata
 
     changed = "2026-10-02T06:00:00Z"
     value = metadata()
