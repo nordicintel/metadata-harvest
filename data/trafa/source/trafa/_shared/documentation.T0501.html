@@ -1,0 +1,3733 @@
+
+<!DOCTYPE html>
+<html lang="sv" data-ng-app="kit" class="ng-app:kit" id="ng-app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!-- Fonts for IE 11-->
+
+
+<link rel="canonical" href="/sidor/api-dokumentation/" />
+
+    <!--[if lt IE 8]>
+            <script>
+                angular.bootstrap(document,['kit']);
+            </script>
+        <![endif]-->
+            <title>API-dokumentation</title>
+        <meta name="pageid" content="8096" />
+
+
+            <meta name="description" content="H&amp;auml;r hittar du mer information den data som finns tillg&amp;auml;nglig via v&amp;aring;rt API. V&amp;aring;ra statistikprodukter &amp;auml;r olika och inneh&amp;aring;ller olika variabler och data,..." />
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/device-icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/device-icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/device-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/device-icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/device-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/device-icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/device-icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/device-icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/device-icons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/static/device-icons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/device-icons/mstile-144x144.png">
+    <meta name="theme-color" content="#b70469">
+    
+
+<meta property="rek:pubdate" content="2019-01-30 08:27:20" />
+<meta property="rek:enddate" content="2023-01-30 08:27:20" />
+
+    <script>
+        function rekPredictionDone() {
+
+            //set clickable panel with js to enable click with no js
+            $('.rekai-newsarticle-article').addClass('overlay-js');
+
+            //clickable panel, apply css class "overlay"
+            $('.rekai-newsarticle-article').on('click', function (e) {
+                window.location = $(this).find('a:first').attr("href");
+            });
+        }
+    </script>
+   <script src="https://static.rekai.se/addon/rekai_autocomplete.min.js"></script>
+
+
+<link href="/static/css/bundles?v=FpMsdmovZbkbuG4jnssD_7BUMlGWjFHjAm3mFHZxVi41" rel="stylesheet"/>
+    
+    <style>
+        #search-btn-noscript {
+            display: none;
+        }
+    </style>
+
+    <noscript>
+        <style>
+            #search-btn {
+                display: none;
+            }
+
+            #search-btn-noscript {
+                display: inline-block;
+                color: #333333;
+                padding: 1px 6px;
+            }
+        </style>
+    </noscript>
+    <!-- App CSS -->
+    
+    
+    <!-- Font Awesome CSS -->
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+    
+
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.trafa.se/publikationer/alla-artiklar/rss">
+<script type="text/javascript">var appInsights=window.appInsights||function(config){function t(config){i[config]=function(){var t=arguments;i.queue.push(function(){i[config].apply(i,t)})}}var i={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",r,f;setTimeout(function(){var t=u.createElement(o);t.src=config.url||"https://js.monitor.azure.com/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(t)});try{i.cookie=u.cookie}catch(y){}for(i.queue=[],r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)t("track"+r.pop());return t("set"+s),t("clear"+s),t(h+a),t(c+a),t(h+v),t(c+v),t("flush"),config.disableExceptionTracking||(r="onerror",t("_"+r),f=e[r],e[r]=function(config,t,u,e,o){var s=f&&f(config,t,u,e,o);return s!==!0&&i["_"+r](config,t,u,e,o),s}),i}({instrumentationKey:"25182f0d-3007-46f1-a096-b43157e9baf4",sdkExtension:"a"});window.appInsights=appInsights;appInsights.queue&&appInsights.queue.length===0&&appInsights.trackPageView();</script></head>
+<body  class="js-disabled apidocumentationpage">
+
+    
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        window.dataLayer.push({
+            'PageType': 'ApiDocumentationPage',
+            'PageCategory': 'No data found',
+            'PagePublishDate': '2019-01-30T08:27:20.0000000+01:00',
+            'PageUpdateDate': '2019-01-30T08:27:20.0000000+01:00'
+        });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe title="tagmanager" src="//www.googletagmanager.com/ns.html?id=GTM-5TR2VH"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5TR2VH');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- keyboard navigation -->
+    <nav id="keyboard-nav-menu" aria-label="Navigering tangentbord" class="skip-link-container">
+        <a href="#main" class="skip-link" accesskey="s">Hoppa &#246;ver navigering och g&#229; direkt till inneh&#229;ll</a>
+        
+    </nav>
+    <!-- End keyboard navigation -->
+    
+        <div class="row d-block row-offcanvas row-offcanvas-left">
+
+
+<div class="mega-menu-wrapper">
+    <nav class="mega-menu" aria-label="Huvudmeny">
+
+        <div class="mobile-toggle-menu">
+            <button class="btn-mobile toggle-main" type="button" data-toggle="collapse" data-target=".menu-main" aria-controls="menu-main" aria-expanded="false" aria-label="Växla navigering"><span class="fa fa-bars" aria-hidden="true"></span></button>
+                <div class="mobile-logo" style="">
+                    <a href="/">
+                        <img src="/contentassets/6576c1b6e3ab4952aae9ab97c3d07735/trafikanalys.jpg" alt="Trafikanalys - tillbaka till start">
+                    </a>
+                </div>
+
+                <button class="btn-mobile toggle-search" type="button" data-toggle="collapse" data-target=".search-bar" aria-controls="search_bar" aria-expanded="false" aria-label="Öppna/Stäng Sök"><span class="fa fa-search" aria-hidden="true"></span></button>
+
+        </div>
+        <div class="container">
+            <div class="collapse search-bar" id="search_bar">
+            </div>
+        </div>
+
+
+        <ul class="collapse menu-main" id="menu-main" aria-label="Huvudmeny">
+                <li class="main-logo">
+                    <a href="/">
+                        <img src="/contentassets/6576c1b6e3ab4952aae9ab97c3d07735/trafikanalys.jpg" alt="Trafikanalys - tillbaka till start">
+                    </a>
+                </li>
+
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Statistik" class="menu-toggle has-children" data-tab="sub-8391" href="/sidor/statistikportalen/">Statistik</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-8391" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/sidor/statistikportalen/">G&#246;r ditt eget statistikurval</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Vägtrafik" class="" href="/vagtrafik/">V&#228;gtrafik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fordon på väg" class="" href="/vagtrafik/fordon/">Fordon p&#229; v&#228;g</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Lastbilstrafik" class="" href="/vagtrafik/lastbilstrafik/">Lastbilstrafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Utländska lastbilstransporter i Sverige" class="" href="/vagtrafik/utlandska-lastbilar/">Utl&#228;ndska lastbilstransporter i Sverige</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Vägtrafikskador" class="" href="/vagtrafik/vagtrafikskador/">V&#228;gtrafikskador</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Vägtrafikskadade i sjukvården" class="" href="/vagtrafik/vagtrafikskadade-inom-sjukvarden/">V&#228;gtrafikskadade i sjukv&#229;rden</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Trafikarbete på svenska vägar" class="" href="/vagtrafik/trafikarbete/">Trafikarbete p&#229; svenska v&#228;gar</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Körsträckor" class="" href="/vagtrafik/korstrackor/">K&#246;rstr&#228;ckor</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Lätta lastbilar" class="" href="/vagtrafik/latta-lastbilar/">L&#228;tta lastbilar</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Bantrafik" class="" href="/bantrafik/">Bantrafik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Bantrafik" class="" href="/bantrafik/bantrafik/">Bantrafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Järnvägstransporter" class="" href="/bantrafik/jarnvagstransporter/">J&#228;rnv&#228;gstransporter</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Bantrafikskador" class="" href="/bantrafik/bantrafikskador/">Bantrafikskador</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Punktlighet på järnväg" class="" href="/bantrafik/punktlighet-pa-jarnvag/">Punktlighet p&#229; j&#228;rnv&#228;g</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Kollektivtrafik" class="" href="/kollektivtrafik/">Kollektivtrafik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Regional linjetrafik" class="" href="/kollektivtrafik/kollektivtrafik/">Regional linjetrafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Linjetrafik på väg" class="" href="/kollektivtrafik/linjetrafik-pa-vag/">Linjetrafik p&#229; v&#228;g</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Linjetrafik på vatten" class="" href="/kollektivtrafik/linjetrafik-pa-vatten/">Linjetrafik p&#229; vatten</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Färdtjänst" class="" href="/kollektivtrafik/fardtjanst/">F&#228;rdtj&#228;nst</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Transportmönster" class="" href="/transportmonster/">Transportm&#246;nster</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Resvanor" class="" href="/transportmonster/RVU-Sverige/">Resvanor</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Transportarbete" class="" href="/transportmonster/transportarbete/">Transportarbete</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Varuflöden" class="" href="/transportmonster/varufloden/">Varufl&#246;den</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Sjöfart" class="" href="/sjofart/">Sj&#246;fart</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Sjötrafik" class="" href="/sjofart/sjotrafik/">Sj&#246;trafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fartyg" class="" href="/sjofart/fartyg/">Fartyg</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Brev- och paketdistribution" class="" href="/brev-och-paketdistribution/">Brev- och paketdistribution</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Postverksamhet" class="" href="/brev-och-paketdistribution/postverksamhet/">Postverksamhet</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Elektronisk kommunikation" class="" href="/elektronisk-kommunikation/">Elektronisk kommunikation</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Televerksamhet" class="" href="/elektronisk-kommunikation/televerksamhet/">Televerksamhet</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Luftfart" class="" href="/luftfart2/">Luftfart</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Luftfart" class="" href="/luftfart2/luftfart/">Luftfart</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Övrig statistik" class="" href="/ovrig/">&#214;vrig statistik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Transportbranschens ekonomi" class="" href="/ovrig/transportbranschens-ekonomi/">Transportbranschens ekonomi</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Sjöfartsföretag" class="" href="/ovrig/sjofartsforetag/">Sj&#246;fartsf&#246;retag</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Om vår statistik" class="" href="/sidor/statistik/">Om v&#229;r statistik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Aktuella insamlingar av statistik" class="" href="/sidor/statistik/aktuella-insamlingar-av-statistik/">Aktuella insamlingar av statistik</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Publikationer" class="menu-toggle has-children" data-tab="sub-4819" href="/publikationer/">Publikationer</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-4819" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/publikationer/">S&#246;k bland v&#229;ra publikationer</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Rapporter" class="" href="/etiketter/rapport/">Rapporter</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - PM" class="" href="/etiketter/pm/">PM</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Analyser" class="" href="/publikationer/analyser-och-utredningar/">Analyser</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Nulägesanalys" class="" href="/publikationer/analyser-och-utredningar/nulagesanalys/">Nul&#228;gesanalys</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Styrmedelsanalys" class="" href="/publikationer/analyser-och-utredningar/styrmedelsanalys/">Styrmedelsanalys</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Utvärderingar" class="" href="/publikationer/analyser-och-utredningar/utvarderingar/">Utv&#228;rderingar</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Omvärldsanalys" class="" href="/publikationer/analyser-och-utredningar/omvarldsanalys/">Omv&#228;rldsanalys</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Remissvar" class="" href="/etiketter/remissvar/">Remissvar</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Konsultrapporter" class="" href="/etiketter/konsultrapport/">Konsultrapporter</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - EU-nyheter" class="" href="/etiketter/eu-nyheter/">EU-nyheter</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Alla artiklar" class="" href="/publikationer/alla-artiklar/">Alla artiklar</a>
+
+
+                        
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Våra uppdrag" class="menu-toggle has-children" data-tab="sub-7810" href="/uppdrag/">V&#229;ra uppdrag</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-7810" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/uppdrag/">V&#229;ra uppdrag</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Pågående uppdrag" class="" href="/uppdrag/pagaende-uppdrag/">P&#229;g&#229;ende uppdrag</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Avslutade uppdrag" class="" href="/uppdrag/avslutade-uppdrag/">Avslutade uppdrag</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Transportpolitiska målen" class="" href="/uppdrag/transportpolitiska-mal/">Transportpolitiska m&#229;len</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Måluppföljningens rapporter" class="" href="/uppdrag/transportpolitiska-mal/maluppfoljningens-rapporter/">M&#229;luppf&#246;ljningens rapporter</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fördjupad måluppföljning" class="" href="/uppdrag/transportpolitiska-mal/fordjupad-maluppfoljning/">F&#246;rdjupad m&#229;luppf&#246;ljning</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Preciseringsöversynen" class="" href="/uppdrag/transportpolitiska-mal/preciseringsoversynen/">Preciserings&#246;versynen</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Remissvar" class="" href="/etiketter/remissvar/">Remissvar</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Omvärldsbevakning" class="" href="/sidor/omvarldsbevakning/">Omv&#228;rldsbevakning</a>
+
+
+                        
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Om oss" class="menu-toggle has-children" data-tab="sub-3228" href="/om-oss/">Om oss</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-3228" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/om-oss/">Om v&#229;r verksamhet</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Kontakta oss" class="" href="/om-oss/kontakta-oss/">Kontakta oss</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Aktuella upphandlingar" class="" href="/om-oss/kontakta-oss/aktuella-upphandlingar/">Aktuella upphandlingar</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Praktik och examensarbeten" class="" href="/om-oss/kontakta-oss/praktik-hos-oss/">Praktik och examensarbeten</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fakturering/e-faktura" class="" href="/om-oss/kontakta-oss/e-fakturor/">Fakturering/e-faktura</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Lediga jobb" class="" href="/om-oss/lediga-jobb/">Lediga jobb</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Medarbetare berättar" class="" href="/sidor/medarbetare-berattar/">Medarbetare ber&#228;ttar</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Press" class="" href="/om-oss/press/">Press</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Kalender" class="" href="/sidor/kalendern/">Kalender</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Nyhetsbrev" class="" href="/om-oss/press/nyhetsbrev/">Nyhetsbrev</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Webbinarier" class="" href="/om-oss/press/webbinarier/">Webbinarier</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Vår organisation" class="" href="/om-oss/verksamheten/">V&#229;r organisation</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Vetenskapligt råd" class="" href="/om-oss/verksamheten/vetenskapligt-rad/">Vetenskapligt r&#229;d</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Användarråd" class="" href="/sidor/anvandarrad/">Anv&#228;ndarr&#229;d</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Årsredovisning" class="" href="/etiketter/arsredovisning/">&#197;rsredovisning</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+
+
+
+
+            <li class="mobile-only">
+                <a href="/en/" class="menu-toggle" data-tab="sub-4">In English</a>
+            </li>
+            <li class="secondary-nav">
+
+                    <a href="/en/">In English</a>
+
+                    <span>|</span> <button class="search-btn" id="search-btn" type="button" data-toggle="collapse" data-target=".desktop-search" aria-controls="desktop_search" aria-expanded="false" aria-label="Öppna/Stäng Sök"><span class="fa fa-search" aria-hidden="true"></span></button>
+                    <a aria-label="Gå till söksida" href="/sok/" class="search-btn" id="search-btn-noscript"><span class="fa fa-search"></span></a>
+
+
+
+
+            </li>
+        </ul>
+        <div class="container" role="search" aria-label="Sökfält">
+<div class="col-12 collapse desktop-search" id="desktop_search">
+    <div id="search-field" class="form-group">
+        <noscript>
+            <form id="quick-search-form-nojs" class="search navbar-form navbar-left" action="/sok/" method="post" name="search">
+                <div class="form-group left-inner-addon">
+                    <label for="quicksearchinputnojs" class="sr-only">Snabbs&#246;k</label>
+                    <input type="search" name="search" accesskey="5" id="quicksearchinputnojs" class="form-control search-field" autocomplete="off" />
+                    <button type="submit" value="submit" form="quick-search-form-nojs" class="float-right search-button">
+                        <span class="sr-only">S&#246;k</span>
+                    </button>
+                </div>
+            </form>
+        </noscript>
+        <form id="quick-search-form" name="search" class="searchrekai navbar-form navbar-left hidden no-hidden-js" action="/sok/" method="get">
+            <div class="form-group left-inner-addon">
+                <label for="quicksearchinput" class="sr-only">Snabbs&#246;k</label>
+                <input type="search" name="query" accesskey="4" id="quicksearchinput" class="form-control search-field rekai-ac" autocomplete="off">
+                <button type="submit" value="submit" form="quick-search-form" class="float-right search-button">
+                    <span class="sr-only">S&#246;k</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>    
+        /*Will also fire for searchpage RekAI autocomplete requests*/        
+		window.addEventListener('load',
+			function () {
+				rekai_autocomplete('.rekai-ac')
+					.on('rekai_autocomplete:selected', function (event, suggestion, dataset) {
+						var btn = event.target.parentElement.parentElement.querySelectorAll('button[type=submit]')[0];
+						btn.click();
+					}); 
+			}, false);
+    </script>
+</div>        </div>
+    </nav>
+</div>
+<div class="black-box"></div>
+
+
+
+
+
+            
+            <div class="col-12">
+                <div class="pink-ribbon"></div>
+
+                    <div class="container">
+
+
+<nav role="navigation" aria-label="Brödsmulor">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href=/><span class="fa fa-home"></span><span class="sr-only">Hem</span></a></li>
+<li class="breadcrumb-item active">
+API-dokumentation
+</li>
+</ol>
+</nav>
+
+
+                    </div>
+                <main id="main">
+                    
+
+<style>
+
+    form.orm { display:none; }
+    table.items td{ font-weight:normal !important }
+    table.items td.code { font-style: italic; }
+
+    table.items tr.separator > * { padding-top: 20px; border-bottom: 1px solid #000; }
+
+    table.items {
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: #eaeaea;
+        border-right: 10px solid #eaeaea;
+        border-bottom: 10px solid #eaeaea;
+        border-left: 10px solid #eaeaea;
+    }
+
+    table.items caption {
+        color: #fff;
+        background: #00829B;
+        padding: 10px 15px;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1.1;
+    }
+
+    table.items thead {
+        border-top: 10px solid transparent;
+    }
+
+    table.items tbody th {
+        font-weight: normal;
+    }
+
+    table.items tbody tr td,
+    table.items tbody tr th {
+        padding: 5px;
+    }
+
+    table.items:not(.measures) tbody tr:nth-child(odd) {
+        background-color: #c6dbe0;
+    }
+
+    table.items:not(.measures) tbody tr:first-child {
+        background-color: transparent;
+    }
+
+    table.items:not(.dimensions) tbody tr:nth-child(even) {
+        background-color: #c6dbe0;
+    }
+
+    .api-combos li {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-8" >
+                <h1><span></span>API-dokumentation</h1>
+                <div class="preamble"><p>H&auml;r hittar du mer information den data som finns tillg&auml;nglig via v&aring;rt API. V&aring;ra statistikprodukter &auml;r olika och inneh&aring;ller olika variabler och data, beroende p&aring; produkt. D&auml;rf&ouml;r finns ingen gemensamt s&auml;tt att h&auml;mta ut alla data, oavsett produkt. API-dokumentationen hj&auml;lper dig att se vilken typ av data som kan h&auml;mta fr&aring;n respektive produkt.</p>
+<p>V&auml;lj f&ouml;rst statistikprodukt som du vill h&auml;mta data fr&aring;n i rullisten. D&aring; hittar du de variabler och namn som &auml;r aktuella f&ouml;r just den produkten. D&auml;r finns ocks&aring; information om vanliga anrop som du kan anv&auml;nda f&ouml;r att g&ouml;ra ett anrop till v&aring;rt API.</p>
+<p>Vill du h&aring;lla dig uppdaterad om f&ouml;r&auml;ndringar i v&aring;r dokumentation? <br /><a href="/sidor/oppen-data-api/">Skriv upp dig p&aring; v&aring;r lista</a>, s&aring; f&aring;r du utskick vid f&ouml;r&auml;ndringar.</p></div>
+        </div>
+
+        <div class="col-lg-4">
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form id="selectionForm" class="d-flex flex-row justify-content-between align-items-center">
+                <div class="form-group">
+                    <label for="apidocs-select">V&#228;lj produkt</label>
+                    <select id="apidocs-select" class="form-control" onchange="onChangeSelection()" name="code">
+                        <option>V&#228;lj produkt</option>
+                            <option value="T10011" >T10011 - Bussar</option>
+                            <option value="T10014" >T10014 - Motorcyklar</option>
+                            <option value="T10015" >T10015 - Mopeder klass I</option>
+                            <option value="T10017" >T10017 - Sl&#228;pvagnar</option>
+                            <option value="T10018" >T10018 - Traktorer</option>
+                            <option value="T10019" >T10019 - Terr&#228;ngskotrar </option>
+                            <option value="T10012" >T10012 - K&#246;rkort</option>
+                            <option value="T10091" >T10091 - Bussar</option>
+                            <option value="T10092" >T10092 - Lastbilar</option>
+                            <option value="T10093" >T10093 - Motorcyklar</option>
+                            <option value="T10094" >T10094 - Personbilar</option>
+                            <option value="T0901" >T0901 - Televerksamhet</option>
+                            <option value="T08091" >T08091 - Sj&#246;fartsf&#246;retag</option>
+                            <option value="T08092" >T08092 - Sj&#246;fartsf&#246;retag EU statistik</option>
+                            <option value="T04020" >T04020 - Transportarbete</option>
+                            <option value="T04021" >T04021 - p&#229; v&#228;g</option>
+                            <option value="T04022" >T04022 - i bantrafiken</option>
+                            <option value="T04023" >T04023 - i sj&#246;farten</option>
+                            <option value="T04024" >T04024 - i luftfarten</option>
+                            <option value="T1201" >T1201 - F&#228;rdtj&#228;nst och riksf&#228;rdtj&#228;nst</option>
+                            <option value="T1004" >T1004 - V&#228;gtrafikskador</option>
+                            <option value="T0802" >T0802 - Sj&#246;trafik</option>
+                            <option value="T06011" >T06011 - Infrastruktur</option>
+                            <option value="T06012" >T06012 - Fordon</option>
+                            <option value="T06013" >T06013 - Trafik och transport</option>
+                            <option value="T10061" >T10061 - Lastbilstrafik &#229;r</option>
+                            <option value="T10062" >T10062 - Lastbilstrafik kvartal</option>
+                            <option value="T10021" >T10021 - Bussar</option>
+                            <option value="T10023" >T10023 - Lastbilar</option>
+                            <option value="T10026" >T10026 - Personbilar</option>
+                            <option value="T10029" >T10029 - &#214;vriga fordonsslag</option>
+                            <option value="T10033" >T10033 - Lastbilar</option>
+                            <option value="T10036" >T10036 - Personbilar</option>
+                            <option value="T10039" >T10039 - &#214;vriga fordonsslag</option>
+                            <option value="T1101" >T1101 - RVU i Sverige</option>
+                            <option value="T1202" >T1202 - Kommersiell linjetrafik p&#229; v&#228;g</option>
+                            <option value="T1203" >T1203 - Regional linjetrafik</option>
+                            <option value="T0808" >T0808 - Fartyg</option>
+                            <option value="T1102" >T1102 - Varufl&#246;den</option>
+                            <option value="T0603" >T0603 - J&#228;rnv&#228;gtransporter</option>
+                            <option value="T08021" >T08021 - Sj&#246;trafik kvartal</option>
+                            <option value="T10016" >T10016 - Personbilar</option>
+                            <option value="T10013" >T10013 - Lastbilar</option>
+                            <option value="T0301" >T0301 - Utl&#228;ndska lastbilstransporter i Sverige</option>
+                            <option value="T0701" >T0701 - Postverksamhet</option>
+                            <option value="T1204" >T1204 - Kommersiell linjetrafik p&#229; vatten</option>
+                            <option value="ATFT" >ATFT - Annotering test</option>
+                            <option value="T0501"  selected=&quot;selected&quot;>T0501 - Luftfart</option>
+                            <option value="T10030" >T10030 - Nyregistreringar</option>
+                            <option value="T0602" >T0602 - Bantrafikskador</option>
+                            <option value="T0604_RT_ar" >T0604_RT_ar - Punktlighet f&#246;r framf&#246;rda t&#229;g, &#229;rspublicering</option>
+                            <option value="T0604_RT_Kv" >T0604_RT_Kv - Punktlighet f&#246;r framf&#246;rda t&#229;g, prelimin&#228;r kvartalspublicering</option>
+                            <option value="T10010" >T10010 - Fordon p&#229; v&#228;g</option>
+                            <option value="T0604_STM_ar" >T0604_STM_ar - Punktlighet p&#229; j&#228;rnv&#228;g, STM, &#229;rspublicering</option>
+                            <option value="T0604_STM_kv" >T0604_STM_kv - Punktlighet p&#229; j&#228;rnv&#228;g, STM, prelimin&#228;r kvartalspublicering</option>
+                            <option value="T04010" >T04010 - Trafikarbete</option>
+                            <option value="T10020" >T10020 - Fordon i l&#228;n och kommuner</option>
+                    </select>
+                </div>
+
+
+                
+
+                <button class="dropdown_select_btn btn" type="submit">
+                    Visa data
+                </button>
+
+                <style>
+                    .dropdown_select_btn{display:none;}
+                </style>
+
+                <noscript>
+                    <style>
+                        .dropdown_select_btn {display:block;
+                                               height:38px;
+                                               margin-top:18px;
+                        }
+                    </style>
+                </noscript>
+
+                
+
+
+            </form>
+        </div>
+    </div>
+    
+
+            <div class="product-container">
+
+                <h2>T0501 - Luftfart</h2>
+                <p></p>
+
+                <div>                    
+                        <table class="items dimensions">
+        <caption>Variabler och variabelv&#228;rden</caption>
+        <thead>
+            <tr>
+                <th>Kod</th>
+                <th>Namn</th>
+                <th>Beskrivning</th>
+            </tr>
+        </thead>
+
+
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Ar</th>
+                    <th class="name">Ar</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">1960</td>
+                <td class="name">1960</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1961</td>
+                <td class="name">1961</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1962</td>
+                <td class="name">1962</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1963</td>
+                <td class="name">1963</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1964</td>
+                <td class="name">1964</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1965</td>
+                <td class="name">1965</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1966</td>
+                <td class="name">1966</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1967</td>
+                <td class="name">1967</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1968</td>
+                <td class="name">1968</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1969</td>
+                <td class="name">1969</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1970</td>
+                <td class="name">1970</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1971</td>
+                <td class="name">1971</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1972</td>
+                <td class="name">1972</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1973</td>
+                <td class="name">1973</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1974</td>
+                <td class="name">1974</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1975</td>
+                <td class="name">1975</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1976</td>
+                <td class="name">1976</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1977</td>
+                <td class="name">1977</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1978</td>
+                <td class="name">1978</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1979</td>
+                <td class="name">1979</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1980</td>
+                <td class="name">1980</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1981</td>
+                <td class="name">1981</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1982</td>
+                <td class="name">1982</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1983</td>
+                <td class="name">1983</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1984</td>
+                <td class="name">1984</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1985</td>
+                <td class="name">1985</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1986</td>
+                <td class="name">1986</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1987</td>
+                <td class="name">1987</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1988</td>
+                <td class="name">1988</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1989</td>
+                <td class="name">1989</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1990</td>
+                <td class="name">1990</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1991</td>
+                <td class="name">1991</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1992</td>
+                <td class="name">1992</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1993</td>
+                <td class="name">1993</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1994</td>
+                <td class="name">1994</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1995</td>
+                <td class="name">1995</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1996</td>
+                <td class="name">1996</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1997</td>
+                <td class="name">1997</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1998</td>
+                <td class="name">1998</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1999</td>
+                <td class="name">1999</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2000</td>
+                <td class="name">2000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2001</td>
+                <td class="name">2001</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2002</td>
+                <td class="name">2002</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2003</td>
+                <td class="name">2003</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2004</td>
+                <td class="name">2004</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2005</td>
+                <td class="name">2005</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2006</td>
+                <td class="name">2006</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2007</td>
+                <td class="name">2007</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2008</td>
+                <td class="name">2008</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2009</td>
+                <td class="name">2009</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2010</td>
+                <td class="name">2010</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2011</td>
+                <td class="name">2011</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2012</td>
+                <td class="name">2012</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2013</td>
+                <td class="name">2013</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2014</td>
+                <td class="name">2014</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2015</td>
+                <td class="name">2015</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2016</td>
+                <td class="name">2016</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2017</td>
+                <td class="name">2017</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2018</td>
+                <td class="name">2018</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2019</td>
+                <td class="name">2019</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2020</td>
+                <td class="name">2020</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2021</td>
+                <td class="name">2021</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2022</td>
+                <td class="name">2022</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2023</td>
+                <td class="name">2023</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2024</td>
+                <td class="name">2024</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2025</td>
+                <td class="name">2025</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Tjanster</th>
+                    <th class="name">Tillhandah&#229;llna tj&#228;nster</th>
+                    <th class="description">TWR: Kontrolltorn eller flygplatskontroll, AFIS: Flyginformationstj&#228;nst f&#246;r flygplats, AIS: Informationstj&#228;nst f&#246;r luftfarten, STN: Stations-, expeditions-, trafikant- och ramptj&#228;nst, FLD: Flygdrivmedel</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">TWR/AFIS, FLD, STN</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">TWR, FLD, STN</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">AFIS, FLD, STN</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">TWR, FLD, AIS, STN</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Yta</th>
+                    <th class="name">Banyta</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Belagd</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Gr&#228;s</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">Belagd och gr&#228;s</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">TFplats1</th>
+                    <th class="name">Typ av flygplat_1</th>
+                    <th class="description">Flygplatser med linje- och/eller chartertrafik</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Civil instrumentflygplats</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Milit&#228;r/Civil instrumentflygplats</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">TFplats2</th>
+                    <th class="name">Typ av flygplat_2</th>
+                    <th class="description">Av Transportstyrelsen godk&#228;nda flygplatser</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Civila godk&#228;nda instrumentflygplatser</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Milit&#228;ra/Civila godk&#228;nda instrumentflygplatser</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">Civila godk&#228;nda icke instrumentflygplatser</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">Milit&#228;ra/Civila godk&#228;nda icke instrumentflygplatser</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">5</td>
+                <td class="name">Civila ej godk&#228;nda icke instrumentflygplatser</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">6</td>
+                <td class="name">Milit&#228;ra/Civila ej godk&#228;nda icke instrumentflygplatser</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">TFplats3</th>
+                    <th class="name">Typ av helikopterflygplats</th>
+                    <th class="description">Av Transportstyrelsen godk&#228;nda helikopterflygplatser</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Godk&#228;nda helikopterflygplatser</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Milit&#228;ra helikopterflygplatser</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Flygplats</th>
+                    <th class="name">Flygplats</th>
+                    <th class="description">Flygplatser med linje- och/eller chartertrafik</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">01</td>
+                <td class="name">Arvidsjaur</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">02</td>
+                <td class="name">Borl&#228;nge</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">03</td>
+                <td class="name">G&#228;llivare</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">04</td>
+                <td class="name">G&#246;teborg/Landvetter</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">05</td>
+                <td class="name">Hagfors</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">06</td>
+                <td class="name">Halmstad</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">07</td>
+                <td class="name">Hemavan T&#228;rnaby</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">08</td>
+                <td class="name">J&#246;nk&#246;ping</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">09</td>
+                <td class="name">Kalmar</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Karlstad</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">Kiruna</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Kramfors-Sollefte&#229;</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">13</td>
+                <td class="name">Kristianstad</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">14</td>
+                <td class="name">Link&#246;ping/Saab</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">15</td>
+                <td class="name">Lule&#229;/Kallax</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">16</td>
+                <td class="name">Lycksele</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">17</td>
+                <td class="name">Malm&#246;</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">18</td>
+                <td class="name">Mora/Siljan</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">19</td>
+                <td class="name">Norrk&#246;ping/Kungs&#228;ngen</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">20</td>
+                <td class="name">Pajala</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">21</td>
+                <td class="name">Ronneby</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">22</td>
+                <td class="name">Skellefte&#229;</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">23</td>
+                <td class="name">Stockholm/Arlanda</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">24</td>
+                <td class="name">Stockholm/Bromma</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">25</td>
+                <td class="name">Stockholm/Skavsta</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">26</td>
+                <td class="name">Stockholm/V&#228;ster&#229;s</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">27</td>
+                <td class="name">Sundsvall-Timr&#229;</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">28</td>
+                <td class="name">Sveg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">29</td>
+                <td class="name">Torsby</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">30</td>
+                <td class="name">Trollh&#228;ttan-V&#228;nersborg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">31</td>
+                <td class="name">Ume&#229;</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">32</td>
+                <td class="name">Vilhelmina</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">33</td>
+                <td class="name">Visby</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">34</td>
+                <td class="name">V&#228;xj&#246;/Kronoberg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">35</td>
+                <td class="name">&#197;re &#214;stersund</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">36</td>
+                <td class="name">&#196;ngelholm</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">37</td>
+                <td class="name">&#214;rebro</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">38</td>
+                <td class="name">&#214;rnsk&#246;ldsvik</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">39</td>
+                <td class="name">G&#246;teborg/S&#228;ve</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">40</td>
+                <td class="name">Oskarshamn</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">41</td>
+                <td class="name">Storuman</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">42</td>
+                <td class="name">S&#228;len</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Kodsiffra</th>
+                    <th class="name">Kodsiffran av landningsbanor</th>
+                    <th class="description">T1:Totalt</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">1</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">2</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">3</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">4</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Maxvikt</th>
+                    <th class="name">H&#246;gsta till&#229;tna startvikt kg</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">=&lt; 2 000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">2 001 - 5 700</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">5 701 - 10 000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">10 001 - 15 000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">5</td>
+                <td class="name">15 001 - 25 000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">6</td>
+                <td class="name">25 001 - 100 000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">7</td>
+                <td class="name">&gt;100 000</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typcertifk</th>
+                    <th class="name">Typ av certifikat/beh&#246;righetsbevis</th>
+                    <th class="description">Vissa typer av certifikat/beh&#246;righetsbevis redovisas inte l&#228;ngre</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">01</td>
+                <td class="name">Trafikflygarcertifikat/Flygplan (ATPL(A))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">02</td>
+                <td class="name">Trafikflygarcertifikat/Helikopter (ATPL(H))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">03</td>
+                <td class="name">Trafikflygarcertifikat/Flygplan (CPL(A))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">04</td>
+                <td class="name">Trafikflygarcertifikat/Helikopter (CPL(H))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">05</td>
+                <td class="name">Trafikflygarcertifikat/Flygplan (MPL(A))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">06</td>
+                <td class="name">Privatflygarcertifikat/Flygplan (PPL(A))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">07</td>
+                <td class="name">Privatflygarcertifikat/Helikopter (PPL(H))</td>
+                <td class="description">Dessa certifikattyper inkluderar minst en giltig beh&#246;righet</td>
+            </tr>
+            <tr>
+                <td class="code">08</td>
+                <td class="name">Privatflygarcertifikat/L&#228;tta luftfartyg (LAPL(A))</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">09</td>
+                <td class="name">Privatflygarcertifikat/L&#228;tta luftfartyg (LAPL(H))</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Segelflygarcertifikat nationellt (S)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">Segelflygarcertifikat Del FCL (SPL)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Segelflygarcertifikat Del FCL (LAPL(S))</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">13</td>
+                <td class="name">Flygmaskinist (MF, F/EL)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">14</td>
+                <td class="name">Flygteknikercertifikat (PART-66)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">15</td>
+                <td class="name">F&#246;rarcertifikat-ultral&#228;tta flygplan (UL)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">16</td>
+                <td class="name">Flygledare (FL)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">17</td>
+                <td class="name">Beh&#246;righetsbevis f&#246;r flyginformationstj&#228;nst f&#246;r flygplats (AFIS)(AF)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">18</td>
+                <td class="name">Ballongf&#246;rare (FB)</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Foretag</th>
+                    <th class="name">F&#246;retag</th>
+                    <th class="description">F&#246;retag med f&#228;rre &#228;n 5 anst&#228;llda n&#229;got av &#229;ren redovisas inte</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">01</td>
+                <td class="name">Amapola Flyg AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">02</td>
+                <td class="name">Babcock Scandinavian Air Ambulance</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">03</td>
+                <td class="name">Babcock SAA FW AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">04</td>
+                <td class="name">Bluelink Jets AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">05</td>
+                <td class="name">Braathens Regional Aviation AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">06</td>
+                <td class="name">Braathens Regional Airways AB (f.d. Golden Air Flyg AB. Former Golden Air Flyg AB)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">07</td>
+                <td class="name">Bromma Business Jet AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">08</td>
+                <td class="name">EFS European Flight Service AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">09</td>
+                <td class="name">Fiskflyg AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Fj&#228;llflygarna i Arjeplog AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">Grafair Flight Management AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">H-bird Aviation Services AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">13</td>
+                <td class="name">HeliAir Sweden AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">14</td>
+                <td class="name">J&#228;mtlands Flyg AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">15</td>
+                <td class="name">Kallax Flyg AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">16</td>
+                <td class="name">Malm&#246; Aviation AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">17</td>
+                <td class="name">NextJet AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">18</td>
+                <td class="name">Norrlandsflyg Ambulans AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">19</td>
+                <td class="name">Nova Airlines AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">20</td>
+                <td class="name">SAAB AB Sverige (enbart flygverksamheten. Exclusively air services)</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">21</td>
+                <td class="name">Scandinavian Air Ambulance AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">22</td>
+                <td class="name">SAS, Scandinavian Airlines System, se nedan f&#246;r hela koncernen</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">23</td>
+                <td class="name">Scandinavian MediCopter AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">24</td>
+                <td class="name">Svensk Luftambulans</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">25</td>
+                <td class="name">Svenska Direktflyg AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">26</td>
+                <td class="name">Svenskt Industriflyg AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">27</td>
+                <td class="name">TUIFly Nordic AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">28</td>
+                <td class="name">Waltair Europe AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">29</td>
+                <td class="name">West Atlantic Sweden AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">30</td>
+                <td class="name">Westhelicopter AB</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">31</td>
+                <td class="name">BRA-Koncernen</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">32</td>
+                <td class="name">SAAB-koncernen</td>
+                <td class="description">Totalt antal anst&#228;llda inkluderat flygverksamheten. K&#228;lla: &#197;rsredovisningar f&#246;r SAAB-koncernen.</td>
+            </tr>
+            <tr>
+                <td class="code">33</td>
+                <td class="name">SAS-koncernen</td>
+                <td class="description">K&#228;lla: &#197;rsredovisningar f&#246;r SAS-koncernen</td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Flygtrafik</th>
+                    <th class="name">Flygtrafik</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Utrikes</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Inrikes</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">FlygVerk</th>
+                    <th class="name">Flygverksamhet</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Taxiflyg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">&#214;vrig flygverksamhet</td>
+                <td class="description">Privatflyg, skolflyg, aerial work och milit&#228;r</td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">Taxi- och &#246;vrig flygverksamhet</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typres</th>
+                    <th class="name">Riktning passagerare</th>
+                    <th class="description">Skillnaden mellan antalet ankommande och avresande passagerare beror p&#229; en st&#246;rre noggrannhet i rapporteringen av avresande passagerare.</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Ankommande</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Avresande</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">TypLast</th>
+                    <th class="name">Riktning gods</th>
+                    <th class="description">Skillnaden mellan antalet ankommande och avg&#229;ende godston beror p&#229; en st&#246;rre noggrannhet i rapporteringen av avg&#229;ende godston</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Ankommande</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Avg&#229;ende</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typgod</th>
+                    <th class="name">Typ av gods</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Fraktgods</td>
+                <td class="description">Vikt p&#229; ankommande och avg&#229;ende gods i utrikes trafik samt avg&#229;ende gods i inrikes trafik</td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Post</td>
+                <td class="description">Vikt p&#229; ankommande och avg&#229;ende post i utrikes trafik samt avg&#229;ende post i inrikes trafik</td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">TypFPR</th>
+                    <th class="name">Typ av flygplansr&#246;relser</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">&#214;verflygningar</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Max luftrumsr&#246;relser per dygn</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">Min luftrumsr&#246;relser per dygn</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">Medeltal luftrumsr&#246;relser per dygn</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Flyplans</th>
+                    <th class="name">Flygplanstyp</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">01</td>
+                <td class="name">Boeing 737-800</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">02</td>
+                <td class="name">ATR 76</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">03</td>
+                <td class="name">Airbus A320</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">04</td>
+                <td class="name">Boeing 737-700</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">05</td>
+                <td class="name">Boeing 737-600</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">06</td>
+                <td class="name">Avro RJ 1H</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">07</td>
+                <td class="name">Canadair Regional Jet 900</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">08</td>
+                <td class="name">Saab 340</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">09</td>
+                <td class="name">Airbus A321</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Fokker 50</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">ATR 75</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Bae Jetstream 32</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">13</td>
+                <td class="name">Airbus A319</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">14</td>
+                <td class="name">ATR 72</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">15</td>
+                <td class="name">Embraer 190</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">16</td>
+                <td class="name">Airbus A320neo</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">17</td>
+                <td class="name">BAe ATP</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">18</td>
+                <td class="name">Embraer 145</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">19</td>
+                <td class="name">Saab 2000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">20</td>
+                <td class="name">Avro RJ85</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">21</td>
+                <td class="name">Dash 8</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">22</td>
+                <td class="name">Boeing 767-300</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">23</td>
+                <td class="name">Airbus A330</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">24</td>
+                <td class="name">Boeing 757-200</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">25</td>
+                <td class="name">Boeing 787-800</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">26</td>
+                <td class="name">Boeing 737-400</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">27</td>
+                <td class="name">Canadair Regional Jet 200</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">28</td>
+                <td class="name">Boeing 777-300ER</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">29</td>
+                <td class="name">Cessna 56 X</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">30</td>
+                <td class="name">Cessna 208</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">32</td>
+                <td class="name">Airbus A333</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">33</td>
+                <td class="name">Sukhoi SU 95</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">34</td>
+                <td class="name">Boeing 737-500</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">35</td>
+                <td class="name">Embraer 175</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">36</td>
+                <td class="name">Airbus A332</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">37</td>
+                <td class="name">Boeing 737-900</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">38</td>
+                <td class="name">Embraer 170</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">39</td>
+                <td class="name">Boeing 737-300</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">40</td>
+                <td class="name">Cessna 208</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">41</td>
+                <td class="name">Boeing(Douglas) MD-80</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">42</td>
+                <td class="name">Boeing (Douglas) MD-81</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">43</td>
+                <td class="name">Boeing 737-500</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">44</td>
+                <td class="name">Boeing 717-200</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">45</td>
+                <td class="name">Canadair Regional Jet 100</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">46</td>
+                <td class="name">Canadair Regional Jet 700</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">47</td>
+                <td class="name">Boeing (Douglas) MD-80</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">48</td>
+                <td class="name">Boeing (Douglas) MD-81</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">49</td>
+                <td class="name">Boeing (Douglas) MD-82</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">50</td>
+                <td class="name">Boeing (Douglas) MD-83</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">51</td>
+                <td class="name">Boeing (Douglas) MD-87</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">52</td>
+                <td class="name">Fokker 70</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">53</td>
+                <td class="name">Fokker 100</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">54</td>
+                <td class="name">Boeing 747</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">55</td>
+                <td class="name">Beechcraft 1900</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">56</td>
+                <td class="name">Beechcraft 2000</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">57</td>
+                <td class="name">Dornier 328</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">58</td>
+                <td class="name">ATR 43</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">59</td>
+                <td class="name">ATR 45</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">60</td>
+                <td class="name">Embraer E135</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">61</td>
+                <td class="name">Jetstream JS 31</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">62</td>
+                <td class="name">Hawker 850</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">99</td>
+                <td class="name">&#214;vriga flygplan</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">FlygSit</th>
+                    <th class="name">Flygsituation</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Taxning/station&#228;rt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Start</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">Flygning</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">Inflygning/Landning</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typolyck</th>
+                    <th class="name">Typ av Luftfartyg i olyckor</th>
+                    <th class="description">i Sverige oavsett nationalitet av luftfartyg</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description">oavsett haveriplats</td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Luftfartsolyckor med motordrivna luftfartyg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Luftfartsolyckor med svenskregistrerade motordrivna luftfartyg</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typfart</th>
+                    <th class="name">Typ av fart</th>
+                    <th class="description">exklusive ej ICAO-anslutna stater</th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">V&#228;rldsluftfartens linjetrafik</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typluft</th>
+                    <th class="name">Typ av luftfartyg</th>
+                    <th class="description"></th>
+                </tr>
+
+                        <tr><td colspan="3" class="no-items">---</td></tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typluft1</th>
+                    <th class="name">Typ av luftfartyg_1</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Motordriva luftfartyg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Segelflygplan, motorsegelflygplan och ballonger</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Typluft2</th>
+                    <th class="name">Typ av luftfartyg_2</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">Ultral&#228;tta luftfartyg</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">ArtFlyg</th>
+                    <th class="name">Typ av flygning</th>
+                    <th class="description"></th>
+                </tr>
+
+                        <tr><td colspan="3" class="no-items">---</td></tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Flygtyp</th>
+                    <th class="name">Flygtyp</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Linjefart och chartertrafik</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Bruksflyg</td>
+                <td class="description">Taxiflyg och aerial work</td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">Skolflyg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">4</td>
+                <td class="name">Privatflyg</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Arttyp</th>
+                    <th class="name">Linjefart/charter</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">Linjefart</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Charter</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Region</th>
+                    <th class="name">Region</th>
+                    <th class="description"></th>
+                </tr>
+
+                        <tr><td colspan="3" class="no-items">---</td></tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Land</th>
+                    <th class="name">Land</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">01</td>
+                <td class="name">Spanien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">02</td>
+                <td class="name">Tyskland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">03</td>
+                <td class="name">Storbritannien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">04</td>
+                <td class="name">Danmark</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">05</td>
+                <td class="name">Finland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">06</td>
+                <td class="name">Norge</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">08</td>
+                <td class="name">Polen</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">07</td>
+                <td class="name">Nederl&#228;nderna</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">09</td>
+                <td class="name">Grekland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Frankrike</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Turkiet</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">Italien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">13</td>
+                <td class="name">USA</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">14</td>
+                <td class="name">Schweiz</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">15</td>
+                <td class="name">Belgien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">16</td>
+                <td class="name">Thailand</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">17</td>
+                <td class="name">Kroatien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">18</td>
+                <td class="name">Ungern</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">19</td>
+                <td class="name">&#214;sterrike</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">20</td>
+                <td class="name">Serbien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">21</td>
+                <td class="name">Tjeckien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">22</td>
+                <td class="name">Island</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">23</td>
+                <td class="name">F&#246;renade Arabemiraten</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">24</td>
+                <td class="name">Qatar</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">25</td>
+                <td class="name">Lettland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">26</td>
+                <td class="name">Ryssland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">27</td>
+                <td class="name">Cypern</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">28</td>
+                <td class="name">Portugal</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">29</td>
+                <td class="name">Estland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">30</td>
+                <td class="name">Makedonien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">31</td>
+                <td class="name">Bosnien och Hercegovina</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">32</td>
+                <td class="name">Litauen</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">33</td>
+                <td class="name">Rum&#228;nien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">34</td>
+                <td class="name">Irland</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">35</td>
+                <td class="name">Kina</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">36</td>
+                <td class="name">Ukraina</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">37</td>
+                <td class="name">Hong Kong</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">38</td>
+                <td class="name">Malta</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">39</td>
+                <td class="name">Bulgarien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">40</td>
+                <td class="name">Etiopien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">41</td>
+                <td class="name">Marocko</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">42</td>
+                <td class="name">Egypten</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">43</td>
+                <td class="name">Kap Verde&#246;arna</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">44</td>
+                <td class="name">Iran</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">45</td>
+                <td class="name">&#214;vriga l&#228;nder</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">46</td>
+                <td class="name">Indien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">47</td>
+                <td class="name">Israel</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">48</td>
+                <td class="name">Kosovo</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">49</td>
+                <td class="name">Albanien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">50</td>
+                <td class="name">Libanon</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">51</td>
+                <td class="name">Luxemburg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">52</td>
+                <td class="name">Kanada</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">53</td>
+                <td class="name">Mexiko</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">54</td>
+                <td class="name">Slovakien</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">55</td>
+                <td class="name">Tunisien</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">TypSkada</th>
+                    <th class="name">Typ av skada</th>
+                    <th class="description"></th>
+                </tr>
+
+                        <tr><td colspan="3" class="no-items">---</td></tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Main</th>
+                    <th class="name">Huvudtyp av skada</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">1</td>
+                <td class="name">Personskador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2</td>
+                <td class="name">Materialskador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">3</td>
+                <td class="name">D&#246;dlig utg&#229;ng</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">typ2</th>
+                    <th class="name">Allvarlighet</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">D&#246;dliga skador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Allvarliga skador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">13</td>
+                <td class="name">Lindriga skador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">21</td>
+                <td class="name">Totalf&#246;rst&#246;rt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">22</td>
+                <td class="name">Omfattande skador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">23</td>
+                <td class="name">Mindre skador</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+
+    </table>
+        <table class="items measures">
+            <caption>M&#228;tv&#228;rden</caption>
+            <thead>
+                <tr>
+                    <th>Kod</th>
+                    <th>Namn</th>
+                    <th>Beskrivning</th>
+                </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                <td class="code">AntalFP</td>
+                <td class="name">Antal flygplatser</td>
+                <td class="description">avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalL</td>
+                <td class="name">Antal landningsbanor</td>
+                <td class="description">avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalBL</td>
+                <td class="name">Antal belagda landningsbanor</td>
+                <td class="description">avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">Ejbanor</td>
+                <td class="name">Ej klassificerade banor</td>
+                <td class="description">avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalH</td>
+                <td class="name">Antal helikopterflygplatser</td>
+                <td class="description">avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalMot</td>
+                <td class="name">Antal motordrivna svenska luftfartyg</td>
+                <td class="description">avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalReg</td>
+                <td class="name">Antal registeringar av svenska luftfartyg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">AntalAReg</td>
+                <td class="name">Antal avregistreringar av svenska luftfartyg</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">AntalGL</td>
+                <td class="name">Antal g&#228;llande luftv&#228;rdighetsbevis</td>
+                <td class="description">avser den 31 december</td>
+            </tr>
+            <tr>
+                <td class="code">AntalUL</td>
+                <td class="name">Antal utf&#228;rdade luftv&#228;rdighetsbevis</td>
+                <td class="description">avser under &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalNC</td>
+                <td class="name">Antal nyutf&#228;rdade certifikat</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">AntalGC</td>
+                <td class="name">Antal g&#228;llande certifikat</td>
+                <td class="description">avser den 31 december</td>
+            </tr>
+            <tr>
+                <td class="code">AntalS</td>
+                <td class="name">Antal sysselsatta i f&#246;retag</td>
+                <td class="description">med tillst&#229;nd till att bedriva kommersiell luftfartsverksamhet med passagerare, gods och gods avser i slutet av &#229;ret</td>
+            </tr>
+            <tr>
+                <td class="code">AntalLFP</td>
+                <td class="name">Antal landningar</td>
+                <td class="description">p&#229; svenska flygplatser med linje- och/eller chartertrafik</td>
+            </tr>
+            <tr>
+                <td class="code">AntalP</td>
+                <td class="name">Antal passagerare</td>
+                <td class="description">p&#229; svenska flygplatser med linje- och/eller chartertrafik</td>
+            </tr>
+            <tr>
+                <td class="code">Pkm</td>
+                <td class="name">Antal personkilometer, tusental</td>
+                <td class="description">p&#229; svenska flygplatser med linje- och/eller chartertrafik</td>
+            </tr>
+            <tr>
+                <td class="code">Fkm</td>
+                <td class="name">Antal fordonskilometer, tusental</td>
+                <td class="description">p&#229; svenska flygplatser med linje- och/eller chartertrafik</td>
+            </tr>
+            <tr>
+                <td class="code">Tonkm</td>
+                <td class="name">Antal tonkilometer, tusental</td>
+                <td class="description">gods och post p&#229; svenska flygplatser med linje- och/eller chartertrafik</td>
+            </tr>
+            <tr>
+                <td class="code">AntalUFP</td>
+                <td class="name">Antal utbjudna flygstolar</td>
+                <td class="description">i linje- och/eller chartertrafik p&#229; svenska flygplatser</td>
+            </tr>
+            <tr>
+                <td class="code">AntalAnAv</td>
+                <td class="name">Antal ankommande och avg&#229;ende i ton</td>
+                <td class="description">p&#229; svenska flygplatser med linje- och/eller chartertrafik. Avser endast flugen gods och post.</td>
+            </tr>
+            <tr>
+                <td class="code">AntalFPR</td>
+                <td class="name">Antal flygplansr&#246;relser i svenskkontrollerat luftrum</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">Antalstart</td>
+                <td class="name">Antalet starter</td>
+                <td class="description">i linje- och/eller chartertrafik efter flygplanstyp fr&#229;n svenska flygplatser</td>
+            </tr>
+            <tr>
+                <td class="code">AntalSkad</td>
+                <td class="name">Antal skador</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">AntalOlyckor</td>
+                <td class="name">Antal olyckor</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">Ton</td>
+                <td class="name">Gods, ton i miljoner</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">AntalDod</td>
+                <td class="name">Antal olyckor med d&#246;dlig utg&#229;ng</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">Kabinfaktor</td>
+                <td class="name">Kabinfaktor, %</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+        </table>
+        <h3>API-kombinationer</h3>
+        <ul class="api-combos">            
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplatser|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningsbanor|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antalet starter|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ej klassificerade banor|Kabinfaktor, %|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfp|antalfpr|antalgl|antalh|antall|antallfp|antalmot|antalp|antalreg|antalstart|antalufp|antalul|ejbanor|kabinfaktor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplatser|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande certifikat|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningsbanor|Antal landningar|Antal motordrivna svenska luftfartyg|Antal nyutf&#228;rdade certifikat|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal sysselsatta i f&#246;retag|Antalet starter|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ej klassificerade banor|Kabinfaktor, %|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfp|antalfpr|antalgc|antalgl|antalh|antall|antallfp|antalmot|antalnc|antalp|antalreg|antals|antalstart|antalufp|antalul|ejbanor|kabinfaktor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplatser|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningsbanor|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal sysselsatta i f&#246;retag|Antalet starter|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ej klassificerade banor|Kabinfaktor, %|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfp|antalfpr|antalgl|antalh|antall|antallfp|antalmot|antalp|antalreg|antals|antalstart|antalufp|antalul|ejbanor|kabinfaktor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antalet starter|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Kabinfaktor, %|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfpr|antalgl|antalh|antallfp|antalmot|antalp|antalreg|antalstart|antalufp|antalul|kabinfaktor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antalet starter|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Kabinfaktor, %|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfpr|antalgl|antalh|antallfp|antalmot|antalp|antalreg|antalstart|antalul|kabinfaktor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfpr|antalgl|antalh|antallfp|antalmot|antalp|antalreg|antalul|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal landningar|Antal passagerare|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalfpr|antallfp|antalp|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Antal passagerare|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|antalp|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Antal passagerare|Ar|Flygtyp</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|antalp|ar|flygtyp</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal olyckor|Ar|Flygtyp|Flygsituation|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalolyckor|ar|flygtyp|flygsit|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Antal passagerare|Ar|Flygtyp|Flygtrafik</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|antalp|ar|flygtyp|flygtrafik</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal skador|Ar|Flygtyp|Typ av Luftfartyg i olyckor|Huvudtyp av skada|Allvarlighet</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalskad|ar|flygtyp|typolyck|main|typ2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Antal passagerare|Antal utbjudna flygstolar|Ar|Flygplats</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|antalp|antalufp|ar|flygplats</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Antal utbjudna flygstolar|Ar|Flygplats</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|antalufp|ar|flygplats</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Ar|Flygplats</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|ar|flygplats</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Ar|Flygtyp|Flygplats|Flygtrafik</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|ar|flygtyp|flygplats|flygtrafik</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Ar|Flygplats|Flygtrafik</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|ar|flygplats|flygtrafik</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal ankommande och avg&#229;ende i ton|Ar|Flygplats|Flygtrafik|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalanav|ar|flygplats|flygtrafik|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Ar|Flygplats|Flygverksamhet</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|ar|flygplats|flygverk</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal ankommande och avg&#229;ende i ton|Ar|Flygplats|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalanav|ar|flygplats|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Ar|Flygplats|Flygtrafik|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|ar|flygplats|flygtrafik|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Antal utbjudna flygstolar|Ar|Flygplats|Flygtrafik|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|antalufp|ar|flygplats|flygtrafik|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal olyckor|Ar|Flygsituation|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalolyckor|ar|flygsit|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal fordonskilometer, tusental|Kabinfaktor, %|Antal personkilometer, tusental|Antal tonkilometer, tusental|Ar|Flygtrafik</div>
+                <div style="overflow: auto; font-style: italic;">T0501|fkm|kabinfaktor|pkm|tonkm|ar|flygtrafik</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningsbanor|Antal fordonskilometer, tusental|Kabinfaktor, %|Antal personkilometer, tusental|Antal tonkilometer, tusental|Ar|Flygtrafik</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antall|fkm|kabinfaktor|pkm|tonkm|ar|flygtrafik</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningar|Ar|Flygverksamhet</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antallfp|ar|flygverk</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antalet starter|Ar|Flygplanstyp</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalstart|ar|flyplans</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal sysselsatta i f&#246;retag|Ar|F&#246;retag</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antals|ar|foretag</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal belagda landningsbanor|Antal landningsbanor|Ar|Kodsiffran av landningsbanor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalbl|antall|ar|kodsiffra</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Ar|Flygtrafik|Land|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|ar|flygtrafik|land|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal skador|Ar|Typ av Luftfartyg i olyckor|Huvudtyp av skada|Allvarlighet</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalskad|ar|typolyck|main|typ2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal motordrivna svenska luftfartyg|Ar|H&#246;gsta till&#229;tna startvikt kg</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalmot|ar|maxvikt</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal flygplatser|Antal landningsbanor|Ej klassificerade banor|Ar|Typ av flygplat_2</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalfp|antall|ejbanor|ar|tfplats2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningsbanor|Ar|Kodsiffran av landningsbanor|Typ av flygplat_2</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antall|ar|kodsiffra|tfplats2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal helikopterflygplatser|Ar|Typ av helikopterflygplats</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalh|ar|tfplats3</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal g&#228;llande certifikat|Antal nyutf&#228;rdade certifikat|Ar|Typ av certifikat/beh&#246;righetsbevis</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalgc|antalnc|ar|typcertifk</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Kabinfaktor, %|Antal personkilometer, tusental|Gods, ton i miljoner|Ar|Typ av fart</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|kabinfaktor|pkm|ton|ar|typfart</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal tonkilometer, tusental|Ar|Typ av fart|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|tonkm|ar|typfart|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Ar|Typ av flygplansr&#246;relser</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalfpr|ar|typfpr</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal ankommande och avg&#229;ende i ton|Ar|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalanav|ar|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal ankommande och avg&#229;ende i ton|Ar|Flygtrafik|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalanav|ar|flygtrafik|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal registeringar av svenska luftfartyg|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ar|Typ av luftfartyg_1</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalgl|antalreg|antalul|ar|typluft1</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal registeringar av svenska luftfartyg|Ar|Typ av luftfartyg_1|Typ av luftfartyg_2</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalreg|ar|typluft1|typluft2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal olyckor med d&#246;dlig utg&#229;ng|Antal olyckor|Ar|Flygtyp|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antaldod|antalolyckor|ar|flygtyp|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal olyckor|Ar|Flygtyp|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalolyckor|ar|flygtyp|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Ar|Flygtrafik|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|ar|flygtrafik|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Antal utbjudna flygstolar|Ar|Flygtrafik|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|antalufp|ar|flygtrafik|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal ankommande och avg&#229;ende i ton|Ar|Flygplats|Flygtrafik|Typ av gods|Riktning gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalanav|ar|flygplats|flygtrafik|typgod|typlast</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal landningsbanor|Ar|Flygplats|Typ av flygplat_1|Tillhandah&#229;llna tj&#228;nster|Banyta</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antall|ar|flygplats|tfplats1|tjanster|yta</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplatser|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningsbanor|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ej klassificerade banor|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfp|antalfpr|antalgl|antalh|antall|antallfp|antalmot|antalp|antalreg|antalufp|antalul|ejbanor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygtyp|Flygsituation|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygtyp|flygsit|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Ar|Flygtyp|Linjefart/charter|Flygtrafik</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|ar|flygtyp|arttyp|flygtrafik</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Ar|Flygtyp|Linjefart/charter|Flygtrafik|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|ar|flygtyp|arttyp|flygtrafik|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygtyp|Typ av Luftfartyg i olyckor|Huvudtyp av skada|Allvarlighet</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygtyp|typolyck|main|typ2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygsituation|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygsit|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygtyp|Typ av Luftfartyg i olyckor</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygtyp|typolyck</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygplats|Flygtrafik|Typ av gods|Riktning gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygplats|flygtrafik|typgod|typlast</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal olyckor med d&#246;dlig utg&#229;ng|Antal flygplatser|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningsbanor|Antal landningar|Antal motordrivna svenska luftfartyg|Antal olyckor|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ej klassificerade banor|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antaldod|antalfp|antalfpr|antalgl|antalh|antall|antallfp|antalmot|antalolyckor|antalp|antalreg|antalufp|antalul|ejbanor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygtrafik|Land|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygtrafik|land|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Typ av Luftfartyg i olyckor|Huvudtyp av skada|Allvarlighet</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|typolyck|main|typ2</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Typ av fart|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|typfart|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygplats|Flygtrafik|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygplats|flygtrafik|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Ar|Flygplats|Typ av gods</div>
+                <div style="overflow: auto; font-style: italic;">T0501|ar|flygplats|typgod</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal passagerare|Kabinfaktor, %|Antal personkilometer, tusental|Ar|Typ av fart</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalp|kabinfaktor|pkm|ar|typfart</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal utbjudna flygstolar|Ar|Flygplats|Flygtrafik|Riktning passagerare</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalufp|ar|flygplats|flygtrafik|typres</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal olyckor med d&#246;dlig utg&#229;ng|Antal flygplatser|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande certifikat|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningsbanor|Antal landningar|Antal motordrivna svenska luftfartyg|Antal olyckor|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal utbjudna flygstolar|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ej klassificerade banor|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antaldod|antalfp|antalfpr|antalgc|antalgl|antalh|antall|antallfp|antalmot|antalolyckor|antalp|antalreg|antalufp|antalul|ejbanor|ar</div>                
+            </li>
+            <li>
+                <div class="name">Luftfart|Antal avregistreringar av svenska luftfartyg|Antal flygplansr&#246;relser i svenskkontrollerat luftrum|Antal g&#228;llande certifikat|Antal g&#228;llande luftv&#228;rdighetsbevis|Antal helikopterflygplatser|Antal landningar|Antal motordrivna svenska luftfartyg|Antal passagerare|Antal registeringar av svenska luftfartyg|Antal utf&#228;rdade luftv&#228;rdighetsbevis|Ar</div>
+                <div style="overflow: auto; font-style: italic;">T0501|antalareg|antalfpr|antalgc|antalgl|antalh|antallfp|antalmot|antalp|antalreg|antalul|ar</div>                
+            </li>
+        </ul>
+
+                </div>
+
+            </div>
+    
+    
+</div>
+
+
+
+
+                </main>
+            </div>
+            <footer class="footer" aria-label="Sidfot">
+<div class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="h4">Om Trafikanalys</h2>
+                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/om-oss/">Om oss</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/kontakta-oss/">Kontakta oss</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/lediga-jobb/">Lediga jobb</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/kontakta-oss/aktuella-upphandlingar/">Aktuella upphandlingar</a> </li>
+                    </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="h4">V&#229;ra uppdrag </h2>
+                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/uppdrag/transportpolitiska-mal/">Transportpolitiska m&#229;len</a> </li>
+                            <li class="list-group-item"><a href="/etiketter/prognoser-for-fordonsflottan/">Prognoser f&#246;r v&#228;gfordonsflottan</a> </li>
+                            <li class="list-group-item"><a href="/etiketter/sjofart/">Allt inom sj&#246;fart</a> </li>
+                            <li class="list-group-item"><a href="/etiketter/transportekonomi/">Transportsektorns kostnader</a> </li>
+                    </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="h4">Nyheter och artiklar</h2>
+                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/om-oss/press/nyhetsbrev/">Nyhetsbrev</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/press/">Press</a> </li>
+                            <li class="list-group-item"><a href="/sidor/aktuella-artiklar-om-fordon/">Aktuella artiklar om fordon</a> </li>
+                    </ul>
+            </div>
+
+            <div class="col-md-3">
+                    <h2 class="h4">Mer fr&#229;n Trafikanalys</h2>
+                                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/etiketter/remissvar/">Remissvar</a> </li>
+                            <li class="list-group-item"><a href="/sidor/kalendern/">Kalender</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/kontakta-oss/praktik-hos-oss/">Praktik och examensarbeten</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/om-webbplatsen/">Webbplatsen och anv&#228;ndarvillkor</a> </li>
+                    </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="/contentassets/6576c1b6e3ab4952aae9ab97c3d07735/trafikanalys_rgb_svart.png" alt="Logotyp trafikanalys">
+            </div>
+            <div class="col-md-3">
+                <p>Trafikanalys<br />Rosenlundsgatan 54<br />118 63 Stockholm</p>
+            </div>
+            <div class="col-md-3">
+                <p>Tel: <a href="tel:0104144200">+46 (0)10-414 42 00</a>&nbsp;<br />E-post: <a style="text-decoration: underline;" href="mailto:trafikanalys@trafa.se">trafikanalys@trafa.se</a><br /><a style="text-decoration: underline;" href="/om-oss/om-webbplatsen/tillganglighetsredogorelse/">Tillg&auml;nglighetsredog&ouml;relse</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+                <script type="text/javascript" src="https://dl.episerver.net/13.6.1/epi-util/find.js"></script>
+<script type="text/javascript">
+if(FindApi){var api = new FindApi();api.setApplicationUrl('/');api.setServiceApiBaseUrl('/find_v2/');api.processEventFromCurrentUri();api.bindWindowEvents();api.bindAClickEvent();api.sendBufferedEvents();}
+</script>
+
+            </footer>
+            
+        </div>
+
+
+    <!-- modal newsletter -->
+    <!-- cookie bar -->
+    
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/bundles?v=wgDAGAA7_sF1cqJNKyjzA36kS9jQXsCo_399LRT4KVI1"></script>
+<script src="/angularlocale_sv?v=Q5sDZyg_Yk7U6skb34DbZvjQn3Nxnpg1w0z8OzAxqC01"></script>
+
+
+</body>
+</html>
+

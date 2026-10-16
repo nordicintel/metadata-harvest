@@ -1,0 +1,1509 @@
+
+<!DOCTYPE html>
+<html lang="sv" data-ng-app="kit" class="ng-app:kit" id="ng-app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!-- Fonts for IE 11-->
+
+
+<link rel="canonical" href="/sidor/api-dokumentation/" />
+
+    <!--[if lt IE 8]>
+            <script>
+                angular.bootstrap(document,['kit']);
+            </script>
+        <![endif]-->
+            <title>API-dokumentation</title>
+        <meta name="pageid" content="8096" />
+
+
+            <meta name="description" content="H&amp;auml;r hittar du mer information den data som finns tillg&amp;auml;nglig via v&amp;aring;rt API. V&amp;aring;ra statistikprodukter &amp;auml;r olika och inneh&amp;aring;ller olika variabler och data,..." />
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/device-icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/device-icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/device-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/device-icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/device-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/device-icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/device-icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/device-icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/device-icons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/static/device-icons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/static/device-icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/device-icons/mstile-144x144.png">
+    <meta name="theme-color" content="#b70469">
+    
+
+<meta property="rek:pubdate" content="2019-01-30 08:27:20" />
+<meta property="rek:enddate" content="2023-01-30 08:27:20" />
+
+    <script>
+        function rekPredictionDone() {
+
+            //set clickable panel with js to enable click with no js
+            $('.rekai-newsarticle-article').addClass('overlay-js');
+
+            //clickable panel, apply css class "overlay"
+            $('.rekai-newsarticle-article').on('click', function (e) {
+                window.location = $(this).find('a:first').attr("href");
+            });
+        }
+    </script>
+   <script src="https://static.rekai.se/addon/rekai_autocomplete.min.js"></script>
+
+
+<link href="/static/css/bundles?v=FpMsdmovZbkbuG4jnssD_7BUMlGWjFHjAm3mFHZxVi41" rel="stylesheet"/>
+    
+    <style>
+        #search-btn-noscript {
+            display: none;
+        }
+    </style>
+
+    <noscript>
+        <style>
+            #search-btn {
+                display: none;
+            }
+
+            #search-btn-noscript {
+                display: inline-block;
+                color: #333333;
+                padding: 1px 6px;
+            }
+        </style>
+    </noscript>
+    <!-- App CSS -->
+    
+    
+    <!-- Font Awesome CSS -->
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+    
+
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.trafa.se/publikationer/alla-artiklar/rss">
+<script type="text/javascript">var appInsights=window.appInsights||function(config){function t(config){i[config]=function(){var t=arguments;i.queue.push(function(){i[config].apply(i,t)})}}var i={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",r,f;setTimeout(function(){var t=u.createElement(o);t.src=config.url||"https://js.monitor.azure.com/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(t)});try{i.cookie=u.cookie}catch(y){}for(i.queue=[],r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)t("track"+r.pop());return t("set"+s),t("clear"+s),t(h+a),t(c+a),t(h+v),t(c+v),t("flush"),config.disableExceptionTracking||(r="onerror",t("_"+r),f=e[r],e[r]=function(config,t,u,e,o){var s=f&&f(config,t,u,e,o);return s!==!0&&i["_"+r](config,t,u,e,o),s}),i}({instrumentationKey:"25182f0d-3007-46f1-a096-b43157e9baf4",sdkExtension:"a"});window.appInsights=appInsights;appInsights.queue&&appInsights.queue.length===0&&appInsights.trackPageView();</script></head>
+<body  class="js-disabled apidocumentationpage">
+
+    
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        window.dataLayer.push({
+            'PageType': 'ApiDocumentationPage',
+            'PageCategory': 'No data found',
+            'PagePublishDate': '2019-01-30T08:27:20.0000000+01:00',
+            'PageUpdateDate': '2019-01-30T08:27:20.0000000+01:00'
+        });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe title="tagmanager" src="//www.googletagmanager.com/ns.html?id=GTM-5TR2VH"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5TR2VH');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- keyboard navigation -->
+    <nav id="keyboard-nav-menu" aria-label="Navigering tangentbord" class="skip-link-container">
+        <a href="#main" class="skip-link" accesskey="s">Hoppa &#246;ver navigering och g&#229; direkt till inneh&#229;ll</a>
+        
+    </nav>
+    <!-- End keyboard navigation -->
+    
+        <div class="row d-block row-offcanvas row-offcanvas-left">
+
+
+<div class="mega-menu-wrapper">
+    <nav class="mega-menu" aria-label="Huvudmeny">
+
+        <div class="mobile-toggle-menu">
+            <button class="btn-mobile toggle-main" type="button" data-toggle="collapse" data-target=".menu-main" aria-controls="menu-main" aria-expanded="false" aria-label="Växla navigering"><span class="fa fa-bars" aria-hidden="true"></span></button>
+                <div class="mobile-logo" style="">
+                    <a href="/">
+                        <img src="/contentassets/6576c1b6e3ab4952aae9ab97c3d07735/trafikanalys.jpg" alt="Trafikanalys - tillbaka till start">
+                    </a>
+                </div>
+
+                <button class="btn-mobile toggle-search" type="button" data-toggle="collapse" data-target=".search-bar" aria-controls="search_bar" aria-expanded="false" aria-label="Öppna/Stäng Sök"><span class="fa fa-search" aria-hidden="true"></span></button>
+
+        </div>
+        <div class="container">
+            <div class="collapse search-bar" id="search_bar">
+            </div>
+        </div>
+
+
+        <ul class="collapse menu-main" id="menu-main" aria-label="Huvudmeny">
+                <li class="main-logo">
+                    <a href="/">
+                        <img src="/contentassets/6576c1b6e3ab4952aae9ab97c3d07735/trafikanalys.jpg" alt="Trafikanalys - tillbaka till start">
+                    </a>
+                </li>
+
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Statistik" class="menu-toggle has-children" data-tab="sub-8391" href="/sidor/statistikportalen/">Statistik</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-8391" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/sidor/statistikportalen/">G&#246;r ditt eget statistikurval</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Vägtrafik" class="" href="/vagtrafik/">V&#228;gtrafik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fordon på väg" class="" href="/vagtrafik/fordon/">Fordon p&#229; v&#228;g</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Lastbilstrafik" class="" href="/vagtrafik/lastbilstrafik/">Lastbilstrafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Utländska lastbilstransporter i Sverige" class="" href="/vagtrafik/utlandska-lastbilar/">Utl&#228;ndska lastbilstransporter i Sverige</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Vägtrafikskador" class="" href="/vagtrafik/vagtrafikskador/">V&#228;gtrafikskador</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Vägtrafikskadade i sjukvården" class="" href="/vagtrafik/vagtrafikskadade-inom-sjukvarden/">V&#228;gtrafikskadade i sjukv&#229;rden</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Trafikarbete på svenska vägar" class="" href="/vagtrafik/trafikarbete/">Trafikarbete p&#229; svenska v&#228;gar</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Körsträckor" class="" href="/vagtrafik/korstrackor/">K&#246;rstr&#228;ckor</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Lätta lastbilar" class="" href="/vagtrafik/latta-lastbilar/">L&#228;tta lastbilar</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Bantrafik" class="" href="/bantrafik/">Bantrafik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Bantrafik" class="" href="/bantrafik/bantrafik/">Bantrafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Järnvägstransporter" class="" href="/bantrafik/jarnvagstransporter/">J&#228;rnv&#228;gstransporter</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Bantrafikskador" class="" href="/bantrafik/bantrafikskador/">Bantrafikskador</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Punktlighet på järnväg" class="" href="/bantrafik/punktlighet-pa-jarnvag/">Punktlighet p&#229; j&#228;rnv&#228;g</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Kollektivtrafik" class="" href="/kollektivtrafik/">Kollektivtrafik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Regional linjetrafik" class="" href="/kollektivtrafik/kollektivtrafik/">Regional linjetrafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Linjetrafik på väg" class="" href="/kollektivtrafik/linjetrafik-pa-vag/">Linjetrafik p&#229; v&#228;g</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Linjetrafik på vatten" class="" href="/kollektivtrafik/linjetrafik-pa-vatten/">Linjetrafik p&#229; vatten</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Färdtjänst" class="" href="/kollektivtrafik/fardtjanst/">F&#228;rdtj&#228;nst</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Transportmönster" class="" href="/transportmonster/">Transportm&#246;nster</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Resvanor" class="" href="/transportmonster/RVU-Sverige/">Resvanor</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Transportarbete" class="" href="/transportmonster/transportarbete/">Transportarbete</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Varuflöden" class="" href="/transportmonster/varufloden/">Varufl&#246;den</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Sjöfart" class="" href="/sjofart/">Sj&#246;fart</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Sjötrafik" class="" href="/sjofart/sjotrafik/">Sj&#246;trafik</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fartyg" class="" href="/sjofart/fartyg/">Fartyg</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Brev- och paketdistribution" class="" href="/brev-och-paketdistribution/">Brev- och paketdistribution</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Postverksamhet" class="" href="/brev-och-paketdistribution/postverksamhet/">Postverksamhet</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Elektronisk kommunikation" class="" href="/elektronisk-kommunikation/">Elektronisk kommunikation</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Televerksamhet" class="" href="/elektronisk-kommunikation/televerksamhet/">Televerksamhet</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Luftfart" class="" href="/luftfart2/">Luftfart</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Luftfart" class="" href="/luftfart2/luftfart/">Luftfart</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Övrig statistik" class="" href="/ovrig/">&#214;vrig statistik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Transportbranschens ekonomi" class="" href="/ovrig/transportbranschens-ekonomi/">Transportbranschens ekonomi</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Sjöfartsföretag" class="" href="/ovrig/sjofartsforetag/">Sj&#246;fartsf&#246;retag</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Om vår statistik" class="" href="/sidor/statistik/">Om v&#229;r statistik</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Aktuella insamlingar av statistik" class="" href="/sidor/statistik/aktuella-insamlingar-av-statistik/">Aktuella insamlingar av statistik</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Publikationer" class="menu-toggle has-children" data-tab="sub-4819" href="/publikationer/">Publikationer</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-4819" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/publikationer/">S&#246;k bland v&#229;ra publikationer</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Rapporter" class="" href="/etiketter/rapport/">Rapporter</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - PM" class="" href="/etiketter/pm/">PM</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Analyser" class="" href="/publikationer/analyser-och-utredningar/">Analyser</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Nulägesanalys" class="" href="/publikationer/analyser-och-utredningar/nulagesanalys/">Nul&#228;gesanalys</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Styrmedelsanalys" class="" href="/publikationer/analyser-och-utredningar/styrmedelsanalys/">Styrmedelsanalys</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Utvärderingar" class="" href="/publikationer/analyser-och-utredningar/utvarderingar/">Utv&#228;rderingar</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Omvärldsanalys" class="" href="/publikationer/analyser-och-utredningar/omvarldsanalys/">Omv&#228;rldsanalys</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Remissvar" class="" href="/etiketter/remissvar/">Remissvar</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Konsultrapporter" class="" href="/etiketter/konsultrapport/">Konsultrapporter</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - EU-nyheter" class="" href="/etiketter/eu-nyheter/">EU-nyheter</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Alla artiklar" class="" href="/publikationer/alla-artiklar/">Alla artiklar</a>
+
+
+                        
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Våra uppdrag" class="menu-toggle has-children" data-tab="sub-7810" href="/uppdrag/">V&#229;ra uppdrag</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-7810" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/uppdrag/">V&#229;ra uppdrag</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Pågående uppdrag" class="" href="/uppdrag/pagaende-uppdrag/">P&#229;g&#229;ende uppdrag</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Avslutade uppdrag" class="" href="/uppdrag/avslutade-uppdrag/">Avslutade uppdrag</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Transportpolitiska målen" class="" href="/uppdrag/transportpolitiska-mal/">Transportpolitiska m&#229;len</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Måluppföljningens rapporter" class="" href="/uppdrag/transportpolitiska-mal/maluppfoljningens-rapporter/">M&#229;luppf&#246;ljningens rapporter</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fördjupad måluppföljning" class="" href="/uppdrag/transportpolitiska-mal/fordjupad-maluppfoljning/">F&#246;rdjupad m&#229;luppf&#246;ljning</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Preciseringsöversynen" class="" href="/uppdrag/transportpolitiska-mal/preciseringsoversynen/">Preciserings&#246;versynen</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Remissvar" class="" href="/etiketter/remissvar/">Remissvar</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Omvärldsbevakning" class="" href="/sidor/omvarldsbevakning/">Omv&#228;rldsbevakning</a>
+
+
+                        
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+            <li  class="has-children">
+
+
+                <a aria-label="Toppmeny - Om oss" class="menu-toggle has-children" data-tab="sub-3228" href="/om-oss/">Om oss</a>
+
+                    <a href="#" class="toggle-sub"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">&#214;ppna/St&#228;ng undermeny</span></a>
+                    <div id="sub-3228" class="menu-sub">
+                        <a class="btn btn-more menuBlock-link" href="/om-oss/">Om v&#229;r verksamhet</a>
+                        <div class="close-sub"><a href="#"><span class="fa fa-times"></span><span class="sr-only">St&#228;ng undermeny</span></a></div>
+                                <ul class="menu-ul">
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Kontakta oss" class="" href="/om-oss/kontakta-oss/">Kontakta oss</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Aktuella upphandlingar" class="" href="/om-oss/kontakta-oss/aktuella-upphandlingar/">Aktuella upphandlingar</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Praktik och examensarbeten" class="" href="/om-oss/kontakta-oss/praktik-hos-oss/">Praktik och examensarbeten</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Fakturering/e-faktura" class="" href="/om-oss/kontakta-oss/e-fakturor/">Fakturering/e-faktura</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Lediga jobb" class="" href="/om-oss/lediga-jobb/">Lediga jobb</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li >
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Medarbetare berättar" class="" href="/sidor/medarbetare-berattar/">Medarbetare ber&#228;ttar</a>
+
+
+                        
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Press" class="" href="/om-oss/press/">Press</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Kalender" class="" href="/sidor/kalendern/">Kalender</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Nyhetsbrev" class="" href="/om-oss/press/nyhetsbrev/">Nyhetsbrev</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Webbinarier" class="" href="/om-oss/press/webbinarier/">Webbinarier</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+                <li  class="test2 has-children">
+                    <div class="menu-sub-2">
+
+
+
+
+                        <a aria-label="Gruppering - Vår organisation" class="" href="/om-oss/verksamheten/">V&#229;r organisation</a>
+
+
+                            <a href="#" class="toggle-sub">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                                <span class="sr-only">&#214;ppna/St&#228;ng undermeny</span>
+                            </a>
+                                <ul>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Vetenskapligt råd" class="" href="/om-oss/verksamheten/vetenskapligt-rad/">Vetenskapligt r&#229;d</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Användarråd" class="" href="/sidor/anvandarrad/">Anv&#228;ndarr&#229;d</a>
+            </li>
+            <li class="menu-sub-2-item">                
+                <a aria-label="Sida - Årsredovisning" class="" href="/etiketter/arsredovisning/">&#197;rsredovisning</a>
+            </li>
+        </ul>
+
+
+                    </div>
+                </li>
+        </ul>
+
+                    </div>
+            </li>
+
+
+
+
+            <li class="mobile-only">
+                <a href="/en/" class="menu-toggle" data-tab="sub-4">In English</a>
+            </li>
+            <li class="secondary-nav">
+
+                    <a href="/en/">In English</a>
+
+                    <span>|</span> <button class="search-btn" id="search-btn" type="button" data-toggle="collapse" data-target=".desktop-search" aria-controls="desktop_search" aria-expanded="false" aria-label="Öppna/Stäng Sök"><span class="fa fa-search" aria-hidden="true"></span></button>
+                    <a aria-label="Gå till söksida" href="/sok/" class="search-btn" id="search-btn-noscript"><span class="fa fa-search"></span></a>
+
+
+
+
+            </li>
+        </ul>
+        <div class="container" role="search" aria-label="Sökfält">
+<div class="col-12 collapse desktop-search" id="desktop_search">
+    <div id="search-field" class="form-group">
+        <noscript>
+            <form id="quick-search-form-nojs" class="search navbar-form navbar-left" action="/sok/" method="post" name="search">
+                <div class="form-group left-inner-addon">
+                    <label for="quicksearchinputnojs" class="sr-only">Snabbs&#246;k</label>
+                    <input type="search" name="search" accesskey="5" id="quicksearchinputnojs" class="form-control search-field" autocomplete="off" />
+                    <button type="submit" value="submit" form="quick-search-form-nojs" class="float-right search-button">
+                        <span class="sr-only">S&#246;k</span>
+                    </button>
+                </div>
+            </form>
+        </noscript>
+        <form id="quick-search-form" name="search" class="searchrekai navbar-form navbar-left hidden no-hidden-js" action="/sok/" method="get">
+            <div class="form-group left-inner-addon">
+                <label for="quicksearchinput" class="sr-only">Snabbs&#246;k</label>
+                <input type="search" name="query" accesskey="4" id="quicksearchinput" class="form-control search-field rekai-ac" autocomplete="off">
+                <button type="submit" value="submit" form="quick-search-form" class="float-right search-button">
+                    <span class="sr-only">S&#246;k</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>    
+        /*Will also fire for searchpage RekAI autocomplete requests*/        
+		window.addEventListener('load',
+			function () {
+				rekai_autocomplete('.rekai-ac')
+					.on('rekai_autocomplete:selected', function (event, suggestion, dataset) {
+						var btn = event.target.parentElement.parentElement.querySelectorAll('button[type=submit]')[0];
+						btn.click();
+					}); 
+			}, false);
+    </script>
+</div>        </div>
+    </nav>
+</div>
+<div class="black-box"></div>
+
+
+
+
+
+            
+            <div class="col-12">
+                <div class="pink-ribbon"></div>
+
+                    <div class="container">
+
+
+<nav role="navigation" aria-label="Brödsmulor">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href=/><span class="fa fa-home"></span><span class="sr-only">Hem</span></a></li>
+<li class="breadcrumb-item active">
+API-dokumentation
+</li>
+</ol>
+</nav>
+
+
+                    </div>
+                <main id="main">
+                    
+
+<style>
+
+    form.orm { display:none; }
+    table.items td{ font-weight:normal !important }
+    table.items td.code { font-style: italic; }
+
+    table.items tr.separator > * { padding-top: 20px; border-bottom: 1px solid #000; }
+
+    table.items {
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: #eaeaea;
+        border-right: 10px solid #eaeaea;
+        border-bottom: 10px solid #eaeaea;
+        border-left: 10px solid #eaeaea;
+    }
+
+    table.items caption {
+        color: #fff;
+        background: #00829B;
+        padding: 10px 15px;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1.1;
+    }
+
+    table.items thead {
+        border-top: 10px solid transparent;
+    }
+
+    table.items tbody th {
+        font-weight: normal;
+    }
+
+    table.items tbody tr td,
+    table.items tbody tr th {
+        padding: 5px;
+    }
+
+    table.items:not(.measures) tbody tr:nth-child(odd) {
+        background-color: #c6dbe0;
+    }
+
+    table.items:not(.measures) tbody tr:first-child {
+        background-color: transparent;
+    }
+
+    table.items:not(.dimensions) tbody tr:nth-child(even) {
+        background-color: #c6dbe0;
+    }
+
+    .api-combos li {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-8" >
+                <h1><span></span>API-dokumentation</h1>
+                <div class="preamble"><p>H&auml;r hittar du mer information den data som finns tillg&auml;nglig via v&aring;rt API. V&aring;ra statistikprodukter &auml;r olika och inneh&aring;ller olika variabler och data, beroende p&aring; produkt. D&auml;rf&ouml;r finns ingen gemensamt s&auml;tt att h&auml;mta ut alla data, oavsett produkt. API-dokumentationen hj&auml;lper dig att se vilken typ av data som kan h&auml;mta fr&aring;n respektive produkt.</p>
+<p>V&auml;lj f&ouml;rst statistikprodukt som du vill h&auml;mta data fr&aring;n i rullisten. D&aring; hittar du de variabler och namn som &auml;r aktuella f&ouml;r just den produkten. D&auml;r finns ocks&aring; information om vanliga anrop som du kan anv&auml;nda f&ouml;r att g&ouml;ra ett anrop till v&aring;rt API.</p>
+<p>Vill du h&aring;lla dig uppdaterad om f&ouml;r&auml;ndringar i v&aring;r dokumentation? <br /><a href="/sidor/oppen-data-api/">Skriv upp dig p&aring; v&aring;r lista</a>, s&aring; f&aring;r du utskick vid f&ouml;r&auml;ndringar.</p></div>
+        </div>
+
+        <div class="col-lg-4">
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form id="selectionForm" class="d-flex flex-row justify-content-between align-items-center">
+                <div class="form-group">
+                    <label for="apidocs-select">V&#228;lj produkt</label>
+                    <select id="apidocs-select" class="form-control" onchange="onChangeSelection()" name="code">
+                        <option>V&#228;lj produkt</option>
+                            <option value="T10011" >T10011 - Bussar</option>
+                            <option value="T10014" >T10014 - Motorcyklar</option>
+                            <option value="T10015"  selected=&quot;selected&quot;>T10015 - Mopeder klass I</option>
+                            <option value="T10017" >T10017 - Sl&#228;pvagnar</option>
+                            <option value="T10018" >T10018 - Traktorer</option>
+                            <option value="T10019" >T10019 - Terr&#228;ngskotrar </option>
+                            <option value="T10012" >T10012 - K&#246;rkort</option>
+                            <option value="T10091" >T10091 - Bussar</option>
+                            <option value="T10092" >T10092 - Lastbilar</option>
+                            <option value="T10093" >T10093 - Motorcyklar</option>
+                            <option value="T10094" >T10094 - Personbilar</option>
+                            <option value="T0901" >T0901 - Televerksamhet</option>
+                            <option value="T08091" >T08091 - Sj&#246;fartsf&#246;retag</option>
+                            <option value="T08092" >T08092 - Sj&#246;fartsf&#246;retag EU statistik</option>
+                            <option value="T04020" >T04020 - Transportarbete</option>
+                            <option value="T04021" >T04021 - p&#229; v&#228;g</option>
+                            <option value="T04022" >T04022 - i bantrafiken</option>
+                            <option value="T04023" >T04023 - i sj&#246;farten</option>
+                            <option value="T04024" >T04024 - i luftfarten</option>
+                            <option value="T1201" >T1201 - F&#228;rdtj&#228;nst och riksf&#228;rdtj&#228;nst</option>
+                            <option value="T1004" >T1004 - V&#228;gtrafikskador</option>
+                            <option value="T0802" >T0802 - Sj&#246;trafik</option>
+                            <option value="T06011" >T06011 - Infrastruktur</option>
+                            <option value="T06012" >T06012 - Fordon</option>
+                            <option value="T06013" >T06013 - Trafik och transport</option>
+                            <option value="T10061" >T10061 - Lastbilstrafik &#229;r</option>
+                            <option value="T10062" >T10062 - Lastbilstrafik kvartal</option>
+                            <option value="T10021" >T10021 - Bussar</option>
+                            <option value="T10023" >T10023 - Lastbilar</option>
+                            <option value="T10026" >T10026 - Personbilar</option>
+                            <option value="T10029" >T10029 - &#214;vriga fordonsslag</option>
+                            <option value="T10033" >T10033 - Lastbilar</option>
+                            <option value="T10036" >T10036 - Personbilar</option>
+                            <option value="T10039" >T10039 - &#214;vriga fordonsslag</option>
+                            <option value="T1101" >T1101 - RVU i Sverige</option>
+                            <option value="T1202" >T1202 - Kommersiell linjetrafik p&#229; v&#228;g</option>
+                            <option value="T1203" >T1203 - Regional linjetrafik</option>
+                            <option value="T0808" >T0808 - Fartyg</option>
+                            <option value="T1102" >T1102 - Varufl&#246;den</option>
+                            <option value="T0603" >T0603 - J&#228;rnv&#228;gtransporter</option>
+                            <option value="T08021" >T08021 - Sj&#246;trafik kvartal</option>
+                            <option value="T10016" >T10016 - Personbilar</option>
+                            <option value="T10013" >T10013 - Lastbilar</option>
+                            <option value="T0301" >T0301 - Utl&#228;ndska lastbilstransporter i Sverige</option>
+                            <option value="T0701" >T0701 - Postverksamhet</option>
+                            <option value="T1204" >T1204 - Kommersiell linjetrafik p&#229; vatten</option>
+                            <option value="ATFT" >ATFT - Annotering test</option>
+                            <option value="T0501" >T0501 - Luftfart</option>
+                            <option value="T10030" >T10030 - Nyregistreringar</option>
+                            <option value="T0602" >T0602 - Bantrafikskador</option>
+                            <option value="T0604_RT_ar" >T0604_RT_ar - Punktlighet f&#246;r framf&#246;rda t&#229;g, &#229;rspublicering</option>
+                            <option value="T0604_RT_Kv" >T0604_RT_Kv - Punktlighet f&#246;r framf&#246;rda t&#229;g, prelimin&#228;r kvartalspublicering</option>
+                            <option value="T10010" >T10010 - Fordon p&#229; v&#228;g</option>
+                            <option value="T0604_STM_ar" >T0604_STM_ar - Punktlighet p&#229; j&#228;rnv&#228;g, STM, &#229;rspublicering</option>
+                            <option value="T0604_STM_kv" >T0604_STM_kv - Punktlighet p&#229; j&#228;rnv&#228;g, STM, prelimin&#228;r kvartalspublicering</option>
+                            <option value="T04010" >T04010 - Trafikarbete</option>
+                            <option value="T10020" >T10020 - Fordon i l&#228;n och kommuner</option>
+                    </select>
+                </div>
+
+
+                
+
+                <button class="dropdown_select_btn btn" type="submit">
+                    Visa data
+                </button>
+
+                <style>
+                    .dropdown_select_btn{display:none;}
+                </style>
+
+                <noscript>
+                    <style>
+                        .dropdown_select_btn {display:block;
+                                               height:38px;
+                                               margin-top:18px;
+                        }
+                    </style>
+                </noscript>
+
+                
+
+
+            </form>
+        </div>
+    </div>
+    
+
+            <div class="product-container">
+
+                <h2>T10015 - Mopeder klass I</h2>
+                <p></p>
+
+                <div>                    
+                        <table class="items dimensions">
+        <caption>Variabler och variabelv&#228;rden</caption>
+        <thead>
+            <tr>
+                <th>Kod</th>
+                <th>Namn</th>
+                <th>Beskrivning</th>
+            </tr>
+        </thead>
+
+
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Ar</th>
+                    <th class="name">&#197;r</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">2001</td>
+                <td class="name">2001</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2002</td>
+                <td class="name">2002</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2003</td>
+                <td class="name">2003</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2004</td>
+                <td class="name">2004</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2005</td>
+                <td class="name">2005</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2006</td>
+                <td class="name">2006</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2007</td>
+                <td class="name">2007</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2008</td>
+                <td class="name">2008</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2009</td>
+                <td class="name">2009</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2010</td>
+                <td class="name">2010</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2011</td>
+                <td class="name">2011</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2012</td>
+                <td class="name">2012</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2013</td>
+                <td class="name">2013</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2014</td>
+                <td class="name">2014</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2015</td>
+                <td class="name">2015</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2016</td>
+                <td class="name">2016</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2017</td>
+                <td class="name">2017</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2018</td>
+                <td class="name">2018</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2019</td>
+                <td class="name">2019</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2020</td>
+                <td class="name">2020</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2021</td>
+                <td class="name">2021</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2022</td>
+                <td class="name">2022</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2023</td>
+                <td class="name">2023</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2024</td>
+                <td class="name">2024</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">2025</td>
+                <td class="name">2025</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Agare</th>
+                    <th class="name">&#196;gare</th>
+                    <th class="description"></th>
+                </tr>
+
+                        <tr><td colspan="3" class="no-items">---</td></tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">AgarKat</th>
+                    <th class="name">&#196;garkategori</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Fysisk person</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">20</td>
+                <td class="name">Juridisk person</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">AgarKat</th>
+                    <th class="name">&#196;garkategori</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">10</td>
+                <td class="name">Fysisk person</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">20</td>
+                <td class="name">Juridisk person</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Kon</th>
+                    <th class="name">K&#246;n</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">11</td>
+                <td class="name">M&#228;n</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">12</td>
+                <td class="name">Kvinnor</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">00</td>
+                <td class="name">Okant</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+            <tbody>
+                <tr class="separator">
+                    <th class="code">Alder</th>
+                    <th class="name">&#196;garens &#229;lder</th>
+                    <th class="description"></th>
+                </tr>
+
+                            <tr>
+                <td class="code">T1</td>
+                <td class="name">Totalt</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">01</td>
+                <td class="name">-17</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">02</td>
+                <td class="name">18-20</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">03</td>
+                <td class="name">21-30</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">04</td>
+                <td class="name">31-40</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">05</td>
+                <td class="name">41-50</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">06</td>
+                <td class="name">51-60</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">07</td>
+                <td class="name">61-70</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">08</td>
+                <td class="name">71-80</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">09</td>
+                <td class="name">81-</td>
+                <td class="description"></td>
+            </tr>
+            <tr>
+                <td class="code">99</td>
+                <td class="name">ok&#228;nd</td>
+                <td class="description"></td>
+            </tr>
+
+            </tbody>
+
+    </table>
+        <table class="items measures">
+            <caption>M&#228;tv&#228;rden</caption>
+            <thead>
+                <tr>
+                    <th>Kod</th>
+                    <th>Namn</th>
+                    <th>Beskrivning</th>
+                </tr>
+            </thead>
+            <tbody>
+                            <tr>
+                <td class="code">Itrfslut</td>
+                <td class="name">Antal i trafik</td>
+                <td class="description">Avser i slutet av perioden</td>
+            </tr>
+            <tr>
+                <td class="code">AvstSlut</td>
+                <td class="name">Antal avst&#228;llda</td>
+                <td class="description">Avser i slutet av perioden</td>
+            </tr>
+            <tr>
+                <td class="code">NyregUnder</td>
+                <td class="name">Antal nyregistreringar</td>
+                <td class="description">Avser under perioden</td>
+            </tr>
+            <tr>
+                <td class="code">AvregUnder</td>
+                <td class="name">Antal avregistreringar</td>
+                <td class="description">Avser under perioden</td>
+            </tr>
+            <tr>
+                <td class="code">AndelItrafik</td>
+                <td class="name">Andel fordon i trafik</td>
+                <td class="description">Avser vid slutet av perioden(%)</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <h3>API-kombinationer</h3>
+        <ul class="api-combos">            
+            <li>
+                <div class="name">Mopeder klass I|Antal avregistreringar|Antal avst&#228;llda|Antal i trafik|Antal nyregistreringar|&#197;r</div>
+                <div style="overflow: auto; font-style: italic;">T10015|avregunder|avstslut|itrfslut|nyregunder|ar</div>                
+            </li>
+            <li>
+                <div class="name">Mopeder klass I|Antal avregistreringar|Antal avst&#228;llda|Antal i trafik|Antal nyregistreringar|&#196;garkategori|&#196;garkategori|&#197;r</div>
+                <div style="overflow: auto; font-style: italic;">T10015|avregunder|avstslut|itrfslut|nyregunder|agarkat|agarkat|ar</div>                
+            </li>
+            <li>
+                <div class="name">Mopeder klass I|Antal avregistreringar|Antal avst&#228;llda|Antal i trafik|Antal nyregistreringar|&#196;garkategori|&#196;garkategori|K&#246;n|&#197;r</div>
+                <div style="overflow: auto; font-style: italic;">T10015|avregunder|avstslut|itrfslut|nyregunder|agarkat|agarkat|kon|ar</div>                
+            </li>
+            <li>
+                <div class="name">Mopeder klass I|Andel fordon i trafik|Antal i trafik|&#196;garkategori|&#196;garkategori|&#196;garens &#229;lder|&#197;r</div>
+                <div style="overflow: auto; font-style: italic;">T10015|andelitrafik|itrfslut|agarkat|agarkat|alder|ar</div>                
+            </li>
+            <li>
+                <div class="name">Mopeder klass I|Andel fordon i trafik|Antal i trafik|&#196;garkategori|&#196;garkategori|&#196;garens &#229;lder|K&#246;n|&#197;r</div>
+                <div style="overflow: auto; font-style: italic;">T10015|andelitrafik|itrfslut|agarkat|agarkat|alder|kon|ar</div>                
+            </li>
+        </ul>
+
+                </div>
+
+            </div>
+    
+    
+</div>
+
+
+
+
+                </main>
+            </div>
+            <footer class="footer" aria-label="Sidfot">
+<div class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="h4">Om Trafikanalys</h2>
+                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/om-oss/">Om oss</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/kontakta-oss/">Kontakta oss</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/lediga-jobb/">Lediga jobb</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/kontakta-oss/aktuella-upphandlingar/">Aktuella upphandlingar</a> </li>
+                    </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="h4">V&#229;ra uppdrag </h2>
+                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/uppdrag/transportpolitiska-mal/">Transportpolitiska m&#229;len</a> </li>
+                            <li class="list-group-item"><a href="/etiketter/prognoser-for-fordonsflottan/">Prognoser f&#246;r v&#228;gfordonsflottan</a> </li>
+                            <li class="list-group-item"><a href="/etiketter/sjofart/">Allt inom sj&#246;fart</a> </li>
+                            <li class="list-group-item"><a href="/etiketter/transportekonomi/">Transportsektorns kostnader</a> </li>
+                    </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="h4">Nyheter och artiklar</h2>
+                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/om-oss/press/nyhetsbrev/">Nyhetsbrev</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/press/">Press</a> </li>
+                            <li class="list-group-item"><a href="/sidor/aktuella-artiklar-om-fordon/">Aktuella artiklar om fordon</a> </li>
+                    </ul>
+            </div>
+
+            <div class="col-md-3">
+                    <h2 class="h4">Mer fr&#229;n Trafikanalys</h2>
+                                    <ul class="list-group">
+                            <li class="list-group-item"><a href="/etiketter/remissvar/">Remissvar</a> </li>
+                            <li class="list-group-item"><a href="/sidor/kalendern/">Kalender</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/kontakta-oss/praktik-hos-oss/">Praktik och examensarbeten</a> </li>
+                            <li class="list-group-item"><a href="/om-oss/om-webbplatsen/">Webbplatsen och anv&#228;ndarvillkor</a> </li>
+                    </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="footer-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="/contentassets/6576c1b6e3ab4952aae9ab97c3d07735/trafikanalys_rgb_svart.png" alt="Logotyp trafikanalys">
+            </div>
+            <div class="col-md-3">
+                <p>Trafikanalys<br />Rosenlundsgatan 54<br />118 63 Stockholm</p>
+            </div>
+            <div class="col-md-3">
+                <p>Tel: <a href="tel:0104144200">+46 (0)10-414 42 00</a>&nbsp;<br />E-post: <a style="text-decoration: underline;" href="mailto:trafikanalys@trafa.se">trafikanalys@trafa.se</a><br /><a style="text-decoration: underline;" href="/om-oss/om-webbplatsen/tillganglighetsredogorelse/">Tillg&auml;nglighetsredog&ouml;relse</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+                <script type="text/javascript" src="https://dl.episerver.net/13.6.1/epi-util/find.js"></script>
+<script type="text/javascript">
+if(FindApi){var api = new FindApi();api.setApplicationUrl('/');api.setServiceApiBaseUrl('/find_v2/');api.processEventFromCurrentUri();api.bindWindowEvents();api.bindAClickEvent();api.sendBufferedEvents();}
+</script>
+
+            </footer>
+            
+        </div>
+
+
+    <!-- modal newsletter -->
+    <!-- cookie bar -->
+    
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/bundles?v=wgDAGAA7_sF1cqJNKyjzA36kS9jQXsCo_399LRT4KVI1"></script>
+<script src="/angularlocale_sv?v=Q5sDZyg_Yk7U6skb34DbZvjQn3Nxnpg1w0z8OzAxqC01"></script>
+
+
+</body>
+</html>
+
