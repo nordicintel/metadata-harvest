@@ -229,7 +229,11 @@ def build(
             path.unlink(missing_ok=True)
         (output / "result.json").unlink(missing_ok=True)
         source_names = {n for n in baseline if "/metadata/" in n or "/codelists/" in n}
-        source_names.update(previous.get("accepted", {}))
+        for name in previous.get("accepted", {}):
+            if name.split("/", 1)[0] in ADAPTERS:
+                source_names.add(name)
+            else:  # the adapter was renamed or retired: not an input any more
+                logger.info("previous input %s belongs to no registered adapter", name)
         groups = {}
         with _Stage("group source collections by owner") as stage:
             for name in sorted(source_names):

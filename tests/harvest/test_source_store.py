@@ -152,6 +152,21 @@ def test_save_deletes_files_of_removed_entries_only(tmp_path):
     }
 
 
+def test_get_returns_the_envelope_whatever_the_companion_names(tmp_path):
+    store = _store(tmp_path)
+    key = source_key("p", "t", "sv")
+    store.put(
+        key,
+        responses={"probe": {"a": 1}},
+        updated=None,
+        retrieved_at=STAMP,
+        files={"a.csv": "x;y\n", "zz.txt": "later"},
+    )
+    store.save()
+    assert _store(tmp_path).get(key)["responses"] == {"probe": {"a": 1}}
+    assert _store(tmp_path).entries()[key]["files"][0].endswith(".sv.a.csv")
+
+
 def test_updated_is_stored_verbatim(tmp_path):
     store = _store(tmp_path)
     store.put(

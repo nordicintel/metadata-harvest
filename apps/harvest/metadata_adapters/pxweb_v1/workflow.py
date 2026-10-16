@@ -3,8 +3,9 @@
 Workers store each table's source data (GET metadata, POST samples stripped of
 observations, the listing row and variant locations' metadata) in a per-task source
 store; collectors move it into ``data/pxweb_v1/source``. Documents are built later
-by ``parse``. Checkpoints written before this layout carry no ``layout`` and are
-refused when they still have pending work.
+by ``parse``. Checkpoints written before this layout carry no ``layout``; their
+pending work is discarded and a new run starts, since the new run refetches every
+table anyway.
 """
 
 import asyncio
@@ -19,7 +20,7 @@ from apps.harvest.metadata_adapters.pxweb_v1.metadata import (
     get_pxweb_source,
     validate_raw,
 )
-from apps.harvest.source_store import Rejected, SourceStore, source_key
+from apps.harvest.source_store import SourceStore, source_key, split_key
 from apps.harvest.storage import (
     JsonlStore,
     filename,
@@ -55,16 +56,14 @@ def prepare(data, providers):
         len(providers),
         "found" if state else "absent",
     )
+    if state and state.get("layout") != LAYOUT:
+        logger.warning(
+            "Checkpoint run %s predates the per-table source layout; its pending "
+            "work is discarded and a new run starts (every table is refetched)",
+            state.get("run_id"),
+        )
+        state = None
     if state and any(task["status"] == "pending" for task in state["tasks"]):
-        if state.get("layout") != LAYOUT:
-            logger.error(
-                "Checkpoint run %s predates the per-table source layout",
-                state["run_id"],
-            )
-            raise ValueError(
-                "Checkpoint predates per-dataset source layout; finish or discard "
-                "the run before upgrading"
-            )
         codes = sorted(
             {
                 task["provider_code"]
@@ -331,12 +330,19 @@ def collect_refresh(data, providers, results, run_id, *, full=False):
     previous_names = set(listings.records)
     known = {}
     for key in store.entries():
-        saved = store.get(key)["responses"]["table"]
-        name = filename(saved)
-        if stored_key(saved) != key:
-            raise ValueError(f"Stored source identity mismatch: {key}")
+        provider_code, dataset_code, language = split_key(key)
+        name = filename(
+            {
+                "provider_code": provider_code,
+                "dataset_code": dataset_code,
+                "language": language,
+            }
+        )
         known[name] = key
-        if name not in previous_names:
+        if name not in previous_names:  # only then is the stored row needed
+            saved = store.get(key)["responses"]["table"]
+            if stored_key(saved) != key:
+                raise ValueError(f"Stored source identity mismatch: {key}")
             previous.setdefault(identity(saved), saved)
     logger.info(
         "Candidate set: %d freshly listed rows -> %d distinct tables; %d "
@@ -637,7 +643,7 @@ async def build_provider(
                 completed = SourceStore(output / "source", ADAPTER)  # drop pending
                 raise
             outcome["status"] = "success"
-        except (Rejected, Exception) as error:
+        except Exception as error:
             outcome.update(status="failed", error=f"{type(error).__name__}: {error}")
             logger.error(
                 "Build %s: %s failed, recorded and continuing: %s",

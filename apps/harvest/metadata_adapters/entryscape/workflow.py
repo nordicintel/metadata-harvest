@@ -53,7 +53,7 @@ from apps.harvest.metadata_adapters.entryscape.state import (
     table_key,
 )
 from apps.harvest.metadata_adapters.entryscape.tables import table_document
-from apps.harvest.source_store import Rejected, SourceStore, harvest_manifest
+from apps.harvest.source_store import SourceStore, harvest_manifest
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
@@ -522,7 +522,7 @@ async def run(
                     await harvest(record)
                 except Blocked:
                     raise
-                except (Rejected, Exception) as error:
+                except Exception as error:
                     tables[key] = {
                         "key": key,
                         "provider_code": record["provider_code"],

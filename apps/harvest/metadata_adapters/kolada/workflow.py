@@ -35,7 +35,7 @@ from apps.harvest.metadata_adapters.kolada.state import (
     load_state,
     save,
 )
-from apps.harvest.source_store import Rejected, SourceStore, harvest_manifest
+from apps.harvest.source_store import SourceStore, harvest_manifest
 from apps.harvest.storage import now, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
@@ -335,7 +335,7 @@ async def run(
                 state["pending"].pop(code)
             except BudgetExpired:
                 raise
-            except (Rejected, Exception) as error:
+            except Exception as error:
                 fail("metadata", code, error)
                 counts["failed"] += 1
             progress.update(processed=position + 1, failed=counts["failed"])

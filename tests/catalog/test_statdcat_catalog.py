@@ -186,6 +186,37 @@ def test_previous_profile_reads_and_blob_recovery_do_not_require_production_cuto
     )
 
 
+def test_previous_inputs_of_unregistered_adapters_are_dropped_without_error(
+    tmp_path,
+):
+    import subprocess
+
+    from apps.catalog.assembly import build
+    from apps.publication.candidates import promote
+
+    def git(*args):
+        subprocess.run(["git", *args], cwd=tmp_path, check=True, capture_output=True)
+
+    git("init")
+    git("config", "user.name", "Test")
+    git("config", "user.email", "test@example.invalid")
+    data = tmp_path / "data"
+    candidate = tmp_path / "fixture-candidate"
+    write_metadata(data / "pxweb_v2", [legacy()], adapter="pxweb_v2")
+    git("add", "data")
+    git("commit", "-m", "accepted input")
+    build(data, candidate, config_dir=tmp_path, adapters=["pxweb_v2"])
+    promote(data, candidate, config_dir=tmp_path)
+    state_path = data / "catalog/state/current.json"
+    state = json.loads(state_path.read_text())
+    ((name, value),) = state["accepted"].items()
+    state["accepted"]["entrysoft/metadata/" + name.rsplit("/", 1)[1]] = value
+    state_path.write_text(json.dumps(state))
+    report = build(data, candidate, config_dir=tmp_path, adapters=["pxweb_v2"])
+    assert report["errors"] == []
+    assert report["status"] == "success"
+
+
 @pytest.fixture(autouse=True)
 def catalog_configuration(tmp_path):
     for source in CONFIG.iterdir():

@@ -129,7 +129,11 @@ class SourceStore:
 
     def get(self, key: str) -> dict | None:
         entry = self.manifest["entries"].get(key)
-        return None if entry is None else self._read(entry["files"][0])
+        if entry is None:
+            return None
+        provider, code, language = split_key(key)
+        envelope = f"{provider}/{source_filename(code, language)}"
+        return self._read(envelope if envelope in entry["files"] else entry["files"][0])
 
     def put(
         self,

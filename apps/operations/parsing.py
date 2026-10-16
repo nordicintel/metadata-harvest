@@ -25,6 +25,11 @@ def _main():
     parser.add_argument("--output", type=Path, default=Path("output/parsing"))
     parser.add_argument("--portal", type=Path, default=Path("data/data_eu"))
     parser.add_argument("--config", type=Path)
+    parser.add_argument(
+        "--allow-shrink",
+        action="store_true",
+        help="Apply even when fewer datasets parsed than the committed collections hold",
+    )
     args = parser.parse_args()
     configure_logging()
     activate_configuration(load_configuration(args.config))
@@ -33,20 +38,31 @@ def _main():
         if args.all
         else [args.adapter]
     )
-    results = {}
+    results, failed = {}, False
     for adapter in adapters:
         output = args.output / adapter
-        if args.command == "build":
-            results[adapter] = build(adapter, args.data, output, portal=args.portal)
-        elif args.command == "apply":
-            results[adapter] = apply(adapter, args.data, output)
-        else:
-            publish(
-                f"Parse {adapter}: regenerate accepted collections",
-                data=args.data / adapter,
-            )
-            results[adapter] = {"status": "published"}
+        try:
+            if args.command == "build":
+                results[adapter] = build(adapter, args.data, output, portal=args.portal)
+            elif args.command == "apply":
+                results[adapter] = apply(
+                    adapter, args.data, output, allow_shrink=args.allow_shrink
+                )
+            else:
+                publish(
+                    f"Parse {adapter}: regenerate accepted collections",
+                    data=args.data / adapter,
+                )
+                results[adapter] = {"status": "published"}
+        except Exception as error:  # report every adapter, then fail
+            failed = True
+            results[adapter] = {
+                "status": "failed",
+                "error": f"{type(error).__name__}: {error}",
+            }
     print(json.dumps(results, ensure_ascii=True))
+    if failed:
+        raise SystemExit(1)
 
 
 def main():

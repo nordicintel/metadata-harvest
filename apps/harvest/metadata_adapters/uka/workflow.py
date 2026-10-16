@@ -46,7 +46,7 @@ from apps.harvest.metadata_adapters.uka.state import (
     load_state,
     save,
 )
-from apps.harvest.source_store import Rejected, SourceStore, harvest_manifest
+from apps.harvest.source_store import SourceStore, harvest_manifest
 from apps.harvest.storage import read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
@@ -496,7 +496,7 @@ async def run(
                     failures[code] = ("endpoint", error)
                     retry.append(entry)
                     continue
-                except (Rejected, Exception) as error:
+                except Exception as error:
                     logger.warning(
                         "Indicator %s metadata failure on attempt %d: %s: %s",
                         code,

@@ -45,6 +45,16 @@ def _metadata_manifest(root: Path) -> dict:
     return manifest(directory) if directory.exists() else {}
 
 
+def committed_datasets(root: Path) -> int:
+    """Datasets in the committed accepted collections of ``data/<adapter>``."""
+    directory = Path(root) / "metadata"
+    count = 0
+    for path in sorted(directory.glob("*.jsonl.gz")) if directory.exists() else []:
+        with gzip.open(path, "rt", encoding="utf-8") as stream:
+            count += sum(1 for line in stream if line.strip())
+    return count
+
+
 def build(
     adapter: str,
     data: Path,
@@ -84,6 +94,8 @@ def build(
         counts["parsed"] += 1
         documents.append(item)
     if output.exists():
+        if any(output.iterdir()) and not (output / "result.json").exists():
+            raise ValueError(f"{output} is not an earlier parse output; refusing")
         shutil.rmtree(output)
     output.mkdir(parents=True)
     written = write_metadata(
@@ -96,9 +108,23 @@ def build(
         "adapter": adapter,
         "status": report_status(pending=0, errors=errors),
         "counts": counts,
+        "source_entries": len(store.entries()),
+        "committed_datasets": committed_datasets(root),
         "errors": errors,
         "collections": sorted(path.name for path in written),
     }
+    if result["source_entries"] == 0:
+        logger.warning(
+            "%s has no source entries yet; nothing would be applied", adapter
+        )
+    elif counts["parsed"] < result["committed_datasets"]:
+        logger.warning(
+            "%s parsed %d datasets, fewer than the %d committed; apply needs "
+            "--allow-shrink",
+            adapter,
+            counts["parsed"],
+            result["committed_datasets"],
+        )
     write(output / REPORT, result)
     check_collection_sizes(output)
     result.update(base_manifest=_metadata_manifest(root), manifest=manifest(output))
@@ -107,13 +133,30 @@ def build(
     return result
 
 
-def apply(adapter: str, data: Path, output: Path) -> dict:
-    """Replace ``data/<adapter>/metadata`` with the built collections."""
+def apply(
+    adapter: str, data: Path, output: Path, *, allow_shrink: bool = False
+) -> dict:
+    """Replace ``data/<adapter>/metadata`` with the built collections.
+
+    Refuses while the adapter has no source entries (the harvest has not filled
+    ``source/`` yet) and, unless ``allow_shrink``, when fewer datasets parsed than
+    the committed collections hold: during the cutover a partial source tree must
+    not shrink accepted data.
+    """
     data, output = Path(data), Path(output)
     root = data / adapter
     result = read(output / "result.json")
     if _metadata_manifest(root) != result["base_manifest"]:
         raise ValueError(f"{adapter} collections changed since the parse build")
+    if result.get("source_entries", 0) == 0:
+        raise ValueError(f"{adapter} has no source entries; nothing to apply")
+    if result["counts"]["parsed"] < result.get("committed_datasets", 0) and (
+        not allow_shrink
+    ):
+        raise ValueError(
+            f"{adapter} parsed {result['counts']['parsed']} datasets, fewer than the "
+            f"{result['committed_datasets']} committed; pass --allow-shrink to accept"
+        )
     if manifest(output) != result["manifest"]:
         raise ValueError(f"{adapter} parse artifact checksum mismatch")
     check_collection_sizes(output)

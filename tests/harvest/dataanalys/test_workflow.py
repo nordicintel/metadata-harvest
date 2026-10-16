@@ -382,6 +382,8 @@ def test_removal_only_in_an_unbounded_run_with_a_complete_chart_list(data, tmp_p
     assert result["counts"]["removed"] == 2
     assert set(published(data)) == BOOTSTRAP - {"sv/NRAA|NRAA_1", "sv/NRAA|NRAA_2"}
     assert stored_key("sv/NRAA|NRAA_1") not in store(data).entries()
+    assert store(data).get_shared(PROVIDER_CODE, "catalogue/NRAA.json") is None
+    assert store(data).get_shared(PROVIDER_CODE, "columns/NRAA.json") is None
 
 
 def test_indicator_dropped_from_a_complete_catalogue_is_removed(data, tmp_path):

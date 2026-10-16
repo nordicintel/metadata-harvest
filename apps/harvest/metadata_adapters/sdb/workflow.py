@@ -346,6 +346,12 @@ async def run(
                         published.pop(key, None) or withheld.pop(key, None)
                     ) is not None:
                         counts["removed"] += 1
+                    subject = key.split("/", 1)[1]
+                    if not any(
+                        k.split("/", 1)[1] == subject
+                        for k in set(published) | set(withheld) | set(state["subjects"])
+                    ):
+                        store.remove_shared(PROVIDER_CODE, probe_name(subject))
                 if gone:
                     logger.warning(
                         "%s: %d known subjects are no longer listed and are removed "

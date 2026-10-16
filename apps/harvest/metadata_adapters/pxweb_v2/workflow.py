@@ -32,7 +32,12 @@ from apps.harvest.metadata_adapters.pxweb_v2.validation import (
     validate_codelist,
     validate_metadata,
 )
-from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from apps.harvest.source_store import (
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import JsonlStore, filename, now, read, write
 from apps.operations.progress import Progress
 from apps.publication.artifacts import manifest
@@ -48,10 +53,19 @@ def entry_key(row: dict) -> str:
 
 
 def names_of(store: SourceStore) -> dict[str, str]:
-    """Task filename -> store key, from the stored catalogue records."""
-    return {
-        filename(store.get(key)["responses"]["table"]): key for key in store.entries()
-    }
+    """Task filename -> store key, derived from the keys (no envelope reads)."""
+    result = {}
+    for key in store.entries():
+        provider_code, dataset_code, language = split_key(key)
+        name = filename(
+            {
+                "provider_code": provider_code,
+                "dataset_code": dataset_code,
+                "language": language,
+            }
+        )
+        result[name] = key
+    return result
 
 
 def stored_table(store: SourceStore, key: str) -> dict:

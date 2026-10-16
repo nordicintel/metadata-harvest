@@ -168,6 +168,8 @@ def test_product_removed_from_list_is_removed(data, tmp_path):
     assert not any("T04010" in key for key in published(data))
     assert not any("T04010" in key for key in store(data).entries())
     assert not list((data / "source/trafa").glob("T04010*"))
+    assert store(data).get_shared("trafa", "structure.T04010.sv.json") is None
+    assert store(data).get_shared("trafa", "documentation.T04010.html") is None
 
 
 def test_product_list_failure_publishes_nothing(data, tmp_path):

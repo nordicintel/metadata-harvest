@@ -39,7 +39,11 @@ uv run python -m apps.operations.parsing build --all
 `build` validates every document, writes `metadata/*.jsonl.gz` through the same
 assembly as before, and reports per-key failures in `reports/parse.json` without
 dropping siblings. `apply` refuses when the committed collections changed since the
-build. Tillväxtverket's data.europa.eu descriptions come from the offline portal
+build, when the adapter has no source entries yet, and when fewer datasets parsed
+than the committed collections hold (pass `--allow-shrink` to accept a real
+reduction). During the cutover each adapter's `source/` fills up over its first
+full harvests; compare `source_entries` and `committed_datasets` in the build
+report before applying. Tillväxtverket's data.europa.eu descriptions come from the offline portal
 snapshot (`--portal`, default `data/data_eu`).
 
 ## Adapter contract

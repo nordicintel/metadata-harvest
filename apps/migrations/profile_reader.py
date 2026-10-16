@@ -193,16 +193,42 @@ RENAMED_ADAPTERS = {"entrysoft": "entryscape"}
 """Adapter keys renamed after collections were accepted under the old name."""
 
 
-def _rename_adapters(value):
-    """Apply renamed adapter tokens to keys and strings of an accepted document."""
+ADAPTER_KEYS = {"ni:adapter", "adapter"}
+"""Keys whose string value names an adapter."""
+
+
+def _rename_string(value: str, *, is_adapter: bool) -> str:
+    """Rename only identifiers: adapter names, namespace keys and repository URNs.
+
+    Titles, descriptions, URLs and other source evidence are never touched.
+    """
+    for old, new in RENAMED_ADAPTERS.items():
+        if is_adapter and value == old:
+            return new
+        if value.startswith("urn:nordicintel:") and f":{old}:" in value + ":":
+            value = value.replace(f":{old}:", f":{new}:")
+            if value.endswith(f":{old}"):
+                value = value[: -len(old)] + new
+    return value
+
+
+def _rename_key(key: str) -> str:
+    for old, new in RENAMED_ADAPTERS.items():
+        if key == old or key == f"{old}:fields":
+            return key.replace(old, new, 1)
+    return key
+
+
+def _rename_adapters(value, *, parent_key=None):
+    """Apply renamed adapter tokens to an accepted document's identifiers."""
     if isinstance(value, dict):
-        return {_rename_adapters(k): _rename_adapters(v) for k, v in value.items()}
+        return {
+            _rename_key(k): _rename_adapters(v, parent_key=k) for k, v in value.items()
+        }
     if isinstance(value, list):
-        return [_rename_adapters(item) for item in value]
+        return [_rename_adapters(item, parent_key=parent_key) for item in value]
     if isinstance(value, str):
-        for old, new in RENAMED_ADAPTERS.items():
-            if old in value:
-                value = value.replace(old, new)
+        return _rename_string(value, is_adapter=parent_key in ADAPTER_KEYS)
     return value
 
 

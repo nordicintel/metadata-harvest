@@ -143,6 +143,35 @@ def test_apply_refuses_changed_baseline_then_replaces(tmp_path, monkeypatch):
     assert (data / ADAPTER / "reports/parse.json").exists()
 
 
+def test_apply_refuses_empty_or_shrinking_source(tmp_path, monkeypatch):
+    from apps.parsing.build import apply, build
+
+    fake_parse(monkeypatch)
+    data, out = tmp_path / "data", tmp_path / "out"
+    seed(data, "T1", "T2")
+    build(ADAPTER, data, out, providers=PROVIDERS)
+    apply(ADAPTER, data, out)
+    assert len(collection(data / ADAPTER)) == 2
+
+    store = SourceStore(data / ADAPTER / "source", ADAPTER)
+    store.remove("scb/T2/sv")
+    store.save()
+    result = build(ADAPTER, data, out, providers=PROVIDERS)
+    assert result["committed_datasets"] == 2 and result["counts"]["parsed"] == 1
+    with pytest.raises(ValueError, match="allow-shrink"):
+        apply(ADAPTER, data, out)
+    assert len(collection(data / ADAPTER)) == 2  # untouched
+    apply(ADAPTER, data, out, allow_shrink=True)
+    assert len(collection(data / ADAPTER)) == 1
+
+    store.remove("scb/T1/sv")
+    store.save()
+    build(ADAPTER, data, out, providers=PROVIDERS)
+    with pytest.raises(ValueError, match="no source entries"):
+        apply(ADAPTER, data, out, allow_shrink=True)
+    assert len(collection(data / ADAPTER)) == 1
+
+
 def test_cli_build_all_iterates_available_adapters(tmp_path, monkeypatch):
     from apps.operations import parsing as cli
 

@@ -194,6 +194,7 @@ def test_removal_requires_a_complete_listing(seeded, data, tmp_path):
     assert "sv/amning" not in published(data)
     assert "sv/amning" not in load_state(data)["subjects"]
     assert source_key(PROVIDER_CODE, "amning", "sv") not in store(data).entries()
+    assert store(data).get_shared(PROVIDER_CODE, "probe/amning.json") is None
     assert "en/dodsorsaker" in published(data)
 
 

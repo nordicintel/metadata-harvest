@@ -290,6 +290,16 @@ async def run(
         progress.error(stage, resource, resource.split("/", 1)[0], entry["error"])
         return entry
 
+    def _forget_product(product_id):
+        """Drop a product's shared files once none of its datasets remain."""
+        if any(product_of(key) == product_id for key in known()):
+            return
+        for language in configured:
+            store.remove_shared(
+                PROVIDER_CODE, f"structure.{product_id}.{language}.json"
+            )
+        store.remove_shared(PROVIDER_CODE, f"documentation.{product_id}.html")
+
     def known(product_id=None):
         keys = set(published) | set(withheld) | set(state["datasets"])
         return {
@@ -328,6 +338,8 @@ async def run(
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
                     logger.debug("Removed %s: its product is no longer harvested", key)
+            for product_id in {product_of(key) for key in orphans}:
+                _forget_product(product_id)
             if orphans:
                 logger.info(
                     "Dropped %d known datasets whose product is no longer listed "

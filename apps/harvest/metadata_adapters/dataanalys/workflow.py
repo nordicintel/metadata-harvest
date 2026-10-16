@@ -702,6 +702,14 @@ async def run(
             for key in sorted(known()):
                 if area_of(key) not in listed_areas:
                     remove(key, "its area is no longer in the complete chart list")
+            for relative in list(store.manifest["shared"]):
+                name = relative.split("/_shared/", 1)[-1]
+                if "/" not in name:
+                    continue
+                folder, filename = name.split("/", 1)
+                area = filename.removesuffix(".json")
+                if folder in {"catalogue", "columns"} and area not in listed_areas:
+                    store.remove_shared(PROVIDER_CODE, name)
         elif bounded:
             logger.info("Bounded run: unlisted areas and indicators are not removed")
         else:

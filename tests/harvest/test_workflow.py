@@ -155,13 +155,13 @@ def test_missing_manifest_entry_is_fetched(tmp_path):
     assert state["layout"] == 2
 
 
-def test_prepare_refuses_pre_layout_checkpoint(tmp_path):
+def test_prepare_discards_pre_layout_checkpoint(tmp_path):
     collect_refresh(tmp_path, [PROVIDER], [scope([record()])], "run")
     state = read(tmp_path / "work/current.json")
     del state["layout"]
     write(tmp_path / "work/current.json", state)
-    with pytest.raises(ValueError, match="predates"):
-        prepare(tmp_path, [PROVIDER])
+    plan = prepare(tmp_path, [PROVIDER])
+    assert plan["phase"] == "refresh" and plan["run_id"] != "run"
 
 
 def test_group_paths_one_identity_and_filesystem_safe_filename():
