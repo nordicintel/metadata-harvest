@@ -48,15 +48,6 @@ def _entryscape_options(args):
 # the collect() keyword arguments taken from the first configured binding.
 SIMPLE_ADAPTERS = {
     "entryscape": ("all", _entryscape_options, lambda b: {}),
-    "dataanalys": (
-        "single",
-        lambda a: {
-            "areas": a.subject,
-            "indicators": a.indicator,
-            "languages": a.language,
-        },
-        lambda b: {"languages": b.options["languages"]},
-    ),
 }
 
 

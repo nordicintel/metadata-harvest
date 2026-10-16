@@ -15,7 +15,7 @@ from apps.paths import ROOT
     "adapter,whole_scope,individual",
     [
         ("forsakringskassan", ["*/ase", "texts"], "reports/#0"),
-        ("dataanalys", ["charts", "dashboards"], "charts/2541"),
+        ("dataanalys", ["*/GONV", "charts", "dashboards"], "charts/2541"),
         ("riksbank", ["*/swea", "*/mpd", "*/swestr"], "swea/series.0"),
         ("tillvaxtverket", [], "Nope"),
     ],

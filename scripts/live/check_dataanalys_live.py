@@ -1,22 +1,28 @@
 """Opt-in live sample of the analysverktyg; never a corpus scan.
 
-About 12 requests, one per second: the chart and dashboard lists, the GONV
-catalogue and column probe, G082 and G013 rebuilt and validated, and one retrieval
-each (newest period, Riket, totals) validated as a fragment. Observations are not
-saved.
+Runs the adapter for two GONV indicators into a temporary directory (the chart
+and dashboard lists, the GONV catalogue and column probe, two cube queries),
+parses the stored files into documents (validated), then retrieves one small
+selection each (newest period, Riket, totals) validated as a fragment. About 12
+requests, one per second; observations are not saved.
 """
 
 import argparse
 import asyncio
+import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 
+import registry
+from apps.harvest.metadata_adapters.dataanalys import parse
 from apps.harvest.metadata_adapters.dataanalys.client import DataanalysClient
-from apps.harvest.metadata_adapters.dataanalys.workflow import discover, fetch_metadata
+from apps.harvest.metadata_adapters.dataanalys.harvest import ADAPTER
+from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import write
+from harvest import lifecycle
 from retrieval._semantics import category_codes
 from retrieval.data_adapters.dataanalys import REQUIRED_METADATA, retrieve
-from schema.validation import validate_retrieval
+from schema.validation import validate_metadata, validate_retrieval
 
 AREA = "GONV"
 INDICATORS = ("G082", "G013")
@@ -38,53 +44,44 @@ def small_selection(document: dict) -> dict:
     return selection
 
 
-async def check() -> dict:
+async def check(root: Path) -> dict:
+    binding = registry.load().bindings(ADAPTER.name)[0]
+    client = DataanalysClient(binding.options)
     report: dict = {
         "verification": "bounded sample only",
         "checked_at": datetime.now(UTC).isoformat(),
         "documents": [],
     }
     retrieval_requests = 0
-    client = DataanalysClient()
     try:
-        discovery = await discover(client)
-        report["discovery"] = {
-            "charts": discovery.charts_count,
-            "charts_complete": discovery.charts_complete,
-            "dashboards": discovery.dashboards_count,
-            "dashboards_complete": discovery.dashboards_complete,
-            "areas": sorted(discovery.areas),
-            "areas_incomplete": discovery.incomplete,
-            "unsupported_datasources": discovery.unsupported,
-            "problems": [f"{r}: {e}" for r, e in discovery.problems],
+        result = await lifecycle.run(
+            ADAPTER,
+            binding,
+            root / "data",
+            root / "out",
+            selection={"areas": [AREA], "indicators": list(INDICATORS)},
+            client=client,
+        )
+        report["run"] = {
+            k: result[k]
+            for k in ("status", "counts", "errors", "areas", "areas_incomplete")
         }
-        try:
-            documents = await fetch_metadata(
-                {"discovery": discovery, "area": AREA, "indicators": list(INDICATORS)},
-                client=client,
-            )
-        except Exception as error:
-            documents = []
-            report["documents"].append(
-                {
-                    "area": AREA,
-                    "status": "failed",
-                    "error": f"{type(error).__name__}: {error}",
-                }
-            )
-        for document in documents:
-            shared = document["extension"]["nordicintel"]
-            native = document["extension"]["socialstyrelsen_analys"]
-            item = {
-                "dataset": shared["dataset_code"],
-                "label": document["label"],
-                "size": dict(zip(document["id"], document["size"], strict=True)),
-                "source_url": shared.get("source_url"),
-                "link_resolution": native["link_resolution"],
-                "updated": document.get("updated"),
-                "metadata_validation": "passed",
-            }
+        store = SourceStore(root / "out/source", ADAPTER.name)
+        state = lifecycle.load_state(root / "out", ADAPTER.collection)
+        for key, document in sorted(parse.documents(store, state, [binding])):
+            item = {"dataset": key}
             try:
+                if isinstance(document, Exception):
+                    raise document
+                validate_metadata(document, adapter=ADAPTER.name)
+                shared = document["extension"]["nordicintel"]
+                native = document["extension"]["socialstyrelsen_analys"]
+                item.update(
+                    label=document["label"],
+                    size=dict(zip(document["id"], document["size"], strict=True)),
+                    link_resolution=native["link_resolution"],
+                    metadata_validation="passed",
+                )
                 selection = small_selection(document)
                 await asyncio.sleep(1.0)  # retrieval uses the session unpaced
                 retrieval_requests += 1
@@ -102,16 +99,14 @@ async def check() -> dict:
                     },
                 )
                 validate_retrieval(fragment, selection=selection)
-                values = fragment["value"]
                 item.update(
                     selection=selection,
-                    returned_values=len(values),
-                    returned_status=len(fragment.get("status") or {}),
+                    returned_values=len(fragment["value"]),
                     status="passed",
                 )
             except Exception as error:
                 item.update(status="failed", error=f"{type(error).__name__}: {error}")
-            print(f"{item['status']}: {item['dataset']}", flush=True)
+            print(f"{item['status']}: {key}", flush=True)
             report["documents"].append(item)
     finally:
         await client.close()
@@ -126,12 +121,11 @@ if __name__ == "__main__":
         "--report", type=Path, default=Path("output/dataanalys-live.json")
     )
     args = parser.parse_args()
-    result = asyncio.run(check())
+    with tempfile.TemporaryDirectory(prefix="dataanalys-live-") as temporary:
+        result = asyncio.run(check(Path(temporary)))
     write(args.report, result)
     raise SystemExit(
         not result["documents"]
-        or not result["discovery"]["charts_complete"]
-        or not result["discovery"]["dashboards_complete"]
-        or bool(result["discovery"]["problems"])
+        or result["run"]["status"] != "success"
         or any(d["status"] != "passed" for d in result["documents"])
     )

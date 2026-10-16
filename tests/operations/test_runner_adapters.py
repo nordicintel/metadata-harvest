@@ -11,13 +11,7 @@ import apps.operations.harvest as runner
 
 @pytest.mark.parametrize(
     "adapter,flags,expected",
-    [
-        (
-            "dataanalys",
-            ["--subject", "GONV", "--indicator", "G082"],
-            {"areas": ["GONV"], "indicators": ["G082"], "languages": None},
-        ),
-    ],
+    [],
 )
 def test_run_and_collect_use_adapter_configuration(
     monkeypatch, adapter, flags, expected
@@ -102,6 +96,11 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
             "forsakringskassan",
             ["--subject", "ase-beslut-lan", "--full"],
             {"subjects": ["ase-beslut-lan"], "full": True, "languages": None},
+        ),
+        (
+            "dataanalys",
+            ["--subject", "GONV", "--indicator", "G082"],
+            {"areas": ["GONV"], "indicators": ["G082"], "languages": None},
         ),
     ],
 )

@@ -4,7 +4,12 @@ import asyncio
 
 import pytest
 
-from apps.harvest.metadata_adapters.dataanalys import api, source
+from apps.harvest.metadata_adapters.dataanalys import client as api
+from apps.harvest.metadata_adapters.dataanalys import source
+from apps.harvest.metadata_adapters.dataanalys.harvest import (
+    build_documents,
+    read_listings,
+)
 from apps.harvest.metadata_adapters.dataanalys.mapping import (
     build_dataset,
     indicator_label,
@@ -17,7 +22,6 @@ from apps.harvest.metadata_adapters.dataanalys.source import (
     parse_cube,
     resolve_link,
 )
-from apps.harvest.metadata_adapters.dataanalys.workflow import discover, fetch_metadata
 from schema.validation import validate_metadata
 from tests.support.dataanalys import RecordedClient, apply_synthetic
 
@@ -36,13 +40,13 @@ GONV_COLUMNS = {
 
 
 def discovered(client=None) -> Discovery:
-    return asyncio.run(discover(client or RecordedClient()))
+    return asyncio.run(read_listings(client or RecordedClient()))
 
 
 def documents(area, *codes, client=None):
     return asyncio.run(
-        fetch_metadata(
-            {"area": area, "indicators": list(codes)}, client=client or RecordedClient()
+        build_documents(
+            client or RecordedClient(), {"area": area, "indicators": list(codes)}
         )
     )
 
@@ -177,10 +181,10 @@ def test_lists_are_paged_until_the_count(monkeypatch):
 
     monkeypatch.setattr(api, "PAGE_SIZE", 10)
     monkeypatch.setattr(
-        "apps.harvest.metadata_adapters.dataanalys.workflow.PAGE_SIZE", 10
+        "apps.harvest.metadata_adapters.dataanalys.harvest.PAGE_SIZE", 10
     )
 
-    result = asyncio.run(discover(Paging()))
+    result = asyncio.run(read_listings(Paging()))
 
     assert result.charts_listed == charts["count"] == 33
     assert result.charts_complete

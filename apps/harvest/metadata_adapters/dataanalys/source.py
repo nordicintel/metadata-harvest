@@ -18,7 +18,7 @@ from html.parser import HTMLParser
 from typing import Any
 from urllib.parse import unquote, urlsplit
 
-from apps.harvest.metadata_adapters.dataanalys.api import (
+from apps.harvest.metadata_adapters.dataanalys.client import (
     CATALOGUE_OPTIONAL,
     CATALOGUE_REQUIRED,
     LEVELS,

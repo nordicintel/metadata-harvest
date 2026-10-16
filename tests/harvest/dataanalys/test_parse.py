@@ -2,8 +2,7 @@
 
 from pathlib import Path
 
-from tests.harvest.dataanalys.test_workflow import execute
-from tests.support.dataanalys import PROVIDER, RecordedClient
+from tests.support.dataanalys import PROVIDER, RecordedClient, execute
 
 GOLDEN = Path("tests/fixtures/dataanalys/accepted")
 

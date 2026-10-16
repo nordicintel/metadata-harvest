@@ -195,6 +195,33 @@ def apply_synthetic(client: RecordedClient, *names: str) -> RecordedClient:
     return client
 
 
+BOOTSTRAP = {
+    "sv/GONV|G013",
+    "sv/GONV|G033",
+    "sv/GONV|G082",
+    "sv/GONV|G200",
+    "sv/LRHST|LRHST09",
+    "sv/NRAA|NRAA_1",
+    "sv/NRAA|NRAA_2",
+}
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    import asyncio
+
+    from apps.harvest.metadata_adapters.dataanalys.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result
+
+
 @pytest.fixture
 def client() -> RecordedClient:
     return RecordedClient()
@@ -281,12 +308,10 @@ def harvested_g082() -> dict[str, Any]:
     """The harvested G082 document, built from the recorded answers."""
     import asyncio
 
-    from apps.harvest.metadata_adapters.dataanalys.workflow import fetch_metadata
+    from apps.harvest.metadata_adapters.dataanalys.harvest import build_documents
 
     [document] = asyncio.run(
-        fetch_metadata(
-            {"area": "GONV", "indicators": ["G082"]}, client=RecordedClient()
-        )
+        build_documents(RecordedClient(), {"area": "GONV", "indicators": ["G082"]})
     )
     return document
 

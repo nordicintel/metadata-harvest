@@ -4,7 +4,7 @@ import re
 from datetime import UTC, datetime
 from typing import Any
 
-from apps.harvest.metadata_adapters.dataanalys.api import (
+from apps.harvest.metadata_adapters.dataanalys.client import (
     AGE,
     DATA_URL,
     LEVELS,

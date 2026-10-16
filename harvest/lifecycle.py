@@ -154,6 +154,9 @@ class Run:
     report: dict = field(default_factory=dict)
     published: dict = field(default_factory=dict)
     withheld: dict = field(default_factory=dict)
+    removals: bool = True
+    """Whether this run may remove items; an adapter clears it when discovery
+    was incomplete."""
 
     @property
     def stamp(self) -> str:
@@ -481,13 +484,13 @@ async def run(
                 if await _fetch(this, task, working, failures) == "dropped":
                     settled.discard(task.key)
         for name, (scope, keys) in listed.items():
-            if scope.complete and not this.bounded:
+            if scope.complete and not this.bounded and this.removals:
                 for key in sorted(this.known(name) - keys):
                     settled.discard(key)
                     failures.pop(key, None)
                     this.remove(key)
                     this.log.debug("%s: removed, %s no longer lists it", key, name)
-        if not this.bounded:  # keys of scopes the provider no longer lists at all
+        if not this.bounded and this.removals:  # scopes no longer listed at all
             names = {s.name for s in scopes} | {"*"}
             for key in sorted(this.known()):
                 if adapter.scope_of(key) not in names:

@@ -82,10 +82,6 @@ def scope_failures(adapter: str, report: dict) -> list[str]:
         if interrupted and "budget" not in interrupted:
             failures.append(f"run: {interrupted}")
         return failures
-    if adapter == "dataanalys":
-        return _scoped(
-            report, discovery_resources=("charts", "dashboards"), endpoint_prefix="*/"
-        )
     raise ValueError(f"Unknown adapter: {adapter}")
 
 

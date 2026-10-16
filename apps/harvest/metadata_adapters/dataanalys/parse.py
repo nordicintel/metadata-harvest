@@ -3,7 +3,10 @@
 from collections.abc import Iterator
 from dataclasses import asdict
 
-from apps.harvest.metadata_adapters.dataanalys.api import result_rows
+from apps.harvest.metadata_adapters.dataanalys.client import (
+    PROVIDER_CODE,
+    result_rows,
+)
 from apps.harvest.metadata_adapters.dataanalys.mapping import build_dataset
 from apps.harvest.metadata_adapters.dataanalys.source import (
     Area,
@@ -11,7 +14,6 @@ from apps.harvest.metadata_adapters.dataanalys.source import (
     Link,
     parse_cube,
 )
-from apps.harvest.metadata_adapters.dataanalys.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key
 from registry import ServiceBinding
 
