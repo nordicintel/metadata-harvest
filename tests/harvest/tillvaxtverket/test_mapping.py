@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -21,13 +22,19 @@ from tests.support.tillvaxtverket import (
     RecordedClient,
     distinct_key,
     probe_key,
+    snapshot_from,
 )
+
+PORTAL = snapshot_from(Path(tempfile.mkdtemp()) / "data_eu", list(BY_NAME))
+"""An accepted portal snapshot with the recorded data.europa.eu records."""
 
 
 def build(name, client=None):
     from apps.harvest.metadata_adapters.tillvaxtverket.workflow import fetch_metadata
 
-    return asyncio.run(fetch_metadata(BY_NAME[name], client=client or RecordedClient()))
+    return asyncio.run(
+        fetch_metadata(BY_NAME[name], client=client or RecordedClient(), portal=PORTAL)
+    )
 
 
 def regions_body(name="GuestNights_Capacity_Revenue_Year"):

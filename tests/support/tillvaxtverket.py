@@ -60,6 +60,21 @@ def labels_key(name: str) -> str:
     )
 
 
+def snapshot_from(target: Path, names) -> Path:
+    """An accepted portal snapshot built from the recorded data.europa.eu records."""
+    from apps.portal.snapshot import import_snapshot
+
+    source = target.parent / "oppnadata-export.jsonl"
+    source.parent.mkdir(parents=True, exist_ok=True)
+    with source.open("w", encoding="utf-8") as stream:
+        for name in names:
+            record = dict(RECORDED[dcat_key(name)]["result"])
+            record.setdefault("catalog", {"id": "oppnadata"})
+            stream.write(json.dumps(record, ensure_ascii=False) + "\n")
+    import_snapshot(source, target)
+    return target
+
+
 class RecordedClient:
     """Answer harvester requests from recorded responses, like the real client.
 

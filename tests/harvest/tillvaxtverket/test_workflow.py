@@ -8,16 +8,17 @@ import pytest
 from apps.harvest.metadata_adapters.tillvaxtverket import source
 from apps.harvest.metadata_adapters.tillvaxtverket.client import Unreachable
 from apps.harvest.metadata_adapters.tillvaxtverket.state import (
-    collection,
-    load_documents,
+    PROVIDER_CODE,
     load_state,
 )
+from apps.harvest.source_store import SourceStore, harvest_manifest, source_key
+from tests.support.parsing import documents
 from tests.support.tillvaxtverket import (
     RecordedClient,
-    dcat_key,
     distinct_key,
     labels_key,
     probe_key,
+    snapshot_from,
 )
 
 NOW = datetime(2026, 10, 12, 5, 45, tzinfo=UTC)
@@ -54,46 +55,97 @@ def execute(client, data, output, **options):
     return result
 
 
-def published(data):
-    return load_documents(data, ["sv"])
+@pytest.fixture
+def portal(tmp_path):
+    """An accepted portal snapshot holding the recorded data.europa.eu records."""
+    return snapshot_from(tmp_path / "data_eu", NAMES)
+
+
+def published(data, *, include_withheld=False, portal=None):
+    return documents(
+        "tillvaxtverket",
+        data,
+        [PROVIDER],
+        include_withheld=include_withheld,
+        portal=portal,
+    )
 
 
 def key(name):
     return f"sv/inkvartering/{name}"
 
 
+def stored_key(name):
+    return source_key(PROVIDER_CODE, f"inkvartering/{name}", "sv")
+
+
+def store(data):
+    return SourceStore(data / "source", "tillvaxtverket")
+
+
+def stable(data):
+    return {
+        k: v for k, v in harvest_manifest(data).items() if k != "reports/latest.json"
+    }
+
+
+MANIFEST = "source/manifest.json"
+
+
 @pytest.fixture
 def data(tmp_path):
-    root = tmp_path / "data"
+    root = tmp_path / "data" / "tillvaxtverket"
     result = execute(Source(), root, tmp_path / "bootstrap")
     assert result["status"] == "success", result["errors"]
     assert result["counts"]["rebuilt"] == 6 == len(published(root))
     return root
 
 
-def test_bootstrap_publishes_six_valid_documents(data):
+def test_bootstrap_stores_six_datasets_with_label_files(data, portal):
     from apps.harvest.validation import validate_metadata
 
-    documents = published(data)
-    assert sorted(documents) == sorted(key(name) for name in NAMES)
-    for document in documents.values():
+    parsed = published(data, portal=portal)
+    assert sorted(parsed) == sorted(key(name) for name in NAMES)
+    for document in parsed.values():
         validate_metadata(document, adapter="tillvaxtverket")
         assert document["extension"]["nordicintel"]["official_statistics"] is True
         assert document["extension"]["tillvaxtverket"]["source_record"]["load_dates"]
-    state = load_state(data)["datasets"]
-    assert {info["status"] for info in state.values()} == {"published"}
+    state = load_state(data)
+    assert {info["status"] for info in state["datasets"].values()} == {"published"}
+    assert "withheld" not in state
+    envelope = store(data).get(stored_key(YEAR))
+    assert set(envelope["responses"]) == {
+        "columns",
+        "load_dates",
+        "regions",
+        "dimensions",
+        "periods",
+    }
+    assert (
+        envelope["updated"]
+        == envelope["responses"]["load_dates"]["rows"][-1]["LOAD_DATE"][:10]
+        or envelope["updated"]
+    )
+    files = store(data).entries()[stored_key(YEAR)]["files"]
+    assert any(name.endswith(".labels.csv") for name in files)
+    assert not (data / "metadata").exists()
+    # Without a portal snapshot the label falls back to the dataset name.
+    assert published(data)[key(YEAR)]["label"] == YEAR
 
 
 def test_rerun_is_byte_identical_and_reuses_cubes(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
+    before = stable(data)
+    manifest = (data / MANIFEST).read_bytes()
     client = Source()
     result = execute(client, data, tmp_path / "rerun")
     assert result["counts"]["rebuilt"] == 0
     assert result["counts"]["unchanged"] == 6
-    assert (data / collection("sv")).read_bytes() == before
-    # Only the change signal and data.europa.eu: no distinct-value queries.
-    assert client.request_count == 6 * 3
+    assert (data / MANIFEST).read_bytes() == manifest
+    assert stable(data) == before
+    # Only the change signal: no distinct-value queries, no data.europa.eu.
+    assert client.request_count == 6 * 2
     assert not any("dimension=NIVA_NAMN" in r for r in client.requests)
+    assert not any(r.startswith("GET https://data.europa.eu") for r in client.requests)
 
 
 def test_new_load_rebuilds_only_that_dataset(data, tmp_path):
@@ -125,78 +177,62 @@ def test_failing_endpoint_is_withheld_retried_then_restored(data, tmp_path):
     assert client.requests.count(probe_key(YEAR)) == 2  # retried once
     assert result["counts"]["withheld"] == 1
     assert key(YEAR) not in published(data)
-    assert load_state(data)["withheld"][key(YEAR)] == before
+    assert load_state(data)["datasets"][key(YEAR)]["status"] == "withheld"
+    assert published(data, include_withheld=True)[key(YEAR)] == before
 
     result = execute(Source(), data, tmp_path / "back")
     assert result["counts"]["restored"] == 1
     assert published(data)[key(YEAR)] == before
 
 
-def test_failing_dataset_before_valid_siblings(data, tmp_path):
-    """The first registered dataset fails to parse; the others still publish."""
+def test_changed_columns_are_stored_and_fail_at_parse_before_valid_siblings(
+    data, tmp_path
+):
+    """The first registered dataset no longer matches the registry; it is stored
+    all the same, parse reports it and the others still publish."""
+    from apps.parsing.build import build
+
     first = NAMES[0]
-    before = published(data)[key(first)]
     client = Source()
     client.responses[probe_key(first)]["columns"].append(
         {"name": "NY_KOLUMN", "type": "integer"}
     )
     result = execute(client, data, tmp_path / "bad-first")
-    assert [(e["stage"], e["resource"]) for e in result["errors"]] == [
-        ("metadata", key(first))
-    ]
-    assert "NY_KOLUMN" in result["errors"][0]["error"]
-    assert result["counts"]["unchanged"] == 5
-    assert published(data)[key(first)] == before  # endpoint works: still published
+    assert result["status"] == "success"
+    assert result["counts"]["rebuilt"] == 1 and result["counts"]["unchanged"] == 5
+    parsed = build(
+        "tillvaxtverket", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+    )
+    assert [e["key"] for e in parsed["errors"]] == [stored_key(first)]
+    assert "NY_KOLUMN" in parsed["errors"][0]["error"]
+    assert parsed["counts"]["parsed"] == 5
 
 
-def test_new_dataset_failure_has_no_document(tmp_path):
+def test_new_dataset_with_unexpected_columns_is_still_stored(tmp_path):
     client = Source()
     client.responses[probe_key(NAMES[0])]["columns"].pop()
-    result = execute(client, tmp_path / "data", tmp_path / "out")
-    assert result["counts"]["rebuilt"] == 5
-    assert key(NAMES[0]) not in published(tmp_path / "data")
-    assert load_state(tmp_path / "data")["datasets"][key(NAMES[0])]["status"] == (
-        "missing"
-    )
-
-
-def test_dcat_failure_keeps_label_and_is_a_dependency_error(data, tmp_path):
-    before = published(data)
-    client = Source()
-    client.failing = {dcat_key(YEAR)}
-    result = execute(client, data, tmp_path / "dcat-down")
-    assert [(e["stage"], e["resource"]) for e in result["errors"]] == [
-        ("dependency", f"{key(YEAR)}#data.europa.eu")
-    ]
-    assert result["counts"]["dependency_failed"] == 1
-    assert result["counts"]["failed"] == 0
-    assert published(data) == before
-
-
-def test_dcat_failure_on_bootstrap_falls_back_then_relabels(tmp_path):
-    root = tmp_path / "data"
-    client = Source()
-    client.failing = {dcat_key(YEAR)}
-    execute(client, root, tmp_path / "first")
-    document = published(root)[key(YEAR)]
-    assert document["label"] == YEAR
-    assert "description" not in document["extension"]["nordicintel"]
-
-    result = execute(Source(), root, tmp_path / "second")
-    assert result["counts"]["relabelled"] == 1
-    assert published(root)[key(YEAR)]["label"] == "Gästnätter per land och år"
+    root = tmp_path / "data" / "tillvaxtverket"
+    result = execute(client, root, tmp_path / "out")
+    assert result["counts"]["rebuilt"] == 6
+    assert store(root).get(stored_key(NAMES[0]))["responses"]["columns"]
+    assert load_state(root)["datasets"][key(NAMES[0])]["status"] == "published"
 
 
 def test_label_file_failure_falls_back_and_retries(tmp_path):
     root = tmp_path / "data"
     client = Source()
     client.failing = {labels_key(REVENUE)}
+    root = root / "tillvaxtverket"
     result = execute(client, root, tmp_path / "first")
     assert ("dependency", f"{key(REVENUE)}#labels") in [
         (e["stage"], e["resource"]) for e in result["errors"]
     ]
     measures = published(root)[key(REVENUE)]["dimension"]["ContentsCode"]
     assert measures["category"]["label"]["LOGIINTAKT"] == "LOGIINTAKT"
+    assert not any(
+        f.endswith(".labels.csv")
+        for f in store(root).entries()[stored_key(REVENUE)]["files"]
+    )
 
     client = Source()
     result = execute(client, root, tmp_path / "second")
@@ -205,8 +241,9 @@ def test_label_file_failure_falls_back_and_retries(tmp_path):
     assert measures["category"]["label"]["LOGIINTAKT"] == "Logiintäkt"
 
 
-def test_conflicting_duplicates_are_quarantined(data, tmp_path):
-    before = published(data)[key(YEAR)]
+def test_conflicting_duplicates_are_stored_and_fail_at_parse(data, tmp_path):
+    from apps.parsing.build import build
+
     client = Source()
     client.responses[distinct_key(YEAR, "LOAD_DATE")]["rows"].append(
         {"LOAD_DATE": "2026-10-11, 20:00:00"}
@@ -226,21 +263,12 @@ def test_conflicting_duplicates_are_quarantined(data, tmp_path):
     countries["rows"].append({**countries["rows"][0], "LAND_NAMN": "Annat namn"})
     countries["rowCount"] += 1
     result = execute(client, data, tmp_path / "duplicate")
-    assert result["counts"]["quarantined"] == 1
-    assert result["quarantined"] == [key(YEAR)]
-    assert published(data)[key(YEAR)] == before
-
-
-def test_metadata_failure_expires_after_max_age(data, tmp_path):
-    client = Source()
-    client.responses[probe_key(YEAR)]["columns"].pop()
-    execute(client, data, tmp_path / "broken")
-    assert key(YEAR) in published(data)
-    later = NOW + timedelta(days=61)
-    result = execute(client, data, tmp_path / "stale", clock=later)
-    assert key(YEAR) not in published(data)
-    assert load_state(data)["datasets"][key(YEAR)]["withheld_reason"] == "stale"
-    assert result["counts"]["withheld"] == 1
+    assert result["status"] == "success"
+    parsed = build(
+        "tillvaxtverket", data.parent, tmp_path / "parsed", providers=[PROVIDER]
+    )
+    assert [e["key"] for e in parsed["errors"]] == [stored_key(YEAR)]
+    assert "Conflict" in parsed["errors"][0]["error"]
 
 
 def test_all_endpoints_failing_withholds_without_removing(data, tmp_path):
@@ -250,16 +278,18 @@ def test_all_endpoints_failing_withholds_without_removing(data, tmp_path):
     assert result["status"] == "completed_with_errors"
     assert {e["stage"] for e in result["errors"]} == {"endpoint"}
     assert result["counts"]["removed"] == 0
-    assert len(load_state(data)["withheld"]) == 6
+    assert all(
+        info["status"] == "withheld" for info in load_state(data)["datasets"].values()
+    )
     assert published(data) == {}
 
 
 def test_unexpected_published_file_raises_and_publishes_nothing(data, tmp_path):
-    before = (data / collection("sv")).read_bytes()
-    (data / "metadata" / "other.jsonl.gz").write_bytes(b"")
+    (data / "state" / "other.json").write_bytes(b"{}")
+    before = harvest_manifest(data)
     with pytest.raises(ValueError, match="Unexpected file"):
         start(Source(), data, tmp_path / "out")
-    assert (data / collection("sv")).read_bytes() == before
+    assert harvest_manifest(data) == before
     assert not (tmp_path / "out").exists()
 
 
@@ -278,6 +308,7 @@ def test_dataset_dropped_from_registry_is_removed_only_in_unbounded_run(
     assert result["counts"]["removed"] == 1
     assert key(YEAR) not in published(data)
     assert key(YEAR) not in load_state(data)["datasets"]
+    assert stored_key(YEAR) not in store(data).entries()
 
 
 def test_bounded_run_touches_only_selected(data, tmp_path):

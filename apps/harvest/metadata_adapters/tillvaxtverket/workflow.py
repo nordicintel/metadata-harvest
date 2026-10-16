@@ -4,16 +4,17 @@ There is no listing endpoint: the datasets are the hard-coded registry in
 :mod:`.source`, and each dataset is its own scope. Every run checks every
 (selected) dataset with two small requests, its columns/``rowCount``
 (``limit=0``) and its distinct ``LOAD_DATE`` values; together they are the change
-signal and the endpoint check. An unchanged signal reuses the accepted cube
-without distinct-value queries; otherwise the cube is rebuilt (one distinct query
-per dimension plus the column label file). The data.europa.eu record (title,
-description, contact) is fetched every run and re-applied; when it fails, the
-last accepted record is kept and the failure is reported as a dependency error.
+signal and the endpoint check. An unchanged signal keeps the stored source entry
+without distinct-value queries; otherwise the entry is refetched (one distinct
+query per dimension plus the column label file, kept as a companion file). The
+data.europa.eu description is no longer requested here: parsing reads it from
+the accepted portal snapshot.
 
-A dataset is published only while its endpoint works and its document was
-verified within ``max_age_days``; otherwise its last good document is withheld in
-state. Datasets are never removed because a request failed: only an unbounded
-run removes documents whose dataset is no longer in the registry (a code change).
+A dataset is published only while its endpoint works and its entry was verified
+within ``max_age_days``; otherwise it is withheld in state while its source files
+remain. Datasets are never removed because a request failed: only an unbounded
+run removes entries whose dataset is no longer in the registry (a code change).
+Documents are built later by ``parse``.
 """
 
 import asyncio
@@ -27,46 +28,41 @@ from apps.harvest.artifacts import report_status
 from apps.harvest.currency import settle
 from apps.harvest.metadata_adapters.tillvaxtverket.api import (
     cbase_url,
-    dcat_url,
     labels_url,
-    metadata_url,
 )
 from apps.harvest.metadata_adapters.tillvaxtverket.client import (
     TillvaxtverketClient,
     Unreachable,
 )
-from apps.harvest.metadata_adapters.tillvaxtverket.mapping import (
-    MAPPING_VERSION,
-    apply_dcat,
-    build_cube,
-    previous_dcat,
-    previous_labels,
+from apps.harvest.metadata_adapters.tillvaxtverket.mapping import MAPPING_VERSION
+from apps.harvest.metadata_adapters.tillvaxtverket.parse import (
+    LABELS,
+    document_from,
 )
 from apps.harvest.metadata_adapters.tillvaxtverket.source import (
     DATASETS,
     LOAD_DATE,
     REGION_DISTINCT,
-    Conflict,
     Probe,
     Spec,
-    parse_categories,
-    parse_dcat,
     parse_labels,
-    parse_periods,
     parse_probe,
-    parse_regions,
 )
 from apps.harvest.metadata_adapters.tillvaxtverket.state import (
     PROVIDER_CODE,
     REPORT,
     STATE,
-    collection,
-    load_documents,
     load_state,
     save,
 )
+from apps.harvest.source_store import (
+    Rejected,
+    SourceStore,
+    harvest_manifest,
+    source_key,
+    split_key,
+)
 from apps.harvest.storage import read, write
-from apps.harvest.validation import validate_metadata
 from apps.operations.progress import Progress
 from apps.publication.artifacts import check_collection_sizes, manifest
 
@@ -80,11 +76,9 @@ LABELS_ENCODING = "cp1252"
 """The label files are Latin-1 (Windows-1252) text without a charset header."""
 COUNTS = (
     "rebuilt",
-    "relabelled",
     "unchanged",
     "failed",
     "dependency_failed",
-    "quarantined",
     "withheld",
     "restored",
     "removed",
@@ -93,6 +87,29 @@ COUNTS = (
 
 def key_of(spec: Spec) -> str:
     return f"sv/{spec.dataset_code}"
+
+
+def stored_key(key: str) -> str:
+    """The source-store key of a ``sv/<dataset_code>`` state key."""
+    language, code = key.split("/", 1)
+    return source_key(PROVIDER_CODE, code, language)
+
+
+def state_key(key: str) -> str:
+    _, code, language = split_key(key)
+    return f"{language}/{code}"
+
+
+def _allowed_path(relative: str) -> bool:
+    return relative in {STATE, REPORT} or relative.startswith("source/")
+
+
+def _signal(spec: Spec, responses: dict):
+    """The change signal of stored responses, or None when they do not parse."""
+    try:
+        return parse_probe(spec, responses["columns"], responses["load_dates"]).signal()
+    except Exception:  # noqa: BLE001 - an unparsable signal counts as changed
+        return None
 
 
 class _Dataset:
@@ -108,40 +125,45 @@ class _Dataset:
         logger.debug("%s: distinct values of %s", self.spec.dataset_code, columns)
         return await self.client.get_json(self.url, params)
 
-    async def probe(self) -> Probe:
-        """The change signal; Unreachable means the endpoint failed."""
+    async def probe(self) -> tuple[dict, Probe | None]:
+        """The change-signal responses and their parsed signal (None when the
+        responses do not match the registry); Unreachable means the endpoint
+        failed."""
         columns = await self.client.get_json(
             self.url, [("format", "json"), ("limit", "0")]
         )
         loads = await self.distinct(LOAD_DATE)
-        return parse_probe(self.spec, columns, loads)
+        responses = {"columns": columns, "load_dates": loads}
+        try:
+            return responses, parse_probe(self.spec, columns, loads)
+        except Exception as error:  # noqa: BLE001 - stored anyway; parse reports
+            logger.warning(
+                "%s: probe does not match the registry (%s: %s); stored all the same",
+                self.spec.dataset_code,
+                type(error).__name__,
+                error,
+            )
+            return responses, None
 
-    async def dcat(self) -> dict:
-        return parse_dcat(await self.client.get_json(dcat_url(self.spec.name)))
-
-    async def labels(self) -> dict[str, str]:
+    async def labels(self) -> str:
+        """The column label file as text (parsed later)."""
         content = await self.client.get_text(
             labels_url(self.spec.area, self.spec.name), encoding=LABELS_ENCODING
         )
-        return parse_labels(content)
+        parse_labels(content)  # a safety net: the file must be a label file
+        return content
 
-    async def cube(self, probe: Probe, labels: dict[str, str] | None) -> dict:
-        regions = parse_regions(await self.distinct(*REGION_DISTINCT))
-        categories = {}
+    async def cube(self) -> dict:
+        """The distinct-value responses a cube is built from."""
+        regions = await self.distinct(*REGION_DISTINCT)
+        dimensions = {}
         for dimension in self.spec.dimensions:
-            body = await self.distinct(dimension.column, *dimension.label_columns)
-            categories[dimension.id] = parse_categories(dimension, body)
-        periods = parse_periods(self.spec, await self.distinct(self.spec.time))
-        cube = build_cube(self.spec, probe, regions, categories, periods, labels)
-        logger.info(
-            "%s: cube built from %d regions, %s categories and %d periods (%s labels)",
-            self.spec.dataset_code,
-            len(regions),
-            {name: len(found) for name, found in categories.items()},
-            len(periods),
-            "with" if labels is not None else "without",
-        )
-        return cube
+            dimensions[dimension.id] = await self.distinct(
+                dimension.column, *dimension.label_columns
+            )
+        periods = await self.distinct(self.spec.time)
+        logger.info("%s: distinct values fetched", self.spec.dataset_code)
+        return {"regions": regions, "dimensions": dimensions, "periods": periods}
 
 
 async def discover_provider(provider: dict, *, client=None) -> list[Spec]:
@@ -153,19 +175,24 @@ async def discover_provider(provider: dict, *, client=None) -> list[Spec]:
     return list(DATASETS)
 
 
-async def fetch_metadata(spec: Spec, *, client) -> dict:
-    """Build and validate one dataset's document from scratch (live checks)."""
+async def fetch_metadata(spec: Spec, *, client, portal=None) -> dict:
+    """Build one dataset's document in memory (live checks only).
+
+    ``portal`` names an accepted portal snapshot directory for the
+    data.europa.eu description; without it the label is the dataset name.
+    """
+    from apps.harvest.metadata_adapters.tillvaxtverket.api import dcat_id
+    from apps.harvest.metadata_adapters.tillvaxtverket.parse import portal_records
+
     logger.info(
         "%s: building the document from scratch (live check)", spec.dataset_code
     )
     dataset = _Dataset(client, spec)
-    probe = await dataset.probe()
-    document = apply_dcat(
-        await dataset.cube(probe, await dataset.labels()), spec, await dataset.dcat()
-    )
-    validate_metadata(document, adapter=ADAPTER)
-    logger.info("%s: document built and validated", spec.dataset_code)
-    return document
+    responses, _ = await dataset.probe()
+    responses.update(await dataset.cube())
+    labels = parse_labels(await dataset.labels())
+    record = portal_records(portal).get(dcat_id(spec.name))
+    return document_from(spec, responses, labels, record)
 
 
 def select(products) -> tuple[list[Spec], list[str]]:
@@ -217,15 +244,24 @@ async def run(
     selected_languages = list(languages or configured)
     if set(configured) - set(LANGUAGES) or set(selected_languages) - set(configured):
         raise ValueError(f"Tillväxtverket is Swedish only: {selected_languages}")
-    allowed = {STATE, REPORT, *(collection(language) for language in configured)}
-    baseline = manifest(data) if data.exists() else {}
-    if set(baseline) - allowed:
+    baseline = harvest_manifest(data) if data.exists() else {}
+    if any(not _allowed_path(relative) for relative in baseline):
         raise ValueError("Unexpected file in published Tillväxtverket data")
     state = load_state(data)
-    published = load_documents(data, configured)
-    withheld = state["withheld"]
+    output.mkdir(parents=True, exist_ok=True)
+    for relative in baseline:
+        target = output / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(data / relative, target)
+    store = SourceStore(output / "source", PROVIDER_CODE)
+    # Placeholders stand in for documents: presence means a stored source entry.
+    published, withheld = {}, {}
+    for stored in store.entries():
+        key = state_key(stored)
+        status = state["datasets"].get(key, {}).get("status")
+        (withheld if status == "withheld" else published)[key] = True
     logger.info(
-        "Baseline in %s: %d published documents, %d withheld, %d datasets in state "
+        "Baseline in %s: %d published entries, %d withheld, %d datasets in state "
         "(state mapping version %s, current %s)",
         data,
         len(published),
@@ -234,11 +270,6 @@ async def run(
         state.get("mapping_version"),
         MAPPING_VERSION,
     )
-    output.mkdir(parents=True, exist_ok=True)
-    for relative in baseline:
-        target = output / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(data / relative, target)
     now = clock or datetime.now(UTC)
     stamp = now.isoformat()
     max_age = timedelta(days=provider.get("max_age_days", 60))
@@ -258,7 +289,7 @@ async def run(
     progress = Progress(ADAPTER, PROVIDER_CODE)
     counts = dict.fromkeys(COUNTS, 0)
     errors: list[dict] = []
-    report: dict = {"quarantined": []}
+    report: dict = {}
 
     def fail(stage, resource, error, url=None):
         entry = {
@@ -296,6 +327,7 @@ async def run(
             )
             for key in gone:
                 state["datasets"].pop(key, None)
+                store.remove(stored_key(key))
                 if (published.pop(key, None) or withheld.pop(key, None)) is not None:
                     counts["removed"] += 1
                     logger.warning("Removed %s: no longer in the registry", key)
@@ -319,7 +351,7 @@ async def run(
             settled.add(key)
             info = state["datasets"].setdefault(key, {})
             info["checked_at"] = stamp
-            accepted = published.get(key) or withheld.get(key)
+            stored = store.get(stored_key(key))
             progress.update(current=spec.name, operation="probe")
             if key in withheld:
                 previously = "withheld"
@@ -329,7 +361,7 @@ async def run(
                 previously = "not accepted"
             logger.info("%s: probing (previously %s)", key, previously)
             try:
-                probe = await dataset.probe()
+                responses, probe = await dataset.probe()
             except Unreachable as error:
                 working[key], failures[key] = False, ("endpoint", error, dataset.url)
                 logger.warning(
@@ -339,130 +371,108 @@ async def run(
                     error,
                 )
                 return True
-            except Exception as error:  # the endpoint answered
-                working[key], failures[key] = True, ("metadata", error, dataset.url)
-                logger.warning(
-                    "%s: endpoint answered but the probe was rejected, keeping the "
-                    "last accepted document: %s: %s",
-                    key,
-                    type(error).__name__,
-                    error,
-                )
-                return False
             working[key] = True
-            logger.info(
-                "%s: probe ok, %d rows, %d columns, latest load %s",
-                key,
-                probe.row_count,
-                len(probe.columns),
-                probe.loaded,
-            )
-            try:
-                dcat = await dataset.dcat()
-                dependencies.pop(f"{key}#data.europa.eu", None)
-            except Exception as error:
-                dcat = previous_dcat(accepted)
-                dependencies[f"{key}#data.europa.eu"] = (error, dcat_url(spec.name))
-                logger.warning(
-                    "%s: data.europa.eu record unavailable (%s: %s); %s",
+            if probe is not None:
+                logger.info(
+                    "%s: probe ok, %d rows, %d columns, latest load %s",
                     key,
-                    type(error).__name__,
-                    error,
-                    "reusing the last accepted record"
-                    if dcat
-                    else "continuing without title, description and contacts",
+                    probe.row_count,
+                    len(probe.columns),
+                    probe.loaded,
                 )
-            if accepted is None:
-                reason = "no accepted document yet"
+            if stored is None:
+                reason = "no stored source entry yet"
             elif info.get("mapping_version") != MAPPING_VERSION:
                 reason = (
                     f"mapping version changed ({info.get('mapping_version')} "
                     f"-> {MAPPING_VERSION})"
                 )
             elif info.get("rebuild"):
-                reason = "previous build lacked the label file"
+                reason = "previous fetch lacked the label file"
             else:
                 reason = "change signal moved (columns, row count or load dates)"
             reuse = (
-                accepted is not None
+                stored is not None
+                and probe is not None
                 and info.get("mapping_version") == MAPPING_VERSION
                 and not info.get("rebuild")
-                and accepted["extension"][PROVIDER_CODE].get("source_record")
-                == probe.signal()
+                and _signal(spec, stored["responses"]) == probe.signal()
             )
             labels_missing = False
             if reuse:
                 logger.info(
-                    "%s: change signal unchanged, reusing the accepted cube "
+                    "%s: change signal unchanged, keeping the stored entry "
                     "(skipping distinct-value queries and the label file)",
                     key,
                 )
-            else:
-                logger.info("%s: rebuilding the cube: %s", key, reason)
+                failures.pop(key, None)
+                outcome[key] = "unchanged"
+                info.update(verified_at=stamp, error=None)
+                (withheld if key in withheld else published)[key] = True
+                return False
+            logger.info("%s: refetching: %s", key, reason)
+            progress.update(operation="rebuild")
+            previous_labels = None
+            if stored is not None:
+                for relative in store.entries()[stored_key(key)]["files"]:
+                    if relative.endswith(f".{LABELS}"):
+                        previous_labels = store.read_file(relative)
             try:
-                if reuse:
-                    cube = accepted
-                else:
-                    progress.update(operation="rebuild")
-                    try:
-                        labels = await dataset.labels()
-                        dependencies.pop(f"{key}#labels", None)
-                        logger.debug("%s: %d column labels read", key, len(labels))
-                    except Exception as error:
-                        labels, labels_missing = previous_labels(accepted), True
-                        dependencies[f"{key}#labels"] = (
-                            error,
-                            labels_url(spec.area, spec.name),
-                        )
-                        logger.warning(
-                            "%s: label file unavailable (%s: %s); %s",
-                            key,
-                            type(error).__name__,
-                            error,
-                            "using labels from the last accepted document"
-                            if labels
-                            else "labels fall back to column names",
-                        )
-                    cube = await dataset.cube(probe, labels)
-                document = apply_dcat(cube, spec, dcat)
-                validate_metadata(document, adapter=ADAPTER)
+                try:
+                    labels = await dataset.labels()
+                    dependencies.pop(f"{key}#labels", None)
+                except Exception as error:  # a dependency, not the value endpoint
+                    labels, labels_missing = previous_labels, True
+                    dependencies[f"{key}#labels"] = (
+                        error,
+                        labels_url(spec.area, spec.name),
+                    )
+                    logger.warning(
+                        "%s: label file unavailable (%s: %s); %s",
+                        key,
+                        type(error).__name__,
+                        error,
+                        "keeping the stored label file"
+                        if labels
+                        else "labels fall back to column names",
+                    )
+                responses.update(await dataset.cube())
             except Unreachable as error:
                 working[key], failures[key] = False, ("endpoint", error, dataset.url)
                 logger.warning(
-                    "%s: endpoint failed while building; will be retried once "
+                    "%s: endpoint failed while fetching; will be retried once "
                     "after the other datasets (%s)",
                     key,
                     error,
                 )
                 return True
-            except Exception as error:
-                failures[key] = ("metadata", error, metadata_url(spec.area, spec.name))
-                if isinstance(error, Conflict):
-                    outcome[key] = "quarantined"
-                logger.warning(
-                    "%s: build rejected%s, keeping the last accepted document: %s: %s",
-                    key,
-                    " (quarantined, conflicting identities)"
-                    if isinstance(error, Conflict)
-                    else "",
-                    type(error).__name__,
-                    error,
+            try:
+                store.put(
+                    stored_key(key),
+                    responses=responses,
+                    updated=probe.loaded if probe is not None else None,
+                    retrieved_at=stamp,
+                    files={LABELS: labels} if labels else None,
                 )
+            except Rejected as error:
+                failures[key] = ("metadata", error, dataset.url)
+                logger.warning("%s: responses not storable: %s", key, error)
                 return False
             failures.pop(key, None)
-            outcome.pop(key, None)
-            if document == accepted:
-                outcome[key] = "unchanged"
-            else:
-                outcome[key] = "relabelled" if reuse else "rebuilt"
-            logger.info("%s: accepted as %s", key, outcome[key])
+            unchanged = (
+                stored is not None
+                and stored["responses"] == store.get(stored_key(key))["responses"]
+                and previous_labels == labels
+            )
+            outcome[key] = "unchanged" if unchanged else "rebuilt"
+            logger.info("%s: stored as %s", key, outcome[key])
             info.update(
                 verified_at=stamp,
                 mapping_version=MAPPING_VERSION,
                 rebuild=labels_missing,
                 error=None,
             )
-            (withheld if key in withheld else published)[key] = document
+            (withheld if key in withheld else published)[key] = True
             return False
 
         logger.info(
@@ -503,9 +513,6 @@ async def run(
         for key, (stage, error, url) in sorted(failures.items()):
             entry = fail(stage, key, error, url)
             counts["failed"] += 1
-            if outcome.get(key) == "quarantined":
-                counts["quarantined"] += 1
-                report["quarantined"].append(key)
             state["datasets"][key]["error"] = entry
         for resource, (error, url) in sorted(dependencies.items()):
             fail("dependency", resource, error, url)
@@ -536,8 +543,8 @@ async def run(
         statuses = [state["datasets"][key].get("status") for key in settled]
         logger.info(
             "Settled %d datasets (published while the endpoint works and the "
-            "document was verified within %s): %d published, %d withheld, "
-            "%d without any accepted document",
+            "entry was verified within %s): %d published, %d withheld, "
+            "%d without any stored entry",
             len(settled),
             max_age,
             statuses.count("published"),
@@ -549,7 +556,8 @@ async def run(
             await connection.close()
 
     state["mapping_version"] = MAPPING_VERSION
-    save(output, state, published, configured)
+    store.save()
+    save(output, state)
     status = report_status(pending=0, errors=errors)
     result = {
         "run_id": uuid4().hex,
@@ -589,12 +597,13 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
     data, output = Path(data), Path(output)
     logger.info("Collecting worker output %s into %s", output, data)
     result = read(output / "result.json")
-    if (manifest(data) if data.exists() else {}) != result["base_manifest"]:
+    if (harvest_manifest(data) if data.exists() else {}) != result["base_manifest"]:
         raise ValueError("Stale Tillväxtverket artifact: published baseline changed")
     if manifest(output) != result["manifest"]:
         raise ValueError("Tillväxtverket artifact checksum mismatch")
-    allowed = {STATE, REPORT, *(collection(language) for language in languages)}
-    if not {STATE, REPORT} <= set(result["manifest"]) <= allowed:
+    if not {STATE, REPORT} <= set(result["manifest"]) or not all(
+        _allowed_path(relative) for relative in result["manifest"]
+    ):
         raise ValueError("Unexpected Tillväxtverket artifact path")
     check_collection_sizes(output)
     for relative in result["manifest"]:
@@ -604,6 +613,9 @@ def collect(data: Path, output: Path, *, languages=LANGUAGES) -> dict:
         shutil.copyfile(output / relative, temporary)
         temporary.replace(target)
         logger.debug("Applied %s", relative)
+    for relative in harvest_manifest(data):
+        if relative.startswith("source/") and relative not in result["manifest"]:
+            (data / relative).unlink()
     logger.info(
         "Collected %d files (status %s)", len(result["manifest"]), result["status"]
     )
