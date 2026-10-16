@@ -3,8 +3,8 @@
 
 async def fetch_metadata(record, *, provider_code=None):
     """Build validated source contributions; preserve native task identities."""
-    from apps.harvest.accepted import as_contributions
     from apps.harvest.metadata_adapters.pxweb_v1.metadata import get_pxweb_metadata
+    from apps.parsing.accepted import as_contributions
 
     document = await get_pxweb_metadata(
         record, provider_code=provider_code or record["provider_code"]

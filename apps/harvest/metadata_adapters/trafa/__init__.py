@@ -12,7 +12,7 @@ async def discover_provider(provider, *, client=None):
 
 
 async def fetch_metadata(record, *, client):
-    from apps.harvest.accepted import as_contributions
     from apps.harvest.metadata_adapters.trafa.workflow import fetch_metadata as fetch
+    from apps.parsing.accepted import as_contributions
 
     return as_contributions(await fetch(record, client=client), adapter="trafa")

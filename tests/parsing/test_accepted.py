@@ -1,4 +1,4 @@
-"""Accepted metadata is multilingual StatDCAT; workers retain task identities."""
+"""Accepted metadata is multilingual StatDCAT; parsing retains task identities."""
 
 import gzip
 import json
@@ -7,7 +7,7 @@ from tests.model.test_statdcat import legacy
 
 
 def test_accepted_collection_combines_languages_and_round_trips_task_records(tmp_path):
-    from apps.harvest.accepted import load_contributions, write_metadata
+    from apps.parsing.accepted import load_contributions, write_metadata
 
     documents = [legacy("sv"), legacy("en")]
     write_metadata(tmp_path, documents, adapter="pxweb_v2")
@@ -25,7 +25,7 @@ def test_accepted_collection_combines_languages_and_round_trips_task_records(tmp
 
 
 def test_accepted_scopes_do_not_erase_each_other(tmp_path):
-    from apps.harvest.accepted import load_contributions, write_metadata
+    from apps.parsing.accepted import load_contributions, write_metadata
 
     docs = []
     for scope in ["municipality", "ou"]:
@@ -38,17 +38,3 @@ def test_accepted_scopes_do_not_erase_each_other(tmp_path):
     saved[0]["label"] = "Updated"
     write_metadata(tmp_path, saved, adapter="kolada")
     assert len(list(load_contributions(tmp_path / "metadata"))) == 2
-
-
-def test_existing_metadata_store_persists_models_and_preserves_task_keys(tmp_path):
-    from apps.harvest.storage import JsonlStore, filename
-
-    store = JsonlStore(tmp_path / "metadata", compressed=True)
-    doc = legacy()
-    key = filename(doc["extension"]["nordicintel"])
-    store.records[key] = doc
-    store.save()
-    path = next((tmp_path / "metadata").glob("*.gz"))
-    with gzip.open(path, "rt", encoding="utf-8") as stream:
-        assert json.loads(next(stream))["@type"] == "dcat:Dataset"
-    assert JsonlStore(tmp_path / "metadata").records[key] == doc

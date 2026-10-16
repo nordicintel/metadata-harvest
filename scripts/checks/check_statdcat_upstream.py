@@ -7,7 +7,7 @@ from pathlib import Path
 from pyshacl import validate
 from rdflib import Graph, Namespace
 
-from apps.harvest.contributions import convert_dataset
+from apps.parsing.contributions import convert_dataset
 from scripts.live.check_statdcat_live import source
 
 SH = Namespace("http://www.w3.org/ns/shacl#")

@@ -6,7 +6,7 @@ from copy import deepcopy
 
 import pytest
 
-from apps.harvest.contributions import convert_dataset
+from apps.parsing.contributions import convert_dataset
 from retrieval import retrieve_distribution
 from retrieval.distribution import ADAPTERS
 

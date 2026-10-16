@@ -9,11 +9,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import quote, unquote
 
-from apps.harvest.contributions import convert_dataset, legacy_document
 from apps.harvest.sources import inventory
 from apps.migrations.profile_reader import read_dataset
 from apps.model.composition import assemble
 from apps.model.models import Dataset, HarvestContribution
+from apps.parsing.contributions import convert_dataset, legacy_document
 
 
 def adapter_for(document: dict) -> str:

@@ -5,7 +5,7 @@ import shutil
 
 import pytest
 
-from apps.harvest.accepted import write_metadata
+from apps.parsing.accepted import write_metadata
 from apps.paths import CONFIG
 from tests.model.test_statdcat import legacy
 from tests.publication.test_catalog import unpack
@@ -144,9 +144,9 @@ def test_previous_profile_reads_and_blob_recovery_do_not_require_production_cuto
     import subprocess
 
     from apps.catalog.assembly import build
-    from apps.harvest.accepted import load_contributions
     from apps.model.models import Dataset
     from apps.model.vocabulary import PROFILE1_CONTEXT
+    from apps.parsing.accepted import load_contributions
     from apps.publication.candidates import promote
 
     def git(*args):

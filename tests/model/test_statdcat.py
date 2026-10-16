@@ -78,7 +78,7 @@ def test_models_preserve_nested_custom_fields_and_reject_boolean_coercion():
 
 
 def test_conversion_maps_periods_and_preserves_unknowns_without_parallel_fields():
-    from apps.harvest.contributions import convert_dataset, legacy_document
+    from apps.parsing.contributions import convert_dataset, legacy_document
 
     source = legacy()
     original = deepcopy(source)
@@ -106,8 +106,8 @@ def test_conversion_maps_periods_and_preserves_unknowns_without_parallel_fields(
 
 
 def test_language_and_kolada_scope_assembly_keeps_distinct_bindings():
-    from apps.harvest.contributions import convert_dataset
     from apps.model.composition import assemble
+    from apps.parsing.contributions import convert_dataset
 
     parts = []
     for language, code in [
@@ -131,8 +131,8 @@ def test_language_and_kolada_scope_assembly_keeps_distinct_bindings():
 
 
 def test_unrepresentable_period_and_conflicting_flags_survive():
-    from apps.harvest.contributions import convert_dataset
     from apps.model.composition import assemble
+    from apps.parsing.contributions import convert_dataset
 
     doc = legacy()
     doc["extension"]["nordicintel"]["first_period"] = "1992-1998"
@@ -150,7 +150,7 @@ def test_unrepresentable_period_and_conflicting_flags_survive():
 
 
 def test_software_services_are_separate_from_scb_owner_and_catalogs():
-    from apps.harvest.contributions import convert_dataset
+    from apps.parsing.contributions import convert_dataset
 
     main = legacy()
     main["extension"]["nordicintel"]["data_url"] = (
@@ -186,8 +186,8 @@ def test_software_services_are_separate_from_scb_owner_and_catalogs():
 def test_jsonld_expansion_preserves_extensions_and_codelist_membership():
     from rdflib import Graph, URIRef
 
-    from apps.harvest.contributions import convert_dataset
     from apps.model.vocabulary import NAMESPACE
+    from apps.parsing.contributions import convert_dataset
 
     dataset = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     dataset.new_field = {"nested": {"false": False, "zero": 0}}
@@ -203,7 +203,7 @@ def test_jsonld_expansion_preserves_extensions_and_codelist_membership():
 
 
 def test_invalid_source_hierarchy_is_rejected():
-    from apps.harvest.contributions import convert_dataset
+    from apps.parsing.contributions import convert_dataset
 
     doc = legacy()
     doc["dimension"]["Region"]["category"]["child"] = {"01": ["00"], "00": ["01"]}
@@ -240,9 +240,9 @@ def test_codelist_attribute_conflicts_remain_json_and_keep_every_assertion():
 
 
 def test_codelist_merge_preserves_language_specific_category_order():
-    from apps.harvest.contributions import convert_codelist
     from apps.model.composition import merge_codelists
     from apps.model.models import CodeList
+    from apps.parsing.contributions import convert_codelist
 
     schemes = [
         convert_codelist(
@@ -361,7 +361,7 @@ def test_service_identity_depends_on_binding_and_description_on_adapter():
 def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
     import asyncio
 
-    from apps.harvest.contributions import convert_dataset
+    from apps.parsing.contributions import convert_dataset
     from retrieval import retrieve_distribution
     from retrieval.data_adapters import pxweb_v1 as v1
 
@@ -395,7 +395,7 @@ def test_distribution_retrieval_selects_adapter_not_owner(monkeypatch):
 
 
 def test_compatibility_projection_keeps_descriptive_and_optional_values():
-    from apps.harvest.contributions import convert_dataset, legacy_document
+    from apps.parsing.contributions import convert_dataset, legacy_document
 
     doc = legacy()
     doc.update(updated="2026-10-01", note=["A note"], source="Attribution")
@@ -482,7 +482,7 @@ def test_all_entryscape_owners_use_canonical_organisation_codes():
 
 def test_missing_description_is_a_quality_finding_not_an_identity_error():
     from apps.catalog.quality import validate_publication
-    from apps.harvest.contributions import convert_dataset
+    from apps.parsing.contributions import convert_dataset
 
     model = convert_dataset(legacy(), adapter="pxweb_v2").dataset
     assert any(
@@ -492,7 +492,7 @@ def test_missing_description_is_a_quality_finding_not_an_identity_error():
 
 
 def test_malformed_optional_contacts_preserve_source_values():
-    from apps.harvest.contributions import convert_dataset, legacy_document
+    from apps.parsing.contributions import convert_dataset, legacy_document
 
     for contacts in (
         "free text",

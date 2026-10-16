@@ -10,14 +10,14 @@ import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from apps.harvest.accepted import read_records, write_metadata
 from apps.harvest.artifacts import checkpoint_path
-from apps.harvest.contributions import convert_dataset, legacy_document
 from apps.harvest.metadata_adapters.pxweb_v1.mapping import map_metadata, source_record
 from apps.harvest.registry import ADAPTERS, get_adapter
 from apps.harvest.storage import JsonlStore
 from apps.model.models import Dataset
 from apps.model.vocabulary import PROFILE_VERSION
+from apps.parsing.accepted import read_records, write_metadata
+from apps.parsing.contributions import convert_dataset, legacy_document
 from apps.publication.artifacts import check_collection_sizes, manifest
 from retrieval._semantics import category_codes
 

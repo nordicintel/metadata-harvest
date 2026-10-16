@@ -21,7 +21,7 @@ its clients, discovery, parsing, coverage probes and operational policy.
 ## Active worker representation
 
 Some native parsers use the [worker schema](../../schemas/legacy-dataset-metadata.schema.json)
-before conversion in `apps.harvest.contributions`. This is an internal JSON-stat
+before conversion in `apps.parsing.contributions`. This is an internal JSON-stat
 representation, not the published metadata contract: `id` orders dimensions, `size`
 gives category counts, and `value: []` means metadata only. Original routing identity
 and URLs live in `extension.nordicintel`; adapter evidence uses its own namespace.

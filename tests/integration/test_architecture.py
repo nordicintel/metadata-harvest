@@ -70,8 +70,50 @@ def test_configuration_and_profile_have_one_authoritative_location(
     assert profile["namespace"] == vocabulary.NAMESPACE
 
 
+def module_imports(path):
+    """Module-level imports only: typed-boundary wrappers may import lazily."""
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    for node in tree.body:
+        if isinstance(node, ast.Import):
+            yield from (alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom) and not node.level and node.module:
+            yield node.module
+
+
+def test_harvest_does_not_import_parsing():
+    for path in (ROOT / "apps/harvest").rglob("*.py"):
+        for name in module_imports(path):
+            assert not name.startswith("apps.parsing"), (path, name)
+
+
+def test_parsing_does_not_import_catalog_or_harvest_workflows():
+    for path in (ROOT / "apps/parsing").rglob("*.py"):
+        for name in imports(path):
+            assert not name.startswith(
+                ("apps.catalog", "apps.publication.candidates")
+            ), (
+                path,
+                name,
+            )
+
+
+def test_statdcat_conversion_lives_in_parsing():
+    assert not (ROOT / "apps/harvest/contributions.py").exists()
+    assert not (ROOT / "apps/harvest/accepted.py").exists()
+    assert (ROOT / "apps/parsing/contributions.py").is_file()
+    assert (ROOT / "apps/parsing/accepted.py").is_file()
+
+
 def test_every_repository_command_loads_without_running_work():
-    for name in ("harvest", "catalog", "portal", "scheduling", "monitor", "outcome"):
+    for name in (
+        "harvest",
+        "parsing",
+        "catalog",
+        "portal",
+        "scheduling",
+        "monitor",
+        "outcome",
+    ):
         subprocess.run(
             [sys.executable, "-m", f"apps.operations.{name}", "--help"],
             cwd=ROOT,

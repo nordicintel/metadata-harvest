@@ -21,14 +21,14 @@ from apps.catalog.filtering import publication_view
 from apps.catalog.matching import PortalIndex
 from apps.catalog.quality import validate_publication
 from apps.configuration import load_configuration, use_configuration
-from apps.harvest.accepted import model_contributions
-from apps.harvest.contributions import convert_codelist
 from apps.harvest.registry import ADAPTERS
 from apps.harvest.sources import inventory
 from apps.migrations.profile_reader import read_dataset
 from apps.model.composition import assemble, merge_codelists
 from apps.model.models import CodeList, Dataset
 from apps.model.vocabulary import PROFILE_VERSION
+from apps.parsing.accepted import model_contributions
+from apps.parsing.contributions import convert_codelist
 from apps.paths import CONFIG
 from apps.portal.snapshot import accepted_records
 from apps.publication.artifacts import check_collection_sizes, manifest

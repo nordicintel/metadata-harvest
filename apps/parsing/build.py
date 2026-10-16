@@ -18,11 +18,11 @@ from pathlib import Path
 from uuid import uuid4
 
 from apps.configuration import providers_for_adapter
-from apps.harvest.accepted import write_metadata
 from apps.harvest.artifacts import report_status
 from apps.harvest.source_store import SourceStore
 from apps.harvest.storage import read, write
 from apps.harvest.validation import validate_metadata
+from apps.parsing.accepted import write_metadata
 from apps.publication.artifacts import check_collection_sizes, manifest
 
 logger = logging.getLogger("parsing_logger")

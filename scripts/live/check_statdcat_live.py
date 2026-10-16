@@ -8,10 +8,10 @@ from pathlib import Path
 
 import aiohttp
 
-from apps.harvest.accepted import load_contributions, read_records
-from apps.harvest.contributions import convert_dataset, legacy_document
 from apps.model.models import Dataset
 from apps.model.validation import validate_retrieval
+from apps.parsing.accepted import load_contributions, read_records
+from apps.parsing.contributions import convert_dataset, legacy_document
 from retrieval import retrieve_distribution
 
 

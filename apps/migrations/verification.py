@@ -5,10 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 
-from apps.harvest.accepted import read_records
-from apps.harvest.contributions import legacy_document
 from apps.migrations.collections import encoded
 from apps.model.models import Dataset
+from apps.parsing.accepted import read_records
+from apps.parsing.contributions import legacy_document
 
 
 def verify(data: Path, audit: Path, adapters=None):

@@ -6,7 +6,7 @@ from copy import deepcopy
 
 import pytest
 
-from apps.harvest.contributions import convert_dataset, legacy_document
+from apps.parsing.contributions import convert_dataset, legacy_document
 from retrieval import retrieve_distribution
 from retrieval.distribution import ADAPTERS
 from tests.model.test_statdcat import legacy

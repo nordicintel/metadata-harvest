@@ -24,16 +24,16 @@ def __getattr__(name):
 
 async def fetch_metadata(record, *, client=None):
     """Build validated source contributions through the shared profile boundary."""
-    from apps.harvest.accepted import as_contributions
     from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_metadata as fetch
+    from apps.parsing.accepted import as_contributions
 
     return as_contributions(await fetch(record, client=client), adapter="pxweb_v2")
 
 
 async def fetch_codelist(code, language, *, client=None):
     """Normalize a native SCB codelist as a typed SKOS concept scheme."""
-    from apps.harvest.contributions import convert_codelist
     from apps.harvest.metadata_adapters.pxweb_v2.metadata import fetch_codelist as fetch
+    from apps.parsing.contributions import convert_codelist
 
     body = await fetch(code, language, client=client)
     return convert_codelist(

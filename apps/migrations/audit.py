@@ -6,8 +6,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from apps.harvest.contributions import convert_dataset, legacy_document
 from apps.model.models import Dataset
+from apps.parsing.contributions import convert_dataset, legacy_document
 
 
 def differences(a, b, path=""):
