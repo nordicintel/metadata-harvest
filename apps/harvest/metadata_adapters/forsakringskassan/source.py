@@ -19,7 +19,7 @@ from html.parser import HTMLParser
 from typing import Any
 from urllib.parse import urljoin
 
-from apps.harvest.metadata_adapters.forsakringskassan.api import (
+from apps.harvest.metadata_adapters.forsakringskassan.client import (
     MEASURE_DIMENSION,
     ROW_COUNTER,
     SITE,

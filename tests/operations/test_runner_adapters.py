@@ -17,11 +17,6 @@ import apps.operations.harvest as runner
             ["--subject", "GONV", "--indicator", "G082"],
             {"areas": ["GONV"], "indicators": ["G082"], "languages": None},
         ),
-        (
-            "forsakringskassan",
-            ["--subject", "ase-beslut-lan", "--full"],
-            {"subjects": ["ase-beslut-lan"], "full": True, "languages": None},
-        ),
     ],
 )
 def test_run_and_collect_use_adapter_configuration(
@@ -102,6 +97,11 @@ def test_unsupported_full_flag_is_rejected_before_source_requests(monkeypatch, a
             "riksbank",
             ["--subject", "swestr"],
             {"subjects": ["swestr"], "languages": None},
+        ),
+        (
+            "forsakringskassan",
+            ["--subject", "ase-beslut-lan", "--full"],
+            {"subjects": ["ase-beslut-lan"], "full": True, "languages": None},
         ),
     ],
 )

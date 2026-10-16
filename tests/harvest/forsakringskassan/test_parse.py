@@ -2,8 +2,7 @@
 
 from pathlib import Path
 
-from tests.harvest.forsakringskassan.test_workflow import PROVIDER, execute
-from tests.support.forsakringskassan import RecordedClient
+from tests.support.forsakringskassan import PROVIDER, RecordedClient, execute
 
 GOLDEN = Path("tests/fixtures/forsakringskassan/accepted")
 

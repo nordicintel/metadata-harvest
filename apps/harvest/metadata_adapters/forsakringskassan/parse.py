@@ -4,6 +4,7 @@ from collections.abc import Iterator
 from dataclasses import asdict
 from urllib.parse import quote
 
+from apps.harvest.metadata_adapters.forsakringskassan.client import PROVIDER_CODE
 from apps.harvest.metadata_adapters.forsakringskassan.mapping import build_dataset
 from apps.harvest.metadata_adapters.forsakringskassan.source import (
     Listed,
@@ -13,7 +14,6 @@ from apps.harvest.metadata_adapters.forsakringskassan.source import (
     parse_meta,
     text_entries,
 )
-from apps.harvest.metadata_adapters.forsakringskassan.state import PROVIDER_CODE
 from apps.harvest.source_store import SourceStore, source_key, split_key
 from registry import ServiceBinding
 

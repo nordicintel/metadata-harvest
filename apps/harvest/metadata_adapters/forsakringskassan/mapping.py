@@ -5,7 +5,7 @@ import re
 from collections.abc import Mapping
 from typing import Any
 
-from apps.harvest.metadata_adapters.forsakringskassan.api import (
+from apps.harvest.metadata_adapters.forsakringskassan.client import (
     MEASURE_DIMENSION,
     PROVIDER_CODE,
     meta_url,

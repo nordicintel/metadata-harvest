@@ -4,8 +4,20 @@ import asyncio
 import logging
 import time
 from typing import Any
+from urllib.parse import quote
 
 import aiohttp
+
+from harvest.lifecycle import Unreachable as _Unreachable
+from retrieval.data_adapters.forsakringskassan import (
+    API_ROOT,
+    MEASURE_DIMENSION,
+    PROVIDER_CODE,
+    ROW_COUNTER,
+    SUPPRESSED,
+    meta_url,
+    table_url,
+)
 
 logger = logging.getLogger("forsakringskassan_logger")
 
@@ -15,8 +27,36 @@ MIN_INTERVAL = 1.0
 """Seconds between the starts of two requests: at most one request per second."""
 MAX_RETRY_AFTER = 300.0
 
+__all__ = [
+    "API_ROOT",
+    "MEASURE_DIMENSION",
+    "PROVIDER_CODE",
+    "REPORTS_URL",
+    "ROW_COUNTER",
+    "SITE",
+    "SUPPRESSED",
+    "TEXTS_URL",
+    "meta_url",
+    "source_url",
+    "table_url",
+]
 
-class Unreachable(Exception):
+SITE = "https://www.forsakringskassan.se"
+REPORTS_URL = f"{API_ROOT}/reports"
+"""The catalogue: benefit groups (``key``) in areas, each with its report keys."""
+TEXTS_URL = f"{SITE}/rest-api/fk-rest-textnycklar/public/v2/meka?lang=sv-se"
+"""Swedish text keys of the statistics database: report names, ingresses and
+descriptions (``MEKA.report.{report}``), benefits (``MEKA.forman.{forman}``) and
+areas (``MEKA.area.{area}``). ``lang=en`` answers the same Swedish texts."""
+STATISTICS_PAGE = f"{SITE}/statistik-och-analys/statistikdatabas"
+
+
+def source_url(area: str, report: str) -> str:
+    """Return the report's page in the web statistics database."""
+    return f"{STATISTICS_PAGE}#!/{quote(area, safe='')}/{quote(report, safe='')}"
+
+
+class Unreachable(_Unreachable):
     """Försäkringskassan did not answer a request, after every retry."""
 
 

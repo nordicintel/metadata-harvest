@@ -27,6 +27,8 @@ from urllib.parse import parse_qsl, urlencode, urlsplit
 
 import pytest
 
+from tests.support.binding import binding
+
 FIXTURES = Path("tests/fixtures/forsakringskassan")
 RECORDED: dict[str, Any] = json.loads(
     (FIXTURES / "recorded.json").read_text(encoding="utf-8")
@@ -79,6 +81,38 @@ class RecordedClient:
         if key not in self.responses:
             raise Unreachable(f"not recorded: {key}")
         return copy.deepcopy(self.responses[key])
+
+
+PROVIDER = binding(
+    "forsakringskassan",
+    "forsakringskassan",
+    languages=["sv"],
+    retry_cooldown_seconds=0,
+    max_age_days=60,
+)
+ALL_KEYS = {
+    "sv/ase-avslutsanledning/ASEAvslutsanledning",
+    "sv/ase-beslut-lan/ASEBeslutKon",
+    "sv/ase-beslut-lan/ASEBeslutLan",
+    "sv/syn-alias/SynAliasLan",
+    "sv/syn-kommun/SynKommunKon",
+}
+
+
+def execute(source, data, output, **selection):
+    """Run the adapter against ``source`` and collect the output into ``data``."""
+    import asyncio
+
+    from apps.harvest.metadata_adapters.forsakringskassan.harvest import ADAPTER
+    from harvest import lifecycle
+
+    result = asyncio.run(
+        lifecycle.run(
+            ADAPTER, PROVIDER, data, output, selection=selection, client=source
+        )
+    )
+    lifecycle.collect(ADAPTER, data, output)
+    return result
 
 
 @pytest.fixture

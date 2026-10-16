@@ -14,7 +14,7 @@ from apps.paths import ROOT
 @pytest.mark.parametrize(
     "adapter,whole_scope,individual",
     [
-        ("forsakringskassan", ["reports", "texts"], "reports/#0"),
+        ("forsakringskassan", ["*/ase", "texts"], "reports/#0"),
         ("dataanalys", ["charts", "dashboards"], "charts/2541"),
         ("riksbank", ["*/swea", "*/mpd", "*/swestr"], "swea/series.0"),
         ("tillvaxtverket", [], "Nope"),

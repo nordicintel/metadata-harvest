@@ -4,7 +4,7 @@ import copy
 
 import pytest
 
-from apps.harvest.metadata_adapters.forsakringskassan.api import (
+from apps.harvest.metadata_adapters.forsakringskassan.client import (
     REPORTS_URL,
     TEXTS_URL,
     meta_url,

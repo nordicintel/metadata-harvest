@@ -48,11 +48,6 @@ def _entryscape_options(args):
 # the collect() keyword arguments taken from the first configured binding.
 SIMPLE_ADAPTERS = {
     "entryscape": ("all", _entryscape_options, lambda b: {}),
-    "forsakringskassan": (
-        "single",
-        lambda a: {"subjects": a.subject, "languages": a.language, "full": a.full},
-        lambda b: {"languages": b.options["languages"]},
-    ),
     "dataanalys": (
         "single",
         lambda a: {
