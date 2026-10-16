@@ -20,7 +20,27 @@ Open work only: bugs, fixes, features and investigations not yet done.
 
 ## Now
 
+- [ ] **harvest** Separate harvesting from parsing and catalog building — top
+  priority. Harvests only retrieve source data, with no more interpretation than
+  refresh logic needs: no StatDCAT conversion and no combining with data.europa.eu
+  or Dataportalen DCAT-AP records. StatDCAT parsing and catalog building become a
+  separate module that is not scheduled, run only for large-scale testing or
+  production, which is a long way off. This was missed when StatDCAT was
+  implemented and again in the codebase restructure
+  ([architecture](architecture.md)).
+- [ ] **vardenisiffror** Add an adapter for Vården i siffror's new API — 1000+
+  indicators/datasets that are not in data.europa.eu or Dataportalen; next after
+  the harvest/parsing separation
+  ([API documentation](https://vardenisiffror.se/dataexport/api-dokumentation)).
+
 ## Next
+
+- [ ] **harvest** Store harvests as one file (or more when needed) per
+  dataset/table instead of combined collections — deterministic names and
+  locations make it simple to find and replace only what a refresh changes;
+  combining waits for catalog building. Add a small JSON manifest per adapter
+  listing each identifier, its file location(s) and last update date for
+  refresh checks.
 
 - [ ] **harvest** Re-evaluate tables previously dismissed as incompatible with
   JSON-stat2 — after the switch to StatDCAT they may now qualify for inclusion.
