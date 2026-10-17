@@ -1,0 +1,577 @@
+{
+  "key": "slu/SM_Barproduktion_tab.px/en",
+  "identifier": "SM_Barproduktion_tab.px",
+  "language": "en",
+  "updated": "2026-05-27",
+  "retrieved_at": "2026-10-17T07:20:34.814606+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Table 2.6 - Annual production for Vaccinum myrtillus and Vaccinium vitis-idaea (2016 - date)",
+      "variables": [
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "Landsdel",
+          "text": "Region",
+          "values": [
+            "101",
+            "102",
+            "103",
+            "104",
+            "000"
+          ],
+          "valueTexts": [
+            "N Norrland",
+            "S Norrland",
+            "Svealand",
+            "Götaland",
+            "Whole country"
+          ]
+        },
+        {
+          "code": "Art",
+          "text": "Species",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Vaccinum myrtillus",
+            "Vaccinium vitis-idaea"
+          ]
+        },
+        {
+          "code": "Tabellinnehåll",
+          "text": "Table contents",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Number of berries per m²",
+            "1000 tonnes"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://skogsstatistik.slu.se/api/v1/en/OffStat/Skogsmark/StandortVegetation/SM_Barproduktion_tab.px",
+      "category_path": [
+        {
+          "id": "Skogsmark",
+          "name": "Forest land"
+        },
+        {
+          "id": "StandortVegetation",
+          "name": "Vegetation and site conditions"
+        }
+      ],
+      "database_id": "OffStat",
+      "dataset_code": "SM_Barproduktion_tab.px",
+      "id": "SM_Barproduktion_tab.px",
+      "language": "en",
+      "path": "/Skogsmark/StandortVegetation",
+      "paths": [
+        {
+          "api_url": "https://skogsstatistik.slu.se/api/v1/en/OffStat/Skogsmark/StandortVegetation/SM_Barproduktion_tab.px",
+          "category_path": [
+            {
+              "id": "Skogsmark",
+              "name": "Forest land"
+            },
+            {
+              "id": "StandortVegetation",
+              "name": "Vegetation and site conditions"
+            }
+          ],
+          "database_id": "OffStat",
+          "path": "/Skogsmark/StandortVegetation",
+          "published": "2026-05-27",
+          "score": 1.0,
+          "title": "Table 2.6 - Annual production for Vaccinum myrtillus and Vaccinium vitis-idaea (2016 - date)",
+          "web_url": "https://skogsstatistik.slu.se/pxweb/en/OffStat/OffStat__Skogsmark__StandortVegetation/SM_Barproduktion_tab.px/"
+        }
+      ],
+      "provider_code": "slu",
+      "published": "2026-05-27",
+      "score": 1.0,
+      "title": "Table 2.6 - Annual production for Vaccinum myrtillus and Vaccinium vitis-idaea (2016 - date)",
+      "web_url": "https://skogsstatistik.slu.se/pxweb/en/OffStat/OffStat__Skogsmark__StandortVegetation/SM_Barproduktion_tab.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 300000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Table 2.6 - Annual production for Vaccinum myrtillus and Vaccinium vitis-idaea by Year, Region, Species and Table contents",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Forest area according to the Swedish Forestry Act, see chapter 4 of Skogsdata (available as a pdf from www.slu.se/nfi). Forest land.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/en/OffStat_medelfel/OffStat_medelfel__Skogsmark__StandortVegetation/SM_Barproduktion_tabmf.px target=_blank>Standard errors</a> are available here."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2016",
+                "1": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "101": "N Norrland",
+                "102": "S Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code_value"
+            }
+          },
+          "Art": {
+            "label": "Species",
+            "category": {
+              "label": {
+                "0": "Vaccinum myrtillus",
+                "1": "Vaccinium vitis-idaea"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Number of berries per m²",
+                "1": "1000 tonnes"
+              },
+              "unit": {
+                "0": {
+                  "base": "Number of berries per m²",
+                  "decimals": 0
+                },
+                "1": {
+                  "base": "1000 tonnes",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "206 Tabell26",
+            "subject-code": "Tab26"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Table 2.6 - Annual production for Vaccinum myrtillus and Vaccinium vitis-idaea by Year, Region, Species and Table contents",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Forest area according to the Swedish Forestry Act, see chapter 4 of Skogsdata (available as a pdf from www.slu.se/nfi). Forest land.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/en/OffStat_medelfel/OffStat_medelfel__Skogsmark__StandortVegetation/SM_Barproduktion_tabmf.px target=_blank>Standard errors</a> are available here."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2018",
+                "3": "2019",
+                "4": "2020",
+                "5": "2021",
+                "6": "2022",
+                "7": "2023",
+                "8": "2024",
+                "9": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "101": "N Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code_value"
+            }
+          },
+          "Art": {
+            "label": "Species",
+            "category": {
+              "label": {
+                "0": "Vaccinum myrtillus"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Number of berries per m²"
+              },
+              "unit": {
+                "0": {
+                  "base": "Number of berries per m²",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "206 Tabell26",
+            "subject-code": "Tab26"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Table 2.6 - Annual production for Vaccinum myrtillus and Vaccinium vitis-idaea by Year, Region, Species and Table contents",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Forest area according to the Swedish Forestry Act, see chapter 4 of Skogsdata (available as a pdf from www.slu.se/nfi). Forest land.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/en/OffStat_medelfel/OffStat_medelfel__Skogsmark__StandortVegetation/SM_Barproduktion_tabmf.px target=_blank>Standard errors</a> are available here."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2016"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "103": "Svealand",
+                "104": "Götaland",
+                "000": "Whole country"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code_value"
+            }
+          },
+          "Art": {
+            "label": "Species",
+            "category": {
+              "label": {
+                "0": "Vaccinum myrtillus"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Number of berries per m²"
+              },
+              "unit": {
+                "0": {
+                  "base": "Number of berries per m²",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "206 Tabell26",
+            "subject-code": "Tab26"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "101",
+                "102"
+              ]
+            }
+          },
+          {
+            "code": "Art",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "101"
+              ]
+            }
+          },
+          {
+            "code": "Art",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "103",
+                "104",
+                "000"
+              ]
+            }
+          },
+          {
+            "code": "Art",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

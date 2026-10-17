@@ -1,0 +1,866 @@
+{
+  "key": "fohm/DiabetfallFod.px/sv",
+  "identifier": "DiabetfallFod.px",
+  "language": "sv",
+  "updated": "2026-05-04",
+  "retrieved_at": "2026-10-17T07:00:38.911659+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+      "variables": [
+        {
+          "code": "Födelseland",
+          "text": "Födelseland",
+          "values": [
+            "1+2+3+4",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Sverige",
+            "Övriga Norden",
+            "Övriga Europa",
+            "Övriga världen"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt 25- år",
+            "Totalt 25- åldersstandardiserad"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1+2",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Kvinnor",
+            "Män"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2012-2015",
+            "2013-2016",
+            "2014-2017",
+            "2015-2018",
+            "2016-2019",
+            "2017-2020",
+            "2018-2021",
+            "2019-2022",
+            "2020-2023"
+          ],
+          "valueTexts": [
+            "2012-2015",
+            "2013-2016",
+            "2014-2017",
+            "2015-2018",
+            "2016-2019",
+            "2017-2020",
+            "2018-2021",
+            "2019-2022",
+            "2020-2023"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/Halsoutfall/06Kronisk/06.02.01diabetfall/DiabetfallFod.px",
+      "category_path": [
+        {
+          "id": "A_Mo8",
+          "name": "Folkhälsan i Sverige"
+        },
+        {
+          "id": "Halsoutfall",
+          "name": "Hälsa"
+        },
+        {
+          "id": "06Kronisk",
+          "name": "Kroniska sjukdomar"
+        },
+        {
+          "id": "06.02.01diabetfall",
+          "name": "H06.02.01 Diabetes typ 2, nya registrerade fall"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "DiabetfallFod.px",
+      "id": "DiabetfallFod.px",
+      "language": "sv",
+      "path": "/A_Mo8/Halsoutfall/06Kronisk/06.02.01diabetfall",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/Halsoutfall/06Kronisk/06.02.01diabetfall/DiabetfallFod.px",
+          "category_path": [
+            {
+              "id": "A_Mo8",
+              "name": "Folkhälsan i Sverige"
+            },
+            {
+              "id": "Halsoutfall",
+              "name": "Hälsa"
+            },
+            {
+              "id": "06Kronisk",
+              "name": "Kroniska sjukdomar"
+            },
+            {
+              "id": "06.02.01diabetfall",
+              "name": "H06.02.01 Diabetes typ 2, nya registrerade fall"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/A_Mo8/Halsoutfall/06Kronisk/06.02.01diabetfall",
+          "published": "2026-05-04",
+          "score": 1.0,
+          "title": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__Halsoutfall__06Kronisk__06.02.01diabetfall/DiabetfallFod.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-05-04",
+      "score": 1.0,
+      "title": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__Halsoutfall__06Kronisk__06.02.01diabetfall/DiabetfallFod.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Diabetes typ 2, nya fall efter födelseland, kön och år. efter Födelseland, Ålder, Kön och År",
+        "source": "Nationella diabetesregistret och Socialstyrelsen",
+        "updated": "2026-05-04T07:00:00Z",
+        "note": [
+          "Data kommer från dynamiska register som förändras bakåt i tiden allt\r\neftersom justeringar görs.",
+          "För att få tillräckligt stabilt dataunderlag så redovisas flerårsmedelvärden.\r\nFlerårsmedelvärdenas period omfattar fyra år.",
+          "För åldersstandardiseringens standardpopulation, se Definitioner,\r\nkommentarer och källor.",
+          "Övriga Europa innefattar även f.d. Sovjetunionen.",
+          "Från och med publiceringsår 2025 baseras statistiken om typ 2-diabetes\r\nbland personer 25 år och äldre på data från nationella register.\r\nTidigare redovisades statistik om diabetes oavsett typ på data från\r\nNationella folkhälsoenkäten för personer 16 år och äldre."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "1+2+3+4": "Totalt",
+                "1": "Sverige"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "1": "Totalt 25- år",
+                "2": "Totalt 25- åldersstandardiserad"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt",
+                "1": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012-2015": "2012-2015",
+                "2013-2016": "2013-2016"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Diabetes typ 2, nya fall efter födelseland, kön och år.",
+            "description": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DiabetfallFod",
+            "subject-code": "hu6.2.1",
+            "subject-area": "Kroniska sjukdomar"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Diabetes typ 2, nya fall efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal per 100 000 inv.",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Diabetes typ 2, nya fall efter födelseland, kön och år. efter Födelseland, Ålder, Kön och År",
+        "source": "Nationella diabetesregistret och Socialstyrelsen",
+        "updated": "2026-05-04T07:00:00Z",
+        "note": [
+          "Data kommer från dynamiska register som förändras bakåt i tiden allt\r\neftersom justeringar görs.",
+          "För att få tillräckligt stabilt dataunderlag så redovisas flerårsmedelvärden.\r\nFlerårsmedelvärdenas period omfattar fyra år.",
+          "För åldersstandardiseringens standardpopulation, se Definitioner,\r\nkommentarer och källor.",
+          "Övriga Europa innefattar även f.d. Sovjetunionen.",
+          "Från och med publiceringsår 2025 baseras statistiken om typ 2-diabetes\r\nbland personer 25 år och äldre på data från nationella register.\r\nTidigare redovisades statistik om diabetes oavsett typ på data från\r\nNationella folkhälsoenkäten för personer 16 år och äldre."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "2": "Övriga Norden",
+                "3": "Övriga Europa",
+                "4": "Övriga världen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "1": "Totalt 25- år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012-2015": "2012-2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Diabetes typ 2, nya fall efter födelseland, kön och år.",
+            "description": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DiabetfallFod",
+            "subject-code": "hu6.2.1",
+            "subject-area": "Kroniska sjukdomar"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Diabetes typ 2, nya fall efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal per 100 000 inv.",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Diabetes typ 2, nya fall efter födelseland, kön och år. efter Födelseland, Ålder, Kön och År",
+        "source": "Nationella diabetesregistret och Socialstyrelsen",
+        "updated": "2026-05-04T07:00:00Z",
+        "note": [
+          "Data kommer från dynamiska register som förändras bakåt i tiden allt\r\neftersom justeringar görs.",
+          "För att få tillräckligt stabilt dataunderlag så redovisas flerårsmedelvärden.\r\nFlerårsmedelvärdenas period omfattar fyra år.",
+          "För åldersstandardiseringens standardpopulation, se Definitioner,\r\nkommentarer och källor.",
+          "Övriga Europa innefattar även f.d. Sovjetunionen.",
+          "Från och med publiceringsår 2025 baseras statistiken om typ 2-diabetes\r\nbland personer 25 år och äldre på data från nationella register.\r\nTidigare redovisades statistik om diabetes oavsett typ på data från\r\nNationella folkhälsoenkäten för personer 16 år och äldre."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "1+2+3+4": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "1": "Totalt 25- år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "2": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012-2015": "2012-2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Diabetes typ 2, nya fall efter födelseland, kön och år.",
+            "description": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DiabetfallFod",
+            "subject-code": "hu6.2.1",
+            "subject-area": "Kroniska sjukdomar"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Diabetes typ 2, nya fall efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal per 100 000 inv.",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Diabetes typ 2, nya fall efter födelseland, kön och år. efter Födelseland, Ålder, Kön och År",
+        "source": "Nationella diabetesregistret och Socialstyrelsen",
+        "updated": "2026-05-04T07:00:00Z",
+        "note": [
+          "Data kommer från dynamiska register som förändras bakåt i tiden allt\r\neftersom justeringar görs.",
+          "För att få tillräckligt stabilt dataunderlag så redovisas flerårsmedelvärden.\r\nFlerårsmedelvärdenas period omfattar fyra år.",
+          "För åldersstandardiseringens standardpopulation, se Definitioner,\r\nkommentarer och källor.",
+          "Övriga Europa innefattar även f.d. Sovjetunionen.",
+          "Från och med publiceringsår 2025 baseras statistiken om typ 2-diabetes\r\nbland personer 25 år och äldre på data från nationella register.\r\nTidigare redovisades statistik om diabetes oavsett typ på data från\r\nNationella folkhälsoenkäten för personer 16 år och äldre."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "1+2+3+4": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "1": "Totalt 25- år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014-2017": "2014-2017",
+                "2015-2018": "2015-2018",
+                "2016-2019": "2016-2019",
+                "2017-2020": "2017-2020",
+                "2018-2021": "2018-2021",
+                "2019-2022": "2019-2022",
+                "2020-2023": "2020-2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Diabetes typ 2, nya fall efter födelseland, kön och år.",
+            "description": "Diabetes typ 2, nya registrerade fall efter födelseland, kön och år (4-årsmedelvärden). Antal per 100 000 invånare.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DiabetfallFod",
+            "subject-code": "hu6.2.1",
+            "subject-area": "Kroniska sjukdomar"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Diabetes typ 2, nya fall efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal per 100 000 inv.",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012-2015",
+                "2013-2016"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012-2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012-2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014-2017",
+                "2015-2018",
+                "2016-2019",
+                "2017-2020",
+                "2018-2021",
+                "2019-2022",
+                "2020-2023"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,841 @@
+{
+  "key": "linkoping/suregpe42.px/sv",
+  "identifier": "suregpe42.px",
+  "language": "sv",
+  "updated": "2025-09-24",
+  "retrieved_at": "2026-10-17T08:09:01.900026+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "riktning",
+          "text": "riktning",
+          "values": [
+            "In",
+            "Ut",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Inpendling till området",
+            "Utpendling från området",
+            "Nettopendling"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "område",
+          "text": "område",
+          "values": [
+            "8052",
+            "8053",
+            "8054",
+            "8055",
+            "8099",
+            "0580",
+            "8227",
+            "8228",
+            "8229",
+            "8233"
+          ],
+          "valueTexts": [
+            "Staden",
+            "Större tätorter",
+            "Mindre tätorter",
+            "Landsbygd",
+            "Ej geografiskt",
+            "Hela kommunen",
+            "Delsumma mindre tätort/landsbygd",
+            "Delsumma omlandet utom staden",
+            "Delsumma övriga tätorter",
+            "Delsumma samtliga tätorter"
+          ]
+        },
+        {
+          "code": "relationskommun",
+          "text": "relationskommun",
+          "values": [
+            "0509",
+            "0512",
+            "0513",
+            "0560",
+            "0561",
+            "0562",
+            "0563",
+            "0580",
+            "0581",
+            "0582",
+            "0583",
+            "0584",
+            "0586",
+            "05"
+          ],
+          "valueTexts": [
+            "Ödeshög",
+            "Ydre",
+            "Kinda",
+            "Boxholm",
+            "Åtvidaberg",
+            "Finspång",
+            "Valdemarsvik",
+            "Linköping",
+            "Norrköping",
+            "Söderköping",
+            "Motala",
+            "Vadstena",
+            "Mjölby",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Sureg14/Pendling/suregpe42.px",
+      "category_path": [
+        {
+          "id": "Pendling",
+          "name": "Pendling"
+        }
+      ],
+      "database_id": "Sureg14",
+      "dataset_code": "suregpe42.px",
+      "id": "suregpe42.px",
+      "language": "sv",
+      "path": "/Pendling",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Sureg14/Pendling/suregpe42.px",
+          "category_path": [
+            {
+              "id": "Pendling",
+              "name": "Pendling"
+            }
+          ],
+          "database_id": "Sureg14",
+          "path": "/Pendling",
+          "published": "2025-09-24",
+          "score": 1.0,
+          "title": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Sureg14/Sureg14__Pendling/suregpe42.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-24",
+      "score": 1.0,
+      "title": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Sureg14/Sureg14__Pendling/suregpe42.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T10:09:01.1712491+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling till området",
+                "Ut": "Utpendling från området"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden",
+                "8053": "Större tätorter"
+              }
+            }
+          },
+          "relationskommun": {
+            "label": "relationskommun",
+            "category": {
+              "label": {
+                "0509": "Ödeshög",
+                "0512": "Ydre"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T10:09:01.3431274+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling till området"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "relationskommun": {
+            "label": "relationskommun",
+            "category": {
+              "label": {
+                "0509": "Ödeshög"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T10:09:01.4681463+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Netto": "Nettopendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "relationskommun": {
+            "label": "relationskommun",
+            "category": {
+              "label": {
+                "0509": "Ödeshög"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T10:09:01.577503+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling till området"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "relationskommun": {
+            "label": "relationskommun",
+            "category": {
+              "label": {
+                "0509": "Ödeshög"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T10:09:01.7025095+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling till området"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8054": "Mindre tätorter",
+                "8055": "Landsbygd",
+                "8099": "Ej geografiskt",
+                "0580": "Hela kommunen",
+                "8227": "Delsumma mindre tätort/landsbygd",
+                "8228": "Delsumma omlandet utom staden",
+                "8229": "Delsumma övriga tätorter",
+                "8233": "Delsumma samtliga tätorter"
+              }
+            }
+          },
+          "relationskommun": {
+            "label": "relationskommun",
+            "category": {
+              "label": {
+                "0509": "Ödeshög"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Riktad pendling över kommungräns inom länet efter tid, riktning, kön, område och relationskommun",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T10:09:01.8281576+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling till området"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "relationskommun": {
+            "label": "relationskommun",
+            "category": {
+              "label": {
+                "0513": "Kinda",
+                "0560": "Boxholm",
+                "0561": "Åtvidaberg",
+                "0562": "Finspång",
+                "0563": "Valdemarsvik",
+                "0580": "Linköping",
+                "0581": "Norrköping",
+                "0582": "Söderköping",
+                "0583": "Motala",
+                "0584": "Vadstena",
+                "0586": "Mjölby",
+                "05": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In",
+                "Ut"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052",
+                "8053"
+              ]
+            }
+          },
+          {
+            "code": "relationskommun",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0509",
+                "0512"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "relationskommun",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0509"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "relationskommun",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0509"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "relationskommun",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0509"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8054",
+                "8055",
+                "8099",
+                "0580",
+                "8227",
+                "8228",
+                "8229",
+                "8233"
+              ]
+            }
+          },
+          {
+            "code": "relationskommun",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0509"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "relationskommun",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0513",
+                "0560",
+                "0561",
+                "0562",
+                "0563",
+                "0580",
+                "0581",
+                "0582",
+                "0583",
+                "0584",
+                "0586",
+                "05"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

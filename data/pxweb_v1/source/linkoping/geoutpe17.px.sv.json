@@ -1,0 +1,781 @@
+{
+  "key": "linkoping/geoutpe17.px/sv",
+  "identifier": "geoutpe17.px",
+  "language": "sv",
+  "updated": "2025-09-23",
+  "retrieved_at": "2026-10-17T07:41:47.242797+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "utskottsområde",
+          "text": "utskottsområde",
+          "values": [
+            "58080901",
+            "58080902",
+            "58080903",
+            "58080924",
+            "58080925",
+            "58080926",
+            "58080927",
+            "58080999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Utskott Nord",
+            "Utskott Väst",
+            "Utskott Syd",
+            "Utskott Vreta Kloster",
+            "Utskott Valkebo",
+            "Utskott Vårdnäs",
+            "Utskott Åkerbo",
+            "Restförda",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "riktning",
+          "text": "riktning",
+          "values": [
+            "Nattbef",
+            "Dagbef",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Inpendling",
+            "Utpendling",
+            "Nettopendling"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "pendlingsrelation",
+          "text": "pendlingsrelation",
+          "values": [
+            "InomElaen",
+            "AnnatLaen",
+            "KommunGr"
+          ],
+          "valueTexts": [
+            "Annan kommun i Östergötlands län",
+            "Kommun i annat län",
+            "Totalt över kommungräns"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Pendling/geoutpe17.px",
+      "category_path": [
+        {
+          "id": "Pendling",
+          "name": "Pendling"
+        }
+      ],
+      "database_id": "GeoUtskott",
+      "dataset_code": "geoutpe17.px",
+      "id": "geoutpe17.px",
+      "language": "sv",
+      "path": "/Pendling",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Pendling/geoutpe17.px",
+          "category_path": [
+            {
+              "id": "Pendling",
+              "name": "Pendling"
+            }
+          ],
+          "database_id": "GeoUtskott",
+          "path": "/Pendling",
+          "published": "2025-09-23",
+          "score": 1.0,
+          "title": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Pendling/geoutpe17.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-23",
+      "score": 1.0,
+      "title": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Pendling/geoutpe17.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                 ",
+        "updated": "2026-10-17T09:41:46.5552695+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord",
+                "58080902": "Utskott Väst"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Nattbef": "Inpendling",
+                "Dagbef": "Utpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "InomElaen": "Annan kommun i Östergötlands län",
+                "AnnatLaen": "Kommun i annat län"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                 ",
+        "updated": "2026-10-17T09:41:46.6802352+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Nattbef": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "InomElaen": "Annan kommun i Östergötlands län"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                 ",
+        "updated": "2026-10-17T09:41:46.8052353+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080903": "Utskott Syd",
+                "58080924": "Utskott Vreta Kloster",
+                "58080925": "Utskott Valkebo",
+                "58080926": "Utskott Vårdnäs",
+                "58080927": "Utskott Åkerbo",
+                "58080999": "Restförda",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Nattbef": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "InomElaen": "Annan kommun i Östergötlands län"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                 ",
+        "updated": "2026-10-17T09:41:46.9302357+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Netto": "Nettopendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "InomElaen": "Annan kommun i Östergötlands län"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                 ",
+        "updated": "2026-10-17T09:41:47.0396162+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Nattbef": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "InomElaen": "Annan kommun i Östergötlands län"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Pendling över kommungräns efter tid, utskottsområde, riktning, kön och pendlingsrelation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                 ",
+        "updated": "2026-10-17T09:41:47.1646229+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Nattbef": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "KommunGr": "Totalt över kommungräns"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901",
+                "58080902"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef",
+                "Dagbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomElaen",
+                "AnnatLaen"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomElaen"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080903",
+                "58080924",
+                "58080925",
+                "58080926",
+                "58080927",
+                "58080999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomElaen"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomElaen"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomElaen"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "KommunGr"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

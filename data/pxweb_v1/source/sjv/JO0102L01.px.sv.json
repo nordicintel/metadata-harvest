@@ -1,0 +1,578 @@
+{
+  "key": "sjv/JO0102L01.px/sv",
+  "identifier": "JO0102L01.px",
+  "language": "sv",
+  "updated": "2024-05-29",
+  "retrieved_at": "2026-10-17T07:01:13.097329+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Översikt trädgårdsodling efter Odling, Variabel och År",
+      "variables": [
+        {
+          "code": "Odling",
+          "text": "Odling",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "All odling, totalt",
+            "Frilandsodling, totalt",
+            "Växthusodling, totalt",
+            "Köksväxter, friland",
+            "Bär, friland",
+            "Frukt, friland",
+            "Prydnadsväxter, friland",
+            "Köksväxter, växthus",
+            "Bär, växthus",
+            "Prydnadsväxter, växthus"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Antal företag",
+            "Areal, hektar",
+            "Växthusyta, kvadratmeter"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16"
+          ],
+          "valueTexts": [
+            "1971",
+            "1976",
+            "1981",
+            "1984",
+            "1987",
+            "1990",
+            "1993",
+            "1996",
+            "1999",
+            "2002",
+            "2005",
+            "2008",
+            "2011",
+            "2014",
+            "2017",
+            "2020",
+            "2023"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Tradgardsodling/Oversikt/JO0102L01.px",
+      "category_path": [
+        {
+          "id": "Tradgardsodling",
+          "name": "Trädgårdsodling"
+        },
+        {
+          "id": "Oversikt",
+          "name": "Översikt"
+        }
+      ],
+      "database_id": "Jordbruksverkets statistikdatabas",
+      "dataset_code": "JO0102L01.px",
+      "id": "JO0102L01.px",
+      "language": "sv",
+      "path": "/Tradgardsodling/Oversikt",
+      "paths": [
+        {
+          "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Tradgardsodling/Oversikt/JO0102L01.px",
+          "category_path": [
+            {
+              "id": "Tradgardsodling",
+              "name": "Trädgårdsodling"
+            },
+            {
+              "id": "Oversikt",
+              "name": "Översikt"
+            }
+          ],
+          "database_id": "Jordbruksverkets statistikdatabas",
+          "path": "/Tradgardsodling/Oversikt",
+          "published": "2024-05-29",
+          "score": 1.0,
+          "title": "Översikt trädgårdsodling efter odlingsform och odlingsinriktning. År 1971-2023",
+          "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Tradgardsodling__Oversikt/JO0102L01.px/"
+        }
+      ],
+      "provider_code": "sjv",
+      "published": "2024-05-29",
+      "score": 1.0,
+      "title": "Översikt trädgårdsodling efter odlingsform och odlingsinriktning. År 1971-2023",
+      "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Tradgardsodling__Oversikt/JO0102L01.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Översikt trädgårdsodling efter Odling, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Odling": {
+            "label": "Odling",
+            "category": {
+              "label": {
+                "0": "All odling, totalt",
+                "1": "Frilandsodling, totalt"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag",
+                "1": "Areal, hektar"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "1": {
+                  "base": "Hektar",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "1971",
+                "1": "1976"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO0610-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Översikt trädgårdsodling efter Odling, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Odling": {
+            "label": "Odling",
+            "category": {
+              "label": {
+                "2": "Växthusodling, totalt",
+                "3": "Köksväxter, friland",
+                "4": "Bär, friland",
+                "5": "Frukt, friland",
+                "6": "Prydnadsväxter, friland",
+                "7": "Köksväxter, växthus",
+                "8": "Bär, växthus",
+                "9": "Prydnadsväxter, växthus"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "1971"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO0610-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Odling",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Odling": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9"
+                  ],
+                  "Variabel": [
+                    "0"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "4": "..",
+                  "6": "..",
+                  "7": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Översikt trädgårdsodling efter Odling, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Odling": {
+            "label": "Odling",
+            "category": {
+              "label": {
+                "0": "All odling, totalt"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "2": "Växthusyta, kvadratmeter"
+              },
+              "unit": {
+                "2": {
+                  "base": "Kvadratmeter",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "1971"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO0610-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Översikt trädgårdsodling efter Odling, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Odling": {
+            "label": "Odling",
+            "category": {
+              "label": {
+                "0": "All odling, totalt"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "1981",
+                "3": "1984",
+                "4": "1987",
+                "5": "1990",
+                "6": "1993",
+                "7": "1996",
+                "8": "1999",
+                "9": "2002",
+                "10": "2005",
+                "11": "2008",
+                "12": "2011",
+                "13": "2014",
+                "14": "2017",
+                "15": "2020",
+                "16": "2023"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO0610-tga",
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Odling",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Odling",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Odling",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Odling",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

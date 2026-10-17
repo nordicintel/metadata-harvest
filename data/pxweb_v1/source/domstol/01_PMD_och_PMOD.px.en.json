@@ -1,0 +1,582 @@
+{
+  "key": "domstol/01_PMD_och_PMOD.px/en",
+  "identifier": "01_PMD_och_PMOD.px",
+  "language": "en",
+  "updated": "2026-02-12",
+  "retrieved_at": "2026-10-17T07:00:33.821298+00:00",
+  "responses": {
+    "metadata": {
+      "title": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Year 2016-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Court",
+          "values": [
+            "Patent and Market Court",
+            "Patent and Market Court of Appeal"
+          ],
+          "valueTexts": [
+            "Patent and Market Court",
+            "Patent and Market Court of Appeal"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variable",
+          "values": [
+            "Number of filed cases and matters",
+            "Number of determined cases and matters",
+            "Number of pending cases and matters December 31"
+          ],
+          "valueTexts": [
+            "Number of filed cases and matters",
+            "Number of determined cases and matters",
+            "Number of pending cases and matters December 31"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/AntalPMD/01_PMD_och_PMOD.px",
+      "category_path": [
+        {
+          "id": "AntalPMD",
+          "name": "Filed (incoming), resolved and pending cases and matters - Patent and Market"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "01_PMD_och_PMOD.px",
+      "id": "01_PMD_och_PMOD.px",
+      "language": "en",
+      "path": "/AntalPMD",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/AntalPMD/01_PMD_och_PMOD.px",
+          "category_path": [
+            {
+              "id": "AntalPMD",
+              "name": "Filed (incoming), resolved and pending cases and matters - Patent and Market"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/AntalPMD",
+          "published": "2026-02-12",
+          "score": 1.0,
+          "title": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Year 2016-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__AntalPMD/01_PMD_och_PMOD.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-12",
+      "score": 1.0,
+      "title": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Year 2016-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__AntalPMD/01_PMD_och_PMOD.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal by Court, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Pending cases and matters are ongoing (open) cases or matters at a specific date.",
+          "As a court of first instance, the Patent and Market Court is a division of Stockholm District Court. The Patent and Market Court of Appeal is a division of Svea Court of Appeal. They handle criminal cases, civil cases and other cases that are related to patent and market.",
+          "The Patent and Market Court´s cases and matters are included in the tables for districts courts. The Patent and Market Court of Appeal's cases and matters are included in other tables regarding Courts of appeal.",
+          " On September 1, 2016, the Patent and Market Court was established at the Stockholm District Court and the Patent and Market Court of Appeal at the Svea Court of Appeal, while the Patent Dispute Court and Market Court ceased to function as authorities. At that time, essentially all judicial review of cases and matters related to intellectual property law, marketing law, and competition law was gathered from general courts and administrative courts to the new courts."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Patent and Market Court": "Patent and Market Court",
+                "Patent and Market Court of Appeal": "Patent and Market Court of Appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of filed cases and matters": "Number of filed cases and matters",
+                "Number of determined cases and matters": "Number of determined cases and matters"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2016",
+                "1": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal",
+            "description": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Year 2016-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030130",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases and matters - Patent and Market"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, number of matters",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal by Court, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Pending cases and matters are ongoing (open) cases or matters at a specific date.",
+          "As a court of first instance, the Patent and Market Court is a division of Stockholm District Court. The Patent and Market Court of Appeal is a division of Svea Court of Appeal. They handle criminal cases, civil cases and other cases that are related to patent and market.",
+          "The Patent and Market Court´s cases and matters are included in the tables for districts courts. The Patent and Market Court of Appeal's cases and matters are included in other tables regarding Courts of appeal.",
+          " On September 1, 2016, the Patent and Market Court was established at the Stockholm District Court and the Patent and Market Court of Appeal at the Svea Court of Appeal, while the Patent Dispute Court and Market Court ceased to function as authorities. At that time, essentially all judicial review of cases and matters related to intellectual property law, marketing law, and competition law was gathered from general courts and administrative courts to the new courts."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Patent and Market Court": "Patent and Market Court"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of pending cases and matters December 31": "Number of pending cases and matters December 31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2016"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal",
+            "description": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Year 2016-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030130",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases and matters - Patent and Market"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, number of matters",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal by Court, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Pending cases and matters are ongoing (open) cases or matters at a specific date.",
+          "As a court of first instance, the Patent and Market Court is a division of Stockholm District Court. The Patent and Market Court of Appeal is a division of Svea Court of Appeal. They handle criminal cases, civil cases and other cases that are related to patent and market.",
+          "The Patent and Market Court´s cases and matters are included in the tables for districts courts. The Patent and Market Court of Appeal's cases and matters are included in other tables regarding Courts of appeal.",
+          " On September 1, 2016, the Patent and Market Court was established at the Stockholm District Court and the Patent and Market Court of Appeal at the Svea Court of Appeal, while the Patent Dispute Court and Market Court ceased to function as authorities. At that time, essentially all judicial review of cases and matters related to intellectual property law, marketing law, and competition law was gathered from general courts and administrative courts to the new courts."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Patent and Market Court": "Patent and Market Court"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of filed cases and matters": "Number of filed cases and matters"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2018",
+                "3": "2019",
+                "4": "2020",
+                "5": "2021",
+                "6": "2022",
+                "7": "2023",
+                "8": "2024",
+                "9": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal",
+            "description": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal. Year 2016-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030130",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases and matters - Patent and Market"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases and matters at the Patent and Market Court and at the Patent and Market Court of Appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, number of matters",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Patent and Market Court",
+                "Patent and Market Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases and matters",
+                "Number of determined cases and matters"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Patent and Market Court"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of pending cases and matters December 31"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Patent and Market Court"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases and matters"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

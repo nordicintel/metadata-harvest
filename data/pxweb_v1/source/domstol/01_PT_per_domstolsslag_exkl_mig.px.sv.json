@@ -1,0 +1,777 @@
+{
+  "key": "domstol/01_PT_per_domstolsslag_exkl_mig.px/sv",
+  "identifier": "01_PT_per_domstolsslag_exkl_mig.px",
+  "language": "sv",
+  "updated": "2026-03-05",
+  "retrieved_at": "2026-10-17T07:00:52.633508+00:00",
+  "responses": {
+    "metadata": {
+      "title": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+      "variables": [
+        {
+          "code": "Domstolsslag",
+          "text": "Domstolsslag",
+          "values": [
+            "Courts of Appeal",
+            "Supreme Court",
+            "Supreme Administrative Court",
+            "Administrative Courts of Appeal"
+          ],
+          "valueTexts": [
+            "Hovrätt",
+            "Högsta domstolen",
+            "Högsta förvaltningsdomstol",
+            "Kammarrätt"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "Number of determined cases where leave to appeal is granted",
+            "Number of determined cases where leave to appeal is not granted",
+            "Number of determined cases not requiring leave to appeal",
+            "Total number of determined cases"
+          ],
+          "valueTexts": [
+            "Antal avgjorda mål som har beviljats PT",
+            "Antal avgjorda mål som ej har beviljats PT",
+            "Antal avgjorda mål som ej omfattas av PT",
+            "Totalt antal avgjorda mål"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/PT/01_PT_per_domstolsslag_exkl_mig.px",
+      "category_path": [
+        {
+          "id": "PT",
+          "name": "Prövningstillstånd (PT)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "01_PT_per_domstolsslag_exkl_mig.px",
+      "id": "01_PT_per_domstolsslag_exkl_mig.px",
+      "language": "sv",
+      "path": "/PT",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/PT/01_PT_per_domstolsslag_exkl_mig.px",
+          "category_path": [
+            {
+              "id": "PT",
+              "name": "Prövningstillstånd (PT)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/PT",
+          "published": "2026-03-05",
+          "score": 1.0,
+          "title": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__PT/01_PT_per_domstolsslag_exkl_mig.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-03-05",
+      "score": 1.0,
+      "title": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__PT/01_PT_per_domstolsslag_exkl_mig.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration efter Domstolsslag, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål totalt och uppdelat per typ av beslut gällande prövningstillstånd (PT). Prövningstillstånd kan beviljas eller ej beviljas, även antal mål som ej omfattas av denna prövning visas."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag": {
+            "label": "Domstolsslag",
+            "category": {
+              "label": {
+                "Courts of Appeal": "Hovrätt",
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined cases where leave to appeal is granted": "Antal avgjorda mål som har beviljats PT",
+                "Number of determined cases where leave to appeal is not granted": "Antal avgjorda mål som ej har beviljats PT"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2004",
+                "1": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration",
+            "description": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag",
+              "Variabel"
+            ],
+            "matrix": "RV0301130",
+            "subject-code": "RV0301",
+            "subject-area": "Prövningstillstånd (PT)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration efter Domstolsslag, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål totalt och uppdelat per typ av beslut gällande prövningstillstånd (PT). Prövningstillstånd kan beviljas eller ej beviljas, även antal mål som ej omfattas av denna prövning visas."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag": {
+            "label": "Domstolsslag",
+            "category": {
+              "label": {
+                "Supreme Administrative Court": "Högsta förvaltningsdomstol",
+                "Administrative Courts of Appeal": "Kammarrätt"
+              },
+              "note": {
+                "Administrative Courts of Appeal": [
+                  "Mål i Migrationsöverdomstolen är exkluderade från kammarrätt."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined cases where leave to appeal is granted": "Antal avgjorda mål som har beviljats PT"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2004"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration",
+            "description": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag",
+              "Variabel"
+            ],
+            "matrix": "RV0301130",
+            "subject-code": "RV0301",
+            "subject-area": "Prövningstillstånd (PT)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration efter Domstolsslag, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål totalt och uppdelat per typ av beslut gällande prövningstillstånd (PT). Prövningstillstånd kan beviljas eller ej beviljas, även antal mål som ej omfattas av denna prövning visas."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag": {
+            "label": "Domstolsslag",
+            "category": {
+              "label": {
+                "Courts of Appeal": "Hovrätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined cases not requiring leave to appeal": "Antal avgjorda mål som ej omfattas av PT",
+                "Total number of determined cases": "Totalt antal avgjorda mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2004"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration",
+            "description": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag",
+              "Variabel"
+            ],
+            "matrix": "RV0301130",
+            "subject-code": "RV0301",
+            "subject-area": "Prövningstillstånd (PT)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration efter Domstolsslag, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål totalt och uppdelat per typ av beslut gällande prövningstillstånd (PT). Prövningstillstånd kan beviljas eller ej beviljas, även antal mål som ej omfattas av denna prövning visas."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag": {
+            "label": "Domstolsslag",
+            "category": {
+              "label": {
+                "Courts of Appeal": "Hovrätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined cases where leave to appeal is granted": "Antal avgjorda mål som har beviljats PT"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2006",
+                "3": "2007",
+                "4": "2008",
+                "5": "2009",
+                "6": "2010",
+                "7": "2011",
+                "8": "2012",
+                "9": "2013",
+                "10": "2014",
+                "11": "2015",
+                "12": "2016",
+                "13": "2017",
+                "14": "2018",
+                "15": "2019",
+                "16": "2020",
+                "17": "2021",
+                "18": "2022",
+                "19": "2023",
+                "20": "2024",
+                "21": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration",
+            "description": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag",
+              "Variabel"
+            ],
+            "matrix": "RV0301130",
+            "subject-code": "RV0301",
+            "subject-area": "Prövningstillstånd (PT)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Frågan om prövningstillstånd (PT) i avgjorda mål per domstolsslag exkl migration"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstolsslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Courts of Appeal",
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases where leave to appeal is granted",
+                "Number of determined cases where leave to appeal is not granted"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstolsslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Administrative Court",
+                "Administrative Courts of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases where leave to appeal is granted"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstolsslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Courts of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases not requiring leave to appeal",
+                "Total number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstolsslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Courts of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases where leave to appeal is granted"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

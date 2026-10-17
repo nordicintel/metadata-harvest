@@ -1,0 +1,444 @@
+{
+  "key": "energi/EN_IND3-6D_Cont.px/sv",
+  "identifier": "EN_IND3-6D_Cont.px",
+  "language": "sv",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:28:41.423249+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+      "variables": [
+        {
+          "code": "Kraftslag",
+          "text": "Kraftslag",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "0"
+          ],
+          "valueTexts": [
+            "Energilager",
+            "Flexibel förbrukning",
+            "Övriga*",
+            "Vattenkraft",
+            "Vindkraft",
+            "Värmekraft",
+            "Summa"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "valueTexts": [
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Energiindikatorer/3/3.6/EN_IND3-6D_Cont.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energiindikatorer"
+        },
+        {
+          "id": "3",
+          "name": "3 Planeringsmål för elsystemet"
+        },
+        {
+          "id": "3.6",
+          "name": "3.6 Flexibilitet i elsystemet"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND3-6D_Cont.px",
+      "id": "EN_IND3-6D_Cont.px",
+      "language": "sv",
+      "path": "/Energiindikatorer/3/3.6",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Energiindikatorer/3/3.6/EN_IND3-6D_Cont.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energiindikatorer"
+            },
+            {
+              "id": "3",
+              "name": "3 Planeringsmål för elsystemet"
+            },
+            {
+              "id": "3.6",
+              "name": "3.6 Flexibilitet i elsystemet"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/3/3.6",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__3__3.6/EN_IND3-6D_Cont.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__3__3.6/EN_IND3-6D_Cont.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026 efter Kraftslag och År",
+        "source": "Statens energimyndighet",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Svk: https://www.svk.se/aktorsportalen/bidra-med-reserver/behov-av-reserver-nu-och-i-framtiden/utbud-pa-marknaderna-for-reserver/ ",
+          "* I övrigt ingår kombination vattenkraft + batteri, kombination vindkraft + batteri, kärnkraft och solkraft"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Kraftslag"
+          ]
+        },
+        "dimension": {
+          "Kraftslag": {
+            "label": "Kraftslag",
+            "category": {
+              "label": {
+                "1": "Energilager",
+                "2": "Flexibel förbrukning"
+              },
+              "unit": {
+                "1": {
+                  "decimals": 0
+                },
+                "2": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+            "description": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Kraftslag"
+            ],
+            "matrix": "EN_IND3-6D",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026 efter Kraftslag och År",
+        "source": "Statens energimyndighet",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Svk: https://www.svk.se/aktorsportalen/bidra-med-reserver/behov-av-reserver-nu-och-i-framtiden/utbud-pa-marknaderna-for-reserver/ ",
+          "* I övrigt ingår kombination vattenkraft + batteri, kombination vindkraft + batteri, kärnkraft och solkraft"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Kraftslag"
+          ]
+        },
+        "dimension": {
+          "Kraftslag": {
+            "label": "Kraftslag",
+            "category": {
+              "label": {
+                "3": "Övriga*",
+                "4": "Vattenkraft",
+                "5": "Vindkraft",
+                "6": "Värmekraft",
+                "0": "Summa"
+              },
+              "unit": {
+                "3": {
+                  "decimals": 0
+                },
+                "4": {
+                  "decimals": 0
+                },
+                "5": {
+                  "decimals": 0
+                },
+                "6": {
+                  "decimals": 0
+                },
+                "0": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+            "description": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Kraftslag"
+            ],
+            "matrix": "EN_IND3-6D",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026 efter Kraftslag och År",
+        "source": "Statens energimyndighet",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Svk: https://www.svk.se/aktorsportalen/bidra-med-reserver/behov-av-reserver-nu-och-i-framtiden/utbud-pa-marknaderna-for-reserver/ ",
+          "* I övrigt ingår kombination vattenkraft + batteri, kombination vindkraft + batteri, kärnkraft och solkraft"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Kraftslag"
+          ]
+        },
+        "dimension": {
+          "Kraftslag": {
+            "label": "Kraftslag",
+            "category": {
+              "label": {
+                "1": "Energilager"
+              },
+              "unit": {
+                "1": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2025": "2025",
+                "2026": "2026"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+            "description": "Förkvalificerade effektvolymer i MW per kraftslag registrerade i januari för åren 2024-2026",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Kraftslag"
+            ],
+            "matrix": "EN_IND3-6D",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Kraftslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kraftslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kraftslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025",
+                "2026"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

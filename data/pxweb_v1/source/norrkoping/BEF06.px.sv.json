@@ -1,0 +1,534 @@
+{
+  "key": "norrkoping/BEF06.px/sv",
+  "identifier": "BEF06.px",
+  "language": "sv",
+  "updated": "2026-04-07",
+  "retrieved_at": "2026-10-17T06:58:41.935189+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Folkmängd och befolkningsförändringar i Norrköping efter variabel och år",
+      "variables": [
+        {
+          "code": "variabel",
+          "text": "variabel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "valueTexts": [
+            "folkmängd",
+            "folkökning",
+            "födda",
+            "döda",
+            "födelseöverskott",
+            "samtliga inflyttningar",
+            "samtliga utflyttningar",
+            "inflyttningar från kommuner inom länet",
+            "inflyttningar från övriga län",
+            "invandringar",
+            "utflyttningar till kommuner inom länet",
+            "utflyttningar till övriga län",
+            "utvandringar",
+            "flyttningsöverskott totalt",
+            "flyttningsöverskott eget län",
+            "flyttningsöverskott övriga Sverige",
+            "invandringsöverskott",
+            "justeringspost"
+          ]
+        },
+        {
+          "code": "år",
+          "text": "år",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25"
+          ],
+          "valueTexts": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.norrkoping.se/PxWeb/api/v1/sv/Befolkning/BEF06.px",
+      "category_path": [],
+      "database_id": "Befolkning",
+      "dataset_code": "BEF06.px",
+      "id": "BEF06.px",
+      "language": "sv",
+      "path": "/",
+      "paths": [
+        {
+          "api_url": "https://statistik.norrkoping.se/PxWeb/api/v1/sv/Befolkning/BEF06.px",
+          "category_path": [],
+          "database_id": "Befolkning",
+          "path": "/",
+          "published": "2026-04-07",
+          "score": 1.0,
+          "title": "Folkmängd och befolkningsförändringar i Norrköping efter variabel och år",
+          "web_url": "https://statistik.norrkoping.se/PxWeb/pxweb/sv/Befolkning/-/BEF06.px/"
+        }
+      ],
+      "provider_code": "norrkoping",
+      "published": "2026-04-07",
+      "score": 1.0,
+      "title": "Folkmängd och befolkningsförändringar i Norrköping efter variabel och år",
+      "web_url": "https://statistik.norrkoping.se/PxWeb/pxweb/sv/Befolkning/-/BEF06.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Folkmängd och befolkningsförändringar i Norrköping by variabel and år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Från och med referensåret 2025 och framåt är en liten kontrollerad slumpmässig osäkerhet införd i samtliga redovisade uppgifter. Osäkerheten har tillförts för att skydda enskilda personer så att ingen riskerar att röjas i statistiken. Till följd av detta så är inte alltid de redovisade totalerna lika med summan av deras redovisade delar."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "variabel": {
+            "label": "variabel",
+            "category": {
+              "label": {
+                "0": "folkmängd",
+                "1": "folkökning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2000",
+                "1": "2001"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "matrix": "BEF",
+            "subject-code": "06"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Folkmängd och befolkningsförändringar i Norrköping"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Folkmängd och befolkningsförändringar i Norrköping by variabel and år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Från och med referensåret 2025 och framåt är en liten kontrollerad slumpmässig osäkerhet införd i samtliga redovisade uppgifter. Osäkerheten har tillförts för att skydda enskilda personer så att ingen riskerar att röjas i statistiken. Till följd av detta så är inte alltid de redovisade totalerna lika med summan av deras redovisade delar."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "variabel": {
+            "label": "variabel",
+            "category": {
+              "label": {
+                "2": "födda",
+                "3": "döda",
+                "4": "födelseöverskott",
+                "5": "samtliga inflyttningar",
+                "6": "samtliga utflyttningar",
+                "7": "inflyttningar från kommuner inom länet",
+                "8": "inflyttningar från övriga län",
+                "9": "invandringar",
+                "10": "utflyttningar till kommuner inom länet",
+                "11": "utflyttningar till övriga län",
+                "12": "utvandringar",
+                "13": "flyttningsöverskott totalt",
+                "14": "flyttningsöverskott eget län",
+                "15": "flyttningsöverskott övriga Sverige",
+                "16": "invandringsöverskott",
+                "17": "justeringspost"
+              },
+              "note": {
+                "17": [
+                  "Justeringsposten är den del av folkökningen som inte kan förklaras av födelseöverskott och invandringsöverskott under perioden. Där ingår födslar, dödsfall, invandringar och utvandringar som rapporterats under perioden, men som inträffat före periodens början. \r\n \r\nBefolkningsförändringar mellan två perioder som sker till följd av indelningsändringar ingår i justeringsposten."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "matrix": "BEF",
+            "subject-code": "06"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Folkmängd och befolkningsförändringar i Norrköping"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Folkmängd och befolkningsförändringar i Norrköping by variabel and år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Från och med referensåret 2025 och framåt är en liten kontrollerad slumpmässig osäkerhet införd i samtliga redovisade uppgifter. Osäkerheten har tillförts för att skydda enskilda personer så att ingen riskerar att röjas i statistiken. Till följd av detta så är inte alltid de redovisade totalerna lika med summan av deras redovisade delar."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "variabel": {
+            "label": "variabel",
+            "category": {
+              "label": {
+                "0": "folkmängd"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2": "2002",
+                "3": "2003",
+                "4": "2004",
+                "5": "2005",
+                "6": "2006",
+                "7": "2007",
+                "8": "2008",
+                "9": "2009",
+                "10": "2010",
+                "11": "2011",
+                "12": "2012",
+                "13": "2013",
+                "14": "2014",
+                "15": "2015",
+                "16": "2016",
+                "17": "2017",
+                "18": "2018",
+                "19": "2019",
+                "20": "2020",
+                "21": "2021",
+                "22": "2022",
+                "23": "2023",
+                "24": "2024",
+                "25": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "matrix": "BEF",
+            "subject-code": "06"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Folkmängd och befolkningsförändringar i Norrköping"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

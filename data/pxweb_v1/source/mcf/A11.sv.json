@@ -1,0 +1,846 @@
+{
+  "key": "mcf/A11/sv",
+  "identifier": "A11",
+  "language": "sv",
+  "updated": "2026-10-17",
+  "retrieved_at": "2026-10-17T06:58:23.636373+00:00",
+  "responses": {
+    "metadata": {
+      "title": "A11. Antal omkomna per miljon invånare per kön, åldersgrupp och år",
+      "variables": [
+        {
+          "code": "konId",
+          "text": "kön",
+          "values": [
+            "2",
+            "1",
+            "100"
+          ],
+          "valueTexts": [
+            "Kvinna",
+            "Man",
+            "Totalt, alla kön"
+          ]
+        },
+        {
+          "code": "aldersgruppId",
+          "text": "åldersgrupp",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "100"
+          ],
+          "valueTexts": [
+            "0-4",
+            "5-11",
+            "12-17",
+            "18-24",
+            "25-44",
+            "45-64",
+            "65-79",
+            "80+",
+            "Totalt, alla åldrar"
+          ]
+        },
+        {
+          "code": "ContentsCode",
+          "text": "antal",
+          "values": [
+            "A11"
+          ],
+          "valueTexts": [
+            "A11. Antal omkomna per miljon invånare"
+          ]
+        },
+        {
+          "code": "ar",
+          "text": "år",
+          "values": [
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "1999",
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.mcf.se/PXWeb/api/v1/sv/PxData/A/A1/A11",
+      "category_path": [
+        {
+          "id": "A",
+          "name": "Omkomna i bränder"
+        },
+        {
+          "id": "A1",
+          "name": "A1. Omkomna i bränder totalt"
+        }
+      ],
+      "database_id": "PxData",
+      "dataset_code": "A11",
+      "id": "A11",
+      "language": "sv",
+      "path": "/A/A1",
+      "paths": [
+        {
+          "api_url": "https://statistik.mcf.se/PXWeb/api/v1/sv/PxData/A/A1/A11",
+          "category_path": [
+            {
+              "id": "A",
+              "name": "Omkomna i bränder"
+            },
+            {
+              "id": "A1",
+              "name": "A1. Omkomna i bränder totalt"
+            }
+          ],
+          "database_id": "PxData",
+          "path": "/A/A1",
+          "published": "2026-10-17",
+          "score": 1.0,
+          "title": "A11. Antal omkomna per miljon invånare per kön och åldersgrupp, riket 1999 - 2024",
+          "web_url": "https://statistik.mcf.se/PXWeb/pxweb/sv/PxData/START__A__A1/A11/"
+        }
+      ],
+      "provider_code": "mcf",
+      "published": "2026-10-17",
+      "score": 1.0,
+      "title": "A11. Antal omkomna per miljon invånare per kön och åldersgrupp, riket 1999 - 2024",
+      "web_url": "https://statistik.mcf.se/PXWeb/pxweb/sv/PxData/START__A__A1/A11/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "A11. Antal omkomna per miljon invånare per kön, åldersgrupp och år",
+        "source": "Myndigheten för civilt försvar",
+        "updated": "2026-10-17T02:00:00Z",
+        "note": [
+          "Statistiken avser personer som avlidit inom 30 dagar på grund av skador orsakade av rök eller värme från en brand, och bygger på de bedömningar som Myndigheten för civilt försvar har gjort baserat på uppgifter från den kommunala räddningstjänsten, Polisen, Trafikverket, Rättsmedicinalverket (1999-2015) samt de nationella brännskadeenheterna i Linköping och Uppsala. \r\n\r\nTill beräkningen används medelbefolkningen för respektive år."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "A11": "A11. Antal omkomna per miljon invånare"
+              },
+              "unit": {
+                "A11": {
+                  "base": "antal",
+                  "decimals": 14
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "A11": ""
+              }
+            }
+          },
+          "konId": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "2": "Kvinna",
+                "1": "Man"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "1": "0-4",
+                "2": "5-11"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "år",
+            "category": {
+              "label": {
+                "1999": "1999",
+                "2000": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "A11",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "A11. Antal omkomna per miljon invånare",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "A11",
+            "subject-code": "A",
+            "subject-area": "Omkomna i bränder"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Myndigheten för civilt försvar# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "A11. Antal omkomna per miljon invånare per kön, åldersgrupp och år",
+        "source": "Myndigheten för civilt försvar",
+        "updated": "2026-10-17T02:00:00Z",
+        "note": [
+          "Statistiken avser personer som avlidit inom 30 dagar på grund av skador orsakade av rök eller värme från en brand, och bygger på de bedömningar som Myndigheten för civilt försvar har gjort baserat på uppgifter från den kommunala räddningstjänsten, Polisen, Trafikverket, Rättsmedicinalverket (1999-2015) samt de nationella brännskadeenheterna i Linköping och Uppsala. \r\n\r\nTill beräkningen används medelbefolkningen för respektive år."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "A11": "A11. Antal omkomna per miljon invånare"
+              },
+              "unit": {
+                "A11": {
+                  "base": "antal",
+                  "decimals": 14
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "A11": ""
+              }
+            }
+          },
+          "konId": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "100": "Totalt, alla kön"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "1": "0-4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "år",
+            "category": {
+              "label": {
+                "1999": "1999"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "A11",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "A11. Antal omkomna per miljon invånare",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "A11",
+            "subject-code": "A",
+            "subject-area": "Omkomna i bränder"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Myndigheten för civilt försvar# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "A11. Antal omkomna per miljon invånare per kön, åldersgrupp och år",
+        "source": "Myndigheten för civilt försvar",
+        "updated": "2026-10-17T02:00:00Z",
+        "note": [
+          "Statistiken avser personer som avlidit inom 30 dagar på grund av skador orsakade av rök eller värme från en brand, och bygger på de bedömningar som Myndigheten för civilt försvar har gjort baserat på uppgifter från den kommunala räddningstjänsten, Polisen, Trafikverket, Rättsmedicinalverket (1999-2015) samt de nationella brännskadeenheterna i Linköping och Uppsala. \r\n\r\nTill beräkningen används medelbefolkningen för respektive år."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "A11": "A11. Antal omkomna per miljon invånare"
+              },
+              "unit": {
+                "A11": {
+                  "base": "antal",
+                  "decimals": 14
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "A11": ""
+              }
+            }
+          },
+          "konId": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "2": "Kvinna"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "3": "12-17",
+                "4": "18-24",
+                "5": "25-44",
+                "6": "45-64",
+                "7": "65-79",
+                "8": "80+",
+                "100": "Totalt, alla åldrar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "år",
+            "category": {
+              "label": {
+                "1999": "1999"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "A11",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "A11. Antal omkomna per miljon invånare",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "A11",
+            "subject-code": "A",
+            "subject-area": "Omkomna i bränder"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Myndigheten för civilt försvar# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "A11. Antal omkomna per miljon invånare per kön, åldersgrupp och år",
+        "source": "Myndigheten för civilt försvar",
+        "updated": "2026-10-17T02:00:00Z",
+        "note": [
+          "Statistiken avser personer som avlidit inom 30 dagar på grund av skador orsakade av rök eller värme från en brand, och bygger på de bedömningar som Myndigheten för civilt försvar har gjort baserat på uppgifter från den kommunala räddningstjänsten, Polisen, Trafikverket, Rättsmedicinalverket (1999-2015) samt de nationella brännskadeenheterna i Linköping och Uppsala. \r\n\r\nTill beräkningen används medelbefolkningen för respektive år."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "A11": "A11. Antal omkomna per miljon invånare"
+              },
+              "unit": {
+                "A11": {
+                  "base": "antal",
+                  "decimals": 14
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "A11": ""
+              }
+            }
+          },
+          "konId": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "2": "Kvinna"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "1": "0-4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2001": "2001",
+                "2002": "2002",
+                "2003": "2003",
+                "2004": "2004",
+                "2005": "2005",
+                "2006": "2006",
+                "2007": "2007",
+                "2008": "2008",
+                "2009": "2009",
+                "2010": "2010",
+                "2011": "2011",
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "A11",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "A11. Antal omkomna per miljon invånare",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "A11",
+            "subject-code": "A",
+            "subject-area": "Omkomna i bränder"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Myndigheten för civilt försvar# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "A11"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1999",
+                "2000"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "100"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "A11"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1999"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "100"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "A11"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1999"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "A11"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001",
+                "2002",
+                "2003",
+                "2004",
+                "2005",
+                "2006",
+                "2007",
+                "2008",
+                "2009",
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

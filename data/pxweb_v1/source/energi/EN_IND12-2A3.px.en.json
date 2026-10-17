@@ -1,0 +1,450 @@
+{
+  "key": "energi/EN_IND12-2A3.px/en",
+  "identifier": "EN_IND12-2A3.px",
+  "language": "en",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:21:09.111948+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+      "variables": [
+        {
+          "code": "Land",
+          "text": "Country",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28"
+          ],
+          "valueTexts": [
+            "Finland",
+            "Norway",
+            "Sweden",
+            "Malta",
+            "France",
+            "Latvia",
+            "Luxembourg",
+            "Portugal",
+            "Spain",
+            "Bulgaria",
+            "Estonia",
+            "Lithuania",
+            "Netherlands",
+            "Slovenia",
+            "Belgium",
+            "EU-27",
+            "Greece",
+            "Italy",
+            "Romania",
+            "Austria",
+            "Poland",
+            "Germany",
+            "Czech Republic",
+            "Slovakia",
+            "Hungary",
+            "Croatia",
+            "Ireland",
+            "Cyprus",
+            "Denmark"
+          ]
+        },
+        {
+          "code": "Halvår",
+          "text": "Semiannual",
+          "values": [
+            "2025H1"
+          ],
+          "valueTexts": [
+            "2025H1"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/12/12.2/EN_IND12-2A3.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energy indicators"
+        },
+        {
+          "id": "12",
+          "name": "12 Factors that influence thedemand and supply of energy"
+        },
+        {
+          "id": "12.2",
+          "name": "12.2 Energy prices for industrial customers"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND12-2A3.px",
+      "id": "EN_IND12-2A3.px",
+      "language": "en",
+      "path": "/Energiindikatorer/12/12.2",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/12/12.2/EN_IND12-2A3.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energy indicators"
+            },
+            {
+              "id": "12",
+              "name": "12 Factors that influence thedemand and supply of energy"
+            },
+            {
+              "id": "12.2",
+              "name": "12.2 Energy prices for industrial customers"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/12/12.2",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__12__12.2/EN_IND12-2A3.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__12__12.2/EN_IND12-2A3.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh by Country and Semiannual",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: Eurostat (2026), Energy statistics - natural gas and electricity prices"
+        ],
+        "role": {
+          "time": [
+            "Halvår"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Land": {
+            "label": "Country",
+            "category": {
+              "label": {
+                "0": "Finland",
+                "1": "Norway"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Halvår": {
+            "label": "Semiannual",
+            "category": {
+              "label": {
+                "2025H1": "2025H1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 3,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+            "description": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+            "descriptiondefault": true,
+            "heading": [
+              "Halvår"
+            ],
+            "stub": [
+              "Land"
+            ],
+            "matrix": "EN_IND12-2A3",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistics, statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "EUR/kWh",
+                      "decimals": 4
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh by Country and Semiannual",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: Eurostat (2026), Energy statistics - natural gas and electricity prices"
+        ],
+        "role": {
+          "time": [
+            "Halvår"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Land": {
+            "label": "Country",
+            "category": {
+              "label": {
+                "2": "Sweden",
+                "3": "Malta",
+                "4": "France",
+                "5": "Latvia",
+                "6": "Luxembourg",
+                "7": "Portugal",
+                "8": "Spain",
+                "9": "Bulgaria",
+                "10": "Estonia",
+                "11": "Lithuania",
+                "12": "Netherlands",
+                "13": "Slovenia",
+                "14": "Belgium",
+                "15": "EU-27",
+                "16": "Greece",
+                "17": "Italy",
+                "18": "Romania",
+                "19": "Austria",
+                "20": "Poland",
+                "21": "Germany",
+                "22": "Czech Republic",
+                "23": "Slovakia",
+                "24": "Hungary",
+                "25": "Croatia",
+                "26": "Ireland",
+                "27": "Cyprus",
+                "28": "Denmark"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Halvår": {
+            "label": "Semiannual",
+            "category": {
+              "label": {
+                "2025H1": "2025H1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 3,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+            "description": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh",
+            "descriptiondefault": true,
+            "heading": [
+              "Halvår"
+            ],
+            "stub": [
+              "Land"
+            ],
+            "matrix": "EN_IND12-2A3",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistics, statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Electricity price for the typical customer 20-70 GWh in the business sector, for different countries, first half of 2025, EUR/kWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "EUR/kWh",
+                      "decimals": 4
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Land",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Halvår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025H1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Land",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "26",
+                "27",
+                "28"
+              ]
+            }
+          },
+          {
+            "code": "Halvår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025H1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

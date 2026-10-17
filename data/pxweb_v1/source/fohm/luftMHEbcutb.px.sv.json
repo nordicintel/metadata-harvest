@@ -1,0 +1,908 @@
+{
+  "key": "fohm/luftMHEbcutb.px/sv",
+  "identifier": "luftMHEbcutb.px",
+  "language": "sv",
+  "updated": "2021-02-09",
+  "retrieved_at": "2026-10-17T07:57:37.570468+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Plats",
+          "text": "Plats",
+          "values": [
+            "01",
+            "02"
+          ],
+          "valueTexts": [
+            "I bostaden",
+            "Utanför bostaden"
+          ]
+        },
+        {
+          "code": "Andel och konfidensintervall",
+          "text": "Andel och konfidensintervall",
+          "values": [
+            "02",
+            "03",
+            "04"
+          ],
+          "valueTexts": [
+            "Andel",
+            "Konfidensintervall lägre gräns",
+            "Konfidensintervall övre gräns"
+          ]
+        },
+        {
+          "code": "Vårdnadshavares utbildningsnivå",
+          "text": "Vårdnadshavares utbildningsnivå",
+          "values": [
+            "00",
+            "01",
+            "02",
+            "03"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Förgymnasial",
+            "Gymnasial",
+            "Eftergymnasial"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "00",
+            "01",
+            "02"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Flickor",
+            "Pojkar"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2011",
+            "2019"
+          ],
+          "valueTexts": [
+            "2011",
+            "2019"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/I_miljohalsabarn/Bostad/Luft/luftMHEbcutb.px",
+      "category_path": [
+        {
+          "id": "I_miljohalsabarn",
+          "name": "Miljöhälsoenkäten barn, nationella och regionala resultat"
+        },
+        {
+          "id": "Bostad",
+          "name": "Exponering och besvär bostad och skola"
+        },
+        {
+          "id": "Luft",
+          "name": "Inomhusmiljö"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "luftMHEbcutb.px",
+      "id": "luftMHEbcutb.px",
+      "language": "sv",
+      "path": "/I_miljohalsabarn/Bostad/Luft",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/I_miljohalsabarn/Bostad/Luft/luftMHEbcutb.px",
+          "category_path": [
+            {
+              "id": "I_miljohalsabarn",
+              "name": "Miljöhälsoenkäten barn, nationella och regionala resultat"
+            },
+            {
+              "id": "Bostad",
+              "name": "Exponering och besvär bostad och skola"
+            },
+            {
+              "id": "Luft",
+              "name": "Inomhusmiljö"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/I_miljohalsabarn/Bostad/Luft",
+          "published": "2021-02-09",
+          "score": 1.0,
+          "title": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__I_miljohalsabarn__Bostad__Luft/luftMHEbcutb.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2021-02-09",
+      "score": 1.0,
+      "title": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__I_miljohalsabarn__Bostad__Luft/luftMHEbcutb.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå efter Plats, Andel och konfidensintervall, Vårdnadshavares utbildningsnivå, Kön och År",
+        "source": "Folkhälsomyndigheten, Miljöhälsoenkäten barn",
+        "updated": "2021-02-09T07:00:00Z",
+        "note": [
+          "Andel som rapporterar att luftkvaliteten i eller utanför bostaden är mycket/ganska bra, acceptabel. ",
+          " Miljöhälsoenkäten är en urvalsundersökning i befolkningen som har genomförts vart fjärde år sedan 1999, varannan gång för vuxna och varannan gång för barn. ",
+          " Barnens miljöhälsoenkät har genomförts 2005, 2011 och 2019 och har skickats till slumpmässigt utvalda vårdnadshavare som har barn i åldrarna 6-10 månader, 4 år och 12 år."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Plats": {
+            "label": "Plats",
+            "category": {
+              "label": {
+                "01": "I bostaden",
+                "02": "Utanför bostaden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "02": "Andel",
+                "03": "Konfidensintervall lägre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Vårdnadshavares utbildningsnivå": {
+            "label": "Vårdnadshavares utbildningsnivå",
+            "category": {
+              "label": {
+                "00": "Totalt",
+                "01": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "00": "Totalt",
+                "01": "Flickor"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011",
+                "2019": "2019"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå",
+            "description": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Vårdnadshavares utbildningsnivå",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Plats"
+            ],
+            "matrix": "luftMHEbcutb",
+            "subject-code": "MHEb",
+            "subject-area": "Miljöhälsoenkäten barn"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011, 2019"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå efter Plats, Andel och konfidensintervall, Vårdnadshavares utbildningsnivå, Kön och År",
+        "source": "Folkhälsomyndigheten, Miljöhälsoenkäten barn",
+        "updated": "2021-02-09T07:00:00Z",
+        "note": [
+          "Andel som rapporterar att luftkvaliteten i eller utanför bostaden är mycket/ganska bra, acceptabel. ",
+          " Miljöhälsoenkäten är en urvalsundersökning i befolkningen som har genomförts vart fjärde år sedan 1999, varannan gång för vuxna och varannan gång för barn. ",
+          " Barnens miljöhälsoenkät har genomförts 2005, 2011 och 2019 och har skickats till slumpmässigt utvalda vårdnadshavare som har barn i åldrarna 6-10 månader, 4 år och 12 år."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Plats": {
+            "label": "Plats",
+            "category": {
+              "label": {
+                "01": "I bostaden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "04": "Konfidensintervall övre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Vårdnadshavares utbildningsnivå": {
+            "label": "Vårdnadshavares utbildningsnivå",
+            "category": {
+              "label": {
+                "00": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "00": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå",
+            "description": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Vårdnadshavares utbildningsnivå",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Plats"
+            ],
+            "matrix": "luftMHEbcutb",
+            "subject-code": "MHEb",
+            "subject-area": "Miljöhälsoenkäten barn"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011, 2019"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå efter Plats, Andel och konfidensintervall, Vårdnadshavares utbildningsnivå, Kön och År",
+        "source": "Folkhälsomyndigheten, Miljöhälsoenkäten barn",
+        "updated": "2021-02-09T07:00:00Z",
+        "note": [
+          "Andel som rapporterar att luftkvaliteten i eller utanför bostaden är mycket/ganska bra, acceptabel. ",
+          " Miljöhälsoenkäten är en urvalsundersökning i befolkningen som har genomförts vart fjärde år sedan 1999, varannan gång för vuxna och varannan gång för barn. ",
+          " Barnens miljöhälsoenkät har genomförts 2005, 2011 och 2019 och har skickats till slumpmässigt utvalda vårdnadshavare som har barn i åldrarna 6-10 månader, 4 år och 12 år."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Plats": {
+            "label": "Plats",
+            "category": {
+              "label": {
+                "01": "I bostaden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "02": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Vårdnadshavares utbildningsnivå": {
+            "label": "Vårdnadshavares utbildningsnivå",
+            "category": {
+              "label": {
+                "02": "Gymnasial",
+                "03": "Eftergymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "00": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå",
+            "description": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Vårdnadshavares utbildningsnivå",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Plats"
+            ],
+            "matrix": "luftMHEbcutb",
+            "subject-code": "MHEb",
+            "subject-area": "Miljöhälsoenkäten barn"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011, 2019"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå efter Plats, Andel och konfidensintervall, Vårdnadshavares utbildningsnivå, Kön och År",
+        "source": "Folkhälsomyndigheten, Miljöhälsoenkäten barn",
+        "updated": "2021-02-09T07:00:00Z",
+        "note": [
+          "Andel som rapporterar att luftkvaliteten i eller utanför bostaden är mycket/ganska bra, acceptabel. ",
+          " Miljöhälsoenkäten är en urvalsundersökning i befolkningen som har genomförts vart fjärde år sedan 1999, varannan gång för vuxna och varannan gång för barn. ",
+          " Barnens miljöhälsoenkät har genomförts 2005, 2011 och 2019 och har skickats till slumpmässigt utvalda vårdnadshavare som har barn i åldrarna 6-10 månader, 4 år och 12 år."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Plats": {
+            "label": "Plats",
+            "category": {
+              "label": {
+                "01": "I bostaden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "02": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Vårdnadshavares utbildningsnivå": {
+            "label": "Vårdnadshavares utbildningsnivå",
+            "category": {
+              "label": {
+                "00": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "02": "Pojkar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå",
+            "description": "Luftkvalitet efter vårdnadshavares utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Vårdnadshavares utbildningsnivå",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Plats"
+            ],
+            "matrix": "luftMHEbcutb",
+            "subject-code": "MHEb",
+            "subject-area": "Miljöhälsoenkäten barn"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Luftkvalitet, plats, kön och vårdnadshavares utbildningsnivå"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011, 2019"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Plats",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01",
+                "02"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "02",
+                "03"
+              ]
+            }
+          },
+          {
+            "code": "Vårdnadshavares utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00",
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00",
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011",
+                "2019"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Plats",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "04"
+              ]
+            }
+          },
+          {
+            "code": "Vårdnadshavares utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Plats",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "02"
+              ]
+            }
+          },
+          {
+            "code": "Vårdnadshavares utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "02",
+                "03"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Plats",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "02"
+              ]
+            }
+          },
+          {
+            "code": "Vårdnadshavares utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "02"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1700 @@
+{
+  "key": "ivo/INITHS04.px/sv",
+  "identifier": "INITHS04.px",
+  "language": "sv",
+  "updated": "2026-07-16",
+  "retrieved_at": "2026-10-17T07:00:51.853097+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år.",
+      "variables": [
+        {
+          "code": "län",
+          "text": "län",
+          "values": [
+            "Riket",
+            "Blekinge",
+            "Dalarna",
+            "Gotland",
+            "Gävleborg",
+            "Halland",
+            "Jämtland",
+            "Jönköping",
+            "Kalmar",
+            "Kronoberg",
+            "Norrbotten",
+            "Skåne",
+            "Stockholm",
+            "Södermanland",
+            "Uppsala",
+            "Värmland",
+            "Västerbotten",
+            "Västernorrland",
+            "Västmanland",
+            "Västra Götaland",
+            "Örebro",
+            "Östergötland",
+            "Övrigt/Uppgift saknas"
+          ],
+          "valueTexts": [
+            "Riket",
+            "Blekinge",
+            "Dalarna",
+            "Gotland",
+            "Gävleborg",
+            "Halland",
+            "Jämtland",
+            "Jönköping",
+            "Kalmar",
+            "Kronoberg",
+            "Norrbotten",
+            "Skåne",
+            "Stockholm",
+            "Södermanland",
+            "Uppsala",
+            "Värmland",
+            "Västerbotten",
+            "Västernorrland",
+            "Västmanland",
+            "Västra Götaland",
+            "Örebro",
+            "Östergötland",
+            "Övrigt/Uppgift saknas"
+          ]
+        },
+        {
+          "code": "verksamhetstyp",
+          "text": "verksamhetstyp",
+          "values": [
+            "Akutmottagning Akutmottagning",
+            "Andra specialiteter E-hälsa (AS)",
+            "Andra specialiteter Habilitering",
+            "Andra specialiteter Övriga specialiteter",
+            "Apoteksverksamhet Apotek",
+            "Barn och familj HVB barn och unga",
+            "Barn och familj Myndighetsutövning (BF)",
+            "Barn och familj SiS Särskilda ungdomshem",
+            "Barn och familj Öppenvårdsinsatser individuella (BF)",
+            "Barn och familj Övrigt (BF)",
+            "Elevhälsa Hälso-/sjukvård i skola",
+            "Estetiska behandlingar Estetiska injektionsbehandlingar",
+            "Estetiska behandlingar Estetiska kirurgiska ingrepp",
+            "Funktionsnedsättning LSS Boende barn och ungdomar",
+            "Funktionsnedsättning LSS Boende vuxna",
+            "Funktionsnedsättning LSS Daglig verksamhet",
+            "Funktionsnedsättning LSS Korttidstillsyn",
+            "Funktionsnedsättning LSS Korttidsvistelse",
+            "Funktionsnedsättning LSS Personlig assistans",
+            "Funktionsnedsättning LSS Övrigt (LSS)",
+            "Funktionsnedsättning SoL Hemtjänst/boendestöd",
+            "Funktionsnedsättning SoL HVB funktionsnedsättning",
+            "Funktionsnedsättning SoL Korttidsboende (SOL)",
+            "Funktionsnedsättning SoL Myndighetsutövning (SOL)",
+            "Funktionsnedsättning SoL Stödboende (SOL)",
+            "Funktionsnedsättning SoL Särskild boendeform",
+            "Funktionsnedsättning SoL Övrigt (SOL)",
+            "Företagshälsovård Företagshälsovård",
+            "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet",
+            "Hälso- och sjukvård i hemmet Rehab (HOB)",
+            "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård",
+            "Kriminalvård Hälso-/sjukvård i kriminalvård",
+            "Laboratorieverksamhet E-hälsa (LBV)",
+            "Laboratorieverksamhet Lab.patientbunden",
+            "Laboratorieverksamhet Lab.prov/diagnostik",
+            "Laboratorieverksamhet Transfusionsmedicin",
+            "Laboratorieverksamhet Vävnads-/cellverksamhet",
+            "Missbruk HVB missbruk",
+            "Missbruk Myndighetsutövning (MB)",
+            "Missbruk SiS LVM-hem",
+            "Missbruk Stödboende (MB)",
+            "Missbruk Öppenvårdsinsatser individuella (MB)",
+            "Missbruk Övrigt (MB)",
+            "Optiker Optiker",
+            "Prehospital vård Ambulansverksamhet",
+            "Prehospital vård Larmtjänst/dirigering",
+            "Prehospital vård Sjukvårdsrådgivning",
+            "Prehospital vård Övrig prehospital verksamhet",
+            "Primärvård, utom hälso- och sjukvård i hemmet BVC",
+            "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)",
+            "Primärvård, utom hälso- och sjukvård i hemmet MVC",
+            "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning",
+            "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)",
+            "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet",
+            "Psykiatrisk specialistsjukvård Allmänpsykiatri",
+            "Psykiatrisk specialistsjukvård Barn-/ungdomspsykiatri",
+            "Psykiatrisk specialistsjukvård Beroende",
+            "Psykiatrisk specialistsjukvård E-hälsa (PSV)",
+            "Psykiatrisk specialistsjukvård Rättspsykiatri",
+            "Radiologi Barn-/ungdomsradiologi",
+            "Radiologi Medicinsk radiologi",
+            "Radiologi Neuroradiologi",
+            "Somatisk specialistsjukvård Barnmedicin Allmän barn- och ungdomsmedicin",
+            "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsallergi",
+            "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomskardiologi",
+            "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsneurologi med habilitering",
+            "Somatisk specialistsjukvård Barnmedicin Barnonkologi",
+            "Somatisk specialistsjukvård Barnmedicin Neonatologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Allergisjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Endokrinologi och diabetologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Geriatrik",
+            "Somatisk specialistsjukvård Invärtesmedicin Hematologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Hud- och könssjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Infektionssjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Kardiologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Lungsjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Medicinsk gastroenterologi och hepatologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Medicinska njursjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Neurologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Onkologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Rehabiliteringsmedicin",
+            "Somatisk specialistsjukvård Invärtesmedicin Reumatologi",
+            "Somatisk specialistsjukvård Kirurgi Anestesi-/intensivvård",
+            "Somatisk specialistsjukvård Kirurgi Barn-/ungdomskirurgi",
+            "Somatisk specialistsjukvård Kirurgi Handkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Kärlkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Neurokirurgi",
+            "Somatisk specialistsjukvård Kirurgi Obstetrik/gynekologi",
+            "Somatisk specialistsjukvård Kirurgi Ortopedi",
+            "Somatisk specialistsjukvård Kirurgi Plastikkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Thoraxkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Transplantationsverksamhet",
+            "Somatisk specialistsjukvård Kirurgi Urologi",
+            "Somatisk specialistsjukvård Kirurgi Ögonsjukdomar",
+            "Somatisk specialistsjukvård Kirurgi Öron-, näs- och halssjukdomar",
+            "Somatisk specialistsjukvård Kirurgi Övrig kirurgi",
+            "Tandvård Allmän tandvård",
+            "Tandvård Specialisttandvård",
+            "Gynekologi/Obstetrik (Utgått)",
+            "Korttidsboende (Utgått)",
+            "Rehab (Utgått)",
+            "Vårdcentral (Utgått)",
+            "Öppenvårdsinsatser individuella (Utgått)",
+            "Öppenvårdsprogram i grupp (Utgått)",
+            "Övriga individuella insatser (Utgått)",
+            "Övrigt/Uppgift saknas",
+            "Äldreomsorg Dagverksamhet",
+            "Äldreomsorg Hemtjänst",
+            "Äldreomsorg Korttidsboende (ÄO)",
+            "Äldreomsorg Myndighetsutövning (ÄO)",
+            "Äldreomsorg Särskilt boende",
+            "Äldreomsorg Övriga individuella insatser (ÄO)",
+            "Äldreomsorg Övrigt (ÄO)",
+            "Övrig socialtjänst Stödboende (ÖS)"
+          ],
+          "valueTexts": [
+            "Akutmottagning Akutmottagning",
+            "Andra specialiteter E-hälsa (AS)",
+            "Andra specialiteter Habilitering",
+            "Andra specialiteter Övriga specialiteter",
+            "Apoteksverksamhet Apotek",
+            "Barn och familj HVB barn och unga",
+            "Barn och familj Myndighetsutövning (BF)",
+            "Barn och familj SiS Särskilda ungdomshem",
+            "Barn och familj Öppenvårdsinsatser individuella (BF)",
+            "Barn och familj Övrigt (BF)",
+            "Elevhälsa Hälso-/sjukvård i skola",
+            "Estetiska behandlingar Estetiska injektionsbehandlingar",
+            "Estetiska behandlingar Estetiska kirurgiska ingrepp",
+            "Funktionsnedsättning LSS Boende barn och ungdomar",
+            "Funktionsnedsättning LSS Boende vuxna",
+            "Funktionsnedsättning LSS Daglig verksamhet",
+            "Funktionsnedsättning LSS Korttidstillsyn",
+            "Funktionsnedsättning LSS Korttidsvistelse",
+            "Funktionsnedsättning LSS Personlig assistans",
+            "Funktionsnedsättning LSS Övrigt (LSS)",
+            "Funktionsnedsättning SoL Hemtjänst/boendestöd",
+            "Funktionsnedsättning SoL HVB funktionsnedsättning",
+            "Funktionsnedsättning SoL Korttidsboende (SOL)",
+            "Funktionsnedsättning SoL Myndighetsutövning (SOL)",
+            "Funktionsnedsättning SoL Stödboende (SOL)",
+            "Funktionsnedsättning SoL Särskild boendeform",
+            "Funktionsnedsättning SoL Övrigt (SOL)",
+            "Företagshälsovård Företagshälsovård",
+            "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet",
+            "Hälso- och sjukvård i hemmet Rehab (HOB)",
+            "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård",
+            "Kriminalvård Hälso-/sjukvård i kriminalvård",
+            "Laboratorieverksamhet E-hälsa (LBV)",
+            "Laboratorieverksamhet Lab.patientbunden",
+            "Laboratorieverksamhet Lab.prov/diagnostik",
+            "Laboratorieverksamhet Transfusionsmedicin",
+            "Laboratorieverksamhet Vävnads-/cellverksamhet",
+            "Missbruk HVB missbruk",
+            "Missbruk Myndighetsutövning (MB)",
+            "Missbruk SiS LVM-hem",
+            "Missbruk Stödboende (MB)",
+            "Missbruk Öppenvårdsinsatser individuella (MB)",
+            "Missbruk Övrigt (MB)",
+            "Optiker Optiker",
+            "Prehospital vård Ambulansverksamhet",
+            "Prehospital vård Larmtjänst/dirigering",
+            "Prehospital vård Sjukvårdsrådgivning",
+            "Prehospital vård Övrig prehospital verksamhet",
+            "Primärvård, utom hälso- och sjukvård i hemmet BVC",
+            "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)",
+            "Primärvård, utom hälso- och sjukvård i hemmet MVC",
+            "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning",
+            "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)",
+            "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet",
+            "Psykiatrisk specialistsjukvård Allmänpsykiatri",
+            "Psykiatrisk specialistsjukvård Barn-/ungdomspsykiatri",
+            "Psykiatrisk specialistsjukvård Beroende",
+            "Psykiatrisk specialistsjukvård E-hälsa (PSV)",
+            "Psykiatrisk specialistsjukvård Rättspsykiatri",
+            "Radiologi Barn-/ungdomsradiologi",
+            "Radiologi Medicinsk radiologi",
+            "Radiologi Neuroradiologi",
+            "Somatisk specialistsjukvård Barnmedicin Allmän barn- och ungdomsmedicin",
+            "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsallergi",
+            "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomskardiologi",
+            "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsneurologi med habilitering",
+            "Somatisk specialistsjukvård Barnmedicin Barnonkologi",
+            "Somatisk specialistsjukvård Barnmedicin Neonatologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Allergisjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Endokrinologi och diabetologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Geriatrik",
+            "Somatisk specialistsjukvård Invärtesmedicin Hematologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Hud- och könssjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Infektionssjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Kardiologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Lungsjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Medicinsk gastroenterologi och hepatologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Medicinska njursjukdomar",
+            "Somatisk specialistsjukvård Invärtesmedicin Neurologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Onkologi",
+            "Somatisk specialistsjukvård Invärtesmedicin Rehabiliteringsmedicin",
+            "Somatisk specialistsjukvård Invärtesmedicin Reumatologi",
+            "Somatisk specialistsjukvård Kirurgi Anestesi-/intensivvård",
+            "Somatisk specialistsjukvård Kirurgi Barn-/ungdomskirurgi",
+            "Somatisk specialistsjukvård Kirurgi Handkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Kärlkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Neurokirurgi",
+            "Somatisk specialistsjukvård Kirurgi Obstetrik/gynekologi",
+            "Somatisk specialistsjukvård Kirurgi Ortopedi",
+            "Somatisk specialistsjukvård Kirurgi Plastikkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Thoraxkirurgi",
+            "Somatisk specialistsjukvård Kirurgi Transplantationsverksamhet",
+            "Somatisk specialistsjukvård Kirurgi Urologi",
+            "Somatisk specialistsjukvård Kirurgi Ögonsjukdomar",
+            "Somatisk specialistsjukvård Kirurgi Öron-, näs- och halssjukdomar",
+            "Somatisk specialistsjukvård Kirurgi Övrig kirurgi",
+            "Tandvård Allmän tandvård",
+            "Tandvård Specialisttandvård",
+            "Gynekologi/Obstetrik (Utgått)",
+            "Korttidsboende (Utgått)",
+            "Rehab (Utgått)",
+            "Vårdcentral (Utgått)",
+            "Öppenvårdsinsatser individuella (Utgått)",
+            "Öppenvårdsprogram i grupp (Utgått)",
+            "Övriga individuella insatser (Utgått)",
+            "Övrigt/Uppgift saknas",
+            "Äldreomsorg Dagverksamhet",
+            "Äldreomsorg Hemtjänst",
+            "Äldreomsorg Korttidsboende (ÄO)",
+            "Äldreomsorg Myndighetsutövning (ÄO)",
+            "Äldreomsorg Särskilt boende",
+            "Äldreomsorg Övriga individuella insatser (ÄO)",
+            "Äldreomsorg Övrigt (ÄO)",
+            "Övrig socialtjänst Stödboende (ÖS)"
+          ]
+        },
+        {
+          "code": "beslutsstatus",
+          "text": "beslutsstatus",
+          "values": [
+            "Antal beslutade",
+            "Varav beslut med begäran om återredovisning"
+          ],
+          "valueTexts": [
+            "Antal beslutade",
+            "Varav beslut med begäran om återredovisning"
+          ]
+        },
+        {
+          "code": "år",
+          "text": "år",
+          "values": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistikdatabasen.ivo.se/PXWeb/api/v1/sv/Statistikdatabasen/Initiativ%C3%A4renden/Initiativ%C3%A4renden%20inom%20h%C3%A4lso-%20och%20sjukv%C3%A5rd/INITHS04.px",
+      "category_path": [
+        {
+          "id": "Initiativärenden",
+          "name": "Initiativärenden"
+        },
+        {
+          "id": "Initiativärenden inom hälso- och sjukvård",
+          "name": "Initiativärenden inom hälso- och sjukvård"
+        }
+      ],
+      "database_id": "Statistikdatabasen",
+      "dataset_code": "INITHS04.px",
+      "id": "INITHS04.px",
+      "language": "sv",
+      "path": "/Initiativärenden/Initiativärenden inom hälso- och sjukvård",
+      "paths": [
+        {
+          "api_url": "https://statistikdatabasen.ivo.se/PXWeb/api/v1/sv/Statistikdatabasen/Initiativ%C3%A4renden/Initiativ%C3%A4renden%20inom%20h%C3%A4lso-%20och%20sjukv%C3%A5rd/INITHS04.px",
+          "category_path": [
+            {
+              "id": "Initiativärenden",
+              "name": "Initiativärenden"
+            },
+            {
+              "id": "Initiativärenden inom hälso- och sjukvård",
+              "name": "Initiativärenden inom hälso- och sjukvård"
+            }
+          ],
+          "database_id": "Statistikdatabasen",
+          "path": "/Initiativärenden/Initiativärenden inom hälso- och sjukvård",
+          "published": "2026-07-16",
+          "score": 1.0,
+          "title": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år.",
+          "web_url": "https://statistikdatabasen.ivo.se/PXWeb/pxweb/sv/Statistikdatabasen/Statistikdatabasen__Initiativ%C3%A4renden__Initiativ%C3%A4renden%20inom%20h%C3%A4lso-%20och%20sjukv%C3%A5rd/INITHS04.px/"
+        }
+      ],
+      "provider_code": "ivo",
+      "published": "2026-07-16",
+      "score": 1.0,
+      "title": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år.",
+      "web_url": "https://statistikdatabasen.ivo.se/PXWeb/pxweb/sv/Statistikdatabasen/Statistikdatabasen__Initiativ%C3%A4renden__Initiativ%C3%A4renden%20inom%20h%C3%A4lso-%20och%20sjukv%C3%A5rd/INITHS04.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år",
+        "source": "Inspektionen för Vård och Omsorg, IVO",
+        "updated": "2026-07-16T11:53:00Z",
+        "note": [
+          "På grund av risken att obehörigt röja uppgifter om enskilda publiceras inte tal mindre eller lika med 5. Maskerade värden representeras av tre punkter (…)."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "län": {
+            "label": "län",
+            "category": {
+              "label": {
+                "Riket": "Riket",
+                "Blekinge": "Blekinge"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "verksamhetstyp": {
+            "label": "verksamhetstyp",
+            "note": [
+              "Ett ärende kan gälla en eller flera verksamhetstyper."
+            ],
+            "category": {
+              "label": {
+                "Akutmottagning Akutmottagning": "Akutmottagning Akutmottagning",
+                "Andra specialiteter E-hälsa (AS)": "Andra specialiteter E-hälsa (AS)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "beslutsstatus": {
+            "label": "beslutsstatus",
+            "category": {
+              "label": {
+                "Antal beslutade": "Antal beslutade",
+                "Varav beslut med begäran om återredovisning": "Varav beslut med begäran om återredovisning"
+              },
+              "note": {
+                "Antal beslutade": [
+                  "Antal beslutade ärenden kan skilja sig från antal inkomna ärenden på grund av handläggningstider. \r\nBeslutade ärenden kan ha inkommit innan tabellens startår."
+                ],
+                "Varav beslut med begäran om återredovisning": [
+                  "Beslut när IVO konstaterar allvarliga brister och begär redovisning av åtgärder. Krav på åtgärder används inte längre inom processen."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning",
+            "descriptiondefault": false,
+            "heading": [
+              "år"
+            ],
+            "stub": [
+              "län",
+              "verksamhetstyp",
+              "beslutsstatus"
+            ],
+            "matrix": "INITHS04",
+            "subject-code": "INITHS",
+            "subject-area": "Initiativärenden inom hälso- och sjukvård"
+          },
+          "contact": [
+            {
+              "raw": "statistik@ivo.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år",
+        "source": "Inspektionen för Vård och Omsorg, IVO",
+        "updated": "2026-07-16T11:53:00Z",
+        "note": [
+          "På grund av risken att obehörigt röja uppgifter om enskilda publiceras inte tal mindre eller lika med 5. Maskerade värden representeras av tre punkter (…)."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "län": {
+            "label": "län",
+            "category": {
+              "label": {
+                "Dalarna": "Dalarna",
+                "Gotland": "Gotland",
+                "Gävleborg": "Gävleborg",
+                "Halland": "Halland",
+                "Jämtland": "Jämtland",
+                "Jönköping": "Jönköping",
+                "Kalmar": "Kalmar",
+                "Kronoberg": "Kronoberg",
+                "Norrbotten": "Norrbotten",
+                "Skåne": "Skåne",
+                "Stockholm": "Stockholm",
+                "Södermanland": "Södermanland",
+                "Uppsala": "Uppsala",
+                "Värmland": "Värmland",
+                "Västerbotten": "Västerbotten",
+                "Västernorrland": "Västernorrland",
+                "Västmanland": "Västmanland",
+                "Västra Götaland": "Västra Götaland",
+                "Örebro": "Örebro",
+                "Östergötland": "Östergötland",
+                "Övrigt/Uppgift saknas": "Övrigt/Uppgift saknas"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "verksamhetstyp": {
+            "label": "verksamhetstyp",
+            "note": [
+              "Ett ärende kan gälla en eller flera verksamhetstyper."
+            ],
+            "category": {
+              "label": {
+                "Akutmottagning Akutmottagning": "Akutmottagning Akutmottagning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "beslutsstatus": {
+            "label": "beslutsstatus",
+            "category": {
+              "label": {
+                "Antal beslutade": "Antal beslutade"
+              },
+              "note": {
+                "Antal beslutade": [
+                  "Antal beslutade ärenden kan skilja sig från antal inkomna ärenden på grund av handläggningstider. \r\nBeslutade ärenden kan ha inkommit innan tabellens startår."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning",
+            "descriptiondefault": false,
+            "heading": [
+              "år"
+            ],
+            "stub": [
+              "län",
+              "verksamhetstyp",
+              "beslutsstatus"
+            ],
+            "matrix": "INITHS04",
+            "subject-code": "INITHS",
+            "subject-area": "Initiativärenden inom hälso- och sjukvård"
+          },
+          "contact": [
+            {
+              "raw": "statistik@ivo.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "län",
+                  "verksamhetstyp",
+                  "beslutsstatus",
+                  "år"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "län": [
+                    "Dalarna",
+                    "Gotland",
+                    "Gävleborg",
+                    "Halland",
+                    "Jämtland",
+                    "Jönköping",
+                    "Kalmar",
+                    "Kronoberg",
+                    "Norrbotten",
+                    "Skåne",
+                    "Stockholm",
+                    "Södermanland",
+                    "Uppsala",
+                    "Värmland",
+                    "Västerbotten",
+                    "Västernorrland",
+                    "Västmanland",
+                    "Västra Götaland",
+                    "Örebro",
+                    "Östergötland",
+                    "Övrigt/Uppgift saknas"
+                  ],
+                  "verksamhetstyp": [
+                    "Akutmottagning Akutmottagning"
+                  ],
+                  "beslutsstatus": [
+                    "Antal beslutade"
+                  ],
+                  "år": [
+                    "2014"
+                  ]
+                },
+                "status": {
+                  "2": "...",
+                  "4": "...",
+                  "5": "...",
+                  "8": "...",
+                  "9": "...",
+                  "10": "...",
+                  "12": "...",
+                  "13": "...",
+                  "14": "...",
+                  "17": "...",
+                  "18": "...",
+                  "19": "..."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år",
+        "source": "Inspektionen för Vård och Omsorg, IVO",
+        "updated": "2026-07-16T11:53:00Z",
+        "note": [
+          "På grund av risken att obehörigt röja uppgifter om enskilda publiceras inte tal mindre eller lika med 5. Maskerade värden representeras av tre punkter (…)."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "län": {
+            "label": "län",
+            "category": {
+              "label": {
+                "Riket": "Riket"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "verksamhetstyp": {
+            "label": "verksamhetstyp",
+            "note": [
+              "Ett ärende kan gälla en eller flera verksamhetstyper."
+            ],
+            "category": {
+              "label": {
+                "Andra specialiteter Habilitering": "Andra specialiteter Habilitering",
+                "Andra specialiteter Övriga specialiteter": "Andra specialiteter Övriga specialiteter",
+                "Apoteksverksamhet Apotek": "Apoteksverksamhet Apotek",
+                "Barn och familj HVB barn och unga": "Barn och familj HVB barn och unga",
+                "Barn och familj Myndighetsutövning (BF)": "Barn och familj Myndighetsutövning (BF)",
+                "Barn och familj SiS Särskilda ungdomshem": "Barn och familj SiS Särskilda ungdomshem",
+                "Barn och familj Öppenvårdsinsatser individuella (BF)": "Barn och familj Öppenvårdsinsatser individuella (BF)",
+                "Barn och familj Övrigt (BF)": "Barn och familj Övrigt (BF)",
+                "Elevhälsa Hälso-/sjukvård i skola": "Elevhälsa Hälso-/sjukvård i skola",
+                "Estetiska behandlingar Estetiska injektionsbehandlingar": "Estetiska behandlingar Estetiska injektionsbehandlingar",
+                "Estetiska behandlingar Estetiska kirurgiska ingrepp": "Estetiska behandlingar Estetiska kirurgiska ingrepp",
+                "Funktionsnedsättning LSS Boende barn och ungdomar": "Funktionsnedsättning LSS Boende barn och ungdomar",
+                "Funktionsnedsättning LSS Boende vuxna": "Funktionsnedsättning LSS Boende vuxna",
+                "Funktionsnedsättning LSS Daglig verksamhet": "Funktionsnedsättning LSS Daglig verksamhet",
+                "Funktionsnedsättning LSS Korttidstillsyn": "Funktionsnedsättning LSS Korttidstillsyn",
+                "Funktionsnedsättning LSS Korttidsvistelse": "Funktionsnedsättning LSS Korttidsvistelse",
+                "Funktionsnedsättning LSS Personlig assistans": "Funktionsnedsättning LSS Personlig assistans",
+                "Funktionsnedsättning LSS Övrigt (LSS)": "Funktionsnedsättning LSS Övrigt (LSS)",
+                "Funktionsnedsättning SoL Hemtjänst/boendestöd": "Funktionsnedsättning SoL Hemtjänst/boendestöd",
+                "Funktionsnedsättning SoL HVB funktionsnedsättning": "Funktionsnedsättning SoL HVB funktionsnedsättning",
+                "Funktionsnedsättning SoL Korttidsboende (SOL)": "Funktionsnedsättning SoL Korttidsboende (SOL)",
+                "Funktionsnedsättning SoL Myndighetsutövning (SOL)": "Funktionsnedsättning SoL Myndighetsutövning (SOL)",
+                "Funktionsnedsättning SoL Stödboende (SOL)": "Funktionsnedsättning SoL Stödboende (SOL)",
+                "Funktionsnedsättning SoL Särskild boendeform": "Funktionsnedsättning SoL Särskild boendeform",
+                "Funktionsnedsättning SoL Övrigt (SOL)": "Funktionsnedsättning SoL Övrigt (SOL)",
+                "Företagshälsovård Företagshälsovård": "Företagshälsovård Företagshälsovård",
+                "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet": "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet",
+                "Hälso- och sjukvård i hemmet Rehab (HOB)": "Hälso- och sjukvård i hemmet Rehab (HOB)",
+                "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård": "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård",
+                "Kriminalvård Hälso-/sjukvård i kriminalvård": "Kriminalvård Hälso-/sjukvård i kriminalvård",
+                "Laboratorieverksamhet E-hälsa (LBV)": "Laboratorieverksamhet E-hälsa (LBV)",
+                "Laboratorieverksamhet Lab.patientbunden": "Laboratorieverksamhet Lab.patientbunden",
+                "Laboratorieverksamhet Lab.prov/diagnostik": "Laboratorieverksamhet Lab.prov/diagnostik",
+                "Laboratorieverksamhet Transfusionsmedicin": "Laboratorieverksamhet Transfusionsmedicin",
+                "Laboratorieverksamhet Vävnads-/cellverksamhet": "Laboratorieverksamhet Vävnads-/cellverksamhet",
+                "Missbruk HVB missbruk": "Missbruk HVB missbruk",
+                "Missbruk Myndighetsutövning (MB)": "Missbruk Myndighetsutövning (MB)",
+                "Missbruk SiS LVM-hem": "Missbruk SiS LVM-hem",
+                "Missbruk Stödboende (MB)": "Missbruk Stödboende (MB)",
+                "Missbruk Öppenvårdsinsatser individuella (MB)": "Missbruk Öppenvårdsinsatser individuella (MB)",
+                "Missbruk Övrigt (MB)": "Missbruk Övrigt (MB)",
+                "Optiker Optiker": "Optiker Optiker",
+                "Prehospital vård Ambulansverksamhet": "Prehospital vård Ambulansverksamhet",
+                "Prehospital vård Larmtjänst/dirigering": "Prehospital vård Larmtjänst/dirigering",
+                "Prehospital vård Sjukvårdsrådgivning": "Prehospital vård Sjukvårdsrådgivning",
+                "Prehospital vård Övrig prehospital verksamhet": "Prehospital vård Övrig prehospital verksamhet",
+                "Primärvård, utom hälso- och sjukvård i hemmet BVC": "Primärvård, utom hälso- och sjukvård i hemmet BVC",
+                "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)": "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)",
+                "Primärvård, utom hälso- och sjukvård i hemmet MVC": "Primärvård, utom hälso- och sjukvård i hemmet MVC",
+                "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning": "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning",
+                "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)": "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)",
+                "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet": "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet",
+                "Psykiatrisk specialistsjukvård Allmänpsykiatri": "Psykiatrisk specialistsjukvård Allmänpsykiatri",
+                "Psykiatrisk specialistsjukvård Barn-/ungdomspsykiatri": "Psykiatrisk specialistsjukvård Barn-/ungdomspsykiatri",
+                "Psykiatrisk specialistsjukvård Beroende": "Psykiatrisk specialistsjukvård Beroende",
+                "Psykiatrisk specialistsjukvård E-hälsa (PSV)": "Psykiatrisk specialistsjukvård E-hälsa (PSV)",
+                "Psykiatrisk specialistsjukvård Rättspsykiatri": "Psykiatrisk specialistsjukvård Rättspsykiatri",
+                "Radiologi Barn-/ungdomsradiologi": "Radiologi Barn-/ungdomsradiologi",
+                "Radiologi Medicinsk radiologi": "Radiologi Medicinsk radiologi",
+                "Radiologi Neuroradiologi": "Radiologi Neuroradiologi",
+                "Somatisk specialistsjukvård Barnmedicin Allmän barn- och ungdomsmedicin": "Somatisk specialistsjukvård Barnmedicin Allmän barn- och ungdomsmedicin",
+                "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsallergi": "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsallergi",
+                "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomskardiologi": "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomskardiologi",
+                "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsneurologi med habilitering": "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsneurologi med habilitering",
+                "Somatisk specialistsjukvård Barnmedicin Barnonkologi": "Somatisk specialistsjukvård Barnmedicin Barnonkologi",
+                "Somatisk specialistsjukvård Barnmedicin Neonatologi": "Somatisk specialistsjukvård Barnmedicin Neonatologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Allergisjukdomar": "Somatisk specialistsjukvård Invärtesmedicin Allergisjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Endokrinologi och diabetologi": "Somatisk specialistsjukvård Invärtesmedicin Endokrinologi och diabetologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Geriatrik": "Somatisk specialistsjukvård Invärtesmedicin Geriatrik",
+                "Somatisk specialistsjukvård Invärtesmedicin Hematologi": "Somatisk specialistsjukvård Invärtesmedicin Hematologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Hud- och könssjukdomar": "Somatisk specialistsjukvård Invärtesmedicin Hud- och könssjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Infektionssjukdomar": "Somatisk specialistsjukvård Invärtesmedicin Infektionssjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Kardiologi": "Somatisk specialistsjukvård Invärtesmedicin Kardiologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Lungsjukdomar": "Somatisk specialistsjukvård Invärtesmedicin Lungsjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Medicinsk gastroenterologi och hepatologi": "Somatisk specialistsjukvård Invärtesmedicin Medicinsk gastroenterologi och hepatologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Medicinska njursjukdomar": "Somatisk specialistsjukvård Invärtesmedicin Medicinska njursjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Neurologi": "Somatisk specialistsjukvård Invärtesmedicin Neurologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Onkologi": "Somatisk specialistsjukvård Invärtesmedicin Onkologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Rehabiliteringsmedicin": "Somatisk specialistsjukvård Invärtesmedicin Rehabiliteringsmedicin",
+                "Somatisk specialistsjukvård Invärtesmedicin Reumatologi": "Somatisk specialistsjukvård Invärtesmedicin Reumatologi",
+                "Somatisk specialistsjukvård Kirurgi Anestesi-/intensivvård": "Somatisk specialistsjukvård Kirurgi Anestesi-/intensivvård",
+                "Somatisk specialistsjukvård Kirurgi Barn-/ungdomskirurgi": "Somatisk specialistsjukvård Kirurgi Barn-/ungdomskirurgi",
+                "Somatisk specialistsjukvård Kirurgi Handkirurgi": "Somatisk specialistsjukvård Kirurgi Handkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Kärlkirurgi": "Somatisk specialistsjukvård Kirurgi Kärlkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Neurokirurgi": "Somatisk specialistsjukvård Kirurgi Neurokirurgi",
+                "Somatisk specialistsjukvård Kirurgi Obstetrik/gynekologi": "Somatisk specialistsjukvård Kirurgi Obstetrik/gynekologi",
+                "Somatisk specialistsjukvård Kirurgi Ortopedi": "Somatisk specialistsjukvård Kirurgi Ortopedi",
+                "Somatisk specialistsjukvård Kirurgi Plastikkirurgi": "Somatisk specialistsjukvård Kirurgi Plastikkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Thoraxkirurgi": "Somatisk specialistsjukvård Kirurgi Thoraxkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Transplantationsverksamhet": "Somatisk specialistsjukvård Kirurgi Transplantationsverksamhet",
+                "Somatisk specialistsjukvård Kirurgi Urologi": "Somatisk specialistsjukvård Kirurgi Urologi",
+                "Somatisk specialistsjukvård Kirurgi Ögonsjukdomar": "Somatisk specialistsjukvård Kirurgi Ögonsjukdomar",
+                "Somatisk specialistsjukvård Kirurgi Öron-, näs- och halssjukdomar": "Somatisk specialistsjukvård Kirurgi Öron-, näs- och halssjukdomar",
+                "Somatisk specialistsjukvård Kirurgi Övrig kirurgi": "Somatisk specialistsjukvård Kirurgi Övrig kirurgi",
+                "Tandvård Allmän tandvård": "Tandvård Allmän tandvård",
+                "Tandvård Specialisttandvård": "Tandvård Specialisttandvård",
+                "Gynekologi/Obstetrik (Utgått)": "Gynekologi/Obstetrik (Utgått)",
+                "Korttidsboende (Utgått)": "Korttidsboende (Utgått)",
+                "Rehab (Utgått)": "Rehab (Utgått)",
+                "Vårdcentral (Utgått)": "Vårdcentral (Utgått)",
+                "Öppenvårdsinsatser individuella (Utgått)": "Öppenvårdsinsatser individuella (Utgått)",
+                "Öppenvårdsprogram i grupp (Utgått)": "Öppenvårdsprogram i grupp (Utgått)",
+                "Övriga individuella insatser (Utgått)": "Övriga individuella insatser (Utgått)",
+                "Övrigt/Uppgift saknas": "Övrigt/Uppgift saknas",
+                "Äldreomsorg Dagverksamhet": "Äldreomsorg Dagverksamhet",
+                "Äldreomsorg Hemtjänst": "Äldreomsorg Hemtjänst",
+                "Äldreomsorg Korttidsboende (ÄO)": "Äldreomsorg Korttidsboende (ÄO)",
+                "Äldreomsorg Myndighetsutövning (ÄO)": "Äldreomsorg Myndighetsutövning (ÄO)",
+                "Äldreomsorg Särskilt boende": "Äldreomsorg Särskilt boende",
+                "Äldreomsorg Övriga individuella insatser (ÄO)": "Äldreomsorg Övriga individuella insatser (ÄO)",
+                "Äldreomsorg Övrigt (ÄO)": "Äldreomsorg Övrigt (ÄO)",
+                "Övrig socialtjänst Stödboende (ÖS)": "Övrig socialtjänst Stödboende (ÖS)"
+              },
+              "note": {
+                "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet": [
+                  "Hälso- och sjukvård i hemmet kallades tidigare för hemsjukvård innan 1 juli 2026. På grund av lagändringar som samlat kallas 'nästa steg för en god och nära vård' ändrades termen med syftet att tydliggöra att vård som ges i en persons hem inte är en särskild vårdform, utan har samma krav på kvalitet, kompetens och resurser som all annan hälso- och sjukvård."
+                ],
+                "Hälso- och sjukvård i hemmet Rehab (HOB)": [
+                  "Hälso- och sjukvård i hemmet kallades tidigare för hemsjukvård innan 1 juli 2026. På grund av lagändringar som samlat kallas 'nästa steg för en god och nära vård' ändrades termen med syftet att tydliggöra att vård som ges i en persons hem inte är en särskild vårdform, utan har samma krav på kvalitet, kompetens och resurser som all annan hälso- och sjukvård."
+                ],
+                "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård": [
+                  "Hälso- och sjukvård i hemmet kallades tidigare för hemsjukvård innan 1 juli 2026. På grund av lagändringar som samlat kallas 'nästa steg för en god och nära vård' ändrades termen med syftet att tydliggöra att vård som ges i en persons hem inte är en särskild vårdform, utan har samma krav på kvalitet, kompetens och resurser som all annan hälso- och sjukvård."
+                ],
+                "Primärvård, utom hälso- och sjukvård i hemmet BVC": [
+                  "Kallades innan 1 juli 2026 för 'Primärvård, utom hemsjukvård', se fotnot om 'Hälso- och sjukvård i hemmet' för mer info."
+                ],
+                "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)": [
+                  "Kallades innan 1 juli 2026 för 'Primärvård, utom hemsjukvård', se fotnot om 'Hälso- och sjukvård i hemmet' för mer info."
+                ],
+                "Primärvård, utom hälso- och sjukvård i hemmet MVC": [
+                  "Kallades innan 1 juli 2026 för 'Primärvård, utom hemsjukvård', se fotnot om 'Hälso- och sjukvård i hemmet' för mer info."
+                ],
+                "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning": [
+                  "Kallades innan 1 juli 2026 för 'Primärvård, utom hemsjukvård', se fotnot om 'Hälso- och sjukvård i hemmet' för mer info."
+                ],
+                "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)": [
+                  "Kallades innan 1 juli 2026 för 'Primärvård, utom hemsjukvård', se fotnot om 'Hälso- och sjukvård i hemmet' för mer info."
+                ],
+                "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet": [
+                  "Kallades innan 1 juli 2026 för 'Primärvård, utom hemsjukvård', se fotnot om 'Hälso- och sjukvård i hemmet' för mer info."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "beslutsstatus": {
+            "label": "beslutsstatus",
+            "category": {
+              "label": {
+                "Antal beslutade": "Antal beslutade"
+              },
+              "note": {
+                "Antal beslutade": [
+                  "Antal beslutade ärenden kan skilja sig från antal inkomna ärenden på grund av handläggningstider. \r\nBeslutade ärenden kan ha inkommit innan tabellens startår."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning",
+            "descriptiondefault": false,
+            "heading": [
+              "år"
+            ],
+            "stub": [
+              "län",
+              "verksamhetstyp",
+              "beslutsstatus"
+            ],
+            "matrix": "INITHS04",
+            "subject-code": "INITHS",
+            "subject-area": "Initiativärenden inom hälso- och sjukvård"
+          },
+          "contact": [
+            {
+              "raw": "statistik@ivo.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "län",
+                  "verksamhetstyp",
+                  "beslutsstatus",
+                  "år"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "län": [
+                    "Riket"
+                  ],
+                  "verksamhetstyp": [
+                    "Andra specialiteter Habilitering",
+                    "Andra specialiteter Övriga specialiteter",
+                    "Apoteksverksamhet Apotek",
+                    "Barn och familj HVB barn och unga",
+                    "Barn och familj Myndighetsutövning (BF)",
+                    "Barn och familj SiS Särskilda ungdomshem",
+                    "Barn och familj Öppenvårdsinsatser individuella (BF)",
+                    "Barn och familj Övrigt (BF)",
+                    "Elevhälsa Hälso-/sjukvård i skola",
+                    "Estetiska behandlingar Estetiska injektionsbehandlingar",
+                    "Estetiska behandlingar Estetiska kirurgiska ingrepp",
+                    "Funktionsnedsättning LSS Boende barn och ungdomar",
+                    "Funktionsnedsättning LSS Boende vuxna",
+                    "Funktionsnedsättning LSS Daglig verksamhet",
+                    "Funktionsnedsättning LSS Korttidstillsyn",
+                    "Funktionsnedsättning LSS Korttidsvistelse",
+                    "Funktionsnedsättning LSS Personlig assistans",
+                    "Funktionsnedsättning LSS Övrigt (LSS)",
+                    "Funktionsnedsättning SoL Hemtjänst/boendestöd",
+                    "Funktionsnedsättning SoL HVB funktionsnedsättning",
+                    "Funktionsnedsättning SoL Korttidsboende (SOL)",
+                    "Funktionsnedsättning SoL Myndighetsutövning (SOL)",
+                    "Funktionsnedsättning SoL Stödboende (SOL)",
+                    "Funktionsnedsättning SoL Särskild boendeform",
+                    "Funktionsnedsättning SoL Övrigt (SOL)",
+                    "Företagshälsovård Företagshälsovård",
+                    "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet",
+                    "Hälso- och sjukvård i hemmet Rehab (HOB)",
+                    "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård",
+                    "Kriminalvård Hälso-/sjukvård i kriminalvård",
+                    "Laboratorieverksamhet E-hälsa (LBV)",
+                    "Laboratorieverksamhet Lab.patientbunden",
+                    "Laboratorieverksamhet Lab.prov/diagnostik",
+                    "Laboratorieverksamhet Transfusionsmedicin",
+                    "Laboratorieverksamhet Vävnads-/cellverksamhet",
+                    "Missbruk HVB missbruk",
+                    "Missbruk Myndighetsutövning (MB)",
+                    "Missbruk SiS LVM-hem",
+                    "Missbruk Stödboende (MB)",
+                    "Missbruk Öppenvårdsinsatser individuella (MB)",
+                    "Missbruk Övrigt (MB)",
+                    "Optiker Optiker",
+                    "Prehospital vård Ambulansverksamhet",
+                    "Prehospital vård Larmtjänst/dirigering",
+                    "Prehospital vård Sjukvårdsrådgivning",
+                    "Prehospital vård Övrig prehospital verksamhet",
+                    "Primärvård, utom hälso- och sjukvård i hemmet BVC",
+                    "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)",
+                    "Primärvård, utom hälso- och sjukvård i hemmet MVC",
+                    "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning",
+                    "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)",
+                    "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet",
+                    "Psykiatrisk specialistsjukvård Allmänpsykiatri",
+                    "Psykiatrisk specialistsjukvård Barn-/ungdomspsykiatri",
+                    "Psykiatrisk specialistsjukvård Beroende",
+                    "Psykiatrisk specialistsjukvård E-hälsa (PSV)",
+                    "Psykiatrisk specialistsjukvård Rättspsykiatri",
+                    "Radiologi Barn-/ungdomsradiologi",
+                    "Radiologi Medicinsk radiologi",
+                    "Radiologi Neuroradiologi",
+                    "Somatisk specialistsjukvård Barnmedicin Allmän barn- och ungdomsmedicin",
+                    "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsallergi",
+                    "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomskardiologi",
+                    "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsneurologi med habilitering",
+                    "Somatisk specialistsjukvård Barnmedicin Barnonkologi",
+                    "Somatisk specialistsjukvård Barnmedicin Neonatologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Allergisjukdomar",
+                    "Somatisk specialistsjukvård Invärtesmedicin Endokrinologi och diabetologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Geriatrik",
+                    "Somatisk specialistsjukvård Invärtesmedicin Hematologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Hud- och könssjukdomar",
+                    "Somatisk specialistsjukvård Invärtesmedicin Infektionssjukdomar",
+                    "Somatisk specialistsjukvård Invärtesmedicin Kardiologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Lungsjukdomar",
+                    "Somatisk specialistsjukvård Invärtesmedicin Medicinsk gastroenterologi och hepatologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Medicinska njursjukdomar",
+                    "Somatisk specialistsjukvård Invärtesmedicin Neurologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Onkologi",
+                    "Somatisk specialistsjukvård Invärtesmedicin Rehabiliteringsmedicin",
+                    "Somatisk specialistsjukvård Invärtesmedicin Reumatologi",
+                    "Somatisk specialistsjukvård Kirurgi Anestesi-/intensivvård",
+                    "Somatisk specialistsjukvård Kirurgi Barn-/ungdomskirurgi",
+                    "Somatisk specialistsjukvård Kirurgi Handkirurgi",
+                    "Somatisk specialistsjukvård Kirurgi Kärlkirurgi",
+                    "Somatisk specialistsjukvård Kirurgi Neurokirurgi",
+                    "Somatisk specialistsjukvård Kirurgi Obstetrik/gynekologi",
+                    "Somatisk specialistsjukvård Kirurgi Ortopedi",
+                    "Somatisk specialistsjukvård Kirurgi Plastikkirurgi",
+                    "Somatisk specialistsjukvård Kirurgi Thoraxkirurgi",
+                    "Somatisk specialistsjukvård Kirurgi Transplantationsverksamhet",
+                    "Somatisk specialistsjukvård Kirurgi Urologi",
+                    "Somatisk specialistsjukvård Kirurgi Ögonsjukdomar",
+                    "Somatisk specialistsjukvård Kirurgi Öron-, näs- och halssjukdomar",
+                    "Somatisk specialistsjukvård Kirurgi Övrig kirurgi",
+                    "Tandvård Allmän tandvård",
+                    "Tandvård Specialisttandvård",
+                    "Gynekologi/Obstetrik (Utgått)",
+                    "Korttidsboende (Utgått)",
+                    "Rehab (Utgått)",
+                    "Vårdcentral (Utgått)",
+                    "Öppenvårdsinsatser individuella (Utgått)",
+                    "Öppenvårdsprogram i grupp (Utgått)",
+                    "Övriga individuella insatser (Utgått)",
+                    "Övrigt/Uppgift saknas",
+                    "Äldreomsorg Dagverksamhet",
+                    "Äldreomsorg Hemtjänst",
+                    "Äldreomsorg Korttidsboende (ÄO)",
+                    "Äldreomsorg Myndighetsutövning (ÄO)",
+                    "Äldreomsorg Särskilt boende",
+                    "Äldreomsorg Övriga individuella insatser (ÄO)",
+                    "Äldreomsorg Övrigt (ÄO)",
+                    "Övrig socialtjänst Stödboende (ÖS)"
+                  ],
+                  "beslutsstatus": [
+                    "Antal beslutade"
+                  ],
+                  "år": [
+                    "2014"
+                  ]
+                },
+                "status": {
+                  "0": "...",
+                  "3": "...",
+                  "5": "...",
+                  "12": "...",
+                  "31": "...",
+                  "35": "...",
+                  "41": "...",
+                  "43": "...",
+                  "46": "...",
+                  "48": "...",
+                  "51": "...",
+                  "57": "...",
+                  "58": "...",
+                  "59": "...",
+                  "60": "...",
+                  "61": "...",
+                  "62": "...",
+                  "63": "...",
+                  "64": "...",
+                  "65": "...",
+                  "66": "...",
+                  "68": "...",
+                  "69": "...",
+                  "70": "...",
+                  "71": "...",
+                  "72": "...",
+                  "73": "...",
+                  "74": "...",
+                  "75": "...",
+                  "76": "...",
+                  "77": "...",
+                  "78": "...",
+                  "79": "...",
+                  "80": "...",
+                  "81": "...",
+                  "82": "...",
+                  "83": "...",
+                  "84": "...",
+                  "87": "...",
+                  "88": "...",
+                  "90": "...",
+                  "92": "...",
+                  "95": "...",
+                  "96": "...",
+                  "97": "...",
+                  "98": "...",
+                  "99": "...",
+                  "100": "...",
+                  "101": "...",
+                  "102": "...",
+                  "105": "..."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning efter län, verksamhetstyp, beslutsstatus och år",
+        "source": "Inspektionen för Vård och Omsorg, IVO",
+        "updated": "2026-07-16T11:53:00Z",
+        "note": [
+          "På grund av risken att obehörigt röja uppgifter om enskilda publiceras inte tal mindre eller lika med 5. Maskerade värden representeras av tre punkter (…)."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "län": {
+            "label": "län",
+            "category": {
+              "label": {
+                "Riket": "Riket"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "verksamhetstyp": {
+            "label": "verksamhetstyp",
+            "note": [
+              "Ett ärende kan gälla en eller flera verksamhetstyper."
+            ],
+            "category": {
+              "label": {
+                "Akutmottagning Akutmottagning": "Akutmottagning Akutmottagning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "beslutsstatus": {
+            "label": "beslutsstatus",
+            "category": {
+              "label": {
+                "Antal beslutade": "Antal beslutade"
+              },
+              "note": {
+                "Antal beslutade": [
+                  "Antal beslutade ärenden kan skilja sig från antal inkomna ärenden på grund av handläggningstider. \r\nBeslutade ärenden kan ha inkommit innan tabellens startår."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning",
+            "descriptiondefault": false,
+            "heading": [
+              "år"
+            ],
+            "stub": [
+              "län",
+              "verksamhetstyp",
+              "beslutsstatus"
+            ],
+            "matrix": "INITHS04",
+            "subject-code": "INITHS",
+            "subject-area": "Initiativärenden inom hälso- och sjukvård"
+          },
+          "contact": [
+            {
+              "raw": "statistik@ivo.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "län",
+                  "verksamhetstyp",
+                  "beslutsstatus",
+                  "år"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "län": [
+                    "Riket"
+                  ],
+                  "verksamhetstyp": [
+                    "Akutmottagning Akutmottagning"
+                  ],
+                  "beslutsstatus": [
+                    "Antal beslutade"
+                  ],
+                  "år": [
+                    "2016",
+                    "2017",
+                    "2018",
+                    "2019",
+                    "2020",
+                    "2021",
+                    "2022",
+                    "2023",
+                    "2024",
+                    "2025"
+                  ]
+                },
+                "status": {
+                  "7": "..."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antal öppnade iniativärenden inom hälso- och sjukvård samt antal beslutade initiativärenden och antal av dessa som lett till beslut med begäran om återredovisning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Riket",
+                "Blekinge"
+              ]
+            }
+          },
+          {
+            "code": "verksamhetstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Akutmottagning Akutmottagning",
+                "Andra specialiteter E-hälsa (AS)"
+              ]
+            }
+          },
+          {
+            "code": "beslutsstatus",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal beslutade",
+                "Varav beslut med begäran om återredovisning"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Dalarna",
+                "Gotland",
+                "Gävleborg",
+                "Halland",
+                "Jämtland",
+                "Jönköping",
+                "Kalmar",
+                "Kronoberg",
+                "Norrbotten",
+                "Skåne",
+                "Stockholm",
+                "Södermanland",
+                "Uppsala",
+                "Värmland",
+                "Västerbotten",
+                "Västernorrland",
+                "Västmanland",
+                "Västra Götaland",
+                "Örebro",
+                "Östergötland",
+                "Övrigt/Uppgift saknas"
+              ]
+            }
+          },
+          {
+            "code": "verksamhetstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Akutmottagning Akutmottagning"
+              ]
+            }
+          },
+          {
+            "code": "beslutsstatus",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal beslutade"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Riket"
+              ]
+            }
+          },
+          {
+            "code": "verksamhetstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Andra specialiteter Habilitering",
+                "Andra specialiteter Övriga specialiteter",
+                "Apoteksverksamhet Apotek",
+                "Barn och familj HVB barn och unga",
+                "Barn och familj Myndighetsutövning (BF)",
+                "Barn och familj SiS Särskilda ungdomshem",
+                "Barn och familj Öppenvårdsinsatser individuella (BF)",
+                "Barn och familj Övrigt (BF)",
+                "Elevhälsa Hälso-/sjukvård i skola",
+                "Estetiska behandlingar Estetiska injektionsbehandlingar",
+                "Estetiska behandlingar Estetiska kirurgiska ingrepp",
+                "Funktionsnedsättning LSS Boende barn och ungdomar",
+                "Funktionsnedsättning LSS Boende vuxna",
+                "Funktionsnedsättning LSS Daglig verksamhet",
+                "Funktionsnedsättning LSS Korttidstillsyn",
+                "Funktionsnedsättning LSS Korttidsvistelse",
+                "Funktionsnedsättning LSS Personlig assistans",
+                "Funktionsnedsättning LSS Övrigt (LSS)",
+                "Funktionsnedsättning SoL Hemtjänst/boendestöd",
+                "Funktionsnedsättning SoL HVB funktionsnedsättning",
+                "Funktionsnedsättning SoL Korttidsboende (SOL)",
+                "Funktionsnedsättning SoL Myndighetsutövning (SOL)",
+                "Funktionsnedsättning SoL Stödboende (SOL)",
+                "Funktionsnedsättning SoL Särskild boendeform",
+                "Funktionsnedsättning SoL Övrigt (SOL)",
+                "Företagshälsovård Företagshälsovård",
+                "Hälso- och sjukvård i hemmet Hälso- och sjukvård i hemmet",
+                "Hälso- och sjukvård i hemmet Rehab (HOB)",
+                "Hälso- och sjukvård i hemmet Somatisk specialiserad hemsjukvård",
+                "Kriminalvård Hälso-/sjukvård i kriminalvård",
+                "Laboratorieverksamhet E-hälsa (LBV)",
+                "Laboratorieverksamhet Lab.patientbunden",
+                "Laboratorieverksamhet Lab.prov/diagnostik",
+                "Laboratorieverksamhet Transfusionsmedicin",
+                "Laboratorieverksamhet Vävnads-/cellverksamhet",
+                "Missbruk HVB missbruk",
+                "Missbruk Myndighetsutövning (MB)",
+                "Missbruk SiS LVM-hem",
+                "Missbruk Stödboende (MB)",
+                "Missbruk Öppenvårdsinsatser individuella (MB)",
+                "Missbruk Övrigt (MB)",
+                "Optiker Optiker",
+                "Prehospital vård Ambulansverksamhet",
+                "Prehospital vård Larmtjänst/dirigering",
+                "Prehospital vård Sjukvårdsrådgivning",
+                "Prehospital vård Övrig prehospital verksamhet",
+                "Primärvård, utom hälso- och sjukvård i hemmet BVC",
+                "Primärvård, utom hälso- och sjukvård i hemmet E-hälsa (PV)",
+                "Primärvård, utom hälso- och sjukvård i hemmet MVC",
+                "Primärvård, utom hälso- och sjukvård i hemmet Primärvårdsmottagning",
+                "Primärvård, utom hälso- och sjukvård i hemmet Rehab (PV)",
+                "Primärvård, utom hälso- och sjukvård i hemmet Övrig primärvårdsverksamhet",
+                "Psykiatrisk specialistsjukvård Allmänpsykiatri",
+                "Psykiatrisk specialistsjukvård Barn-/ungdomspsykiatri",
+                "Psykiatrisk specialistsjukvård Beroende",
+                "Psykiatrisk specialistsjukvård E-hälsa (PSV)",
+                "Psykiatrisk specialistsjukvård Rättspsykiatri",
+                "Radiologi Barn-/ungdomsradiologi",
+                "Radiologi Medicinsk radiologi",
+                "Radiologi Neuroradiologi",
+                "Somatisk specialistsjukvård Barnmedicin Allmän barn- och ungdomsmedicin",
+                "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsallergi",
+                "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomskardiologi",
+                "Somatisk specialistsjukvård Barnmedicin Barn-/ungdomsneurologi med habilitering",
+                "Somatisk specialistsjukvård Barnmedicin Barnonkologi",
+                "Somatisk specialistsjukvård Barnmedicin Neonatologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Allergisjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Endokrinologi och diabetologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Geriatrik",
+                "Somatisk specialistsjukvård Invärtesmedicin Hematologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Hud- och könssjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Infektionssjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Kardiologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Lungsjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Medicinsk gastroenterologi och hepatologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Medicinska njursjukdomar",
+                "Somatisk specialistsjukvård Invärtesmedicin Neurologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Onkologi",
+                "Somatisk specialistsjukvård Invärtesmedicin Rehabiliteringsmedicin",
+                "Somatisk specialistsjukvård Invärtesmedicin Reumatologi",
+                "Somatisk specialistsjukvård Kirurgi Anestesi-/intensivvård",
+                "Somatisk specialistsjukvård Kirurgi Barn-/ungdomskirurgi",
+                "Somatisk specialistsjukvård Kirurgi Handkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Kärlkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Neurokirurgi",
+                "Somatisk specialistsjukvård Kirurgi Obstetrik/gynekologi",
+                "Somatisk specialistsjukvård Kirurgi Ortopedi",
+                "Somatisk specialistsjukvård Kirurgi Plastikkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Thoraxkirurgi",
+                "Somatisk specialistsjukvård Kirurgi Transplantationsverksamhet",
+                "Somatisk specialistsjukvård Kirurgi Urologi",
+                "Somatisk specialistsjukvård Kirurgi Ögonsjukdomar",
+                "Somatisk specialistsjukvård Kirurgi Öron-, näs- och halssjukdomar",
+                "Somatisk specialistsjukvård Kirurgi Övrig kirurgi",
+                "Tandvård Allmän tandvård",
+                "Tandvård Specialisttandvård",
+                "Gynekologi/Obstetrik (Utgått)",
+                "Korttidsboende (Utgått)",
+                "Rehab (Utgått)",
+                "Vårdcentral (Utgått)",
+                "Öppenvårdsinsatser individuella (Utgått)",
+                "Öppenvårdsprogram i grupp (Utgått)",
+                "Övriga individuella insatser (Utgått)",
+                "Övrigt/Uppgift saknas",
+                "Äldreomsorg Dagverksamhet",
+                "Äldreomsorg Hemtjänst",
+                "Äldreomsorg Korttidsboende (ÄO)",
+                "Äldreomsorg Myndighetsutövning (ÄO)",
+                "Äldreomsorg Särskilt boende",
+                "Äldreomsorg Övriga individuella insatser (ÄO)",
+                "Äldreomsorg Övrigt (ÄO)",
+                "Övrig socialtjänst Stödboende (ÖS)"
+              ]
+            }
+          },
+          {
+            "code": "beslutsstatus",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal beslutade"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Riket"
+              ]
+            }
+          },
+          {
+            "code": "verksamhetstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Akutmottagning Akutmottagning"
+              ]
+            }
+          },
+          {
+            "code": "beslutsstatus",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal beslutade"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

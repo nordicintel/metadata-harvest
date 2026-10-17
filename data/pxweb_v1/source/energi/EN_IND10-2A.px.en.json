@@ -1,0 +1,591 @@
+{
+  "key": "energi/EN_IND10-2A.px/en",
+  "identifier": "EN_IND10-2A.px",
+  "language": "en",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:17:12.915903+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Emission intensity  and renewable electricity by bidding zones",
+      "variables": [
+        {
+          "code": "Elområde",
+          "text": "Renewable/fossil free",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "SE1",
+            "SE2",
+            "SE3",
+            "SE4"
+          ]
+        },
+        {
+          "code": "År",
+          "text": " Contribution by power",
+          "values": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        },
+        {
+          "code": "Mått",
+          "text": "Year",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Emisssion intensity, gCO2eq/MJ",
+            "Share of renewable electricity production, percent"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/10/10.2/EN_IND10-2A.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energy indicators"
+        },
+        {
+          "id": "10",
+          "name": "10 EU goal that effects the energy transition"
+        },
+        {
+          "id": "10.2",
+          "name": "10.2 Emission intensity of electricity in bidding zones (according to RED)"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND10-2A.px",
+      "id": "EN_IND10-2A.px",
+      "language": "en",
+      "path": "/Energiindikatorer/10/10.2",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/10/10.2/EN_IND10-2A.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energy indicators"
+            },
+            {
+              "id": "10",
+              "name": "10 EU goal that effects the energy transition"
+            },
+            {
+              "id": "10.2",
+              "name": "10.2 Emission intensity of electricity in bidding zones (according to RED)"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/10/10.2",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Emission intensity and renewable electricity by bidding zones",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__10__10.2/EN_IND10-2A.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Emission intensity and renewable electricity by bidding zones",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__10__10.2/EN_IND10-2A.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Emission intensity  and renewable electricity by bidding zones by Renewable/fossil free,  Contribution by power and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Renewable/fossil free",
+            "category": {
+              "label": {
+                "0": "SE1",
+                "1": "SE2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": " Contribution by power",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "Emisssion intensity, gCO2eq/MJ",
+                "1": "Share of renewable electricity production, percent"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Emission intensity  and renewable electricity by bidding zones",
+            "description": "Emission intensity  and renewable electricity by bidding zones",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Mått"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND10-2A",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Elområde",
+                  "År",
+                  "Mått"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Elområde": [
+                    "0",
+                    "1"
+                  ],
+                  "År": [
+                    "2021",
+                    "2022"
+                  ],
+                  "Mått": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "4": "<1",
+                  "6": "<1"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Emission intensity  and renewable electricity by bidding zones"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "gCO2eq/MJ, Percent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Emission intensity  and renewable electricity by bidding zones by Renewable/fossil free,  Contribution by power and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Renewable/fossil free",
+            "category": {
+              "label": {
+                "2": "SE3",
+                "3": "SE4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": " Contribution by power",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "Emisssion intensity, gCO2eq/MJ"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Emission intensity  and renewable electricity by bidding zones",
+            "description": "Emission intensity  and renewable electricity by bidding zones",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Mått"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND10-2A",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Emission intensity  and renewable electricity by bidding zones"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "gCO2eq/MJ, Percent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Emission intensity  and renewable electricity by bidding zones by Renewable/fossil free,  Contribution by power and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Renewable/fossil free",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": " Contribution by power",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "Emisssion intensity, gCO2eq/MJ"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Emission intensity  and renewable electricity by bidding zones",
+            "description": "Emission intensity  and renewable electricity by bidding zones",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Mått"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND10-2A",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Emission intensity  and renewable electricity by bidding zones"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "gCO2eq/MJ, Percent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2022"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

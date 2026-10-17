@@ -1,0 +1,569 @@
+{
+  "key": "energi/4_EN0307_1_avfall.px/sv",
+  "identifier": "4_EN0307_1_avfall.px",
+  "language": "sv",
+  "updated": "2025-03-05",
+  "retrieved_at": "2026-10-17T06:58:37.897917+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Avfallspriser, per år exklusive skatt, från och med 2021, kronor/MWh, fritt förbrukare, löpande priser",
+      "variables": [
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        },
+        {
+          "code": "Sortiment",
+          "text": "Sortiment",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Hushållsavfall",
+            "Verksamhetsavfall",
+            "Importavfall"
+          ]
+        },
+        {
+          "code": "Användare",
+          "text": "Användare",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Värmeverk",
+            "Industri"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Tradbransle_och_torvpriser/4_EN0307_1_avfall.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Officiell Energistatistik"
+        },
+        {
+          "id": "Tradbransle_och_torvpriser",
+          "name": "Trädbränsle-, torv- avfallspriser"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "4_EN0307_1_avfall.px",
+      "id": "4_EN0307_1_avfall.px",
+      "language": "sv",
+      "path": "/Officiell_energistatistik/Tradbransle_och_torvpriser",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Tradbransle_och_torvpriser/4_EN0307_1_avfall.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Officiell Energistatistik"
+            },
+            {
+              "id": "Tradbransle_och_torvpriser",
+              "name": "Trädbränsle-, torv- avfallspriser"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Tradbransle_och_torvpriser",
+          "published": "2025-03-05",
+          "score": 1.0,
+          "title": "Avfallspriser, per år exklusive skatt, från och med 2021, kronor/MWh, fritt förbrukare, löpande priser",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/4_EN0307_1_avfall.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-03-05",
+      "score": 1.0,
+      "title": "Avfallspriser, per år exklusive skatt, från och med 2021, kronor/MWh, fritt förbrukare, löpande priser",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/4_EN0307_1_avfall.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt efter År, Sortiment och Användare",
+        "updated": "2025-03-05T07:00:00Z",
+        "note": [
+          "Priset avser ett genomsnittligt mottagningsavgift eller inköpspris för de bolag som ingår i undersökningen. Priset är framräknat genom att bolagens mottagningsavgifter eller inköpskostnader för det bränsle som förbrukats under den aktuella perioden divideras med energimängden i bränslet. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2021",
+                "1": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Sortiment",
+            "category": {
+              "label": {
+                "0": "Hushållsavfall",
+                "1": "Verksamhetsavfall"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "Användare",
+            "category": {
+              "label": {
+                "0": "Värmeverk",
+                "1": "Industri"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt",
+            "description": "Avfallspriser, per år exklusive skatt, från och med 2021, kronor/MWh, fritt förbrukare, löpande priser",
+            "descriptiondefault": true,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0307_5",
+            "subject-code": "EN",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Johan Vinterbäck. Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Sortiment",
+                  "Användare"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0",
+                    "1"
+                  ],
+                  "Sortiment": [
+                    "0",
+                    "1"
+                  ],
+                  "Användare": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "1": "..",
+                  "3": "..",
+                  "5": "..",
+                  "7": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Kr/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt efter År, Sortiment och Användare",
+        "updated": "2025-03-05T07:00:00Z",
+        "note": [
+          "Priset avser ett genomsnittligt mottagningsavgift eller inköpspris för de bolag som ingår i undersökningen. Priset är framräknat genom att bolagens mottagningsavgifter eller inköpskostnader för det bränsle som förbrukats under den aktuella perioden divideras med energimängden i bränslet. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2023",
+                "3": "2024",
+                "4": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Sortiment",
+            "category": {
+              "label": {
+                "0": "Hushållsavfall"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "Användare",
+            "category": {
+              "label": {
+                "0": "Värmeverk"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt",
+            "description": "Avfallspriser, per år exklusive skatt, från och med 2021, kronor/MWh, fritt förbrukare, löpande priser",
+            "descriptiondefault": true,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0307_5",
+            "subject-code": "EN",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Johan Vinterbäck. Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Kr/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt efter År, Sortiment och Användare",
+        "updated": "2025-03-05T07:00:00Z",
+        "note": [
+          "Priset avser ett genomsnittligt mottagningsavgift eller inköpspris för de bolag som ingår i undersökningen. Priset är framräknat genom att bolagens mottagningsavgifter eller inköpskostnader för det bränsle som förbrukats under den aktuella perioden divideras med energimängden i bränslet. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Sortiment",
+            "category": {
+              "label": {
+                "2": "Importavfall"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "Användare",
+            "category": {
+              "label": {
+                "0": "Värmeverk"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt",
+            "description": "Avfallspriser, per år exklusive skatt, från och med 2021, kronor/MWh, fritt förbrukare, löpande priser",
+            "descriptiondefault": true,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0307_5",
+            "subject-code": "EN",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Johan Vinterbäck. Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Avfallspriser per år, kronor/MWh fritt förbrukare, löpande priser exklusive skatt"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Kr/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

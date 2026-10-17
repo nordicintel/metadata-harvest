@@ -1,0 +1,712 @@
+{
+  "key": "energi/EN_IND10-2B.px/en",
+  "identifier": "EN_IND10-2B.px",
+  "language": "en",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:17:19.963018+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+      "variables": [
+        {
+          "code": "Elområde",
+          "text": "Bidding zone",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "SE1",
+            "SE2",
+            "SE3",
+            "SE4"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Measure",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Hydropower normal year adjusted",
+            "Wind power normal year adjusted",
+            "Solar power",
+            "Biopower",
+            "Electricity use, incl. distribution losses"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/10/10.2/EN_IND10-2B.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energy indicators"
+        },
+        {
+          "id": "10",
+          "name": "10 EU goal that effects the energy transition"
+        },
+        {
+          "id": "10.2",
+          "name": "10.2 Emission intensity of electricity in bidding zones (according to RED)"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND10-2B.px",
+      "id": "EN_IND10-2B.px",
+      "language": "en",
+      "path": "/Energiindikatorer/10/10.2",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/10/10.2/EN_IND10-2B.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energy indicators"
+            },
+            {
+              "id": "10",
+              "name": "10 EU goal that effects the energy transition"
+            },
+            {
+              "id": "10.2",
+              "name": "10.2 Emission intensity of electricity in bidding zones (according to RED)"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/10/10.2",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__10__10.2/EN_IND10-2B.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__10__10.2/EN_IND10-2B.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh by Bidding zone, Measure and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "0": "SE1",
+                "1": "SE2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "Hydropower normal year adjusted",
+                "1": "Wind power normal year adjusted"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "description": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde",
+              "Mått"
+            ],
+            "matrix": "EN_IND10-2B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh by Bidding zone, Measure and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "2": "SE3",
+                "3": "SE4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "Hydropower normal year adjusted"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "description": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde",
+              "Mått"
+            ],
+            "matrix": "EN_IND10-2B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh by Bidding zone, Measure and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "2": "Solar power",
+                "3": "Biopower",
+                "4": "Electricity use, incl. distribution losses"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "description": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde",
+              "Mått"
+            ],
+            "matrix": "EN_IND10-2B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh by Bidding zone, Measure and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency's calculations on Annual energy statistics (electricity, gas and district heating) and Monthly electricity statistics per electricity area"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "Hydropower normal year adjusted"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "description": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde",
+              "Mått"
+            ],
+            "matrix": "EN_IND10-2B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Renewable normal-year-adjusted electricity production and electricity use including distribution losses, 2021-, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

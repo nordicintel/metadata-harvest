@@ -1,0 +1,726 @@
+{
+  "key": "fohm/blodecoProv.px/sv",
+  "identifier": "blodecoProv.px",
+  "language": "sv",
+  "updated": "2018-12-19",
+  "retrieved_at": "2026-10-17T07:29:45.025052+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Blododling, positiva och negativa odlingar. Antal.",
+      "variables": [
+        {
+          "code": "Kliniskt laboratorium",
+          "text": "Kliniskt laboratorium",
+          "values": [
+            "00",
+            "L0184",
+            "L0780",
+            "L1281",
+            "L1080",
+            "L0880",
+            "L1488",
+            "L1490",
+            "L1880",
+            "L0380"
+          ],
+          "valueTexts": [
+            "Nationellt",
+            "Karolinska (del av Stockholm)",
+            "Växjö (Kronoberg)",
+            "Lund (del av Skåne)",
+            "Karlskrona (Blekinge)",
+            "Kalmar (Kalmar)",
+            "Trollhättan (del av Västra Götaland)",
+            "Borås (del av Västra Götaland)",
+            "Örebro (Örebro)",
+            "Uppsala (Uppsala)"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Odlingar",
+          "text": "Odlingar",
+          "values": [
+            "1",
+            "2",
+            "1+2"
+          ],
+          "valueTexts": [
+            "Positiva",
+            "Negativa",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017"
+          ],
+          "valueTexts": [
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/D_Antibiotika/Resistens/Svebar/blodecoProv.px",
+      "category_path": [
+        {
+          "id": "D_Antibiotika",
+          "name": "Antibiotikastatistik, försäljning och resistens"
+        },
+        {
+          "id": "Resistens",
+          "name": "Resistens"
+        },
+        {
+          "id": "Svebar",
+          "name": "Rapporter från Svebar"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "blodecoProv.px",
+      "id": "blodecoProv.px",
+      "language": "sv",
+      "path": "/D_Antibiotika/Resistens/Svebar",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/D_Antibiotika/Resistens/Svebar/blodecoProv.px",
+          "category_path": [
+            {
+              "id": "D_Antibiotika",
+              "name": "Antibiotikastatistik, försäljning och resistens"
+            },
+            {
+              "id": "Resistens",
+              "name": "Resistens"
+            },
+            {
+              "id": "Svebar",
+              "name": "Rapporter från Svebar"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/D_Antibiotika/Resistens/Svebar",
+          "published": "2018-12-19",
+          "score": 1.0,
+          "title": "Blododling, positiva och negativa odlingar. Antal.",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__D_Antibiotika__Resistens__Svebar/blodecoProv.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2018-12-19",
+      "score": 1.0,
+      "title": "Blododling, positiva och negativa odlingar. Antal.",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__D_Antibiotika__Resistens__Svebar/blodecoProv.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Odlingar blod och E-coli, positiva/negativa svar efter Kliniskt laboratorium, Odlingar och År",
+        "source": "Folkhälsomyndigheten, Svebar",
+        "updated": "2018-12-18T23:00:00Z",
+        "note": [
+          "Från nationell rapport Svebar  blododlingar 2017. Data från 9 laboratorier."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Kliniskt laboratorium": {
+            "label": "Kliniskt laboratorium",
+            "category": {
+              "label": {
+                "00": "Nationellt",
+                "L0184": "Karolinska (del av Stockholm)"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Odlingar": {
+            "label": "Odlingar",
+            "category": {
+              "label": {
+                "1": "Positiva",
+                "2": "Negativa"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2014": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Odlingar blod och E-coli, positiva/negativa svar",
+            "description": "Blododling, positiva och negativa odlingar. Antal.",
+            "descriptiondefault": true,
+            "heading": [
+              "Odlingar",
+              "År"
+            ],
+            "stub": [
+              "Kliniskt laboratorium"
+            ],
+            "matrix": "blodecoLab",
+            "subject-code": "Svebar",
+            "subject-area": "Antibiotikaresistens"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Odlingar blod och E-coli, positiva/negativa svar"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2017"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Odlingar blod och E-coli, positiva/negativa svar efter Kliniskt laboratorium, Odlingar och År",
+        "source": "Folkhälsomyndigheten, Svebar",
+        "updated": "2018-12-18T23:00:00Z",
+        "note": [
+          "Från nationell rapport Svebar  blododlingar 2017. Data från 9 laboratorier."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Kliniskt laboratorium": {
+            "label": "Kliniskt laboratorium",
+            "category": {
+              "label": {
+                "L0780": "Växjö (Kronoberg)",
+                "L1281": "Lund (del av Skåne)",
+                "L1080": "Karlskrona (Blekinge)",
+                "L0880": "Kalmar (Kalmar)",
+                "L1488": "Trollhättan (del av Västra Götaland)",
+                "L1490": "Borås (del av Västra Götaland)",
+                "L1880": "Örebro (Örebro)",
+                "L0380": "Uppsala (Uppsala)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Odlingar": {
+            "label": "Odlingar",
+            "category": {
+              "label": {
+                "1": "Positiva"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Odlingar blod och E-coli, positiva/negativa svar",
+            "description": "Blododling, positiva och negativa odlingar. Antal.",
+            "descriptiondefault": true,
+            "heading": [
+              "Odlingar",
+              "År"
+            ],
+            "stub": [
+              "Kliniskt laboratorium"
+            ],
+            "matrix": "blodecoLab",
+            "subject-code": "Svebar",
+            "subject-area": "Antibiotikaresistens"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Odlingar blod och E-coli, positiva/negativa svar"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2017"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Odlingar blod och E-coli, positiva/negativa svar efter Kliniskt laboratorium, Odlingar och År",
+        "source": "Folkhälsomyndigheten, Svebar",
+        "updated": "2018-12-18T23:00:00Z",
+        "note": [
+          "Från nationell rapport Svebar  blododlingar 2017. Data från 9 laboratorier."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Kliniskt laboratorium": {
+            "label": "Kliniskt laboratorium",
+            "category": {
+              "label": {
+                "00": "Nationellt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Odlingar": {
+            "label": "Odlingar",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Odlingar blod och E-coli, positiva/negativa svar",
+            "description": "Blododling, positiva och negativa odlingar. Antal.",
+            "descriptiondefault": true,
+            "heading": [
+              "Odlingar",
+              "År"
+            ],
+            "stub": [
+              "Kliniskt laboratorium"
+            ],
+            "matrix": "blodecoLab",
+            "subject-code": "Svebar",
+            "subject-area": "Antibiotikaresistens"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Odlingar blod och E-coli, positiva/negativa svar"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2017"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Odlingar blod och E-coli, positiva/negativa svar efter Kliniskt laboratorium, Odlingar och År",
+        "source": "Folkhälsomyndigheten, Svebar",
+        "updated": "2018-12-18T23:00:00Z",
+        "note": [
+          "Från nationell rapport Svebar  blododlingar 2017. Data från 9 laboratorier."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Kliniskt laboratorium": {
+            "label": "Kliniskt laboratorium",
+            "category": {
+              "label": {
+                "00": "Nationellt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Odlingar": {
+            "label": "Odlingar",
+            "category": {
+              "label": {
+                "1": "Positiva"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Odlingar blod och E-coli, positiva/negativa svar",
+            "description": "Blododling, positiva och negativa odlingar. Antal.",
+            "descriptiondefault": true,
+            "heading": [
+              "Odlingar",
+              "År"
+            ],
+            "stub": [
+              "Kliniskt laboratorium"
+            ],
+            "matrix": "blodecoLab",
+            "subject-code": "Svebar",
+            "subject-area": "Antibiotikaresistens"
+          },
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Odlingar blod och E-coli, positiva/negativa svar"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2017"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Kliniskt laboratorium",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00",
+                "L0184"
+              ]
+            }
+          },
+          {
+            "code": "Odlingar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2014"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kliniskt laboratorium",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "L0780",
+                "L1281",
+                "L1080",
+                "L0880",
+                "L1488",
+                "L1490",
+                "L1880",
+                "L0380"
+              ]
+            }
+          },
+          {
+            "code": "Odlingar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kliniskt laboratorium",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Odlingar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kliniskt laboratorium",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Odlingar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016",
+                "2017"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

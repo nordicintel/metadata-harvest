@@ -1,0 +1,948 @@
+{
+  "key": "fohm/Echismil.px/en",
+  "identifier": "Echismil.px",
+  "language": "en",
+  "updated": "2026-06-09",
+  "retrieved_at": "2026-10-17T07:01:34.199362+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+      "variables": [
+        {
+          "code": "Smittland",
+          "text": "Country of infection",
+          "values": [
+            "1+2+0",
+            "1",
+            "2",
+            "0"
+          ],
+          "valueTexts": [
+            "Total",
+            "Sweden",
+            "Abroad",
+            "Unknown country of infection"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Measure",
+          "values": [
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Number of reported cases",
+            "Number of reported cases per 100,000 population"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Sex",
+          "values": [
+            "1+2+0",
+            "1",
+            "2",
+            "0"
+          ],
+          "valueTexts": [
+            "Total",
+            "Females",
+            "Males",
+            "Unknown sex"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/H_Sminet/Echinocock/Echismil.px",
+      "category_path": [
+        {
+          "id": "H_Sminet",
+          "name": "Communicable diseases"
+        },
+        {
+          "id": "Echinocock",
+          "name": "Echinococcus infection"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "Echismil.px",
+      "id": "Echismil.px",
+      "language": "en",
+      "path": "/H_Sminet/Echinocock",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/H_Sminet/Echinocock/Echismil.px",
+          "category_path": [
+            {
+              "id": "H_Sminet",
+              "name": "Communicable diseases"
+            },
+            {
+              "id": "Echinocock",
+              "name": "Echinococcus infection"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/H_Sminet/Echinocock",
+          "published": "2026-06-09",
+          "score": 1.0,
+          "title": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__H_Sminet__Echinocock/Echismil.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-06-09",
+      "score": 1.0,
+      "title": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__H_Sminet__Echinocock/Echismil.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Echinococcus, country of infection by Country of infection, Measure, Sex and Year",
+        "source": "Public Health Agency of Sweden, Sminet",
+        "updated": "2026-06-09T06:00:00Z",
+        "note": [
+          "The statistics are included in Sweden's official statistics on notifiable communicable diseases from the reference year 2023. Statistics for previous years (2010-2022) are presented jointly with the official statistics, but the quality of these statistics has not been reported. For more information about the quality of the statistics, please refer to the <a HREF=https://www.folkhalsomyndigheten.se/statistik-och-data/om-vara-data/sveriges-officiella-statistik/officiell-statistik-om-anmalningspliktiga-smittsamma-sjukdomar/>'Kvalitetsdeklaration'</a>",
+          "The data underlying both the official statistics and the statistics prior to 2023 are collected from Sminet and processed in the same manner, which ensures comparability of the statistics from that perspective. However, several factors may, to varying degrees, influence the extent to which cases are reported to Sminet, thereby affecting comparability over time. Sex refers to legal sex, i.e., the sex of the case as registered in the population register, passport, or ID."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Smittland": {
+            "label": "Country of infection",
+            "category": {
+              "label": {
+                "1+2+0": "Total",
+                "1": "Sweden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "1": "Number of reported cases",
+                "2": "Number of reported cases per 100,000 population"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Sex",
+            "category": {
+              "label": {
+                "1+2+0": "Total",
+                "1": "Females"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2010": "2010",
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Echinococcus, country of infection",
+            "description": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Smittland"
+            ],
+            "matrix": "Echismil",
+            "subject-code": "Echinokockinfektion",
+            "subject-area": "Communicable diseases"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Smittland",
+                  "Mått",
+                  "Kön",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Smittland": [
+                    "1+2+0",
+                    "1"
+                  ],
+                  "Mått": [
+                    "1",
+                    "2"
+                  ],
+                  "Kön": [
+                    "1+2+0",
+                    "1"
+                  ],
+                  "År": [
+                    "2010",
+                    "2011"
+                  ]
+                },
+                "status": {
+                  "8": "-",
+                  "9": "-",
+                  "10": "-",
+                  "11": "-",
+                  "12": "-",
+                  "13": "-",
+                  "14": "-",
+                  "15": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Echinococcus, country of infection"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number, number per 100,000 population",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2010-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Echinococcus, country of infection by Country of infection, Measure, Sex and Year",
+        "source": "Public Health Agency of Sweden, Sminet",
+        "updated": "2026-06-09T06:00:00Z",
+        "note": [
+          "The statistics are included in Sweden's official statistics on notifiable communicable diseases from the reference year 2023. Statistics for previous years (2010-2022) are presented jointly with the official statistics, but the quality of these statistics has not been reported. For more information about the quality of the statistics, please refer to the <a HREF=https://www.folkhalsomyndigheten.se/statistik-och-data/om-vara-data/sveriges-officiella-statistik/officiell-statistik-om-anmalningspliktiga-smittsamma-sjukdomar/>'Kvalitetsdeklaration'</a>",
+          "The data underlying both the official statistics and the statistics prior to 2023 are collected from Sminet and processed in the same manner, which ensures comparability of the statistics from that perspective. However, several factors may, to varying degrees, influence the extent to which cases are reported to Sminet, thereby affecting comparability over time. Sex refers to legal sex, i.e., the sex of the case as registered in the population register, passport, or ID."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Smittland": {
+            "label": "Country of infection",
+            "category": {
+              "label": {
+                "2": "Abroad",
+                "0": "Unknown country of infection"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "1": "Number of reported cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Sex",
+            "category": {
+              "label": {
+                "1+2+0": "Total"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2010": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Echinococcus, country of infection",
+            "description": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Smittland"
+            ],
+            "matrix": "Echismil",
+            "subject-code": "Echinokockinfektion",
+            "subject-area": "Communicable diseases"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Echinococcus, country of infection"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number, number per 100,000 population",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2010-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Echinococcus, country of infection by Country of infection, Measure, Sex and Year",
+        "source": "Public Health Agency of Sweden, Sminet",
+        "updated": "2026-06-09T06:00:00Z",
+        "note": [
+          "The statistics are included in Sweden's official statistics on notifiable communicable diseases from the reference year 2023. Statistics for previous years (2010-2022) are presented jointly with the official statistics, but the quality of these statistics has not been reported. For more information about the quality of the statistics, please refer to the <a HREF=https://www.folkhalsomyndigheten.se/statistik-och-data/om-vara-data/sveriges-officiella-statistik/officiell-statistik-om-anmalningspliktiga-smittsamma-sjukdomar/>'Kvalitetsdeklaration'</a>",
+          "The data underlying both the official statistics and the statistics prior to 2023 are collected from Sminet and processed in the same manner, which ensures comparability of the statistics from that perspective. However, several factors may, to varying degrees, influence the extent to which cases are reported to Sminet, thereby affecting comparability over time. Sex refers to legal sex, i.e., the sex of the case as registered in the population register, passport, or ID."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Smittland": {
+            "label": "Country of infection",
+            "category": {
+              "label": {
+                "1+2+0": "Total"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "1": "Number of reported cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Sex",
+            "category": {
+              "label": {
+                "2": "Males",
+                "0": "Unknown sex"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2010": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Echinococcus, country of infection",
+            "description": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Smittland"
+            ],
+            "matrix": "Echismil",
+            "subject-code": "Echinokockinfektion",
+            "subject-area": "Communicable diseases"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Smittland",
+                  "Mått",
+                  "Kön",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Smittland": [
+                    "1+2+0"
+                  ],
+                  "Mått": [
+                    "1"
+                  ],
+                  "Kön": [
+                    "2",
+                    "0"
+                  ],
+                  "År": [
+                    "2010"
+                  ]
+                },
+                "status": {
+                  "1": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Echinococcus, country of infection"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number, number per 100,000 population",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2010-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Echinococcus, country of infection by Country of infection, Measure, Sex and Year",
+        "source": "Public Health Agency of Sweden, Sminet",
+        "updated": "2026-06-09T06:00:00Z",
+        "note": [
+          "The statistics are included in Sweden's official statistics on notifiable communicable diseases from the reference year 2023. Statistics for previous years (2010-2022) are presented jointly with the official statistics, but the quality of these statistics has not been reported. For more information about the quality of the statistics, please refer to the <a HREF=https://www.folkhalsomyndigheten.se/statistik-och-data/om-vara-data/sveriges-officiella-statistik/officiell-statistik-om-anmalningspliktiga-smittsamma-sjukdomar/>'Kvalitetsdeklaration'</a>",
+          "The data underlying both the official statistics and the statistics prior to 2023 are collected from Sminet and processed in the same manner, which ensures comparability of the statistics from that perspective. However, several factors may, to varying degrees, influence the extent to which cases are reported to Sminet, thereby affecting comparability over time. Sex refers to legal sex, i.e., the sex of the case as registered in the population register, passport, or ID."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Smittland": {
+            "label": "Country of infection",
+            "category": {
+              "label": {
+                "1+2+0": "Total"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "1": "Number of reported cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Sex",
+            "category": {
+              "label": {
+                "1+2+0": "Total"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Echinococcus, country of infection",
+            "description": "Echinococcus infection, reported cases by country of infection, sex, and year. Number, number per 100,000 population.",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Smittland"
+            ],
+            "matrix": "Echismil",
+            "subject-code": "Echinokockinfektion",
+            "subject-area": "Communicable diseases"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Echinococcus, country of infection"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number, number per 100,000 population",
+                      "decimals": 2
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2010-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Smittland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010",
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Smittland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Smittland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Smittland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

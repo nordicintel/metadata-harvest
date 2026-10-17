@@ -1,0 +1,704 @@
+{
+  "key": "linkoping/fly50.px/sv",
+  "identifier": "fly50.px",
+  "language": "sv",
+  "updated": "2026-09-10",
+  "retrieved_at": "2026-10-17T07:31:15.745591+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        },
+        {
+          "code": "upplåtelseform",
+          "text": "upplåtelseform",
+          "values": [
+            "Bostadsrätt",
+            "Hyresrätt",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Bostadsrätt",
+            "Hyresrätt",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "lägenhetsstorlek",
+          "text": "lägenhetsstorlek",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "1 rum",
+            "2 rum",
+            "3 rum",
+            "4 rum",
+            "5 rum",
+            "6 rum eller fler",
+            "Uppgift saknas",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Antal",
+            "Procent"
+          ],
+          "valueTexts": [
+            "Antal",
+            "Procent"
+          ]
+        },
+        {
+          "code": "tid i nuvarande fastighet",
+          "text": "tid i nuvarande fastighet",
+          "values": [
+            "0",
+            "1-2",
+            "2-3",
+            "3-5",
+            "5-10",
+            "10-w",
+            "Tot"
+          ],
+          "valueTexts": [
+            "< 1 år",
+            "1-2 år",
+            "2-3 år",
+            "3-5 år",
+            "5-10 år",
+            "> 10 år",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Befolkningsforandringar/fly50.px",
+      "category_path": [
+        {
+          "id": "Befolkningsforandringar",
+          "name": "Befolkningsförändringar"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "fly50.px",
+      "id": "fly50.px",
+      "language": "sv",
+      "path": "/Befolkningsforandringar",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Befolkningsforandringar/fly50.px",
+          "category_path": [
+            {
+              "id": "Befolkningsforandringar",
+              "name": "Befolkningsförändringar"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Befolkningsforandringar",
+          "published": "2026-09-10",
+          "score": 1.0,
+          "title": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Befolkningsforandringar/fly50.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-09-10",
+      "score": 1.0,
+      "title": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Befolkningsforandringar/fly50.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:15.130679+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Bostadsrätt": "Bostadsrätt",
+                "Hyresrätt": "Hyresrätt"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum",
+                "2": "2 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal",
+                "Procent": "Procent"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år",
+                "1-2": "1-2 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:15.2869149+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Bostadsrätt": "Bostadsrätt"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:15.4119183+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:15.5369208+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Bostadsrätt": "Bostadsrätt"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "3": "3 rum",
+                "4": "4 rum",
+                "5": "5 rum",
+                "6": "6 rum eller fler",
+                "US": "Uppgift saknas",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, upplåtelseform, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:15.6619317+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Bostadsrätt": "Bostadsrätt"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "2-3": "2-3 år",
+                "3-5": "3-5 år",
+                "5-10": "5-10 år",
+                "10-w": "> 10 år",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Bostadsrätt",
+                "Hyresrätt"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal",
+                "Procent"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Bostadsrätt"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Bostadsrätt"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "US",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Bostadsrätt"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2-3",
+                "3-5",
+                "5-10",
+                "10-w",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

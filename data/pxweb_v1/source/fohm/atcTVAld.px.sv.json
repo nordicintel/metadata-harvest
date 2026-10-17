@@ -1,0 +1,816 @@
+{
+  "key": "fohm/atcTVAld.px/sv",
+  "identifier": "atcTVAld.px",
+  "language": "sv",
+  "updated": "2026-01-13",
+  "retrieved_at": "2026-10-17T07:29:05.724969+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+      "variables": [
+        {
+          "code": "Preparat",
+          "text": "Preparat",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "valueTexts": [
+            "J01 - antibakteriella medel för systemiskt bruk",
+            "J01CA04 - amoxicillin",
+            "J01CE02 - fenoximetylpenicillin",
+            "J01FF01 - klindamycin",
+            "P01AB01 - metronidazol",
+            "J01 + Metronidazol",
+            "Övrigt J01 (förutom amoxicillin, fenoxymetylpenicillin/penicillin V, klindamycin, metronidazol)"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "0-",
+            "0-6",
+            "7-19",
+            "20-64",
+            "65-79",
+            "80-"
+          ],
+          "valueTexts": [
+            "Alla åldrar",
+            "0-6 år",
+            "7-19 år",
+            "20-64 år",
+            "65-79 år",
+            "80 år -"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/D_Antibiotika/ForsaljTV/atcTVAld.px",
+      "category_path": [
+        {
+          "id": "D_Antibiotika",
+          "name": "Antibiotikastatistik, försäljning och resistens"
+        },
+        {
+          "id": "ForsaljTV",
+          "name": "Försäljning i tandvård"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "atcTVAld.px",
+      "id": "atcTVAld.px",
+      "language": "sv",
+      "path": "/D_Antibiotika/ForsaljTV",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/D_Antibiotika/ForsaljTV/atcTVAld.px",
+          "category_path": [
+            {
+              "id": "D_Antibiotika",
+              "name": "Antibiotikastatistik, försäljning och resistens"
+            },
+            {
+              "id": "ForsaljTV",
+              "name": "Försäljning i tandvård"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/D_Antibiotika/ForsaljTV",
+          "published": "2026-01-13",
+          "score": 1.0,
+          "title": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__D_Antibiotika__ForsaljTV/atcTVAld.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-01-13",
+      "score": 1.0,
+      "title": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__D_Antibiotika__ForsaljTV/atcTVAld.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. efter Preparat, Ålder och År",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-01-13T07:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). ATC är ett klassificeringssystem (Anatomical/Therapeutic/Chemical) som indelar läkemedel hierarkiskt i fem nivåer. Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Åldersgrupperna är 0-6 år, 7-19 år, 20-64 år, 65-79 år samt 80 år och äldre. Data från och med år 2000 visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "1": "J01 - antibakteriella medel för systemiskt bruk",
+                "2": "J01CA04 - amoxicillin"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "0-": "Alla åldrar",
+                "0-6": "0-6 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2000": "2000",
+                "2001": "2001"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år.",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Preparat"
+            ],
+            "matrix": "atcTVAld",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv.",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2000-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. efter Preparat, Ålder och År",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-01-13T07:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). ATC är ett klassificeringssystem (Anatomical/Therapeutic/Chemical) som indelar läkemedel hierarkiskt i fem nivåer. Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Åldersgrupperna är 0-6 år, 7-19 år, 20-64 år, 65-79 år samt 80 år och äldre. Data från och med år 2000 visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "3": "J01CE02 - fenoximetylpenicillin",
+                "4": "J01FF01 - klindamycin",
+                "5": "P01AB01 - metronidazol",
+                "6": "J01 + Metronidazol",
+                "7": "Övrigt J01 (förutom amoxicillin, fenoxymetylpenicillin/penicillin V, klindamycin, metronidazol)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "0-": "Alla åldrar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2000": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år.",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Preparat"
+            ],
+            "matrix": "atcTVAld",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv.",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2000-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. efter Preparat, Ålder och År",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-01-13T07:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). ATC är ett klassificeringssystem (Anatomical/Therapeutic/Chemical) som indelar läkemedel hierarkiskt i fem nivåer. Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Åldersgrupperna är 0-6 år, 7-19 år, 20-64 år, 65-79 år samt 80 år och äldre. Data från och med år 2000 visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "1": "J01 - antibakteriella medel för systemiskt bruk"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "7-19": "7-19 år",
+                "20-64": "20-64 år",
+                "65-79": "65-79 år",
+                "80-": "80 år -"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2000": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år.",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Preparat"
+            ],
+            "matrix": "atcTVAld",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv.",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2000-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. efter Preparat, Ålder och År",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-01-13T07:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). ATC är ett klassificeringssystem (Anatomical/Therapeutic/Chemical) som indelar läkemedel hierarkiskt i fem nivåer. Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Åldersgrupperna är 0-6 år, 7-19 år, 20-64 år, 65-79 år samt 80 år och äldre. Data från och med år 2000 visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "1": "J01 - antibakteriella medel för systemiskt bruk"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "0-": "Alla åldrar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2002": "2002",
+                "2003": "2003",
+                "2004": "2004",
+                "2005": "2005",
+                "2006": "2006",
+                "2007": "2007",
+                "2008": "2008",
+                "2009": "2009",
+                "2010": "2010",
+                "2011": "2011",
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år.",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Preparat"
+            ],
+            "matrix": "atcTVAld",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Försäljning av antibiotikapreparat förskriven av tandläkare efter ATC-kod, ålder och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv.",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2000-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-",
+                "0-6"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2000",
+                "2001"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2000"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "7-19",
+                "20-64",
+                "65-79",
+                "80-"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2000"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2002",
+                "2003",
+                "2004",
+                "2005",
+                "2006",
+                "2007",
+                "2008",
+                "2009",
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

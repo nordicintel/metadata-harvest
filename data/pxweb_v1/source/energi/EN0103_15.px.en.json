@@ -1,0 +1,473 @@
+{
+  "key": "energi/EN0103_15.px/en",
+  "identifier": "EN0103_15.px",
+  "language": "en",
+  "updated": "2025-10-10",
+  "retrieved_at": "2026-10-17T07:03:13.496672+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+      "variables": [
+        {
+          "code": "Ägare/lokaltyp",
+          "text": "Type of owner/type of premise",
+          "values": [
+            "Totalt",
+            "A01",
+            "A02",
+            "A03",
+            "A04",
+            "A05",
+            "A06",
+            "B01",
+            "B02",
+            "B03",
+            "B04",
+            "B05",
+            "B06",
+            "B07",
+            "B08",
+            "B09",
+            "B10",
+            "B11",
+            "B12",
+            "B13",
+            "B14",
+            "B15"
+          ],
+          "valueTexts": [
+            "Total",
+            "State",
+            "Regions",
+            "City",
+            "Private person",
+            "Limited company",
+            "Other owners",
+            "Housing",
+            "Hotel,restaurant,dormitory",
+            "Only restaurant",
+            "Office and administration",
+            "Food premises",
+            "Other trade",
+            "Care 24/7",
+            "Other care",
+            "Schools",
+            "Sport facilities",
+            "Churches",
+            "Teater, cinema",
+            "Warm garage",
+            "Other premises",
+            "Missing"
+          ]
+        },
+        {
+          "code": "Driftel",
+          "text": "Electricity",
+          "values": [
+            "Driftel"
+          ],
+          "valueTexts": [
+            "Electricity not for heating and water"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Lokaler/EN0103_15.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Dwellings and non-residential premises"
+        },
+        {
+          "id": "Lokaler",
+          "name": "Energy statistics for non-residential premises"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0103_15.px",
+      "id": "EN0103_15.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Lokaler",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Lokaler/EN0103_15.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Dwellings and non-residential premises"
+            },
+            {
+              "id": "Lokaler",
+              "name": "Energy statistics for non-residential premises"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Lokaler",
+          "published": "2025-10-10",
+          "score": 1.0,
+          "title": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Lokaler/EN0103_15.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-10-10",
+      "score": 1.0,
+      "title": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Lokaler/EN0103_15.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024 by Type of owner/type of premise and Electricity",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-10-10T07:00:00Z",
+        "note": [
+          "No surveys has been conducted for years 2015, 2017, 2018, 2020, 2021, 2023 and 2025, the energy use is model based from previous years result for these years. Read more about it in the quality declaration annex 1.",
+          "Legend\r\n0 : Less than 0.5\r\n- : Zero\r\n.. : Data not available\r\n",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-lokaler/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Ägare/lokaltyp": {
+            "label": "Type of owner/type of premise",
+            "category": {
+              "label": {
+                "Totalt": "Total",
+                "A01": "State"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Driftel": {
+            "label": "Electricity",
+            "category": {
+              "label": {
+                "Driftel": "Electricity not for heating and water"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+            "description": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+            "descriptiondefault": true,
+            "heading": [
+              "Driftel"
+            ],
+            "stub": [
+              "Ägare/lokaltyp"
+            ],
+            "matrix": "EN0103_15",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistikenheten, statistik@energimyndigheten.se, 016-544 20 00"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "GWh",
+                      "decimals": 3
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024 by Type of owner/type of premise and Electricity",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-10-10T07:00:00Z",
+        "note": [
+          "No surveys has been conducted for years 2015, 2017, 2018, 2020, 2021, 2023 and 2025, the energy use is model based from previous years result for these years. Read more about it in the quality declaration annex 1.",
+          "Legend\r\n0 : Less than 0.5\r\n- : Zero\r\n.. : Data not available\r\n",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-lokaler/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Ägare/lokaltyp": {
+            "label": "Type of owner/type of premise",
+            "category": {
+              "label": {
+                "A02": "Regions",
+                "A03": "City",
+                "A04": "Private person",
+                "A05": "Limited company",
+                "A06": "Other owners",
+                "B01": "Housing",
+                "B02": "Hotel,restaurant,dormitory",
+                "B03": "Only restaurant",
+                "B04": "Office and administration",
+                "B05": "Food premises",
+                "B06": "Other trade",
+                "B07": "Care 24/7",
+                "B08": "Other care",
+                "B09": "Schools",
+                "B10": "Sport facilities",
+                "B11": "Churches",
+                "B12": "Teater, cinema",
+                "B13": "Warm garage",
+                "B14": "Other premises",
+                "B15": "Missing"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Driftel": {
+            "label": "Electricity",
+            "category": {
+              "label": {
+                "Driftel": "Electricity not for heating and water"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+            "description": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024",
+            "descriptiondefault": true,
+            "heading": [
+              "Driftel"
+            ],
+            "stub": [
+              "Ägare/lokaltyp"
+            ],
+            "matrix": "EN0103_15",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistikenheten, statistik@energimyndigheten.se, 016-544 20 00"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Ägare/lokaltyp",
+                  "Driftel"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Ägare/lokaltyp": [
+                    "A02",
+                    "A03",
+                    "A04",
+                    "A05",
+                    "A06",
+                    "B01",
+                    "B02",
+                    "B03",
+                    "B04",
+                    "B05",
+                    "B06",
+                    "B07",
+                    "B08",
+                    "B09",
+                    "B10",
+                    "B11",
+                    "B12",
+                    "B13",
+                    "B14",
+                    "B15"
+                  ],
+                  "Driftel": [
+                    "Driftel"
+                  ]
+                },
+                "status": {
+                  "19": "_"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Non-residential premises: Electricity not for heating and hot water use by type of premise and type of owner, GWh. Year 2024"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "GWh",
+                      "decimals": 3
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Ägare/lokaltyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Totalt",
+                "A01"
+              ]
+            }
+          },
+          {
+            "code": "Driftel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Driftel"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ägare/lokaltyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "A02",
+                "A03",
+                "A04",
+                "A05",
+                "A06",
+                "B01",
+                "B02",
+                "B03",
+                "B04",
+                "B05",
+                "B06",
+                "B07",
+                "B08",
+                "B09",
+                "B10",
+                "B11",
+                "B12",
+                "B13",
+                "B14",
+                "B15"
+              ]
+            }
+          },
+          {
+            "code": "Driftel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Driftel"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

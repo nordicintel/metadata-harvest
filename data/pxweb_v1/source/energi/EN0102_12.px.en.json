@@ -1,0 +1,605 @@
+{
+  "key": "energi/EN0102_12.px/en",
+  "identifier": "EN0102_12.px",
+  "language": "en",
+  "updated": "2025-06-10",
+  "retrieved_at": "2026-10-17T07:01:15.270243+00:00",
+  "responses": {
+    "metadata": {
+      "title": "One and two dwelling building: Area by year of construction",
+      "variables": [
+        {
+          "code": "Uppvärmningssätt",
+          "text": "Heating system",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "valueTexts": [
+            "All",
+            "Only electricity (d)",
+            "Only electricity (w)",
+            "Biofuel and electricity (d)",
+            "Biofuel and electricity (w)",
+            "Only Biofuel",
+            "Only geothermal and sea heatpump",
+            "Geothermal and sea heatpump in combination",
+            "Only district heating",
+            "District heating in cobination",
+            "Oil only and in combination",
+            "Gas only and in combination",
+            "Other"
+          ]
+        },
+        {
+          "code": "Byggår",
+          "text": "Year of construction",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "valueTexts": [
+            "All construction years",
+            "-1940",
+            "1941-1960",
+            "1961-1970",
+            "1971-1980",
+            "1981-1990",
+            "1991-2000",
+            "2001-2010",
+            "2011-2020",
+            "2021-",
+            "Missing"
+          ]
+        },
+        {
+          "code": "Areatyp",
+          "text": "Type of area",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Heated area ancillary area included",
+            "Heated living area"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_12.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Dwellings and non-residential premises"
+        },
+        {
+          "id": "Smahus",
+          "name": "Energy statistics for One and two dwelling buildings"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0102_12.px",
+      "id": "EN0102_12.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_12.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Dwellings and non-residential premises"
+            },
+            {
+              "id": "Smahus",
+              "name": "Energy statistics for One and two dwelling buildings"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+          "published": "2025-06-10",
+          "score": 1.0,
+          "title": "One and two dwelling building: Area by year of construction",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_12.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-06-10",
+      "score": 1.0,
+      "title": "One and two dwelling building: Area by year of construction",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_12.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "One and two dwelling building: Area by year of construction by Heating system, Year of construction and Type of area",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Areatyp"
+          ]
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "note": [
+              "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+            ],
+            "category": {
+              "label": {
+                "0": "All",
+                "1": "Only electricity (d)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Byggår": {
+            "label": "Year of construction",
+            "category": {
+              "label": {
+                "0": "All construction years",
+                "1": "-1940"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Areatyp": {
+            "label": "Type of area",
+            "category": {
+              "label": {
+                "0": "Heated area ancillary area included",
+                "1": "Heated living area"
+              },
+              "unit": {
+                "0": {
+                  "base": "Millions m2",
+                  "decimals": 1
+                },
+                "1": {
+                  "base": "Millions m2",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024",
+                "1": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Area by year of construction",
+            "description": "One and two dwelling building: Area by year of construction",
+            "descriptiondefault": true,
+            "heading": [
+              "Byggår",
+              "Areatyp"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0102_12",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Uppvärmningssätt",
+                  "Byggår",
+                  "Areatyp"
+                ],
+                "categories": {
+                  "Uppvärmningssätt": [
+                    "0",
+                    "1"
+                  ],
+                  "Byggår": [
+                    "0",
+                    "1"
+                  ],
+                  "Areatyp": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "5": "...",
+                  "7": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "One and two dwelling building: Area by year of construction by Heating system, Year of construction and Type of area",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Areatyp"
+          ]
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "note": [
+              "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+            ],
+            "category": {
+              "label": {
+                "2": "Only electricity (w)",
+                "3": "Biofuel and electricity (d)",
+                "4": "Biofuel and electricity (w)",
+                "5": "Only Biofuel",
+                "6": "Only geothermal and sea heatpump",
+                "7": "Geothermal and sea heatpump in combination",
+                "8": "Only district heating",
+                "9": "District heating in cobination",
+                "10": "Oil only and in combination",
+                "11": "Gas only and in combination",
+                "12": "Other"
+              },
+              "note": {
+                "7": [
+                  "The most common combination with geothermal/sea heatpump is tile stove/fire place/pellet stove"
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Byggår": {
+            "label": "Year of construction",
+            "category": {
+              "label": {
+                "0": "All construction years"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Areatyp": {
+            "label": "Type of area",
+            "category": {
+              "label": {
+                "0": "Heated area ancillary area included"
+              },
+              "unit": {
+                "0": {
+                  "base": "Millions m2",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Area by year of construction",
+            "description": "One and two dwelling building: Area by year of construction",
+            "descriptiondefault": true,
+            "heading": [
+              "Byggår",
+              "Areatyp"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0102_12",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      },
+      {
+        "label": "One and two dwelling building: Area by year of construction by Heating system, Year of construction and Type of area",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Areatyp"
+          ]
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "note": [
+              "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+            ],
+            "category": {
+              "label": {
+                "0": "All"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Byggår": {
+            "label": "Year of construction",
+            "category": {
+              "label": {
+                "2": "1941-1960",
+                "3": "1961-1970",
+                "4": "1971-1980",
+                "5": "1981-1990",
+                "6": "1991-2000",
+                "7": "2001-2010",
+                "8": "2011-2020",
+                "9": "2021-",
+                "10": "Missing"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Areatyp": {
+            "label": "Type of area",
+            "category": {
+              "label": {
+                "0": "Heated area ancillary area included"
+              },
+              "unit": {
+                "0": {
+                  "base": "Millions m2",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Area by year of construction",
+            "description": "One and two dwelling building: Area by year of construction",
+            "descriptiondefault": true,
+            "heading": [
+              "Byggår",
+              "Areatyp"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0102_12",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Byggår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Areatyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
+            }
+          },
+          {
+            "code": "Byggår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Areatyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Byggår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
+            }
+          },
+          {
+            "code": "Areatyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

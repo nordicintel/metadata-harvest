@@ -1,0 +1,198 @@
+{
+  "key": "sundsvall/01_Kust-strandlangd-tid.px/sv",
+  "identifier": "01_Kust-strandlangd-tid.px",
+  "language": "sv",
+  "updated": "2013-10-16",
+  "retrieved_at": "2026-10-17T07:03:58.266006+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Kust- och strandlängd Sundsvalls kommun, km efter region, strandtyp och tid",
+      "variables": [
+        {
+          "code": "kuststrandform",
+          "text": "kuststrandform",
+          "values": [
+            "IS",
+            "ÖI",
+            "HÖ",
+            "FLK"
+          ],
+          "valueTexts": [
+            "insjöstränder och vattendrag",
+            "öar i insjöar",
+            "havsöar",
+            "fastlandskust"
+          ]
+        },
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "0"
+          ],
+          "valueTexts": [
+            "2012"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1/sv/Sundsvalls_statistikdatabas/1Hela%20kommunen/Miljo%20och%20natur/01_Kust-strandlangd-tid.px",
+      "category_path": [
+        {
+          "id": "1Hela kommunen",
+          "name": "Hela kommunen"
+        },
+        {
+          "id": "Miljo och natur",
+          "name": "Miljö och natur"
+        }
+      ],
+      "database_id": "Sundsvalls_statistikdatabas",
+      "dataset_code": "01_Kust-strandlangd-tid.px",
+      "id": "01_Kust-strandlangd-tid.px",
+      "language": "sv",
+      "path": "/1Hela kommunen/Miljo och natur",
+      "paths": [
+        {
+          "api_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1/sv/Sundsvalls_statistikdatabas/1Hela%20kommunen/Miljo%20och%20natur/01_Kust-strandlangd-tid.px",
+          "category_path": [
+            {
+              "id": "1Hela kommunen",
+              "name": "Hela kommunen"
+            },
+            {
+              "id": "Miljo och natur",
+              "name": "Miljö och natur"
+            }
+          ],
+          "database_id": "Sundsvalls_statistikdatabas",
+          "path": "/1Hela kommunen/Miljo och natur",
+          "published": "2013-10-16",
+          "score": 1.0,
+          "title": "Kust- och strandlängd Sundsvalls kommun, km efter region, strandtyp och tid",
+          "web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb/sv/Sundsvalls_statistikdatabas/Sundsvalls_statistikdatabas__1Hela%20kommunen__Miljo%20och%20natur/01_Kust-strandlangd-tid.px/?rxid=1cbb15f0-b9a0-4211-9337-277cbf7c784a"
+        }
+      ],
+      "provider_code": "sundsvall",
+      "published": "2013-10-16",
+      "score": 1.0,
+      "title": "Kust- och strandlängd Sundsvalls kommun, km efter region, strandtyp och tid",
+      "web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb/sv/Sundsvalls_statistikdatabas/Sundsvalls_statistikdatabas__1Hela%20kommunen__Miljo%20och%20natur/01_Kust-strandlangd-tid.px/?rxid=1cbb15f0-b9a0-4211-9337-277cbf7c784a"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Kust- och strandlängd, km efter kuststrandform och tid",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:03:56.7754213+02:00",
+        "dimension": {
+          "kuststrandform": {
+            "label": "kuststrandform",
+            "category": {
+              "label": {
+                "IS": "insjöstränder och vattendrag",
+                "ÖI": "öar i insjöar"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "0": "2012"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kust- och strandlängd, km efter kuststrandform och tid",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:03:57.7753655+02:00",
+        "dimension": {
+          "kuststrandform": {
+            "label": "kuststrandform",
+            "category": {
+              "label": {
+                "HÖ": "havsöar",
+                "FLK": "fastlandskust"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "0": "2012"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "kuststrandform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "IS",
+                "ÖI"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kuststrandform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "HÖ",
+                "FLK"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

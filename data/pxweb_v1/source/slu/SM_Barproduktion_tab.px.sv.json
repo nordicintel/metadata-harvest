@@ -1,0 +1,577 @@
+{
+  "key": "slu/SM_Barproduktion_tab.px/sv",
+  "identifier": "SM_Barproduktion_tab.px",
+  "language": "sv",
+  "updated": "2026-05-27",
+  "retrieved_at": "2026-10-17T07:20:40.588564+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Tabell 2.6 - Årlig blåbärs- och lingonproduktion (2016- idag)",
+      "variables": [
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "Landsdel",
+          "text": "Landsdel",
+          "values": [
+            "101",
+            "102",
+            "103",
+            "104",
+            "000"
+          ],
+          "valueTexts": [
+            "N Norrland",
+            "S Norrland",
+            "Svealand",
+            "Götaland",
+            "Hela landet"
+          ]
+        },
+        {
+          "code": "Art",
+          "text": "Art",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Blåbär",
+            "Lingon"
+          ]
+        },
+        {
+          "code": "Tabellinnehåll",
+          "text": "Tabellinnehåll",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal bär per m²",
+            "1000 ton"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://skogsstatistik.slu.se/api/v1/sv/OffStat/Skogsmark/StandortVegetation/SM_Barproduktion_tab.px",
+      "category_path": [
+        {
+          "id": "Skogsmark",
+          "name": "Skogsmark"
+        },
+        {
+          "id": "StandortVegetation",
+          "name": "Vegetations- och ståndortsförhållanden"
+        }
+      ],
+      "database_id": "OffStat",
+      "dataset_code": "SM_Barproduktion_tab.px",
+      "id": "SM_Barproduktion_tab.px",
+      "language": "sv",
+      "path": "/Skogsmark/StandortVegetation",
+      "paths": [
+        {
+          "api_url": "https://skogsstatistik.slu.se/api/v1/sv/OffStat/Skogsmark/StandortVegetation/SM_Barproduktion_tab.px",
+          "category_path": [
+            {
+              "id": "Skogsmark",
+              "name": "Skogsmark"
+            },
+            {
+              "id": "StandortVegetation",
+              "name": "Vegetations- och ståndortsförhållanden"
+            }
+          ],
+          "database_id": "OffStat",
+          "path": "/Skogsmark/StandortVegetation",
+          "published": "2026-05-27",
+          "score": 1.0,
+          "title": "Tabell 2.6 - Årlig blåbärs- och lingonproduktion (2016- idag)",
+          "web_url": "https://skogsstatistik.slu.se/pxweb/sv/OffStat/OffStat__Skogsmark__StandortVegetation/SM_Barproduktion_tab.px/"
+        }
+      ],
+      "provider_code": "slu",
+      "published": "2026-05-27",
+      "score": 1.0,
+      "title": "Tabell 2.6 - Årlig blåbärs- och lingonproduktion (2016- idag)",
+      "web_url": "https://skogsstatistik.slu.se/pxweb/sv/OffStat/OffStat__Skogsmark__StandortVegetation/SM_Barproduktion_tab.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 300000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Tabell 2.6 - Årlig blåbärs- och lingonproduktion efter År, Landsdel, Art och Tabellinnehåll",
+        "source": "SLU Riksskogstaxeringen",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Skogsmarksarealen enligt skogsvårdslagen, se avsnitt 4 av Skogsdata (tillgängligt som pdf på www.slu.se/riksskogstaxeringen). Skogsmark.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/sv/OffStat_medelfel/OffStat_medelfel__Skogsmark__StandortVegetation/SM_Barproduktion_tabmf.px target=_blank>Medelfel</a> finns tillgängliga här."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2016",
+                "1": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Landsdel",
+            "category": {
+              "label": {
+                "101": "N Norrland",
+                "102": "S Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code_value"
+            }
+          },
+          "Art": {
+            "label": "Art",
+            "category": {
+              "label": {
+                "0": "Blåbär",
+                "1": "Lingon"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Tabellinnehåll",
+            "category": {
+              "label": {
+                "0": "Antal bär per m²",
+                "1": "1000 ton"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal bär per m²",
+                  "decimals": 0
+                },
+                "1": {
+                  "base": "1000 ton",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "206 Tabell26",
+            "subject-code": "Tab26"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik Wikberg, Redovisningsansvarig#Riksskogstaxeringen, SLU#Telefon: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Tabell 2.6 - Årlig blåbärs- och lingonproduktion efter År, Landsdel, Art och Tabellinnehåll",
+        "source": "SLU Riksskogstaxeringen",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Skogsmarksarealen enligt skogsvårdslagen, se avsnitt 4 av Skogsdata (tillgängligt som pdf på www.slu.se/riksskogstaxeringen). Skogsmark.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/sv/OffStat_medelfel/OffStat_medelfel__Skogsmark__StandortVegetation/SM_Barproduktion_tabmf.px target=_blank>Medelfel</a> finns tillgängliga här."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2018",
+                "3": "2019",
+                "4": "2020",
+                "5": "2021",
+                "6": "2022",
+                "7": "2023",
+                "8": "2024",
+                "9": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Landsdel",
+            "category": {
+              "label": {
+                "101": "N Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code_value"
+            }
+          },
+          "Art": {
+            "label": "Art",
+            "category": {
+              "label": {
+                "0": "Blåbär"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Tabellinnehåll",
+            "category": {
+              "label": {
+                "0": "Antal bär per m²"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal bär per m²",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "206 Tabell26",
+            "subject-code": "Tab26"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik Wikberg, Redovisningsansvarig#Riksskogstaxeringen, SLU#Telefon: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Tabell 2.6 - Årlig blåbärs- och lingonproduktion efter År, Landsdel, Art och Tabellinnehåll",
+        "source": "SLU Riksskogstaxeringen",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Skogsmarksarealen enligt skogsvårdslagen, se avsnitt 4 av Skogsdata (tillgängligt som pdf på www.slu.se/riksskogstaxeringen). Skogsmark.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/sv/OffStat_medelfel/OffStat_medelfel__Skogsmark__StandortVegetation/SM_Barproduktion_tabmf.px target=_blank>Medelfel</a> finns tillgängliga här."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2016"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Landsdel",
+            "category": {
+              "label": {
+                "103": "Svealand",
+                "104": "Götaland",
+                "000": "Hela landet"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code_value"
+            }
+          },
+          "Art": {
+            "label": "Art",
+            "category": {
+              "label": {
+                "0": "Blåbär"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Tabellinnehåll",
+            "category": {
+              "label": {
+                "0": "Antal bär per m²"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal bär per m²",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "206 Tabell26",
+            "subject-code": "Tab26"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik Wikberg, Redovisningsansvarig#Riksskogstaxeringen, SLU#Telefon: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "101",
+                "102"
+              ]
+            }
+          },
+          {
+            "code": "Art",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "101"
+              ]
+            }
+          },
+          {
+            "code": "Art",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "103",
+                "104",
+                "000"
+              ]
+            }
+          },
+          {
+            "code": "Art",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

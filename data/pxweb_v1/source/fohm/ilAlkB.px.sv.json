@@ -1,0 +1,662 @@
+{
+  "key": "fohm/ilAlkB.px/sv",
+  "identifier": "ilAlkB.px",
+  "language": "sv",
+  "updated": "2022-03-28",
+  "retrieved_at": "2026-10-17T07:44:07.977018+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Druckit alkohol på restaurang (skolelever) efter Region, Kön, Ålder och År",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Riket"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Flickor & Pojkar",
+            "Flickor",
+            "Pojkar"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "2"
+          ],
+          "valueTexts": [
+            "Gymnasiets år 2"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2021"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2021"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTS-indikatorer (Indikatorlabbet)"
+        },
+        {
+          "id": "Alkohol",
+          "name": "Alkohol"
+        },
+        {
+          "id": "Tillgan",
+          "name": "Tillgänglighet"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilAlkB.px",
+      "id": "ilAlkB.px",
+      "language": "sv",
+      "path": "/ANDTS/Alkohol/Tillgan",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTS-indikatorer (Indikatorlabbet)"
+            },
+            {
+              "id": "Alkohol",
+              "name": "Alkohol"
+            },
+            {
+              "id": "Tillgan",
+              "name": "Tillgänglighet"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Alkohol/Tillgan",
+          "published": "2022-03-28",
+          "score": 1.0,
+          "title": "Druckit alkohol på restaurang (skolelever)",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Tillgan/ilAlkB.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2022-03-28",
+      "score": 1.0,
+      "title": "Druckit alkohol på restaurang (skolelever)",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Tillgan/ilAlkB.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Druckit alkohol på restaurang (skolelever) efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-03-28T10:38:00Z",
+        "note": [
+          "Andel (%) elever under 18 år i gymnasiets år 2 som druckit alkohol under de senaste 12 månaderna och den senaste gången de drack alkohol drack på restaurang. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1": "Flickor & Pojkar",
+                "2": "Flickor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "2": "Gymnasiets år 2"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Druckit alkohol på restaurang (skolelever)",
+            "description": "Druckit alkohol på restaurang (skolelever)",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Druckit alkohol på restaurang (skolelever)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Druckit alkohol på restaurang (skolelever) efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-03-28T10:38:00Z",
+        "note": [
+          "Andel (%) elever under 18 år i gymnasiets år 2 som druckit alkohol under de senaste 12 månaderna och den senaste gången de drack alkohol drack på restaurang. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "3": "Pojkar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "2": "Gymnasiets år 2"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Druckit alkohol på restaurang (skolelever)",
+            "description": "Druckit alkohol på restaurang (skolelever)",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Druckit alkohol på restaurang (skolelever)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Druckit alkohol på restaurang (skolelever) efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-03-28T10:38:00Z",
+        "note": [
+          "Andel (%) elever under 18 år i gymnasiets år 2 som druckit alkohol under de senaste 12 månaderna och den senaste gången de drack alkohol drack på restaurang. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1": "Flickor & Pojkar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "2": "Gymnasiets år 2"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Druckit alkohol på restaurang (skolelever)",
+            "description": "Druckit alkohol på restaurang (skolelever)",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Druckit alkohol på restaurang (skolelever)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

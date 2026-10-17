@@ -1,0 +1,792 @@
+{
+  "key": "fohm/atcTVSasong.px/sv",
+  "identifier": "atcTVSasong.px",
+  "language": "sv",
+  "updated": "2026-10-09",
+  "retrieved_at": "2026-10-17T07:29:09.340290+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00",
+            "01",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "12",
+            "13",
+            "14",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25"
+          ],
+          "valueTexts": [
+            "00 Riket",
+            "01 Stockholm",
+            "03 Uppsala",
+            "04 Södermanland",
+            "05 Östergötland",
+            "06 Jönköping",
+            "07 Kronoberg",
+            "08 Kalmar",
+            "09 Gotland",
+            "10 Blekinge",
+            "12 Skåne",
+            "13 Halland",
+            "14 Västra Götaland",
+            "17 Värmland",
+            "18 Örebro",
+            "19 Västmanland",
+            "20 Dalarna",
+            "21 Gävleborg",
+            "22 Västernorrland",
+            "23 Jämtland",
+            "24 Västerbotten",
+            "25 Norrbotten"
+          ]
+        },
+        {
+          "code": "Preparat",
+          "text": "Preparat",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "valueTexts": [
+            "J01 + Metronidazol",
+            " J01CA04 - amoxicillin",
+            " J01CE02 - fenoximetylpenicillin",
+            " J01FF01 - klindamycin",
+            " P01AB01 - metronidazol",
+            "Övrigt J01 (förutom amoxicillin, penicillin V, erytromycin, klindamycin, metronidazol)"
+          ]
+        },
+        {
+          "code": "Period",
+          "text": "Period",
+          "values": [
+            "2021-2022",
+            "2022-2023",
+            "2023-2024",
+            "2024-2025",
+            "2025-2026"
+          ],
+          "valueTexts": [
+            "1 okt 2021 - 30 sep 2022",
+            "1 okt 2022 - 30 sep 2023",
+            "1 okt 2023 - 30 sep 2024",
+            "1 okt 2024 - 30 sep 2025",
+            "1 okt 2025 - 30 sep 2026"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/D_Antibiotika/ForsaljTV/atcTVSasong.px",
+      "category_path": [
+        {
+          "id": "D_Antibiotika",
+          "name": "Antibiotikastatistik, försäljning och resistens"
+        },
+        {
+          "id": "ForsaljTV",
+          "name": "Försäljning i tandvård"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "atcTVSasong.px",
+      "id": "atcTVSasong.px",
+      "language": "sv",
+      "path": "/D_Antibiotika/ForsaljTV",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/D_Antibiotika/ForsaljTV/atcTVSasong.px",
+          "category_path": [
+            {
+              "id": "D_Antibiotika",
+              "name": "Antibiotikastatistik, försäljning och resistens"
+            },
+            {
+              "id": "ForsaljTV",
+              "name": "Försäljning i tandvård"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/D_Antibiotika/ForsaljTV",
+          "published": "2026-10-09",
+          "score": 1.0,
+          "title": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__D_Antibiotika__ForsaljTV/atcTVSasong.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-10-09",
+      "score": 1.0,
+      "title": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__D_Antibiotika__ForsaljTV/atcTVSasong.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod efter Region, Preparat och Period",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-10-09T06:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Data för den senaste tolvmånadersperioden och för de tre föregående åren visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "Period"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket",
+                "01": "01 Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "1": "J01 + Metronidazol",
+                "2": " J01CA04 - amoxicillin"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Period": {
+            "label": "Period",
+            "category": {
+              "label": {
+                "2021-2022": "1 okt 2021 - 30 sep 2022",
+                "2022-2023": "1 okt 2022 - 30 sep 2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Preparat",
+              "Period"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "atcTVSasong",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2021 sep - 2026 sep"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod efter Region, Preparat och Period",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-10-09T06:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Data för den senaste tolvmånadersperioden och för de tre föregående åren visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "Period"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "03": "03 Uppsala",
+                "04": "04 Södermanland",
+                "05": "05 Östergötland",
+                "06": "06 Jönköping",
+                "07": "07 Kronoberg",
+                "08": "08 Kalmar",
+                "09": "09 Gotland",
+                "10": "10 Blekinge",
+                "12": "12 Skåne",
+                "13": "13 Halland",
+                "14": "14 Västra Götaland",
+                "17": "17 Värmland",
+                "18": "18 Örebro",
+                "19": "19 Västmanland",
+                "20": "20 Dalarna",
+                "21": "21 Gävleborg",
+                "22": "22 Västernorrland",
+                "23": "23 Jämtland",
+                "24": "24 Västerbotten",
+                "25": "25 Norrbotten"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "1": "J01 + Metronidazol"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Period": {
+            "label": "Period",
+            "category": {
+              "label": {
+                "2021-2022": "1 okt 2021 - 30 sep 2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Preparat",
+              "Period"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "atcTVSasong",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2021 sep - 2026 sep"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod efter Region, Preparat och Period",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-10-09T06:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Data för den senaste tolvmånadersperioden och för de tre föregående åren visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "Period"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "3": " J01CE02 - fenoximetylpenicillin",
+                "5": " J01FF01 - klindamycin",
+                "6": " P01AB01 - metronidazol",
+                "7": "Övrigt J01 (förutom amoxicillin, penicillin V, erytromycin, klindamycin, metronidazol)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Period": {
+            "label": "Period",
+            "category": {
+              "label": {
+                "2021-2022": "1 okt 2021 - 30 sep 2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Preparat",
+              "Period"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "atcTVSasong",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2021 sep - 2026 sep"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod efter Region, Preparat och Period",
+        "source": "E-hälsomyndigheten",
+        "updated": "2026-10-09T06:00:00Z",
+        "note": [
+          "Statistiken inkluderar all försäljning på recept och dosdispensering av tandläkare till personer folkbokförda i respektive område. Ett recept motsvarar en expedierad varurad på apotek. Antal invånare hämtas från SCB i februari varje år. Dessa gäller då retroaktivt från januari och hela året ut. Under januari, innan data finns hos SCB gäller fjolårsdata. Total antibiotikaförsäljning för systemiskt bruk anges som J01 inklusive metronidazol (P01AB01). Statistiken innehåller relevanta preparat som används i tandvården för att behandla infektioner. Data för den senaste tolvmånadersperioden och för de tre föregående åren visas. Källa: Concise, E-hälsomyndigheten. Mer information om statistiken över antibiotikaförsäljning finns på vår webbplats: Statistik över antibiotikaförsäljning och antibiotikaresistens i Sverige"
+        ],
+        "role": {
+          "time": [
+            "Period"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Preparat": {
+            "label": "Preparat",
+            "category": {
+              "label": {
+                "1": "J01 + Metronidazol"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Period": {
+            "label": "Period",
+            "category": {
+              "label": {
+                "2023-2024": "1 okt 2023 - 30 sep 2024",
+                "2024-2025": "1 okt 2024 - 30 sep 2025",
+                "2025-2026": "1 okt 2025 - 30 sep 2026"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod",
+            "description": "Försäljning av antibiotikapreparat förskriven av tandläkare efter region och löpande 12-månadersperiod. Antal recept per 1000 inv.",
+            "descriptiondefault": true,
+            "heading": [
+              "Preparat",
+              "Period"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "atcTVSasong",
+            "subject-code": "ATCförsälj",
+            "subject-area": "Antibiotikaförsäljning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika i tandvårdsförsälning löpande 12-månadersperiod"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal recept per 1000 inv",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2021 sep - 2026 sep"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00",
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Period",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021-2022",
+                "2022-2023"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "03",
+                "04",
+                "05",
+                "06",
+                "07",
+                "08",
+                "09",
+                "10",
+                "12",
+                "13",
+                "14",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25"
+              ]
+            }
+          },
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Period",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021-2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "5",
+                "6",
+                "7"
+              ]
+            }
+          },
+          {
+            "code": "Period",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021-2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Preparat",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Period",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023-2024",
+                "2024-2025",
+                "2025-2026"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

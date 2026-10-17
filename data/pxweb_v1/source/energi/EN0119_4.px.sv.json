@@ -1,0 +1,956 @@
+{
+  "key": "energi/EN0119_4.px/sv",
+  "identifier": "EN0119_4.px",
+  "language": "sv",
+  "updated": "2025-11-17",
+  "retrieved_at": "2026-10-17T07:10:44.603159+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+      "variables": [
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "2018",
+            "2021",
+            "2024"
+          ]
+        },
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "Stockholm",
+            "Uppsala",
+            "Södermanland",
+            "Östergötland",
+            "Jönköping",
+            "Kronoberg",
+            "Kalmar",
+            "Gotland",
+            "Blekinge",
+            "Skåne",
+            "Halland",
+            "Västra Götaland",
+            "Värmland",
+            "Örebro",
+            "Västmanland",
+            "Dalarna",
+            "Gävleborg",
+            "Västernorrland",
+            "Jämtland",
+            "Västerbotten",
+            "Norrbotten",
+            "Riket"
+          ]
+        },
+        {
+          "code": "Enhet",
+          "text": "Enhet",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "m3",
+            "MWh"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "Diesel med inblandning",
+            "Felmarginal Diesel med inblandning ±",
+            "Biodiesel",
+            "Felmarginal Biodiesel ±",
+            "Motorbensin",
+            "Felmarginal Motorbensin ±",
+            "Etanol",
+            "Felmarginal Etanol ±",
+            "Fordonsgas",
+            "Felmarginal Fordonsgas ±"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Jordbrukets_energianvandning/EN0119_4.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Officiell Energistatistik"
+        },
+        {
+          "id": "Jordbrukets_energianvandning",
+          "name": "Jordbrukets energianvändning"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0119_4.px",
+      "id": "EN0119_4.px",
+      "language": "sv",
+      "path": "/Officiell_energistatistik/Jordbrukets_energianvandning",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Jordbrukets_energianvandning/EN0119_4.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Officiell Energistatistik"
+            },
+            {
+              "id": "Jordbrukets_energianvandning",
+              "name": "Jordbrukets energianvändning"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Jordbrukets_energianvandning",
+          "published": "2025-11-17",
+          "score": 1.0,
+          "title": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Jordbrukets_energianvandning/EN0119_4.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-11-17",
+      "score": 1.0,
+      "title": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Jordbrukets_energianvandning/EN0119_4.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej) efter År, Region, Enhet och Variabel",
+        "source": "Energimyndigheten",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transporter på allmän väg ingår ej\r\n Med felmarginal avses 95 % konfidensintervall\r\n Källan till diesel har ändrats 2021, läs mer i kvalitetsdeklaration"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2018",
+                "1": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Stockholm",
+                "1": "Uppsala"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "m3",
+                "1": "MWh"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Diesel med inblandning",
+                "1": "Felmarginal Diesel med inblandning ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "description": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Tel: +46 (0)165442000, E-post: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Region",
+                  "Enhet",
+                  "Variabel"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0",
+                    "1"
+                  ],
+                  "Region": [
+                    "0",
+                    "1"
+                  ],
+                  "Enhet": [
+                    "0",
+                    "1"
+                  ],
+                  "Variabel": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "9": "..",
+                  "11": "..",
+                  "13": "..",
+                  "15": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej) efter År, Region, Enhet och Variabel",
+        "source": "Energimyndigheten",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transporter på allmän väg ingår ej\r\n Med felmarginal avses 95 % konfidensintervall\r\n Källan till diesel har ändrats 2021, läs mer i kvalitetsdeklaration"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Diesel med inblandning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "description": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Tel: +46 (0)165442000, E-post: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej) efter År, Region, Enhet och Variabel",
+        "source": "Energimyndigheten",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transporter på allmän väg ingår ej\r\n Med felmarginal avses 95 % konfidensintervall\r\n Källan till diesel har ändrats 2021, läs mer i kvalitetsdeklaration"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "2": "Södermanland",
+                "3": "Östergötland",
+                "4": "Jönköping",
+                "5": "Kronoberg",
+                "6": "Kalmar",
+                "7": "Gotland",
+                "8": "Blekinge",
+                "9": "Skåne",
+                "10": "Halland",
+                "11": "Västra Götaland",
+                "12": "Värmland",
+                "13": "Örebro",
+                "14": "Västmanland",
+                "15": "Dalarna",
+                "16": "Gävleborg",
+                "17": "Västernorrland",
+                "18": "Jämtland",
+                "19": "Västerbotten",
+                "20": "Norrbotten",
+                "21": "Riket"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Diesel med inblandning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "description": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Tel: +46 (0)165442000, E-post: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej) efter År, Region, Enhet och Variabel",
+        "source": "Energimyndigheten",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transporter på allmän väg ingår ej\r\n Med felmarginal avses 95 % konfidensintervall\r\n Källan till diesel har ändrats 2021, läs mer i kvalitetsdeklaration"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "2": "Biodiesel",
+                "3": "Felmarginal Biodiesel ±",
+                "4": "Motorbensin",
+                "5": "Felmarginal Motorbensin ±",
+                "6": "Etanol",
+                "7": "Felmarginal Etanol ±",
+                "8": "Fordonsgas",
+                "9": "Felmarginal Fordonsgas ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "description": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Tel: +46 (0)165442000, E-post: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Region",
+                  "Enhet",
+                  "Variabel"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0"
+                  ],
+                  "Region": [
+                    "0"
+                  ],
+                  "Enhet": [
+                    "0"
+                  ],
+                  "Variabel": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9"
+                  ]
+                },
+                "status": {
+                  "4": "..",
+                  "5": "..",
+                  "6": "..",
+                  "7": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energianvändning för arbetsmaskiner (transporter på allmän väg ingår ej)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

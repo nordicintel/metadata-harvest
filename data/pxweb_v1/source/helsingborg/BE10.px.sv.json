@@ -1,0 +1,659 @@
+{
+  "key": "helsingborg/BE10.px/sv",
+  "identifier": "BE10.px",
+  "language": "sv",
+  "updated": "2026-04-29",
+  "retrieved_at": "2026-10-17T07:00:06.763540+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Befolkningsförändringar efter kvartal, förändringar och årtal",
+      "variables": [
+        {
+          "code": "årtal",
+          "text": "årtal",
+          "values": [
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        },
+        {
+          "code": "kvartal",
+          "text": "kvartal",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "code": "förändringar",
+          "text": "förändringar",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "valueTexts": [
+            "Födda",
+            "Döda",
+            "Födelsenetto",
+            "Inflyttade",
+            "Utflyttade",
+            "Flyttnetto",
+            "Befolkningsförändring",
+            "Folkmängd i slutet på kvartalet"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Befolkning/BE10.px",
+      "category_path": [
+        {
+          "id": "Befolkning",
+          "name": "Befolkning"
+        }
+      ],
+      "database_id": "Helsingborgs stads statistikdatabas",
+      "dataset_code": "BE10.px",
+      "id": "BE10.px",
+      "language": "sv",
+      "path": "/Befolkning",
+      "paths": [
+        {
+          "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Befolkning/BE10.px",
+          "category_path": [
+            {
+              "id": "Befolkning",
+              "name": "Befolkning"
+            }
+          ],
+          "database_id": "Helsingborgs stads statistikdatabas",
+          "path": "/Befolkning",
+          "published": "2026-04-29",
+          "score": 1.0,
+          "title": "Befolkningsförändringar efter kvartal, förändringar och årtal",
+          "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Befolkning/BE10.px/"
+        }
+      ],
+      "provider_code": "helsingborg",
+      "published": "2026-04-29",
+      "score": 1.0,
+      "title": "Befolkningsförändringar efter kvartal, förändringar och årtal",
+      "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Befolkning/BE10.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Befolkningsförändringar efter årtal efter årtal, kvartal och förändringar",
+        "updated": "2026-04-29T11:32:00Z",
+        "note": [
+          "Summan av 'födelsenetto' plus 'flyttnetto' är inte helt lika med 'befolkningsförändring'. Detta beror på att det för varje kvartal finns en justeringspost med händelser (födda, döda, flyttningar) som skett före det aktuella kvartalet men som har rapporterats under aktuellt kvartal. Dessa händelser påverkar folkmängden men är inte registrerade som händelser under det aktuella kvartalet."
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "2010": "2010",
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kvartal": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "1": "1",
+                "2": "2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "förändringar": {
+            "label": "förändringar",
+            "category": {
+              "label": {
+                "1": "Födda",
+                "2": "Döda"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "BE10",
+            "subject-code": "BE"
+          },
+          "contact": [
+            {
+              "raw": "Thomas Lassi, thomas.lassi@helsingborg.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningsförändringar efter årtal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningsförändringar efter årtal efter årtal, kvartal och förändringar",
+        "updated": "2026-04-29T11:32:00Z",
+        "note": [
+          "Summan av 'födelsenetto' plus 'flyttnetto' är inte helt lika med 'befolkningsförändring'. Detta beror på att det för varje kvartal finns en justeringspost med händelser (födda, döda, flyttningar) som skett före det aktuella kvartalet men som har rapporterats under aktuellt kvartal. Dessa händelser påverkar folkmängden men är inte registrerade som händelser under det aktuella kvartalet."
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kvartal": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "1": "1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "förändringar": {
+            "label": "förändringar",
+            "category": {
+              "label": {
+                "1": "Födda"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "BE10",
+            "subject-code": "BE"
+          },
+          "contact": [
+            {
+              "raw": "Thomas Lassi, thomas.lassi@helsingborg.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningsförändringar efter årtal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningsförändringar efter årtal efter årtal, kvartal och förändringar",
+        "updated": "2026-04-29T11:32:00Z",
+        "note": [
+          "Summan av 'födelsenetto' plus 'flyttnetto' är inte helt lika med 'befolkningsförändring'. Detta beror på att det för varje kvartal finns en justeringspost med händelser (födda, döda, flyttningar) som skett före det aktuella kvartalet men som har rapporterats under aktuellt kvartal. Dessa händelser påverkar folkmängden men är inte registrerade som händelser under det aktuella kvartalet."
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "2010": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kvartal": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "3": "3",
+                "4": "4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "förändringar": {
+            "label": "förändringar",
+            "category": {
+              "label": {
+                "1": "Födda"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "BE10",
+            "subject-code": "BE"
+          },
+          "contact": [
+            {
+              "raw": "Thomas Lassi, thomas.lassi@helsingborg.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningsförändringar efter årtal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningsförändringar efter årtal efter årtal, kvartal och förändringar",
+        "updated": "2026-04-29T11:32:00Z",
+        "note": [
+          "Summan av 'födelsenetto' plus 'flyttnetto' är inte helt lika med 'befolkningsförändring'. Detta beror på att det för varje kvartal finns en justeringspost med händelser (födda, döda, flyttningar) som skett före det aktuella kvartalet men som har rapporterats under aktuellt kvartal. Dessa händelser påverkar folkmängden men är inte registrerade som händelser under det aktuella kvartalet."
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "2010": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kvartal": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "1": "1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "förändringar": {
+            "label": "förändringar",
+            "category": {
+              "label": {
+                "3": "Födelsenetto",
+                "4": "Inflyttade",
+                "5": "Utflyttade",
+                "6": "Flyttnetto",
+                "7": "Befolkningsförändring",
+                "8": "Folkmängd i slutet på kvartalet"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "BE10",
+            "subject-code": "BE"
+          },
+          "contact": [
+            {
+              "raw": "Thomas Lassi, thomas.lassi@helsingborg.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningsförändringar efter årtal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010",
+                "2011"
+              ]
+            }
+          },
+          {
+            "code": "kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "förändringar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "förändringar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010"
+              ]
+            }
+          },
+          {
+            "code": "kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "förändringar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010"
+              ]
+            }
+          },
+          {
+            "code": "kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "förändringar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

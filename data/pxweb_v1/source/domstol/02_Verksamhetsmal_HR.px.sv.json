@@ -1,0 +1,756 @@
+{
+  "key": "domstol/02_Verksamhetsmal_HR.px/sv",
+  "identifier": "02_Verksamhetsmal_HR.px",
+  "language": "sv",
+  "updated": "2026-02-22",
+  "retrieved_at": "2026-10-17T07:04:03.714943+00:00",
+  "responses": {
+    "metadata": {
+      "title": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Domstol",
+          "values": [
+            "All courts of appeal",
+            "Göta Court of Appeal",
+            "Court of Appeal for Lower Norrland",
+            "Court of Appeal for Western Sweden",
+            "Court of Appeal for Upper Norrland",
+            "Scania and Blekinge Court of Appeal",
+            "Svea Court of Appeal"
+          ],
+          "valueTexts": [
+            "Alla hovrätter",
+            "Göta hovrätt",
+            "Hovrätten för Nedre Norrland",
+            "Hovrätten för Västra Sverige",
+            "Hovrätten för Övre Norrland",
+            "Hovrätten över Skåne och Blekinge",
+            "Svea hovrätt"
+          ]
+        },
+        {
+          "code": "Verksamhetsmålskategori",
+          "text": "Verksamhetsmålskategori",
+          "values": [
+            "Criminal cases excluding priority cases",
+            "Civil cases, time from filed case to decision delivered regarding leave to appeal",
+            "Civil cases where leave to appeal has been granted"
+          ],
+          "valueTexts": [
+            "Brottmål exkl. förtursmål",
+            "Tvistemål fram till PT-beslut",
+            "Tvistemål beviljad PT"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "valueTexts": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Verksamhetsmal/02_Verksamhetsmal_HR.px",
+      "category_path": [
+        {
+          "id": "Verksamhetsmal",
+          "name": "Verksamhetsmål (handläggningstider)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "02_Verksamhetsmal_HR.px",
+      "id": "02_Verksamhetsmal_HR.px",
+      "language": "sv",
+      "path": "/Verksamhetsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Verksamhetsmal/02_Verksamhetsmal_HR.px",
+          "category_path": [
+            {
+              "id": "Verksamhetsmal",
+              "name": "Verksamhetsmål (handläggningstider)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Verksamhetsmal",
+          "published": "2026-02-22",
+          "score": 1.0,
+          "title": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Verksamhetsmal/02_Verksamhetsmal_HR.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-22",
+      "score": 1.0,
+      "title": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Verksamhetsmal/02_Verksamhetsmal_HR.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader för alla hovrätter och per hovrätt för de verksamhetsmålskategorier som regeringen satt en målsättning för. Tiden mäts i 75:e percentilen för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för verksamhetsmålskategorin Tvistemål fram till PT-beslut där tiden mäts från inkommandedag till datum då frågan om prövningstillstånd (PT) beslutades för mål som fått ett datum för PT-beslut under vald tidsperiod.",
+          "De senast satta målsättningarna är följande antal månader:\r\nBrottmål exklusive förtursmål 5 månader.\r\nTvistemål, fram till PT-beslut 2 månader.\r\nTvistemål där PT beviljats 10 månader.",
+          "Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år). ",
+          "Brott- och tvistemål som hanteras av Patent- och marknadsöverdomstolen (en del av Svea hovrätt) exkluderas från verksamhetsmålskategorierna för hovrätt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "All courts of appeal": "Alla hovrätter",
+                "Göta Court of Appeal": "Göta hovrätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Criminal cases excluding priority cases": "Brottmål exkl. förtursmål",
+                "Civil cases, time from filed case to decision delivered regarding leave to appeal": "Tvistemål fram till PT-beslut"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2014",
+                "1": "2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)",
+            "description": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030181",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader för alla hovrätter och per hovrätt för de verksamhetsmålskategorier som regeringen satt en målsättning för. Tiden mäts i 75:e percentilen för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för verksamhetsmålskategorin Tvistemål fram till PT-beslut där tiden mäts från inkommandedag till datum då frågan om prövningstillstånd (PT) beslutades för mål som fått ett datum för PT-beslut under vald tidsperiod.",
+          "De senast satta målsättningarna är följande antal månader:\r\nBrottmål exklusive förtursmål 5 månader.\r\nTvistemål, fram till PT-beslut 2 månader.\r\nTvistemål där PT beviljats 10 månader.",
+          "Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år). ",
+          "Brott- och tvistemål som hanteras av Patent- och marknadsöverdomstolen (en del av Svea hovrätt) exkluderas från verksamhetsmålskategorierna för hovrätt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Court of Appeal for Lower Norrland": "Hovrätten för Nedre Norrland",
+                "Court of Appeal for Western Sweden": "Hovrätten för Västra Sverige",
+                "Court of Appeal for Upper Norrland": "Hovrätten för Övre Norrland",
+                "Scania and Blekinge Court of Appeal": "Hovrätten över Skåne och Blekinge",
+                "Svea Court of Appeal": "Svea hovrätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Criminal cases excluding priority cases": "Brottmål exkl. förtursmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)",
+            "description": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030181",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader för alla hovrätter och per hovrätt för de verksamhetsmålskategorier som regeringen satt en målsättning för. Tiden mäts i 75:e percentilen för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för verksamhetsmålskategorin Tvistemål fram till PT-beslut där tiden mäts från inkommandedag till datum då frågan om prövningstillstånd (PT) beslutades för mål som fått ett datum för PT-beslut under vald tidsperiod.",
+          "De senast satta målsättningarna är följande antal månader:\r\nBrottmål exklusive förtursmål 5 månader.\r\nTvistemål, fram till PT-beslut 2 månader.\r\nTvistemål där PT beviljats 10 månader.",
+          "Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år). ",
+          "Brott- och tvistemål som hanteras av Patent- och marknadsöverdomstolen (en del av Svea hovrätt) exkluderas från verksamhetsmålskategorierna för hovrätt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "All courts of appeal": "Alla hovrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Civil cases where leave to appeal has been granted": "Tvistemål beviljad PT"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)",
+            "description": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030181",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader för alla hovrätter och per hovrätt för de verksamhetsmålskategorier som regeringen satt en målsättning för. Tiden mäts i 75:e percentilen för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för verksamhetsmålskategorin Tvistemål fram till PT-beslut där tiden mäts från inkommandedag till datum då frågan om prövningstillstånd (PT) beslutades för mål som fått ett datum för PT-beslut under vald tidsperiod.",
+          "De senast satta målsättningarna är följande antal månader:\r\nBrottmål exklusive förtursmål 5 månader.\r\nTvistemål, fram till PT-beslut 2 månader.\r\nTvistemål där PT beviljats 10 månader.",
+          "Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år). ",
+          "Brott- och tvistemål som hanteras av Patent- och marknadsöverdomstolen (en del av Svea hovrätt) exkluderas från verksamhetsmålskategorierna för hovrätt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "All courts of appeal": "Alla hovrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Criminal cases excluding priority cases": "Brottmål exkl. förtursmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2016",
+                "3": "2017",
+                "4": "2018",
+                "5": "2019",
+                "6": "2020",
+                "7": "2021",
+                "8": "2022",
+                "9": "2023",
+                "10": "2024",
+                "11": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)",
+            "description": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader). År 2014-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030181",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Verksamhetsmål vid hovrätt (handläggningstid 75-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal",
+                "Göta Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases excluding priority cases",
+                "Civil cases, time from filed case to decision delivered regarding leave to appeal"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Court of Appeal for Lower Norrland",
+                "Court of Appeal for Western Sweden",
+                "Court of Appeal for Upper Norrland",
+                "Scania and Blekinge Court of Appeal",
+                "Svea Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases excluding priority cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Civil cases where leave to appeal has been granted"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases excluding priority cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

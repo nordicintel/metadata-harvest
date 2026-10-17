@@ -1,0 +1,788 @@
+{
+  "key": "fohm/DinkFod.px/sv",
+  "identifier": "DinkFod.px",
+  "language": "sv",
+  "updated": "2026-06-18",
+  "retrieved_at": "2026-10-17T07:01:00.111738+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+      "variables": [
+        {
+          "code": "Födelseland",
+          "text": "Födelseland",
+          "values": [
+            "1+2+3+4",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Sverige",
+            "Övr. Norden",
+            "Övr. Europa",
+            "Övr. världen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1+2",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Kvinnor",
+            "Män"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/4_Inkomst/01Fordelink/04.01Dink/DinkFod.px",
+      "category_path": [
+        {
+          "id": "A_Mo8",
+          "name": "Folkhälsan i Sverige"
+        },
+        {
+          "id": "4_Inkomst",
+          "name": "4 Inkomster och försörjningsmöjligheter"
+        },
+        {
+          "id": "01Fordelink",
+          "name": "Fördelning av inkomster i befolkningen"
+        },
+        {
+          "id": "04.01Dink",
+          "name": "04.01 Ekonomisk standard KÄRNINDIKATOR"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "DinkFod.px",
+      "id": "DinkFod.px",
+      "language": "sv",
+      "path": "/A_Mo8/4_Inkomst/01Fordelink/04.01Dink",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/4_Inkomst/01Fordelink/04.01Dink/DinkFod.px",
+          "category_path": [
+            {
+              "id": "A_Mo8",
+              "name": "Folkhälsan i Sverige"
+            },
+            {
+              "id": "4_Inkomst",
+              "name": "4 Inkomster och försörjningsmöjligheter"
+            },
+            {
+              "id": "01Fordelink",
+              "name": "Fördelning av inkomster i befolkningen"
+            },
+            {
+              "id": "04.01Dink",
+              "name": "04.01 Ekonomisk standard KÄRNINDIKATOR"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/A_Mo8/4_Inkomst/01Fordelink/04.01Dink",
+          "published": "2026-06-18",
+          "score": 1.0,
+          "title": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__4_Inkomst__01Fordelink__04.01Dink/DinkFod.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-06-18",
+      "score": 1.0,
+      "title": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__4_Inkomst__01Fordelink__04.01Dink/DinkFod.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Disponibel inkomst efter födelseland, kön och år. efter Födelseland, Kön och År",
+        "source": "SCB, Inkomst och Taxeringsregistret (IoT)",
+        "updated": "2026-06-17T22:00:00Z",
+        "note": [
+          "Ekonomisk standard definieras som ett hushålls disponibla inkomst,\r\nefter att skatt och andra negativa transfereringar har dragits av och\r\nhänsyn tagits till hushållets storlek och sammansättning. Den\r\nsammanlagda hushållsinkomsten fördelas på hushållets\r\nkonsumtionsenheter, vilket ger ett mått där alla personer inom ett\r\nhushåll antas ha samma ekonomiska standard. Ett annat namn för\r\nekonomisk standard är ekvivalerad disponibel hushållsinkomst.",
+          "Värden avser här disponibel hushållsinkomst (inklusive kapitalinkomster)\r\ni 1000-tals kronor per konsumtionsenhet.",
+          "Median för individer 25- år.",
+          "Belopp anges i fasta priser med 2024 års prisnivå.",
+          "Europa innefattar även f.d. Sovjetunionen."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "1+2+3+4": "Totalt",
+                "1": "Sverige"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+4",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt",
+                "1": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011",
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Disponibel inkomst efter födelseland, kön och år.",
+            "description": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DinkFod",
+            "subject-code": "mo4.1",
+            "subject-area": "Fördelning av inkomster i befolkningen"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Disponibel inkomst efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Tusen kronor",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Disponibel inkomst efter födelseland, kön och år. efter Födelseland, Kön och År",
+        "source": "SCB, Inkomst och Taxeringsregistret (IoT)",
+        "updated": "2026-06-17T22:00:00Z",
+        "note": [
+          "Ekonomisk standard definieras som ett hushålls disponibla inkomst,\r\nefter att skatt och andra negativa transfereringar har dragits av och\r\nhänsyn tagits till hushållets storlek och sammansättning. Den\r\nsammanlagda hushållsinkomsten fördelas på hushållets\r\nkonsumtionsenheter, vilket ger ett mått där alla personer inom ett\r\nhushåll antas ha samma ekonomiska standard. Ett annat namn för\r\nekonomisk standard är ekvivalerad disponibel hushållsinkomst.",
+          "Värden avser här disponibel hushållsinkomst (inklusive kapitalinkomster)\r\ni 1000-tals kronor per konsumtionsenhet.",
+          "Median för individer 25- år.",
+          "Belopp anges i fasta priser med 2024 års prisnivå.",
+          "Europa innefattar även f.d. Sovjetunionen."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "2": "Övr. Norden",
+                "3": "Övr. Europa",
+                "4": "Övr. världen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Disponibel inkomst efter födelseland, kön och år.",
+            "description": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DinkFod",
+            "subject-code": "mo4.1",
+            "subject-area": "Fördelning av inkomster i befolkningen"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Disponibel inkomst efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Tusen kronor",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Disponibel inkomst efter födelseland, kön och år. efter Födelseland, Kön och År",
+        "source": "SCB, Inkomst och Taxeringsregistret (IoT)",
+        "updated": "2026-06-17T22:00:00Z",
+        "note": [
+          "Ekonomisk standard definieras som ett hushålls disponibla inkomst,\r\nefter att skatt och andra negativa transfereringar har dragits av och\r\nhänsyn tagits till hushållets storlek och sammansättning. Den\r\nsammanlagda hushållsinkomsten fördelas på hushållets\r\nkonsumtionsenheter, vilket ger ett mått där alla personer inom ett\r\nhushåll antas ha samma ekonomiska standard. Ett annat namn för\r\nekonomisk standard är ekvivalerad disponibel hushållsinkomst.",
+          "Värden avser här disponibel hushållsinkomst (inklusive kapitalinkomster)\r\ni 1000-tals kronor per konsumtionsenhet.",
+          "Median för individer 25- år.",
+          "Belopp anges i fasta priser med 2024 års prisnivå.",
+          "Europa innefattar även f.d. Sovjetunionen."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "1+2+3+4": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+4",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "2": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Disponibel inkomst efter födelseland, kön och år.",
+            "description": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DinkFod",
+            "subject-code": "mo4.1",
+            "subject-area": "Fördelning av inkomster i befolkningen"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Disponibel inkomst efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Tusen kronor",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Disponibel inkomst efter födelseland, kön och år. efter Födelseland, Kön och År",
+        "source": "SCB, Inkomst och Taxeringsregistret (IoT)",
+        "updated": "2026-06-17T22:00:00Z",
+        "note": [
+          "Ekonomisk standard definieras som ett hushålls disponibla inkomst,\r\nefter att skatt och andra negativa transfereringar har dragits av och\r\nhänsyn tagits till hushållets storlek och sammansättning. Den\r\nsammanlagda hushållsinkomsten fördelas på hushållets\r\nkonsumtionsenheter, vilket ger ett mått där alla personer inom ett\r\nhushåll antas ha samma ekonomiska standard. Ett annat namn för\r\nekonomisk standard är ekvivalerad disponibel hushållsinkomst.",
+          "Värden avser här disponibel hushållsinkomst (inklusive kapitalinkomster)\r\ni 1000-tals kronor per konsumtionsenhet.",
+          "Median för individer 25- år.",
+          "Belopp anges i fasta priser med 2024 års prisnivå.",
+          "Europa innefattar även f.d. Sovjetunionen."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Födelseland": {
+            "label": "Födelseland",
+            "category": {
+              "label": {
+                "1+2+3+4": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+4",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Disponibel inkomst efter födelseland, kön och år.",
+            "description": "Ekonomisk standard efter födelseland, kön och år. Tusen kronor.",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Födelseland"
+            ],
+            "matrix": "DinkFod",
+            "subject-code": "mo4.1",
+            "subject-area": "Fördelning av inkomster i befolkningen"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Disponibel inkomst efter födelseland, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Tusen kronor",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011",
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

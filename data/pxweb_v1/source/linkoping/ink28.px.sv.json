@@ -1,0 +1,910 @@
+{
+  "key": "linkoping/ink28.px/sv",
+  "identifier": "ink28.px",
+  "language": "sv",
+  "updated": "2025-10-17",
+  "retrieved_at": "2026-10-17T07:47:58.160181+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "hushållstyp",
+          "text": "hushållstyp",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Ensamstående",
+            "Sammanboende",
+            "Övriga hushåll",
+            "Samtlliga"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "förekomst av barn",
+          "text": "förekomst av barn",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "Har barn i åldern 0-5 år",
+            "Utan barn i åldern 0-5 år",
+            "Har barn i åldern 0-17 år",
+            "Utan barn i åldern 0-17 år",
+            "Samtliga"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Median (tkr)",
+            "Antal bostadshushåll"
+          ]
+        },
+        {
+          "code": "födelseland",
+          "text": "födelseland",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Utrikes född",
+            "Inrikes född",
+            "Samtliga"
+          ]
+        },
+        {
+          "code": "upplåtelseform",
+          "text": "upplåtelseform",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Äganderätt",
+            "Bostadsrätt",
+            "Hyresrätt",
+            "Uppgift saknas",
+            "Samtliga"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Inkomster/ink28.px",
+      "category_path": [
+        {
+          "id": "Inkomster",
+          "name": "Inkomster"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "ink28.px",
+      "id": "ink28.px",
+      "language": "sv",
+      "path": "/Inkomster",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Inkomster/ink28.px",
+          "category_path": [
+            {
+              "id": "Inkomster",
+              "name": "Inkomster"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Inkomster",
+          "published": "2025-10-17",
+          "score": 1.0,
+          "title": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Inkomster/ink28.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-10-17",
+      "score": 1.0,
+      "title": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Inkomster/ink28.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.        ",
+        "updated": "2026-10-17T09:47:57.4473598+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående",
+                "1": "Sammanboende"
+              }
+            }
+          },
+          "förekomst av barn": {
+            "label": "förekomst av barn",
+            "category": {
+              "label": {
+                "1": "Har barn i åldern 0-5 år",
+                "2": "Utan barn i åldern 0-5 år"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "0": "Median (tkr)",
+                "1": "Antal bostadshushåll"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Utrikes född",
+                "1": "Inrikes född"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "0": "Äganderätt",
+                "1": "Bostadsrätt"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.        ",
+        "updated": "2026-10-17T09:47:57.587993+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "förekomst av barn": {
+            "label": "förekomst av barn",
+            "category": {
+              "label": {
+                "1": "Har barn i åldern 0-5 år"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "0": "Median (tkr)"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Utrikes född"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "0": "Äganderätt"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.        ",
+        "updated": "2026-10-17T09:47:57.7129985+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "2": "Övriga hushåll",
+                "3": "Samtlliga"
+              }
+            }
+          },
+          "förekomst av barn": {
+            "label": "förekomst av barn",
+            "category": {
+              "label": {
+                "1": "Har barn i åldern 0-5 år"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "0": "Median (tkr)"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Utrikes född"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "0": "Äganderätt"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.        ",
+        "updated": "2026-10-17T09:47:57.8379771+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "förekomst av barn": {
+            "label": "förekomst av barn",
+            "category": {
+              "label": {
+                "3": "Har barn i åldern 0-17 år",
+                "4": "Utan barn i åldern 0-17 år",
+                "5": "Samtliga"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "0": "Median (tkr)"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Utrikes född"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "0": "Äganderätt"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.        ",
+        "updated": "2026-10-17T09:47:57.9629778+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "förekomst av barn": {
+            "label": "förekomst av barn",
+            "category": {
+              "label": {
+                "1": "Har barn i åldern 0-5 år"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "0": "Median (tkr)"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "2": "Samtliga"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "0": "Äganderätt"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, förekomst av barn, tabelluppgift, födelseland och upplåtelseform",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.        ",
+        "updated": "2026-10-17T09:47:58.08799+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "förekomst av barn": {
+            "label": "förekomst av barn",
+            "category": {
+              "label": {
+                "1": "Har barn i åldern 0-5 år"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "0": "Median (tkr)"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Utrikes född"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "2": "Hyresrätt",
+                "3": "Uppgift saknas",
+                "4": "Samtliga"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "förekomst av barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "förekomst av barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "förekomst av barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "förekomst av barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "förekomst av barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "förekomst av barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

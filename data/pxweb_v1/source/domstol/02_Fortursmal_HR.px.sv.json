@@ -1,0 +1,780 @@
+{
+  "key": "domstol/02_Fortursmal_HR.px/sv",
+  "identifier": "02_Fortursmal_HR.px",
+  "language": "sv",
+  "updated": "2026-03-03",
+  "retrieved_at": "2026-10-17T07:02:42.391901+00:00",
+  "responses": {
+    "metadata": {
+      "title": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Domstol",
+          "values": [
+            "All courts of appeal",
+            "Göta Court of Appeal",
+            "Court of Appeal for Lower Norrland",
+            "Court of Appeal for Western Sweden",
+            "Court of Appeal for Upper Norrland",
+            "Scania and Blekinge Court of Appeal",
+            "Svea Court of Appeal"
+          ],
+          "valueTexts": [
+            "Alla hovrätter",
+            "Göta hovrätt",
+            "Hovrätten för Nedre Norrland",
+            "Hovrätten för Västra Sverige",
+            "Hovrätten för Övre Norrland",
+            "Hovrätten över Skåne och Blekinge",
+            "Svea hovrätt"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "Number of determined priority cases",
+            "Number of determined priority cases involving a detained person",
+            "Number of determined priority cases involving a defendant under 18 years of age"
+          ],
+          "valueTexts": [
+            "Antal avgjorda förtursmål",
+            "Antal avgjorda förtursmål med häktad",
+            "Antal avgjorda förtursmål med minderårig"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ],
+          "valueTexts": [
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Fortursmal/02_Fortursmal_HR.px",
+      "category_path": [
+        {
+          "id": "Fortursmal",
+          "name": "Förtursmål"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "02_Fortursmal_HR.px",
+      "id": "02_Fortursmal_HR.px",
+      "language": "sv",
+      "path": "/Fortursmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Fortursmal/02_Fortursmal_HR.px",
+          "category_path": [
+            {
+              "id": "Fortursmal",
+              "name": "Förtursmål"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Fortursmal",
+          "published": "2026-03-03",
+          "score": 1.0,
+          "title": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Fortursmal/02_Fortursmal_HR.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-03-03",
+      "score": 1.0,
+      "title": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Fortursmal/02_Fortursmal_HR.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad efter Domstol, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål vid hovrätt som klassificeras som förtursmål och skall handläggas skyndsamt. Det är brottmål med häktad aktör och/eller med minderårig (15-17 år) aktör.",
+          "Mål med minderåriga och häktade summerar ej till totalen eftersom samma mål kan förekomma i båda grupperna."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "All courts of appeal": "Alla hovrätter",
+                "Göta Court of Appeal": "Göta hovrätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined priority cases": "Antal avgjorda förtursmål",
+                "Number of determined priority cases involving a detained person": "Antal avgjorda förtursmål med häktad"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2005",
+                "1": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad",
+            "description": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030171",
+            "subject-code": "RV0301",
+            "subject-area": "Förtursmål"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad efter Domstol, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål vid hovrätt som klassificeras som förtursmål och skall handläggas skyndsamt. Det är brottmål med häktad aktör och/eller med minderårig (15-17 år) aktör.",
+          "Mål med minderåriga och häktade summerar ej till totalen eftersom samma mål kan förekomma i båda grupperna."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Court of Appeal for Lower Norrland": "Hovrätten för Nedre Norrland",
+                "Court of Appeal for Western Sweden": "Hovrätten för Västra Sverige",
+                "Court of Appeal for Upper Norrland": "Hovrätten för Övre Norrland",
+                "Scania and Blekinge Court of Appeal": "Hovrätten över Skåne och Blekinge",
+                "Svea Court of Appeal": "Svea hovrätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined priority cases": "Antal avgjorda förtursmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad",
+            "description": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030171",
+            "subject-code": "RV0301",
+            "subject-area": "Förtursmål"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad efter Domstol, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål vid hovrätt som klassificeras som förtursmål och skall handläggas skyndsamt. Det är brottmål med häktad aktör och/eller med minderårig (15-17 år) aktör.",
+          "Mål med minderåriga och häktade summerar ej till totalen eftersom samma mål kan förekomma i båda grupperna."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "All courts of appeal": "Alla hovrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined priority cases involving a defendant under 18 years of age": "Antal avgjorda förtursmål med minderårig"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad",
+            "description": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030171",
+            "subject-code": "RV0301",
+            "subject-area": "Förtursmål"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad efter Domstol, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal avgjorda mål vid hovrätt som klassificeras som förtursmål och skall handläggas skyndsamt. Det är brottmål med häktad aktör och/eller med minderårig (15-17 år) aktör.",
+          "Mål med minderåriga och häktade summerar ej till totalen eftersom samma mål kan förekomma i båda grupperna."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "All courts of appeal": "Alla hovrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of determined priority cases": "Antal avgjorda förtursmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2007",
+                "3": "2008",
+                "4": "2009",
+                "5": "2010",
+                "6": "2011",
+                "7": "2012",
+                "8": "2013",
+                "9": "2014",
+                "10": "2015",
+                "11": "2016",
+                "12": "2017",
+                "13": "2018",
+                "14": "2019",
+                "15": "2020",
+                "16": "2021",
+                "17": "2022",
+                "18": "2023",
+                "19": "2024",
+                "20": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad",
+            "description": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad. År 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Variabel"
+            ],
+            "matrix": "RV030171",
+            "subject-code": "RV0301",
+            "subject-area": "Förtursmål"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Avgjorda förtursmål vid hovrätt med minderårig och häktad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal",
+                "Göta Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined priority cases",
+                "Number of determined priority cases involving a detained person"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Court of Appeal for Lower Norrland",
+                "Court of Appeal for Western Sweden",
+                "Court of Appeal for Upper Norrland",
+                "Scania and Blekinge Court of Appeal",
+                "Svea Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined priority cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined priority cases involving a defendant under 18 years of age"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined priority cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,662 @@
+{
+  "key": "fohm/ilNarpri.px/en",
+  "identifier": "ilNarpri.px",
+  "language": "en",
+  "updated": "2025-05-13",
+  "retrieved_at": "2026-10-17T07:49:02.368278+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Real prices of narcotics at user level by Region, Segment and Year",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Sweden"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Segment",
+          "text": "Segment",
+          "values": [
+            "20",
+            "62",
+            "90",
+            "92",
+            "93",
+            "115",
+            "132"
+          ],
+          "valueTexts": [
+            "Amphetamine",
+            "Ecstasy",
+            "Hash",
+            "Brown heroin",
+            "White heroin",
+            "Cocaine",
+            "Marijuana"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Narkoti/Tillgan/ilNarpri.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTG-indicators (Indikatorlabbet)"
+        },
+        {
+          "id": "Narkoti",
+          "name": "Narcotics"
+        },
+        {
+          "id": "Tillgan",
+          "name": "Availability"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilNarpri.px",
+      "id": "ilNarpri.px",
+      "language": "en",
+      "path": "/ANDTS/Narkoti/Tillgan",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Narkoti/Tillgan/ilNarpri.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTG-indicators (Indikatorlabbet)"
+            },
+            {
+              "id": "Narkoti",
+              "name": "Narcotics"
+            },
+            {
+              "id": "Tillgan",
+              "name": "Availability"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Narkoti/Tillgan",
+          "published": "2025-05-13",
+          "score": 1.0,
+          "title": "Real prices of narcotics at user level",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Narkoti__Tillgan/ilNarpri.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2025-05-13",
+      "score": 1.0,
+      "title": "Real prices of narcotics at user level",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Narkoti__Tillgan/ilNarpri.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Real prices of narcotics at user level by Region, Segment and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2025-05-13T15:08:00Z",
+        "note": [
+          "Indicator definition: Street price of amphetamine, ecstasy, hash, brown heroin, white heroin, cocaine and marijuana. The term 'street price' refers to the pricing during sale of small amounts at the consumer level (grams or unit level). The prices are adjusted for inflation in accordance with Statistics Sweden's Consumer Price Index (CPI measure) with base year 2011 (=100). Only full-year statistics for the country are reported and as a rule the response drop-out is extremely limited."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "20": "Amphetamine",
+                "62": "Ecstasy"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2000": "2000",
+                "2001": "2001"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Real prices of narcotics at user level",
+            "description": "Real prices of narcotics at user level",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilNarpri",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Narcotics"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Real prices of narcotics at user level"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "index",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Real prices of narcotics at user level by Region, Segment and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2025-05-13T15:08:00Z",
+        "note": [
+          "Indicator definition: Street price of amphetamine, ecstasy, hash, brown heroin, white heroin, cocaine and marijuana. The term 'street price' refers to the pricing during sale of small amounts at the consumer level (grams or unit level). The prices are adjusted for inflation in accordance with Statistics Sweden's Consumer Price Index (CPI measure) with base year 2011 (=100). Only full-year statistics for the country are reported and as a rule the response drop-out is extremely limited."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "90": "Hash",
+                "92": "Brown heroin",
+                "93": "White heroin",
+                "115": "Cocaine",
+                "132": "Marijuana"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2000": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Real prices of narcotics at user level",
+            "description": "Real prices of narcotics at user level",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilNarpri",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Narcotics"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Real prices of narcotics at user level"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "index",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Real prices of narcotics at user level by Region, Segment and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2025-05-13T15:08:00Z",
+        "note": [
+          "Indicator definition: Street price of amphetamine, ecstasy, hash, brown heroin, white heroin, cocaine and marijuana. The term 'street price' refers to the pricing during sale of small amounts at the consumer level (grams or unit level). The prices are adjusted for inflation in accordance with Statistics Sweden's Consumer Price Index (CPI measure) with base year 2011 (=100). Only full-year statistics for the country are reported and as a rule the response drop-out is extremely limited."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "20": "Amphetamine"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2002": "2002",
+                "2003": "2003",
+                "2004": "2004",
+                "2005": "2005",
+                "2006": "2006",
+                "2007": "2007",
+                "2008": "2008",
+                "2009": "2009",
+                "2010": "2010",
+                "2011": "2011",
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Real prices of narcotics at user level",
+            "description": "Real prices of narcotics at user level",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilNarpri",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Narcotics"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Real prices of narcotics at user level"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "index",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20",
+                "62"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2000",
+                "2001"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "90",
+                "92",
+                "93",
+                "115",
+                "132"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2000"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2002",
+                "2003",
+                "2004",
+                "2005",
+                "2006",
+                "2007",
+                "2008",
+                "2009",
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

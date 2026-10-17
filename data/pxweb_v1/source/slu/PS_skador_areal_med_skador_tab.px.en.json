@@ -1,0 +1,1222 @@
+{
+  "key": "slu/PS_skador_areal_med_skador_tab.px/en",
+  "identifier": "PS_skador_areal_med_skador_tab.px",
+  "language": "en",
+  "updated": "2026-05-27",
+  "retrieved_at": "2026-10-17T07:19:42.683476+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Table 3.38 - Area proportion productive forest land with forest damage (1993 - date)",
+      "variables": [
+        {
+          "code": "År (Femårsmedelvärde)",
+          "text": "Year (Five year average)",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "valueTexts": [
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "time": true
+        },
+        {
+          "code": "Landsdel",
+          "text": "Region",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "N Norrland",
+            "S Norrland",
+            "Svealand",
+            "Götaland",
+            "Whole country"
+          ]
+        },
+        {
+          "code": "Beståndstyp",
+          "text": "Forest type",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Pine forest",
+            "Spruce forest",
+            "Other forest",
+            "All forest"
+          ]
+        },
+        {
+          "code": "Tabellinnehåll",
+          "text": "Table contents",
+          "values": [
+            "0"
+          ],
+          "valueTexts": [
+            "Proportion (%)"
+          ]
+        },
+        {
+          "code": "Skadetyp",
+          "text": "Type of damage",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "Wind / snow",
+            "Game",
+            "Resin top disease",
+            "Ips typographus",
+            "Other damage",
+            "No damage"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://skogsstatistik.slu.se/api/v1/en/OffStat/ProduktivSkogsmark/Skogsskador/PS_skador_areal_med_skador_tab.px",
+      "category_path": [
+        {
+          "id": "ProduktivSkogsmark",
+          "name": "Productive forest land"
+        },
+        {
+          "id": "Skogsskador",
+          "name": "Forest damage"
+        }
+      ],
+      "database_id": "OffStat",
+      "dataset_code": "PS_skador_areal_med_skador_tab.px",
+      "id": "PS_skador_areal_med_skador_tab.px",
+      "language": "en",
+      "path": "/ProduktivSkogsmark/Skogsskador",
+      "paths": [
+        {
+          "api_url": "https://skogsstatistik.slu.se/api/v1/en/OffStat/ProduktivSkogsmark/Skogsskador/PS_skador_areal_med_skador_tab.px",
+          "category_path": [
+            {
+              "id": "ProduktivSkogsmark",
+              "name": "Productive forest land"
+            },
+            {
+              "id": "Skogsskador",
+              "name": "Forest damage"
+            }
+          ],
+          "database_id": "OffStat",
+          "path": "/ProduktivSkogsmark/Skogsskador",
+          "published": "2026-05-27",
+          "score": 1.0,
+          "title": "Table 3.38 - Area proportion productive forest land with forest damage (1993 - date)",
+          "web_url": "https://skogsstatistik.slu.se/pxweb/en/OffStat/OffStat__ProduktivSkogsmark__Skogsskador/PS_skador_areal_med_skador_tab.px/"
+        }
+      ],
+      "provider_code": "slu",
+      "published": "2026-05-27",
+      "score": 1.0,
+      "title": "Table 3.38 - Area proportion productive forest land with forest damage (1993 - date)",
+      "web_url": "https://skogsstatistik.slu.se/pxweb/en/OffStat/OffStat__ProduktivSkogsmark__Skogsskador/PS_skador_areal_med_skador_tab.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 300000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Table 3.38 - Area proportion productive forest land with forest damage by Year (Five year average), Region, Forest type, Table contents and Type of damage",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Productive forest land outside formally protected areas based on the most current boundaries."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "Year (Five year average)",
+            "note": [
+              "Five year average, represented by the middle year e.g. 2021-2025=2023."
+            ],
+            "category": {
+              "label": {
+                "0": "2006",
+                "1": "2007"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "N Norrland",
+                "1": "S Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Beståndstyp": {
+            "label": "Forest type",
+            "category": {
+              "label": {
+                "0": "Pine forest",
+                "1": "Spruce forest"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Proportion (%)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skadetyp": {
+            "label": "Type of damage",
+            "note": [
+              "Damage within 5 years. Stands with at least 10% of trees damaged (main stems). A stand can have multiple types of damage"
+            ],
+            "category": {
+              "label": {
+                "0": "Wind / snow",
+                "1": "Game"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "338 Tabell 3.38",
+            "subject-code": "Tab38"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik.Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "År (Femårsmedelvärde)",
+                  "Landsdel",
+                  "Beståndstyp",
+                  "Tabellinnehåll",
+                  "Skadetyp"
+                ],
+                "categories": {
+                  "År (Femårsmedelvärde)": [
+                    "0",
+                    "1"
+                  ],
+                  "Landsdel": [
+                    "0",
+                    "1"
+                  ],
+                  "Beståndstyp": [
+                    "0",
+                    "1"
+                  ],
+                  "Tabellinnehåll": [
+                    "0"
+                  ],
+                  "Skadetyp": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "0": "-",
+                  "2": "-",
+                  "3": "-",
+                  "6": "-",
+                  "8": "-",
+                  "10": "-",
+                  "11": "-",
+                  "12": "-",
+                  "14": "-"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Table 3.38 - Area proportion productive forest land with forest damage by Year (Five year average), Region, Forest type, Table contents and Type of damage",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Productive forest land outside formally protected areas based on the most current boundaries."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "Year (Five year average)",
+            "note": [
+              "Five year average, represented by the middle year e.g. 2021-2025=2023."
+            ],
+            "category": {
+              "label": {
+                "2": "2008",
+                "3": "2009",
+                "4": "2010",
+                "5": "2011",
+                "6": "2012",
+                "7": "2013",
+                "8": "2014",
+                "9": "2015",
+                "10": "2016",
+                "11": "2017",
+                "12": "2018",
+                "13": "2019",
+                "14": "2020",
+                "15": "2021",
+                "16": "2022",
+                "17": "2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "N Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Beståndstyp": {
+            "label": "Forest type",
+            "category": {
+              "label": {
+                "0": "Pine forest"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Proportion (%)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skadetyp": {
+            "label": "Type of damage",
+            "note": [
+              "Damage within 5 years. Stands with at least 10% of trees damaged (main stems). A stand can have multiple types of damage"
+            ],
+            "category": {
+              "label": {
+                "0": "Wind / snow"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "338 Tabell 3.38",
+            "subject-code": "Tab38"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik.Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "År (Femårsmedelvärde)",
+                  "Landsdel",
+                  "Beståndstyp",
+                  "Tabellinnehåll",
+                  "Skadetyp"
+                ],
+                "categories": {
+                  "År (Femårsmedelvärde)": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17"
+                  ],
+                  "Landsdel": [
+                    "0"
+                  ],
+                  "Beståndstyp": [
+                    "0"
+                  ],
+                  "Tabellinnehåll": [
+                    "0"
+                  ],
+                  "Skadetyp": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": "-",
+                  "1": "-",
+                  "2": "-",
+                  "3": "-"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Table 3.38 - Area proportion productive forest land with forest damage by Year (Five year average), Region, Forest type, Table contents and Type of damage",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Productive forest land outside formally protected areas based on the most current boundaries."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "Year (Five year average)",
+            "note": [
+              "Five year average, represented by the middle year e.g. 2021-2025=2023."
+            ],
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "2": "Svealand",
+                "3": "Götaland",
+                "4": "Whole country"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Beståndstyp": {
+            "label": "Forest type",
+            "category": {
+              "label": {
+                "0": "Pine forest"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Proportion (%)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skadetyp": {
+            "label": "Type of damage",
+            "note": [
+              "Damage within 5 years. Stands with at least 10% of trees damaged (main stems). A stand can have multiple types of damage"
+            ],
+            "category": {
+              "label": {
+                "0": "Wind / snow"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "338 Tabell 3.38",
+            "subject-code": "Tab38"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik.Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Table 3.38 - Area proportion productive forest land with forest damage by Year (Five year average), Region, Forest type, Table contents and Type of damage",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Productive forest land outside formally protected areas based on the most current boundaries."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "Year (Five year average)",
+            "note": [
+              "Five year average, represented by the middle year e.g. 2021-2025=2023."
+            ],
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "N Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Beståndstyp": {
+            "label": "Forest type",
+            "category": {
+              "label": {
+                "2": "Other forest",
+                "3": "All forest"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Proportion (%)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skadetyp": {
+            "label": "Type of damage",
+            "note": [
+              "Damage within 5 years. Stands with at least 10% of trees damaged (main stems). A stand can have multiple types of damage"
+            ],
+            "category": {
+              "label": {
+                "0": "Wind / snow"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "338 Tabell 3.38",
+            "subject-code": "Tab38"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik.Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "År (Femårsmedelvärde)",
+                  "Landsdel",
+                  "Beståndstyp",
+                  "Tabellinnehåll",
+                  "Skadetyp"
+                ],
+                "categories": {
+                  "År (Femårsmedelvärde)": [
+                    "0"
+                  ],
+                  "Landsdel": [
+                    "0"
+                  ],
+                  "Beståndstyp": [
+                    "2",
+                    "3"
+                  ],
+                  "Tabellinnehåll": [
+                    "0"
+                  ],
+                  "Skadetyp": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": "-"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Table 3.38 - Area proportion productive forest land with forest damage by Year (Five year average), Region, Forest type, Table contents and Type of damage",
+        "source": "The Swedish National Forest Inventory, Swedish University of Agricultural Sciences",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Productive forest land outside formally protected areas based on the most current boundaries."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "Year (Five year average)",
+            "note": [
+              "Five year average, represented by the middle year e.g. 2021-2025=2023."
+            ],
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "N Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Beståndstyp": {
+            "label": "Forest type",
+            "category": {
+              "label": {
+                "0": "Pine forest"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Table contents",
+            "category": {
+              "label": {
+                "0": "Proportion (%)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skadetyp": {
+            "label": "Type of damage",
+            "note": [
+              "Damage within 5 years. Stands with at least 10% of trees damaged (main stems). A stand can have multiple types of damage"
+            ],
+            "category": {
+              "label": {
+                "2": "Resin top disease",
+                "3": "Ips typographus",
+                "4": "Other damage",
+                "5": "No damage"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "338 Tabell 3.38",
+            "subject-code": "Tab38"
+          },
+          "contact": [
+            {
+              "raw": "Per-Erik.Wikberg, Head of analysis#The Swedish National Forest Inventory, SLU#Tel: +46 090-786 8303#e-post: Per-Erik.Wikberg@slu.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "År (Femårsmedelvärde)",
+                  "Landsdel",
+                  "Beståndstyp",
+                  "Tabellinnehåll",
+                  "Skadetyp"
+                ],
+                "categories": {
+                  "År (Femårsmedelvärde)": [
+                    "0"
+                  ],
+                  "Landsdel": [
+                    "0"
+                  ],
+                  "Beståndstyp": [
+                    "0"
+                  ],
+                  "Tabellinnehåll": [
+                    "0"
+                  ],
+                  "Skadetyp": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "status": {
+                  "0": "-",
+                  "1": ".."
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Beståndstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skadetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Beståndstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skadetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Beståndstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skadetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Beståndstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skadetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Beståndstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skadetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

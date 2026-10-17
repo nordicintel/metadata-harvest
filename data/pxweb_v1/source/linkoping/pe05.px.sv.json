@@ -1,0 +1,853 @@
+{
+  "key": "linkoping/pe05.px/sv",
+  "identifier": "pe05.px",
+  "language": "sv",
+  "updated": "2026-02-16",
+  "retrieved_at": "2026-10-17T07:56:55.524178+00:00",
+  "responses": {
+    "metadata": {
+      "title": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ]
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Pendlar",
+            "Samma",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Pendlar över kommungräns",
+            "Bor och arbetar i kommunen",
+            "Totalt förvärvsarbetande"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Båda könen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "riktning",
+          "text": "riktning",
+          "values": [
+            "In",
+            "Ut",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Inpendling",
+            "Utpendling",
+            "Nettopendling"
+          ]
+        },
+        {
+          "code": "ålder",
+          "text": "ålder",
+          "values": [
+            "16-19",
+            "20-24",
+            "25-29",
+            "30-34",
+            "35-39",
+            "40-44",
+            "45-49",
+            "50-54",
+            "55-59",
+            "60-64",
+            "65-69",
+            "70-74",
+            "Tot"
+          ],
+          "valueTexts": [
+            "16-19 år",
+            "20-24 år",
+            "25-29 år",
+            "30-34 år",
+            "35-39 år",
+            "40-44 år",
+            "45-49 år",
+            "50-54 år",
+            "55-59 år",
+            "60-64 år",
+            "65-69 år",
+            "70-74 år",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Pendling/pe05.px",
+      "category_path": [
+        {
+          "id": "Pendling",
+          "name": "Pendling"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "pe05.px",
+      "id": "pe05.px",
+      "language": "sv",
+      "path": "/Pendling",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Pendling/pe05.px",
+          "category_path": [
+            {
+              "id": "Pendling",
+              "name": "Pendling"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Pendling",
+          "published": "2026-02-16",
+          "score": 1.0,
+          "title": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Pendling/pe05.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-02-16",
+      "score": 1.0,
+      "title": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Pendling/pe05.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.      ",
+        "updated": "2026-10-17T09:56:54.8245132+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2005": "2005",
+                "2006": "2006"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Pendlar": "Pendlar över kommungräns",
+                "Samma": "Bor och arbetar i kommunen"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling",
+                "Ut": "Utpendling"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år",
+                "20-24": "20-24 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.      ",
+        "updated": "2026-10-17T09:56:54.9651364+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2007": "2007",
+                "2008": "2008",
+                "2009": "2009",
+                "2010": "2010",
+                "2011": "2011",
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Pendlar": "Pendlar över kommungräns"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.      ",
+        "updated": "2026-10-17T09:56:55.0901554+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2005": "2005"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Tot": "Totalt förvärvsarbetande"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.      ",
+        "updated": "2026-10-17T09:56:55.2151453+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2005": "2005"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Pendlar": "Pendlar över kommungräns"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Båda könen"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.      ",
+        "updated": "2026-10-17T09:56:55.3245115+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2005": "2005"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Pendlar": "Pendlar över kommungräns"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "Netto": "Nettopendling"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter tid, tabelluppgift, kön, riktning och ålder",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.      ",
+        "updated": "2026-10-17T09:56:55.4495137+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2005": "2005"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Pendlar": "Pendlar över kommungräns"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "riktning": {
+            "label": "riktning",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "25-29": "25-29 år",
+                "30-34": "30-34 år",
+                "35-39": "35-39 år",
+                "40-44": "40-44 år",
+                "45-49": "45-49 år",
+                "50-54": "50-54 år",
+                "55-59": "55-59 år",
+                "60-64": "60-64 år",
+                "65-69": "65-69 år",
+                "70-74": "70-74 år",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2005",
+                "2006"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Pendlar",
+                "Samma"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In",
+                "Ut"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19",
+                "20-24"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2007",
+                "2008",
+                "2009",
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Pendlar"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2005"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2005"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Pendlar"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2005"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Pendlar"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2005"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Pendlar"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "riktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "25-29",
+                "30-34",
+                "35-39",
+                "40-44",
+                "45-49",
+                "50-54",
+                "55-59",
+                "60-64",
+                "65-69",
+                "70-74",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

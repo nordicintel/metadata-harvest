@@ -1,0 +1,1049 @@
+{
+  "key": "norrkoping/UTB03.px/sv",
+  "identifier": "UTB03.px",
+  "language": "sv",
+  "updated": "2023-11-20",
+  "retrieved_at": "2026-10-17T07:00:13.810308+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+      "variables": [
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "utbildningsnivå",
+          "text": "utbildningsnivå",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Förgymnasial",
+            "Gymnasial",
+            "Eftergymnasial",
+            "Uppgift saknas",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "utbildningsinriktning",
+          "text": "utbildningsinriktning",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "valueTexts": [
+            "0 Allmän utbildning",
+            "1 Pedagogik och lärarutbildning",
+            "2 Humaniora, konst och media",
+            "3 Samhällsvetenskap, journalistik, information, företagsekonomi och juridik",
+            "4 Naturvetenskap, matematik och data",
+            "5 Teknik och tillverkning",
+            "6 Lant- och skogsbruk samt djursjukvård",
+            "7 Hälso- och sjukvård samt social omsorg",
+            "8 Tjänster inom transport, miljö och säkerhet mm",
+            "9 Okänd",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "enhet",
+          "text": "enhet",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal personer",
+            "Andel personer (%)"
+          ]
+        },
+        {
+          "code": "år",
+          "text": "år",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.norrkoping.se/PxWeb/api/v1/sv/Utbildningsniv%C3%A5/UTB03.px",
+      "category_path": [],
+      "database_id": "Utbildningsnivå",
+      "dataset_code": "UTB03.px",
+      "id": "UTB03.px",
+      "language": "sv",
+      "path": "/",
+      "paths": [
+        {
+          "api_url": "https://statistik.norrkoping.se/PxWeb/api/v1/sv/Utbildningsniv%C3%A5/UTB03.px",
+          "category_path": [],
+          "database_id": "Utbildningsnivå",
+          "path": "/",
+          "published": "2023-11-20",
+          "score": 1.0,
+          "title": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+          "web_url": "https://statistik.norrkoping.se/PxWeb/pxweb/sv/Utbildningsniv%C3%A5/-/UTB03.px/"
+        }
+      ],
+      "provider_code": "norrkoping",
+      "published": "2023-11-20",
+      "score": 1.0,
+      "title": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+      "web_url": "https://statistik.norrkoping.se/PxWeb/pxweb/sv/Utbildningsniv%C3%A5/-/UTB03.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Män",
+                "1": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "note": [
+              "Avser den högsta registrerade utbildningen."
+            ],
+            "category": {
+              "label": {
+                "0": "Förgymnasial",
+                "1": "Gymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsinriktning": {
+            "label": "utbildningsinriktning",
+            "note": [
+              "Utbildninginriktning enligt SUN2000 (Svensk utbildningsnomenklatur)."
+            ],
+            "category": {
+              "label": {
+                "0": "0 Allmän utbildning",
+                "1": "1 Pedagogik och lärarutbildning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "... innebär att uppgift ej kan redovisas p g a för få individer"
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer",
+                "1": "Andel personer (%)"
+              },
+              "note": {
+                "1": [
+                  "Andel (%) av samtliga med vald utbildningsnivå. T ex andelen som har en utbildningsinriktning bland dem med gymnasial utbildningsnivå om det är gymnasial utbildningsnivå som du valt."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017",
+                "1": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildning",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 20-64 år i Norrköpings kommun"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "note": [
+              "Avser den högsta registrerade utbildningen."
+            ],
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsinriktning": {
+            "label": "utbildningsinriktning",
+            "note": [
+              "Utbildninginriktning enligt SUN2000 (Svensk utbildningsnomenklatur)."
+            ],
+            "category": {
+              "label": {
+                "0": "0 Allmän utbildning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "... innebär att uppgift ej kan redovisas p g a för få individer"
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildning",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 20-64 år i Norrköpings kommun"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "note": [
+              "Avser den högsta registrerade utbildningen."
+            ],
+            "category": {
+              "label": {
+                "2": "Eftergymnasial",
+                "3": "Uppgift saknas",
+                "4": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsinriktning": {
+            "label": "utbildningsinriktning",
+            "note": [
+              "Utbildninginriktning enligt SUN2000 (Svensk utbildningsnomenklatur)."
+            ],
+            "category": {
+              "label": {
+                "0": "0 Allmän utbildning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "... innebär att uppgift ej kan redovisas p g a för få individer"
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildning",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 20-64 år i Norrköpings kommun"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "note": [
+              "Avser den högsta registrerade utbildningen."
+            ],
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsinriktning": {
+            "label": "utbildningsinriktning",
+            "note": [
+              "Utbildninginriktning enligt SUN2000 (Svensk utbildningsnomenklatur)."
+            ],
+            "category": {
+              "label": {
+                "2": "2 Humaniora, konst och media",
+                "3": "3 Samhällsvetenskap, journalistik, information, företagsekonomi och juridik",
+                "4": "4 Naturvetenskap, matematik och data",
+                "5": "5 Teknik och tillverkning",
+                "6": "6 Lant- och skogsbruk samt djursjukvård",
+                "7": "7 Hälso- och sjukvård samt social omsorg",
+                "8": "8 Tjänster inom transport, miljö och säkerhet mm",
+                "9": "9 Okänd",
+                "10": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "... innebär att uppgift ej kan redovisas p g a för få individer"
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildning",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 20-64 år i Norrköpings kommun"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 20-64 år i Norrköpings kommun efter kön, utbildningsnivå, utbildningsinriktning, enhet och år",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "note": [
+              "Avser den högsta registrerade utbildningen."
+            ],
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsinriktning": {
+            "label": "utbildningsinriktning",
+            "note": [
+              "Utbildninginriktning enligt SUN2000 (Svensk utbildningsnomenklatur)."
+            ],
+            "category": {
+              "label": {
+                "0": "0 Allmän utbildning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "... innebär att uppgift ej kan redovisas p g a för få individer"
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2": "2019",
+                "3": "2020",
+                "4": "2021",
+                "5": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildning",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 20-64 år i Norrköpings kommun"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsinriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsinriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsinriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsinriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsinriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

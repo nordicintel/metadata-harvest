@@ -1,0 +1,334 @@
+{
+  "key": "goteborg/10_Arealer_GBG.px/sv",
+  "identifier": "10_Arealer_GBG.px",
+  "language": "sv",
+  "updated": "2026-02-11T21:04:00",
+  "retrieved_at": "2026-10-17T06:58:34.113162+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Arealer Göteborg 2026",
+      "variables": [
+        {
+          "code": "Område",
+          "text": "Område",
+          "values": [
+            "Göteborg"
+          ],
+          "valueTexts": [
+            "Göteborg"
+          ]
+        },
+        {
+          "code": "Typ av yta (kvadratkilometer)",
+          "text": "Typ av yta (kvadratkilometer)",
+          "values": [
+            "Total areal",
+            "Landareal",
+            "Vattenareal"
+          ],
+          "valueTexts": [
+            "Total areal",
+            "Landareal",
+            "Vattenareal"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistikdatabas.goteborg.se/api/v1/sv/1.%20G%C3%B6teborg%20och%20dess%20delomr%C3%A5den/Kommun/%C3%96vrigt/Arealer/10_Arealer_GBG.px",
+      "category_path": [
+        {
+          "id": "Kommun",
+          "name": "Kommun"
+        },
+        {
+          "id": "Övrigt",
+          "name": "Övrigt"
+        },
+        {
+          "id": "Arealer",
+          "name": "Arealer"
+        }
+      ],
+      "database_id": "1. Göteborg och dess delområden",
+      "dataset_code": "10_Arealer_GBG.px",
+      "id": "10_Arealer_GBG.px",
+      "language": "sv",
+      "path": "/Kommun/Övrigt/Arealer",
+      "paths": [
+        {
+          "api_url": "https://statistikdatabas.goteborg.se/api/v1/sv/1.%20G%C3%B6teborg%20och%20dess%20delomr%C3%A5den/Kommun/%C3%96vrigt/Arealer/10_Arealer_GBG.px",
+          "category_path": [
+            {
+              "id": "Kommun",
+              "name": "Kommun"
+            },
+            {
+              "id": "Övrigt",
+              "name": "Övrigt"
+            },
+            {
+              "id": "Arealer",
+              "name": "Arealer"
+            }
+          ],
+          "database_id": "1. Göteborg och dess delområden",
+          "path": "/Kommun/Övrigt/Arealer",
+          "published": "2026-02-11T21:04:00",
+          "score": 1.0,
+          "title": "Arealer Göteborg 2026",
+          "web_url": "https://statistikdatabas.goteborg.se/pxweb/sv/1.%20G%C3%B6teborg%20och%20dess%20delomr%C3%A5den/1.%20G%C3%B6teborg%20och%20dess%20delomr%C3%A5den__Kommun__%C3%96vrigt__Arealer/10_Arealer_GBG.px/"
+        }
+      ],
+      "provider_code": "goteborg",
+      "published": "2026-02-11T21:04:00",
+      "score": 1.0,
+      "title": "Arealer Göteborg 2026",
+      "web_url": "https://statistikdatabas.goteborg.se/pxweb/sv/1.%20G%C3%B6teborg%20och%20dess%20delomr%C3%A5den/1.%20G%C3%B6teborg%20och%20dess%20delomr%C3%A5den__Kommun__%C3%96vrigt__Arealer/10_Arealer_GBG.px/"
+    },
+    "config": {
+      "maxValues": 100000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "NoContent by Område and Typ av yta (kvadratkilometer)",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Område": {
+            "label": "Område",
+            "category": {
+              "label": {
+                "Göteborg": "Göteborg"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Typ av yta (kvadratkilometer)": {
+            "label": "Typ av yta (kvadratkilometer)",
+            "category": {
+              "label": {
+                "Total areal": "Total areal",
+                "Landareal": "Landareal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "tableid": "0069",
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "contents": "NoContent",
+            "description": "Arealer Göteborg 2026",
+            "descriptiondefault": true,
+            "heading": [
+              "Typ av yta (kvadratkilometer)"
+            ],
+            "stub": [
+              "Område"
+            ],
+            "matrix": "Arealer",
+            "subject-code": "NoSubjectCode",
+            "subject-area": "NoSubjectArea"
+          },
+          "contact": [
+            {
+              "raw": "statistisk.analys@stadshuset.goteborg.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "NoContent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Kvadratkilometer",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "NoContent by Område and Typ av yta (kvadratkilometer)",
+        "updated": "9999-12-31T22:59:59Z",
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Område": {
+            "label": "Område",
+            "category": {
+              "label": {
+                "Göteborg": "Göteborg"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Typ av yta (kvadratkilometer)": {
+            "label": "Typ av yta (kvadratkilometer)",
+            "category": {
+              "label": {
+                "Vattenareal": "Vattenareal"
+              },
+              "note": {
+                "Vattenareal": [
+                  "Exklusive territorialvattnet (ca 307 kvadratkilometer)"
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "tableid": "0069",
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "contents": "NoContent",
+            "description": "Arealer Göteborg 2026",
+            "descriptiondefault": true,
+            "heading": [
+              "Typ av yta (kvadratkilometer)"
+            ],
+            "stub": [
+              "Område"
+            ],
+            "matrix": "Arealer",
+            "subject-code": "NoSubjectCode",
+            "subject-area": "NoSubjectArea"
+          },
+          "contact": [
+            {
+              "raw": "statistisk.analys@stadshuset.goteborg.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "NoContent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Kvadratkilometer",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Göteborg"
+              ]
+            }
+          },
+          {
+            "code": "Typ av yta (kvadratkilometer)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Total areal",
+                "Landareal"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Göteborg"
+              ]
+            }
+          },
+          {
+            "code": "Typ av yta (kvadratkilometer)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Vattenareal"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

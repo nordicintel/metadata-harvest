@@ -1,0 +1,623 @@
+{
+  "key": "energi/EN0102_3.px/en",
+  "identifier": "EN0102_3.px",
+  "language": "en",
+  "updated": "2025-06-14",
+  "retrieved_at": "2026-10-17T07:01:50.006108+00:00",
+  "responses": {
+    "metadata": {
+      "title": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+      "variables": [
+        {
+          "code": "Bränsle",
+          "text": "Fuel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "All Fuels, electricity for household use excluded",
+            "Oil only",
+            "Electricity only, electricity for household use included",
+            "District heating only",
+            "Biofuel only",
+            "Gas only"
+          ]
+        },
+        {
+          "code": "Byggår",
+          "text": "Year of construction",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "valueTexts": [
+            "All construction years",
+            "-1940",
+            "1941-1960",
+            "1961-1970",
+            "1971-1980",
+            "1981-1990",
+            "1991-2000",
+            "2001-2010",
+            "2011-2020",
+            "2021-",
+            "Missing"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Measure",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "MWh/building",
+            "kWh/m2"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_3.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Dwellings and non-residential premises"
+        },
+        {
+          "id": "Smahus",
+          "name": "Energy statistics for One and two dwelling buildings"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0102_3.px",
+      "id": "EN0102_3.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_3.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Dwellings and non-residential premises"
+            },
+            {
+              "id": "Smahus",
+              "name": "Energy statistics for One and two dwelling buildings"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+          "published": "2025-06-14",
+          "score": 1.0,
+          "title": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_3.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-06-14",
+      "score": 1.0,
+      "title": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_3.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel by Fuel, Year of construction and Measure",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-14T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Bränsle": {
+            "label": "Fuel",
+            "category": {
+              "label": {
+                "0": "All Fuels, electricity for household use excluded",
+                "1": "Oil only"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Byggår": {
+            "label": "Year of construction",
+            "category": {
+              "label": {
+                "0": "All construction years",
+                "1": "-1940"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "MWh/building",
+                "1": "kWh/m2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+            "description": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått"
+            ],
+            "stub": [
+              "Bränsle",
+              "Byggår"
+            ],
+            "matrix": "EN0102_3",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 544 20 00"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Bränsle",
+                  "Byggår",
+                  "Mått"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Bränsle": [
+                    "0",
+                    "1"
+                  ],
+                  "Byggår": [
+                    "0",
+                    "1"
+                  ],
+                  "Mått": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "6": "..",
+                  "7": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "MWh/building, kWh/m2",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel by Fuel, Year of construction and Measure",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-14T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Bränsle": {
+            "label": "Fuel",
+            "category": {
+              "label": {
+                "2": "Electricity only, electricity for household use included",
+                "3": "District heating only",
+                "4": "Biofuel only",
+                "5": "Gas only"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Byggår": {
+            "label": "Year of construction",
+            "category": {
+              "label": {
+                "0": "All construction years"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "MWh/building"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+            "description": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått"
+            ],
+            "stub": [
+              "Bränsle",
+              "Byggår"
+            ],
+            "matrix": "EN0102_3",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 544 20 00"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "MWh/building, kWh/m2",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel by Fuel, Year of construction and Measure",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-14T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Bränsle": {
+            "label": "Fuel",
+            "category": {
+              "label": {
+                "0": "All Fuels, electricity for household use excluded"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Byggår": {
+            "label": "Year of construction",
+            "category": {
+              "label": {
+                "2": "1941-1960",
+                "3": "1961-1970",
+                "4": "1971-1980",
+                "5": "1981-1990",
+                "6": "1991-2000",
+                "7": "2001-2010",
+                "8": "2011-2020",
+                "9": "2021-",
+                "10": "Missing"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "MWh/building"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+            "description": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel",
+            "descriptiondefault": true,
+            "heading": [
+              "Mått"
+            ],
+            "stub": [
+              "Bränsle",
+              "Byggår"
+            ],
+            "matrix": "EN0102_3",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 544 20 00"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "One and two dwelling building: Energy use for heating and hot water per square meter and per building by year of construction and fuel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "MWh/building, kWh/m2",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Bränsle",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Byggår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Bränsle",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Byggår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Bränsle",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Byggår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

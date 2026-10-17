@@ -1,0 +1,619 @@
+{
+  "key": "domstol/05_Verksamhetsmal_KR.px/en",
+  "identifier": "05_Verksamhetsmal_KR.px",
+  "language": "en",
+  "updated": "2026-02-25",
+  "retrieved_at": "2026-10-17T07:09:22.706827+00:00",
+  "responses": {
+    "metadata": {
+      "title": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months). Year 2007-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Administrative court of appeal",
+          "values": [
+            "All administrative courts of appeal",
+            "Administrative Court of Appeal in Gothenburg",
+            "Administrative Court of Appeal in Jönköping",
+            "Administrative Court of Appeal in Stockholm",
+            "Administrative Court of Appeal in Sundsvall"
+          ],
+          "valueTexts": [
+            "All administrative courts of appeal",
+            "Administrative Court of Appeal in Gothenburg",
+            "Administrative Court of Appeal in Jönköping",
+            "Administrative Court of Appeal in Stockholm",
+            "Administrative Court of Appeal in Sundsvall"
+          ]
+        },
+        {
+          "code": "Verksamhetsmålskategori",
+          "text": "Category",
+          "values": [
+            "Total cases excluding priority cases and migration cases"
+          ],
+          "valueTexts": [
+            "Total cases excluding priority cases and migration cases"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"
+          ],
+          "valueTexts": [
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Verksamhetsmal/05_Verksamhetsmal_KR.px",
+      "category_path": [
+        {
+          "id": "Verksamhetsmal",
+          "name": "Performance of time targets (turnaround times)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "05_Verksamhetsmal_KR.px",
+      "id": "05_Verksamhetsmal_KR.px",
+      "language": "en",
+      "path": "/Verksamhetsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Verksamhetsmal/05_Verksamhetsmal_KR.px",
+          "category_path": [
+            {
+              "id": "Verksamhetsmal",
+              "name": "Performance of time targets (turnaround times)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Verksamhetsmal",
+          "published": "2026-02-25",
+          "score": 1.0,
+          "title": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months). Year 2007-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Verksamhetsmal/05_Verksamhetsmal_KR.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-25",
+      "score": 1.0,
+      "title": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months). Year 2007-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Verksamhetsmal/05_Verksamhetsmal_KR.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months) by Administrative court of appeal, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the administrative courts of appeal, set by the government. The time is measured at the 75th percentile for cases determined during the selected time period (time from filed case to determined case).",
+          "The target for Total cases, excluding priority cases and migration cases, is 6 months.",
+          "Priority cases must be processed urgently and these are cases according to the Compulsory Psychiatric Care Act (LPT), Forensic Mental Care Act (LRV), Care of Young Persons Act (LVU), and Care of Abusers Act (LVM)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Administrative court of appeal",
+            "category": {
+              "label": {
+                "All administrative courts of appeal": "All administrative courts of appeal",
+                "Administrative Court of Appeal in Gothenburg": "Administrative Court of Appeal in Gothenburg"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Total cases excluding priority cases and migration cases": "Total cases excluding priority cases and migration cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2007",
+                "1": "2008"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months)",
+            "description": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030184",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months) by Administrative court of appeal, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the administrative courts of appeal, set by the government. The time is measured at the 75th percentile for cases determined during the selected time period (time from filed case to determined case).",
+          "The target for Total cases, excluding priority cases and migration cases, is 6 months.",
+          "Priority cases must be processed urgently and these are cases according to the Compulsory Psychiatric Care Act (LPT), Forensic Mental Care Act (LRV), Care of Young Persons Act (LVU), and Care of Abusers Act (LVM)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Administrative court of appeal",
+            "category": {
+              "label": {
+                "Administrative Court of Appeal in Jönköping": "Administrative Court of Appeal in Jönköping",
+                "Administrative Court of Appeal in Stockholm": "Administrative Court of Appeal in Stockholm",
+                "Administrative Court of Appeal in Sundsvall": "Administrative Court of Appeal in Sundsvall"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Total cases excluding priority cases and migration cases": "Total cases excluding priority cases and migration cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2007"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months)",
+            "description": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030184",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months) by Administrative court of appeal, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the administrative courts of appeal, set by the government. The time is measured at the 75th percentile for cases determined during the selected time period (time from filed case to determined case).",
+          "The target for Total cases, excluding priority cases and migration cases, is 6 months.",
+          "Priority cases must be processed urgently and these are cases according to the Compulsory Psychiatric Care Act (LPT), Forensic Mental Care Act (LRV), Care of Young Persons Act (LVU), and Care of Abusers Act (LVM)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Administrative court of appeal",
+            "category": {
+              "label": {
+                "All administrative courts of appeal": "All administrative courts of appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Total cases excluding priority cases and migration cases": "Total cases excluding priority cases and migration cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2009",
+                "3": "2010",
+                "4": "2011",
+                "5": "2012",
+                "6": "2013",
+                "7": "2014",
+                "8": "2015",
+                "9": "2016",
+                "10": "2017",
+                "11": "2018",
+                "12": "2019",
+                "13": "2020",
+                "14": "2021",
+                "15": "2022",
+                "16": "2023",
+                "17": "2024",
+                "18": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months)",
+            "description": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030184",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "05. Performance of the time targets at administrative courts of appeal (excluding migration, turnaround time 75 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All administrative courts of appeal",
+                "Administrative Court of Appeal in Gothenburg"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Total cases excluding priority cases and migration cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Administrative Court of Appeal in Jönköping",
+                "Administrative Court of Appeal in Stockholm",
+                "Administrative Court of Appeal in Sundsvall"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Total cases excluding priority cases and migration cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All administrative courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Total cases excluding priority cases and migration cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,762 @@
+{
+  "key": "fohm/ilAlkRisB.px/en",
+  "identifier": "ilAlkRisB.px",
+  "language": "en",
+  "updated": "2026-05-04",
+  "retrieved_at": "2026-10-17T07:44:49.417544+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Hazardous consumption (school pupils) by Region, Segment, Gender, Age and Year",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Sweden"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Segment",
+          "text": "Segment",
+          "values": [
+            "13"
+          ],
+          "valueTexts": [
+            "Alcohol"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Gender",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Girls & Boys",
+            "Girls",
+            "Boys"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Age",
+          "values": [
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Last year in compulsory school",
+            "Upper secondary school year 2"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Alkohol/Anvandn/ilAlkRisB.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTG-indicators (Indikatorlabbet)"
+        },
+        {
+          "id": "Alkohol",
+          "name": "Alcohol"
+        },
+        {
+          "id": "Anvandn",
+          "name": "Use"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilAlkRisB.px",
+      "id": "ilAlkRisB.px",
+      "language": "en",
+      "path": "/ANDTS/Alkohol/Anvandn",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Alkohol/Anvandn/ilAlkRisB.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTG-indicators (Indikatorlabbet)"
+            },
+            {
+              "id": "Alkohol",
+              "name": "Alcohol"
+            },
+            {
+              "id": "Anvandn",
+              "name": "Use"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Alkohol/Anvandn",
+          "published": "2026-05-04",
+          "score": 1.0,
+          "title": "Hazardous consumption (school pupils)",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Anvandn/ilAlkRisB.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-05-04",
+      "score": 1.0,
+      "title": "Hazardous consumption (school pupils)",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Anvandn/ilAlkRisB.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Hazardous consumption (school pupils) by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2026-05-04T09:11:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of pupils in school year 9 and year 2 of upper secondary school that chose the option which corresponds to high consumption and/or intensive consumption of alcohol."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "13": "Alcohol"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "13",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "1": "Girls & Boys",
+                "2": "Girls"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "1": "Last year in compulsory school",
+                "2": "Upper secondary school year 2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Hazardous consumption (school pupils)",
+            "description": "Hazardous consumption (school pupils)",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkRisB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Hazardous consumption (school pupils)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Hazardous consumption (school pupils) by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2026-05-04T09:11:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of pupils in school year 9 and year 2 of upper secondary school that chose the option which corresponds to high consumption and/or intensive consumption of alcohol."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "13": "Alcohol"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "13",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "3": "Boys"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "1": "Last year in compulsory school"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Hazardous consumption (school pupils)",
+            "description": "Hazardous consumption (school pupils)",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkRisB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Hazardous consumption (school pupils)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Hazardous consumption (school pupils) by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2026-05-04T09:11:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of pupils in school year 9 and year 2 of upper secondary school that chose the option which corresponds to high consumption and/or intensive consumption of alcohol."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "13": "Alcohol"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "13",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "1": "Girls & Boys"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "1": "Last year in compulsory school"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Hazardous consumption (school pupils)",
+            "description": "Hazardous consumption (school pupils)",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkRisB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Hazardous consumption (school pupils)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "13"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "13"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "13"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

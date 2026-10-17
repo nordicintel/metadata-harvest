@@ -1,0 +1,662 @@
+{
+  "key": "fohm/ilAlkB.px/en",
+  "identifier": "ilAlkB.px",
+  "language": "en",
+  "updated": "2022-03-28",
+  "retrieved_at": "2026-10-17T07:44:06.176592+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Consumed alcohol at restaurants (shool pupils) by Region, Gender, Age and Year",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Sweden"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Gender",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Girls & Boys",
+            "Girls",
+            "Boys"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Age",
+          "values": [
+            "2"
+          ],
+          "valueTexts": [
+            "Upper secondary school year 2"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2021"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2021"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTG-indicators (Indikatorlabbet)"
+        },
+        {
+          "id": "Alkohol",
+          "name": "Alcohol"
+        },
+        {
+          "id": "Tillgan",
+          "name": "Availability"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilAlkB.px",
+      "id": "ilAlkB.px",
+      "language": "en",
+      "path": "/ANDTS/Alkohol/Tillgan",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Alkohol/Tillgan/ilAlkB.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTG-indicators (Indikatorlabbet)"
+            },
+            {
+              "id": "Alkohol",
+              "name": "Alcohol"
+            },
+            {
+              "id": "Tillgan",
+              "name": "Availability"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Alkohol/Tillgan",
+          "published": "2022-03-28",
+          "score": 1.0,
+          "title": "Consumed alcohol at restaurants (shool pupils)",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Tillgan/ilAlkB.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2022-03-28",
+      "score": 1.0,
+      "title": "Consumed alcohol at restaurants (shool pupils)",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Tillgan/ilAlkB.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Consumed alcohol at restaurants (shool pupils) by Region, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-03-28T10:38:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of pupils in year 2 of upper secondary school below the age of 18 that state that they have consumed alcohol over the past 12 months and that drank alcohol at a restaurant the last time. Question: 'Think about the last time you drank alcohol, where did you obtain it from the start (regardless of whether you bought it yourself or got it from someone else)?' The indicator refers to the percentage that replied 'From a restaurant'."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "1": "Girls & Boys",
+                "2": "Girls"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "2": "Upper secondary school year 2"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Consumed alcohol at restaurants (shool pupils)",
+            "description": "Consumed alcohol at restaurants (shool pupils)",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Consumed alcohol at restaurants (shool pupils)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Consumed alcohol at restaurants (shool pupils) by Region, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-03-28T10:38:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of pupils in year 2 of upper secondary school below the age of 18 that state that they have consumed alcohol over the past 12 months and that drank alcohol at a restaurant the last time. Question: 'Think about the last time you drank alcohol, where did you obtain it from the start (regardless of whether you bought it yourself or got it from someone else)?' The indicator refers to the percentage that replied 'From a restaurant'."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "3": "Boys"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "2": "Upper secondary school year 2"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Consumed alcohol at restaurants (shool pupils)",
+            "description": "Consumed alcohol at restaurants (shool pupils)",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Consumed alcohol at restaurants (shool pupils)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Consumed alcohol at restaurants (shool pupils) by Region, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-03-28T10:38:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of pupils in year 2 of upper secondary school below the age of 18 that state that they have consumed alcohol over the past 12 months and that drank alcohol at a restaurant the last time. Question: 'Think about the last time you drank alcohol, where did you obtain it from the start (regardless of whether you bought it yourself or got it from someone else)?' The indicator refers to the percentage that replied 'From a restaurant'."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "1": "Girls & Boys"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "2": "Upper secondary school year 2"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 2,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Consumed alcohol at restaurants (shool pupils)",
+            "description": "Consumed alcohol at restaurants (shool pupils)",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkB",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Consumed alcohol at restaurants (shool pupils)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

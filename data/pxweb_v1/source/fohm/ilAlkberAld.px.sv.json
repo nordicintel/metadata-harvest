@@ -1,0 +1,815 @@
+{
+  "key": "fohm/ilAlkberAld.px/sv",
+  "identifier": "ilAlkberAld.px",
+  "language": "sv",
+  "updated": "2025-04-25",
+  "retrieved_at": "2026-10-17T07:45:31.011780+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Alkoholberoende, ålder och kön efter Region, Kön, Ålder och År",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Riket"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "Kvinnor & Män",
+            "Kvinnor",
+            "Män"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "5",
+            "13",
+            "25",
+            "26",
+            "27"
+          ],
+          "valueTexts": [
+            "17-29 år",
+            "17-84 år",
+            "30-49 år",
+            "50-64 år",
+            "65-84 år"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2013",
+            "2017",
+            "2021"
+          ],
+          "valueTexts": [
+            "2013",
+            "2017",
+            "2021"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberAld.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTS-indikatorer (Indikatorlabbet)"
+        },
+        {
+          "id": "Alkohol",
+          "name": "Alkohol"
+        },
+        {
+          "id": "Skador",
+          "name": "Skador"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilAlkberAld.px",
+      "id": "ilAlkberAld.px",
+      "language": "sv",
+      "path": "/ANDTS/Alkohol/Skador",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberAld.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTS-indikatorer (Indikatorlabbet)"
+            },
+            {
+              "id": "Alkohol",
+              "name": "Alkohol"
+            },
+            {
+              "id": "Skador",
+              "name": "Skador"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Alkohol/Skador",
+          "published": "2025-04-25",
+          "score": 1.0,
+          "title": "Alkoholberoende, ålder och kön",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Skador/ilAlkberAld.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2025-04-25",
+      "score": 1.0,
+      "title": "Alkoholberoende, ålder och kön",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Skador/ilAlkberAld.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Alkoholberoende, ålder och kön efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2025-04-25T12:52:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med alkoholberoende enligt diagnostiska kriterier i DSM-IV genom frågeinstrumentet M.I.N.I. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män",
+                "5": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "5": "17-29 år",
+                "13": "17-84 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2017": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alkoholberoende, ålder och kön",
+            "description": "Alkoholberoende, ålder och kön",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alkoholberoende, ålder och kön"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Alkoholberoende, ålder och kön efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2025-04-25T12:52:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med alkoholberoende enligt diagnostiska kriterier i DSM-IV genom frågeinstrumentet M.I.N.I. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "6": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "5": "17-29 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alkoholberoende, ålder och kön",
+            "description": "Alkoholberoende, ålder och kön",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alkoholberoende, ålder och kön"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Alkoholberoende, ålder och kön efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2025-04-25T12:52:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med alkoholberoende enligt diagnostiska kriterier i DSM-IV genom frågeinstrumentet M.I.N.I. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "25": "30-49 år",
+                "26": "50-64 år",
+                "27": "65-84 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alkoholberoende, ålder och kön",
+            "description": "Alkoholberoende, ålder och kön",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alkoholberoende, ålder och kön"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Alkoholberoende, ålder och kön efter Region, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2025-04-25T12:52:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med alkoholberoende enligt diagnostiska kriterier i DSM-IV genom frågeinstrumentet M.I.N.I. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "5": "17-29 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alkoholberoende, ålder och kön",
+            "description": "Alkoholberoende, ålder och kön",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alkoholberoende, ålder och kön"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5",
+                "13"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2017"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "25",
+                "26",
+                "27"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

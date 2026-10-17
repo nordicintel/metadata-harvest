@@ -1,0 +1,532 @@
+{
+  "key": "fohm/inskmhvUtb.px/sv",
+  "identifier": "inskmhvUtb.px",
+  "language": "sv",
+  "updated": "2026-10-06",
+  "retrieved_at": "2026-10-17T07:56:07.672060+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Tidig inskrivning vid mödrahälsovården efter utbildningsnivå och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Utbildningsnivå",
+          "text": "Utbildningsnivå",
+          "values": [
+            "1+2+3+0",
+            "1",
+            "2",
+            "3",
+            "0"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Förgymnasial",
+            "Gymnasial",
+            "Eftergymnasial",
+            "Uppgift saknas"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/1_Tidigalivet/01MhvBhv/01.01inskmhv/inskmhvUtb.px",
+      "category_path": [
+        {
+          "id": "A_Mo8",
+          "name": "Folkhälsan i Sverige"
+        },
+        {
+          "id": "1_Tidigalivet",
+          "name": "1 Det tidiga livets villkor"
+        },
+        {
+          "id": "01MhvBhv",
+          "name": "En jämlik mödra- och barnhälsovård"
+        },
+        {
+          "id": "01.01inskmhv",
+          "name": "01.01 Tidig inskrivning vid mödrahälsovården"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "inskmhvUtb.px",
+      "id": "inskmhvUtb.px",
+      "language": "sv",
+      "path": "/A_Mo8/1_Tidigalivet/01MhvBhv/01.01inskmhv",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/1_Tidigalivet/01MhvBhv/01.01inskmhv/inskmhvUtb.px",
+          "category_path": [
+            {
+              "id": "A_Mo8",
+              "name": "Folkhälsan i Sverige"
+            },
+            {
+              "id": "1_Tidigalivet",
+              "name": "1 Det tidiga livets villkor"
+            },
+            {
+              "id": "01MhvBhv",
+              "name": "En jämlik mödra- och barnhälsovård"
+            },
+            {
+              "id": "01.01inskmhv",
+              "name": "01.01 Tidig inskrivning vid mödrahälsovården"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/A_Mo8/1_Tidigalivet/01MhvBhv/01.01inskmhv",
+          "published": "2026-10-06",
+          "score": 1.0,
+          "title": "Tidig inskrivning vid mödrahälsovården efter utbildningsnivå och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__1_Tidigalivet__01MhvBhv__01.01inskmhv/inskmhvUtb.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-10-06",
+      "score": 1.0,
+      "title": "Tidig inskrivning vid mödrahälsovården efter utbildningsnivå och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__1_Tidigalivet__01MhvBhv__01.01inskmhv/inskmhvUtb.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Tidig inskrivning MHV, utbildning efter Utbildningsnivå och År",
+        "source": "Graviditetsregistret",
+        "updated": "2026-10-06T07:03:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "1+2+3+0": "Totalt",
+                "1": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+0",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tidig inskrivning MHV, utbildning",
+            "description": "Tidig inskrivning vid mödrahälsovården efter utbildningsnivå och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "inskmhvUtb",
+            "subject-code": "mo1.1",
+            "subject-area": "En jämlik mödra- och barnhälsovård"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tidig inskrivning MHV, utbildning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tidig inskrivning MHV, utbildning efter Utbildningsnivå och År",
+        "source": "Graviditetsregistret",
+        "updated": "2026-10-06T07:03:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "2": "Gymnasial",
+                "3": "Eftergymnasial",
+                "0": "Uppgift saknas"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tidig inskrivning MHV, utbildning",
+            "description": "Tidig inskrivning vid mödrahälsovården efter utbildningsnivå och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "inskmhvUtb",
+            "subject-code": "mo1.1",
+            "subject-area": "En jämlik mödra- och barnhälsovård"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tidig inskrivning MHV, utbildning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tidig inskrivning MHV, utbildning efter Utbildningsnivå och År",
+        "source": "Graviditetsregistret",
+        "updated": "2026-10-06T07:03:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "1+2+3+0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+0",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tidig inskrivning MHV, utbildning",
+            "description": "Tidig inskrivning vid mödrahälsovården efter utbildningsnivå och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "inskmhvUtb",
+            "subject-code": "mo1.1",
+            "subject-area": "En jämlik mödra- och barnhälsovård"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tidig inskrivning MHV, utbildning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2012-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

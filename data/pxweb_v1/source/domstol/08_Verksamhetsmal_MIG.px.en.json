@@ -1,0 +1,801 @@
+{
+  "key": "domstol/08_Verksamhetsmal_MIG.px/en",
+  "identifier": "08_Verksamhetsmal_MIG.px",
+  "language": "en",
+  "updated": "2026-02-24",
+  "retrieved_at": "2026-10-17T07:12:31.377450+00:00",
+  "responses": {
+    "metadata": {
+      "title": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Migration court",
+          "values": [
+            "All migration courts",
+            "Migration Court in Gothenburg",
+            "Migration Court in Luleå",
+            "Migration Court in Malmö",
+            "Migration Court in Stockholm"
+          ],
+          "valueTexts": [
+            "All migration courts",
+            "Migration Court in Gothenburg",
+            "Migration Court in Luleå",
+            "Migration Court in Malmö",
+            "Migration Court in Stockholm"
+          ]
+        },
+        {
+          "code": "Verksamhetsmålskategori",
+          "text": "Category",
+          "values": [
+            "Removal cases, unaccompanied minors",
+            "Other removal cases",
+            "Enforcement cases",
+            "Other migration cases"
+          ],
+          "valueTexts": [
+            "Removal cases, unaccompanied minors",
+            "Other removal cases",
+            "Enforcement cases",
+            "Other migration cases"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"
+          ],
+          "valueTexts": [
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Verksamhetsmal/08_Verksamhetsmal_MIG.px",
+      "category_path": [
+        {
+          "id": "Verksamhetsmal",
+          "name": "Performance of time targets (turnaround times)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "08_Verksamhetsmal_MIG.px",
+      "id": "08_Verksamhetsmal_MIG.px",
+      "language": "en",
+      "path": "/Verksamhetsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Verksamhetsmal/08_Verksamhetsmal_MIG.px",
+          "category_path": [
+            {
+              "id": "Verksamhetsmal",
+              "name": "Performance of time targets (turnaround times)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Verksamhetsmal",
+          "published": "2026-02-24",
+          "score": 1.0,
+          "title": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Verksamhetsmal/08_Verksamhetsmal_MIG.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-24",
+      "score": 1.0,
+      "title": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Verksamhetsmal/08_Verksamhetsmal_MIG.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months) by Migration court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the migration courts, measured at the 90th percentile for cases determined during the selected time period (time from filed case to determined case). ",
+          "The target for removal cases, unaccompanied minors is 2 months, the target for other removal cases is 4 months, the target for enforcement cases is 1 month and the target for other migration cases is 5 months."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts",
+                "Migration Court in Gothenburg": "Migration Court in Gothenburg"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Removal cases, unaccompanied minors": "Removal cases, unaccompanied minors",
+                "Other removal cases": "Other removal cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2007",
+                "1": "2008"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)",
+            "description": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030187",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months) by Migration court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the migration courts, measured at the 90th percentile for cases determined during the selected time period (time from filed case to determined case). ",
+          "The target for removal cases, unaccompanied minors is 2 months, the target for other removal cases is 4 months, the target for enforcement cases is 1 month and the target for other migration cases is 5 months."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "Migration Court in Luleå": "Migration Court in Luleå",
+                "Migration Court in Malmö": "Migration Court in Malmö",
+                "Migration Court in Stockholm": "Migration Court in Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Removal cases, unaccompanied minors": "Removal cases, unaccompanied minors"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2007"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)",
+            "description": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030187",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Domstol",
+                  "Verksamhetsmålskategori",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Domstol": [
+                    "Migration Court in Luleå",
+                    "Migration Court in Malmö",
+                    "Migration Court in Stockholm"
+                  ],
+                  "Verksamhetsmålskategori": [
+                    "Removal cases, unaccompanied minors"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months) by Migration court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the migration courts, measured at the 90th percentile for cases determined during the selected time period (time from filed case to determined case). ",
+          "The target for removal cases, unaccompanied minors is 2 months, the target for other removal cases is 4 months, the target for enforcement cases is 1 month and the target for other migration cases is 5 months."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Enforcement cases": "Enforcement cases",
+                "Other migration cases": "Other migration cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2007"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)",
+            "description": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030187",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months) by Migration court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets in months for the migration courts, measured at the 90th percentile for cases determined during the selected time period (time from filed case to determined case). ",
+          "The target for removal cases, unaccompanied minors is 2 months, the target for other removal cases is 4 months, the target for enforcement cases is 1 month and the target for other migration cases is 5 months."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Removal cases, unaccompanied minors": "Removal cases, unaccompanied minors"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2009",
+                "3": "2010",
+                "4": "2011",
+                "5": "2012",
+                "6": "2013",
+                "7": "2014",
+                "8": "2015",
+                "9": "2016",
+                "10": "2017",
+                "11": "2018",
+                "12": "2019",
+                "13": "2020",
+                "14": "2021",
+                "15": "2022",
+                "16": "2023",
+                "17": "2024",
+                "18": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)",
+            "description": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months). Year 2007-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030187",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "08. Performance of the time targets at migration courts (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts",
+                "Migration Court in Gothenburg"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases, unaccompanied minors",
+                "Other removal cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Migration Court in Luleå",
+                "Migration Court in Malmö",
+                "Migration Court in Stockholm"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases, unaccompanied minors"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Enforcement cases",
+                "Other migration cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases, unaccompanied minors"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

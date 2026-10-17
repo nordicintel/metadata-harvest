@@ -1,0 +1,1066 @@
+{
+  "key": "domstol/02_Ungdomsmal_HR.px/en",
+  "identifier": "02_Ungdomsmal_HR.px",
+  "language": "en",
+  "updated": "2026-02-20",
+  "retrieved_at": "2026-10-17T07:03:42.884052+00:00",
+  "responses": {
+    "metadata": {
+      "title": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Court",
+          "values": [
+            "All courts of appeal",
+            "Göta Court of Appeal",
+            "Court of Appeal for Lower Norrland",
+            "Court of Appeal for Western Sweden",
+            "Court of Appeal for Upper Norrland",
+            "Scania and Blekinge Court of Appeal",
+            "Svea Court of Appeal"
+          ],
+          "valueTexts": [
+            "All courts of appeal",
+            "Göta Court of Appeal",
+            "Court of Appeal for Lower Norrland",
+            "Court of Appeal for Western Sweden",
+            "Court of Appeal for Upper Norrland",
+            "Scania and Blekinge Court of Appeal",
+            "Svea Court of Appeal"
+          ]
+        },
+        {
+          "code": "Ungdomskategori",
+          "text": "Category",
+          "values": [
+            "Criminal cases involving juveniles",
+            "15-17 years old (U18)",
+            "18-20 years old (U21)"
+          ],
+          "valueTexts": [
+            "Criminal cases involving juveniles",
+            "15-17 years old (U18)",
+            "18-20 years old (U21)"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variable",
+          "values": [
+            "Number of determined cases",
+            "Median turnaround time (months)",
+            "75th percentile turnaround time (months)"
+          ],
+          "valueTexts": [
+            "Number of determined cases",
+            "Median turnaround time (months)",
+            "75th percentile turnaround time (months)"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ],
+          "valueTexts": [
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Ungdomsmal/02_Ungdomsmal_HR.px",
+      "category_path": [
+        {
+          "id": "Ungdomsmal",
+          "name": "Criminal cases involving juveniles (turnaround times)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "02_Ungdomsmal_HR.px",
+      "id": "02_Ungdomsmal_HR.px",
+      "language": "en",
+      "path": "/Ungdomsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Ungdomsmal/02_Ungdomsmal_HR.px",
+          "category_path": [
+            {
+              "id": "Ungdomsmal",
+              "name": "Criminal cases involving juveniles (turnaround times)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Ungdomsmal",
+          "published": "2026-02-20",
+          "score": 1.0,
+          "title": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Ungdomsmal/02_Ungdomsmal_HR.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-20",
+      "score": 1.0,
+      "title": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Ungdomsmal/02_Ungdomsmal_HR.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal by Court, Category, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined criminal cases and turnaround times in months involving juveniles at courts of appeal, that is criminal cases where at least one defendant is under 21 years of age. ",
+          "The group of 15-17 years old (U18) belongs to priority cases. These cases shall be handled promptly.",
+          "The group of 18-20 years old (U21) does not belong to the priority cases by definition, but is subject to the requirement for prompt handling according to the law for cases involving minors (under 21 years old)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal",
+                "Göta Court of Appeal": "Göta Court of Appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ungdomskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Criminal cases involving juveniles": "Criminal cases involving juveniles",
+                "15-17 years old (U18)": "15-17 years old (U18)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of determined cases": "Number of determined cases",
+                "Median turnaround time (months)": "Median turnaround time (months)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005",
+                "1": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal",
+            "description": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Ungdomskategori",
+              "Variabel"
+            ],
+            "matrix": "RV030178",
+            "subject-code": "RV0301",
+            "subject-area": "Criminal cases involving juveniles (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal by Court, Category, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined criminal cases and turnaround times in months involving juveniles at courts of appeal, that is criminal cases where at least one defendant is under 21 years of age. ",
+          "The group of 15-17 years old (U18) belongs to priority cases. These cases shall be handled promptly.",
+          "The group of 18-20 years old (U21) does not belong to the priority cases by definition, but is subject to the requirement for prompt handling according to the law for cases involving minors (under 21 years old)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Court of Appeal for Lower Norrland": "Court of Appeal for Lower Norrland",
+                "Court of Appeal for Western Sweden": "Court of Appeal for Western Sweden",
+                "Court of Appeal for Upper Norrland": "Court of Appeal for Upper Norrland",
+                "Scania and Blekinge Court of Appeal": "Scania and Blekinge Court of Appeal",
+                "Svea Court of Appeal": "Svea Court of Appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ungdomskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Criminal cases involving juveniles": "Criminal cases involving juveniles"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of determined cases": "Number of determined cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal",
+            "description": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Ungdomskategori",
+              "Variabel"
+            ],
+            "matrix": "RV030178",
+            "subject-code": "RV0301",
+            "subject-area": "Criminal cases involving juveniles (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal by Court, Category, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined criminal cases and turnaround times in months involving juveniles at courts of appeal, that is criminal cases where at least one defendant is under 21 years of age. ",
+          "The group of 15-17 years old (U18) belongs to priority cases. These cases shall be handled promptly.",
+          "The group of 18-20 years old (U21) does not belong to the priority cases by definition, but is subject to the requirement for prompt handling according to the law for cases involving minors (under 21 years old)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ungdomskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "18-20 years old (U21)": "18-20 years old (U21)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of determined cases": "Number of determined cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal",
+            "description": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Ungdomskategori",
+              "Variabel"
+            ],
+            "matrix": "RV030178",
+            "subject-code": "RV0301",
+            "subject-area": "Criminal cases involving juveniles (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal by Court, Category, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined criminal cases and turnaround times in months involving juveniles at courts of appeal, that is criminal cases where at least one defendant is under 21 years of age. ",
+          "The group of 15-17 years old (U18) belongs to priority cases. These cases shall be handled promptly.",
+          "The group of 18-20 years old (U21) does not belong to the priority cases by definition, but is subject to the requirement for prompt handling according to the law for cases involving minors (under 21 years old)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ungdomskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Criminal cases involving juveniles": "Criminal cases involving juveniles"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "75th percentile turnaround time (months)": "75th percentile turnaround time (months)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal",
+            "description": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Ungdomskategori",
+              "Variabel"
+            ],
+            "matrix": "RV030178",
+            "subject-code": "RV0301",
+            "subject-area": "Criminal cases involving juveniles (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal by Court, Category, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined criminal cases and turnaround times in months involving juveniles at courts of appeal, that is criminal cases where at least one defendant is under 21 years of age. ",
+          "The group of 15-17 years old (U18) belongs to priority cases. These cases shall be handled promptly.",
+          "The group of 18-20 years old (U21) does not belong to the priority cases by definition, but is subject to the requirement for prompt handling according to the law for cases involving minors (under 21 years old)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ungdomskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Criminal cases involving juveniles": "Criminal cases involving juveniles"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of determined cases": "Number of determined cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2007",
+                "3": "2008",
+                "4": "2009",
+                "5": "2010",
+                "6": "2011",
+                "7": "2012",
+                "8": "2013",
+                "9": "2014",
+                "10": "2015",
+                "11": "2016",
+                "12": "2017",
+                "13": "2018",
+                "14": "2019",
+                "15": "2020",
+                "16": "2021",
+                "17": "2022",
+                "18": "2023",
+                "19": "2024",
+                "20": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal",
+            "description": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal. Year 2005-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Ungdomskategori",
+              "Variabel"
+            ],
+            "matrix": "RV030178",
+            "subject-code": "RV0301",
+            "subject-area": "Criminal cases involving juveniles (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined criminal cases with turnaround times involving juveniles at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases, Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal",
+                "Göta Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Ungdomskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases involving juveniles",
+                "15-17 years old (U18)"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases",
+                "Median turnaround time (months)"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Court of Appeal for Lower Norrland",
+                "Court of Appeal for Western Sweden",
+                "Court of Appeal for Upper Norrland",
+                "Scania and Blekinge Court of Appeal",
+                "Svea Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Ungdomskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases involving juveniles"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Ungdomskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-20 years old (U21)"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Ungdomskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases involving juveniles"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "75th percentile turnaround time (months)"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Ungdomskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases involving juveniles"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,882 @@
+{
+  "key": "domstol/02_Avgjorda_mal_med_namnd_HR.px/en",
+  "identifier": "02_Avgjorda_mal_med_namnd_HR.px",
+  "language": "en",
+  "updated": "2026-03-10",
+  "retrieved_at": "2026-10-17T07:02:22.558572+00:00",
+  "responses": {
+    "metadata": {
+      "title": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Court of appeal",
+          "values": [
+            "All courts of appeal",
+            "Göta Court of Appeal",
+            "Court of Appeal for Lower Norrland",
+            "Court of Appeal for Western Sweden",
+            "Court of Appeal for Upper Norrland",
+            "Scania and Blekinge Court of Appeal",
+            "Svea Court of Appeal"
+          ],
+          "valueTexts": [
+            "All courts of appeal",
+            "Göta Court of Appeal",
+            "Court of Appeal for Lower Norrland",
+            "Court of Appeal for Western Sweden",
+            "Court of Appeal for Upper Norrland",
+            "Scania and Blekinge Court of Appeal",
+            "Svea Court of Appeal"
+          ]
+        },
+        {
+          "code": "Målkategori",
+          "text": "Case category",
+          "values": [
+            "Criminal cases",
+            "Civil cases",
+            "Other cases"
+          ],
+          "valueTexts": [
+            "Criminal cases",
+            "Civil cases",
+            "Other cases"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19"
+          ],
+          "valueTexts": [
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "Variabel",
+          "text": "Variable",
+          "values": [
+            "Number of cases determined by judges and lay judges",
+            "Number of total determined cases"
+          ],
+          "valueTexts": [
+            "Number of cases determined by judges and lay judges",
+            "Number of total determined cases"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Bemanning/02_Avgjorda_mal_med_namnd_HR.px",
+      "category_path": [
+        {
+          "id": "Bemanning",
+          "name": "Composition in determined cases (lay judges et cetera)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "02_Avgjorda_mal_med_namnd_HR.px",
+      "id": "02_Avgjorda_mal_med_namnd_HR.px",
+      "language": "en",
+      "path": "/Bemanning",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Bemanning/02_Avgjorda_mal_med_namnd_HR.px",
+          "category_path": [
+            {
+              "id": "Bemanning",
+              "name": "Composition in determined cases (lay judges et cetera)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Bemanning",
+          "published": "2026-03-10",
+          "score": 1.0,
+          "title": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Bemanning/02_Avgjorda_mal_med_namnd_HR.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-03-10",
+      "score": 1.0,
+      "title": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Bemanning/02_Avgjorda_mal_med_namnd_HR.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "02. Determined cases by judges and lay judges at courts of appeal by Court of appeal, Case category, Year and Variable",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined cases by judges and lay judges at courts of appeal. The cases are divided in case categories. ",
+          "Environmental and property cases as well as cases relating to the Planning and Building Act are excluded as these cases seldom are determined by judges and lay judges."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court of appeal",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal",
+                "Göta Court of Appeal": "Göta Court of Appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Case category",
+            "category": {
+              "label": {
+                "Criminal cases": "Criminal cases",
+                "Civil cases": "Civil cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006",
+                "1": "2007"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of cases determined by judges and lay judges": "Number of cases determined by judges and lay judges",
+                "Number of total determined cases": "Number of total determined cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined cases by judges and lay judges at courts of appeal",
+            "description": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Variabel"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori"
+            ],
+            "matrix": "RV0301102",
+            "subject-code": "RV0301",
+            "subject-area": "Composition in determined cases (lay judges et cetera)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined cases by judges and lay judges at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined cases by judges and lay judges at courts of appeal by Court of appeal, Case category, Year and Variable",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined cases by judges and lay judges at courts of appeal. The cases are divided in case categories. ",
+          "Environmental and property cases as well as cases relating to the Planning and Building Act are excluded as these cases seldom are determined by judges and lay judges."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court of appeal",
+            "category": {
+              "label": {
+                "Court of Appeal for Lower Norrland": "Court of Appeal for Lower Norrland",
+                "Court of Appeal for Western Sweden": "Court of Appeal for Western Sweden",
+                "Court of Appeal for Upper Norrland": "Court of Appeal for Upper Norrland",
+                "Scania and Blekinge Court of Appeal": "Scania and Blekinge Court of Appeal",
+                "Svea Court of Appeal": "Svea Court of Appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Case category",
+            "category": {
+              "label": {
+                "Criminal cases": "Criminal cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of cases determined by judges and lay judges": "Number of cases determined by judges and lay judges"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined cases by judges and lay judges at courts of appeal",
+            "description": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Variabel"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori"
+            ],
+            "matrix": "RV0301102",
+            "subject-code": "RV0301",
+            "subject-area": "Composition in determined cases (lay judges et cetera)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined cases by judges and lay judges at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined cases by judges and lay judges at courts of appeal by Court of appeal, Case category, Year and Variable",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined cases by judges and lay judges at courts of appeal. The cases are divided in case categories. ",
+          "Environmental and property cases as well as cases relating to the Planning and Building Act are excluded as these cases seldom are determined by judges and lay judges."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court of appeal",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Case category",
+            "category": {
+              "label": {
+                "Other cases": "Other cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of cases determined by judges and lay judges": "Number of cases determined by judges and lay judges"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined cases by judges and lay judges at courts of appeal",
+            "description": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Variabel"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori"
+            ],
+            "matrix": "RV0301102",
+            "subject-code": "RV0301",
+            "subject-area": "Composition in determined cases (lay judges et cetera)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined cases by judges and lay judges at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "02. Determined cases by judges and lay judges at courts of appeal by Court of appeal, Case category, Year and Variable",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of determined cases by judges and lay judges at courts of appeal. The cases are divided in case categories. ",
+          "Environmental and property cases as well as cases relating to the Planning and Building Act are excluded as these cases seldom are determined by judges and lay judges."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court of appeal",
+            "category": {
+              "label": {
+                "All courts of appeal": "All courts of appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Case category",
+            "category": {
+              "label": {
+                "Criminal cases": "Criminal cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2008",
+                "3": "2009",
+                "4": "2010",
+                "5": "2011",
+                "6": "2012",
+                "7": "2013",
+                "8": "2014",
+                "9": "2015",
+                "10": "2016",
+                "11": "2017",
+                "12": "2018",
+                "13": "2019",
+                "14": "2020",
+                "15": "2021",
+                "16": "2022",
+                "17": "2023",
+                "18": "2024",
+                "19": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of cases determined by judges and lay judges": "Number of cases determined by judges and lay judges"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "02. Determined cases by judges and lay judges at courts of appeal",
+            "description": "02. Determined cases by judges and lay judges at courts of appeal. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Variabel"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori"
+            ],
+            "matrix": "RV0301102",
+            "subject-code": "RV0301",
+            "subject-area": "Composition in determined cases (lay judges et cetera)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "02. Determined cases by judges and lay judges at courts of appeal"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal",
+                "Göta Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases",
+                "Civil cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of cases determined by judges and lay judges",
+                "Number of total determined cases"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Court of Appeal for Lower Norrland",
+                "Court of Appeal for Western Sweden",
+                "Court of Appeal for Upper Norrland",
+                "Scania and Blekinge Court of Appeal",
+                "Svea Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of cases determined by judges and lay judges"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Other cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of cases determined by judges and lay judges"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All courts of appeal"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of cases determined by judges and lay judges"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

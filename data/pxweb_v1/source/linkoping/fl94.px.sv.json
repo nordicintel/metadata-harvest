@@ -1,0 +1,835 @@
+{
+  "key": "linkoping/fl94.px/sv",
+  "identifier": "fl94.px",
+  "language": "sv",
+  "updated": "2025-10-27",
+  "retrieved_at": "2026-10-17T07:29:43.836031+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ]
+        },
+        {
+          "code": "flyttningsrelation",
+          "text": "flyttningsrelation",
+          "values": [
+            "SammaDel",
+            "InomKn",
+            "SummaKn",
+            "Elän",
+            "AnnatLän",
+            "Utrikes",
+            "SummaKG",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Inom samma stadsdel",
+            "Annan stadsdel i kommunen",
+            "Summa inom kommunen",
+            "Annan kommun i länet",
+            "Kommun i annat län",
+            "Utlandet",
+            "Summa över kommungräns",
+            "Total flyttning"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "utbildningsnivå efter flyttning",
+          "text": "utbildningsnivå efter flyttning",
+          "values": [
+            "Förgymn",
+            "Gymn",
+            "KortEgymn",
+            "LångEgymn",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Förgymnasial utb.",
+            "Gymnasial utb.",
+            "Kort eftergymnasial utb.",
+            "Lång eftergymnasial utb.",
+            "Uppgift saknas",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "ålder",
+          "text": "ålder",
+          "values": [
+            "0-5",
+            "6-15",
+            "16-24",
+            "25-44",
+            "45-64",
+            "65-w",
+            "Tot"
+          ],
+          "valueTexts": [
+            "0-5 år",
+            "6-15 år",
+            "16-24 år",
+            "25-44 år",
+            "45-64 år",
+            "65-w år",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "utbildningsnivå före flyttning",
+          "text": "utbildningsnivå före flyttning",
+          "values": [
+            "Förgymn",
+            "Gymn",
+            "KortEgymn",
+            "LångEgymn",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Förgymnasial utb. före",
+            "Gymnasial utb. före",
+            "Kort eftergymnasial utb. före",
+            "Lång eftergymnasial utb. före",
+            "Uppgift saknas före",
+            "Totalt före"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Befolkningsforandringar/fl94.px",
+      "category_path": [
+        {
+          "id": "Befolkningsforandringar",
+          "name": "Befolkningsförändringar"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "fl94.px",
+      "id": "fl94.px",
+      "language": "sv",
+      "path": "/Befolkningsforandringar",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Befolkningsforandringar/fl94.px",
+          "category_path": [
+            {
+              "id": "Befolkningsforandringar",
+              "name": "Befolkningsförändringar"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Befolkningsforandringar",
+          "published": "2025-10-27",
+          "score": 1.0,
+          "title": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Befolkningsforandringar/fl94.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-10-27",
+      "score": 1.0,
+      "title": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Befolkningsforandringar/fl94.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.     ",
+        "updated": "2026-10-17T09:29:43.0677451+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016"
+              }
+            }
+          },
+          "flyttningsrelation": {
+            "label": "flyttningsrelation",
+            "category": {
+              "label": {
+                "SammaDel": "Inom samma stadsdel",
+                "InomKn": "Annan stadsdel i kommunen"
+              }
+            }
+          },
+          "utbildningsnivå efter flyttning": {
+            "label": "utbildningsnivå efter flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb.",
+                "Gymn": "Gymnasial utb."
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0-5": "0-5 år",
+                "6-15": "6-15 år"
+              }
+            }
+          },
+          "utbildningsnivå före flyttning": {
+            "label": "utbildningsnivå före flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb. före",
+                "Gymn": "Gymnasial utb. före"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.     ",
+        "updated": "2026-10-17T09:29:43.2708668+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "flyttningsrelation": {
+            "label": "flyttningsrelation",
+            "category": {
+              "label": {
+                "SammaDel": "Inom samma stadsdel"
+              }
+            }
+          },
+          "utbildningsnivå efter flyttning": {
+            "label": "utbildningsnivå efter flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb."
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0-5": "0-5 år"
+              }
+            }
+          },
+          "utbildningsnivå före flyttning": {
+            "label": "utbildningsnivå före flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb. före"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.     ",
+        "updated": "2026-10-17T09:29:43.3958757+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "flyttningsrelation": {
+            "label": "flyttningsrelation",
+            "category": {
+              "label": {
+                "SummaKn": "Summa inom kommunen",
+                "Elän": "Annan kommun i länet",
+                "AnnatLän": "Kommun i annat län",
+                "Utrikes": "Utlandet",
+                "SummaKG": "Summa över kommungräns",
+                "Tot": "Total flyttning"
+              }
+            }
+          },
+          "utbildningsnivå efter flyttning": {
+            "label": "utbildningsnivå efter flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb."
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0-5": "0-5 år"
+              }
+            }
+          },
+          "utbildningsnivå före flyttning": {
+            "label": "utbildningsnivå före flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb. före"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.     ",
+        "updated": "2026-10-17T09:29:43.5208724+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "flyttningsrelation": {
+            "label": "flyttningsrelation",
+            "category": {
+              "label": {
+                "SammaDel": "Inom samma stadsdel"
+              }
+            }
+          },
+          "utbildningsnivå efter flyttning": {
+            "label": "utbildningsnivå efter flyttning",
+            "category": {
+              "label": {
+                "KortEgymn": "Kort eftergymnasial utb.",
+                "LångEgymn": "Lång eftergymnasial utb.",
+                "US": "Uppgift saknas",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0-5": "0-5 år"
+              }
+            }
+          },
+          "utbildningsnivå före flyttning": {
+            "label": "utbildningsnivå före flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb. före"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.     ",
+        "updated": "2026-10-17T09:29:43.6302677+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "flyttningsrelation": {
+            "label": "flyttningsrelation",
+            "category": {
+              "label": {
+                "SammaDel": "Inom samma stadsdel"
+              }
+            }
+          },
+          "utbildningsnivå efter flyttning": {
+            "label": "utbildningsnivå efter flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb."
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-24": "16-24 år",
+                "25-44": "25-44 år",
+                "45-64": "45-64 år",
+                "65-w": "65-w år",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "utbildningsnivå före flyttning": {
+            "label": "utbildningsnivå före flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb. före"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Inflyttning efter tid, flyttningsrelation, utbildningsnivå efter flyttning, ålder och utbildningsnivå före flyttning",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.     ",
+        "updated": "2026-10-17T09:29:43.7552508+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "flyttningsrelation": {
+            "label": "flyttningsrelation",
+            "category": {
+              "label": {
+                "SammaDel": "Inom samma stadsdel"
+              }
+            }
+          },
+          "utbildningsnivå efter flyttning": {
+            "label": "utbildningsnivå efter flyttning",
+            "category": {
+              "label": {
+                "Förgymn": "Förgymnasial utb."
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0-5": "0-5 år"
+              }
+            }
+          },
+          "utbildningsnivå före flyttning": {
+            "label": "utbildningsnivå före flyttning",
+            "category": {
+              "label": {
+                "KortEgymn": "Kort eftergymnasial utb. före",
+                "LångEgymn": "Lång eftergymnasial utb. före",
+                "US": "Uppgift saknas före",
+                "Tot": "Totalt före"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SammaDel",
+                "InomKn"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå efter flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn",
+                "Gymn"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-5",
+                "6-15"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå före flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn",
+                "Gymn"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SammaDel"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå efter flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-5"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå före flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SummaKn",
+                "Elän",
+                "AnnatLän",
+                "Utrikes",
+                "SummaKG",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå efter flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-5"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå före flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SammaDel"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå efter flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "KortEgymn",
+                "LångEgymn",
+                "US",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-5"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå före flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SammaDel"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå efter flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-24",
+                "25-44",
+                "45-64",
+                "65-w",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå före flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SammaDel"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå efter flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Förgymn"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-5"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå före flyttning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "KortEgymn",
+                "LångEgymn",
+                "US",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

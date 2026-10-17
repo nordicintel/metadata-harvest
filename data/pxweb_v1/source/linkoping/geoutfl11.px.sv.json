@@ -1,0 +1,805 @@
+{
+  "key": "linkoping/geoutfl11.px/sv",
+  "identifier": "geoutfl11.px",
+  "language": "sv",
+  "updated": "2025-09-18",
+  "retrieved_at": "2026-10-17T07:39:32.351088+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ]
+        },
+        {
+          "code": "utskottsområde",
+          "text": "utskottsområde",
+          "values": [
+            "58080901",
+            "58080902",
+            "58080903",
+            "58080924",
+            "58080925",
+            "58080926",
+            "58080927",
+            "58080999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Utskott Nord",
+            "Utskott Väst",
+            "Utskott Syd",
+            "Utskott Vreta Kloster",
+            "Utskott Valkebo",
+            "Utskott Vårdnäs",
+            "Utskott Åkerbo",
+            "Restförda",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "flyttningsriktning",
+          "text": "flyttningsriktning",
+          "values": [
+            "In",
+            "Ut",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Inflyttning",
+            "Utflyttning",
+            "Nettoflyttning"
+          ]
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Inom",
+            "Annat",
+            "Länet",
+            "Riket",
+            "Land",
+            "TotUtskott",
+            "TotKn",
+            "TotAlla"
+          ],
+          "valueTexts": [
+            "Inom utskottsområdet",
+            "Annat utskottsområde i kommunen",
+            "Annan kommun i länet",
+            "Kommun i annat län",
+            "Annat land",
+            "Totalt över utskottsgräns",
+            "Totalt över kommungräns",
+            "Totalt inklusive inom utskottsområdet"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Befolkningsforandring/geoutfl11.px",
+      "category_path": [
+        {
+          "id": "Befolkningsforandring",
+          "name": "Befolkningsförändringar"
+        }
+      ],
+      "database_id": "GeoUtskott",
+      "dataset_code": "geoutfl11.px",
+      "id": "geoutfl11.px",
+      "language": "sv",
+      "path": "/Befolkningsforandring",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Befolkningsforandring/geoutfl11.px",
+          "category_path": [
+            {
+              "id": "Befolkningsforandring",
+              "name": "Befolkningsförändringar"
+            }
+          ],
+          "database_id": "GeoUtskott",
+          "path": "/Befolkningsforandring",
+          "published": "2025-09-18",
+          "score": 1.0,
+          "title": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Befolkningsforandring/geoutfl11.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-18",
+      "score": 1.0,
+      "title": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Befolkningsforandring/geoutfl11.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:39:31.6327835+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord",
+                "58080902": "Utskott Väst"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "flyttningsriktning": {
+            "label": "flyttningsriktning",
+            "category": {
+              "label": {
+                "In": "Inflyttning",
+                "Ut": "Utflyttning"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Inom": "Inom utskottsområdet",
+                "Annat": "Annat utskottsområde i kommunen"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:39:31.7733971+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "flyttningsriktning": {
+            "label": "flyttningsriktning",
+            "category": {
+              "label": {
+                "In": "Inflyttning"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Inom": "Inom utskottsområdet"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:39:31.8984013+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080903": "Utskott Syd",
+                "58080924": "Utskott Vreta Kloster",
+                "58080925": "Utskott Valkebo",
+                "58080926": "Utskott Vårdnäs",
+                "58080927": "Utskott Åkerbo",
+                "58080999": "Restförda",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "flyttningsriktning": {
+            "label": "flyttningsriktning",
+            "category": {
+              "label": {
+                "In": "Inflyttning"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Inom": "Inom utskottsområdet"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:39:32.0234177+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "flyttningsriktning": {
+            "label": "flyttningsriktning",
+            "category": {
+              "label": {
+                "In": "Inflyttning"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Inom": "Inom utskottsområdet"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:39:32.1484022+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "flyttningsriktning": {
+            "label": "flyttningsriktning",
+            "category": {
+              "label": {
+                "Netto": "Nettoflyttning"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Inom": "Inom utskottsområdet"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Flyttning av förvärvsarbetande efter tid, utskottsområde, kön, flyttningsriktning och tabelluppgift",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:39:32.273404+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "flyttningsriktning": {
+            "label": "flyttningsriktning",
+            "category": {
+              "label": {
+                "In": "Inflyttning"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Länet": "Annan kommun i länet",
+                "Riket": "Kommun i annat län",
+                "Land": "Annat land",
+                "TotUtskott": "Totalt över utskottsgräns",
+                "TotKn": "Totalt över kommungräns",
+                "TotAlla": "Totalt inklusive inom utskottsområdet"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901",
+                "58080902"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In",
+                "Ut"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom",
+                "Annat"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080903",
+                "58080924",
+                "58080925",
+                "58080926",
+                "58080927",
+                "58080999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "flyttningsriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Länet",
+                "Riket",
+                "Land",
+                "TotUtskott",
+                "TotKn",
+                "TotAlla"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

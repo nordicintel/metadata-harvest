@@ -1,0 +1,829 @@
+{
+  "key": "domstol/01_Malutveckling_per_domstolsslag.px/sv",
+  "identifier": "01_Malutveckling_per_domstolsslag.px",
+  "language": "sv",
+  "updated": "2026-02-24",
+  "retrieved_at": "2026-10-17T07:00:28.201954+00:00",
+  "responses": {
+    "metadata": {
+      "title": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+      "variables": [
+        {
+          "code": "Domstolsslag (migration separat)",
+          "text": "Domstolsslag (migration separat)",
+          "values": [
+            "District Courts",
+            "Courts of Appeal",
+            "Supreme Court",
+            "Administrative Courts",
+            "Administrative Courts of appeal",
+            "Supreme Administrative Court",
+            "Migration Courts",
+            "Migration Court of Appeal"
+          ],
+          "valueTexts": [
+            "Tingsrätter",
+            "Hovrätter",
+            "Högsta domstolen",
+            "Förvaltningsrätter exkl. migrationsmål",
+            "Kammarrätter exkl. migrationsmål",
+            "Högsta förvaltningsdomstolen",
+            "Migrationsdomstolarna",
+            "Migrationsöverdomstolen"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "Number of filed cases",
+            "Number of determined cases",
+            "Number of pending cases December 31"
+          ],
+          "valueTexts": [
+            "Antal inkomna mål",
+            "Antal avgjorda mål",
+            "Utgående balans 31 dec"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"
+          ],
+          "valueTexts": [
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/AntalMal/01_Malutveckling_per_domstolsslag.px",
+      "category_path": [
+        {
+          "id": "AntalMal",
+          "name": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "01_Malutveckling_per_domstolsslag.px",
+      "id": "01_Malutveckling_per_domstolsslag.px",
+      "language": "sv",
+      "path": "/AntalMal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/AntalMal/01_Malutveckling_per_domstolsslag.px",
+          "category_path": [
+            {
+              "id": "AntalMal",
+              "name": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/AntalMal",
+          "published": "2026-02-24",
+          "score": 1.0,
+          "title": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__AntalMal/01_Malutveckling_per_domstolsslag.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-24",
+      "score": 1.0,
+      "title": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__AntalMal/01_Malutveckling_per_domstolsslag.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat) efter Domstolsslag (migration separat), Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål per domstolsslag med migrationsmål separat redovisade. Utgående balans är antal pågående/öppna mål vid ett visst datum.",
+          "Ärenden på tingsrätt är exkluderade, liksom ärenden vid hyres- och arrendenämnd. Migrationsdomstolarna och Migrationsöverdomstolen inrättades under 2006 som under- och överinstans i migrationsrättsliga ärenden och mål."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag (migration separat)": {
+            "label": "Domstolsslag (migration separat)",
+            "category": {
+              "label": {
+                "District Courts": "Tingsrätter",
+                "Courts of Appeal": "Hovrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of filed cases": "Antal inkomna mål",
+                "Number of determined cases": "Antal avgjorda mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2002",
+                "1": "2003"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)",
+            "description": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag (migration separat)",
+              "Variabel"
+            ],
+            "matrix": "RV030101",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat) efter Domstolsslag (migration separat), Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål per domstolsslag med migrationsmål separat redovisade. Utgående balans är antal pågående/öppna mål vid ett visst datum.",
+          "Ärenden på tingsrätt är exkluderade, liksom ärenden vid hyres- och arrendenämnd. Migrationsdomstolarna och Migrationsöverdomstolen inrättades under 2006 som under- och överinstans i migrationsrättsliga ärenden och mål."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag (migration separat)": {
+            "label": "Domstolsslag (migration separat)",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen",
+                "Administrative Courts": "Förvaltningsrätter exkl. migrationsmål",
+                "Administrative Courts of appeal": "Kammarrätter exkl. migrationsmål",
+                "Supreme Administrative Court": "Högsta förvaltningsdomstolen",
+                "Migration Courts": "Migrationsdomstolarna",
+                "Migration Court of Appeal": "Migrationsöverdomstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of filed cases": "Antal inkomna mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2002"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)",
+            "description": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag (migration separat)",
+              "Variabel"
+            ],
+            "matrix": "RV030101",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Domstolsslag (migration separat)",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Domstolsslag (migration separat)": [
+                    "Supreme Court",
+                    "Administrative Courts",
+                    "Administrative Courts of appeal",
+                    "Supreme Administrative Court",
+                    "Migration Courts",
+                    "Migration Court of Appeal"
+                  ],
+                  "Variabel": [
+                    "Number of filed cases"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "4": "-",
+                  "5": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat) efter Domstolsslag (migration separat), Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål per domstolsslag med migrationsmål separat redovisade. Utgående balans är antal pågående/öppna mål vid ett visst datum.",
+          "Ärenden på tingsrätt är exkluderade, liksom ärenden vid hyres- och arrendenämnd. Migrationsdomstolarna och Migrationsöverdomstolen inrättades under 2006 som under- och överinstans i migrationsrättsliga ärenden och mål."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag (migration separat)": {
+            "label": "Domstolsslag (migration separat)",
+            "category": {
+              "label": {
+                "District Courts": "Tingsrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of pending cases December 31": "Utgående balans 31 dec"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2002"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)",
+            "description": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag (migration separat)",
+              "Variabel"
+            ],
+            "matrix": "RV030101",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat) efter Domstolsslag (migration separat), Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål per domstolsslag med migrationsmål separat redovisade. Utgående balans är antal pågående/öppna mål vid ett visst datum.",
+          "Ärenden på tingsrätt är exkluderade, liksom ärenden vid hyres- och arrendenämnd. Migrationsdomstolarna och Migrationsöverdomstolen inrättades under 2006 som under- och överinstans i migrationsrättsliga ärenden och mål."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstolsslag (migration separat)": {
+            "label": "Domstolsslag (migration separat)",
+            "category": {
+              "label": {
+                "District Courts": "Tingsrätter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of filed cases": "Antal inkomna mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2004",
+                "3": "2005",
+                "4": "2006",
+                "5": "2007",
+                "6": "2008",
+                "7": "2009",
+                "8": "2010",
+                "9": "2011",
+                "10": "2012",
+                "11": "2013",
+                "12": "2014",
+                "13": "2015",
+                "14": "2016",
+                "15": "2017",
+                "16": "2018",
+                "17": "2019",
+                "18": "2020",
+                "19": "2021",
+                "20": "2022",
+                "21": "2023",
+                "22": "2024",
+                "23": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)",
+            "description": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat). År 2002-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstolsslag (migration separat)",
+              "Variabel"
+            ],
+            "matrix": "RV030101",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Inkomna, avgjorda och balanserade mål per domstolsslag (migration separat)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstolsslag (migration separat)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "District Courts",
+                "Courts of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases",
+                "Number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstolsslag (migration separat)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court",
+                "Administrative Courts",
+                "Administrative Courts of appeal",
+                "Supreme Administrative Court",
+                "Migration Courts",
+                "Migration Court of Appeal"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstolsslag (migration separat)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "District Courts"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of pending cases December 31"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstolsslag (migration separat)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "District Courts"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

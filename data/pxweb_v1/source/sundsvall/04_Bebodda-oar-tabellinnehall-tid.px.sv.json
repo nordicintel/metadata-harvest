@@ -1,0 +1,202 @@
+{
+  "key": "sundsvall/04_Bebodda-oar-tabellinnehall-tid.px/sv",
+  "identifier": "04_Bebodda-oar-tabellinnehall-tid.px",
+  "language": "sv",
+  "updated": "2019-10-10",
+  "retrieved_at": "2026-10-17T07:07:27.303208+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Bebodda öar, Sundsvalls kommun efter tabellinnehåll och tid",
+      "variables": [
+        {
+          "code": "tabellinnehåll",
+          "text": "tabellinnehåll",
+          "values": [
+            "MI0812E2",
+            "MI0812E3"
+          ],
+          "valueTexts": [
+            "Bebodda öar",
+            "Antal öar"
+          ]
+        },
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2013",
+            "2008",
+            "2005",
+            "2000"
+          ],
+          "valueTexts": [
+            "2013",
+            "2008",
+            "2005",
+            "2000"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1/sv/Sundsvalls_statistikdatabas/1Hela%20kommunen/Miljo%20och%20natur/04_Bebodda-oar-tabellinnehall-tid.px",
+      "category_path": [
+        {
+          "id": "1Hela kommunen",
+          "name": "Hela kommunen"
+        },
+        {
+          "id": "Miljo och natur",
+          "name": "Miljö och natur"
+        }
+      ],
+      "database_id": "Sundsvalls_statistikdatabas",
+      "dataset_code": "04_Bebodda-oar-tabellinnehall-tid.px",
+      "id": "04_Bebodda-oar-tabellinnehall-tid.px",
+      "language": "sv",
+      "path": "/1Hela kommunen/Miljo och natur",
+      "paths": [
+        {
+          "api_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1/sv/Sundsvalls_statistikdatabas/1Hela%20kommunen/Miljo%20och%20natur/04_Bebodda-oar-tabellinnehall-tid.px",
+          "category_path": [
+            {
+              "id": "1Hela kommunen",
+              "name": "Hela kommunen"
+            },
+            {
+              "id": "Miljo och natur",
+              "name": "Miljö och natur"
+            }
+          ],
+          "database_id": "Sundsvalls_statistikdatabas",
+          "path": "/1Hela kommunen/Miljo och natur",
+          "published": "2019-10-10",
+          "score": 1.0,
+          "title": "Bebodda öar, Sundsvalls kommun efter tabellinnehåll och tid",
+          "web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb/sv/Sundsvalls_statistikdatabas/Sundsvalls_statistikdatabas__1Hela%20kommunen__Miljo%20och%20natur/04_Bebodda-oar-tabellinnehall-tid.px/?rxid=1cbb15f0-b9a0-4211-9337-277cbf7c784a"
+        }
+      ],
+      "provider_code": "sundsvall",
+      "published": "2019-10-10",
+      "score": 1.0,
+      "title": "Bebodda öar, Sundsvalls kommun efter tabellinnehåll och tid",
+      "web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb/sv/Sundsvalls_statistikdatabas/Sundsvalls_statistikdatabas__1Hela%20kommunen__Miljo%20och%20natur/04_Bebodda-oar-tabellinnehall-tid.px/?rxid=1cbb15f0-b9a0-4211-9337-277cbf7c784a"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Bebodda öar, Sundsvalls kommun efter tabellinnehåll och tid",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:07:25.8065572+02:00",
+        "dimension": {
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "MI0812E2": "Bebodda öar",
+                "MI0812E3": "Antal öar"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2008": "2008"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Bebodda öar, Sundsvalls kommun efter tabellinnehåll och tid",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:07:26.8066587+02:00",
+        "dimension": {
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "MI0812E2": "Bebodda öar"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2005": "2005",
+                "2000": "2000"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "MI0812E2",
+                "MI0812E3"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2008"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "MI0812E2"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2005",
+                "2000"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

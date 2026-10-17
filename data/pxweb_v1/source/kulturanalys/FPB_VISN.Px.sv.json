@@ -1,0 +1,528 @@
+{
+  "key": "kulturanalys/FPB_VISN.Px/sv",
+  "identifier": "FPB_VISN.Px",
+  "language": "sv",
+  "updated": "2026-09-30",
+  "retrieved_at": "2026-10-17T06:58:12.915302+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Besök och filmer efter antal visningar och år",
+      "variables": [
+        {
+          "code": "year",
+          "text": "år",
+          "values": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "grpshowings",
+          "text": "antal visningar",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "88"
+          ],
+          "valueTexts": [
+            "1-5",
+            "6-20",
+            "21-100",
+            "101-250",
+            "251-500",
+            "501-1000",
+            "1001-1500",
+            "1501-2000",
+            "2001-5000",
+            "5001+",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "tablecontent",
+          "text": "tabellinnehåll",
+          "values": [
+            "uniquefilms",
+            "uniquepremfilms",
+            "visits"
+          ],
+          "valueTexts": [
+            "filmer",
+            "premiärfilmer",
+            "besök"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_VISN.Px",
+      "category_path": [
+        {
+          "id": "Film på bio",
+          "name": "Film på bio"
+        },
+        {
+          "id": "Annan statistik",
+          "name": "Annan statistik"
+        }
+      ],
+      "database_id": "Statistikdatabas",
+      "dataset_code": "FPB_VISN.Px",
+      "id": "FPB_VISN.Px",
+      "language": "sv",
+      "path": "/Film på bio/Annan statistik",
+      "paths": [
+        {
+          "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_VISN.Px",
+          "category_path": [
+            {
+              "id": "Film på bio",
+              "name": "Film på bio"
+            },
+            {
+              "id": "Annan statistik",
+              "name": "Annan statistik"
+            }
+          ],
+          "database_id": "Statistikdatabas",
+          "path": "/Film på bio/Annan statistik",
+          "published": "2026-09-30",
+          "score": 1.0,
+          "title": "Besök och filmer efter antal visningar och år (O)",
+          "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_VISN.Px/"
+        }
+      ],
+      "provider_code": "kulturanalys",
+      "published": "2026-09-30",
+      "score": 1.0,
+      "title": "Besök och filmer efter antal visningar och år (O)",
+      "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_VISN.Px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Besök, filmer och premiärfilmer efter år, antal visningar och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "grpshowings": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "antal visningar",
+            "category": {
+              "label": {
+                "1": "1-5",
+                "2": "6-20"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "uniquefilms": "filmer",
+                "uniquepremfilms": "premiärfilmer"
+              },
+              "unit": {
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "uniquepremfilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och premiärfilmer efter år, antal visningar och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2025": "2025"
+              }
+            }
+          },
+          "grpshowings": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "antal visningar",
+            "category": {
+              "label": {
+                "1": "1-5"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "uniquefilms": "filmer"
+              },
+              "unit": {
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och premiärfilmer efter år, antal visningar och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grpshowings": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "antal visningar",
+            "category": {
+              "label": {
+                "3": "21-100",
+                "4": "101-250",
+                "5": "251-500",
+                "6": "501-1000",
+                "7": "1001-1500",
+                "8": "1501-2000",
+                "9": "2001-5000",
+                "10": "5001+",
+                "88": "Totalt"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "uniquefilms": "filmer"
+              },
+              "unit": {
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och premiärfilmer efter år, antal visningar och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grpshowings": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "antal visningar",
+            "category": {
+              "label": {
+                "1": "1-5"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "grpshowings",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "uniquefilms",
+                "uniquepremfilms"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "grpshowings",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "uniquefilms"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grpshowings",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "88"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "uniquefilms"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grpshowings",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

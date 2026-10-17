@@ -1,0 +1,225 @@
+{
+  "key": "skog/JO0306_7.px/sv",
+  "identifier": "JO0306_7.px",
+  "language": "sv",
+  "updated": "2026-08-18",
+  "retrieved_at": "2026-10-17T07:35:48.433504+00:00",
+  "responses": {
+    "metadata": {
+      "title": "7. Lager av rundvirke för energiändamål, 1 000 m3f ub efter Region och Kvartalsslut",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "0"
+          ],
+          "valueTexts": [
+            "Hela landet"
+          ]
+        },
+        {
+          "code": "Kvartalsslut",
+          "text": "Kvartalsslut",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "2024kv1",
+            "2024kv2",
+            "2024kv3",
+            "2024kv4",
+            "2025kv1",
+            "2025kv2",
+            "2025kv3",
+            "2025kv4",
+            "2026kv1",
+            "2026kv2"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.skogsstyrelsen.se/api/v1/sv/Skogsstyrelsens%20statistikdatabas/Lager%20av%20virkesravara/JO0306_7.px",
+      "category_path": [
+        {
+          "id": "Lager av virkesravara",
+          "name": "Lager av virkesråvara"
+        }
+      ],
+      "database_id": "Skogsstyrelsens statistikdatabas",
+      "dataset_code": "JO0306_7.px",
+      "id": "JO0306_7.px",
+      "language": "sv",
+      "path": "/Lager av virkesravara",
+      "paths": [
+        {
+          "api_url": "https://pxweb.skogsstyrelsen.se/api/v1/sv/Skogsstyrelsens%20statistikdatabas/Lager%20av%20virkesravara/JO0306_7.px",
+          "category_path": [
+            {
+              "id": "Lager av virkesravara",
+              "name": "Lager av virkesråvara"
+            }
+          ],
+          "database_id": "Skogsstyrelsens statistikdatabas",
+          "path": "/Lager av virkesravara",
+          "published": "2026-08-18",
+          "score": 1.0,
+          "title": "7. Lager av rundvirke för energiändamål, 1 000 m3f ub. Hela landet. 2024kv1-",
+          "web_url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Lager%20av%20virkesravara/JO0306_7.px/"
+        }
+      ],
+      "provider_code": "skog",
+      "published": "2026-08-18",
+      "score": 1.0,
+      "title": "7. Lager av rundvirke för energiändamål, 1 000 m3f ub. Hela landet. 2024kv1-",
+      "web_url": "https://pxweb.skogsstyrelsen.se/pxweb/sv/Skogsstyrelsens%20statistikdatabas/Skogsstyrelsens%20statistikdatabas__Lager%20av%20virkesravara/JO0306_7.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 120000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "7. Lager av rundvirke för energiändamål, 1 000 m3f ub efter Region och Kvartalsslut",
+        "source": "Skogsstyrelsen",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Hela landet"
+              }
+            }
+          },
+          "Kvartalsslut": {
+            "label": "Kvartalsslut",
+            "category": {
+              "label": {
+                "0": "2024kv1",
+                "1": "2024kv2"
+              }
+            }
+          }
+        },
+        "role": {},
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "7. Lager av rundvirke för energiändamål, 1 000 m3f ub efter Region och Kvartalsslut",
+        "source": "Skogsstyrelsen",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Hela landet"
+              }
+            }
+          },
+          "Kvartalsslut": {
+            "label": "Kvartalsslut",
+            "category": {
+              "label": {
+                "2": "2024kv3",
+                "3": "2024kv4",
+                "4": "2025kv1",
+                "5": "2025kv2",
+                "6": "2025kv3",
+                "7": "2025kv4",
+                "8": "2026kv1",
+                "9": "2026kv2"
+              }
+            }
+          }
+        },
+        "role": {},
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kvartalsslut",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kvartalsslut",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

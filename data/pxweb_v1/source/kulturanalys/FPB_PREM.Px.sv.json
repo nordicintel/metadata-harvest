@@ -1,0 +1,725 @@
+{
+  "key": "kulturanalys/FPB_PREM.Px/sv",
+  "identifier": "FPB_PREM.Px",
+  "language": "sv",
+  "updated": "2026-09-30",
+  "retrieved_at": "2026-10-17T06:58:01.534683+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Besök, filmer och visningar efter premiärårtalsgruppering, produktionslandsgruppering och år",
+      "variables": [
+        {
+          "code": "year",
+          "text": "år",
+          "values": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "grpprodcountry",
+          "text": "produktionslandsgruppering",
+          "values": [
+            "totalt",
+            "producerat i Sverige",
+            "producerat i Europa (Exkl. Sverige)",
+            "producerat i USA",
+            "producerat i övriga världen",
+            "uppgift saknas"
+          ],
+          "valueTexts": [
+            "totalt",
+            "producerat i Sverige",
+            "producerat i Europa (Exkl. Sverige)",
+            "producerat i USA",
+            "producerat i övriga världen",
+            "uppgift saknas"
+          ]
+        },
+        {
+          "code": "grppremyear",
+          "text": "premiärårtalsgruppering",
+          "values": [
+            "totalt",
+            "filmer med premiär under året",
+            "filmer som hade premiär föregående år",
+            "filmer som hade premiär tidigare år",
+            "uppgift saknas"
+          ],
+          "valueTexts": [
+            "totalt",
+            "filmer med premiär under året",
+            "filmer som hade premiär föregående år",
+            "filmer som hade premiär tidigare år",
+            "uppgift saknas"
+          ]
+        },
+        {
+          "code": "tablecontent",
+          "text": "tabellinnehåll",
+          "values": [
+            "visits",
+            "uniquefilms",
+            "showings"
+          ],
+          "valueTexts": [
+            "besök",
+            "filmer",
+            "visningar"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_PREM.Px",
+      "category_path": [
+        {
+          "id": "Film på bio",
+          "name": "Film på bio"
+        },
+        {
+          "id": "Annan statistik",
+          "name": "Annan statistik"
+        }
+      ],
+      "database_id": "Statistikdatabas",
+      "dataset_code": "FPB_PREM.Px",
+      "id": "FPB_PREM.Px",
+      "language": "sv",
+      "path": "/Film på bio/Annan statistik",
+      "paths": [
+        {
+          "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_PREM.Px",
+          "category_path": [
+            {
+              "id": "Film på bio",
+              "name": "Film på bio"
+            },
+            {
+              "id": "Annan statistik",
+              "name": "Annan statistik"
+            }
+          ],
+          "database_id": "Statistikdatabas",
+          "path": "/Film på bio/Annan statistik",
+          "published": "2026-09-30",
+          "score": 1.0,
+          "title": "Besök, filmer och visningar efter premiärårtalsgruppering, produktionslandsgruppering och år (O)",
+          "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_PREM.Px/"
+        }
+      ],
+      "provider_code": "kulturanalys",
+      "published": "2026-09-30",
+      "score": 1.0,
+      "title": "Besök, filmer och visningar efter premiärårtalsgruppering, produktionslandsgruppering och år (O)",
+      "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_PREM.Px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Besök, filmer och visningar efter år, produktionslandsgruppering, premiärårtalsgruppering och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "grpprodcountry": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "produktionslandsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt",
+                "producerat i Sverige": "producerat i Sverige"
+              }
+            }
+          },
+          "grppremyear": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "premiärårtalsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt",
+                "filmer med premiär under året": "filmer med premiär under året"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök",
+                "uniquefilms": "filmer"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, produktionslandsgruppering, premiärårtalsgruppering och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2025": "2025"
+              }
+            }
+          },
+          "grpprodcountry": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "produktionslandsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt"
+              }
+            }
+          },
+          "grppremyear": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "premiärårtalsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, produktionslandsgruppering, premiärårtalsgruppering och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grpprodcountry": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "produktionslandsgruppering",
+            "category": {
+              "label": {
+                "producerat i Europa (Exkl. Sverige)": "producerat i Europa (Exkl. Sverige)",
+                "producerat i USA": "producerat i USA",
+                "producerat i övriga världen": "producerat i övriga världen",
+                "uppgift saknas": "uppgift saknas"
+              }
+            }
+          },
+          "grppremyear": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "premiärårtalsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, produktionslandsgruppering, premiärårtalsgruppering och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grpprodcountry": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "produktionslandsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt"
+              }
+            }
+          },
+          "grppremyear": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "premiärårtalsgruppering",
+            "category": {
+              "label": {
+                "filmer som hade premiär föregående år": "filmer som hade premiär föregående år",
+                "filmer som hade premiär tidigare år": "filmer som hade premiär tidigare år",
+                "uppgift saknas": "uppgift saknas"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, produktionslandsgruppering, premiärårtalsgruppering och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grpprodcountry": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "produktionslandsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt"
+              }
+            }
+          },
+          "grppremyear": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "premiärårtalsgruppering",
+            "category": {
+              "label": {
+                "totalt": "totalt"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "showings": "visningar"
+              },
+              "unit": {
+                "showings": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "grpprodcountry",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt",
+                "producerat i Sverige"
+              ]
+            }
+          },
+          {
+            "code": "grppremyear",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt",
+                "filmer med premiär under året"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits",
+                "uniquefilms"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "grpprodcountry",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt"
+              ]
+            }
+          },
+          {
+            "code": "grppremyear",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grpprodcountry",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "producerat i Europa (Exkl. Sverige)",
+                "producerat i USA",
+                "producerat i övriga världen",
+                "uppgift saknas"
+              ]
+            }
+          },
+          {
+            "code": "grppremyear",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grpprodcountry",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt"
+              ]
+            }
+          },
+          {
+            "code": "grppremyear",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "filmer som hade premiär föregående år",
+                "filmer som hade premiär tidigare år",
+                "uppgift saknas"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grpprodcountry",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt"
+              ]
+            }
+          },
+          {
+            "code": "grppremyear",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "totalt"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "showings"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

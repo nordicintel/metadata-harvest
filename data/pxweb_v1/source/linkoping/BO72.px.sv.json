@@ -1,0 +1,929 @@
+{
+  "key": "linkoping/BO72.px/sv",
+  "identifier": "BO72.px",
+  "language": "sv",
+  "updated": "2026-08-24",
+  "retrieved_at": "2026-10-17T07:04:51.423989+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Bostäder efter hustyp, stadsdel, tid och bostadsarea. ",
+      "variables": [
+        {
+          "code": "hustyp",
+          "text": "hustyp",
+          "values": [
+            "Småhus",
+            "Flerbo",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Småhus",
+            "Flerbostadshus",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "stadsdel",
+          "text": "stadsdel",
+          "values": [
+            "110",
+            "111",
+            "112",
+            "113",
+            "121",
+            "122",
+            "123",
+            "124",
+            "131",
+            "132",
+            "133",
+            "134",
+            "135",
+            "136",
+            "137",
+            "138",
+            "140",
+            "141",
+            "142",
+            "143",
+            "144",
+            "145",
+            "146",
+            "147",
+            "148",
+            "149",
+            "150",
+            "151",
+            "152",
+            "153",
+            "154",
+            "155",
+            "156",
+            "160",
+            "161",
+            "199",
+            "210",
+            "211",
+            "220",
+            "221",
+            "230",
+            "231",
+            "240",
+            "241",
+            "310",
+            "311",
+            "320",
+            "321",
+            "410",
+            "411",
+            "420",
+            "421",
+            "510",
+            "511",
+            "520",
+            "521",
+            "530",
+            "531",
+            "540",
+            "541",
+            "610",
+            "611",
+            "620",
+            "630",
+            "631",
+            "640",
+            "641",
+            "650",
+            "651",
+            "660",
+            "661",
+            "999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Linköpings norra omland",
+            "Ryd",
+            "Skäggetorp",
+            "Tornby",
+            "Kallerstad",
+            "Tannefors",
+            "Tallboda",
+            "Stångebro",
+            "Gottfridsberg",
+            "Vasastaden",
+            "Innerstaden",
+            "Östra Valla",
+            "Ekkällan",
+            "Ramshäll",
+            "Hejdegården",
+            "Garnisonen",
+            "Linköpings södra omland",
+            "Berga",
+            "Vimanshäll",
+            "Vidingsjö",
+            "Ekholmen",
+            "Johannelund",
+            "Hackefors",
+            "Hjulsbro",
+            "Ullstämma",
+            "Harvestad",
+            "Slaka omland",
+            "Västra Valla",
+            "Lambohov",
+            "Jägarvallen",
+            "Slaka",
+            "Mjärdevi",
+            "Djurgården",
+            "Malmslätt omland",
+            "Malmslätt",
+            "Å förs skrivna",
+            "Västerlösa omland",
+            "Västerlösa",
+            "Rappestad omland",
+            "Rappestad",
+            "Vikingstad omland",
+            "Vikingstad",
+            "Sjögestad omland",
+            "Sjögestad",
+            "Nykil omland",
+            "Nykil",
+            "Ulrika omland",
+            "Ulrika",
+            "Ljungsbro omland",
+            "Ljungsbro",
+            "Berg omland",
+            "Berg",
+            "Skeda omland",
+            "Skeda Udde",
+            "Sturefors omland",
+            "Sturefors",
+            "Brokind omland",
+            "Brokind",
+            "Bestorp omland",
+            "Bestorp",
+            "Ekängen omland",
+            "Ekängen",
+            "Rystad omland",
+            "Linghem omland",
+            "Linghem",
+            "Gistad omland",
+            "Gistad",
+            "Askeby omland",
+            "Askeby",
+            "Bankekind omland",
+            "Bankekind",
+            "Restförda",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        },
+        {
+          "code": "bostadsarea",
+          "text": "bostadsarea",
+          "values": [
+            "-31",
+            "31-40",
+            "41-50",
+            "51-60",
+            "61-70",
+            "71-80",
+            "81-90",
+            "91-100",
+            "101-110",
+            "111-120",
+            "121-130",
+            "131-140",
+            "141-150",
+            "151-160",
+            "161-170",
+            "171-180",
+            "181-190",
+            "191-200",
+            "201-",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "< 31 kvm",
+            "31-40 kvm",
+            "41-50 kvm",
+            "51-60 kvm",
+            "61-70 kvm",
+            "71-80 kvm",
+            "81-90 kvm",
+            "91-100 kvm",
+            "101-110 kvm",
+            "111-120 kvm",
+            "121-130 kvm",
+            "131-140 kvm",
+            "141-150 kvm",
+            "151-160 kvm",
+            "161-170 kvm",
+            "171-180 kvm",
+            "181-190 kvm",
+            "191-200 kvm",
+            "> 201 kvm",
+            "Uppgift saknas",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Delomraden/Boende/BO72.px",
+      "category_path": [
+        {
+          "id": "Boende",
+          "name": "Boende"
+        }
+      ],
+      "database_id": "Delomraden",
+      "dataset_code": "BO72.px",
+      "id": "BO72.px",
+      "language": "sv",
+      "path": "/Boende",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Delomraden/Boende/BO72.px",
+          "category_path": [
+            {
+              "id": "Boende",
+              "name": "Boende"
+            }
+          ],
+          "database_id": "Delomraden",
+          "path": "/Boende",
+          "published": "2026-08-24",
+          "score": 1.0,
+          "title": "Bostäder efter hustyp, stadsdel, tid och bostadsarea.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Delomraden/Delomraden__Boende/BO72.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-08-24",
+      "score": 1.0,
+      "title": "Bostäder efter hustyp, stadsdel, tid och bostadsarea.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Delomraden/Delomraden__Boende/BO72.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Bostäder efter hustyp, stadsdel, tid och bostadsarea",
+        "source": "SCB (OSDB).  Uppdaterad och sammanställd av Statistikgruppen, Analys & Utredning, Linköpings kommun.    ",
+        "updated": "2026-10-17T09:04:50.6552571+02:00",
+        "dimension": {
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Småhus": "Småhus",
+                "Flerbo": "Flerbostadshus"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "110": "Linköpings norra omland",
+                "111": "Ryd"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016"
+              }
+            }
+          },
+          "bostadsarea": {
+            "label": "bostadsarea",
+            "category": {
+              "label": {
+                "-31": "< 31 kvm",
+                "31-40": "31-40 kvm"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Bostäder efter hustyp, stadsdel, tid och bostadsarea",
+        "source": "SCB (OSDB).  Uppdaterad och sammanställd av Statistikgruppen, Analys & Utredning, Linköpings kommun.    ",
+        "updated": "2026-10-17T09:04:50.920879+02:00",
+        "dimension": {
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "110": "Linköpings norra omland"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "bostadsarea": {
+            "label": "bostadsarea",
+            "category": {
+              "label": {
+                "-31": "< 31 kvm"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Bostäder efter hustyp, stadsdel, tid och bostadsarea",
+        "source": "SCB (OSDB).  Uppdaterad och sammanställd av Statistikgruppen, Analys & Utredning, Linköpings kommun.    ",
+        "updated": "2026-10-17T09:04:51.1083777+02:00",
+        "dimension": {
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Småhus": "Småhus"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "112": "Skäggetorp",
+                "113": "Tornby",
+                "121": "Kallerstad",
+                "122": "Tannefors",
+                "123": "Tallboda",
+                "124": "Stångebro",
+                "131": "Gottfridsberg",
+                "132": "Vasastaden",
+                "133": "Innerstaden",
+                "134": "Östra Valla",
+                "135": "Ekkällan",
+                "136": "Ramshäll",
+                "137": "Hejdegården",
+                "138": "Garnisonen",
+                "140": "Linköpings södra omland",
+                "141": "Berga",
+                "142": "Vimanshäll",
+                "143": "Vidingsjö",
+                "144": "Ekholmen",
+                "145": "Johannelund",
+                "146": "Hackefors",
+                "147": "Hjulsbro",
+                "148": "Ullstämma",
+                "149": "Harvestad",
+                "150": "Slaka omland",
+                "151": "Västra Valla",
+                "152": "Lambohov",
+                "153": "Jägarvallen",
+                "154": "Slaka",
+                "155": "Mjärdevi",
+                "156": "Djurgården",
+                "160": "Malmslätt omland",
+                "161": "Malmslätt",
+                "199": "Å förs skrivna",
+                "210": "Västerlösa omland",
+                "211": "Västerlösa",
+                "220": "Rappestad omland",
+                "221": "Rappestad",
+                "230": "Vikingstad omland",
+                "231": "Vikingstad",
+                "240": "Sjögestad omland",
+                "241": "Sjögestad",
+                "310": "Nykil omland",
+                "311": "Nykil",
+                "320": "Ulrika omland",
+                "321": "Ulrika",
+                "410": "Ljungsbro omland",
+                "411": "Ljungsbro",
+                "420": "Berg omland",
+                "421": "Berg",
+                "510": "Skeda omland",
+                "511": "Skeda Udde",
+                "520": "Sturefors omland",
+                "521": "Sturefors",
+                "530": "Brokind omland",
+                "531": "Brokind",
+                "540": "Bestorp omland",
+                "541": "Bestorp",
+                "610": "Ekängen omland",
+                "611": "Ekängen",
+                "620": "Rystad omland",
+                "630": "Linghem omland",
+                "631": "Linghem",
+                "640": "Gistad omland",
+                "641": "Gistad",
+                "650": "Askeby omland",
+                "651": "Askeby",
+                "660": "Bankekind omland",
+                "661": "Bankekind",
+                "999": "Restförda",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "bostadsarea": {
+            "label": "bostadsarea",
+            "category": {
+              "label": {
+                "-31": "< 31 kvm"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Bostäder efter hustyp, stadsdel, tid och bostadsarea",
+        "source": "SCB (OSDB).  Uppdaterad och sammanställd av Statistikgruppen, Analys & Utredning, Linköpings kommun.    ",
+        "updated": "2026-10-17T09:04:51.2177672+02:00",
+        "dimension": {
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Småhus": "Småhus"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "110": "Linköpings norra omland"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            }
+          },
+          "bostadsarea": {
+            "label": "bostadsarea",
+            "category": {
+              "label": {
+                "-31": "< 31 kvm"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Bostäder efter hustyp, stadsdel, tid och bostadsarea",
+        "source": "SCB (OSDB).  Uppdaterad och sammanställd av Statistikgruppen, Analys & Utredning, Linköpings kommun.    ",
+        "updated": "2026-10-17T09:04:51.3427598+02:00",
+        "dimension": {
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Småhus": "Småhus"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "110": "Linköpings norra omland"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "bostadsarea": {
+            "label": "bostadsarea",
+            "category": {
+              "label": {
+                "41-50": "41-50 kvm",
+                "51-60": "51-60 kvm",
+                "61-70": "61-70 kvm",
+                "71-80": "71-80 kvm",
+                "81-90": "81-90 kvm",
+                "91-100": "91-100 kvm",
+                "101-110": "101-110 kvm",
+                "111-120": "111-120 kvm",
+                "121-130": "121-130 kvm",
+                "131-140": "131-140 kvm",
+                "141-150": "141-150 kvm",
+                "151-160": "151-160 kvm",
+                "161-170": "161-170 kvm",
+                "171-180": "171-180 kvm",
+                "181-190": "181-190 kvm",
+                "191-200": "191-200 kvm",
+                "201-": "> 201 kvm",
+                "US": "Uppgift saknas",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Småhus",
+                "Flerbo"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "110",
+                "111"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "bostadsarea",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-31",
+                "31-40"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "110"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "bostadsarea",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-31"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Småhus"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "112",
+                "113",
+                "121",
+                "122",
+                "123",
+                "124",
+                "131",
+                "132",
+                "133",
+                "134",
+                "135",
+                "136",
+                "137",
+                "138",
+                "140",
+                "141",
+                "142",
+                "143",
+                "144",
+                "145",
+                "146",
+                "147",
+                "148",
+                "149",
+                "150",
+                "151",
+                "152",
+                "153",
+                "154",
+                "155",
+                "156",
+                "160",
+                "161",
+                "199",
+                "210",
+                "211",
+                "220",
+                "221",
+                "230",
+                "231",
+                "240",
+                "241",
+                "310",
+                "311",
+                "320",
+                "321",
+                "410",
+                "411",
+                "420",
+                "421",
+                "510",
+                "511",
+                "520",
+                "521",
+                "530",
+                "531",
+                "540",
+                "541",
+                "610",
+                "611",
+                "620",
+                "630",
+                "631",
+                "640",
+                "641",
+                "650",
+                "651",
+                "660",
+                "661",
+                "999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "bostadsarea",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-31"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Småhus"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "110"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "bostadsarea",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-31"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Småhus"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "110"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "bostadsarea",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "41-50",
+                "51-60",
+                "61-70",
+                "71-80",
+                "81-90",
+                "91-100",
+                "101-110",
+                "111-120",
+                "121-130",
+                "131-140",
+                "141-150",
+                "151-160",
+                "161-170",
+                "171-180",
+                "181-190",
+                "191-200",
+                "201-",
+                "US",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

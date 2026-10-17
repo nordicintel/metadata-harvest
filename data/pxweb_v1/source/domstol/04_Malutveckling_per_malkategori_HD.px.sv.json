@@ -1,0 +1,862 @@
+{
+  "key": "domstol/04_Malutveckling_per_malkategori_HD.px/sv",
+  "identifier": "04_Malutveckling_per_malkategori_HD.px",
+  "language": "sv",
+  "updated": "2026-02-25",
+  "retrieved_at": "2026-10-17T07:07:22.020866+00:00",
+  "responses": {
+    "metadata": {
+      "title": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Domstol",
+          "values": [
+            "Supreme Court"
+          ],
+          "valueTexts": [
+            "Högsta domstolen"
+          ]
+        },
+        {
+          "code": "Målkategori",
+          "text": "Målkategori",
+          "values": [
+            "Criminal cases",
+            "Civil cases",
+            "Other cases"
+          ],
+          "valueTexts": [
+            "Brottmål",
+            "Tvistemål",
+            "Övriga mål"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "Number of filed cases",
+            "Number of determined cases",
+            "Number of pending cases December 31"
+          ],
+          "valueTexts": [
+            "Antal inkomna mål",
+            "Antal avgjorda mål",
+            "Utgående balans 31 dec"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/AntalMal/04_Malutveckling_per_malkategori_HD.px",
+      "category_path": [
+        {
+          "id": "AntalMal",
+          "name": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "04_Malutveckling_per_malkategori_HD.px",
+      "id": "04_Malutveckling_per_malkategori_HD.px",
+      "language": "sv",
+      "path": "/AntalMal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/AntalMal/04_Malutveckling_per_malkategori_HD.px",
+          "category_path": [
+            {
+              "id": "AntalMal",
+              "name": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/AntalMal",
+          "published": "2026-02-25",
+          "score": 1.0,
+          "title": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__AntalMal/04_Malutveckling_per_malkategori_HD.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-25",
+      "score": 1.0,
+      "title": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__AntalMal/04_Malutveckling_per_malkategori_HD.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen efter Domstol, Målkategori, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål i Högsta domstolen. Målen delas in i målkategorier. Utgående balans är antal pågående/öppna mål vid ett visst datum."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Målkategori",
+            "category": {
+              "label": {
+                "Criminal cases": "Brottmål",
+                "Civil cases": "Tvistemål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of filed cases": "Antal inkomna mål",
+                "Number of determined cases": "Antal avgjorda mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2004",
+                "1": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen",
+            "description": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori",
+              "Variabel"
+            ],
+            "matrix": "RV030104",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen efter Domstol, Målkategori, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål i Högsta domstolen. Målen delas in i målkategorier. Utgående balans är antal pågående/öppna mål vid ett visst datum."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Målkategori",
+            "category": {
+              "label": {
+                "Other cases": "Övriga mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of filed cases": "Antal inkomna mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2004"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen",
+            "description": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori",
+              "Variabel"
+            ],
+            "matrix": "RV030104",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen efter Domstol, Målkategori, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål i Högsta domstolen. Målen delas in i målkategorier. Utgående balans är antal pågående/öppna mål vid ett visst datum."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Målkategori",
+            "category": {
+              "label": {
+                "Criminal cases": "Brottmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of pending cases December 31": "Utgående balans 31 dec"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2004"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen",
+            "description": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori",
+              "Variabel"
+            ],
+            "matrix": "RV030104",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen efter Domstol, Målkategori, Variabel och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar antal mål i Högsta domstolen. Målen delas in i målkategorier. Utgående balans är antal pågående/öppna mål vid ett visst datum."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målkategori": {
+            "label": "Målkategori",
+            "category": {
+              "label": {
+                "Criminal cases": "Brottmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "Number of filed cases": "Antal inkomna mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2006",
+                "3": "2007",
+                "4": "2008",
+                "5": "2009",
+                "6": "2010",
+                "7": "2011",
+                "8": "2012",
+                "9": "2013",
+                "10": "2014",
+                "11": "2015",
+                "12": "2016",
+                "13": "2017",
+                "14": "2018",
+                "15": "2019",
+                "16": "2020",
+                "17": "2021",
+                "18": "2022",
+                "19": "2023",
+                "20": "2024",
+                "21": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen",
+            "description": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen. År 2004-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målkategori",
+              "Variabel"
+            ],
+            "matrix": "RV030104",
+            "subject-code": "RV0301",
+            "subject-area": "Antal inkomna, avgjorda och balanserade mål och ärenden per domstolsslag och domstol"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "04. Inkomna, avgjorda och balanserade mål per målkategori i Högsta domstolen"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal mål",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases",
+                "Civil cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases",
+                "Number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Other cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of pending cases December 31"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Målkategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Criminal cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

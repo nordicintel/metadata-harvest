@@ -1,0 +1,640 @@
+{
+  "key": "energi/3_EN0307_5.px/en",
+  "identifier": "3_EN0307_5.px",
+  "language": "en",
+  "updated": "2026-09-03",
+  "retrieved_at": "2026-10-17T06:58:20.204871+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+      "variables": [
+        {
+          "code": "Kvartal",
+          "text": "Quarter",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "2021:1",
+            "2021:2",
+            "2021:3",
+            "2021:4",
+            "2022:1",
+            "2022:2",
+            "2022:3",
+            "2022:4",
+            "2023:1",
+            "2023:2",
+            "2023:3",
+            "2023:4",
+            "2024:1",
+            "2024:2",
+            "2024:3",
+            "2024:4",
+            "2025:1",
+            "2025:2",
+            "2025:3",
+            "2025:4",
+            "2026:1",
+            "2026:2"
+          ]
+        },
+        {
+          "code": "Sortiment",
+          "text": "Assortiment",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Municipal solid waste",
+            "Business waste",
+            "Imported waste"
+          ]
+        },
+        {
+          "code": "Användare",
+          "text": "User",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "District heating",
+            "Industry"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Tradbransle_och_torvpriser/3_EN0307_5.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Tradbransle_och_torvpriser",
+          "name": "Wood fuel-, peat and wasteprices"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "3_EN0307_5.px",
+      "id": "3_EN0307_5.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Tradbransle_och_torvpriser",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Tradbransle_och_torvpriser/3_EN0307_5.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Tradbransle_och_torvpriser",
+              "name": "Wood fuel-, peat and wasteprices"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Tradbransle_och_torvpriser",
+          "published": "2026-09-03",
+          "score": 1.0,
+          "title": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/3_EN0307_5.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-09-03",
+      "score": 1.0,
+      "title": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/3_EN0307_5.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices by Quarter, Assortiment and User",
+        "source": "Sweden Energy Agency",
+        "updated": "2026-09-03T07:00:00Z",
+        "note": [
+          "The price refers to an average reception fee or purchase price for the companies included in the survey. The price is calculated by dividing the companies' reception fees or purchase costs for the fuel consumed during the relevant period by the energy content of the fuel. (...) means that the information is not available, too uncertain to be provided or removed for confidentiality reasons."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Kvartal": {
+            "label": "Quarter",
+            "category": {
+              "label": {
+                "0": "2021:1",
+                "1": "2021:2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Assortiment",
+            "category": {
+              "label": {
+                "0": "Municipal solid waste",
+                "1": "Business waste"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "User",
+            "category": {
+              "label": {
+                "0": "District heating",
+                "1": "Industry"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+            "description": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+            "descriptiondefault": true,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "Kvartal"
+            ],
+            "matrix": "EN0307_5",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Kvartal",
+                  "Sortiment",
+                  "Användare"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Kvartal": [
+                    "0",
+                    "1"
+                  ],
+                  "Sortiment": [
+                    "0",
+                    "1"
+                  ],
+                  "Användare": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "1": "..",
+                  "3": "..",
+                  "5": "..",
+                  "7": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices by Quarter, Assortiment and User",
+        "source": "Sweden Energy Agency",
+        "updated": "2026-09-03T07:00:00Z",
+        "note": [
+          "The price refers to an average reception fee or purchase price for the companies included in the survey. The price is calculated by dividing the companies' reception fees or purchase costs for the fuel consumed during the relevant period by the energy content of the fuel. (...) means that the information is not available, too uncertain to be provided or removed for confidentiality reasons."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Kvartal": {
+            "label": "Quarter",
+            "category": {
+              "label": {
+                "2": "2021:3",
+                "3": "2021:4",
+                "4": "2022:1",
+                "5": "2022:2",
+                "6": "2022:3",
+                "7": "2022:4",
+                "8": "2023:1",
+                "9": "2023:2",
+                "10": "2023:3",
+                "11": "2023:4",
+                "12": "2024:1",
+                "13": "2024:2",
+                "14": "2024:3",
+                "15": "2024:4",
+                "16": "2025:1",
+                "17": "2025:2",
+                "18": "2025:3",
+                "19": "2025:4",
+                "20": "2026:1",
+                "21": "2026:2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Assortiment",
+            "category": {
+              "label": {
+                "0": "Municipal solid waste"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "User",
+            "category": {
+              "label": {
+                "0": "District heating"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+            "description": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+            "descriptiondefault": true,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "Kvartal"
+            ],
+            "matrix": "EN0307_5",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices by Quarter, Assortiment and User",
+        "source": "Sweden Energy Agency",
+        "updated": "2026-09-03T07:00:00Z",
+        "note": [
+          "The price refers to an average reception fee or purchase price for the companies included in the survey. The price is calculated by dividing the companies' reception fees or purchase costs for the fuel consumed during the relevant period by the energy content of the fuel. (...) means that the information is not available, too uncertain to be provided or removed for confidentiality reasons."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Kvartal": {
+            "label": "Quarter",
+            "category": {
+              "label": {
+                "0": "2021:1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Assortiment",
+            "category": {
+              "label": {
+                "2": "Imported waste"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "User",
+            "category": {
+              "label": {
+                "0": "District heating"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+            "description": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices",
+            "descriptiondefault": true,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "Kvartal"
+            ],
+            "matrix": "EN0307_5",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Waste prices, per quarter excluding tax, from 2021 onwards, SEK/MWh, free to consumers, current prices"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

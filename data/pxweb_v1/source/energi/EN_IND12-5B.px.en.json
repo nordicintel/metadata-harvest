@@ -1,0 +1,532 @@
+{
+  "key": "energi/EN_IND12-5B.px/en",
+  "identifier": "EN_IND12-5B.px",
+  "language": "en",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:21:57.784871+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+      "variables": [
+        {
+          "code": "Elområde",
+          "text": "Bidding Zone",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "SE1",
+            "SE2",
+            "SE3",
+            "SE4",
+            "Germany",
+            "France",
+            "Great brittain"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Yearly",
+          "values": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/12/12.5/EN_IND12-5B.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energy indicators"
+        },
+        {
+          "id": "12",
+          "name": "12 Factors that influence thedemand and supply of energy"
+        },
+        {
+          "id": "12.5",
+          "name": "12.5 Electricity prices on the spot market"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND12-5B.px",
+      "id": "EN_IND12-5B.px",
+      "language": "en",
+      "path": "/Energiindikatorer/12/12.5",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/12/12.5/EN_IND12-5B.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energy indicators"
+            },
+            {
+              "id": "12",
+              "name": "12 Factors that influence thedemand and supply of energy"
+            },
+            {
+              "id": "12.5",
+              "name": "12.5 Electricity prices on the spot market"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/12/12.5",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__12__12.5/EN_IND12-5B.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__12__12.5/EN_IND12-5B.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh by Bidding Zone and Yearly",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: SKM Market Predictor, Nord Pool"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding Zone",
+            "category": {
+              "label": {
+                "0": "SE1",
+                "1": "SE2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Yearly",
+            "category": {
+              "label": {
+                "2012": "2012",
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+            "description": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND12-5B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh by Bidding Zone and Yearly",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: SKM Market Predictor, Nord Pool"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding Zone",
+            "category": {
+              "label": {
+                "2": "SE3",
+                "3": "SE4",
+                "4": "Germany",
+                "5": "France",
+                "6": "Great brittain"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Yearly",
+            "category": {
+              "label": {
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+            "description": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND12-5B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh by Bidding Zone and Yearly",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: SKM Market Predictor, Nord Pool"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding Zone",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Yearly",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+            "description": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND12-5B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Electricity spot price in selected countries, yearly average, 2012-, SEK/MWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012",
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "key": "linkoping/geofri84.px/sv",
+  "identifier": "geofri84.px",
+  "language": "sv",
+  "updated": "2025-04-24",
+  "retrieved_at": "2026-10-17T07:35:45.873827+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antal fritidshus efter utskottsområde och tid. ",
+      "variables": [
+        {
+          "code": "utskottsområde",
+          "text": "utskottsområde",
+          "values": [
+            "58080901",
+            "58080902",
+            "58080903",
+            "58080924",
+            "58080925",
+            "58080926",
+            "58080927",
+            "58080999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Utskott Nord",
+            "Utskott Väst",
+            "Utskott Syd",
+            "Utskott Vreta Kloster",
+            "Utskott Valkebo",
+            "Utskott Vårdnäs",
+            "Utskott Åkerbo",
+            "Restförda",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Boende/geofri84.px",
+      "category_path": [
+        {
+          "id": "Boende",
+          "name": "Boende"
+        }
+      ],
+      "database_id": "GeoUtskott",
+      "dataset_code": "geofri84.px",
+      "id": "geofri84.px",
+      "language": "sv",
+      "path": "/Boende",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Boende/geofri84.px",
+          "category_path": [
+            {
+              "id": "Boende",
+              "name": "Boende"
+            }
+          ],
+          "database_id": "GeoUtskott",
+          "path": "/Boende",
+          "published": "2025-04-24",
+          "score": 1.0,
+          "title": "Antal fritidshus efter utskottsområde och tid.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Boende/geofri84.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-04-24",
+      "score": 1.0,
+      "title": "Antal fritidshus efter utskottsområde och tid.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Boende/geofri84.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antal fritidshus efter utskottsområde och tid",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:35:45.5537229+02:00",
+        "dimension": {
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord",
+                "58080902": "Utskott Väst"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Antal fritidshus efter utskottsområde och tid",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:35:45.6787169+02:00",
+        "dimension": {
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080903": "Utskott Syd",
+                "58080924": "Utskott Vreta Kloster",
+                "58080925": "Utskott Valkebo",
+                "58080926": "Utskott Vårdnäs",
+                "58080927": "Utskott Åkerbo",
+                "58080999": "Restförda",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Antal fritidshus efter utskottsområde och tid",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:35:45.8037234+02:00",
+        "dimension": {
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901",
+                "58080902"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080903",
+                "58080924",
+                "58080925",
+                "58080926",
+                "58080927",
+                "58080999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

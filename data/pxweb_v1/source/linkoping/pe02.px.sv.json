@@ -1,0 +1,854 @@
+{
+  "key": "linkoping/pe02.px/sv",
+  "identifier": "pe02.px",
+  "language": "sv",
+  "updated": "2026-02-11",
+  "retrieved_at": "2026-10-17T07:56:50.008747+00:00",
+  "responses": {
+    "metadata": {
+      "title": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön. ",
+      "variables": [
+        {
+          "code": "ålder",
+          "text": "ålder",
+          "values": [
+            "16-19",
+            "20-24",
+            "25-44",
+            "45-64",
+            "65-w",
+            "Tot"
+          ],
+          "valueTexts": [
+            "16-19 år",
+            "20-24 år",
+            "25-44 år",
+            "45-64 år",
+            "65-w år",
+            "Samtliga"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "utbildningsnivå",
+          "text": "utbildningsnivå",
+          "values": [
+            "För",
+            "Gymn",
+            "EgymnKort",
+            "EgymnLång",
+            "Saknas",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Förgymnasial",
+            "Gymnasial",
+            "Eftergymnasial < 3 år",
+            "Eftergymnasial 3- år",
+            "Uppgift saknas",
+            "Samtliga"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ]
+        },
+        {
+          "code": "typ",
+          "text": "typ",
+          "values": [
+            "In",
+            "Ut",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Inpendling",
+            "Utpendling",
+            "Nettopendling"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Båda könen"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Pendling/pe02.px",
+      "category_path": [
+        {
+          "id": "Pendling",
+          "name": "Pendling"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "pe02.px",
+      "id": "pe02.px",
+      "language": "sv",
+      "path": "/Pendling",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Pendling/pe02.px",
+          "category_path": [
+            {
+              "id": "Pendling",
+              "name": "Pendling"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Pendling",
+          "published": "2026-02-11",
+          "score": 1.0,
+          "title": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Pendling/pe02.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-02-11",
+      "score": 1.0,
+      "title": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Pendling/pe02.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:56:49.2932399+02:00",
+        "dimension": {
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år",
+                "20-24": "20-24 år"
+              }
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "För": "Förgymnasial",
+                "Gymn": "Gymnasial"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2001": "2001",
+                "2002": "2002"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "In": "Inpendling",
+                "Ut": "Utpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:56:49.4338613+02:00",
+        "dimension": {
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "25-44": "25-44 år",
+                "45-64": "45-64 år",
+                "65-w": "65-w år",
+                "Tot": "Samtliga"
+              }
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "För": "Förgymnasial"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2001": "2001"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:56:49.5588657+02:00",
+        "dimension": {
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "EgymnKort": "Eftergymnasial < 3 år",
+                "EgymnLång": "Eftergymnasial 3- år",
+                "Saknas": "Uppgift saknas",
+                "Tot": "Samtliga"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2001": "2001"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:56:49.6838648+02:00",
+        "dimension": {
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "För": "Förgymnasial"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2003": "2003",
+                "2004": "2004",
+                "2005": "2005",
+                "2006": "2006",
+                "2007": "2007",
+                "2008": "2008",
+                "2009": "2009",
+                "2010": "2010",
+                "2011": "2011",
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:56:49.8088613+02:00",
+        "dimension": {
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "För": "Förgymnasial"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2001": "2001"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Netto": "Nettopendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "In- och utpendling efter ålder, utbildningsnivå, tid, typ och kön",
+        "source": "SCB (Östgötadatabasen). Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:56:49.933888+02:00",
+        "dimension": {
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "16-19": "16-19 år"
+              }
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "För": "Förgymnasial"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2001": "2001"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "In": "Inpendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Båda könen"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19",
+                "20-24"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "För",
+                "Gymn"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001",
+                "2002"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In",
+                "Ut"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "25-44",
+                "45-64",
+                "65-w",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "För"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "EgymnKort",
+                "EgymnLång",
+                "Saknas",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "För"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2003",
+                "2004",
+                "2005",
+                "2006",
+                "2007",
+                "2008",
+                "2009",
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "För"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "16-19"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "För"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "In"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

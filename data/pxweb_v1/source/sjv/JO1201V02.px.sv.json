@@ -1,0 +1,783 @@
+{
+  "key": "sjv/JO1201V02.px/sv",
+  "identifier": "JO1201V02.px",
+  "language": "sv",
+  "updated": "2026-06-23",
+  "retrieved_at": "2026-10-17T07:12:08.267482+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning efter Metod, Inriktning, Variabel och År",
+      "variables": [
+        {
+          "code": "Metod",
+          "text": "Metod",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "Kassar",
+            "Dammar",
+            "Bassänger och tråg",
+            "Recirkulerande system (RAS)",
+            "Rep och dylikt",
+            "Totalt, alla metoder"
+          ]
+        },
+        {
+          "code": "Inriktning",
+          "text": "Inriktning",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "Regnbåge",
+            "Annan fisk",
+            "Totalt, all fisk",
+            "Blötdjur",
+            "Andra organismer",
+            "Rom, yngel, larver, småfisk, stirr eller smolt",
+            "Totalt, alla inriktningar"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Antal företag",
+            "Produktion (ton)",
+            "Produktion (miljontals st)",
+            "Produktionsvärde (miljontals kr)"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Vattenbruk/JO1201V02.px",
+      "category_path": [
+        {
+          "id": "Vattenbruk",
+          "name": "Vattenbruk"
+        }
+      ],
+      "database_id": "Jordbruksverkets statistikdatabas",
+      "dataset_code": "JO1201V02.px",
+      "id": "JO1201V02.px",
+      "language": "sv",
+      "path": "/Vattenbruk",
+      "paths": [
+        {
+          "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Vattenbruk/JO1201V02.px",
+          "category_path": [
+            {
+              "id": "Vattenbruk",
+              "name": "Vattenbruk"
+            }
+          ],
+          "database_id": "Jordbruksverkets statistikdatabas",
+          "path": "/Vattenbruk",
+          "published": "2026-06-23",
+          "score": 1.0,
+          "title": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning. År 2020-2025",
+          "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Vattenbruk/JO1201V02.px/"
+        }
+      ],
+      "provider_code": "sjv",
+      "published": "2026-06-23",
+      "score": 1.0,
+      "title": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning. År 2020-2025",
+      "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Vattenbruk/JO1201V02.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning efter Metod, Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Metod": {
+            "label": "Metod",
+            "category": {
+              "label": {
+                "0": "Kassar",
+                "1": "Dammar"
+              }
+            }
+          },
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Regnbåge",
+                "1": "Annan fisk"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag",
+                "1": "Produktion (ton)"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                },
+                "1": {
+                  "base": "Ton",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020",
+                "1": "2021"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning efter Metod, Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Metod": {
+            "label": "Metod",
+            "category": {
+              "label": {
+                "2": "Bassänger och tråg",
+                "3": "Recirkulerande system (RAS)",
+                "4": "Rep och dylikt",
+                "5": "Totalt, alla metoder"
+              }
+            }
+          },
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Regnbåge"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Metod",
+                  "Inriktning",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Metod": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  "Inriktning": [
+                    "0"
+                  ],
+                  "Variabel": [
+                    "0"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "1": "..",
+                  "2": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning efter Metod, Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Metod": {
+            "label": "Metod",
+            "category": {
+              "label": {
+                "0": "Kassar"
+              }
+            }
+          },
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "2": "Totalt, all fisk",
+                "3": "Blötdjur",
+                "4": "Andra organismer",
+                "5": "Rom, yngel, larver, småfisk, stirr eller smolt",
+                "6": "Totalt, alla inriktningar"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Metod",
+                  "Inriktning",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Metod": [
+                    "0"
+                  ],
+                  "Inriktning": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6"
+                  ],
+                  "Variabel": [
+                    "0"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "1": "..",
+                  "2": "..",
+                  "3": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning efter Metod, Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Metod": {
+            "label": "Metod",
+            "category": {
+              "label": {
+                "0": "Kassar"
+              }
+            }
+          },
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Regnbåge"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "2": "Produktion (miljontals st)",
+                "3": "Produktionsvärde (miljontals kr)"
+              },
+              "unit": {
+                "2": {
+                  "base": "Miljoner styck",
+                  "decimals": -1
+                },
+                "3": {
+                  "base": "Miljoner kronor",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Metod",
+                  "Inriktning",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Metod": [
+                    "0"
+                  ],
+                  "Inriktning": [
+                    "0"
+                  ],
+                  "Variabel": [
+                    "2",
+                    "3"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": "."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Antal företag, produktion och produktionsvärde i vattenbruket efter metod och inriktning efter Metod, Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Metod": {
+            "label": "Metod",
+            "category": {
+              "label": {
+                "0": "Kassar"
+              }
+            }
+          },
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Regnbåge"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2022",
+                "3": "2023",
+                "4": "2024",
+                "5": "2025"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Metod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Metod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Metod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Metod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Metod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

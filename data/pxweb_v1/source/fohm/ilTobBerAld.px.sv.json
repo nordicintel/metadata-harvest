@@ -1,0 +1,917 @@
+{
+  "key": "fohm/ilTobBerAld.px/sv",
+  "identifier": "ilTobBerAld.px",
+  "language": "sv",
+  "updated": "2022-09-19",
+  "retrieved_at": "2026-10-17T07:55:29.086212+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Tobaksberoende, kön och ålder efter Region, Segment, Kön, Ålder och År",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Riket"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Segment",
+          "text": "Segment",
+          "values": [
+            "47",
+            "200"
+          ],
+          "valueTexts": [
+            "Cigaretter",
+            "Snus"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "Kvinnor & Män",
+            "Kvinnor",
+            "Män"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "5",
+            "13",
+            "25",
+            "26",
+            "27"
+          ],
+          "valueTexts": [
+            "17-29 år",
+            "17-84 år",
+            "30-49 år",
+            "50-64 år",
+            "65-84 år"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2013",
+            "2017",
+            "2021"
+          ],
+          "valueTexts": [
+            "2013",
+            "2017",
+            "2021"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTS-indikatorer (Indikatorlabbet)"
+        },
+        {
+          "id": "TobakNikotin",
+          "name": "Tobak och nikotin"
+        },
+        {
+          "id": "Skador",
+          "name": "Skador"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilTobBerAld.px",
+      "id": "ilTobBerAld.px",
+      "language": "sv",
+      "path": "/ANDTS/TobakNikotin/Skador",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTS-indikatorer (Indikatorlabbet)"
+            },
+            {
+              "id": "TobakNikotin",
+              "name": "Tobak och nikotin"
+            },
+            {
+              "id": "Skador",
+              "name": "Skador"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/TobakNikotin/Skador",
+          "published": "2022-09-19",
+          "score": 1.0,
+          "title": "Tobaksberoende, kön och ålder",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__TobakNikotin__Skador/ilTobBerAld.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2022-09-19",
+      "score": 1.0,
+      "title": "Tobaksberoende, kön och ålder",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__TobakNikotin__Skador/ilTobBerAld.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Tobaksberoende, kön och ålder efter Region, Segment, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med cigarett- respektive snusberoende enligt skalan Cigarette Dependence Scale (CDS-12). Andelen snusberoende mättes med CDS-12 med anpassade frågor efter snus. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigaretter",
+                "200": "Snus"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män",
+                "5": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "5": "17-29 år",
+                "13": "17-84 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2017": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobaksberoende, kön och ålder",
+            "description": "Tobaksberoende, kön och ålder",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobak och nikotin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobaksberoende, kön och ålder"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tobaksberoende, kön och ålder efter Region, Segment, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med cigarett- respektive snusberoende enligt skalan Cigarette Dependence Scale (CDS-12). Andelen snusberoende mättes med CDS-12 med anpassade frågor efter snus. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigaretter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "6": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "5": "17-29 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobaksberoende, kön och ålder",
+            "description": "Tobaksberoende, kön och ålder",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobak och nikotin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobaksberoende, kön och ålder"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tobaksberoende, kön och ålder efter Region, Segment, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med cigarett- respektive snusberoende enligt skalan Cigarette Dependence Scale (CDS-12). Andelen snusberoende mättes med CDS-12 med anpassade frågor efter snus. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigaretter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "25": "30-49 år",
+                "26": "50-64 år",
+                "27": "65-84 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobaksberoende, kön och ålder",
+            "description": "Tobaksberoende, kön och ålder",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobak och nikotin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobaksberoende, kön och ålder"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tobaksberoende, kön och ålder efter Region, Segment, Kön, Ålder och År",
+        "source": "Centralförbundet för alkohol- och narkotikaupplysning (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Andel (%) i befolkningen (17-84 år) med cigarett- respektive snusberoende enligt skalan Cigarette Dependence Scale (CDS-12). Andelen snusberoende mättes med CDS-12 med anpassade frågor efter snus. CAN ansvarar för frågeundersökningen som genomfördes 2013, 2017 och 2021 om vanor och konsekvenser i den svenska befolkningen med avseende på alkohol, narkotika, dopning och tobak. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigaretter"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "5": "17-29 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobaksberoende, kön och ålder",
+            "description": "Tobaksberoende, kön och ålder",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobak och nikotin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobaksberoende, kön och ålder"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47",
+                "200"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5",
+                "13"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2017"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "25",
+                "26",
+                "27"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,611 @@
+{
+  "key": "linkoping/bme70.px/sv",
+  "identifier": "bme70.px",
+  "language": "sv",
+  "updated": "2026-06-25",
+  "retrieved_at": "2026-10-17T07:22:56.665157+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2013-2015",
+            "2014-2016",
+            "2015-2017",
+            "2016-2018",
+            "2017-2019",
+            "2018-2020",
+            "2019-2021",
+            "2020-2022",
+            "2021-2023",
+            "2022-2024",
+            "2023-2025"
+          ]
+        },
+        {
+          "code": "stadsdel",
+          "text": "stadsdel",
+          "values": [
+            "SkBe",
+            "InVa",
+            "TaGo",
+            "ERHV",
+            "JoEk",
+            "HjHV",
+            "LaÖV",
+            "MLjBV",
+            "TSEL",
+            "0580"
+          ],
+          "valueTexts": [
+            "Skäggetorp - Berga",
+            "Innerstaden - Vasastaden",
+            "Tannefors - Gottfridsberg",
+            "Ekkällan - Ramshäll - Hejdegården - Vimanshäll",
+            "Johannelund - Ekholmen",
+            "Hjulsbro - Harvestad - Hackefors - Vidingsjö",
+            "Lambohov - Östra Valla",
+            "Malmslätt - Ljungsbro - Berg - Vikingstad",
+            "Tallboda - Sturefors - Ekängen - Linghem",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "ålder",
+          "text": "ålder",
+          "values": [
+            "0",
+            "30",
+            "50",
+            "65",
+            "80"
+          ],
+          "valueTexts": [
+            "Vid födseln",
+            "Vid 30 års ålder",
+            "Vid 50 års ålder",
+            "Vid 65 års ålder",
+            "Vid 80 års ålder"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Diff"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Differens mellan kvinnor och män"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Delomraden/Befolkning/bme70.px",
+      "category_path": [
+        {
+          "id": "Befolkning",
+          "name": "Befolkning"
+        }
+      ],
+      "database_id": "Delomraden",
+      "dataset_code": "bme70.px",
+      "id": "bme70.px",
+      "language": "sv",
+      "path": "/Befolkning",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Delomraden/Befolkning/bme70.px",
+          "category_path": [
+            {
+              "id": "Befolkning",
+              "name": "Befolkning"
+            }
+          ],
+          "database_id": "Delomraden",
+          "path": "/Befolkning",
+          "published": "2026-06-25",
+          "score": 1.0,
+          "title": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Delomraden/Delomraden__Befolkning/bme70.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-06-25",
+      "score": 1.0,
+      "title": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Delomraden/Delomraden__Befolkning/bme70.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön",
+        "source": "SCB (Östgötadatabasen).  Beräkning och sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:22:56.0816782+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2013-2015",
+                "2016": "2014-2016"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "SkBe": "Skäggetorp - Berga",
+                "InVa": "Innerstaden - Vasastaden"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0": "Vid födseln",
+                "30": "Vid 30 års ålder"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön",
+        "source": "SCB (Östgötadatabasen).  Beräkning och sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:22:56.2223099+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2015-2017",
+                "2018": "2016-2018",
+                "2019": "2017-2019",
+                "2020": "2018-2020",
+                "2021": "2019-2021",
+                "2022": "2020-2022",
+                "2023": "2021-2023",
+                "2024": "2022-2024",
+                "2025": "2023-2025"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "SkBe": "Skäggetorp - Berga"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0": "Vid födseln"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön",
+        "source": "SCB (Östgötadatabasen).  Beräkning och sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:22:56.3473212+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2013-2015"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "TaGo": "Tannefors - Gottfridsberg",
+                "ERHV": "Ekkällan - Ramshäll - Hejdegården - Vimanshäll",
+                "JoEk": "Johannelund - Ekholmen",
+                "HjHV": "Hjulsbro - Harvestad - Hackefors - Vidingsjö",
+                "LaÖV": "Lambohov - Östra Valla",
+                "MLjBV": "Malmslätt - Ljungsbro - Berg - Vikingstad",
+                "TSEL": "Tallboda - Sturefors - Ekängen - Linghem",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0": "Vid födseln"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön",
+        "source": "SCB (Östgötadatabasen).  Beräkning och sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:22:56.4723054+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2013-2015"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "SkBe": "Skäggetorp - Berga"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "50": "Vid 50 års ålder",
+                "65": "Vid 65 års ålder",
+                "80": "Vid 80 års ålder"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medellivslängd, återstående vid födseln, 30 år, 50 år, 65 år respektive 80 år efter tid, stadsdel, ålder och kön",
+        "source": "SCB (Östgötadatabasen).  Beräkning och sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T09:22:56.5816838+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2013-2015"
+              }
+            }
+          },
+          "stadsdel": {
+            "label": "stadsdel",
+            "category": {
+              "label": {
+                "SkBe": "Skäggetorp - Berga"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "0": "Vid födseln"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Diff": "Differens mellan kvinnor och män"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SkBe",
+                "InVa"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "30"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SkBe"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "TaGo",
+                "ERHV",
+                "JoEk",
+                "HjHV",
+                "LaÖV",
+                "MLjBV",
+                "TSEL",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SkBe"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "50",
+                "65",
+                "80"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "stadsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "SkBe"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Diff"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

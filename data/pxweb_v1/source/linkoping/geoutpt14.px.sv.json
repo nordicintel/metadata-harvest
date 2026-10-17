@@ -1,0 +1,684 @@
+{
+  "key": "linkoping/geoutpt14.px/sv",
+  "identifier": "geoutpt14.px",
+  "language": "sv",
+  "updated": "2025-09-23",
+  "retrieved_at": "2026-10-17T07:42:04.227337+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "typ",
+          "text": "typ",
+          "values": [
+            "Dag",
+            "Natt"
+          ],
+          "valueTexts": [
+            "Dagbefolkning",
+            "Nattbefolkning"
+          ]
+        },
+        {
+          "code": "pendlingsrelation",
+          "text": "pendlingsrelation",
+          "values": [
+            "Inom",
+            "Länet",
+            "Riket",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Inom kommunen",
+            "Annan kommun i länet",
+            "Kommun i annat län",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "utskottsområde",
+          "text": "utskottsområde",
+          "values": [
+            "58080901",
+            "58080902",
+            "58080903",
+            "58080924",
+            "58080925",
+            "58080926",
+            "58080927",
+            "58080999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Utskott Nord",
+            "Utskott Väst",
+            "Utskott Syd",
+            "Utskott Vreta Kloster",
+            "Utskott Valkebo",
+            "Utskott Vårdnäs",
+            "Utskott Åkerbo",
+            "Restförda",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Pendling/geoutpt14.px",
+      "category_path": [
+        {
+          "id": "Pendling",
+          "name": "Pendling"
+        }
+      ],
+      "database_id": "GeoUtskott",
+      "dataset_code": "geoutpt14.px",
+      "id": "geoutpt14.px",
+      "language": "sv",
+      "path": "/Pendling",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Pendling/geoutpt14.px",
+          "category_path": [
+            {
+              "id": "Pendling",
+              "name": "Pendling"
+            }
+          ],
+          "database_id": "GeoUtskott",
+          "path": "/Pendling",
+          "published": "2025-09-23",
+          "score": 1.0,
+          "title": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Pendling/geoutpt14.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-23",
+      "score": 1.0,
+      "title": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Pendling/geoutpt14.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:42:03.6334244+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Dag": "Dagbefolkning",
+                "Natt": "Nattbefolkning"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "Inom": "Inom kommunen",
+                "Länet": "Annan kommun i länet"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord",
+                "58080902": "Utskott Väst"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:42:03.7584309+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Dag": "Dagbefolkning"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "Inom": "Inom kommunen"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:42:03.8834471+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Dag": "Dagbefolkning"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "Riket": "Kommun i annat län",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:42:04.0084316+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Dag": "Dagbefolkning"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "Inom": "Inom kommunen"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080903": "Utskott Syd",
+                "58080924": "Utskott Vreta Kloster",
+                "58080925": "Utskott Valkebo",
+                "58080926": "Utskott Vårdnäs",
+                "58080927": "Utskott Åkerbo",
+                "58080999": "Restförda",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Medelavstånd (km) mellan bostad och arbetsplats efter tid, typ, pendlingsrelation, utskottsområde och kön",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                    ",
+        "updated": "2026-10-17T09:42:04.1334413+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Dag": "Dagbefolkning"
+              }
+            }
+          },
+          "pendlingsrelation": {
+            "label": "pendlingsrelation",
+            "category": {
+              "label": {
+                "Inom": "Inom kommunen"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Dag",
+                "Natt"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom",
+                "Länet"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901",
+                "58080902"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Dag"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Dag"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Riket",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Dag"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080903",
+                "58080924",
+                "58080925",
+                "58080926",
+                "58080927",
+                "58080999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Dag"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsrelation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inom"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

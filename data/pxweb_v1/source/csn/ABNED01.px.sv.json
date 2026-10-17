@@ -1,0 +1,1139 @@
+{
+  "key": "csn/ABNED01.px/sv",
+  "identifier": "ABNED01.px",
+  "language": "sv",
+  "updated": "2026-01-19T14:50:00",
+  "retrieved_at": "2026-10-17T06:59:28.247066+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+      "variables": [
+        {
+          "code": "Lånetyp",
+          "text": "Lånetyp",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Annuitetslån fr.o.m. 2022",
+            "Annuitetslån t.o.m. 2021",
+            "Studielån",
+            "Studiemedel"
+          ]
+        },
+        {
+          "code": "Skäl",
+          "text": "Skäl",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Inkomst",
+            "Studier",
+            "Synnerliga skäl",
+            "Övrigt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Skuldberäkningsdatum",
+          "text": "Skuldberäkningsdatum",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "valueTexts": [
+            "2014-12-31",
+            "2015-12-31",
+            "2016-12-31",
+            "2017-12-31",
+            "2018-12-31",
+            "2019-12-31",
+            "2020-12-31",
+            "2021-12-31",
+            "2022-12-31",
+            "2023-12-31",
+            "2024-12-31",
+            "2025-12-31"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Kvinnor",
+            "Män",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Antal personer",
+          "text": "Antal personer",
+          "values": [
+            "0"
+          ],
+          "valueTexts": [
+            "Antal personer"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/AB/DIV/ABNED01.px",
+      "category_path": [
+        {
+          "id": "AB",
+          "name": "Studieskulder och inbetalning av studiestöd"
+        },
+        {
+          "id": "DIV",
+          "name": "Övrigt"
+        }
+      ],
+      "database_id": "CSNstat",
+      "dataset_code": "ABNED01.px",
+      "id": "ABNED01.px",
+      "language": "sv",
+      "path": "/AB/DIV",
+      "paths": [
+        {
+          "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/AB/DIV/ABNED01.px",
+          "category_path": [
+            {
+              "id": "AB",
+              "name": "Studieskulder och inbetalning av studiestöd"
+            },
+            {
+              "id": "DIV",
+              "name": "Övrigt"
+            }
+          ],
+          "database_id": "CSNstat",
+          "path": "/AB/DIV",
+          "published": "2026-01-19T14:50:00",
+          "score": 1.0,
+          "title": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+          "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__AB__DIV/ABNED01.px/"
+        }
+      ],
+      "provider_code": "csn",
+      "published": "2026-01-19T14:50:00",
+      "score": 1.0,
+      "title": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+      "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__AB__DIV/ABNED01.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 50,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-19T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Tabellen visar antal personer som har nedsatt årsbelopp vid respektive skuldberäkningsdatum. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "category": {
+              "label": {
+                "0": "Totalt",
+                "1": "Annuitetslån fr.o.m. 2022"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ],
+                "1": [
+                  "Annuitetslån utbetalda från och med den 1 januari 2022."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skäl": {
+            "label": "Skäl",
+            "category": {
+              "label": {
+                "0": "Totalt",
+                "1": "Inkomst"
+              },
+              "note": {
+                "1": [
+                  "Årsbeloppet har satts ned med hänsyn till låntagarens beräknade inkomst under betalningsåret.  För närmare information om regelverket se csn.se."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2014-12-31",
+                "1": "2015-12-31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor",
+                "1": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer": {
+            "label": "Antal personer",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABNED01",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Nedsättning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-19T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Tabellen visar antal personer som har nedsatt årsbelopp vid respektive skuldberäkningsdatum. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "category": {
+              "label": {
+                "2": "Annuitetslån t.o.m. 2021",
+                "3": "Studielån",
+                "4": "Studiemedel"
+              },
+              "note": {
+                "2": [
+                  "Annuitetslån utbetalda mellan den 1 juli och den 31 december 2021."
+                ],
+                "3": [
+                  "Studielån utbetalda mellan den 1 januari 1989 och den 30 juni 2001."
+                ],
+                "4": [
+                  "Studiemedel utbetalda före 1989."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skäl": {
+            "label": "Skäl",
+            "category": {
+              "label": {
+                "0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2014-12-31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer": {
+            "label": "Antal personer",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABNED01",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Nedsättning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-19T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Tabellen visar antal personer som har nedsatt årsbelopp vid respektive skuldberäkningsdatum. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "category": {
+              "label": {
+                "0": "Totalt"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skäl": {
+            "label": "Skäl",
+            "category": {
+              "label": {
+                "2": "Studier",
+                "3": "Synnerliga skäl",
+                "4": "Övrigt"
+              },
+              "note": {
+                "2": [
+                  "Årsbeloppet har satts ned, främst på grund av att låntagaren har börjat studera med studiestöd igen. För närmare information om regelverket se csn.se."
+                ],
+                "3": [
+                  "Årsbeloppet har satts ned på grund av synnerliga skäl. För närmare information om regelverket se csn.se."
+                ],
+                "4": [
+                  "Nedsättningar som inte kan klassas in under någon av de övriga kategorierna.  Vanligen handlar det om olika typer av felregistreringar eller tillfälliga registreringar."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2014-12-31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer": {
+            "label": "Antal personer",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABNED01",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Nedsättning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-19T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Tabellen visar antal personer som har nedsatt årsbelopp vid respektive skuldberäkningsdatum. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "category": {
+              "label": {
+                "0": "Totalt"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skäl": {
+            "label": "Skäl",
+            "category": {
+              "label": {
+                "0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "2": "2016-12-31",
+                "3": "2017-12-31",
+                "4": "2018-12-31",
+                "5": "2019-12-31",
+                "6": "2020-12-31",
+                "7": "2021-12-31",
+                "8": "2022-12-31",
+                "9": "2023-12-31",
+                "10": "2024-12-31",
+                "11": "2025-12-31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer": {
+            "label": "Antal personer",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABNED01",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Nedsättning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Nedsättning efter Lånetyp, Skäl, Skuldberäkningsdatum, Kön och Antal personer",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-19T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Tabellen visar antal personer som har nedsatt årsbelopp vid respektive skuldberäkningsdatum. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "category": {
+              "label": {
+                "0": "Totalt"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skäl": {
+            "label": "Skäl",
+            "category": {
+              "label": {
+                "0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2014-12-31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "2": "Totalt"
+              },
+              "note": {
+                "2": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "Antal personer": {
+            "label": "Antal personer",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABNED01",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Nedsättning"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Skäl",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Skäl",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skäl",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skäl",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skäl",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

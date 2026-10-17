@@ -1,0 +1,496 @@
+{
+  "key": "energi/EN_IND3-4B.px/sv",
+  "identifier": "EN_IND3-4B.px",
+  "language": "sv",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:27:52.772551+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+      "variables": [
+        {
+          "code": "Elområde",
+          "text": "Elområde",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "SE1",
+            "SE2",
+            "SE3",
+            "SE4"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Energiindikatorer/3/3.4/EN_IND3-4B.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energiindikatorer"
+        },
+        {
+          "id": "3",
+          "name": "3 Planeringsmål för elsystemet"
+        },
+        {
+          "id": "3.4",
+          "name": "3.4 Elproduktion och elanvändning per elområde"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND3-4B.px",
+      "id": "EN_IND3-4B.px",
+      "language": "sv",
+      "path": "/Energiindikatorer/3/3.4",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Energiindikatorer/3/3.4/EN_IND3-4B.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energiindikatorer"
+            },
+            {
+              "id": "3",
+              "name": "3 Planeringsmål för elsystemet"
+            },
+            {
+              "id": "3.4",
+              "name": "3.4 Elproduktion och elanvändning per elområde"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/3/3.4",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__3__3.4/EN_IND3-4B.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__3__3.4/EN_IND3-4B.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent efter Elområde och År",
+        "source": "Statens energimyndighet",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "Anm: För att få med 2025 års statistik i indikatorn används Månatlig elstatistik i stället för Årlig energistatistik (El, gas och fjärrvärme). Statistiken finns tillgänglig fr.o.m. 2021. Information om framtagning av statistiken finns på SCB:s hemsida under dokumentation samt under fördjupad information.",
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Energimyndigheten och SCB, Årlig energistatistik (El, gas och fjärrvärme) och Månatlig energistatistik"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Elområde",
+            "category": {
+              "label": {
+                "0": "SE1",
+                "1": "SE2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+            "description": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND3-4B",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent efter Elområde och År",
+        "source": "Statens energimyndighet",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "Anm: För att få med 2025 års statistik i indikatorn används Månatlig elstatistik i stället för Årlig energistatistik (El, gas och fjärrvärme). Statistiken finns tillgänglig fr.o.m. 2021. Information om framtagning av statistiken finns på SCB:s hemsida under dokumentation samt under fördjupad information.",
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Energimyndigheten och SCB, Årlig energistatistik (El, gas och fjärrvärme) och Månatlig energistatistik"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Elområde",
+            "category": {
+              "label": {
+                "2": "SE3",
+                "3": "SE4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+            "description": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND3-4B",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent efter Elområde och År",
+        "source": "Statens energimyndighet",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "Anm: För att få med 2025 års statistik i indikatorn används Månatlig elstatistik i stället för Årlig energistatistik (El, gas och fjärrvärme). Statistiken finns tillgänglig fr.o.m. 2021. Information om framtagning av statistiken finns på SCB:s hemsida under dokumentation samt under fördjupad information.",
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Energimyndigheten och SCB, Årlig energistatistik (El, gas och fjärrvärme) och Månatlig energistatistik"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Elområde",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+            "description": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND3-4B",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andel elanvändning per elområde (inklusive förluster) 2021-, Procent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

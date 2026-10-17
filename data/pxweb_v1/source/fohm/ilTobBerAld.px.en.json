@@ -1,0 +1,917 @@
+{
+  "key": "fohm/ilTobBerAld.px/en",
+  "identifier": "ilTobBerAld.px",
+  "language": "en",
+  "updated": "2022-09-19",
+  "retrieved_at": "2026-10-17T07:55:27.304406+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Tobacco dependence, gender and age by Region, Segment, Gender, Age and Year",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Sweden"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Segment",
+          "text": "Segment",
+          "values": [
+            "47",
+            "200"
+          ],
+          "valueTexts": [
+            "Cigarettes",
+            "Snuff"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Gender",
+          "values": [
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "Women & Men",
+            "Women",
+            "Men"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Age",
+          "values": [
+            "5",
+            "13",
+            "25",
+            "26",
+            "27"
+          ],
+          "valueTexts": [
+            "17-29 years",
+            "17-84 years",
+            "30-49 years",
+            "50-64 years",
+            "65-84 years"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2013",
+            "2017",
+            "2021"
+          ],
+          "valueTexts": [
+            "2013",
+            "2017",
+            "2021"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTG-indicators (Indikatorlabbet)"
+        },
+        {
+          "id": "TobakNikotin",
+          "name": "Tobacco and nicotine"
+        },
+        {
+          "id": "Skador",
+          "name": "Injuries"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilTobBerAld.px",
+      "id": "ilTobBerAld.px",
+      "language": "en",
+      "path": "/ANDTS/TobakNikotin/Skador",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/TobakNikotin/Skador/ilTobBerAld.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTG-indicators (Indikatorlabbet)"
+            },
+            {
+              "id": "TobakNikotin",
+              "name": "Tobacco and nicotine"
+            },
+            {
+              "id": "Skador",
+              "name": "Injuries"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/TobakNikotin/Skador",
+          "published": "2022-09-19",
+          "score": 1.0,
+          "title": "Tobacco dependence, gender and age",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__TobakNikotin__Skador/ilTobBerAld.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2022-09-19",
+      "score": 1.0,
+      "title": "Tobacco dependence, gender and age",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__TobakNikotin__Skador/ilTobBerAld.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Tobacco dependence, gender and age by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with cigarette and snuff dependence in accordance with the Cigarette Dependence Scale (CDS-12). CAN is responsible for the survey and data were collected in 2013, 2017 and 2021 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping, tobacco and gambling.The data was collected through a survey (postal or online survey) based on a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013, 11,514 in 2017 and 9,819 in 2021, which corresponded to a response rate of 59.1, 44,3 and 36.8% respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigarettes",
+                "200": "Snuff"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "4": "Women & Men",
+                "5": "Women"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "5": "17-29 years",
+                "13": "17-84 years"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2017": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobacco dependence, gender and age",
+            "description": "Tobacco dependence, gender and age",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobacco and nicotine"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobacco dependence, gender and age"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tobacco dependence, gender and age by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with cigarette and snuff dependence in accordance with the Cigarette Dependence Scale (CDS-12). CAN is responsible for the survey and data were collected in 2013, 2017 and 2021 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping, tobacco and gambling.The data was collected through a survey (postal or online survey) based on a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013, 11,514 in 2017 and 9,819 in 2021, which corresponded to a response rate of 59.1, 44,3 and 36.8% respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigarettes"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "6": "Men"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "5": "17-29 years"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobacco dependence, gender and age",
+            "description": "Tobacco dependence, gender and age",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobacco and nicotine"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobacco dependence, gender and age"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tobacco dependence, gender and age by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with cigarette and snuff dependence in accordance with the Cigarette Dependence Scale (CDS-12). CAN is responsible for the survey and data were collected in 2013, 2017 and 2021 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping, tobacco and gambling.The data was collected through a survey (postal or online survey) based on a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013, 11,514 in 2017 and 9,819 in 2021, which corresponded to a response rate of 59.1, 44,3 and 36.8% respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigarettes"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "4": "Women & Men"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "25": "30-49 years",
+                "26": "50-64 years",
+                "27": "65-84 years"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobacco dependence, gender and age",
+            "description": "Tobacco dependence, gender and age",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobacco and nicotine"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobacco dependence, gender and age"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Tobacco dependence, gender and age by Region, Segment, Gender, Age and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2022-09-19T12:05:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with cigarette and snuff dependence in accordance with the Cigarette Dependence Scale (CDS-12). CAN is responsible for the survey and data were collected in 2013, 2017 and 2021 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping, tobacco and gambling.The data was collected through a survey (postal or online survey) based on a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013, 11,514 in 2017 and 9,819 in 2021, which corresponded to a response rate of 59.1, 44,3 and 36.8% respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Segment": {
+            "label": "Segment",
+            "category": {
+              "label": {
+                "47": "Cigarettes"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "4": "Women & Men"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "5": "17-29 years"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Tobacco dependence, gender and age",
+            "description": "Tobacco dependence, gender and age",
+            "descriptiondefault": false,
+            "heading": [
+              "Segment",
+              "Kön",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilTobBerAld",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Tobacco and nicotine"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Tobacco dependence, gender and age"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47",
+                "200"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5",
+                "13"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2017"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "25",
+                "26",
+                "27"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Segment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "47"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

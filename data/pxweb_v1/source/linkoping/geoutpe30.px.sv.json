@@ -1,0 +1,797 @@
+{
+  "key": "linkoping/geoutpe30.px/sv",
+  "identifier": "geoutpe30.px",
+  "language": "sv",
+  "updated": "2025-09-23",
+  "retrieved_at": "2026-10-17T07:41:58.509990+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation.",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "utskottsområde",
+          "text": "utskottsområde",
+          "values": [
+            "58080901",
+            "58080902",
+            "58080903",
+            "58080924",
+            "58080925",
+            "58080926",
+            "58080927",
+            "58080999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Utskott Nord",
+            "Utskott Väst",
+            "Utskott Syd",
+            "Utskott Vreta Kloster",
+            "Utskott Valkebo",
+            "Utskott Vårdnäs",
+            "Utskott Åkerbo",
+            "Restförda",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "typ",
+          "text": "typ",
+          "values": [
+            "Nattbef",
+            "Dagbef",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Nattbefolkning",
+            "Dagbefolkning",
+            "Nettopendling"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "pendlingsinformation",
+          "text": "pendlingsinformation",
+          "values": [
+            "TotFörv",
+            "SammaOmr",
+            "AnnatUtskott",
+            "Ospec",
+            "SammaKn",
+            "Kommungräns",
+            "TotPendling"
+          ],
+          "valueTexts": [
+            "Samtliga förvärvsarbetande",
+            "Bor och arbetar i samma områdestyp",
+            "Pendlar annat utskott i kommunen",
+            "Ospecificerat/växlande område",
+            "Bor och arbetar i samma kommun",
+            "Pendlar annan kommun",
+            "Pendlar totalt"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Pendling/geoutpe30.px",
+      "category_path": [
+        {
+          "id": "Pendling",
+          "name": "Pendling"
+        }
+      ],
+      "database_id": "GeoUtskott",
+      "dataset_code": "geoutpe30.px",
+      "id": "geoutpe30.px",
+      "language": "sv",
+      "path": "/Pendling",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/GeoUtskott/Pendling/geoutpe30.px",
+          "category_path": [
+            {
+              "id": "Pendling",
+              "name": "Pendling"
+            }
+          ],
+          "database_id": "GeoUtskott",
+          "path": "/Pendling",
+          "published": "2025-09-23",
+          "score": 1.0,
+          "title": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Pendling/geoutpe30.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-23",
+      "score": 1.0,
+      "title": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/GeoUtskott/GeoUtskott__Pendling/geoutpe30.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:41:57.8208964+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord",
+                "58080902": "Utskott Väst"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning",
+                "Dagbef": "Dagbefolkning"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "TotFörv": "Samtliga förvärvsarbetande",
+                "SammaOmr": "Bor och arbetar i samma områdestyp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:41:57.9459015+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "TotFörv": "Samtliga förvärvsarbetande"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:41:58.0709023+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080903": "Utskott Syd",
+                "58080924": "Utskott Vreta Kloster",
+                "58080925": "Utskott Valkebo",
+                "58080926": "Utskott Vårdnäs",
+                "58080927": "Utskott Åkerbo",
+                "58080999": "Restförda",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "TotFörv": "Samtliga förvärvsarbetande"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:41:58.1959065+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Netto": "Nettopendling"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "TotFörv": "Samtliga förvärvsarbetande"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:41:58.3052984+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "TotFörv": "Samtliga förvärvsarbetande"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Förvärvsarbetande efter tid, utskottsområde, typ, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T09:41:58.4302747+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            }
+          },
+          "utskottsområde": {
+            "label": "utskottsområde",
+            "category": {
+              "label": {
+                "58080901": "Utskott Nord"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "AnnatUtskott": "Pendlar annat utskott i kommunen",
+                "Ospec": "Ospecificerat/växlande område",
+                "SammaKn": "Bor och arbetar i samma kommun",
+                "Kommungräns": "Pendlar annan kommun",
+                "TotPendling": "Pendlar totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901",
+                "58080902"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef",
+                "Dagbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "TotFörv",
+                "SammaOmr"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "TotFörv"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080903",
+                "58080924",
+                "58080925",
+                "58080926",
+                "58080927",
+                "58080999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "TotFörv"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "TotFörv"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "TotFörv"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "utskottsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "58080901"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "AnnatUtskott",
+                "Ospec",
+                "SammaKn",
+                "Kommungräns",
+                "TotPendling"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

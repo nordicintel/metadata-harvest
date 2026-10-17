@@ -1,0 +1,716 @@
+{
+  "key": "linkoping/suregink48.px/sv",
+  "identifier": "suregink48.px",
+  "language": "sv",
+  "updated": "2025-09-04",
+  "retrieved_at": "2026-10-17T08:07:17.248178+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall.",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "hushållstyp",
+          "text": "hushållstyp",
+          "values": [
+            "Sambo",
+            "Ensam",
+            "Övr",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Sammanboende",
+            "Ensamstående",
+            "Övriga hushåll",
+            "Samtliga hushåll"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "område",
+          "text": "område",
+          "values": [
+            "8052",
+            "8053",
+            "8054",
+            "8055",
+            "8099",
+            "0580",
+            "8227",
+            "8228",
+            "8229",
+            "8233"
+          ],
+          "valueTexts": [
+            "Staden",
+            "Större tätorter",
+            "Mindre tätorter",
+            "Landsbygd",
+            "Ej geografiskt",
+            "Hela kommunen",
+            "Delsumma mindre tätort/landsbygd",
+            "Delsumma omlandet utom staden",
+            "Delsumma övriga tätorter",
+            "Delsumma samtliga tätorter"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Antal",
+            "Procent"
+          ],
+          "valueTexts": [
+            "Antal",
+            "Procent"
+          ]
+        },
+        {
+          "code": "inkomstbasbeloppsintervall",
+          "text": "inkomstbasbeloppsintervall",
+          "values": [
+            "0-2",
+            "2-5",
+            "5-8",
+            "8-11",
+            "11-14",
+            "14-w",
+            "Tot"
+          ],
+          "valueTexts": [
+            "0-2 inkomstbasbelopp",
+            "2-5 inkomstbasbelopp",
+            "5-8 inkomstbasbelopp",
+            "8-11 inkomstbasbelopp",
+            "11-14 inkomstbasbelopp",
+            "14 eller fler inkomstbasbelopp",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Sureg14/Inkomster/suregink48.px",
+      "category_path": [
+        {
+          "id": "Inkomster",
+          "name": "Inkomster"
+        }
+      ],
+      "database_id": "Sureg14",
+      "dataset_code": "suregink48.px",
+      "id": "suregink48.px",
+      "language": "sv",
+      "path": "/Inkomster",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Sureg14/Inkomster/suregink48.px",
+          "category_path": [
+            {
+              "id": "Inkomster",
+              "name": "Inkomster"
+            }
+          ],
+          "database_id": "Sureg14",
+          "path": "/Inkomster",
+          "published": "2025-09-04",
+          "score": 1.0,
+          "title": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Sureg14/Sureg14__Inkomster/suregink48.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-04",
+      "score": 1.0,
+      "title": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Sureg14/Sureg14__Inkomster/suregink48.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                   ",
+        "updated": "2026-10-17T10:07:16.6239436+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende",
+                "Ensam": "Ensamstående"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden",
+                "8053": "Större tätorter"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal",
+                "Procent": "Procent"
+              }
+            }
+          },
+          "inkomstbasbeloppsintervall": {
+            "label": "inkomstbasbeloppsintervall",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp",
+                "2-5": "2-5 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                   ",
+        "updated": "2026-10-17T10:07:16.7645732+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "inkomstbasbeloppsintervall": {
+            "label": "inkomstbasbeloppsintervall",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                   ",
+        "updated": "2026-10-17T10:07:16.9052167+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Övr": "Övriga hushåll",
+                "Tot": "Samtliga hushåll"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "inkomstbasbeloppsintervall": {
+            "label": "inkomstbasbeloppsintervall",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                   ",
+        "updated": "2026-10-17T10:07:17.0302018+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8054": "Mindre tätorter",
+                "8055": "Landsbygd",
+                "8099": "Ej geografiskt",
+                "0580": "Hela kommunen",
+                "8227": "Delsumma mindre tätort/landsbygd",
+                "8228": "Delsumma omlandet utom staden",
+                "8229": "Delsumma övriga tätorter",
+                "8233": "Delsumma samtliga tätorter"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "inkomstbasbeloppsintervall": {
+            "label": "inkomstbasbeloppsintervall",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, hushållstyp, område, tabelluppgift och inkomstbasbeloppsintervall",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.                   ",
+        "updated": "2026-10-17T10:07:17.1552048+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "inkomstbasbeloppsintervall": {
+            "label": "inkomstbasbeloppsintervall",
+            "category": {
+              "label": {
+                "5-8": "5-8 inkomstbasbelopp",
+                "8-11": "8-11 inkomstbasbelopp",
+                "11-14": "11-14 inkomstbasbelopp",
+                "14-w": "14 eller fler inkomstbasbelopp",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo",
+                "Ensam"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052",
+                "8053"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal",
+                "Procent"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2",
+                "2-5"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Övr",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8054",
+                "8055",
+                "8099",
+                "0580",
+                "8227",
+                "8228",
+                "8229",
+                "8233"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5-8",
+                "8-11",
+                "11-14",
+                "14-w",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

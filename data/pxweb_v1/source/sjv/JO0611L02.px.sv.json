@@ -1,0 +1,651 @@
+{
+  "key": "sjv/JO0611L02.px/sv",
+  "identifier": "JO0611L02.px",
+  "language": "sv",
+  "updated": "2026-02-09",
+  "retrieved_at": "2026-10-17T07:08:23.830383+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Lagerhållning av spannmål och raps efter Produktionsområde, Månad, Variabel och År",
+      "variables": [
+        {
+          "code": "Produktionsområde",
+          "text": "Produktionsområde",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "valueTexts": [
+            "Riket",
+            "Götalands södra slättbygder",
+            "Götalands mellanbygder",
+            "Götalands norra slättbygder",
+            "Svealands slättbygder",
+            "Götalands skogsbygder",
+            "Mellersta Sveriges skogsbygder",
+            "Nedre Norrland",
+            "Övre Norrland"
+          ]
+        },
+        {
+          "code": "Månad",
+          "text": "Månad",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Juni",
+            "September",
+            "December (prognos)"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Värde, ton",
+            "Medelfel, procent"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Skordar/Lagerhallning/JO0611L02.px",
+      "category_path": [
+        {
+          "id": "Skordar",
+          "name": "Skörd av jordbruksväxter"
+        },
+        {
+          "id": "Lagerhallning",
+          "name": "Lagerhållning"
+        }
+      ],
+      "database_id": "Jordbruksverkets statistikdatabas",
+      "dataset_code": "JO0611L02.px",
+      "id": "JO0611L02.px",
+      "language": "sv",
+      "path": "/Skordar/Lagerhallning",
+      "paths": [
+        {
+          "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Skordar/Lagerhallning/JO0611L02.px",
+          "category_path": [
+            {
+              "id": "Skordar",
+              "name": "Skörd av jordbruksväxter"
+            },
+            {
+              "id": "Lagerhallning",
+              "name": "Lagerhållning"
+            }
+          ],
+          "database_id": "Jordbruksverkets statistikdatabas",
+          "path": "/Skordar/Lagerhallning",
+          "published": "2026-02-09",
+          "score": 1.0,
+          "title": "Lagerhållning av spannmål och raps efter produktionsområde. År 2021-2025",
+          "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Skordar__Lagerhallning/JO0611L02.px/"
+        }
+      ],
+      "provider_code": "sjv",
+      "published": "2026-02-09",
+      "score": 1.0,
+      "title": "Lagerhållning av spannmål och raps efter produktionsområde. År 2021-2025",
+      "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Skordar__Lagerhallning/JO0611L02.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Lagerhållning av spannmål och raps efter Produktionsområde, Månad, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Produktionsområde": {
+            "label": "Produktionsområde",
+            "category": {
+              "label": {
+                "0": "Riket",
+                "1": "Götalands södra slättbygder"
+              }
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Juni",
+                "1": "September"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Värde, ton",
+                "1": "Medelfel, procent"
+              },
+              "unit": {
+                "0": {
+                  "base": "Ton",
+                  "decimals": 0
+                },
+                "1": {
+                  "base": "Procent",
+                  "decimals": 1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2021",
+                "1": "2022"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0611_KD_2025-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Produktionsområde",
+                  "Månad",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Produktionsområde": [
+                    "0",
+                    "1"
+                  ],
+                  "Månad": [
+                    "0",
+                    "1"
+                  ],
+                  "Variabel": [
+                    "0",
+                    "1"
+                  ],
+                  "År": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "4": ".",
+                  "6": ".",
+                  "8": "..",
+                  "10": "..",
+                  "12": ".",
+                  "14": "."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Lagerhållning av spannmål och raps efter Produktionsområde, Månad, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Produktionsområde": {
+            "label": "Produktionsområde",
+            "category": {
+              "label": {
+                "2": "Götalands mellanbygder",
+                "3": "Götalands norra slättbygder",
+                "4": "Svealands slättbygder",
+                "5": "Götalands skogsbygder",
+                "6": "Mellersta Sveriges skogsbygder",
+                "7": "Nedre Norrland",
+                "8": "Övre Norrland"
+              }
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Juni"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Värde, ton"
+              },
+              "unit": {
+                "0": {
+                  "base": "Ton",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2021"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0611_KD_2025-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Produktionsområde",
+                  "Månad",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Produktionsområde": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8"
+                  ],
+                  "Månad": [
+                    "0"
+                  ],
+                  "Variabel": [
+                    "0"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "6": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Lagerhållning av spannmål och raps efter Produktionsområde, Månad, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Produktionsområde": {
+            "label": "Produktionsområde",
+            "category": {
+              "label": {
+                "0": "Riket"
+              }
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "2": "December (prognos)"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Värde, ton"
+              },
+              "unit": {
+                "0": {
+                  "base": "Ton",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2021"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0611_KD_2025-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Lagerhållning av spannmål och raps efter Produktionsområde, Månad, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Produktionsområde": {
+            "label": "Produktionsområde",
+            "category": {
+              "label": {
+                "0": "Riket"
+              }
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Juni"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Värde, ton"
+              },
+              "unit": {
+                "0": {
+                  "base": "Ton",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2023",
+                "3": "2024",
+                "4": "2025"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0611_KD_2025-tga",
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Produktionsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Produktionsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Produktionsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Produktionsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

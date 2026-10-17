@@ -1,0 +1,642 @@
+{
+  "key": "slu/AVV_arlig_areal_uttag_grenar_toppar_tab.px/sv",
+  "identifier": "AVV_arlig_areal_uttag_grenar_toppar_tab.px",
+  "language": "sv",
+  "updated": "2026-05-27",
+  "retrieved_at": "2026-10-17T07:04:56.862212+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Tabell 4.8 - Genomsnittlig årlig areal och andel avverkad areal med uttag av grenar och toppar i slutavverkning och gallring (2012-idag).",
+      "variables": [
+        {
+          "code": "År (Femårsmedelvärde)",
+          "text": "År (Femårsmedelvärde)",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"
+          ],
+          "time": true
+        },
+        {
+          "code": "Landsdel",
+          "text": "Landsdel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "N Norrland",
+            "S Norrland",
+            "Svealand",
+            "Götaland",
+            "Hela landet"
+          ]
+        },
+        {
+          "code": "Tabellinnehåll",
+          "text": "Tabellinnehåll",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Areal (1000 ha)",
+            "Andel av avverkad areal (%)"
+          ]
+        },
+        {
+          "code": "Huggningsart",
+          "text": "Huggningsart",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Slutavverkning",
+            "Gallring"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://skogsstatistik.slu.se/api/v1/sv/OffStat/Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tab.px",
+      "category_path": [
+        {
+          "id": "Avverkning",
+          "name": "Avverkning"
+        }
+      ],
+      "database_id": "OffStat",
+      "dataset_code": "AVV_arlig_areal_uttag_grenar_toppar_tab.px",
+      "id": "AVV_arlig_areal_uttag_grenar_toppar_tab.px",
+      "language": "sv",
+      "path": "/Avverkning",
+      "paths": [
+        {
+          "api_url": "https://skogsstatistik.slu.se/api/v1/sv/OffStat/Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tab.px",
+          "category_path": [
+            {
+              "id": "Avverkning",
+              "name": "Avverkning"
+            }
+          ],
+          "database_id": "OffStat",
+          "path": "/Avverkning",
+          "published": "2026-05-27",
+          "score": 1.0,
+          "title": "Tabell 4.8 - Genomsnittlig årlig areal och andel avverkad areal med uttag av grenar och toppar i slutavverkning och gallring (2012-idag).",
+          "web_url": "https://skogsstatistik.slu.se/pxweb/sv/OffStat/OffStat__Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tab.px/"
+        }
+      ],
+      "provider_code": "slu",
+      "published": "2026-05-27",
+      "score": 1.0,
+      "title": "Tabell 4.8 - Genomsnittlig årlig areal och andel avverkad areal med uttag av grenar och toppar i slutavverkning och gallring (2012-idag).",
+      "web_url": "https://skogsstatistik.slu.se/pxweb/sv/OffStat/OffStat__Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tab.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 300000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Tabell 4.8 - Genomsnittlig årlig areal med uttag av grenar och toppar efter År (Femårsmedelvärde), Landsdel, Tabellinnehåll och Huggningsart",
+        "source": "SLU Riksskogstaxeringen",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Produktiv skogsmark.",
+          "Utanför formellt skyddade områden enligt senaste års gränser.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/sv/OffStat_medelfel/OffStat_medelfel__Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tabmf.px target=_blank>Medelfel</a> finns tillgängliga här."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "År (Femårsmedelvärde)",
+            "note": [
+              "Femårsmedelvärde, anges som mittenår e.g. 2020/21-2024/25=2022. År avser början av avverkningssäsongen t.ex. år 2024 avser perioden från knoppsprickning 2024 till innan knoppsprickning 2025."
+            ],
+            "category": {
+              "label": {
+                "0": "2012",
+                "1": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Landsdel",
+            "category": {
+              "label": {
+                "0": "N Norrland",
+                "1": "S Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Tabellinnehåll",
+            "category": {
+              "label": {
+                "0": "Areal (1000 ha)",
+                "1": "Andel av avverkad areal (%)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 0
+                },
+                "1": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Huggningsart": {
+            "label": "Huggningsart",
+            "category": {
+              "label": {
+                "0": "Slutavverkning",
+                "1": "Gallring"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "48 Tabell 4.8",
+            "subject-code": "Tab48"
+          },
+          "contact": [
+            {
+              "raw": "Statistikproducent: SLU Riksskogstaxeringen (Per-Erik Wikberg, Redovisningsansvarig. E-post: Per-Erik.Wikberg@slu.se) "
+            },
+            {
+              "raw": " Statistikansvarig myndighet: Skogsstyrelsen (E-post: statistik@skogsstyrelsen.se)"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "År (Femårsmedelvärde)",
+                  "Landsdel",
+                  "Tabellinnehåll",
+                  "Huggningsart"
+                ],
+                "categories": {
+                  "År (Femårsmedelvärde)": [
+                    "0",
+                    "1"
+                  ],
+                  "Landsdel": [
+                    "0",
+                    "1"
+                  ],
+                  "Tabellinnehåll": [
+                    "0",
+                    "1"
+                  ],
+                  "Huggningsart": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "1": "-",
+                  "3": "-",
+                  "5": "-",
+                  "7": "-",
+                  "9": "-",
+                  "11": "-",
+                  "13": "-",
+                  "15": "-"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Tabell 4.8 - Genomsnittlig årlig areal med uttag av grenar och toppar efter År (Femårsmedelvärde), Landsdel, Tabellinnehåll och Huggningsart",
+        "source": "SLU Riksskogstaxeringen",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Produktiv skogsmark.",
+          "Utanför formellt skyddade områden enligt senaste års gränser.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/sv/OffStat_medelfel/OffStat_medelfel__Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tabmf.px target=_blank>Medelfel</a> finns tillgängliga här."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "År (Femårsmedelvärde)",
+            "note": [
+              "Femårsmedelvärde, anges som mittenår e.g. 2020/21-2024/25=2022. År avser början av avverkningssäsongen t.ex. år 2024 avser perioden från knoppsprickning 2024 till innan knoppsprickning 2025."
+            ],
+            "category": {
+              "label": {
+                "2": "2014",
+                "3": "2015",
+                "4": "2016",
+                "5": "2017",
+                "6": "2018",
+                "7": "2019",
+                "8": "2020",
+                "9": "2021",
+                "10": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Landsdel",
+            "category": {
+              "label": {
+                "0": "N Norrland"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Tabellinnehåll",
+            "category": {
+              "label": {
+                "0": "Areal (1000 ha)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Huggningsart": {
+            "label": "Huggningsart",
+            "category": {
+              "label": {
+                "0": "Slutavverkning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "48 Tabell 4.8",
+            "subject-code": "Tab48"
+          },
+          "contact": [
+            {
+              "raw": "Statistikproducent: SLU Riksskogstaxeringen (Per-Erik Wikberg, Redovisningsansvarig. E-post: Per-Erik.Wikberg@slu.se) "
+            },
+            {
+              "raw": " Statistikansvarig myndighet: Skogsstyrelsen (E-post: statistik@skogsstyrelsen.se)"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Tabell 4.8 - Genomsnittlig årlig areal med uttag av grenar och toppar efter År (Femårsmedelvärde), Landsdel, Tabellinnehåll och Huggningsart",
+        "source": "SLU Riksskogstaxeringen",
+        "updated": "2026-05-27T07:00:00Z",
+        "note": [
+          "Produktiv skogsmark.",
+          "Utanför formellt skyddade områden enligt senaste års gränser.",
+          "<a href=https://skogsstatistik.slu.se/pxweb/sv/OffStat_medelfel/OffStat_medelfel__Avverkning/AVV_arlig_areal_uttag_grenar_toppar_tabmf.px target=_blank>Medelfel</a> finns tillgängliga här."
+        ],
+        "role": {
+          "time": [
+            "År (Femårsmedelvärde)"
+          ],
+          "metric": [
+            "Tabellinnehåll"
+          ]
+        },
+        "dimension": {
+          "År (Femårsmedelvärde)": {
+            "label": "År (Femårsmedelvärde)",
+            "note": [
+              "Femårsmedelvärde, anges som mittenår e.g. 2020/21-2024/25=2022. År avser början av avverkningssäsongen t.ex. år 2024 avser perioden från knoppsprickning 2024 till innan knoppsprickning 2025."
+            ],
+            "category": {
+              "label": {
+                "0": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "noteMandatory": {
+                "0": true
+              },
+              "show": "value"
+            }
+          },
+          "Landsdel": {
+            "label": "Landsdel",
+            "category": {
+              "label": {
+                "2": "Svealand",
+                "3": "Götaland",
+                "4": "Hela landet"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Tabellinnehåll": {
+            "label": "Tabellinnehåll",
+            "category": {
+              "label": {
+                "0": "Areal (1000 ha)"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Huggningsart": {
+            "label": "Huggningsart",
+            "category": {
+              "label": {
+                "0": "Slutavverkning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "48 Tabell 4.8",
+            "subject-code": "Tab48"
+          },
+          "contact": [
+            {
+              "raw": "Statistikproducent: SLU Riksskogstaxeringen (Per-Erik Wikberg, Redovisningsansvarig. E-post: Per-Erik.Wikberg@slu.se) "
+            },
+            {
+              "raw": " Statistikansvarig myndighet: Skogsstyrelsen (E-post: statistik@skogsstyrelsen.se)"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Huggningsart",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Huggningsart",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År (Femårsmedelvärde)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Landsdel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Huggningsart",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

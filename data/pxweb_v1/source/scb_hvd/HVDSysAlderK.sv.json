@@ -1,0 +1,896 @@
+{
+  "key": "scb_hvd/HVDSysAlderK/sv",
+  "identifier": "HVDSysAlderK",
+  "language": "sv",
+  "updated": "2026-10-16",
+  "retrieved_at": "2026-10-17T06:59:58.775511+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Sysselsatta 20-64 år (AKU) efter kön, ålder, tabellinnehåll och kvartal",
+      "variables": [
+        {
+          "code": "Kon",
+          "text": "kön",
+          "values": [
+            "1",
+            "2",
+            "1+2"
+          ],
+          "valueTexts": [
+            "män",
+            "kvinnor",
+            "totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Alder",
+          "text": "ålder",
+          "values": [
+            "20-24",
+            "25-29",
+            "30-34",
+            "35-39",
+            "40-44",
+            "45-49",
+            "50-54",
+            "55-64",
+            "Tot20-64"
+          ],
+          "valueTexts": [
+            "20-24",
+            "25-29",
+            "30-34",
+            "35-39",
+            "40-44",
+            "45-49",
+            "50-54",
+            "55-64",
+            "totalt 20-64"
+          ]
+        },
+        {
+          "code": "ContentsCode",
+          "text": "tabellinnehåll",
+          "values": [
+            "000000G3",
+            "000000G2"
+          ],
+          "valueTexts": [
+            "Andel, procent",
+            "Felmarginal +-, procent"
+          ]
+        },
+        {
+          "code": "Tid",
+          "text": "kvartal",
+          "values": [
+            "2021K1",
+            "2021K2",
+            "2021K3",
+            "2021K4",
+            "2022K1",
+            "2022K2",
+            "2022K3",
+            "2022K4",
+            "2023K1",
+            "2023K2",
+            "2023K3",
+            "2023K4",
+            "2024K1",
+            "2024K2",
+            "2024K3",
+            "2024K4",
+            "2025K1",
+            "2025K2",
+            "2025K3",
+            "2025K4",
+            "2026K1",
+            "2026K2",
+            "2026K3"
+          ],
+          "valueTexts": [
+            "2021K1",
+            "2021K2",
+            "2021K3",
+            "2021K4",
+            "2022K1",
+            "2022K2",
+            "2022K3",
+            "2022K4",
+            "2023K1",
+            "2023K2",
+            "2023K3",
+            "2023K4",
+            "2024K1",
+            "2024K2",
+            "2024K3",
+            "2024K4",
+            "2025K1",
+            "2025K2",
+            "2025K3",
+            "2025K4",
+            "2026K1",
+            "2026K2",
+            "2026K3"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://hvduppdrag.scb.se/api/v1/sv/uppdrag/HV01/HV0102/HVDSysAlderK",
+      "category_path": [
+        {
+          "id": "HV0102",
+          "name": "Värdefulla datamängder, Arbetskraftsundersökningarna"
+        }
+      ],
+      "database_id": "uppdrag",
+      "dataset_code": "HVDSysAlderK",
+      "id": "HVDSysAlderK",
+      "language": "sv",
+      "path": "/HV0102",
+      "paths": [
+        {
+          "api_url": "https://hvduppdrag.scb.se/api/v1/sv/uppdrag/HV01/HV0102/HVDSysAlderK",
+          "category_path": [
+            {
+              "id": "HV0102",
+              "name": "Värdefulla datamängder, Arbetskraftsundersökningarna"
+            }
+          ],
+          "database_id": "uppdrag",
+          "path": "/HV0102",
+          "published": "2026-10-16",
+          "score": 1.0,
+          "title": "HVD 16.1 Sysselsatta 20-64 år (AKU) efter kön och ålder. Kvartal 2021K1 - 2026K3",
+          "web_url": "https://hvduppdrag.scb.se/pxweb/sv/uppdrag/HV01__HV0102/HVDSysAlderK/"
+        }
+      ],
+      "provider_code": "scb_hvd",
+      "published": "2026-10-16",
+      "score": 1.0,
+      "title": "HVD 16.1 Sysselsatta 20-64 år (AKU) efter kön och ålder. Kvartal 2021K1 - 2026K3",
+      "web_url": "https://hvduppdrag.scb.se/pxweb/sv/uppdrag/HV01__HV0102/HVDSysAlderK/"
+    },
+    "config": {
+      "maxValues": 110000,
+      "maxCells": 625000,
+      "maxCalls": 100,
+      "timeWindow": 1,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Sysselsatta 20-64 år (AKU) efter kön, ålder, tabellinnehåll och kvartal",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-10-16T06:09:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1": "män",
+                "2": "kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "20-24": "20-24",
+                "25-29": "25-29"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000G3": "Andel, procent",
+                "000000G2": "Felmarginal +-, procent"
+              },
+              "unit": {
+                "000000G3": {
+                  "base": "procent",
+                  "decimals": 1
+                },
+                "000000G2": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000G3": "Kvartal",
+                "000000G2": "Kvartal"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000G3": "Stock",
+                "000000G2": "Stock"
+              },
+              "priceType": {
+                "000000G3": "NotApplicable",
+                "000000G2": "NotApplicable"
+              },
+              "adjustment": {
+                "000000G3": "None",
+                "000000G2": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "2021K1": "2021K1",
+                "2021K2": "2021K2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB198",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Sysselsatta 20-64 år (AKU)",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000G3",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Sysselsatta 20-64 år (AKU), procent efter kön, ålder, tabellinnehåll och kvartal",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-10-16T06:09:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1+2": "totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "20-24": "20-24"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000G3": "Andel, procent"
+              },
+              "unit": {
+                "000000G3": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000G3": "Kvartal"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000G3": "Stock"
+              },
+              "priceType": {
+                "000000G3": "NotApplicable"
+              },
+              "adjustment": {
+                "000000G3": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "2021K1": "2021K1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB198",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Sysselsatta 20-64 år (AKU), procent",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000G3",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Sysselsatta 20-64 år (AKU), procent efter kön, ålder, tabellinnehåll och kvartal",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-10-16T06:09:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1": "män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "30-34": "30-34",
+                "35-39": "35-39",
+                "40-44": "40-44",
+                "45-49": "45-49",
+                "50-54": "50-54",
+                "55-64": "55-64",
+                "Tot20-64": "totalt 20-64"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000G3": "Andel, procent"
+              },
+              "unit": {
+                "000000G3": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000G3": "Kvartal"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000G3": "Stock"
+              },
+              "priceType": {
+                "000000G3": "NotApplicable"
+              },
+              "adjustment": {
+                "000000G3": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "2021K1": "2021K1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB198",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Sysselsatta 20-64 år (AKU), procent",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000G3",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Sysselsatta 20-64 år (AKU), procent efter kön, ålder, tabellinnehåll och kvartal",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-10-16T06:09:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..]."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1": "män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "20-24": "20-24"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000G3": "Andel, procent"
+              },
+              "unit": {
+                "000000G3": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000G3": "Kvartal"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000G3": "Stock"
+              },
+              "priceType": {
+                "000000G3": "NotApplicable"
+              },
+              "adjustment": {
+                "000000G3": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "kvartal",
+            "category": {
+              "label": {
+                "2021K3": "2021K3",
+                "2021K4": "2021K4",
+                "2022K1": "2022K1",
+                "2022K2": "2022K2",
+                "2022K3": "2022K3",
+                "2022K4": "2022K4",
+                "2023K1": "2023K1",
+                "2023K2": "2023K2",
+                "2023K3": "2023K3",
+                "2023K4": "2023K4",
+                "2024K1": "2024K1",
+                "2024K2": "2024K2",
+                "2024K3": "2024K3",
+                "2024K4": "2024K4",
+                "2025K1": "2025K1",
+                "2025K2": "2025K2",
+                "2025K3": "2025K3",
+                "2025K4": "2025K4",
+                "2026K1": "2026K1",
+                "2026K2": "2026K2",
+                "2026K3": "2026K3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB198",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Sysselsatta 20-64 år (AKU), procent",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000G3",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-24",
+                "25-29"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000G3",
+                "000000G2"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021K1",
+                "2021K2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-24"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000G3"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021K1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "30-34",
+                "35-39",
+                "40-44",
+                "45-49",
+                "50-54",
+                "55-64",
+                "Tot20-64"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000G3"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021K1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-24"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000G3"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021K3",
+                "2021K4",
+                "2022K1",
+                "2022K2",
+                "2022K3",
+                "2022K4",
+                "2023K1",
+                "2023K2",
+                "2023K3",
+                "2023K4",
+                "2024K1",
+                "2024K2",
+                "2024K3",
+                "2024K4",
+                "2025K1",
+                "2025K2",
+                "2025K3",
+                "2025K4",
+                "2026K1",
+                "2026K2",
+                "2026K3"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

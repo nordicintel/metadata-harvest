@@ -1,0 +1,628 @@
+{
+  "key": "kulturanalys/FPB_LAN.Px/sv",
+  "identifier": "FPB_LAN.Px",
+  "language": "sv",
+  "updated": "2026-09-30",
+  "retrieved_at": "2026-10-17T06:57:56.067032+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Besök, biografer, salonger, sittplatser och visningar efter län och år",
+      "variables": [
+        {
+          "code": "year",
+          "text": "år",
+          "values": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "region",
+          "text": "område",
+          "values": [
+            "01",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "12",
+            "13",
+            "14",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "0"
+          ],
+          "valueTexts": [
+            "Stockholms län",
+            "Uppsala län",
+            "Södermanlands län",
+            "Östergötlands län",
+            "Jönköpings län",
+            "Kronobergs län",
+            "Kalmar län",
+            "Gotlands län",
+            "Blekinge län",
+            "Skåne län",
+            "Hallands län",
+            "Västra Götalands län",
+            "Värmlands län",
+            "Örebro län",
+            "Västmanlands län",
+            "Dalarnas län",
+            "Gävleborgs län",
+            "Västernorrlands län",
+            "Jämtlands län",
+            "Västerbottens län",
+            "Norrbottens län",
+            "Riket"
+          ]
+        },
+        {
+          "code": "tablecontent",
+          "text": "tabellinnehåll",
+          "values": [
+            "cinemas",
+            "salons",
+            "seatings",
+            "visits",
+            "screenings",
+            "population",
+            "visitsperpop",
+            "cinemaspermiljpop",
+            "salonspermiljpop",
+            "screeningsperthspop"
+          ],
+          "valueTexts": [
+            "biografer",
+            "salonger",
+            "sittplatser",
+            "besök",
+            "visningar",
+            "befolkning",
+            "besök per invånare",
+            "biografer per miljon invånare",
+            "salonger per miljon invånare",
+            "visningar per tusen invånare"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_LAN.Px",
+      "category_path": [
+        {
+          "id": "Film på bio",
+          "name": "Film på bio"
+        },
+        {
+          "id": "Annan statistik",
+          "name": "Annan statistik"
+        }
+      ],
+      "database_id": "Statistikdatabas",
+      "dataset_code": "FPB_LAN.Px",
+      "id": "FPB_LAN.Px",
+      "language": "sv",
+      "path": "/Film på bio/Annan statistik",
+      "paths": [
+        {
+          "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_LAN.Px",
+          "category_path": [
+            {
+              "id": "Film på bio",
+              "name": "Film på bio"
+            },
+            {
+              "id": "Annan statistik",
+              "name": "Annan statistik"
+            }
+          ],
+          "database_id": "Statistikdatabas",
+          "path": "/Film på bio/Annan statistik",
+          "published": "2026-09-30",
+          "score": 1.0,
+          "title": "Besök, biografer, salonger, sittplatser och visningar efter län och år (O)",
+          "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_LAN.Px/"
+        }
+      ],
+      "provider_code": "kulturanalys",
+      "published": "2026-09-30",
+      "score": 1.0,
+      "title": "Besök, biografer, salonger, sittplatser och visningar efter län och år (O)",
+      "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_LAN.Px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Besök, biografer, salonger, sittplatser och visningar efter år, område och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "region": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "område",
+            "category": {
+              "label": {
+                "01": "Stockholms län",
+                "03": "Uppsala län"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "cinemas": "biografer",
+                "salons": "salonger"
+              },
+              "unit": {
+                "cinemas": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "salons": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, biografer, salonger, sittplatser och visningar efter år, område och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2025": "2025"
+              }
+            }
+          },
+          "region": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "område",
+            "category": {
+              "label": {
+                "01": "Stockholms län"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "cinemas": "biografer"
+              },
+              "unit": {
+                "cinemas": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, biografer, salonger, sittplatser och visningar efter år, område och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "region": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "område",
+            "category": {
+              "label": {
+                "04": "Södermanlands län",
+                "05": "Östergötlands län",
+                "06": "Jönköpings län",
+                "07": "Kronobergs län",
+                "08": "Kalmar län",
+                "09": "Gotlands län",
+                "10": "Blekinge län",
+                "12": "Skåne län",
+                "13": "Hallands län",
+                "14": "Västra Götalands län",
+                "17": "Värmlands län",
+                "18": "Örebro län",
+                "19": "Västmanlands län",
+                "20": "Dalarnas län",
+                "21": "Gävleborgs län",
+                "22": "Västernorrlands län",
+                "23": "Jämtlands län",
+                "24": "Västerbottens län",
+                "25": "Norrbottens län",
+                "0": "Riket"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "cinemas": "biografer"
+              },
+              "unit": {
+                "cinemas": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, biografer, salonger, sittplatser och visningar efter år, område och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "region": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "område",
+            "category": {
+              "label": {
+                "01": "Stockholms län"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "seatings": "sittplatser",
+                "visits": "besök",
+                "screenings": "visningar",
+                "population": "befolkning",
+                "visitsperpop": "besök per invånare",
+                "cinemaspermiljpop": "biografer per miljon invånare",
+                "salonspermiljpop": "salonger per miljon invånare",
+                "screeningsperthspop": "visningar per tusen invånare"
+              },
+              "unit": {
+                "seatings": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "screenings": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "population": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visitsperpop": {
+                  "base": "Andel",
+                  "decimals": 1
+                },
+                "cinemaspermiljpop": {
+                  "base": "Andel",
+                  "decimals": 1
+                },
+                "salonspermiljpop": {
+                  "base": "Andel",
+                  "decimals": 1
+                },
+                "screeningsperthspop": {
+                  "base": "Andel",
+                  "decimals": 1
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01",
+                "03"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "cinemas",
+                "salons"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "cinemas"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "04",
+                "05",
+                "06",
+                "07",
+                "08",
+                "09",
+                "10",
+                "12",
+                "13",
+                "14",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "cinemas"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "seatings",
+                "visits",
+                "screenings",
+                "population",
+                "visitsperpop",
+                "cinemaspermiljpop",
+                "salonspermiljpop",
+                "screeningsperthspop"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

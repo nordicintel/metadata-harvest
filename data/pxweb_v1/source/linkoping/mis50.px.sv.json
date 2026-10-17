@@ -1,0 +1,191 @@
+{
+  "key": "linkoping/mis50.px/sv",
+  "identifier": "mis50.px",
+  "language": "sv",
+  "updated": "2022-09-27",
+  "retrieved_at": "2026-10-17T07:54:41.857640+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Fornlämningar efter tid och tabellinnehåll. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2010",
+            "2015",
+            "2020"
+          ],
+          "valueTexts": [
+            "2010",
+            "2015",
+            "2020"
+          ]
+        },
+        {
+          "code": "tabellinnehåll",
+          "text": "tabellinnehåll",
+          "values": [
+            "Antal",
+            "Areal"
+          ],
+          "valueTexts": [
+            "Antal fornlämningar",
+            "Areal fornlämningar, hektar"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Markanv/mis50.px",
+      "category_path": [
+        {
+          "id": "Markanv",
+          "name": "Markanvändning"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "mis50.px",
+      "id": "mis50.px",
+      "language": "sv",
+      "path": "/Markanv",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Markanv/mis50.px",
+          "category_path": [
+            {
+              "id": "Markanv",
+              "name": "Markanvändning"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Markanv",
+          "published": "2022-09-27",
+          "score": 1.0,
+          "title": "Fornlämningar efter tid och tabellinnehåll.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Markanv/mis50.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2022-09-27",
+      "score": 1.0,
+      "title": "Fornlämningar efter tid och tabellinnehåll.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Markanv/mis50.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Fornlämningar efter tid och tabellinnehåll",
+        "source": "SCB (SSD) / Riksantikvarieämbetet.  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.   ",
+        "updated": "2026-10-17T09:54:41.6521035+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2010": "2010",
+                "2015": "2015"
+              }
+            }
+          },
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "Antal": "Antal fornlämningar",
+                "Areal": "Areal fornlämningar, hektar"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Fornlämningar efter tid och tabellinnehåll",
+        "source": "SCB (SSD) / Riksantikvarieämbetet.  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.   ",
+        "updated": "2026-10-17T09:54:41.7771044+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            }
+          },
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "Antal": "Antal fornlämningar"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2010",
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal",
+                "Areal"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
+              ]
+            }
+          },
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

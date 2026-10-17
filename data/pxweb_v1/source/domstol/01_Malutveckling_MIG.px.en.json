@@ -1,0 +1,1138 @@
+{
+  "key": "domstol/01_Malutveckling_MIG.px/en",
+  "identifier": "01_Malutveckling_MIG.px",
+  "language": "en",
+  "updated": "2026-02-20",
+  "retrieved_at": "2026-10-17T06:59:41.725813+00:00",
+  "responses": {
+    "metadata": {
+      "title": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Migration court",
+          "values": [
+            "All migration courts",
+            "Migration Court in Gothenburg",
+            "Migration Court in Luleå",
+            "Migration Court in Malmö",
+            "Migration Court in Stockholm"
+          ],
+          "valueTexts": [
+            "All migration courts",
+            "Migration Court in Gothenburg",
+            "Migration Court in Luleå",
+            "Migration Court in Malmö",
+            "Migration Court in Stockholm"
+          ]
+        },
+        {
+          "code": "Målgrupp",
+          "text": "Case group",
+          "values": [
+            "Removal cases",
+            "Residence permit cases",
+            "Enforcement cases",
+            "Status declaration cases",
+            "Cases relating to detention, supervision and placement of the detained",
+            "Cases relating to public counsel and claim for compensation",
+            "Citizenship cases",
+            "Cases relating to fees in migration cases",
+            "Entry visa cases",
+            "Extraordinary remedies"
+          ],
+          "valueTexts": [
+            "Removal cases",
+            "Residence permit cases",
+            "Enforcement cases",
+            "Status declaration cases",
+            "Cases relating to detention, supervision and placement of the detained",
+            "Cases relating to public counsel and claim for compensation",
+            "Citizenship cases",
+            "Cases relating to fees in migration cases",
+            "Entry visa cases",
+            "Extraordinary remedies"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variable",
+          "values": [
+            "Number of filed cases",
+            "Number of determined cases",
+            "Number of pending cases December 31"
+          ],
+          "valueTexts": [
+            "Number of filed cases",
+            "Number of determined cases",
+            "Number of pending cases December 31"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19"
+          ],
+          "valueTexts": [
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/AntalMIG/01_Malutveckling_MIG.px",
+      "category_path": [
+        {
+          "id": "AntalMIG",
+          "name": "Filed (incoming), resolved and pending cases - Migration"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "01_Malutveckling_MIG.px",
+      "id": "01_Malutveckling_MIG.px",
+      "language": "en",
+      "path": "/AntalMIG",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/AntalMIG/01_Malutveckling_MIG.px",
+          "category_path": [
+            {
+              "id": "AntalMIG",
+              "name": "Filed (incoming), resolved and pending cases - Migration"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/AntalMIG",
+          "published": "2026-02-20",
+          "score": 1.0,
+          "title": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__AntalMIG/01_Malutveckling_MIG.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-20",
+      "score": 1.0,
+      "title": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__AntalMIG/01_Malutveckling_MIG.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "01. Filed (incoming), determined and pending cases at the migration courts by Migration court, Case group, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases at the Migration Courts at the Administrative Courts in Gothenburg, Luleå, Malmö and Stockholm. Pending cases are ongoing (open) cases at a specific date.",
+          "The table only shows migration cases at these four migration courts. In other tables regarding administrative law, there may be a few migration cases in another administrative court during some years, even if such a court is not a migration court."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts",
+                "Migration Court in Gothenburg": "Migration Court in Gothenburg"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målgrupp": {
+            "label": "Case group",
+            "category": {
+              "label": {
+                "Removal cases": "Removal cases",
+                "Residence permit cases": "Residence permit cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of filed cases": "Number of filed cases",
+                "Number of determined cases": "Number of determined cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006",
+                "1": "2007"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases at the migration courts",
+            "description": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målgrupp",
+              "Variabel"
+            ],
+            "matrix": "RV030140",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases - Migration"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases at the migration courts"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Filed (incoming), determined and pending cases at the migration courts by Migration court, Case group, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases at the Migration Courts at the Administrative Courts in Gothenburg, Luleå, Malmö and Stockholm. Pending cases are ongoing (open) cases at a specific date.",
+          "The table only shows migration cases at these four migration courts. In other tables regarding administrative law, there may be a few migration cases in another administrative court during some years, even if such a court is not a migration court."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "Migration Court in Luleå": "Migration Court in Luleå",
+                "Migration Court in Malmö": "Migration Court in Malmö",
+                "Migration Court in Stockholm": "Migration Court in Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målgrupp": {
+            "label": "Case group",
+            "category": {
+              "label": {
+                "Removal cases": "Removal cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of filed cases": "Number of filed cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases at the migration courts",
+            "description": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målgrupp",
+              "Variabel"
+            ],
+            "matrix": "RV030140",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases - Migration"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Domstol",
+                  "Målgrupp",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Domstol": [
+                    "Migration Court in Luleå",
+                    "Migration Court in Malmö",
+                    "Migration Court in Stockholm"
+                  ],
+                  "Målgrupp": [
+                    "Removal cases"
+                  ],
+                  "Variabel": [
+                    "Number of filed cases"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases at the migration courts"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Filed (incoming), determined and pending cases at the migration courts by Migration court, Case group, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases at the Migration Courts at the Administrative Courts in Gothenburg, Luleå, Malmö and Stockholm. Pending cases are ongoing (open) cases at a specific date.",
+          "The table only shows migration cases at these four migration courts. In other tables regarding administrative law, there may be a few migration cases in another administrative court during some years, even if such a court is not a migration court."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målgrupp": {
+            "label": "Case group",
+            "category": {
+              "label": {
+                "Enforcement cases": "Enforcement cases",
+                "Status declaration cases": "Status declaration cases",
+                "Cases relating to detention, supervision and placement of the detained": "Cases relating to detention, supervision and placement of the detained",
+                "Cases relating to public counsel and claim for compensation": "Cases relating to public counsel and claim for compensation",
+                "Citizenship cases": "Citizenship cases",
+                "Cases relating to fees in migration cases": "Cases relating to fees in migration cases",
+                "Entry visa cases": "Entry visa cases",
+                "Extraordinary remedies": "Extraordinary remedies"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of filed cases": "Number of filed cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases at the migration courts",
+            "description": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målgrupp",
+              "Variabel"
+            ],
+            "matrix": "RV030140",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases - Migration"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Domstol",
+                  "Målgrupp",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Domstol": [
+                    "All migration courts"
+                  ],
+                  "Målgrupp": [
+                    "Enforcement cases",
+                    "Status declaration cases",
+                    "Cases relating to detention, supervision and placement of the detained",
+                    "Cases relating to public counsel and claim for compensation",
+                    "Citizenship cases",
+                    "Cases relating to fees in migration cases",
+                    "Entry visa cases",
+                    "Extraordinary remedies"
+                  ],
+                  "Variabel": [
+                    "Number of filed cases"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "6": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases at the migration courts"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Filed (incoming), determined and pending cases at the migration courts by Migration court, Case group, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases at the Migration Courts at the Administrative Courts in Gothenburg, Luleå, Malmö and Stockholm. Pending cases are ongoing (open) cases at a specific date.",
+          "The table only shows migration cases at these four migration courts. In other tables regarding administrative law, there may be a few migration cases in another administrative court during some years, even if such a court is not a migration court."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målgrupp": {
+            "label": "Case group",
+            "category": {
+              "label": {
+                "Removal cases": "Removal cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of pending cases December 31": "Number of pending cases December 31"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases at the migration courts",
+            "description": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målgrupp",
+              "Variabel"
+            ],
+            "matrix": "RV030140",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases - Migration"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases at the migration courts"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "01. Filed (incoming), determined and pending cases at the migration courts by Migration court, Case group, Variable and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the number of cases at the Migration Courts at the Administrative Courts in Gothenburg, Luleå, Malmö and Stockholm. Pending cases are ongoing (open) cases at a specific date.",
+          "The table only shows migration cases at these four migration courts. In other tables regarding administrative law, there may be a few migration cases in another administrative court during some years, even if such a court is not a migration court."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Migration court",
+            "category": {
+              "label": {
+                "All migration courts": "All migration courts"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Målgrupp": {
+            "label": "Case group",
+            "category": {
+              "label": {
+                "Removal cases": "Removal cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "Number of filed cases": "Number of filed cases"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2008",
+                "3": "2009",
+                "4": "2010",
+                "5": "2011",
+                "6": "2012",
+                "7": "2013",
+                "8": "2014",
+                "9": "2015",
+                "10": "2016",
+                "11": "2017",
+                "12": "2018",
+                "13": "2019",
+                "14": "2020",
+                "15": "2021",
+                "16": "2022",
+                "17": "2023",
+                "18": "2024",
+                "19": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "01. Filed (incoming), determined and pending cases at the migration courts",
+            "description": "01. Filed (incoming), determined and pending cases at the migration courts. Year 2006-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Målgrupp",
+              "Variabel"
+            ],
+            "matrix": "RV030140",
+            "subject-code": "RV0301",
+            "subject-area": "Number of filed (incoming), resolved and pending cases - Migration"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "01. Filed (incoming), determined and pending cases at the migration courts"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Number of cases",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts",
+                "Migration Court in Gothenburg"
+              ]
+            }
+          },
+          {
+            "code": "Målgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases",
+                "Residence permit cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases",
+                "Number of determined cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Migration Court in Luleå",
+                "Migration Court in Malmö",
+                "Migration Court in Stockholm"
+              ]
+            }
+          },
+          {
+            "code": "Målgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts"
+              ]
+            }
+          },
+          {
+            "code": "Målgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Enforcement cases",
+                "Status declaration cases",
+                "Cases relating to detention, supervision and placement of the detained",
+                "Cases relating to public counsel and claim for compensation",
+                "Citizenship cases",
+                "Cases relating to fees in migration cases",
+                "Entry visa cases",
+                "Extraordinary remedies"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts"
+              ]
+            }
+          },
+          {
+            "code": "Målgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of pending cases December 31"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "All migration courts"
+              ]
+            }
+          },
+          {
+            "code": "Målgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Removal cases"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Number of filed cases"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

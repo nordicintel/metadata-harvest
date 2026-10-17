@@ -1,0 +1,528 @@
+{
+  "key": "fohm/stodmhvInk.px/sv",
+  "identifier": "stodmhvInk.px",
+  "language": "sv",
+  "updated": "2025-11-17",
+  "retrieved_at": "2026-10-17T08:01:58.942642+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Kvinnan och partner deltagit i föräldrastöd efter hushållets inkomst och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Hushållets inkomst",
+          "text": "Hushållets inkomst",
+          "values": [
+            "1+2+3+4+5+0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "0"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Lägsta inkomsterna (kvintil 1)",
+            "Näst lägsta inkomsterna (kvintil 2)",
+            "Mellersta inkomsterna (kvintil 3)",
+            "Näst högsta inkomsterna (kvintil 4)",
+            "Högsta inkomsterna (kvintil 5)",
+            "Inkomstuppgift saknas"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/1_Tidigalivet/01MhvBhv/01.09stodmhv/stodmhvInk.px",
+      "category_path": [
+        {
+          "id": "A_Mo8",
+          "name": "Folkhälsan i Sverige"
+        },
+        {
+          "id": "1_Tidigalivet",
+          "name": "1 Det tidiga livets villkor"
+        },
+        {
+          "id": "01MhvBhv",
+          "name": "En jämlik mödra- och barnhälsovård"
+        },
+        {
+          "id": "01.09stodmhv",
+          "name": "01.09 Deltagit i föräldrastöd"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "stodmhvInk.px",
+      "id": "stodmhvInk.px",
+      "language": "sv",
+      "path": "/A_Mo8/1_Tidigalivet/01MhvBhv/01.09stodmhv",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/1_Tidigalivet/01MhvBhv/01.09stodmhv/stodmhvInk.px",
+          "category_path": [
+            {
+              "id": "A_Mo8",
+              "name": "Folkhälsan i Sverige"
+            },
+            {
+              "id": "1_Tidigalivet",
+              "name": "1 Det tidiga livets villkor"
+            },
+            {
+              "id": "01MhvBhv",
+              "name": "En jämlik mödra- och barnhälsovård"
+            },
+            {
+              "id": "01.09stodmhv",
+              "name": "01.09 Deltagit i föräldrastöd"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/A_Mo8/1_Tidigalivet/01MhvBhv/01.09stodmhv",
+          "published": "2025-11-17",
+          "score": 1.0,
+          "title": "Kvinnan och partner deltagit i föräldrastöd efter hushållets inkomst och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__1_Tidigalivet__01MhvBhv__01.09stodmhv/stodmhvInk.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2025-11-17",
+      "score": 1.0,
+      "title": "Kvinnan och partner deltagit i föräldrastöd efter hushållets inkomst och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__1_Tidigalivet__01MhvBhv__01.09stodmhv/stodmhvInk.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Deltagit i föräldrastöd, ekonomi efter Hushållets inkomst och År",
+        "source": "Graviditetsregistret",
+        "updated": "2025-11-17T08:03:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Hushållets inkomst": {
+            "label": "Hushållets inkomst",
+            "category": {
+              "label": {
+                "1+2+3+4+5+0": "Totalt",
+                "1": "Lägsta inkomsterna (kvintil 1)"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+4+5+0",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2015": "2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Deltagit i föräldrastöd, ekonomi",
+            "description": "Kvinnan och partner deltagit i föräldrastöd efter hushållets inkomst och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Hushållets inkomst"
+            ],
+            "matrix": "stodmhvInk",
+            "subject-code": "mo1.9",
+            "subject-area": "En jämlik mödra- och barnhälsovård"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Deltagit i föräldrastöd, ekonomi"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2014-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Deltagit i föräldrastöd, ekonomi efter Hushållets inkomst och År",
+        "source": "Graviditetsregistret",
+        "updated": "2025-11-17T08:03:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Hushållets inkomst": {
+            "label": "Hushållets inkomst",
+            "category": {
+              "label": {
+                "2": "Näst lägsta inkomsterna (kvintil 2)",
+                "3": "Mellersta inkomsterna (kvintil 3)",
+                "4": "Näst högsta inkomsterna (kvintil 4)",
+                "5": "Högsta inkomsterna (kvintil 5)",
+                "0": "Inkomstuppgift saknas"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Deltagit i föräldrastöd, ekonomi",
+            "description": "Kvinnan och partner deltagit i föräldrastöd efter hushållets inkomst och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Hushållets inkomst"
+            ],
+            "matrix": "stodmhvInk",
+            "subject-code": "mo1.9",
+            "subject-area": "En jämlik mödra- och barnhälsovård"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Deltagit i föräldrastöd, ekonomi"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2014-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Deltagit i föräldrastöd, ekonomi efter Hushållets inkomst och År",
+        "source": "Graviditetsregistret",
+        "updated": "2025-11-17T08:03:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Hushållets inkomst": {
+            "label": "Hushållets inkomst",
+            "category": {
+              "label": {
+                "1+2+3+4+5+0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+4+5+0",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Deltagit i föräldrastöd, ekonomi",
+            "description": "Kvinnan och partner deltagit i föräldrastöd efter hushållets inkomst och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Hushållets inkomst"
+            ],
+            "matrix": "stodmhvInk",
+            "subject-code": "mo1.9",
+            "subject-area": "En jämlik mödra- och barnhälsovård"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Deltagit i föräldrastöd, ekonomi"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2014-2024"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Hushållets inkomst",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4+5+0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Hushållets inkomst",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Hushållets inkomst",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+4+5+0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

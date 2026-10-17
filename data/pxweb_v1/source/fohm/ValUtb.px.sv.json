@@ -1,0 +1,842 @@
+{
+  "key": "fohm/ValUtb.px/sv",
+  "identifier": "ValUtb.px",
+  "language": "sv",
+  "updated": "2023-10-19",
+  "retrieved_at": "2026-10-17T07:26:51.830877+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Utbildningsnivå",
+          "text": "Utbildningsnivå",
+          "values": [
+            "1+2+3+0",
+            "1",
+            "2",
+            "3",
+            "0"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Förgymnasial",
+            "Gymnasial",
+            "Eftergymnasial",
+            "Uppgift saknas"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Åldersstandardisering",
+          "text": "Åldersstandardisering",
+          "values": [
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Ej åldersstandardiserat",
+            "Åldersstandardiserat"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1+2",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Kvinnor",
+            "Män"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2006",
+            "2010",
+            "2014",
+            "2018",
+            "2022"
+          ],
+          "valueTexts": [
+            "2006",
+            "2010",
+            "2014",
+            "2018",
+            "2022"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/7_Kontroll/01Demokrati/07.01Val/ValUtb.px",
+      "category_path": [
+        {
+          "id": "A_Mo8",
+          "name": "Folkhälsan i Sverige"
+        },
+        {
+          "id": "7_Kontroll",
+          "name": "7 Kontroll, inflytande och delaktighet"
+        },
+        {
+          "id": "01Demokrati",
+          "name": "Ett jämlikt deltagande i demokratin"
+        },
+        {
+          "id": "07.01Val",
+          "name": "07.01 Valdeltagande KÄRNINDIKATOR"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ValUtb.px",
+      "id": "ValUtb.px",
+      "language": "sv",
+      "path": "/A_Mo8/7_Kontroll/01Demokrati/07.01Val",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/7_Kontroll/01Demokrati/07.01Val/ValUtb.px",
+          "category_path": [
+            {
+              "id": "A_Mo8",
+              "name": "Folkhälsan i Sverige"
+            },
+            {
+              "id": "7_Kontroll",
+              "name": "7 Kontroll, inflytande och delaktighet"
+            },
+            {
+              "id": "01Demokrati",
+              "name": "Ett jämlikt deltagande i demokratin"
+            },
+            {
+              "id": "07.01Val",
+              "name": "07.01 Valdeltagande KÄRNINDIKATOR"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/A_Mo8/7_Kontroll/01Demokrati/07.01Val",
+          "published": "2023-10-19",
+          "score": 1.0,
+          "title": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__7_Kontroll__01Demokrati__07.01Val/ValUtb.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2023-10-19",
+      "score": 1.0,
+      "title": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__7_Kontroll__01Demokrati__07.01Val/ValUtb.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Valdeltagande efter utbildningsnivå, kön och år. efter Utbildningsnivå, Åldersstandardisering, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 25 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "1+2+3+0": "Totalt",
+                "1": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+0",
+              "show": "value"
+            }
+          },
+          "Åldersstandardisering": {
+            "label": "Åldersstandardisering",
+            "category": {
+              "label": {
+                "1": "Ej åldersstandardiserat",
+                "2": "Åldersstandardiserat"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt",
+                "1": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2006": "2006",
+                "2010": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter utbildningsnivå, kön och år.",
+            "description": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Åldersstandardisering",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "ValUtb",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter utbildningsnivå, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Valdeltagande efter utbildningsnivå, kön och år. efter Utbildningsnivå, Åldersstandardisering, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 25 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "2": "Gymnasial",
+                "3": "Eftergymnasial",
+                "0": "Uppgift saknas"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Åldersstandardisering": {
+            "label": "Åldersstandardisering",
+            "category": {
+              "label": {
+                "1": "Ej åldersstandardiserat"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2006": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter utbildningsnivå, kön och år.",
+            "description": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Åldersstandardisering",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "ValUtb",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter utbildningsnivå, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Valdeltagande efter utbildningsnivå, kön och år. efter Utbildningsnivå, Åldersstandardisering, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 25 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "1+2+3+0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+0",
+              "show": "value"
+            }
+          },
+          "Åldersstandardisering": {
+            "label": "Åldersstandardisering",
+            "category": {
+              "label": {
+                "1": "Ej åldersstandardiserat"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "2": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2006": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter utbildningsnivå, kön och år.",
+            "description": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Åldersstandardisering",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "ValUtb",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter utbildningsnivå, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Valdeltagande efter utbildningsnivå, kön och år. efter Utbildningsnivå, Åldersstandardisering, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 25 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Utbildningsnivå": {
+            "label": "Utbildningsnivå",
+            "category": {
+              "label": {
+                "1+2+3+0": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2+3+0",
+              "show": "value"
+            }
+          },
+          "Åldersstandardisering": {
+            "label": "Åldersstandardisering",
+            "category": {
+              "label": {
+                "1": "Ej åldersstandardiserat"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2018": "2018",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter utbildningsnivå, kön och år.",
+            "description": "Valdeltagande efter utbildningsnivå, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Åldersstandardisering",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Utbildningsnivå"
+            ],
+            "matrix": "ValUtb",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter utbildningsnivå, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Åldersstandardisering",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2006",
+                "2010"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Åldersstandardisering",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2006"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+0"
+              ]
+            }
+          },
+          {
+            "code": "Åldersstandardisering",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2006"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2+3+0"
+              ]
+            }
+          },
+          {
+            "code": "Åldersstandardisering",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2018",
+                "2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

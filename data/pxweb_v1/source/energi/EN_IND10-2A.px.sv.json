@@ -1,0 +1,591 @@
+{
+  "key": "energi/EN_IND10-2A.px/sv",
+  "identifier": "EN_IND10-2A.px",
+  "language": "sv",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:17:16.386203+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Utsläppsintensitet och förnybar el per elområde",
+      "variables": [
+        {
+          "code": "Elområde",
+          "text": "Elområde",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "SE1",
+            "SE2",
+            "SE3",
+            "SE4"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        },
+        {
+          "code": "Mått",
+          "text": "Mått",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Utsläppsintensitet, gCO2eq/MJ",
+            "Förnybar elproduktion, procent"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Energiindikatorer/10/10.2/EN_IND10-2A.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energiindikatorer"
+        },
+        {
+          "id": "10",
+          "name": "10 EU-Mål som påverkar energiomställningen"
+        },
+        {
+          "id": "10.2",
+          "name": "10.2 Utsläppsintensitet och förnybar andel för elproduktion per elområde (enligt delegerad akt RED)"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND10-2A.px",
+      "id": "EN_IND10-2A.px",
+      "language": "sv",
+      "path": "/Energiindikatorer/10/10.2",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Energiindikatorer/10/10.2/EN_IND10-2A.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energiindikatorer"
+            },
+            {
+              "id": "10",
+              "name": "10 EU-Mål som påverkar energiomställningen"
+            },
+            {
+              "id": "10.2",
+              "name": "10.2 Utsläppsintensitet och förnybar andel för elproduktion per elområde (enligt delegerad akt RED)"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/10/10.2",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Utsläppsintensitet och förnybar el per elområde",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__10__10.2/EN_IND10-2A.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Utsläppsintensitet och förnybar el per elområde",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__10__10.2/EN_IND10-2A.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Utsläppsintensitet och förnybar el per elområde efter Elområde, År och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Energimyndighetens beräkningar på Årlig energistatistik (el, gas och fjärrvärme) och Månatlig elstatistik per elområde"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Elområde",
+            "category": {
+              "label": {
+                "0": "SE1",
+                "1": "SE2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Utsläppsintensitet, gCO2eq/MJ",
+                "1": "Förnybar elproduktion, procent"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Utsläppsintensitet och förnybar el per elområde",
+            "description": "Utsläppsintensitet och förnybar el per elområde",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Mått"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND10-2A",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Elområde",
+                  "År",
+                  "Mått"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Elområde": [
+                    "0",
+                    "1"
+                  ],
+                  "År": [
+                    "2021",
+                    "2022"
+                  ],
+                  "Mått": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "4": "<1",
+                  "6": "<1"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Utsläppsintensitet och förnybar el per elområde"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "gCO2eq/MJ, Procent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Utsläppsintensitet och förnybar el per elområde efter Elområde, År och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Energimyndighetens beräkningar på Årlig energistatistik (el, gas och fjärrvärme) och Månatlig elstatistik per elområde"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Elområde",
+            "category": {
+              "label": {
+                "2": "SE3",
+                "3": "SE4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Utsläppsintensitet, gCO2eq/MJ"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Utsläppsintensitet och förnybar el per elområde",
+            "description": "Utsläppsintensitet och förnybar el per elområde",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Mått"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND10-2A",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Utsläppsintensitet och förnybar el per elområde"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "gCO2eq/MJ, Procent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Utsläppsintensitet och förnybar el per elområde efter Elområde, År och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >Mer information om energiindikatorer</A>",
+          "Källa: Energimyndighetens beräkningar på Årlig energistatistik (el, gas och fjärrvärme) och Månatlig elstatistik per elområde"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Elområde",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Utsläppsintensitet, gCO2eq/MJ"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Utsläppsintensitet och förnybar el per elområde",
+            "description": "Utsläppsintensitet och förnybar el per elområde",
+            "descriptiondefault": true,
+            "heading": [
+              "År",
+              "Mått"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND10-2A",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Utsläppsintensitet och förnybar el per elområde"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "gCO2eq/MJ, Procent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2022"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,744 @@
+{
+  "key": "fohm/ValAld.px/sv",
+  "identifier": "ValAld.px",
+  "language": "sv",
+  "updated": "2023-10-19",
+  "retrieved_at": "2026-10-17T07:26:46.569547+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "18-",
+            "18- ås",
+            "18-29",
+            "30-44",
+            "45-64",
+            "65-84",
+            "85-"
+          ],
+          "valueTexts": [
+            "Totalt 18- år",
+            "Totalt 18 åldersstandardiserad",
+            "18-29 år",
+            "30-44 år",
+            "45-64 år",
+            "65-84 år",
+            "85- år"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1+2",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Kvinnor",
+            "Män"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2006",
+            "2010",
+            "2014",
+            "2018",
+            "2022"
+          ],
+          "valueTexts": [
+            "2006",
+            "2010",
+            "2014",
+            "2018",
+            "2022"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/7_Kontroll/01Demokrati/07.01Val/ValAld.px",
+      "category_path": [
+        {
+          "id": "A_Mo8",
+          "name": "Folkhälsan i Sverige"
+        },
+        {
+          "id": "7_Kontroll",
+          "name": "7 Kontroll, inflytande och delaktighet"
+        },
+        {
+          "id": "01Demokrati",
+          "name": "Ett jämlikt deltagande i demokratin"
+        },
+        {
+          "id": "07.01Val",
+          "name": "07.01 Valdeltagande KÄRNINDIKATOR"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ValAld.px",
+      "id": "ValAld.px",
+      "language": "sv",
+      "path": "/A_Mo8/7_Kontroll/01Demokrati/07.01Val",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/A_Mo8/7_Kontroll/01Demokrati/07.01Val/ValAld.px",
+          "category_path": [
+            {
+              "id": "A_Mo8",
+              "name": "Folkhälsan i Sverige"
+            },
+            {
+              "id": "7_Kontroll",
+              "name": "7 Kontroll, inflytande och delaktighet"
+            },
+            {
+              "id": "01Demokrati",
+              "name": "Ett jämlikt deltagande i demokratin"
+            },
+            {
+              "id": "07.01Val",
+              "name": "07.01 Valdeltagande KÄRNINDIKATOR"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/A_Mo8/7_Kontroll/01Demokrati/07.01Val",
+          "published": "2023-10-19",
+          "score": 1.0,
+          "title": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__7_Kontroll__01Demokrati__07.01Val/ValAld.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2023-10-19",
+      "score": 1.0,
+      "title": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__A_Mo8__7_Kontroll__01Demokrati__07.01Val/ValAld.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Valdeltagande efter ålder, kön och år. efter Ålder, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 18 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-": "Totalt 18- år",
+                "18- ås": "Totalt 18 åldersstandardiserad"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt",
+                "1": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2006": "2006",
+                "2010": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter ålder, kön och år.",
+            "description": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ålder"
+            ],
+            "matrix": "ValAld",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter ålder, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Valdeltagande efter ålder, kön och år. efter Ålder, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 18 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-29": "18-29 år",
+                "30-44": "30-44 år",
+                "45-64": "45-64 år",
+                "65-84": "65-84 år",
+                "85-": "85- år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2006": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter ålder, kön och år.",
+            "description": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ålder"
+            ],
+            "matrix": "ValAld",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter ålder, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Valdeltagande efter ålder, kön och år. efter Ålder, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 18 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-": "Totalt 18- år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "2": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2006": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter ålder, kön och år.",
+            "description": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ålder"
+            ],
+            "matrix": "ValAld",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter ålder, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Valdeltagande efter ålder, kön och år. efter Ålder, Kön och År",
+        "source": "SCB",
+        "updated": "2023-10-19T06:00:00Z",
+        "note": [
+          "Värden avser befolkning 18 år och äldre som röstat i minst ett av valen riksdagsvalet, landstings-/region- eller kommunfullmäktigevalet.",
+          "År 2006, 2010 och 2014 baseras indikatorn valdeltagande på urvalsundersökningar. Från och med år 2018 ändrades detta och indikatorn baseras efter det på information från hela populationen. SCB bedömer att jämförbarheten över tid trots detta är god."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-": "Totalt 18- år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2014": "2014",
+                "2018": "2018",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Valdeltagande efter ålder, kön och år.",
+            "description": "Valdeltagande efter ålder, kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ålder"
+            ],
+            "matrix": "ValAld",
+            "subject-code": "mo7.1",
+            "subject-area": "Ett jämlikt deltagande i demokratin"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Valdeltagande efter ålder, kön och år."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2006, 2010, 2014, 2018, 2022"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-",
+                "18- ås"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2006",
+                "2010"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-29",
+                "30-44",
+                "45-64",
+                "65-84",
+                "85-"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2006"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2006"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2014",
+                "2018",
+                "2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

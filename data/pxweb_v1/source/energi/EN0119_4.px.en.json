@@ -1,0 +1,956 @@
+{
+  "key": "energi/EN0119_4.px/en",
+  "identifier": "EN0119_4.px",
+  "language": "en",
+  "updated": "2025-11-17",
+  "retrieved_at": "2026-10-17T07:10:40.952586+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Energy use in agriculture for working machines (public road transport not included)",
+      "variables": [
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "2018",
+            "2021",
+            "2024"
+          ]
+        },
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "Stockholm",
+            "Uppsala",
+            "Södermanland",
+            "Östergötland",
+            "Jönköping",
+            "Kronoberg",
+            "Kalmar",
+            "Gotland",
+            "Blekinge",
+            "Skåne",
+            "Halland",
+            "Västra Götaland",
+            "Värmland",
+            "Örebro",
+            "Västmanland",
+            "Dalarna",
+            "Gävleborg",
+            "Västernorrland",
+            "Jämtland",
+            "Västerbotten",
+            "Norrbotten",
+            "Riket"
+          ]
+        },
+        {
+          "code": "Enhet",
+          "text": "Unit",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "m3",
+            "MWh"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variable",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "Diesel oil blended",
+            "Error margin Diesel oil blended ±",
+            "Bio-diesel oil",
+            "Error margin Bio-diesel oil ±",
+            "Motor petrol",
+            "Error margin Motor petrol ±",
+            "Ethanol",
+            "Error margin Ethanol ±",
+            "Vehicle gas",
+            "Error margin Vehicle gas ±"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Jordbrukets_energianvandning/EN0119_4.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Jordbrukets_energianvandning",
+          "name": "Energy consumtion in agriculture"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0119_4.px",
+      "id": "EN0119_4.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Jordbrukets_energianvandning",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Jordbrukets_energianvandning/EN0119_4.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Jordbrukets_energianvandning",
+              "name": "Energy consumtion in agriculture"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Jordbrukets_energianvandning",
+          "published": "2025-11-17",
+          "score": 1.0,
+          "title": "Energy use in agriculture for working machines (public road transport not included)",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Jordbrukets_energianvandning/EN0119_4.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-11-17",
+      "score": 1.0,
+      "title": "Energy use in agriculture for working machines (public road transport not included)",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Jordbrukets_energianvandning/EN0119_4.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Energy use in agriculture for working machines (public road transport not included) by Year, Region, Unit and Variable",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transports on public roads are excluded\r\n Error margin refers to 95% conidence interval"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2018",
+                "1": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Stockholm",
+                "1": "Uppsala"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3",
+                "1": "MWh"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "0": "Diesel oil blended",
+                "1": "Error margin Diesel oil blended ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use in agriculture for working machines (public road transport not included)",
+            "description": "Energy use in agriculture for working machines (public road transport not included)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46 (0)165442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Region",
+                  "Enhet",
+                  "Variabel"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0",
+                    "1"
+                  ],
+                  "Region": [
+                    "0",
+                    "1"
+                  ],
+                  "Enhet": [
+                    "0",
+                    "1"
+                  ],
+                  "Variabel": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "9": "..",
+                  "11": "..",
+                  "13": "..",
+                  "15": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energy use in agriculture for working machines (public road transport not included)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Energy use in agriculture for working machines (public road transport not included) by Year, Region, Unit and Variable",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transports on public roads are excluded\r\n Error margin refers to 95% conidence interval"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "0": "Diesel oil blended"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use in agriculture for working machines (public road transport not included)",
+            "description": "Energy use in agriculture for working machines (public road transport not included)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46 (0)165442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energy use in agriculture for working machines (public road transport not included)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Energy use in agriculture for working machines (public road transport not included) by Year, Region, Unit and Variable",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transports on public roads are excluded\r\n Error margin refers to 95% conidence interval"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "2": "Södermanland",
+                "3": "Östergötland",
+                "4": "Jönköping",
+                "5": "Kronoberg",
+                "6": "Kalmar",
+                "7": "Gotland",
+                "8": "Blekinge",
+                "9": "Skåne",
+                "10": "Halland",
+                "11": "Västra Götaland",
+                "12": "Värmland",
+                "13": "Örebro",
+                "14": "Västmanland",
+                "15": "Dalarna",
+                "16": "Gävleborg",
+                "17": "Västernorrland",
+                "18": "Jämtland",
+                "19": "Västerbotten",
+                "20": "Norrbotten",
+                "21": "Riket"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "0": "Diesel oil blended"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use in agriculture for working machines (public road transport not included)",
+            "description": "Energy use in agriculture for working machines (public road transport not included)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46 (0)165442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energy use in agriculture for working machines (public road transport not included)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Energy use in agriculture for working machines (public road transport not included) by Year, Region, Unit and Variable",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-17T07:00:00Z",
+        "note": [
+          "Transports on public roads are excluded\r\n Error margin refers to 95% conidence interval"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Stockholm"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Variabel": {
+            "label": "Variable",
+            "category": {
+              "label": {
+                "2": "Bio-diesel oil",
+                "3": "Error margin Bio-diesel oil ±",
+                "4": "Motor petrol",
+                "5": "Error margin Motor petrol ±",
+                "6": "Ethanol",
+                "7": "Error margin Ethanol ±",
+                "8": "Vehicle gas",
+                "9": "Error margin Vehicle gas ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use in agriculture for working machines (public road transport not included)",
+            "description": "Energy use in agriculture for working machines (public road transport not included)",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Variabel"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0119_4",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46 (0)165442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Region",
+                  "Enhet",
+                  "Variabel"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0"
+                  ],
+                  "Region": [
+                    "0"
+                  ],
+                  "Enhet": [
+                    "0"
+                  ],
+                  "Variabel": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9"
+                  ]
+                },
+                "status": {
+                  "4": "..",
+                  "5": "..",
+                  "6": "..",
+                  "7": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Energy use in agriculture for working machines (public road transport not included)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "m3,MWh",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

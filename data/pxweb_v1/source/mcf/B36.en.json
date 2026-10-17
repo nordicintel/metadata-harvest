@@ -1,0 +1,1378 @@
+{
+  "key": "mcf/B36/en",
+  "identifier": "B36",
+  "language": "en",
+  "updated": "2026-03-10",
+  "retrieved_at": "2026-10-17T07:08:25.583787+00:00",
+  "responses": {
+    "metadata": {
+      "title": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+      "variables": [
+        {
+          "code": "bostadstypId",
+          "text": "house type",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Block of flats",
+            "Semi-detached/terraced house",
+            "Detached house",
+            "Summer house"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "vardbehovId",
+          "text": "injury severity",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Treated at accident scene",
+            "Transported to emergency care facility",
+            "Died at scene of accident"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "konId",
+          "text": "sex",
+          "values": [
+            "2",
+            "1",
+            "99"
+          ],
+          "valueTexts": [
+            "Female",
+            "Male",
+            "Unknown"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "aldersgruppId",
+          "text": "age group",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "99"
+          ],
+          "valueTexts": [
+            "0-4",
+            "5-11",
+            "12-17",
+            "18-24",
+            "25-44",
+            "45-64",
+            "65-79",
+            "80+",
+            "Unknown"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "ContentsCode",
+          "text": "number of",
+          "values": [
+            "B36"
+          ],
+          "valueTexts": [
+            "B36. Number of people injured in home fires"
+          ]
+        },
+        {
+          "code": "ar",
+          "text": "year",
+          "values": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.mcf.se/PXWeb/api/v1/en/PxData/B/B3/B36",
+      "category_path": [
+        {
+          "id": "B",
+          "name": "Emergencies attended by fire and rescue service"
+        },
+        {
+          "id": "B3",
+          "name": "B3. Home fires"
+        }
+      ],
+      "database_id": "PxData",
+      "dataset_code": "B36",
+      "id": "B36",
+      "language": "en",
+      "path": "/B/B3",
+      "paths": [
+        {
+          "api_url": "https://statistik.mcf.se/PXWeb/api/v1/en/PxData/B/B3/B36",
+          "category_path": [
+            {
+              "id": "B",
+              "name": "Emergencies attended by fire and rescue service"
+            },
+            {
+              "id": "B3",
+              "name": "B3. Home fires"
+            }
+          ],
+          "database_id": "PxData",
+          "path": "/B/B3",
+          "published": "2026-03-10",
+          "score": 1.0,
+          "title": "B36. Number of people injured in home fires, by house type, injury severity, sex and age group, Sweden 2018 - 2025",
+          "web_url": "https://statistik.mcf.se/PXWeb/pxweb/en/PxData/START__B__B3/B36/"
+        }
+      ],
+      "provider_code": "mcf",
+      "published": "2026-03-10",
+      "score": 1.0,
+      "title": "B36. Number of people injured in home fires, by house type, injury severity, sex and age group, Sweden 2018 - 2025",
+      "web_url": "https://statistik.mcf.se/PXWeb/pxweb/en/PxData/START__B__B3/B36/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+        "source": "Swedish Civil Defence and Resilience Agency",
+        "updated": "2026-03-10T07:42:00Z",
+        "note": [
+          "The number of people injured in fires attended by the municipal fire and rescue service, where the initiating event was fire/imminent risk of fire in building, economic activity was normal residence and house type was block of flats, detached, semi-detached, terraced or summer house.\r\n\r\nInjury severity, sex and age group as assessed by fire officer.\r\n\r\nSee table B23 for injuries in other residential situations.\r\n\r\nNote that more comprehensive and reliable statistics on fire deaths are available in <i>Fire deaths</i>, table A10 and A20."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "B36": "B36. Number of people injured in home fires"
+              },
+              "unit": {
+                "B36": {
+                  "base": "number of",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "B36": ""
+              }
+            }
+          },
+          "bostadstypId": {
+            "label": "house type",
+            "category": {
+              "label": {
+                "1": "Block of flats",
+                "2": "Semi-detached/terraced house"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "vardbehovId": {
+            "label": "injury severity",
+            "category": {
+              "label": {
+                "1": "Treated at accident scene",
+                "2": "Transported to emergency care facility"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "konId": {
+            "label": "sex",
+            "category": {
+              "label": {
+                "2": "Female",
+                "1": "Male"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "age group",
+            "category": {
+              "label": {
+                "1": "0-4",
+                "2": "5-11"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "year",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "B36",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "en",
+            "contents": "B36. Number of people injured in home fires",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "bostadstypId",
+              "vardbehovId",
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "B36",
+            "subject-code": "A",
+            "subject-area": "Fire deaths"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Swedish Civil Defence and Resilience Agency# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+        "source": "Swedish Civil Defence and Resilience Agency",
+        "updated": "2026-03-10T07:42:00Z",
+        "note": [
+          "The number of people injured in fires attended by the municipal fire and rescue service, where the initiating event was fire/imminent risk of fire in building, economic activity was normal residence and house type was block of flats, detached, semi-detached, terraced or summer house.\r\n\r\nInjury severity, sex and age group as assessed by fire officer.\r\n\r\nSee table B23 for injuries in other residential situations.\r\n\r\nNote that more comprehensive and reliable statistics on fire deaths are available in <i>Fire deaths</i>, table A10 and A20."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "B36": "B36. Number of people injured in home fires"
+              },
+              "unit": {
+                "B36": {
+                  "base": "number of",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "B36": ""
+              }
+            }
+          },
+          "bostadstypId": {
+            "label": "house type",
+            "category": {
+              "label": {
+                "3": "Detached house",
+                "4": "Summer house"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "vardbehovId": {
+            "label": "injury severity",
+            "category": {
+              "label": {
+                "1": "Treated at accident scene"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "konId": {
+            "label": "sex",
+            "category": {
+              "label": {
+                "2": "Female"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "age group",
+            "category": {
+              "label": {
+                "1": "0-4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "year",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "B36",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "en",
+            "contents": "B36. Number of people injured in home fires",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "bostadstypId",
+              "vardbehovId",
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "B36",
+            "subject-code": "A",
+            "subject-area": "Fire deaths"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Swedish Civil Defence and Resilience Agency# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+        "source": "Swedish Civil Defence and Resilience Agency",
+        "updated": "2026-03-10T07:42:00Z",
+        "note": [
+          "The number of people injured in fires attended by the municipal fire and rescue service, where the initiating event was fire/imminent risk of fire in building, economic activity was normal residence and house type was block of flats, detached, semi-detached, terraced or summer house.\r\n\r\nInjury severity, sex and age group as assessed by fire officer.\r\n\r\nSee table B23 for injuries in other residential situations.\r\n\r\nNote that more comprehensive and reliable statistics on fire deaths are available in <i>Fire deaths</i>, table A10 and A20."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "B36": "B36. Number of people injured in home fires"
+              },
+              "unit": {
+                "B36": {
+                  "base": "number of",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "B36": ""
+              }
+            }
+          },
+          "bostadstypId": {
+            "label": "house type",
+            "category": {
+              "label": {
+                "1": "Block of flats"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "vardbehovId": {
+            "label": "injury severity",
+            "category": {
+              "label": {
+                "3": "Died at scene of accident"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "konId": {
+            "label": "sex",
+            "category": {
+              "label": {
+                "2": "Female"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "age group",
+            "category": {
+              "label": {
+                "1": "0-4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "year",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "B36",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "en",
+            "contents": "B36. Number of people injured in home fires",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "bostadstypId",
+              "vardbehovId",
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "B36",
+            "subject-code": "A",
+            "subject-area": "Fire deaths"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Swedish Civil Defence and Resilience Agency# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+        "source": "Swedish Civil Defence and Resilience Agency",
+        "updated": "2026-03-10T07:42:00Z",
+        "note": [
+          "The number of people injured in fires attended by the municipal fire and rescue service, where the initiating event was fire/imminent risk of fire in building, economic activity was normal residence and house type was block of flats, detached, semi-detached, terraced or summer house.\r\n\r\nInjury severity, sex and age group as assessed by fire officer.\r\n\r\nSee table B23 for injuries in other residential situations.\r\n\r\nNote that more comprehensive and reliable statistics on fire deaths are available in <i>Fire deaths</i>, table A10 and A20."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "B36": "B36. Number of people injured in home fires"
+              },
+              "unit": {
+                "B36": {
+                  "base": "number of",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "B36": ""
+              }
+            }
+          },
+          "bostadstypId": {
+            "label": "house type",
+            "category": {
+              "label": {
+                "1": "Block of flats"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "vardbehovId": {
+            "label": "injury severity",
+            "category": {
+              "label": {
+                "1": "Treated at accident scene"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "konId": {
+            "label": "sex",
+            "category": {
+              "label": {
+                "99": "Unknown"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "age group",
+            "category": {
+              "label": {
+                "1": "0-4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "year",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "B36",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "en",
+            "contents": "B36. Number of people injured in home fires",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "bostadstypId",
+              "vardbehovId",
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "B36",
+            "subject-code": "A",
+            "subject-area": "Fire deaths"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Swedish Civil Defence and Resilience Agency# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+        "source": "Swedish Civil Defence and Resilience Agency",
+        "updated": "2026-03-10T07:42:00Z",
+        "note": [
+          "The number of people injured in fires attended by the municipal fire and rescue service, where the initiating event was fire/imminent risk of fire in building, economic activity was normal residence and house type was block of flats, detached, semi-detached, terraced or summer house.\r\n\r\nInjury severity, sex and age group as assessed by fire officer.\r\n\r\nSee table B23 for injuries in other residential situations.\r\n\r\nNote that more comprehensive and reliable statistics on fire deaths are available in <i>Fire deaths</i>, table A10 and A20."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "B36": "B36. Number of people injured in home fires"
+              },
+              "unit": {
+                "B36": {
+                  "base": "number of",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "B36": ""
+              }
+            }
+          },
+          "bostadstypId": {
+            "label": "house type",
+            "category": {
+              "label": {
+                "1": "Block of flats"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "vardbehovId": {
+            "label": "injury severity",
+            "category": {
+              "label": {
+                "1": "Treated at accident scene"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "konId": {
+            "label": "sex",
+            "category": {
+              "label": {
+                "2": "Female"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "age group",
+            "category": {
+              "label": {
+                "3": "12-17",
+                "4": "18-24",
+                "5": "25-44",
+                "6": "45-64",
+                "7": "65-79",
+                "8": "80+",
+                "99": "Unknown"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "year",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "B36",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "en",
+            "contents": "B36. Number of people injured in home fires",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "bostadstypId",
+              "vardbehovId",
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "B36",
+            "subject-code": "A",
+            "subject-area": "Fire deaths"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Swedish Civil Defence and Resilience Agency# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "B36. Number of people injured in home fires by house type, injury severity, sex, age group and year",
+        "source": "Swedish Civil Defence and Resilience Agency",
+        "updated": "2026-03-10T07:42:00Z",
+        "note": [
+          "The number of people injured in fires attended by the municipal fire and rescue service, where the initiating event was fire/imminent risk of fire in building, economic activity was normal residence and house type was block of flats, detached, semi-detached, terraced or summer house.\r\n\r\nInjury severity, sex and age group as assessed by fire officer.\r\n\r\nSee table B23 for injuries in other residential situations.\r\n\r\nNote that more comprehensive and reliable statistics on fire deaths are available in <i>Fire deaths</i>, table A10 and A20."
+        ],
+        "role": {
+          "time": [
+            "ar"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "ContentsCode": {
+            "label": "EliminatedContents",
+            "category": {
+              "label": {
+                "B36": "B36. Number of people injured in home fires"
+              },
+              "unit": {
+                "B36": {
+                  "base": "number of",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "refperiod": {
+                "B36": ""
+              }
+            }
+          },
+          "bostadstypId": {
+            "label": "house type",
+            "category": {
+              "label": {
+                "1": "Block of flats"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "vardbehovId": {
+            "label": "injury severity",
+            "category": {
+              "label": {
+                "1": "Treated at accident scene"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "konId": {
+            "label": "sex",
+            "category": {
+              "label": {
+                "2": "Female"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "aldersgruppId": {
+            "label": "age group",
+            "category": {
+              "label": {
+                "1": "0-4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ar": {
+            "label": "year",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "infofile": "001",
+            "tableid": "B36",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "en",
+            "contents": "B36. Number of people injured in home fires",
+            "descriptiondefault": false,
+            "heading": [
+              "ar"
+            ],
+            "stub": [
+              "bostadstypId",
+              "vardbehovId",
+              "konId",
+              "aldersgruppId"
+            ],
+            "matrix": "B36",
+            "subject-code": "A",
+            "subject-area": "Fire deaths"
+          },
+          "contact": [
+            {
+              "name": " Statistikfunktionen",
+              "phone": "(0) 771-240 240",
+              "mail": "statistik@mcf.se",
+              "raw": " Statistikfunktionen, Swedish Civil Defence and Resilience Agency# +46 (0) 771-240 240#statistik@mcf.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "bostadstypId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "vardbehovId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "B36"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "bostadstypId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "vardbehovId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "B36"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "bostadstypId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "vardbehovId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "B36"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "bostadstypId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "vardbehovId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "99"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "B36"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "bostadstypId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "vardbehovId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "99"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "B36"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "bostadstypId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "vardbehovId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "konId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "aldersgruppId",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "B36"
+              ]
+            }
+          },
+          {
+            "code": "ar",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

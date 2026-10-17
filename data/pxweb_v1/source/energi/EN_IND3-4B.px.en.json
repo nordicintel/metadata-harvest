@@ -1,0 +1,496 @@
+{
+  "key": "energi/EN_IND3-4B.px/en",
+  "identifier": "EN_IND3-4B.px",
+  "language": "en",
+  "updated": "2026-05-20",
+  "retrieved_at": "2026-10-17T07:27:49.242952+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+      "variables": [
+        {
+          "code": "Elområde",
+          "text": "Bidding zone",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "SE1",
+            "SE2",
+            "SE3",
+            "SE4"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/3/3.4/EN_IND3-4B.px",
+      "category_path": [
+        {
+          "id": "Energiindikatorer",
+          "name": "Energy indicators"
+        },
+        {
+          "id": "3",
+          "name": "3 Goal for the electrical system"
+        },
+        {
+          "id": "3.4",
+          "name": "3.4 Electricity production and final energy consumption per bidding zone"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN_IND3-4B.px",
+      "id": "EN_IND3-4B.px",
+      "language": "en",
+      "path": "/Energiindikatorer/3/3.4",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Energiindikatorer/3/3.4/EN_IND3-4B.px",
+          "category_path": [
+            {
+              "id": "Energiindikatorer",
+              "name": "Energy indicators"
+            },
+            {
+              "id": "3",
+              "name": "3 Goal for the electrical system"
+            },
+            {
+              "id": "3.4",
+              "name": "3.4 Electricity production and final energy consumption per bidding zone"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Energiindikatorer/3/3.4",
+          "published": "2026-05-20",
+          "score": 1.0,
+          "title": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__3__3.4/EN_IND3-4B.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-05-20",
+      "score": 1.0,
+      "title": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__3__3.4/EN_IND3-4B.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Share of electricity use per electricity area (including losses) 2021-, Percent by Bidding zone and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "Note: To include 2025 statistics in the indicator, Monthly electricity statistics are used instead of Annual energy statistics (Electricity, gas and district heating). The statistics are available from 2021. Information about the production of the statistics can be found on Statistics Sweden's website under documentation and under in-depth information.",
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency and Statistics Sweden, Monthly energy statistics"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "0": "SE1",
+                "1": "SE2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+            "description": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND3-4B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Share of electricity use per electricity area (including losses) 2021-, Percent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Percent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Share of electricity use per electricity area (including losses) 2021-, Percent by Bidding zone and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "Note: To include 2025 statistics in the indicator, Monthly electricity statistics are used instead of Annual energy statistics (Electricity, gas and district heating). The statistics are available from 2021. Information about the production of the statistics can be found on Statistics Sweden's website under documentation and under in-depth information.",
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency and Statistics Sweden, Monthly energy statistics"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "2": "SE3",
+                "3": "SE4"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+            "description": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND3-4B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Share of electricity use per electricity area (including losses) 2021-, Percent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Percent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Share of electricity use per electricity area (including losses) 2021-, Percent by Bidding zone and Year",
+        "source": "Swedish Energy Agency",
+        "updated": "2026-05-20T07:00:00Z",
+        "note": [
+          "Note: To include 2025 statistics in the indicator, Monthly electricity statistics are used instead of Annual energy statistics (Electricity, gas and district heating). The statistics are available from 2021. Information about the production of the statistics can be found on Statistics Sweden's website under documentation and under in-depth information.",
+          "<A HREF='https://www.energimyndigheten.se/energisystem-och-analys/nulaget-i-energisystemet/energiindikatorer/' >More information about Energy indicators</A>",
+          "Source: The Swedish Energy Agency and Statistics Sweden, Monthly energy statistics"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Elområde": {
+            "label": "Bidding zone",
+            "category": {
+              "label": {
+                "0": "SE1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+            "description": "Share of electricity use per electricity area (including losses) 2021-, Percent",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Elområde"
+            ],
+            "matrix": "EN_IND3-4B",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Statistik@energimyndigheten.se,+46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Share of electricity use per electricity area (including losses) 2021-, Percent"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Percent",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Elområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

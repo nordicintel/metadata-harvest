@@ -1,0 +1,874 @@
+{
+  "key": "energi/1_EN0115_1.px/en",
+  "identifier": "1_EN0115_1.px",
+  "language": "en",
+  "updated": "2024-09-03",
+  "retrieved_at": "2026-10-17T06:57:44.553211+00:00",
+  "responses": {
+    "metadata": {
+      "title": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+      "variables": [
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "valueTexts": [
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"
+          ],
+          "time": true
+        },
+        {
+          "code": "Bränsletyp",
+          "text": "Fuel type",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Diesel",
+            "Light fuel oil",
+            "Gasoline",
+            "LPG",
+            "Total"
+          ]
+        },
+        {
+          "code": "Enhet",
+          "text": "Unit",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "m3",
+            "Tonne",
+            "MWh"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Fiskesektorns_energianvandning/1_EN0115_1.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Fiskesektorns_energianvandning",
+          "name": "Energy consumption in fishery sector"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "1_EN0115_1.px",
+      "id": "1_EN0115_1.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Fiskesektorns_energianvandning",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Fiskesektorns_energianvandning/1_EN0115_1.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Fiskesektorns_energianvandning",
+              "name": "Energy consumption in fishery sector"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Fiskesektorns_energianvandning",
+          "published": "2024-09-03",
+          "score": 1.0,
+          "title": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Fiskesektorns_energianvandning/1_EN0115_1.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2024-09-03",
+      "score": 1.0,
+      "title": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Fiskesektorns_energianvandning/1_EN0115_1.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005- by Year, Fuel type and Unit",
+        "source": "Sweden energy agency",
+        "updated": "2024-09-03T06:00:00Z",
+        "note": [
+          "Teckenförklaring\r\n0 : Större än 0 men mindre än 0,5\r\n-  : Noll\r\n.. : Uppgift inte tillgänglig, för osäker för att anges eller borttagen av sekretesskäl\r\n"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005",
+                "1": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsletyp": {
+            "label": "Fuel type",
+            "category": {
+              "label": {
+                "0": "Diesel",
+                "1": "Light fuel oil"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3",
+                "1": "Tonne"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "description": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsletyp",
+              "Enhet"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0115_1",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Harrysson, Tel: +46(0)16-5420632, E-post: johan.harrysson@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Bränsletyp",
+                  "Enhet"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0",
+                    "1"
+                  ],
+                  "Bränsletyp": [
+                    "0",
+                    "1"
+                  ],
+                  "Enhet": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "1": "-",
+                  "3": "-",
+                  "5": "-",
+                  "7": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "M3, tonne, MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005- by Year, Fuel type and Unit",
+        "source": "Sweden energy agency",
+        "updated": "2024-09-03T06:00:00Z",
+        "note": [
+          "Teckenförklaring\r\n0 : Större än 0 men mindre än 0,5\r\n-  : Noll\r\n.. : Uppgift inte tillgänglig, för osäker för att anges eller borttagen av sekretesskäl\r\n"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2007",
+                "3": "2008",
+                "4": "2009",
+                "5": "2010",
+                "6": "2011",
+                "7": "2012",
+                "8": "2013",
+                "9": "2014",
+                "10": "2015",
+                "11": "2016",
+                "12": "2017",
+                "13": "2018",
+                "14": "2019",
+                "15": "2020",
+                "16": "2021",
+                "17": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsletyp": {
+            "label": "Fuel type",
+            "category": {
+              "label": {
+                "0": "Diesel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "description": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsletyp",
+              "Enhet"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0115_1",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Harrysson, Tel: +46(0)16-5420632, E-post: johan.harrysson@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Bränsletyp",
+                  "Enhet"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17"
+                  ],
+                  "Bränsletyp": [
+                    "0"
+                  ],
+                  "Enhet": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "10": "-",
+                  "11": "-",
+                  "12": "-",
+                  "13": "-",
+                  "14": "-",
+                  "15": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "M3, tonne, MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005- by Year, Fuel type and Unit",
+        "source": "Sweden energy agency",
+        "updated": "2024-09-03T06:00:00Z",
+        "note": [
+          "Teckenförklaring\r\n0 : Större än 0 men mindre än 0,5\r\n-  : Noll\r\n.. : Uppgift inte tillgänglig, för osäker för att anges eller borttagen av sekretesskäl\r\n"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsletyp": {
+            "label": "Fuel type",
+            "category": {
+              "label": {
+                "2": "Gasoline",
+                "3": "LPG",
+                "4": "Total"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "0": "m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "description": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsletyp",
+              "Enhet"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0115_1",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Harrysson, Tel: +46(0)16-5420632, E-post: johan.harrysson@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Bränsletyp",
+                  "Enhet"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0"
+                  ],
+                  "Bränsletyp": [
+                    "2",
+                    "3",
+                    "4"
+                  ],
+                  "Enhet": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "1": "-",
+                  "2": "-"
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "M3, tonne, MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005- by Year, Fuel type and Unit",
+        "source": "Sweden energy agency",
+        "updated": "2024-09-03T06:00:00Z",
+        "note": [
+          "Teckenförklaring\r\n0 : Större än 0 men mindre än 0,5\r\n-  : Noll\r\n.. : Uppgift inte tillgänglig, för osäker för att anges eller borttagen av sekretesskäl\r\n"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsletyp": {
+            "label": "Fuel type",
+            "category": {
+              "label": {
+                "0": "Diesel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Unit",
+            "category": {
+              "label": {
+                "2": "MWh"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "description": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsletyp",
+              "Enhet"
+            ],
+            "stub": [
+              "År"
+            ],
+            "matrix": "EN0115_1",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Johan Harrysson, Tel: +46(0)16-5420632, E-post: johan.harrysson@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "The fishing sector's final energy use (excl. transport) broken down by fuel type, 2005-"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "M3, tonne, MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Bränsletyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17"
+              ]
+            }
+          },
+          {
+            "code": "Bränsletyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Bränsletyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Bränsletyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

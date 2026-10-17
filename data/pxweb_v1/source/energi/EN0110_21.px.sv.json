@@ -1,0 +1,475 @@
+{
+  "key": "energi/EN0110_21.px/sv",
+  "identifier": "EN0110_21.px",
+  "language": "sv",
+  "updated": "2024-10-08",
+  "retrieved_at": "2026-10-17T07:05:50.486459+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+      "variables": [
+        {
+          "code": "Län",
+          "text": "Län",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "Riket",
+            "Stockholms län",
+            "Uppsala län",
+            "Södermanlands län",
+            "Östergötlands län",
+            "Jönköpings län",
+            "Kronobergs län",
+            "Kalmar län",
+            "Gotlands län",
+            "Blekinge län",
+            "Skåne län",
+            "Hallands län",
+            "Västra Götalands län",
+            "Värmlands län",
+            "Örebro län",
+            "Västmanlands län",
+            "Dalarnas län",
+            "Gävleborgs län",
+            "Västernorrlands län",
+            "Jämtlands län",
+            "Västerbottens län",
+            "Norrbottens län"
+          ]
+        },
+        {
+          "code": "Enhet",
+          "text": "Enhet",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal hus, 1000 tal",
+            "Area 1000m2"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Mått",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Värde",
+            "Felmarginal ±"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_21.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Officiell Energistatistik"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Bostäder och lokaler"
+        },
+        {
+          "id": "Fritidshus",
+          "name": "Energistatistik i fritidshus"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0110_21.px",
+      "id": "EN0110_21.px",
+      "language": "sv",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_21.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Officiell Energistatistik"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Bostäder och lokaler"
+            },
+            {
+              "id": "Fritidshus",
+              "name": "Energistatistik i fritidshus"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+          "published": "2024-10-08",
+          "score": 1.0,
+          "title": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_21.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2024-10-08",
+      "score": 1.0,
+      "title": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_21.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län efter Län, Enhet och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Län": {
+            "label": "Län",
+            "category": {
+              "label": {
+                "0": "Riket",
+                "1": "Stockholms län"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "Antal hus, 1000 tal",
+                "1": "Area 1000m2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Värde",
+                "1": "Felmarginal ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+            "description": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Mått"
+            ],
+            "stub": [
+              "Län"
+            ],
+            "matrix": "EN0110_21",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "1000 tal, 1000m2",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län efter Län, Enhet och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Län": {
+            "label": "Län",
+            "category": {
+              "label": {
+                "2": "Uppsala län",
+                "3": "Södermanlands län",
+                "4": "Östergötlands län",
+                "5": "Jönköpings län",
+                "6": "Kronobergs län",
+                "7": "Kalmar län",
+                "8": "Gotlands län",
+                "9": "Blekinge län",
+                "10": "Skåne län",
+                "11": "Hallands län",
+                "12": "Västra Götalands län",
+                "13": "Värmlands län",
+                "14": "Örebro län",
+                "15": "Västmanlands län",
+                "16": "Dalarnas län",
+                "17": "Gävleborgs län",
+                "18": "Västernorrlands län",
+                "19": "Jämtlands län",
+                "20": "Västerbottens län",
+                "21": "Norrbottens län"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "Antal hus, 1000 tal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Värde"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+            "description": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "Mått"
+            ],
+            "stub": [
+              "Län"
+            ],
+            "matrix": "EN0110_21",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Antal fritidshus och uppvärmd area per län"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "1000 tal, 1000m2",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

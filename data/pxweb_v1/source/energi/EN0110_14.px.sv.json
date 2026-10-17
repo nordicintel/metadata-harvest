@@ -1,0 +1,659 @@
+{
+  "key": "energi/EN0110_14.px/sv",
+  "identifier": "EN0110_14.px",
+  "language": "sv",
+  "updated": "2024-10-08",
+  "retrieved_at": "2026-10-17T07:04:55.350707+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+      "variables": [
+        {
+          "code": "Uppvärmningssätt",
+          "text": "Uppvärmningssätt",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "valueTexts": [
+            "Alla uppvärmningssätt",
+            "Enbart elvärme (d)",
+            "Enbart elvärme (v)",
+            "Biobränsle och el (d)",
+            "Biobränsle och el (v)",
+            "Enbart biobränsle",
+            "Enbart kamin",
+            "Enbart berg/jord/sjöv.pump",
+            "Berg/jord/sjöv.pump i kombination",
+            "Enbart luft-luftvärmepump",
+            "Luft-luftvärmepump i kombination",
+            "Enbart fjärrvärme",
+            "Fjärrvärme i kombination",
+            "Olja enbart och i kombination med annat",
+            "Övrigt",
+            "Ingen uppvärmning"
+          ]
+        },
+        {
+          "code": "Titel",
+          "text": "Titel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Total Miljoner kronor",
+            "Genomsnittlig per hus, kronor",
+            "Genomsnitt per kvadratmeter, kr/m2",
+            "Genomsnitt per förbrukad kWh, öre/kWh"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Mått",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Värde",
+            "Felmarginal ±"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_14.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Officiell Energistatistik"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Bostäder och lokaler"
+        },
+        {
+          "id": "Fritidshus",
+          "name": "Energistatistik i fritidshus"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0110_14.px",
+      "id": "EN0110_14.px",
+      "language": "sv",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_14.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Officiell Energistatistik"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Bostäder och lokaler"
+            },
+            {
+              "id": "Fritidshus",
+              "name": "Energistatistik i fritidshus"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+          "published": "2024-10-08",
+          "score": 1.0,
+          "title": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_14.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2024-10-08",
+      "score": 1.0,
+      "title": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_14.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Fritidshus 2023: Uppvärmningssätt, kostnad efter Uppvärmningssätt, Titel och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "(d) = direktverkande el, (v) = vatteburen el inkl. frånlufstvärmepump. Som biobränsle räknas ved och pellets. Eldning i kamin räknas som biobränsle endast om förbrukningen överstiger 5 kWh / dag.",
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Uppvärmningssätt",
+            "category": {
+              "label": {
+                "0": "Alla uppvärmningssätt",
+                "1": "Enbart elvärme (d)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Titel",
+            "category": {
+              "label": {
+                "0": "Total Miljoner kronor",
+                "1": "Genomsnittlig per hus, kronor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Värde",
+                "1": "Felmarginal ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+            "description": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Mått"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_14",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Uppvärmningssätt, kostnad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Miljoner kronor,kronor,kr/m2,öre/kWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Fritidshus 2023: Uppvärmningssätt, kostnad efter Uppvärmningssätt, Titel och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "(d) = direktverkande el, (v) = vatteburen el inkl. frånlufstvärmepump. Som biobränsle räknas ved och pellets. Eldning i kamin räknas som biobränsle endast om förbrukningen överstiger 5 kWh / dag.",
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Uppvärmningssätt",
+            "category": {
+              "label": {
+                "2": "Enbart elvärme (v)",
+                "3": "Biobränsle och el (d)",
+                "4": "Biobränsle och el (v)",
+                "5": "Enbart biobränsle",
+                "6": "Enbart kamin",
+                "7": "Enbart berg/jord/sjöv.pump",
+                "8": "Berg/jord/sjöv.pump i kombination",
+                "9": "Enbart luft-luftvärmepump",
+                "10": "Luft-luftvärmepump i kombination",
+                "11": "Enbart fjärrvärme",
+                "12": "Fjärrvärme i kombination",
+                "13": "Olja enbart och i kombination med annat",
+                "14": "Övrigt",
+                "15": "Ingen uppvärmning"
+              },
+              "note": {
+                "10": [
+                  "Exkl. berg/jord/sjöv.pump, fjärrvärme, olja"
+                ],
+                "12": [
+                  "Exkl. berg/jord/sjöv.pump"
+                ],
+                "13": [
+                  "Exkl. berg/jord/sjöv.pump, fjärrvärme"
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Titel",
+            "category": {
+              "label": {
+                "0": "Total Miljoner kronor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Värde"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+            "description": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Mått"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_14",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Uppvärmningssätt",
+                  "Titel",
+                  "Mått"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Uppvärmningssätt": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15"
+                  ],
+                  "Titel": [
+                    "0"
+                  ],
+                  "Mått": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "3": "..",
+                  "10": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Uppvärmningssätt, kostnad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Miljoner kronor,kronor,kr/m2,öre/kWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Fritidshus 2023: Uppvärmningssätt, kostnad efter Uppvärmningssätt, Titel och Mått",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "(d) = direktverkande el, (v) = vatteburen el inkl. frånlufstvärmepump. Som biobränsle räknas ved och pellets. Eldning i kamin räknas som biobränsle endast om förbrukningen överstiger 5 kWh / dag.",
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Uppvärmningssätt",
+            "category": {
+              "label": {
+                "0": "Alla uppvärmningssätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Titel",
+            "category": {
+              "label": {
+                "2": "Genomsnitt per kvadratmeter, kr/m2",
+                "3": "Genomsnitt per förbrukad kWh, öre/kWh"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Värde"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+            "description": "Fritidshus 2023: Uppvärmningssätt, kostnad",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Mått"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_14",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Uppvärmningssätt, kostnad"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Miljoner kronor,kronor,kr/m2,öre/kWh",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

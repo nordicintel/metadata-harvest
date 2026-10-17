@@ -1,0 +1,822 @@
+{
+  "key": "linkoping/AL36.px/sv",
+  "identifier": "AL36.px",
+  "language": "sv",
+  "updated": "2026-04-28",
+  "retrieved_at": "2026-10-17T06:58:47.791847+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "valueTexts": [
+            "2015-03-31",
+            "2016-03-31",
+            "2017-03-31",
+            "2018-03-31",
+            "2019-03-31",
+            "2020-03-31",
+            "2021-03-31",
+            "2022-03-31",
+            "2023-03-31",
+            "2024-03-31",
+            "2025-03-31",
+            "2026-03-31"
+          ]
+        },
+        {
+          "code": "födelseland",
+          "text": "födelseland",
+          "values": [
+            "Inrikes",
+            "Utrikes",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Sverige",
+            "Annat land",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "ålder",
+          "text": "ålder",
+          "values": [
+            "18-19",
+            "20-24",
+            "25-29",
+            "30-34",
+            "35-39",
+            "40-44",
+            "45-49",
+            "50-54",
+            "55-59",
+            "60-64",
+            "Tot"
+          ],
+          "valueTexts": [
+            "18-19 år",
+            "20-24 år",
+            "25-29 år",
+            "30-34 år",
+            "35-39 år",
+            "40-44 år",
+            "45-49 år",
+            "50-54 år",
+            "55-59 år",
+            "60-64 år",
+            "Totalt 18-64 år"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Båda könen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "kategori",
+          "text": "kategori",
+          "values": [
+            "Arblos",
+            "Progr",
+            "Övr",
+            "Tot",
+            "ArblosProgr"
+          ],
+          "valueTexts": [
+            "Öppet arbetslös",
+            "Program med aktivitetsstöd",
+            "Övriga",
+            "Totalt",
+            "Summa öppet arbetslösa eller i program med aktivitetsstöd"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Arbetsmarknad/AL36.px",
+      "category_path": [
+        {
+          "id": "Arbetsmarknad",
+          "name": "Arbetsmarknad"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "AL36.px",
+      "id": "AL36.px",
+      "language": "sv",
+      "path": "/Arbetsmarknad",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Arbetsmarknad/AL36.px",
+          "category_path": [
+            {
+              "id": "Arbetsmarknad",
+              "name": "Arbetsmarknad"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Arbetsmarknad",
+          "published": "2026-04-28",
+          "score": 1.0,
+          "title": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Arbetsmarknad/AL36.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-04-28",
+      "score": 1.0,
+      "title": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Arbetsmarknad/AL36.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T08:58:47.0756407+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015-03-31",
+                "2016": "2016-03-31"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "Inrikes": "Sverige",
+                "Utrikes": "Annat land"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "18-19": "18-19 år",
+                "20-24": "20-24 år"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "kategori": {
+            "label": "kategori",
+            "category": {
+              "label": {
+                "Arblos": "Öppet arbetslös",
+                "Progr": "Program med aktivitetsstöd"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T08:58:47.2318912+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017-03-31",
+                "2018": "2018-03-31",
+                "2019": "2019-03-31",
+                "2020": "2020-03-31",
+                "2021": "2021-03-31",
+                "2022": "2022-03-31",
+                "2023": "2023-03-31",
+                "2024": "2024-03-31",
+                "2025": "2025-03-31",
+                "2026": "2026-03-31"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "Inrikes": "Sverige"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "18-19": "18-19 år"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "kategori": {
+            "label": "kategori",
+            "category": {
+              "label": {
+                "Arblos": "Öppet arbetslös"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T08:58:47.3569018+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015-03-31"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "18-19": "18-19 år"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "kategori": {
+            "label": "kategori",
+            "category": {
+              "label": {
+                "Arblos": "Öppet arbetslös"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T08:58:47.4662815+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015-03-31"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "Inrikes": "Sverige"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "25-29": "25-29 år",
+                "30-34": "30-34 år",
+                "35-39": "35-39 år",
+                "40-44": "40-44 år",
+                "45-49": "45-49 år",
+                "50-54": "50-54 år",
+                "55-59": "55-59 år",
+                "60-64": "60-64 år",
+                "Tot": "Totalt 18-64 år"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "kategori": {
+            "label": "kategori",
+            "category": {
+              "label": {
+                "Arblos": "Öppet arbetslös"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T08:58:47.5912708+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015-03-31"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "Inrikes": "Sverige"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "18-19": "18-19 år"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Båda könen"
+              }
+            }
+          },
+          "kategori": {
+            "label": "kategori",
+            "category": {
+              "label": {
+                "Arblos": "Öppet arbetslös"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Arbetslöshet efter tid, födelseland, ålder, kön och kategori",
+        "source": "SCB (OSDB).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.       ",
+        "updated": "2026-10-17T08:58:47.7162722+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015-03-31"
+              }
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "Inrikes": "Sverige"
+              }
+            }
+          },
+          "ålder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "18-19": "18-19 år"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "kategori": {
+            "label": "kategori",
+            "category": {
+              "label": {
+                "Övr": "Övriga",
+                "Tot": "Totalt",
+                "ArblosProgr": "Summa öppet arbetslösa eller i program med aktivitetsstöd"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inrikes",
+                "Utrikes"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-19",
+                "20-24"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Arblos",
+                "Progr"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025",
+                "2026"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inrikes"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-19"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Arblos"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-19"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Arblos"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inrikes"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "25-29",
+                "30-34",
+                "35-39",
+                "40-44",
+                "45-49",
+                "50-54",
+                "55-59",
+                "60-64",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Arblos"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inrikes"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-19"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Arblos"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Inrikes"
+              ]
+            }
+          },
+          {
+            "code": "ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-19"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Övr",
+                "Tot",
+                "ArblosProgr"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,605 @@
+{
+  "key": "domstol/03_Verksamhetsmal_HD.px/sv",
+  "identifier": "03_Verksamhetsmal_HD.px",
+  "language": "sv",
+  "updated": "2026-02-20",
+  "retrieved_at": "2026-10-17T07:06:33.165733+00:00",
+  "responses": {
+    "metadata": {
+      "title": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader). År 2013-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Domstol",
+          "values": [
+            "Supreme Court"
+          ],
+          "valueTexts": [
+            "Högsta domstolen"
+          ]
+        },
+        {
+          "code": "Verksamhetsmålskategori",
+          "text": "Verksamhetsmålskategori",
+          "values": [
+            "Cases which have been given a decision about leave to appeal",
+            "Cases determined which have been granted leave to appeal",
+            "Cases determined not requiring leave to appeal (extraordinary cases)"
+          ],
+          "valueTexts": [
+            "Dispensmål",
+            "Dispenserade mål",
+            "Extraordinära mål"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "valueTexts": [
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Verksamhetsmal/03_Verksamhetsmal_HD.px",
+      "category_path": [
+        {
+          "id": "Verksamhetsmal",
+          "name": "Verksamhetsmål (handläggningstider)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "03_Verksamhetsmal_HD.px",
+      "id": "03_Verksamhetsmal_HD.px",
+      "language": "sv",
+      "path": "/Verksamhetsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Verksamhetsmal/03_Verksamhetsmal_HD.px",
+          "category_path": [
+            {
+              "id": "Verksamhetsmal",
+              "name": "Verksamhetsmål (handläggningstider)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Verksamhetsmal",
+          "published": "2026-02-20",
+          "score": 1.0,
+          "title": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader). År 2013-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Verksamhetsmal/03_Verksamhetsmal_HD.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-20",
+      "score": 1.0,
+      "title": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader). År 2013-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Verksamhetsmal/03_Verksamhetsmal_HD.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader, indelade i verksamhetsmålskategorier, som Högsta domstolen har satt egna målsättningar för. Tiderna mäts i 90:e percentilen i antal månader för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för dispensmål.",
+          "De senast satta målsättningarna är följande antal månader:",
+          "Dispensmål 4 månader. Tiden mäts för avgjorda mål från inkommandedag fram till beslut om prövningstillstånd (PT).",
+          "Dispenserade mål 18 månader. Tiden mäts för avgjorda mål som fått beviljat PT (prövningstillstånd).",
+          "Extraordinära mål 10 månader. Tiden mäts för avgjorda mål som inte omfattas av PT (prövningstillstånd).",
+          "Förtursmål exkluderas ur samtliga tre verksamhetsmålskategorier. Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Cases which have been given a decision about leave to appeal": "Dispensmål",
+                "Cases determined which have been granted leave to appeal": "Dispenserade mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2013",
+                "1": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true,
+            "3": true,
+            "4": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader)",
+            "description": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader). År 2013-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030182",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader, indelade i verksamhetsmålskategorier, som Högsta domstolen har satt egna målsättningar för. Tiderna mäts i 90:e percentilen i antal månader för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för dispensmål.",
+          "De senast satta målsättningarna är följande antal månader:",
+          "Dispensmål 4 månader. Tiden mäts för avgjorda mål från inkommandedag fram till beslut om prövningstillstånd (PT).",
+          "Dispenserade mål 18 månader. Tiden mäts för avgjorda mål som fått beviljat PT (prövningstillstånd).",
+          "Extraordinära mål 10 månader. Tiden mäts för avgjorda mål som inte omfattas av PT (prövningstillstånd).",
+          "Förtursmål exkluderas ur samtliga tre verksamhetsmålskategorier. Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Cases determined not requiring leave to appeal (extraordinary cases)": "Extraordinära mål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true,
+            "3": true,
+            "4": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader)",
+            "description": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader). År 2013-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030182",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstider i månader, indelade i verksamhetsmålskategorier, som Högsta domstolen har satt egna målsättningar för. Tiderna mäts i 90:e percentilen i antal månader för mål som avgjorts under aktuell tidsperiod från inkommandedag till avgjortdag, förutom för dispensmål.",
+          "De senast satta målsättningarna är följande antal månader:",
+          "Dispensmål 4 månader. Tiden mäts för avgjorda mål från inkommandedag fram till beslut om prövningstillstånd (PT).",
+          "Dispenserade mål 18 månader. Tiden mäts för avgjorda mål som fått beviljat PT (prövningstillstånd).",
+          "Extraordinära mål 10 månader. Tiden mäts för avgjorda mål som inte omfattas av PT (prövningstillstånd).",
+          "Förtursmål exkluderas ur samtliga tre verksamhetsmålskategorier. Förtursmål är brottmål som skall hanteras skyndsamt. Det är brottmål med förekomst av minst en häktad och/eller minderårig aktör (15-17 år)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Court": "Högsta domstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Cases which have been given a decision about leave to appeal": "Dispensmål"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2015",
+                "3": "2016",
+                "4": "2017",
+                "5": "2018",
+                "6": "2019",
+                "7": "2020",
+                "8": "2021",
+                "9": "2022",
+                "10": "2023",
+                "11": "2024",
+                "12": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true,
+            "3": true,
+            "4": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader)",
+            "description": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader). År 2013-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030182",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "03. Verksamhetsmål i Högsta domstolen (handläggningstid 90-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Cases which have been given a decision about leave to appeal",
+                "Cases determined which have been granted leave to appeal"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Cases determined not requiring leave to appeal (extraordinary cases)"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Cases which have been given a decision about leave to appeal"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

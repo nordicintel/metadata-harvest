@@ -1,0 +1,532 @@
+{
+  "key": "kulturanalys/FPB_TOPP.Px/sv",
+  "identifier": "FPB_TOPP.Px",
+  "language": "sv",
+  "updated": "2026-09-30",
+  "retrieved_at": "2026-10-17T06:58:10.030780+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Besök, filmer och visningar efter besöksantal och år",
+      "variables": [
+        {
+          "code": "year",
+          "text": "år",
+          "values": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "grp2",
+          "text": "toppgruppering filmer",
+          "values": [
+            "10 mest besökta filmerna",
+            "10-20 mest besökta filmerna",
+            "20-30 mest besökta filmerna",
+            "30-40 mest besökta filmerna",
+            "40-50 mest besökta filmerna",
+            "50-60 mest besökta filmerna",
+            "60-70 mest besökta filmerna",
+            "70-80 mest besökta filmerna",
+            "80-90 mest besökta filmerna",
+            "90-100 mest besökta filmerna",
+            "Övriga filmer",
+            "Totalt"
+          ],
+          "valueTexts": [
+            "10 mest besökta filmerna",
+            "10-20 mest besökta filmerna",
+            "20-30 mest besökta filmerna",
+            "30-40 mest besökta filmerna",
+            "40-50 mest besökta filmerna",
+            "50-60 mest besökta filmerna",
+            "60-70 mest besökta filmerna",
+            "70-80 mest besökta filmerna",
+            "80-90 mest besökta filmerna",
+            "90-100 mest besökta filmerna",
+            "Övriga filmer",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "tablecontent",
+          "text": "tabellinnehåll",
+          "values": [
+            "uniquefilms",
+            "visits",
+            "showings"
+          ],
+          "valueTexts": [
+            "filmer",
+            "besök",
+            "visningar"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_TOPP.Px",
+      "category_path": [
+        {
+          "id": "Film på bio",
+          "name": "Film på bio"
+        },
+        {
+          "id": "Annan statistik",
+          "name": "Annan statistik"
+        }
+      ],
+      "database_id": "Statistikdatabas",
+      "dataset_code": "FPB_TOPP.Px",
+      "id": "FPB_TOPP.Px",
+      "language": "sv",
+      "path": "/Film på bio/Annan statistik",
+      "paths": [
+        {
+          "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_TOPP.Px",
+          "category_path": [
+            {
+              "id": "Film på bio",
+              "name": "Film på bio"
+            },
+            {
+              "id": "Annan statistik",
+              "name": "Annan statistik"
+            }
+          ],
+          "database_id": "Statistikdatabas",
+          "path": "/Film på bio/Annan statistik",
+          "published": "2026-09-30",
+          "score": 1.0,
+          "title": "Besök, filmer och visningar efter besöksantal och år (O)",
+          "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_TOPP.Px/"
+        }
+      ],
+      "provider_code": "kulturanalys",
+      "published": "2026-09-30",
+      "score": 1.0,
+      "title": "Besök, filmer och visningar efter besöksantal och år (O)",
+      "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_TOPP.Px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Besök, filmer och visningar efter år, toppgruppering filmer och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "toppgruppering filmer",
+            "category": {
+              "label": {
+                "10 mest besökta filmerna": "10 mest besökta filmerna",
+                "10-20 mest besökta filmerna": "10-20 mest besökta filmerna"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "uniquefilms": "filmer",
+                "visits": "besök"
+              },
+              "unit": {
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, toppgruppering filmer och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2025": "2025"
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "toppgruppering filmer",
+            "category": {
+              "label": {
+                "10 mest besökta filmerna": "10 mest besökta filmerna"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "uniquefilms": "filmer"
+              },
+              "unit": {
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, toppgruppering filmer och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "toppgruppering filmer",
+            "category": {
+              "label": {
+                "20-30 mest besökta filmerna": "20-30 mest besökta filmerna",
+                "30-40 mest besökta filmerna": "30-40 mest besökta filmerna",
+                "40-50 mest besökta filmerna": "40-50 mest besökta filmerna",
+                "50-60 mest besökta filmerna": "50-60 mest besökta filmerna",
+                "60-70 mest besökta filmerna": "60-70 mest besökta filmerna",
+                "70-80 mest besökta filmerna": "70-80 mest besökta filmerna",
+                "80-90 mest besökta filmerna": "80-90 mest besökta filmerna",
+                "90-100 mest besökta filmerna": "90-100 mest besökta filmerna",
+                "Övriga filmer": "Övriga filmer",
+                "Totalt": "Totalt"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "uniquefilms": "filmer"
+              },
+              "unit": {
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, toppgruppering filmer och tabellinnehåll",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "toppgruppering filmer",
+            "category": {
+              "label": {
+                "10 mest besökta filmerna": "10 mest besökta filmerna"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "showings": "visningar"
+              },
+              "unit": {
+                "showings": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "10 mest besökta filmerna",
+                "10-20 mest besökta filmerna"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "uniquefilms",
+                "visits"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "10 mest besökta filmerna"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "uniquefilms"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-30 mest besökta filmerna",
+                "30-40 mest besökta filmerna",
+                "40-50 mest besökta filmerna",
+                "50-60 mest besökta filmerna",
+                "60-70 mest besökta filmerna",
+                "70-80 mest besökta filmerna",
+                "80-90 mest besökta filmerna",
+                "90-100 mest besökta filmerna",
+                "Övriga filmer",
+                "Totalt"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "uniquefilms"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "10 mest besökta filmerna"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "showings"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

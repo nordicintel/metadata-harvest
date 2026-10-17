@@ -1,0 +1,888 @@
+{
+  "key": "csn/ABSMD27.px/sv",
+  "identifier": "ABSMD27.px",
+  "language": "sv",
+  "updated": "2026-01-28T11:03:00",
+  "retrieved_at": "2026-10-17T07:00:21.979605+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+      "variables": [
+        {
+          "code": "Lånetyp",
+          "text": "Lånetyp",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Ordinarie studiemedel",
+            "Uppsagt studiemedel"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Skuldberäkningsdatum",
+          "text": "Skuldberäkningsdatum",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "valueTexts": [
+            "2009-01-01",
+            "2010-01-01",
+            "2011-01-01",
+            "2012-01-01",
+            "2013-01-01",
+            "2014-01-01",
+            "2015-01-01",
+            "2016-01-01",
+            "2017-01-01",
+            "2018-01-01",
+            "2019-01-01",
+            "2020-01-01",
+            "2021-01-01",
+            "2022-01-01",
+            "2023-01-01",
+            "2024-01-01",
+            "2025-01-01",
+            "2026-01-01"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Kvinnor",
+            "Män",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Antal personer, Ingående skuld",
+          "text": "Antal personer, Ingående skuld",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal personer",
+            "Belopp (MSEK)"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/AB/SM/ABSMD27.px",
+      "category_path": [
+        {
+          "id": "AB",
+          "name": "Studieskulder och inbetalning av studiestöd"
+        },
+        {
+          "id": "SM",
+          "name": "Studiemedel för lån utbetalda före 1989"
+        }
+      ],
+      "database_id": "CSNstat",
+      "dataset_code": "ABSMD27.px",
+      "id": "ABSMD27.px",
+      "language": "sv",
+      "path": "/AB/SM",
+      "paths": [
+        {
+          "api_url": "https://statistik.csn.se/PxWeb/api/v1/sv/CSNstat/AB/SM/ABSMD27.px",
+          "category_path": [
+            {
+              "id": "AB",
+              "name": "Studieskulder och inbetalning av studiestöd"
+            },
+            {
+              "id": "SM",
+              "name": "Studiemedel för lån utbetalda före 1989"
+            }
+          ],
+          "database_id": "CSNstat",
+          "path": "/AB/SM",
+          "published": "2026-01-28T11:03:00",
+          "score": 1.0,
+          "title": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+          "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__AB__SM/ABSMD27.px/"
+        }
+      ],
+      "provider_code": "csn",
+      "published": "2026-01-28T11:03:00",
+      "score": 1.0,
+      "title": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+      "web_url": "https://statistik.csn.se/PxWeb/pxweb/sv/CSNstat/CSNstat__AB__SM/ABSMD27.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 50,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-28T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Lånetypen studiemedel avser lån utbetalda före den 1 januari 1989. Från och med 2012-01-01 ingår låntagare som har fått sina lån inom lånetypen studiemedel uppsagda för omedelbar betalning i statistiken. Expeditions-, påminnelse- och tilläggsavgifter ingår endast från 2019-01-01 och framåt. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "note": [
+              "Visar vilken lånetyp som avses. Med lånetyp menas i denna tabell en fördelning mellan ordinarie studiemedel och uppsagt studiemedel."
+            ],
+            "category": {
+              "label": {
+                "0": "Totalt",
+                "1": "Ordinarie studiemedel"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ],
+                "1": [
+                  "Ordinarie studiemedel för lån utbetalda före 1989."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2009-01-01",
+                "1": "2010-01-01"
+              },
+              "note": {
+                "0": [
+                  "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+                ],
+                "1": [
+                  "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor",
+                "1": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer, Ingående skuld": {
+            "label": "Antal personer, Ingående skuld",
+            "category": {
+              "label": {
+                "0": "Antal personer",
+                "1": "Belopp (MSEK)"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ],
+                "1": [
+                  "Ingående skuld i miljoner kronor. I databasen är det möjligt att välja 1-6 decimaler. Notera att det val av decimaler som görs följer med vid export till andra program, vilket innebär att underliggande decimaler inte redovisas. På grund av avrundningar kan det uppstå differenser mellan totalsumman och delsummorna vid en sammanräkning."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABSMD27",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Studiemedel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer, Miljoner SEK",
+                      "decimals": 6
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-28T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Lånetypen studiemedel avser lån utbetalda före den 1 januari 1989. Från och med 2012-01-01 ingår låntagare som har fått sina lån inom lånetypen studiemedel uppsagda för omedelbar betalning i statistiken. Expeditions-, påminnelse- och tilläggsavgifter ingår endast från 2019-01-01 och framåt. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "note": [
+              "Visar vilken lånetyp som avses. Med lånetyp menas i denna tabell en fördelning mellan ordinarie studiemedel och uppsagt studiemedel."
+            ],
+            "category": {
+              "label": {
+                "2": "Uppsagt studiemedel"
+              },
+              "note": {
+                "2": [
+                  "Uppsagt studiemedel för lån utbetalda före 1989."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2009-01-01"
+              },
+              "note": {
+                "0": [
+                  "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer, Ingående skuld": {
+            "label": "Antal personer, Ingående skuld",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABSMD27",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Studiemedel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer, Miljoner SEK",
+                      "decimals": 6
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-28T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Lånetypen studiemedel avser lån utbetalda före den 1 januari 1989. Från och med 2012-01-01 ingår låntagare som har fått sina lån inom lånetypen studiemedel uppsagda för omedelbar betalning i statistiken. Expeditions-, påminnelse- och tilläggsavgifter ingår endast från 2019-01-01 och framåt. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "note": [
+              "Visar vilken lånetyp som avses. Med lånetyp menas i denna tabell en fördelning mellan ordinarie studiemedel och uppsagt studiemedel."
+            ],
+            "category": {
+              "label": {
+                "0": "Totalt"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "2": "2011-01-01",
+                "3": "2012-01-01",
+                "4": "2013-01-01",
+                "5": "2014-01-01",
+                "6": "2015-01-01",
+                "7": "2016-01-01",
+                "8": "2017-01-01",
+                "9": "2018-01-01",
+                "10": "2019-01-01",
+                "11": "2020-01-01",
+                "12": "2021-01-01",
+                "13": "2022-01-01",
+                "14": "2023-01-01",
+                "15": "2024-01-01",
+                "16": "2025-01-01",
+                "17": "2026-01-01"
+              },
+              "note": {
+                "2": [
+                  "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+                ],
+                "3": [
+                  "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Antal personer, Ingående skuld": {
+            "label": "Antal personer, Ingående skuld",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABSMD27",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Studiemedel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer, Miljoner SEK",
+                      "decimals": 6
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Studiemedel efter Lånetyp, Skuldberäkningsdatum, Kön och Antal personer, Ingående skuld",
+        "source": "Centrala studiestödsnämnden, CSN.",
+        "updated": "2026-01-28T07:00:00Z",
+        "note": [
+          "Fotnoter med tabellförklaringar visas längst ned under rubriken 'Fotnoter'.",
+          "Lånetypen studiemedel avser lån utbetalda före den 1 januari 1989. Från och med 2012-01-01 ingår låntagare som har fått sina lån inom lånetypen studiemedel uppsagda för omedelbar betalning i statistiken. Expeditions-, påminnelse- och tilläggsavgifter ingår endast från 2019-01-01 och framåt. Personer vars hela skuld omfattas av skuldsanering ingår inte i statistiken. För mer information om regelverket, se csn.se."
+        ],
+        "dimension": {
+          "Lånetyp": {
+            "label": "Lånetyp",
+            "note": [
+              "Visar vilken lånetyp som avses. Med lånetyp menas i denna tabell en fördelning mellan ordinarie studiemedel och uppsagt studiemedel."
+            ],
+            "category": {
+              "label": {
+                "0": "Totalt"
+              },
+              "note": {
+                "0": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "0",
+              "show": "value"
+            }
+          },
+          "Skuldberäkningsdatum": {
+            "label": "Skuldberäkningsdatum",
+            "note": [
+              "Det skuldberäkningsdatum som avses."
+            ],
+            "category": {
+              "label": {
+                "0": "2009-01-01"
+              },
+              "note": {
+                "0": [
+                  "Enstaka personer som saknar uppgift om könstillhörighet ingår inte i statistiken."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "note": [
+              "Med kön avses det juridiska könet. Personer som har bytt juridiskt kön under tidsperioden kan förekomma i båda könskategorierna."
+            ],
+            "category": {
+              "label": {
+                "2": "Totalt"
+              },
+              "note": {
+                "2": [
+                  "Om 'Totalt' väljs redovisas nettototalen för alla, vilket innebär att varje person bara räknas en gång. Totaluppgifter i tabellerna svarar mot summan av samtliga värden som är möjliga att välja för en delpopulation eller en redovisningsgrupp. Totalen innebär alltså inte en summering av valda värden."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "2",
+              "show": "value"
+            }
+          },
+          "Antal personer, Ingående skuld": {
+            "label": "Antal personer, Ingående skuld",
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              },
+              "note": {
+                "0": [
+                  "Antal personer. Vid en fördelning på flera olika variabler kan personen vanligen förekomma på fler än ett ställe. Alla totaler är nettoräknade, vilket innebär att varje person bara räknas en gång. Tabellen har sekretessgranskats, vilket innebär att enskilda celler med antal färre än 3 har ersatts med dubbelprick '..'."
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "ABSMD27",
+            "subject-code": "Återbetalning"
+          },
+          "contact": [
+            {
+              "raw": "Har du frågor om officiell statistik, kontakta registrator@csn.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Studiemedel"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer, Miljoner SEK",
+                      "decimals": 6
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer, Ingående skuld",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer, Ingående skuld",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer, Ingående skuld",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Lånetyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Skuldberäkningsdatum",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Antal personer, Ingående skuld",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

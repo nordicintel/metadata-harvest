@@ -1,0 +1,631 @@
+{
+  "key": "energi/EN0102_11.px/en",
+  "identifier": "EN0102_11.px",
+  "language": "en",
+  "updated": "2025-06-10",
+  "retrieved_at": "2026-10-17T07:01:08.323818+00:00",
+  "responses": {
+    "metadata": {
+      "title": "One and two dwelling buildings: Number of buildings by size and county.",
+      "variables": [
+        {
+          "code": "Län",
+          "text": "County",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "valueTexts": [
+            "Sweden",
+            "Stockholms county",
+            "Uppsala county",
+            "Södermanlands county",
+            "Östergötlands county",
+            "Jönköpings county",
+            "Kronobergs county",
+            "Kalmar county",
+            "Gotlands county",
+            "Blekinge county",
+            "Skåne county",
+            "Hallands county",
+            "Västra Götalands county",
+            "Värmlands county",
+            "Örebro county",
+            "Västmanlands county",
+            "Dalarnas county",
+            "Gävleborgs county",
+            "Västernorrlands county",
+            "Jämtlands county",
+            "Västerbottens county",
+            "Norrbottens county"
+          ]
+        },
+        {
+          "code": "Storleksklass",
+          "text": "Size class",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "0-50 m3",
+            "51-100 m3",
+            "101-150 m3",
+            "151-200 m3",
+            "201- m3",
+            "Number of one- and two-dwelling buildings"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Mått",
+          "values": [
+            "0"
+          ],
+          "valueTexts": [
+            "Thousands"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_11.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Dwellings and non-residential premises"
+        },
+        {
+          "id": "Smahus",
+          "name": "Energy statistics for One and two dwelling buildings"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0102_11.px",
+      "id": "EN0102_11.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_11.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Dwellings and non-residential premises"
+            },
+            {
+              "id": "Smahus",
+              "name": "Energy statistics for One and two dwelling buildings"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+          "published": "2025-06-10",
+          "score": 1.0,
+          "title": "One and two dwelling buildings: Number of buildings by size and county.",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_11.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-06-10",
+      "score": 1.0,
+      "title": "One and two dwelling buildings: Number of buildings by size and county.",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_11.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "One and two dwelling buildings: Number of buildings by size and county. by County, Size class and Mått",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Mått"
+          ]
+        },
+        "dimension": {
+          "Län": {
+            "label": "County",
+            "category": {
+              "label": {
+                "0": "Sweden",
+                "1": "Stockholms county"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Storleksklass": {
+            "label": "Size class",
+            "category": {
+              "label": {
+                "0": "0-50 m3",
+                "1": "51-100 m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Thousands"
+              },
+              "unit": {
+                "0": {
+                  "base": "Number",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling buildings: Number of buildings by size and county.",
+            "description": "One and two dwelling buildings: Number of buildings by size and county.",
+            "descriptiondefault": true,
+            "heading": [
+              "Storleksklass",
+              "Mått"
+            ],
+            "stub": [
+              "Län"
+            ],
+            "matrix": "EN0102_11",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      },
+      {
+        "label": "One and two dwelling buildings: Number of buildings by size and county. by County, Size class and Mått",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Mått"
+          ]
+        },
+        "dimension": {
+          "Län": {
+            "label": "County",
+            "category": {
+              "label": {
+                "2": "Uppsala county",
+                "3": "Södermanlands county",
+                "4": "Östergötlands county",
+                "5": "Jönköpings county",
+                "6": "Kronobergs county",
+                "7": "Kalmar county",
+                "8": "Gotlands county",
+                "9": "Blekinge county",
+                "10": "Skåne county",
+                "11": "Hallands county",
+                "12": "Västra Götalands county",
+                "13": "Värmlands county",
+                "14": "Örebro county",
+                "15": "Västmanlands county",
+                "16": "Dalarnas county",
+                "17": "Gävleborgs county",
+                "18": "Västernorrlands county",
+                "19": "Jämtlands county",
+                "20": "Västerbottens county",
+                "21": "Norrbottens county"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Storleksklass": {
+            "label": "Size class",
+            "category": {
+              "label": {
+                "0": "0-50 m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Thousands"
+              },
+              "unit": {
+                "0": {
+                  "base": "Number",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling buildings: Number of buildings by size and county.",
+            "description": "One and two dwelling buildings: Number of buildings by size and county.",
+            "descriptiondefault": true,
+            "heading": [
+              "Storleksklass",
+              "Mått"
+            ],
+            "stub": [
+              "Län"
+            ],
+            "matrix": "EN0102_11",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Län",
+                  "Storleksklass",
+                  "Mått"
+                ],
+                "categories": {
+                  "Län": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21"
+                  ],
+                  "Storleksklass": [
+                    "0"
+                  ],
+                  "Mått": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": "_",
+                  "1": "..",
+                  "2": "..",
+                  "3": "..",
+                  "4": "..",
+                  "5": "..",
+                  "6": "..",
+                  "7": "..",
+                  "9": "..",
+                  "10": "..",
+                  "11": "..",
+                  "12": "_",
+                  "13": "_",
+                  "14": "..",
+                  "15": "..",
+                  "16": "..",
+                  "17": "..",
+                  "18": "..",
+                  "19": "_"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "One and two dwelling buildings: Number of buildings by size and county. by County, Size class and Mått",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Mått"
+          ]
+        },
+        "dimension": {
+          "Län": {
+            "label": "County",
+            "category": {
+              "label": {
+                "0": "Sweden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Storleksklass": {
+            "label": "Size class",
+            "category": {
+              "label": {
+                "2": "101-150 m3",
+                "3": "151-200 m3",
+                "4": "201- m3",
+                "5": "Number of one- and two-dwelling buildings"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "0": "Thousands"
+              },
+              "unit": {
+                "0": {
+                  "base": "Number",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling buildings: Number of buildings by size and county.",
+            "description": "One and two dwelling buildings: Number of buildings by size and county.",
+            "descriptiondefault": true,
+            "heading": [
+              "Storleksklass",
+              "Mått"
+            ],
+            "stub": [
+              "Län"
+            ],
+            "matrix": "EN0102_11",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Storleksklass",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21"
+              ]
+            }
+          },
+          {
+            "code": "Storleksklass",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Län",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Storleksklass",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

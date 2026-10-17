@@ -1,0 +1,571 @@
+{
+  "key": "energi/EN0110_28.px/sv",
+  "identifier": "EN0110_28.px",
+  "language": "sv",
+  "updated": "2024-10-08",
+  "retrieved_at": "2026-10-17T07:06:38.700985+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+      "variables": [
+        {
+          "code": "Uppvärmningssätt",
+          "text": "Uppvärmningssätt",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "valueTexts": [
+            "Samtliga",
+            "Elvärme",
+            "Luft-vattenvärmepump",
+            "Berg/jord/sjövärmepump",
+            "Solfångare",
+            "Vedeldning",
+            "Annat",
+            "Kombination av flera uppvärmningssätt"
+          ]
+        },
+        {
+          "code": "Titel",
+          "text": "Titel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "Minst en utrustning som ökar energianvändning",
+            "Egen uppvärmd inom- / utomhuspool",
+            "Spabad / jacuzzi / bubbelpool",
+            "Bad- / vattentunna",
+            "Bastu",
+            "Ingen utrustning som ökar energianvändning"
+          ]
+        },
+        {
+          "code": "Enhet",
+          "text": "Enhet",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "1000 tal",
+            "Felmarginal ±"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_28.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Officiell Energistatistik"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Bostäder och lokaler"
+        },
+        {
+          "id": "Fritidshus",
+          "name": "Energistatistik i fritidshus"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0110_28.px",
+      "id": "EN0110_28.px",
+      "language": "sv",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_28.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Officiell Energistatistik"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Bostäder och lokaler"
+            },
+            {
+              "id": "Fritidshus",
+              "name": "Energistatistik i fritidshus"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+          "published": "2024-10-08",
+          "score": 1.0,
+          "title": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_28.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2024-10-08",
+      "score": 1.0,
+      "title": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_28.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt efter Uppvärmningssätt, Titel och Enhet",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Uppvärmningssätt",
+            "category": {
+              "label": {
+                "0": "Samtliga",
+                "1": "Elvärme"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Titel",
+            "category": {
+              "label": {
+                "0": "Minst en utrustning som ökar energianvändning",
+                "1": "Egen uppvärmd inom- / utomhuspool"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "1000 tal",
+                "1": "Felmarginal ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+            "description": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Enhet"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_28",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "1000 tal",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt efter Uppvärmningssätt, Titel och Enhet",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Uppvärmningssätt",
+            "category": {
+              "label": {
+                "2": "Luft-vattenvärmepump",
+                "3": "Berg/jord/sjövärmepump",
+                "4": "Solfångare",
+                "5": "Vedeldning",
+                "6": "Annat",
+                "7": "Kombination av flera uppvärmningssätt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Titel",
+            "category": {
+              "label": {
+                "0": "Minst en utrustning som ökar energianvändning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "1000 tal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+            "description": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Enhet"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_28",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "1000 tal",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt efter Uppvärmningssätt, Titel och Enhet",
+        "source": "Energimyndigheten",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Uppvärmningssätt",
+            "category": {
+              "label": {
+                "0": "Samtliga"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Titel",
+            "category": {
+              "label": {
+                "2": "Spabad / jacuzzi / bubbelpool",
+                "3": "Bad- / vattentunna",
+                "4": "Bastu",
+                "5": "Ingen utrustning som ökar energianvändning"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "0": "1000 tal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+            "description": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Enhet"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_28",
+            "subject-code": "ENE",
+            "subject-area": "Energi"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Fritidshus 2023: Hus med energikrävande utrustning per uppvärmningssätt"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "1000 tal",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

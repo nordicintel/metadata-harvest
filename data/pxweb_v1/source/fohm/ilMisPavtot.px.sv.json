@@ -1,0 +1,811 @@
+{
+  "key": "fohm/ilMisPavtot.px/sv",
+  "identifier": "ilMisPavtot.px",
+  "language": "sv",
+  "updated": "2026-02-13",
+  "retrieved_at": "2026-10-17T07:47:54.149529+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson efter Region, Mått, Kön och År",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Riket"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Mått",
+          "text": "Mått",
+          "values": [
+            "01",
+            "02",
+            "03"
+          ],
+          "valueTexts": [
+            "Värde",
+            "Konfidensintervall, nedre gräns",
+            "Konfidensintervall, övre gräns"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "Kvinnor & Män",
+            "Kvinnor",
+            "Män"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/Andts/ilMisPavtot.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTS-indikatorer (Indikatorlabbet)"
+        },
+        {
+          "id": "Andts",
+          "name": "ANDTS"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilMisPavtot.px",
+      "id": "ilMisPavtot.px",
+      "language": "sv",
+      "path": "/ANDTS/Andts",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/ANDTS/Andts/ilMisPavtot.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTS-indikatorer (Indikatorlabbet)"
+            },
+            {
+              "id": "Andts",
+              "name": "ANDTS"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Andts",
+          "published": "2026-02-13",
+          "score": 1.0,
+          "title": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Andts/ilMisPavtot.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-02-13",
+      "score": 1.0,
+      "title": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Andts/ilMisPavtot.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson efter Region, Mått, Kön och År",
+        "source": "Brottsförebyggande rådet (Brå)",
+        "updated": "2026-02-13T13:42:00Z",
+        "note": [
+          "Självrapporterad utsatthet för misshandel där gärningspersonen bedömdes vara påverkad av alkohol eller någon drog vid tillfället. Andel (%) händelser av totalt antal händelser av misshandel (bland befolkningen 16-84 år). Indikatorn redovisas på riksnivå samt efter kön. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Andts/ilMisPavtot.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "01": "Värde",
+                "02": "Konfidensintervall, nedre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män",
+                "5": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "description": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "descriptiondefault": false,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilMisPavtot",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol, Narkotika, Dopning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson efter Region, Mått, Kön och År",
+        "source": "Brottsförebyggande rådet (Brå)",
+        "updated": "2026-02-13T13:42:00Z",
+        "note": [
+          "Självrapporterad utsatthet för misshandel där gärningspersonen bedömdes vara påverkad av alkohol eller någon drog vid tillfället. Andel (%) händelser av totalt antal händelser av misshandel (bland befolkningen 16-84 år). Indikatorn redovisas på riksnivå samt efter kön. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Andts/ilMisPavtot.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "03": "Konfidensintervall, övre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "description": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "descriptiondefault": false,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilMisPavtot",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol, Narkotika, Dopning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson efter Region, Mått, Kön och År",
+        "source": "Brottsförebyggande rådet (Brå)",
+        "updated": "2026-02-13T13:42:00Z",
+        "note": [
+          "Självrapporterad utsatthet för misshandel där gärningspersonen bedömdes vara påverkad av alkohol eller någon drog vid tillfället. Andel (%) händelser av totalt antal händelser av misshandel (bland befolkningen 16-84 år). Indikatorn redovisas på riksnivå samt efter kön. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Andts/ilMisPavtot.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "01": "Värde"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "6": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2018": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "description": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "descriptiondefault": false,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilMisPavtot",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol, Narkotika, Dopning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson efter Region, Mått, Kön och År",
+        "source": "Brottsförebyggande rådet (Brå)",
+        "updated": "2026-02-13T13:42:00Z",
+        "note": [
+          "Självrapporterad utsatthet för misshandel där gärningspersonen bedömdes vara påverkad av alkohol eller någon drog vid tillfället. Andel (%) händelser av totalt antal händelser av misshandel (bland befolkningen 16-84 år). Indikatorn redovisas på riksnivå samt efter kön. För en mer utförlig beskrivning av indikatorn se <a HREF=https://fohm-app.folkhalsomyndigheten.se//PxWeb/Resources/PX/Databases/A_Folkhalsodata/ANDTS/Andts/ilMisPavtot.pdf>'Indikatorbeskrivning.'</a><br />"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Riket"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Mått",
+            "category": {
+              "label": {
+                "01": "Värde"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "4": "Kvinnor & Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "description": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson",
+            "descriptiondefault": false,
+            "heading": [
+              "Mått",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilMisPavtot",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alkohol, Narkotika, Dopning"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Andelen självrapporterade fall av misshandel, påverkad gärningsperson"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "procent (%)",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01",
+                "02"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "03"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "01"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "key": "domstol/06_Verksamhetsmal_HFD.px/sv",
+  "identifier": "06_Verksamhetsmal_HFD.px",
+  "language": "sv",
+  "updated": "2026-02-20",
+  "retrieved_at": "2026-10-17T07:10:49.927641+00:00",
+  "responses": {
+    "metadata": {
+      "title": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader). År 2012-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Domstol",
+          "values": [
+            "Supreme Administrative Court"
+          ],
+          "valueTexts": [
+            "Högsta Förvaltningsdomstolen"
+          ]
+        },
+        {
+          "code": "Verksamhetsmålskategori",
+          "text": "Verksamhetsmålskategori",
+          "values": [
+            "Time to make a decision about leave to appeal",
+            "Time for determined cases where leave to appeal has been granted"
+          ],
+          "valueTexts": [
+            "PT-beslut",
+            "Slutligt avgjorda mål där PT beviljats"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13"
+          ],
+          "valueTexts": [
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Verksamhetsmal/06_Verksamhetsmal_HFD.px",
+      "category_path": [
+        {
+          "id": "Verksamhetsmal",
+          "name": "Verksamhetsmål (handläggningstider)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "06_Verksamhetsmal_HFD.px",
+      "id": "06_Verksamhetsmal_HFD.px",
+      "language": "sv",
+      "path": "/Verksamhetsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat/Verksamhetsmal/06_Verksamhetsmal_HFD.px",
+          "category_path": [
+            {
+              "id": "Verksamhetsmal",
+              "name": "Verksamhetsmål (handläggningstider)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Verksamhetsmal",
+          "published": "2026-02-20",
+          "score": 1.0,
+          "title": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader). År 2012-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Verksamhetsmal/06_Verksamhetsmal_HFD.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-20",
+      "score": 1.0,
+      "title": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader). År 2012-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/sv/DOMstat/DOMstat__Verksamhetsmal/06_Verksamhetsmal_HFD.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-09-10T07:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstid i månader för de verksamhetsmålskategorier som Högsta förvaltningsdomstolen har satt en egen målsättning för. Tiden mäts i 90:e percentilen i antal månader för mål som avgjorts under aktuell tidsperiod förutom för PT-beslut där man mäter tiden för mål som fått ett datum för PT-beslut under vald tidsperiod.",
+          "De senast satta målsättningarna är följande antal månader:\r\nPT-beslut 6 månader. Tiden mäts från inkommandedag fram till PT-beslutet (beslut i frågan om prövningstillstånd) för mål som fått ett datum för PT-beslut under vald tidsperiod.\r\nSlutligt avgjorda mål där PT beviljats 20 månader. Tiden mäts för avgjorda mål från inkommandedag till avgjortdag. För slutligt avgjorda mål har ev. väntetid i EU-domstolen räknats bort. Data finns sedan år 2022."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Administrative Court": "Högsta Förvaltningsdomstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Time to make a decision about leave to appeal": "PT-beslut",
+                "Time for determined cases where leave to appeal has been granted": "Slutligt avgjorda mål där PT beviljats"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2012",
+                "1": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader)",
+            "description": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader). År 2012-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030185",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Domstol",
+                  "Verksamhetsmålskategori",
+                  "År"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Domstol": [
+                    "Supreme Administrative Court"
+                  ],
+                  "Verksamhetsmålskategori": [
+                    "Time to make a decision about leave to appeal",
+                    "Time for determined cases where leave to appeal has been granted"
+                  ],
+                  "År": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "2": ".",
+                  "3": "."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader) efter Domstol, Verksamhetsmålskategori och År",
+        "source": "Domstolsverket",
+        "updated": "2026-09-10T07:30:00Z",
+        "note": [
+          "Tabellen visar handläggningstid i månader för de verksamhetsmålskategorier som Högsta förvaltningsdomstolen har satt en egen målsättning för. Tiden mäts i 90:e percentilen i antal månader för mål som avgjorts under aktuell tidsperiod förutom för PT-beslut där man mäter tiden för mål som fått ett datum för PT-beslut under vald tidsperiod.",
+          "De senast satta målsättningarna är följande antal månader:\r\nPT-beslut 6 månader. Tiden mäts från inkommandedag fram till PT-beslutet (beslut i frågan om prövningstillstånd) för mål som fått ett datum för PT-beslut under vald tidsperiod.\r\nSlutligt avgjorda mål där PT beviljats 20 månader. Tiden mäts för avgjorda mål från inkommandedag till avgjortdag. För slutligt avgjorda mål har ev. väntetid i EU-domstolen räknats bort. Data finns sedan år 2022."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Domstol",
+            "category": {
+              "label": {
+                "Supreme Administrative Court": "Högsta Förvaltningsdomstolen"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Verksamhetsmålskategori",
+            "category": {
+              "label": {
+                "Time to make a decision about leave to appeal": "PT-beslut"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2014",
+                "3": "2015",
+                "4": "2016",
+                "5": "2017",
+                "6": "2018",
+                "7": "2019",
+                "8": "2020",
+                "9": "2021",
+                "10": "2022",
+                "11": "2023",
+                "12": "2024",
+                "13": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader)",
+            "description": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader). År 2012-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030185",
+            "subject-code": "RV0301",
+            "subject-area": "Verksamhetsmål (handläggningstider)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "06. Verksamhetsmål i Högsta förvaltningsdomstolen (handläggningstid 90-percentil i månader)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Månader",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Administrative Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Time to make a decision about leave to appeal",
+                "Time for determined cases where leave to appeal has been granted"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Administrative Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Time to make a decision about leave to appeal"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

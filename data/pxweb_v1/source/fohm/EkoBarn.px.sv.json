@@ -1,0 +1,814 @@
+{
+  "key": "fohm/EkoBarn.px/sv",
+  "identifier": "EkoBarn.px",
+  "language": "sv",
+  "updated": "2018-09-20",
+  "retrieved_at": "2026-10-17T07:01:59.978040+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Ekonomisk situation",
+          "text": "Ekonomisk situation",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Dålig",
+            "Genomsnittlig",
+            "Bra"
+          ]
+        },
+        {
+          "code": "Andel och konfidensintervall",
+          "text": "Andel och konfidensintervall",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Andel",
+            "Konfidensintervall nedre gräns",
+            "Konfidensintervall övre gräns"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Flickor",
+            "Pojkar"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "1993-1994",
+            "1997-1998",
+            "2001-2002",
+            "2005-2006",
+            "2009-2010",
+            "2013-2014",
+            "2017-2018"
+          ],
+          "valueTexts": [
+            "1993-1994",
+            "1997-1998",
+            "2001-2002",
+            "2005-2006",
+            "2009-2010",
+            "2013-2014",
+            "2017-2018"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/Z_ovrigdata/Ekonomi/EkoBarn.px",
+      "category_path": [
+        {
+          "id": "Z_ovrigdata",
+          "name": "Övriga data"
+        },
+        {
+          "id": "Ekonomi",
+          "name": "Ekonomi"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "EkoBarn.px",
+      "id": "EkoBarn.px",
+      "language": "sv",
+      "path": "/Z_ovrigdata/Ekonomi",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/Z_ovrigdata/Ekonomi/EkoBarn.px",
+          "category_path": [
+            {
+              "id": "Z_ovrigdata",
+              "name": "Övriga data"
+            },
+            {
+              "id": "Ekonomi",
+              "name": "Ekonomi"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/Z_ovrigdata/Ekonomi",
+          "published": "2018-09-20",
+          "score": 1.0,
+          "title": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__Z_ovrigdata__Ekonomi/EkoBarn.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2018-09-20",
+      "score": 1.0,
+      "title": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__Z_ovrigdata__Ekonomi/EkoBarn.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt. efter Ekonomisk situation, Andel och konfidensintervall, Kön och År",
+        "source": "Folkhälsomyndigheten, Skolbarns hälsovanor",
+        "updated": "2018-09-19T22:00:00Z",
+        "note": [
+          "Andel 11-, 13- och 15-åringar som uppfattar att familjen har det \r\nekonomiskt bra, genomsnittligt respektive dåligt ställt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ekonomisk situation": {
+            "label": "Ekonomisk situation",
+            "category": {
+              "label": {
+                "1": "Dålig",
+                "2": "Genomsnittlig"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel",
+                "2": "Konfidensintervall nedre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1": "Flickor",
+                "2": "Pojkar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "1993-1994": "1993-1994",
+                "1997-1998": "1997-1998"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt.",
+            "description": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ekonomisk situation"
+            ],
+            "matrix": "EkoBarn",
+            "subject-code": "shv",
+            "subject-area": "Skolbarns hälsovanor"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "1993/94-2017/18"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt. efter Ekonomisk situation, Andel och konfidensintervall, Kön och År",
+        "source": "Folkhälsomyndigheten, Skolbarns hälsovanor",
+        "updated": "2018-09-19T22:00:00Z",
+        "note": [
+          "Andel 11-, 13- och 15-åringar som uppfattar att familjen har det \r\nekonomiskt bra, genomsnittligt respektive dåligt ställt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ekonomisk situation": {
+            "label": "Ekonomisk situation",
+            "category": {
+              "label": {
+                "3": "Bra"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1": "Flickor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "1993-1994": "1993-1994"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt.",
+            "description": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ekonomisk situation"
+            ],
+            "matrix": "EkoBarn",
+            "subject-code": "shv",
+            "subject-area": "Skolbarns hälsovanor"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "1993/94-2017/18"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt. efter Ekonomisk situation, Andel och konfidensintervall, Kön och År",
+        "source": "Folkhälsomyndigheten, Skolbarns hälsovanor",
+        "updated": "2018-09-19T22:00:00Z",
+        "note": [
+          "Andel 11-, 13- och 15-åringar som uppfattar att familjen har det \r\nekonomiskt bra, genomsnittligt respektive dåligt ställt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ekonomisk situation": {
+            "label": "Ekonomisk situation",
+            "category": {
+              "label": {
+                "1": "Dålig"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "3": "Konfidensintervall övre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1": "Flickor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "1993-1994": "1993-1994"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt.",
+            "description": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ekonomisk situation"
+            ],
+            "matrix": "EkoBarn",
+            "subject-code": "shv",
+            "subject-area": "Skolbarns hälsovanor"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "1993/94-2017/18"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt. efter Ekonomisk situation, Andel och konfidensintervall, Kön och År",
+        "source": "Folkhälsomyndigheten, Skolbarns hälsovanor",
+        "updated": "2018-09-19T22:00:00Z",
+        "note": [
+          "Andel 11-, 13- och 15-åringar som uppfattar att familjen har det \r\nekonomiskt bra, genomsnittligt respektive dåligt ställt."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Ekonomisk situation": {
+            "label": "Ekonomisk situation",
+            "category": {
+              "label": {
+                "1": "Dålig"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1": "Flickor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2001-2002": "2001-2002",
+                "2005-2006": "2005-2006",
+                "2009-2010": "2009-2010",
+                "2013-2014": "2013-2014",
+                "2017-2018": "2017-2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt.",
+            "description": "Ekonomisk uppfattning bland barn (självrapporterat) efter kön och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Ekonomisk situation"
+            ],
+            "matrix": "EkoBarn",
+            "subject-code": "shv",
+            "subject-area": "Skolbarns hälsovanor"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "11-, 13- och 15-åringar som har uppgett att familjen har det bra, genomsnittligt, respektive dåligt ställt ekonomiskt."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "1993/94-2017/18"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Ekonomisk situation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1993-1994",
+                "1997-1998"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ekonomisk situation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1993-1994"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ekonomisk situation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1993-1994"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Ekonomisk situation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2001-2002",
+                "2005-2006",
+                "2009-2010",
+                "2013-2014",
+                "2017-2018"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

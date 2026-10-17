@@ -1,0 +1,990 @@
+{
+  "key": "fohm/spelfrekvald.px/sv",
+  "identifier": "spelfrekvald.px",
+  "language": "sv",
+  "updated": "2022-11-18",
+  "retrieved_at": "2026-10-17T08:01:33.932907+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Spelproblem efter ålder och år. Andel (procent).",
+      "variables": [
+        {
+          "code": "Spelproblem",
+          "text": "Spelproblem",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Viss risk (PGSI 1-2)",
+            "Problemspelande (PGSI 3+)",
+            "Någon grad av spelproblem (PGSI 1+)"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Andel och konfidensintervall",
+          "text": "Andel och konfidensintervall",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Andel",
+            "Konfidensintervall nedre gräns",
+            "Konfidensintervall övre gräns",
+            "Antal svar"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Ålder",
+          "values": [
+            "18-24",
+            "25-44",
+            "45-64",
+            "65-"
+          ],
+          "valueTexts": [
+            "18-24 år",
+            "25-44 år",
+            "45-64 år",
+            "65 år -"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2008-2009",
+            "2015",
+            "2018",
+            "2021"
+          ],
+          "valueTexts": [
+            "2008-2009",
+            "2015",
+            "2018",
+            "2021"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/K_Swelogs/Spelproblem/spelfrekvald.px",
+      "category_path": [
+        {
+          "id": "K_Swelogs",
+          "name": "Spelundersökningen Swelogs, nationella resultat"
+        },
+        {
+          "id": "Spelproblem",
+          "name": "Spelproblem"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "spelfrekvald.px",
+      "id": "spelfrekvald.px",
+      "language": "sv",
+      "path": "/K_Swelogs/Spelproblem",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/K_Swelogs/Spelproblem/spelfrekvald.px",
+          "category_path": [
+            {
+              "id": "K_Swelogs",
+              "name": "Spelundersökningen Swelogs, nationella resultat"
+            },
+            {
+              "id": "Spelproblem",
+              "name": "Spelproblem"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/K_Swelogs/Spelproblem",
+          "published": "2022-11-18",
+          "score": 1.0,
+          "title": "Spelproblem efter ålder och år. Andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__K_Swelogs__Spelproblem/spelfrekvald.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2022-11-18",
+      "score": 1.0,
+      "title": "Spelproblem efter ålder och år. Andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__K_Swelogs__Spelproblem/spelfrekvald.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Spelproblem efter Spelproblem, Andel och konfidensintervall, Ålder och År",
+        "source": "Folkhälsomyndigheten, Swelogs",
+        "updated": "2022-11-18T07:00:00Z",
+        "note": [
+          "Swelogs är en urvalsundersökning bland befolkningen 16-84 år\r\n(2008/2009, 2015) och 16-87 år (2018, 2021). Värdena är beräknade med\r\nhjälp av kalibreringsvikter. Detta gäller såväl antal svar, skattade\r\nandelar samt de varianser som ligger till grund för konfidensintervallen.",
+          "Antal svar avser totalt antal viktade svarande personer på frågan, det\r\navser inte antal svar per svarsalternativ.",
+          "Nio frågor ligger till grund för variabeln Spelproblem. ”Viss risk” och\r\n”Problemspelande” är 1-2 respektive 3 eller mer på mätinstrumentet\r\nPGSI. ”Någon grad av spelproblem” är summan av ”Viss risk” och\r\n”Problemspelande”."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Spelproblem": {
+            "label": "Spelproblem",
+            "category": {
+              "label": {
+                "1": "Viss risk (PGSI 1-2)",
+                "2": "Problemspelande (PGSI 3+)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel",
+                "2": "Konfidensintervall nedre gräns"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-24": "18-24 år",
+                "25-44": "25-44 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2008-2009": "2008-2009",
+                "2015": "2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Spelproblem",
+            "description": "Spelproblem efter ålder och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Spelproblem"
+            ],
+            "matrix": "spelfrekvald",
+            "subject-code": "spel",
+            "subject-area": "Spelproblem"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Spelproblem"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2008/2009, 2015, 2018, 2021"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Spelproblem efter Spelproblem, Andel och konfidensintervall, Ålder och År",
+        "source": "Folkhälsomyndigheten, Swelogs",
+        "updated": "2022-11-18T07:00:00Z",
+        "note": [
+          "Swelogs är en urvalsundersökning bland befolkningen 16-84 år\r\n(2008/2009, 2015) och 16-87 år (2018, 2021). Värdena är beräknade med\r\nhjälp av kalibreringsvikter. Detta gäller såväl antal svar, skattade\r\nandelar samt de varianser som ligger till grund för konfidensintervallen.",
+          "Antal svar avser totalt antal viktade svarande personer på frågan, det\r\navser inte antal svar per svarsalternativ.",
+          "Nio frågor ligger till grund för variabeln Spelproblem. ”Viss risk” och\r\n”Problemspelande” är 1-2 respektive 3 eller mer på mätinstrumentet\r\nPGSI. ”Någon grad av spelproblem” är summan av ”Viss risk” och\r\n”Problemspelande”."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Spelproblem": {
+            "label": "Spelproblem",
+            "category": {
+              "label": {
+                "3": "Någon grad av spelproblem (PGSI 1+)"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "3",
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-24": "18-24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2008-2009": "2008-2009"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Spelproblem",
+            "description": "Spelproblem efter ålder och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Spelproblem"
+            ],
+            "matrix": "spelfrekvald",
+            "subject-code": "spel",
+            "subject-area": "Spelproblem"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Spelproblem"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2008/2009, 2015, 2018, 2021"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Spelproblem efter Spelproblem, Andel och konfidensintervall, Ålder och År",
+        "source": "Folkhälsomyndigheten, Swelogs",
+        "updated": "2022-11-18T07:00:00Z",
+        "note": [
+          "Swelogs är en urvalsundersökning bland befolkningen 16-84 år\r\n(2008/2009, 2015) och 16-87 år (2018, 2021). Värdena är beräknade med\r\nhjälp av kalibreringsvikter. Detta gäller såväl antal svar, skattade\r\nandelar samt de varianser som ligger till grund för konfidensintervallen.",
+          "Antal svar avser totalt antal viktade svarande personer på frågan, det\r\navser inte antal svar per svarsalternativ.",
+          "Nio frågor ligger till grund för variabeln Spelproblem. ”Viss risk” och\r\n”Problemspelande” är 1-2 respektive 3 eller mer på mätinstrumentet\r\nPGSI. ”Någon grad av spelproblem” är summan av ”Viss risk” och\r\n”Problemspelande”."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Spelproblem": {
+            "label": "Spelproblem",
+            "category": {
+              "label": {
+                "1": "Viss risk (PGSI 1-2)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "3": "Konfidensintervall övre gräns",
+                "4": "Antal svar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-24": "18-24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2008-2009": "2008-2009"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Spelproblem",
+            "description": "Spelproblem efter ålder och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Spelproblem"
+            ],
+            "matrix": "spelfrekvald",
+            "subject-code": "spel",
+            "subject-area": "Spelproblem"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Spelproblem"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2008/2009, 2015, 2018, 2021"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Spelproblem efter Spelproblem, Andel och konfidensintervall, Ålder och År",
+        "source": "Folkhälsomyndigheten, Swelogs",
+        "updated": "2022-11-18T07:00:00Z",
+        "note": [
+          "Swelogs är en urvalsundersökning bland befolkningen 16-84 år\r\n(2008/2009, 2015) och 16-87 år (2018, 2021). Värdena är beräknade med\r\nhjälp av kalibreringsvikter. Detta gäller såväl antal svar, skattade\r\nandelar samt de varianser som ligger till grund för konfidensintervallen.",
+          "Antal svar avser totalt antal viktade svarande personer på frågan, det\r\navser inte antal svar per svarsalternativ.",
+          "Nio frågor ligger till grund för variabeln Spelproblem. ”Viss risk” och\r\n”Problemspelande” är 1-2 respektive 3 eller mer på mätinstrumentet\r\nPGSI. ”Någon grad av spelproblem” är summan av ”Viss risk” och\r\n”Problemspelande”."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Spelproblem": {
+            "label": "Spelproblem",
+            "category": {
+              "label": {
+                "1": "Viss risk (PGSI 1-2)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "45-64": "45-64 år",
+                "65-": "65 år -"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2008-2009": "2008-2009"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Spelproblem",
+            "description": "Spelproblem efter ålder och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Spelproblem"
+            ],
+            "matrix": "spelfrekvald",
+            "subject-code": "spel",
+            "subject-area": "Spelproblem"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Spelproblem"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2008/2009, 2015, 2018, 2021"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Spelproblem efter Spelproblem, Andel och konfidensintervall, Ålder och År",
+        "source": "Folkhälsomyndigheten, Swelogs",
+        "updated": "2022-11-18T07:00:00Z",
+        "note": [
+          "Swelogs är en urvalsundersökning bland befolkningen 16-84 år\r\n(2008/2009, 2015) och 16-87 år (2018, 2021). Värdena är beräknade med\r\nhjälp av kalibreringsvikter. Detta gäller såväl antal svar, skattade\r\nandelar samt de varianser som ligger till grund för konfidensintervallen.",
+          "Antal svar avser totalt antal viktade svarande personer på frågan, det\r\navser inte antal svar per svarsalternativ.",
+          "Nio frågor ligger till grund för variabeln Spelproblem. ”Viss risk” och\r\n”Problemspelande” är 1-2 respektive 3 eller mer på mätinstrumentet\r\nPGSI. ”Någon grad av spelproblem” är summan av ”Viss risk” och\r\n”Problemspelande”."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Spelproblem": {
+            "label": "Spelproblem",
+            "category": {
+              "label": {
+                "1": "Viss risk (PGSI 1-2)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Andel och konfidensintervall": {
+            "label": "Andel och konfidensintervall",
+            "category": {
+              "label": {
+                "1": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Ålder",
+            "category": {
+              "label": {
+                "18-24": "18-24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Spelproblem",
+            "description": "Spelproblem efter ålder och år. Andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Andel och konfidensintervall",
+              "Ålder",
+              "År"
+            ],
+            "stub": [
+              "Spelproblem"
+            ],
+            "matrix": "spelfrekvald",
+            "subject-code": "spel",
+            "subject-area": "Spelproblem"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Spelproblem"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Procent",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2008/2009, 2015, 2018, 2021"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Spelproblem",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-24",
+                "25-44"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2008-2009",
+                "2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Spelproblem",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-24"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2008-2009"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Spelproblem",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-24"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2008-2009"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Spelproblem",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "45-64",
+                "65-"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2008-2009"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Spelproblem",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Andel och konfidensintervall",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "18-24"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,718 @@
+{
+  "key": "fohm/ilAlkberUtb.px/en",
+  "identifier": "ilAlkberUtb.px",
+  "language": "en",
+  "updated": "2026-03-30",
+  "retrieved_at": "2026-10-17T07:45:32.756445+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Alcohol dependence, education by Region, Gender, Age, Education and Year",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "00"
+          ],
+          "valueTexts": [
+            "00 Sweden"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Kön",
+          "text": "Gender",
+          "values": [
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "Women & Men",
+            "Women",
+            "Men"
+          ]
+        },
+        {
+          "code": "Ålder",
+          "text": "Age",
+          "values": [
+            "15"
+          ],
+          "valueTexts": [
+            "25-64 years"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Utbildning",
+          "text": "Education",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Pre-secondary education",
+            "Secondary education",
+            "Post-secondary education"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "2013",
+            "2017"
+          ],
+          "valueTexts": [
+            "2013",
+            "2017"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberUtb.px",
+      "category_path": [
+        {
+          "id": "ANDTS",
+          "name": "ANDTG-indicators (Indikatorlabbet)"
+        },
+        {
+          "id": "Alkohol",
+          "name": "Alcohol"
+        },
+        {
+          "id": "Skador",
+          "name": "Injuries"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "ilAlkberUtb.px",
+      "id": "ilAlkberUtb.px",
+      "language": "en",
+      "path": "/ANDTS/Alkohol/Skador",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/en/A_Folkhalsodata/ANDTS/Alkohol/Skador/ilAlkberUtb.px",
+          "category_path": [
+            {
+              "id": "ANDTS",
+              "name": "ANDTG-indicators (Indikatorlabbet)"
+            },
+            {
+              "id": "Alkohol",
+              "name": "Alcohol"
+            },
+            {
+              "id": "Skador",
+              "name": "Injuries"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/ANDTS/Alkohol/Skador",
+          "published": "2026-03-30",
+          "score": 1.0,
+          "title": "Alcohol dependence, education",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Skador/ilAlkberUtb.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-03-30",
+      "score": 1.0,
+      "title": "Alcohol dependence, education",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/en/A_Folkhalsodata/A_Folkhalsodata__ANDTS__Alkohol__Skador/ilAlkberUtb.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Alcohol dependence, education by Region, Gender, Age, Education and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2026-03-30T07:36:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with alcohol dependence in accordance with diagnostic criteria in DSM-IV through the questionnaire instrument M.I.N.I. divided by educational level. CAN is responsible for the survey and data was collected in 2013 and 2017 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping and tobacco. The data was collected through a survey (postal or online survey) targeted to a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013 and 11,514 in 2017, which corresponded to a response rate of 59.1 and 44,3 % respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "4": "Women & Men",
+                "5": "Women"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "15": "25-64 years"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "15",
+              "show": "value"
+            }
+          },
+          "Utbildning": {
+            "label": "Education",
+            "category": {
+              "label": {
+                "1": "Pre-secondary education",
+                "2": "Secondary education"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2017": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alcohol dependence, education",
+            "description": "Alcohol dependence, education",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "Utbildning",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberUtb",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alcohol dependence, education"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Alcohol dependence, education by Region, Gender, Age, Education and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2026-03-30T07:36:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with alcohol dependence in accordance with diagnostic criteria in DSM-IV through the questionnaire instrument M.I.N.I. divided by educational level. CAN is responsible for the survey and data was collected in 2013 and 2017 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping and tobacco. The data was collected through a survey (postal or online survey) targeted to a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013 and 11,514 in 2017, which corresponded to a response rate of 59.1 and 44,3 % respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "6": "Men"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "15": "25-64 years"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "15",
+              "show": "value"
+            }
+          },
+          "Utbildning": {
+            "label": "Education",
+            "category": {
+              "label": {
+                "1": "Pre-secondary education"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alcohol dependence, education",
+            "description": "Alcohol dependence, education",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "Utbildning",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberUtb",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alcohol dependence, education"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Alcohol dependence, education by Region, Gender, Age, Education and Year",
+        "source": "The Swedish Council for Information on Alcohol and Other Drugs (CAN)",
+        "updated": "2026-03-30T07:36:00Z",
+        "note": [
+          "Indicator definition: Percentage (%) of the population (17-84 years) with alcohol dependence in accordance with diagnostic criteria in DSM-IV through the questionnaire instrument M.I.N.I. divided by educational level. CAN is responsible for the survey and data was collected in 2013 and 2017 regarding use and consequences among the Swedish population with respect to alcohol, drugs, doping and tobacco. The data was collected through a survey (postal or online survey) targeted to a nationally representative sample of the population. In total 15,511 persons participated in the survey 2013 and 11,514 in 2017, which corresponded to a response rate of 59.1 and 44,3 % respectively."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "00": "00 Sweden"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "00",
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Gender",
+            "category": {
+              "label": {
+                "4": "Women & Men"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Ålder": {
+            "label": "Age",
+            "category": {
+              "label": {
+                "15": "25-64 years"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "15",
+              "show": "value"
+            }
+          },
+          "Utbildning": {
+            "label": "Education",
+            "category": {
+              "label": {
+                "3": "Post-secondary education"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2013": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Alcohol dependence, education",
+            "description": "Alcohol dependence, education",
+            "descriptiondefault": false,
+            "heading": [
+              "Kön",
+              "Ålder",
+              "Utbildning",
+              "År"
+            ],
+            "stub": [
+              "Region"
+            ],
+            "matrix": "ilAlkberUtb",
+            "subject-code": "andt-indikatorer",
+            "subject-area": "Alcohol"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Alcohol dependence, education"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "percent (%)",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "Utbildning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2017"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "Utbildning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "00"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Ålder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "Utbildning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

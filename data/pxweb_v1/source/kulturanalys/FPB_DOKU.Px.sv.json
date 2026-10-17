@@ -1,0 +1,576 @@
+{
+  "key": "kulturanalys/FPB_DOKU.Px/sv",
+  "identifier": "FPB_DOKU.Px",
+  "language": "sv",
+  "updated": "2026-09-30",
+  "retrieved_at": "2026-10-17T06:57:49.950499+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Besök, filmer och visningar efter dokumentär eller ej dokumentär och år",
+      "variables": [
+        {
+          "code": "year",
+          "text": "år",
+          "values": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "tablecontent",
+          "text": "tabellinnehåll",
+          "values": [
+            "visits",
+            "visitsprem",
+            "visitspremwasprevyear",
+            "visitspremallprevyear",
+            "visitssvprodcntry",
+            "visitsnotsvprodcntry",
+            "uniquefilms",
+            "uniquepremfilms",
+            "screenings",
+            "screeningsprem",
+            "screeningsnotprem",
+            "screeningssvprodcntry",
+            "screeningsnotsvprodcntry"
+          ],
+          "valueTexts": [
+            "besök",
+            "besök på premiärfilmer för året",
+            "besök på filmer som hade premiär föreg år",
+            "besök, filmer som hade premiär tidigare år",
+            "besök på filmer med svenskt produktionsland",
+            "besök, ej svenskt produktionsland (inkl. okänt land)",
+            "filmer",
+            "premiärfilmer",
+            "visningar",
+            "visningar av premiärfilmer",
+            "visningar av film, ej premiärfilmer (inkl. okänt årtal)",
+            "visningar på filmer med Svenskt produktionsland",
+            "visningar av filmer med ej Svenskt produktionsland (inkl. okänt land)"
+          ]
+        },
+        {
+          "code": "grp2",
+          "text": "dokumentär eller ej",
+          "values": [
+            "1",
+            "2",
+            "9"
+          ],
+          "valueTexts": [
+            "dokumentär",
+            "ej dokumentär",
+            "totalt"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_DOKU.Px",
+      "category_path": [
+        {
+          "id": "Film på bio",
+          "name": "Film på bio"
+        },
+        {
+          "id": "Annan statistik",
+          "name": "Annan statistik"
+        }
+      ],
+      "database_id": "Statistikdatabas",
+      "dataset_code": "FPB_DOKU.Px",
+      "id": "FPB_DOKU.Px",
+      "language": "sv",
+      "path": "/Film på bio/Annan statistik",
+      "paths": [
+        {
+          "api_url": "https://statistik.kulturanalys.se/api/v1/sv/Statistikdatabas/Film%20p%C3%A5%20bio/Annan%20statistik/FPB_DOKU.Px",
+          "category_path": [
+            {
+              "id": "Film på bio",
+              "name": "Film på bio"
+            },
+            {
+              "id": "Annan statistik",
+              "name": "Annan statistik"
+            }
+          ],
+          "database_id": "Statistikdatabas",
+          "path": "/Film på bio/Annan statistik",
+          "published": "2026-09-30",
+          "score": 1.0,
+          "title": "Besök, filmer och visningar efter dokumentär eller ej dokumentär och år (O)",
+          "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_DOKU.Px/"
+        }
+      ],
+      "provider_code": "kulturanalys",
+      "published": "2026-09-30",
+      "score": 1.0,
+      "title": "Besök, filmer och visningar efter dokumentär eller ej dokumentär och år (O)",
+      "web_url": "https://statistik.kulturanalys.se/pxweb/sv/Statistikdatabas/Statistikdatabas__Film%20p%C3%A5%20bio__Annan%20statistik/FPB_DOKU.Px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Besök, filmer och visningar efter år, tabellinnehåll och dokumentär eller ej",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök",
+                "visitsprem": "besök på premiärfilmer för året"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visitsprem": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "dokumentär eller ej",
+            "category": {
+              "label": {
+                "1": "dokumentär",
+                "2": "ej dokumentär"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, tabellinnehåll och dokumentär eller ej",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2025": "2025"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "dokumentär eller ej",
+            "category": {
+              "label": {
+                "1": "dokumentär"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, tabellinnehåll och dokumentär eller ej",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visitspremwasprevyear": "besök på filmer som hade premiär föreg år",
+                "visitspremallprevyear": "besök, filmer som hade premiär tidigare år",
+                "visitssvprodcntry": "besök på filmer med svenskt produktionsland",
+                "visitsnotsvprodcntry": "besök, ej svenskt produktionsland (inkl. okänt land)",
+                "uniquefilms": "filmer",
+                "uniquepremfilms": "premiärfilmer",
+                "screenings": "visningar",
+                "screeningsprem": "visningar av premiärfilmer",
+                "screeningsnotprem": "visningar av film, ej premiärfilmer (inkl. okänt årtal)",
+                "screeningssvprodcntry": "visningar på filmer med Svenskt produktionsland",
+                "screeningsnotsvprodcntry": "visningar av filmer med ej Svenskt produktionsland (inkl. okänt land)"
+              },
+              "unit": {
+                "visitspremwasprevyear": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visitspremallprevyear": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visitssvprodcntry": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "visitsnotsvprodcntry": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "uniquefilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "uniquepremfilms": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "screenings": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "screeningsprem": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "screeningsnotprem": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "screeningssvprodcntry": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "screeningsnotsvprodcntry": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "dokumentär eller ej",
+            "category": {
+              "label": {
+                "1": "dokumentär"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Besök, filmer och visningar efter år, tabellinnehåll och dokumentär eller ej",
+        "source": "Kulturanalys",
+        "updated": "2026-09-30T14:28:00Z",
+        "dimension": {
+          "year": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023"
+              }
+            }
+          },
+          "tablecontent": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "visits": "besök"
+              },
+              "unit": {
+                "visits": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "grp2": {
+            "extension": {
+              "show": "value"
+            },
+            "label": "dokumentär eller ej",
+            "category": {
+              "label": {
+                "9": "totalt"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "year"
+          ],
+          "metric": [
+            "tablecontent"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits",
+                "visitsprem"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visitspremwasprevyear",
+                "visitspremallprevyear",
+                "visitssvprodcntry",
+                "visitsnotsvprodcntry",
+                "uniquefilms",
+                "uniquepremfilms",
+                "screenings",
+                "screeningsprem",
+                "screeningsnotprem",
+                "screeningssvprodcntry",
+                "screeningsnotsvprodcntry"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "year",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "tablecontent",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "visits"
+              ]
+            }
+          },
+          {
+            "code": "grp2",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "9"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

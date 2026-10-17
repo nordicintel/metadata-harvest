@@ -1,0 +1,809 @@
+{
+  "key": "linkoping/sureginr14.px/sv",
+  "identifier": "sureginr14.px",
+  "language": "sv",
+  "updated": "2025-09-30",
+  "retrieved_at": "2026-10-17T08:07:56.352655+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation.",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ]
+        },
+        {
+          "code": "typ",
+          "text": "typ",
+          "values": [
+            "Nattbef",
+            "Dagbef",
+            "Netto"
+          ],
+          "valueTexts": [
+            "Nattbefolkning",
+            "Dagbefolkning",
+            "Nettoskillnad"
+          ]
+        },
+        {
+          "code": "område",
+          "text": "område",
+          "values": [
+            "8052",
+            "8053",
+            "8054",
+            "8055",
+            "8099",
+            "0580",
+            "8227",
+            "8228",
+            "8229",
+            "8233"
+          ],
+          "valueTexts": [
+            "Staden",
+            "Större tätorter",
+            "Mindre tätorter",
+            "Landsbygd",
+            "Ej geografiskt",
+            "Hela kommunen",
+            "Delsumma mindre tätort/landsbygd",
+            "Delsumma omlandet utom staden",
+            "Delsumma övriga tätorter",
+            "Delsumma samtliga tätorter"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "Män",
+            "Kvinnor",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Män",
+            "Kvinnor",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "pendlingsinformation",
+          "text": "pendlingsinformation",
+          "values": [
+            "InomSamma",
+            "AnnanKommundel",
+            "Ospec",
+            "KommunenTot",
+            "Kommungräns",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Bor och arbetar inom samma omådestyp",
+            "Pendlar annan del av kommunen",
+            "Ospecifiserad del inom kommunen",
+            "Totalt inom kommunen",
+            "Pendlar över kommungräns",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Sureg14/Inkomster/sureginr14.px",
+      "category_path": [
+        {
+          "id": "Inkomster",
+          "name": "Inkomster"
+        }
+      ],
+      "database_id": "Sureg14",
+      "dataset_code": "sureginr14.px",
+      "id": "sureginr14.px",
+      "language": "sv",
+      "path": "/Inkomster",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Sureg14/Inkomster/sureginr14.px",
+          "category_path": [
+            {
+              "id": "Inkomster",
+              "name": "Inkomster"
+            }
+          ],
+          "database_id": "Sureg14",
+          "path": "/Inkomster",
+          "published": "2025-09-30",
+          "score": 1.0,
+          "title": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Sureg14/Sureg14__Inkomster/sureginr14.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-09-30",
+      "score": 1.0,
+      "title": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Sureg14/Sureg14__Inkomster/sureginr14.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T10:07:55.6553569+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning",
+                "Dagbef": "Dagbefolkning"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden",
+                "8053": "Större tätorter"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män",
+                "Kvinnor": "Kvinnor"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "InomSamma": "Bor och arbetar inom samma omådestyp",
+                "AnnanKommundel": "Pendlar annan del av kommunen"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T10:07:55.7959801+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "InomSamma": "Bor och arbetar inom samma omådestyp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T10:07:55.9053671+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Netto": "Nettoskillnad"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "InomSamma": "Bor och arbetar inom samma omådestyp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T10:07:56.0303636+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8054": "Mindre tätorter",
+                "8055": "Landsbygd",
+                "8099": "Ej geografiskt",
+                "0580": "Hela kommunen",
+                "8227": "Delsumma mindre tätort/landsbygd",
+                "8228": "Delsumma omlandet utom staden",
+                "8229": "Delsumma övriga tätorter",
+                "8233": "Delsumma samtliga tätorter"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "InomSamma": "Bor och arbetar inom samma omådestyp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T10:07:56.1553539+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "InomSamma": "Bor och arbetar inom samma omådestyp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Summerad arbetsinkomst (milj, kr) efter tid, typ, område, kön och pendlingsinformation",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.               ",
+        "updated": "2026-10-17T10:07:56.280364+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            }
+          },
+          "typ": {
+            "label": "typ",
+            "category": {
+              "label": {
+                "Nattbef": "Nattbefolkning"
+              }
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "8052": "Staden"
+              }
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "Män": "Män"
+              }
+            }
+          },
+          "pendlingsinformation": {
+            "label": "pendlingsinformation",
+            "category": {
+              "label": {
+                "Ospec": "Ospecifiserad del inom kommunen",
+                "KommunenTot": "Totalt inom kommunen",
+                "Kommungräns": "Pendlar över kommungräns",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef",
+                "Dagbef"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052",
+                "8053"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män",
+                "Kvinnor"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomSamma",
+                "AnnanKommundel"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomSamma"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Netto"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomSamma"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8054",
+                "8055",
+                "8099",
+                "0580",
+                "8227",
+                "8228",
+                "8229",
+                "8233"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomSamma"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "InomSamma"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          },
+          {
+            "code": "typ",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Nattbef"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "8052"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Män"
+              ]
+            }
+          },
+          {
+            "code": "pendlingsinformation",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Ospec",
+                "KommunenTot",
+                "Kommungräns",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,631 @@
+{
+  "key": "helsingborg/SOC10.px/sv",
+  "identifier": "SOC10.px",
+  "language": "sv",
+  "updated": "2025-05-06",
+  "retrieved_at": "2026-10-17T07:01:18.636513+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal.",
+      "variables": [
+        {
+          "code": "hushållstyp",
+          "text": "hushållstyp",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "ensamstående kvinnor",
+            "ensamstående män",
+            "gifta/samboende"
+          ]
+        },
+        {
+          "code": "antal barn",
+          "text": "antal barn",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "0 barn",
+            "1 barn",
+            "2 barn",
+            "3+ barn"
+          ]
+        },
+        {
+          "code": "årtal",
+          "text": "årtal",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "valueTexts": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Socialtj%C3%A4nst/SOC10.px",
+      "category_path": [
+        {
+          "id": "Socialtjänst",
+          "name": "Socialtjänst"
+        }
+      ],
+      "database_id": "Helsingborgs stads statistikdatabas",
+      "dataset_code": "SOC10.px",
+      "id": "SOC10.px",
+      "language": "sv",
+      "path": "/Socialtjänst",
+      "paths": [
+        {
+          "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Socialtj%C3%A4nst/SOC10.px",
+          "category_path": [
+            {
+              "id": "Socialtjänst",
+              "name": "Socialtjänst"
+            }
+          ],
+          "database_id": "Helsingborgs stads statistikdatabas",
+          "path": "/Socialtjänst",
+          "published": "2025-05-06",
+          "score": 1.0,
+          "title": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal.",
+          "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Socialtj%C3%A4nst/SOC10.px/"
+        }
+      ],
+      "provider_code": "helsingborg",
+      "published": "2025-05-06",
+      "score": 1.0,
+      "title": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal.",
+      "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Socialtj%C3%A4nst/SOC10.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal",
+        "source": "Sveriges statistiska databaser, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2010-06-15T13:00:00Z",
+        "note": [
+          "Ett bidragshushåll består av alla personer som har ett gemensamt     \r\nhushåll. Barn över 18 år i en familj kan bilda eget bidragshushåll om \r\ndet är ensamt socialbidragstagare i ett större hushåll.     \r\n"
+        ],
+        "dimension": {
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "ensamstående kvinnor",
+                "1": "ensamstående män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "antal barn": {
+            "label": "antal barn",
+            "category": {
+              "label": {
+                "0": "0 barn",
+                "1": "1 barn"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "0": "2000",
+                "1": "2001"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "SOC10",
+            "subject-code": "SOC"
+          },
+          "contact": [
+            {
+              "raw": "Simon Sköld, simon.skold@helsingborg.se, 042 - 10 53 08"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biståndshushåll i Helsingborg"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal hushåll",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal",
+        "source": "Sveriges statistiska databaser, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2010-06-15T13:00:00Z",
+        "note": [
+          "Ett bidragshushåll består av alla personer som har ett gemensamt     \r\nhushåll. Barn över 18 år i en familj kan bilda eget bidragshushåll om \r\ndet är ensamt socialbidragstagare i ett större hushåll.     \r\n"
+        ],
+        "dimension": {
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "2": "gifta/samboende"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "antal barn": {
+            "label": "antal barn",
+            "category": {
+              "label": {
+                "0": "0 barn"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "0": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "SOC10",
+            "subject-code": "SOC"
+          },
+          "contact": [
+            {
+              "raw": "Simon Sköld, simon.skold@helsingborg.se, 042 - 10 53 08"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biståndshushåll i Helsingborg"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal hushåll",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal",
+        "source": "Sveriges statistiska databaser, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2010-06-15T13:00:00Z",
+        "note": [
+          "Ett bidragshushåll består av alla personer som har ett gemensamt     \r\nhushåll. Barn över 18 år i en familj kan bilda eget bidragshushåll om \r\ndet är ensamt socialbidragstagare i ett större hushåll.     \r\n"
+        ],
+        "dimension": {
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "ensamstående kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "antal barn": {
+            "label": "antal barn",
+            "category": {
+              "label": {
+                "2": "2 barn",
+                "3": "3+ barn"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "0": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "SOC10",
+            "subject-code": "SOC"
+          },
+          "contact": [
+            {
+              "raw": "Simon Sköld, simon.skold@helsingborg.se, 042 - 10 53 08"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biståndshushåll i Helsingborg"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal hushåll",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Biståndshushåll i Helsingborg efter hushållstyp, antal barn och årtal",
+        "source": "Sveriges statistiska databaser, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2010-06-15T13:00:00Z",
+        "note": [
+          "Ett bidragshushåll består av alla personer som har ett gemensamt     \r\nhushåll. Barn över 18 år i en familj kan bilda eget bidragshushåll om \r\ndet är ensamt socialbidragstagare i ett större hushåll.     \r\n"
+        ],
+        "dimension": {
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "ensamstående kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "antal barn": {
+            "label": "antal barn",
+            "category": {
+              "label": {
+                "0": "0 barn"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "2": "2002",
+                "3": "2003",
+                "4": "2004",
+                "5": "2005",
+                "6": "2006",
+                "7": "2007",
+                "8": "2008",
+                "9": "2009"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "SOC10",
+            "subject-code": "SOC"
+          },
+          "contact": [
+            {
+              "raw": "Simon Sköld, simon.skold@helsingborg.se, 042 - 10 53 08"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biståndshushåll i Helsingborg"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal hushåll",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "antal barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "antal barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "antal barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "antal barn",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

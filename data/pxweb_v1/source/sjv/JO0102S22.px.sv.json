@@ -1,0 +1,603 @@
+{
+  "key": "sjv/JO0102S22.px/sv",
+  "identifier": "JO0102S22.px",
+  "language": "sv",
+  "updated": "2024-09-04",
+  "retrieved_at": "2026-10-17T07:01:53.499806+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antal företag och växthusyta med växthusinventarier efter växthusföretagens storlek. År 2005-2023",
+      "variables": [
+        {
+          "code": "Storleksgrupp företag",
+          "text": "Storleksgrupp företag",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "Mindre än 1 000 kvadratmeter",
+            "1 000-1 999 kvadratmeter",
+            "2 000-4 999 kvadratmeter",
+            "5 000-9 999 kvadratmeter",
+            "Minst 10 000 kvadratmeter",
+            "Samtliga växthus"
+          ]
+        },
+        {
+          "code": "Inventarietyp",
+          "text": "Inventarietyp",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Energi- eller skuggväv",
+            "Recirkuleringssystem",
+            "Odlingsbelysning"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal företag",
+            "Växthusyta, kvadratmeter"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "2005",
+            "2008",
+            "2011",
+            "2014",
+            "2017",
+            "2020",
+            "2023"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Tradgardsodling/Vaxthusinformation/JO0102S22.px",
+      "category_path": [
+        {
+          "id": "Tradgardsodling",
+          "name": "Trädgårdsodling"
+        },
+        {
+          "id": "Vaxthusinformation",
+          "name": "Växthusinformation"
+        }
+      ],
+      "database_id": "Jordbruksverkets statistikdatabas",
+      "dataset_code": "JO0102S22.px",
+      "id": "JO0102S22.px",
+      "language": "sv",
+      "path": "/Tradgardsodling/Vaxthusinformation",
+      "paths": [
+        {
+          "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Tradgardsodling/Vaxthusinformation/JO0102S22.px",
+          "category_path": [
+            {
+              "id": "Tradgardsodling",
+              "name": "Trädgårdsodling"
+            },
+            {
+              "id": "Vaxthusinformation",
+              "name": "Växthusinformation"
+            }
+          ],
+          "database_id": "Jordbruksverkets statistikdatabas",
+          "path": "/Tradgardsodling/Vaxthusinformation",
+          "published": "2024-09-04",
+          "score": 1.0,
+          "title": "Antal företag och växthusyta med växthusinventarier efter växthusföretagens storlek. År 2005-2023",
+          "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Tradgardsodling__Vaxthusinformation/JO0102S22.px/"
+        }
+      ],
+      "provider_code": "sjv",
+      "published": "2024-09-04",
+      "score": 1.0,
+      "title": "Antal företag och växthusyta med växthusinventarier efter växthusföretagens storlek. År 2005-2023",
+      "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Tradgardsodling__Vaxthusinformation/JO0102S22.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Växthusinventarier fördelat på växthusföretagens storlek. Antal företag och växthusyta. 2005-2023. Riket efter Storleksgrupp företag, Inventarietyp, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Storleksgrupp företag": {
+            "label": "Storleksgrupp företag",
+            "category": {
+              "label": {
+                "0": "Mindre än 1 000 kvadratmeter",
+                "1": "1 000-1 999 kvadratmeter"
+              }
+            }
+          },
+          "Inventarietyp": {
+            "label": "Inventarietyp",
+            "category": {
+              "label": {
+                "0": "Energi- eller skuggväv",
+                "1": "Recirkuleringssystem"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag",
+                "1": "Växthusyta, kvadratmeter"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                },
+                "1": {
+                  "base": "Kvadratmeter",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2005",
+                "1": "2008"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0102_KD_2023-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Växthusinventarier fördelat på växthusföretagens storlek. Antal företag och växthusyta. 2005-2023. Riket efter Storleksgrupp företag, Inventarietyp, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Storleksgrupp företag": {
+            "label": "Storleksgrupp företag",
+            "category": {
+              "label": {
+                "2": "2 000-4 999 kvadratmeter",
+                "3": "5 000-9 999 kvadratmeter",
+                "4": "Minst 10 000 kvadratmeter",
+                "5": "Samtliga växthus"
+              }
+            }
+          },
+          "Inventarietyp": {
+            "label": "Inventarietyp",
+            "category": {
+              "label": {
+                "0": "Energi- eller skuggväv"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0102_KD_2023-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Växthusinventarier fördelat på växthusföretagens storlek. Antal företag och växthusyta. 2005-2023. Riket efter Storleksgrupp företag, Inventarietyp, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Storleksgrupp företag": {
+            "label": "Storleksgrupp företag",
+            "category": {
+              "label": {
+                "0": "Mindre än 1 000 kvadratmeter"
+              }
+            }
+          },
+          "Inventarietyp": {
+            "label": "Inventarietyp",
+            "category": {
+              "label": {
+                "2": "Odlingsbelysning"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0102_KD_2023-tga",
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Storleksgrupp företag",
+                  "Inventarietyp",
+                  "Variabel",
+                  "År"
+                ],
+                "categories": {
+                  "Storleksgrupp företag": [
+                    "0"
+                  ],
+                  "Inventarietyp": [
+                    "2"
+                  ],
+                  "Variabel": [
+                    "0"
+                  ],
+                  "År": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "0": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Växthusinventarier fördelat på växthusföretagens storlek. Antal företag och växthusyta. 2005-2023. Riket efter Storleksgrupp företag, Inventarietyp, Variabel och År",
+        "source": "Jordbruksverket",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Storleksgrupp företag": {
+            "label": "Storleksgrupp företag",
+            "category": {
+              "label": {
+                "0": "Mindre än 1 000 kvadratmeter"
+              }
+            }
+          },
+          "Inventarietyp": {
+            "label": "Inventarietyp",
+            "category": {
+              "label": {
+                "0": "Energi- eller skuggväv"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2011",
+                "3": "2014",
+                "4": "2017",
+                "5": "2020",
+                "6": "2023"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "JO0102_KD_2023-tga",
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Storleksgrupp företag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Inventarietyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Storleksgrupp företag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Inventarietyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Storleksgrupp företag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Inventarietyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Storleksgrupp företag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Inventarietyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

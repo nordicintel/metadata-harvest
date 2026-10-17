@@ -1,0 +1,825 @@
+{
+  "key": "linkoping/hushall07.px/sv",
+  "identifier": "hushall07.px",
+  "language": "sv",
+  "updated": "2025-05-20",
+  "retrieved_at": "2026-10-17T07:45:44.810808+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod.",
+      "variables": [
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Antal",
+            "ProcentUpp",
+            "ProcentHus",
+            "ProcentBygg"
+          ],
+          "valueTexts": [
+            "Antal",
+            "Procent efter upplåtelseform",
+            "Procent efter hushållstyp",
+            "Procent efter byggnadsperiod"
+          ]
+        },
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "valueTexts": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ]
+        },
+        {
+          "code": "upplåtelseform",
+          "text": "upplåtelseform",
+          "values": [
+            "Äganderätt",
+            "Bostadsrätt",
+            "Hyresrätt",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Äganderätt",
+            "Bostadsrätt",
+            "Hyresrätt",
+            "Uppgift saknas",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "hushållstyp",
+          "text": "hushållstyp",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Ensamstående",
+            "Sammanboende",
+            "Övriga hushåll",
+            "Samtliga"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "byggnadsperiod",
+          "text": "byggnadsperiod",
+          "values": [
+            "-1930",
+            "1931-40",
+            "1941-50",
+            "1951-60",
+            "1961-70",
+            "1971-80",
+            "1981-90",
+            "1991-00",
+            "2001-10",
+            "2011-20",
+            "2021-30",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "-1930",
+            "1931-1940",
+            "1941-1950",
+            "1951-1960",
+            "1961-1970",
+            "1971-1980",
+            "1981-1990",
+            "1991-2000",
+            "2001-2010",
+            "2011-2020",
+            "2021-2030",
+            "Uppgift saknas",
+            "Totalt"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Hushall/hushall07.px",
+      "category_path": [
+        {
+          "id": "Hushall",
+          "name": "Hushåll"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "hushall07.px",
+      "id": "hushall07.px",
+      "language": "sv",
+      "path": "/Hushall",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Hushall/hushall07.px",
+          "category_path": [
+            {
+              "id": "Hushall",
+              "name": "Hushåll"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Hushall",
+          "published": "2025-05-20",
+          "score": 1.0,
+          "title": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Hushall/hushall07.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2025-05-20",
+      "score": 1.0,
+      "title": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Hushall/hushall07.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun. ",
+        "updated": "2026-10-17T09:45:44.0874755+02:00",
+        "dimension": {
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal",
+                "ProcentUpp": "Procent efter upplåtelseform"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2016": "2016",
+                "2017": "2017"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Äganderätt": "Äganderätt",
+                "Bostadsrätt": "Bostadsrätt"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående",
+                "1": "Sammanboende"
+              }
+            }
+          },
+          "byggnadsperiod": {
+            "label": "byggnadsperiod",
+            "category": {
+              "label": {
+                "-1930": "-1930",
+                "1931-40": "1931-1940"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun. ",
+        "updated": "2026-10-17T09:45:44.2437296+02:00",
+        "dimension": {
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "ProcentHus": "Procent efter hushållstyp",
+                "ProcentBygg": "Procent efter byggnadsperiod"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2016": "2016"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Äganderätt": "Äganderätt"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "byggnadsperiod": {
+            "label": "byggnadsperiod",
+            "category": {
+              "label": {
+                "-1930": "-1930"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun. ",
+        "updated": "2026-10-17T09:45:44.3687118+02:00",
+        "dimension": {
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Äganderätt": "Äganderätt"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "byggnadsperiod": {
+            "label": "byggnadsperiod",
+            "category": {
+              "label": {
+                "-1930": "-1930"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun. ",
+        "updated": "2026-10-17T09:45:44.4937095+02:00",
+        "dimension": {
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2016": "2016"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Hyresrätt": "Hyresrätt",
+                "US": "Uppgift saknas",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "byggnadsperiod": {
+            "label": "byggnadsperiod",
+            "category": {
+              "label": {
+                "-1930": "-1930"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun. ",
+        "updated": "2026-10-17T09:45:44.6031146+02:00",
+        "dimension": {
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2016": "2016"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Äganderätt": "Äganderätt"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "2": "Övriga hushåll",
+                "3": "Samtliga"
+              }
+            }
+          },
+          "byggnadsperiod": {
+            "label": "byggnadsperiod",
+            "category": {
+              "label": {
+                "-1930": "-1930"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Hushåll efter tabelluppgift, tid, upplåtelseform, hushållstyp och byggnadsperiod",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun. ",
+        "updated": "2026-10-17T09:45:44.7280824+02:00",
+        "dimension": {
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2016": "2016"
+              }
+            }
+          },
+          "upplåtelseform": {
+            "label": "upplåtelseform",
+            "category": {
+              "label": {
+                "Äganderätt": "Äganderätt"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "0": "Ensamstående"
+              }
+            }
+          },
+          "byggnadsperiod": {
+            "label": "byggnadsperiod",
+            "category": {
+              "label": {
+                "1941-50": "1941-1950",
+                "1951-60": "1951-1960",
+                "1961-70": "1961-1970",
+                "1971-80": "1971-1980",
+                "1981-90": "1981-1990",
+                "1991-00": "1991-2000",
+                "2001-10": "2001-2010",
+                "2011-20": "2011-2020",
+                "2021-30": "2021-2030",
+                "US": "Uppgift saknas",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal",
+                "ProcentUpp"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016",
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Äganderätt",
+                "Bostadsrätt"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "byggnadsperiod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-1930",
+                "1931-40"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "ProcentHus",
+                "ProcentBygg"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Äganderätt"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "byggnadsperiod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-1930"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Äganderätt"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "byggnadsperiod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-1930"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Hyresrätt",
+                "US",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "byggnadsperiod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-1930"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Äganderätt"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "byggnadsperiod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "-1930"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2016"
+              ]
+            }
+          },
+          {
+            "code": "upplåtelseform",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Äganderätt"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "byggnadsperiod",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1941-50",
+                "1951-60",
+                "1961-70",
+                "1971-80",
+                "1981-90",
+                "1991-00",
+                "2001-10",
+                "2011-20",
+                "2021-30",
+                "US",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

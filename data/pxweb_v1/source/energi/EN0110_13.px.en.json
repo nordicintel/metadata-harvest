@@ -1,0 +1,541 @@
+{
+  "key": "energi/EN0110_13.px/en",
+  "identifier": "EN0110_13.px",
+  "language": "en",
+  "updated": "2024-10-08",
+  "retrieved_at": "2026-10-17T07:04:45.056106+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Holiday homes 2023: Type of heating system, number",
+      "variables": [
+        {
+          "code": "Uppvärmningssätt",
+          "text": "Heating system",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "valueTexts": [
+            "All heating systems",
+            "Only electricity (d)",
+            "Only electricity (w)",
+            "Biofuel and electricity (d)",
+            "Biofuel and electricity (w)",
+            "Only Biofuel",
+            "Only Stove",
+            "Only geothermal and sea heatpump",
+            "Geothermal and sea heatpump in combination",
+            "Air to air heatpump only",
+            "Air to air heatpump in combination",
+            "Only district heating",
+            "District heating in combination",
+            "Oil only and in combination",
+            "Other",
+            "No heating system"
+          ]
+        },
+        {
+          "code": "Titel",
+          "text": "Title",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Number thousands",
+            "Share, %"
+          ]
+        },
+        {
+          "code": "Mått",
+          "text": "Measure",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Value",
+            "Margin of error ±"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_13.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Dwellings and non-residential premises"
+        },
+        {
+          "id": "Fritidshus",
+          "name": "Energy statistics for dwellings with no registered permanent resident (holiday homes)"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0110_13.px",
+      "id": "EN0110_13.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus/EN0110_13.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Dwellings and non-residential premises"
+            },
+            {
+              "id": "Fritidshus",
+              "name": "Energy statistics for dwellings with no registered permanent resident (holiday homes)"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Fritidshus",
+          "published": "2024-10-08",
+          "score": 1.0,
+          "title": "Holiday homes 2023: Type of heating system, number",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_13.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2024-10-08",
+      "score": 1.0,
+      "title": "Holiday homes 2023: Type of heating system, number",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Fritidshus/EN0110_13.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Holiday homes 2023: Type of heating system, number by Heating system, Title and Measure",
+        "source": "Swedish Energy Agency",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "(d) = direct electricity, (v) = Water distributed electricity, exhaust air heatpump included. Wood and pellet are counted as biofuel. Fire in stove is counted if energy use exceed 5 kWh/day",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-fritidshus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "category": {
+              "label": {
+                "0": "All heating systems",
+                "1": "Only electricity (d)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Title",
+            "category": {
+              "label": {
+                "0": "Number thousands",
+                "1": "Share, %"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "Value",
+                "1": "Margin of error ±"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Holiday homes 2023: Type of heating system, number",
+            "description": "Holiday homes 2023: Type of heating system, number",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Mått"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_13",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Uppvärmningssätt",
+                  "Titel",
+                  "Mått"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Uppvärmningssätt": [
+                    "0",
+                    "1"
+                  ],
+                  "Titel": [
+                    "0",
+                    "1"
+                  ],
+                  "Mått": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "1": "..",
+                  "3": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Holiday homes 2023: Type of heating system, number"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Thousands, Share (%)",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Holiday homes 2023: Type of heating system, number by Heating system, Title and Measure",
+        "source": "Swedish Energy Agency",
+        "updated": "2024-10-08T07:00:00Z",
+        "note": [
+          "(d) = direct electricity, (v) = Water distributed electricity, exhaust air heatpump included. Wood and pellet are counted as biofuel. Fire in stove is counted if energy use exceed 5 kWh/day",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-fritidshus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": []
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "category": {
+              "label": {
+                "2": "Only electricity (w)",
+                "3": "Biofuel and electricity (d)",
+                "4": "Biofuel and electricity (w)",
+                "5": "Only Biofuel",
+                "6": "Only Stove",
+                "7": "Only geothermal and sea heatpump",
+                "8": "Geothermal and sea heatpump in combination",
+                "9": "Air to air heatpump only",
+                "10": "Air to air heatpump in combination",
+                "11": "Only district heating",
+                "12": "District heating in combination",
+                "13": "Oil only and in combination",
+                "14": "Other",
+                "15": "No heating system"
+              },
+              "note": {
+                "10": [
+                  "District heating, oil, Geothermal and sea heat pump excluded"
+                ],
+                "12": [
+                  "Geothermal and sea heat pump excluded"
+                ],
+                "13": [
+                  "District heating, Geothermal and sea heat pump excluded"
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Titel": {
+            "label": "Title",
+            "category": {
+              "label": {
+                "0": "Number thousands"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Mått": {
+            "label": "Measure",
+            "category": {
+              "label": {
+                "0": "Value"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Holiday homes 2023: Type of heating system, number",
+            "description": "Holiday homes 2023: Type of heating system, number",
+            "descriptiondefault": true,
+            "heading": [
+              "Titel",
+              "Mått"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0110_13",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Per Paulson,  per.paulson@energimyndigheten.se, +46 16 5442173"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "Uppvärmningssätt",
+                  "Titel",
+                  "Mått"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "Uppvärmningssätt": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15"
+                  ],
+                  "Titel": [
+                    "0"
+                  ],
+                  "Mått": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "10": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Holiday homes 2023: Type of heating system, number"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Thousands, Share (%)",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "Titel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Mått",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

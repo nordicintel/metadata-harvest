@@ -1,0 +1,587 @@
+{
+  "key": "domstol/03_Verksamhetsmal_HD.px/en",
+  "identifier": "03_Verksamhetsmal_HD.px",
+  "language": "en",
+  "updated": "2026-02-20",
+  "retrieved_at": "2026-10-17T07:06:27.564766+00:00",
+  "responses": {
+    "metadata": {
+      "title": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months). Year 2013-2025.",
+      "variables": [
+        {
+          "code": "Domstol",
+          "text": "Court",
+          "values": [
+            "Supreme Court"
+          ],
+          "valueTexts": [
+            "Supreme Court"
+          ]
+        },
+        {
+          "code": "Verksamhetsmålskategori",
+          "text": "Category",
+          "values": [
+            "Cases which have been given a decision about leave to appeal",
+            "Cases determined which have been granted leave to appeal",
+            "Cases determined not requiring leave to appeal (extraordinary cases)"
+          ],
+          "valueTexts": [
+            "Cases which have been given a decision about leave to appeal",
+            "Cases determined which have been granted leave to appeal",
+            "Cases determined not requiring leave to appeal (extraordinary cases)"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "valueTexts": [
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Verksamhetsmal/03_Verksamhetsmal_HD.px",
+      "category_path": [
+        {
+          "id": "Verksamhetsmal",
+          "name": "Performance of time targets (turnaround times)"
+        }
+      ],
+      "database_id": "DOMstat",
+      "dataset_code": "03_Verksamhetsmal_HD.px",
+      "id": "03_Verksamhetsmal_HD.px",
+      "language": "en",
+      "path": "/Verksamhetsmal",
+      "paths": [
+        {
+          "api_url": "https://pxweb.etjanst.domstol.se/PxWeb/api/v1/en/DOMstat/Verksamhetsmal/03_Verksamhetsmal_HD.px",
+          "category_path": [
+            {
+              "id": "Verksamhetsmal",
+              "name": "Performance of time targets (turnaround times)"
+            }
+          ],
+          "database_id": "DOMstat",
+          "path": "/Verksamhetsmal",
+          "published": "2026-02-20",
+          "score": 1.0,
+          "title": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months). Year 2013-2025.",
+          "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Verksamhetsmal/03_Verksamhetsmal_HD.px/"
+        }
+      ],
+      "provider_code": "domstol",
+      "published": "2026-02-20",
+      "score": 1.0,
+      "title": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months). Year 2013-2025.",
+      "web_url": "https://pxweb.etjanst.domstol.se/PxWeb/pxweb/en/DOMstat/DOMstat__Verksamhetsmal/03_Verksamhetsmal_HD.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months) by Court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets set by the Supreme Court, measured in months at the 90th percentile for cases determined during the selected time period (time from filed case to determined case except for cases which have been given a decision about leave to appeal).",
+          "The time target is 4 months for Cases which have been given a decision about leave to appeal (time from filed case to decision delivered regarding leave to appeal), 18 months for Cases determined which have been granted leave to appeal  and 10 months for Cases determined not requiring leave to appeal (extraordinary cases).",
+          "Excluding priority cases (criminal cases involving a detained person or a defendant under 18 years of age)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Supreme Court": "Supreme Court"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Cases which have been given a decision about leave to appeal": "Cases which have been given a decision about leave to appeal",
+                "Cases determined which have been granted leave to appeal": "Cases determined which have been granted leave to appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2013",
+                "1": "2014"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months)",
+            "description": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months). Year 2013-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030182",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months) by Court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets set by the Supreme Court, measured in months at the 90th percentile for cases determined during the selected time period (time from filed case to determined case except for cases which have been given a decision about leave to appeal).",
+          "The time target is 4 months for Cases which have been given a decision about leave to appeal (time from filed case to decision delivered regarding leave to appeal), 18 months for Cases determined which have been granted leave to appeal  and 10 months for Cases determined not requiring leave to appeal (extraordinary cases).",
+          "Excluding priority cases (criminal cases involving a detained person or a defendant under 18 years of age)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Supreme Court": "Supreme Court"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Cases determined not requiring leave to appeal (extraordinary cases)": "Cases determined not requiring leave to appeal (extraordinary cases)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2013"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months)",
+            "description": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months). Year 2013-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030182",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months) by Court, Category and Year",
+        "source": "The Swedish National Courts Administration",
+        "updated": "2026-03-10T08:30:00Z",
+        "note": [
+          "The table illustrates the performance of the time targets set by the Supreme Court, measured in months at the 90th percentile for cases determined during the selected time period (time from filed case to determined case except for cases which have been given a decision about leave to appeal).",
+          "The time target is 4 months for Cases which have been given a decision about leave to appeal (time from filed case to decision delivered regarding leave to appeal), 18 months for Cases determined which have been granted leave to appeal  and 10 months for Cases determined not requiring leave to appeal (extraordinary cases).",
+          "Excluding priority cases (criminal cases involving a detained person or a defendant under 18 years of age)."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Domstol": {
+            "label": "Court",
+            "category": {
+              "label": {
+                "Supreme Court": "Supreme Court"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Verksamhetsmålskategori": {
+            "label": "Category",
+            "category": {
+              "label": {
+                "Cases which have been given a decision about leave to appeal": "Cases which have been given a decision about leave to appeal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2015",
+                "3": "2016",
+                "4": "2017",
+                "5": "2018",
+                "6": "2019",
+                "7": "2020",
+                "8": "2021",
+                "9": "2022",
+                "10": "2023",
+                "11": "2024",
+                "12": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 1,
+            "official-statistics": true,
+            "aggregallowed": false,
+            "language": "sv",
+            "contents": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months)",
+            "description": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months). Year 2013-2025.",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Domstol",
+              "Verksamhetsmålskategori"
+            ],
+            "matrix": "RV030182",
+            "subject-code": "RV0301",
+            "subject-area": "Performance of time targets (turnaround times)"
+          },
+          "contact": [
+            {
+              "raw": "statistik@dom.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "03. Performance of the time targets at the Supreme Court (turnaround time 90 percentile in months)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Months",
+                      "decimals": 14
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Cases which have been given a decision about leave to appeal",
+                "Cases determined which have been granted leave to appeal"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Cases determined not requiring leave to appeal (extraordinary cases)"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Domstol",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Supreme Court"
+              ]
+            }
+          },
+          {
+            "code": "Verksamhetsmålskategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Cases which have been given a decision about leave to appeal"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

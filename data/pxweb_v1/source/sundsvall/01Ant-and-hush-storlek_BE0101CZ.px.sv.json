@@ -1,0 +1,491 @@
+{
+  "key": "sundsvall/01Ant-and-hush-storlek_BE0101CZ.px/sv",
+  "identifier": "01Ant-and-hush-storlek_BE0101CZ.px",
+  "language": "sv",
+  "updated": "2023-02-08",
+  "retrieved_at": "2026-10-17T07:02:38.496520+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+      "variables": [
+        {
+          "code": "hushållsstorlek",
+          "text": "hushållsstorlek",
+          "values": [
+            "1P",
+            "2P",
+            "3P",
+            "4P",
+            "5P",
+            "6P",
+            "7+P",
+            "US",
+            "TOTAL"
+          ],
+          "valueTexts": [
+            "1 person",
+            "2 personer",
+            "3 personer",
+            "4 personer",
+            "5 personer",
+            "6 personer",
+            "7+ personer",
+            "uppgift saknas",
+            "samtliga hushåll"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tabellinnehåll",
+          "text": "tabellinnehåll",
+          "values": [
+            "BE0101CZ",
+            "BE0101C0",
+            "BE0101DK",
+            "BE0101DL"
+          ],
+          "valueTexts": [
+            "Antal hushåll",
+            "Andel av samtliga hushåll",
+            "Antal personer",
+            "Andel av samtliga personer"
+          ]
+        },
+        {
+          "code": "år",
+          "text": "år",
+          "values": [
+            "2021",
+            "2020",
+            "2019",
+            "2018",
+            "2017",
+            "2016",
+            "2015",
+            "2014",
+            "2013",
+            "2012",
+            "2011"
+          ],
+          "valueTexts": [
+            "2021",
+            "2020",
+            "2019",
+            "2018",
+            "2017",
+            "2016",
+            "2015",
+            "2014",
+            "2013",
+            "2012",
+            "2011"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1/sv/Sundsvalls_statistikdatabas/1Hela%20kommunen/Hushall/01Ant-and-hush-storlek_BE0101CZ.px",
+      "category_path": [
+        {
+          "id": "1Hela kommunen",
+          "name": "Hela kommunen"
+        },
+        {
+          "id": "Hushall",
+          "name": "Hushåll"
+        }
+      ],
+      "database_id": "Sundsvalls_statistikdatabas",
+      "dataset_code": "01Ant-and-hush-storlek_BE0101CZ.px",
+      "id": "01Ant-and-hush-storlek_BE0101CZ.px",
+      "language": "sv",
+      "path": "/1Hela kommunen/Hushall",
+      "paths": [
+        {
+          "api_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/api/v1/sv/Sundsvalls_statistikdatabas/1Hela%20kommunen/Hushall/01Ant-and-hush-storlek_BE0101CZ.px",
+          "category_path": [
+            {
+              "id": "1Hela kommunen",
+              "name": "Hela kommunen"
+            },
+            {
+              "id": "Hushall",
+              "name": "Hushåll"
+            }
+          ],
+          "database_id": "Sundsvalls_statistikdatabas",
+          "path": "/1Hela kommunen/Hushall",
+          "published": "2023-02-08",
+          "score": 1.0,
+          "title": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+          "web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb/sv/Sundsvalls_statistikdatabas/Sundsvalls_statistikdatabas__1Hela%20kommunen__Hushall/01Ant-and-hush-storlek_BE0101CZ.px/?rxid=1cbb15f0-b9a0-4211-9337-277cbf7c784a"
+        }
+      ],
+      "provider_code": "sundsvall",
+      "published": "2023-02-08",
+      "score": 1.0,
+      "title": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+      "web_url": "https://m02-http-pxwebb.login.sundsvall.se/PXWeb_Ext/pxweb/sv/Sundsvalls_statistikdatabas/Sundsvalls_statistikdatabas__1Hela%20kommunen__Hushall/01Ant-and-hush-storlek_BE0101CZ.px/?rxid=1cbb15f0-b9a0-4211-9337-277cbf7c784a"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:02:35.1348512+02:00",
+        "dimension": {
+          "hushållsstorlek": {
+            "label": "hushållsstorlek",
+            "category": {
+              "label": {
+                "1P": "1 person",
+                "2P": "2 personer"
+              }
+            }
+          },
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "BE0101CZ": "Antal hushåll",
+                "BE0101C0": "Andel av samtliga hushåll"
+              },
+              "unit": {
+                "BE0101CZ": {
+                  "base": "antal",
+                  "decimals": 0
+                },
+                "BE0101C0": {
+                  "base": "andel",
+                  "decimals": 1
+                }
+              }
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2020": "2020"
+              }
+            }
+          }
+        },
+        "role": {
+          "metric": [
+            "tabellinnehåll"
+          ]
+        }
+      },
+      {
+        "label": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:02:35.9939152+02:00",
+        "dimension": {
+          "hushållsstorlek": {
+            "label": "hushållsstorlek",
+            "category": {
+              "label": {
+                "3P": "3 personer",
+                "4P": "4 personer",
+                "5P": "5 personer",
+                "6P": "6 personer",
+                "7+P": "7+ personer",
+                "US": "uppgift saknas",
+                "TOTAL": "samtliga hushåll"
+              }
+            }
+          },
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "BE0101CZ": "Antal hushåll"
+              },
+              "unit": {
+                "BE0101CZ": {
+                  "base": "antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            }
+          }
+        },
+        "role": {
+          "metric": [
+            "tabellinnehåll"
+          ]
+        }
+      },
+      {
+        "label": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:02:36.9941723+02:00",
+        "dimension": {
+          "hushållsstorlek": {
+            "label": "hushållsstorlek",
+            "category": {
+              "label": {
+                "1P": "1 person"
+              }
+            }
+          },
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "BE0101DK": "Antal personer",
+                "BE0101DL": "Andel av samtliga personer"
+              },
+              "unit": {
+                "BE0101DK": {
+                  "base": "antal",
+                  "decimals": 0
+                },
+                "BE0101DL": {
+                  "base": "andel",
+                  "decimals": 1
+                }
+              }
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            }
+          }
+        },
+        "role": {
+          "metric": [
+            "tabellinnehåll"
+          ]
+        }
+      },
+      {
+        "label": "Antal och andel hushåll samt personer efter hushållsstorlek, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån (SCB)",
+        "updated": "2026-10-17T09:02:38.0095964+02:00",
+        "dimension": {
+          "hushållsstorlek": {
+            "label": "hushållsstorlek",
+            "category": {
+              "label": {
+                "1P": "1 person"
+              }
+            }
+          },
+          "tabellinnehåll": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "BE0101CZ": "Antal hushåll"
+              },
+              "unit": {
+                "BE0101CZ": {
+                  "base": "antal",
+                  "decimals": 0
+                }
+              }
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2019": "2019",
+                "2018": "2018",
+                "2017": "2017",
+                "2016": "2016",
+                "2015": "2015",
+                "2014": "2014",
+                "2013": "2013",
+                "2012": "2012",
+                "2011": "2011"
+              }
+            }
+          }
+        },
+        "role": {
+          "metric": [
+            "tabellinnehåll"
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "hushållsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1P",
+                "2P"
+              ]
+            }
+          },
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "BE0101CZ",
+                "BE0101C0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2020"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hushållsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3P",
+                "4P",
+                "5P",
+                "6P",
+                "7+P",
+                "US",
+                "TOTAL"
+              ]
+            }
+          },
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "BE0101CZ"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hushållsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1P"
+              ]
+            }
+          },
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "BE0101DK",
+                "BE0101DL"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "hushållsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1P"
+              ]
+            }
+          },
+          {
+            "code": "tabellinnehåll",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "BE0101CZ"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2019",
+                "2018",
+                "2017",
+                "2016",
+                "2015",
+                "2014",
+                "2013",
+                "2012",
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,812 @@
+{
+  "key": "scb_hvd/HVDDeltidAlderAr/sv",
+  "identifier": "HVDDeltidAlderAr",
+  "language": "sv",
+  "updated": "2026-01-26",
+  "retrieved_at": "2026-10-17T06:58:54.957921+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Deltidsarbete 20-64 år (AKU) efter kön, ålder, tabellinnehåll och år",
+      "variables": [
+        {
+          "code": "Kon",
+          "text": "kön",
+          "values": [
+            "1",
+            "2",
+            "1+2"
+          ],
+          "valueTexts": [
+            "män",
+            "kvinnor",
+            "totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "Alder",
+          "text": "ålder",
+          "values": [
+            "20-24",
+            "25-54",
+            "55-64",
+            "Tot20-64"
+          ],
+          "valueTexts": [
+            "20-24",
+            "25-54",
+            "55-64",
+            "totalt 20-64"
+          ]
+        },
+        {
+          "code": "ContentsCode",
+          "text": "tabellinnehåll",
+          "values": [
+            "000000FY",
+            "000000FW"
+          ],
+          "valueTexts": [
+            "Andel, procent",
+            "Felmarginal +-, procent"
+          ]
+        },
+        {
+          "code": "Tid",
+          "text": "år",
+          "values": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://hvduppdrag.scb.se/api/v1/sv/uppdrag/HV01/HV0102/HVDDeltidAlderAr",
+      "category_path": [
+        {
+          "id": "HV0102",
+          "name": "Värdefulla datamängder, Arbetskraftsundersökningarna"
+        }
+      ],
+      "database_id": "uppdrag",
+      "dataset_code": "HVDDeltidAlderAr",
+      "id": "HVDDeltidAlderAr",
+      "language": "sv",
+      "path": "/HV0102",
+      "paths": [
+        {
+          "api_url": "https://hvduppdrag.scb.se/api/v1/sv/uppdrag/HV01/HV0102/HVDDeltidAlderAr",
+          "category_path": [
+            {
+              "id": "HV0102",
+              "name": "Värdefulla datamängder, Arbetskraftsundersökningarna"
+            }
+          ],
+          "database_id": "uppdrag",
+          "path": "/HV0102",
+          "published": "2026-01-26",
+          "score": 1.0,
+          "title": "HVD 15.7 Deltidsarbete 20-64 år (AKU) efter kön och ålder. År 2021 - 2025",
+          "web_url": "https://hvduppdrag.scb.se/pxweb/sv/uppdrag/HV01__HV0102/HVDDeltidAlderAr/"
+        }
+      ],
+      "provider_code": "scb_hvd",
+      "published": "2026-01-26",
+      "score": 1.0,
+      "title": "HVD 15.7 Deltidsarbete 20-64 år (AKU) efter kön och ålder. År 2021 - 2025",
+      "web_url": "https://hvduppdrag.scb.se/pxweb/sv/uppdrag/HV01__HV0102/HVDDeltidAlderAr/"
+    },
+    "config": {
+      "maxValues": 110000,
+      "maxCells": 625000,
+      "maxCalls": 100,
+      "timeWindow": 1,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Deltidsarbete 20-64 år (AKU) efter kön, ålder, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-01-26T07:00:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..].",
+          "Andelen deltidsarbetande av sysselsatta personer."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1": "män",
+                "2": "kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "20-24": "20-24",
+                "25-54": "25-54"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000FY": "Andel, procent",
+                "000000FW": "Felmarginal +-, procent"
+              },
+              "unit": {
+                "000000FY": {
+                  "base": "procent",
+                  "decimals": 1
+                },
+                "000000FW": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000FY": "År",
+                "000000FW": "År"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000FY": "Stock",
+                "000000FW": "Stock"
+              },
+              "priceType": {
+                "000000FY": "NotApplicable",
+                "000000FW": "NotApplicable"
+              },
+              "adjustment": {
+                "000000FY": "None",
+                "000000FW": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2021": "2021",
+                "2022": "2022"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB195",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Deltidsarbete 20-64 år (AKU)",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000FY",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Deltidsarbete 20-64 år (AKU), procent efter kön, ålder, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-01-26T07:00:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..].",
+          "Andelen deltidsarbetande av sysselsatta personer."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1+2": "totalt"
+              }
+            },
+            "extension": {
+              "elimination": true,
+              "eliminationValueCode": "1+2",
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "20-24": "20-24"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000FY": "Andel, procent"
+              },
+              "unit": {
+                "000000FY": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000FY": "År"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000FY": "Stock"
+              },
+              "priceType": {
+                "000000FY": "NotApplicable"
+              },
+              "adjustment": {
+                "000000FY": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB195",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Deltidsarbete 20-64 år (AKU), procent",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000FY",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Deltidsarbete 20-64 år (AKU), procent efter kön, ålder, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-01-26T07:00:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..].",
+          "Andelen deltidsarbetande av sysselsatta personer."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1": "män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "55-64": "55-64",
+                "Tot20-64": "totalt 20-64"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000FY": "Andel, procent"
+              },
+              "unit": {
+                "000000FY": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000FY": "År"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000FY": "Stock"
+              },
+              "priceType": {
+                "000000FY": "NotApplicable"
+              },
+              "adjustment": {
+                "000000FY": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB195",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Deltidsarbete 20-64 år (AKU), procent",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000FY",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Deltidsarbete 20-64 år (AKU), procent efter kön, ålder, tabellinnehåll och år",
+        "source": "Statistiska centralbyrån",
+        "updated": "2026-01-26T07:00:00Z",
+        "note": [
+          "Eftersom AKU är en urvalsundersökning är samtliga skattningar behäftade med osäkerhet. I det fall en skattning är baserad på färre än 20 observationer på kvartalsbasis eller färre än 40 observationer på årsbasis kan osäkerheten anses vara alltför hög och skattningen redovisas inte. I dessa fall ersätts värdet med två prickar [..].",
+          "Andelen deltidsarbetande av sysselsatta personer."
+        ],
+        "role": {
+          "time": [
+            "Tid"
+          ],
+          "metric": [
+            "ContentsCode"
+          ]
+        },
+        "dimension": {
+          "Kon": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "1": "män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Alder": {
+            "label": "ålder",
+            "category": {
+              "label": {
+                "20-24": "20-24"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "ContentsCode": {
+            "label": "tabellinnehåll",
+            "category": {
+              "label": {
+                "000000FY": "Andel, procent"
+              },
+              "unit": {
+                "000000FY": {
+                  "base": "procent",
+                  "decimals": 1
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "000000FY": "År"
+              },
+              "show": "value",
+              "measuringType": {
+                "000000FY": "Stock"
+              },
+              "priceType": {
+                "000000FY": "NotApplicable"
+              },
+              "adjustment": {
+                "000000FY": "None"
+              }
+            }
+          },
+          "Tid": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "code"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "infofile": "HV0102",
+            "tableid": "TAB195",
+            "decimals": 1,
+            "official-statistics": false,
+            "aggregallowed": false,
+            "copyright": false,
+            "language": "sv",
+            "contents": "Deltidsarbete 20-64 år (AKU), procent",
+            "descriptiondefault": false,
+            "heading": [
+              "ContentsCode",
+              "Tid"
+            ],
+            "stub": [
+              "Kon",
+              "Alder"
+            ],
+            "matrix": "000000FY",
+            "subject-code": "HV01",
+            "subject-area": "Värdefulla datamängder"
+          },
+          "discontinued": null,
+          "contact": [
+            {
+              "name": "Åsa Zakrisson",
+              "organization": "Statistiska centralbyrån",
+              "phone": "010-479 41 86",
+              "mail": "asa.zakrisson@scb.se",
+              "raw": "Åsa Zakrisson, Statistiska centralbyrån# +46 010-479 41 86#asa.zakrisson@scb.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-24",
+                "25-54"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000FY",
+                "000000FW"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021",
+                "2022"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-24"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000FY"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "55-64",
+                "Tot20-64"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000FY"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2021"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kon",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Alder",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "20-24"
+              ]
+            }
+          },
+          {
+            "code": "ContentsCode",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "000000FY"
+              ]
+            }
+          },
+          {
+            "code": "Tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

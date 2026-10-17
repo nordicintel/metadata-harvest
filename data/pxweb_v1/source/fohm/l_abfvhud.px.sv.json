@@ -1,0 +1,736 @@
+{
+  "key": "fohm/l_abfvhud.px/sv",
+  "identifier": "l_abfvhud.px",
+  "language": "sv",
+  "updated": "2026-02-02",
+  "retrieved_at": "2026-10-17T07:56:59.227009+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+      "variables": [
+        {
+          "code": "Enhet",
+          "text": "Enhet",
+          "values": [
+            "2",
+            "3",
+            "4",
+            "1",
+            "5"
+          ],
+          "valueTexts": [
+            "Andel penicillin V/flukloxacillin",
+            "Lägre 95 % konfidensintervall",
+            "Övre 95 % konfidensintervall",
+            "Antal penicillin V/flukloxacillin",
+            "Totalt antal förskrivningar"
+          ]
+        },
+        {
+          "code": "Kön",
+          "text": "Kön",
+          "values": [
+            "1+2",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Totalt",
+            "Kvinnor",
+            "Män"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/E_HALT/A_nationellt/l_abfvhud.px",
+      "category_path": [
+        {
+          "id": "E_HALT",
+          "name": "Vårdrelaterade infektioner och antibiotikaanvändning inom särskilt boende (svenska HALT)"
+        },
+        {
+          "id": "A_nationellt",
+          "name": "1. Resultat nationellt"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "l_abfvhud.px",
+      "id": "l_abfvhud.px",
+      "language": "sv",
+      "path": "/E_HALT/A_nationellt",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/E_HALT/A_nationellt/l_abfvhud.px",
+          "category_path": [
+            {
+              "id": "E_HALT",
+              "name": "Vårdrelaterade infektioner och antibiotikaanvändning inom särskilt boende (svenska HALT)"
+            },
+            {
+              "id": "A_nationellt",
+              "name": "1. Resultat nationellt"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/E_HALT/A_nationellt",
+          "published": "2026-02-02",
+          "score": 1.0,
+          "title": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__E_HALT__A_nationellt/l_abfvhud.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-02-02",
+      "score": 1.0,
+      "title": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__E_HALT__A_nationellt/l_abfvhud.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent). efter Enhet, Kön och År",
+        "source": "Senior alert",
+        "updated": "2026-02-02T07:00:00Z",
+        "note": [
+          "Data från punktprevalensmätning av vårdrelaterade infektioner och antibiotikaanvändning på särskilt boende för äldre (HALT). Statistiken visar val av antibiotika vid behandling av hud- och mjukdelsinfektion, totalt samt per kön. Antibiotika som inkluderas är all terapeutisk antibiotika för hud- och mjukdelar där angiven diagnos är infekterade akuta sår, infekterade svårläkta sår, postoperativa sår, erysipelas, annan diagnos alternativt att ingen diagnos finns angiven. Statistiken presenteras som andelen penicillin V plus flukloxacillin som förskrivits av totalt antal preparat. Data visas som antal och i andelar med konfidensintervall. Om det totala antalet svarande är färre är 25, eller om utfallet på en fråga har färre än tre svar, visas inte data. Observera att kommunernas deltagande i punktprevalensmätningen sker frivilligt. Det medför att antalet vårdtagare, antalet kommuner och antalet och mixen av enhetstyper varierar mellan åren. Mätningen baseras på journalgranskning som utförs lokalt av personal på särskilt boende.",
+          "Målgruppen för denna redovisning är i första hand medicinskt ansvarig sjuksköterskor inom kommunal hälso-och sjukvård, verksamhetschefer eller personal på särskilt boende, personer som arbetar lokalt eller regionalt med kvalitetsutveckling, patientsäkerhet, strama, vårdhygien och smittskydd."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "2": "Andel penicillin V/flukloxacillin",
+                "3": "Lägre 95 % konfidensintervall"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt",
+                "1": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2015": "2015",
+                "2016": "2016"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "description": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Enhet"
+            ],
+            "matrix": "l_abfvhud",
+            "subject-code": "HALT",
+            "subject-area": "Resultat nationellt"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent)."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2015-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent). efter Enhet, Kön och År",
+        "source": "Senior alert",
+        "updated": "2026-02-02T07:00:00Z",
+        "note": [
+          "Data från punktprevalensmätning av vårdrelaterade infektioner och antibiotikaanvändning på särskilt boende för äldre (HALT). Statistiken visar val av antibiotika vid behandling av hud- och mjukdelsinfektion, totalt samt per kön. Antibiotika som inkluderas är all terapeutisk antibiotika för hud- och mjukdelar där angiven diagnos är infekterade akuta sår, infekterade svårläkta sår, postoperativa sår, erysipelas, annan diagnos alternativt att ingen diagnos finns angiven. Statistiken presenteras som andelen penicillin V plus flukloxacillin som förskrivits av totalt antal preparat. Data visas som antal och i andelar med konfidensintervall. Om det totala antalet svarande är färre är 25, eller om utfallet på en fråga har färre än tre svar, visas inte data. Observera att kommunernas deltagande i punktprevalensmätningen sker frivilligt. Det medför att antalet vårdtagare, antalet kommuner och antalet och mixen av enhetstyper varierar mellan åren. Mätningen baseras på journalgranskning som utförs lokalt av personal på särskilt boende.",
+          "Målgruppen för denna redovisning är i första hand medicinskt ansvarig sjuksköterskor inom kommunal hälso-och sjukvård, verksamhetschefer eller personal på särskilt boende, personer som arbetar lokalt eller regionalt med kvalitetsutveckling, patientsäkerhet, strama, vårdhygien och smittskydd."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "4": "Övre 95 % konfidensintervall",
+                "1": "Antal penicillin V/flukloxacillin",
+                "5": "Totalt antal förskrivningar"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "description": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Enhet"
+            ],
+            "matrix": "l_abfvhud",
+            "subject-code": "HALT",
+            "subject-area": "Resultat nationellt"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent)."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2015-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent). efter Enhet, Kön och År",
+        "source": "Senior alert",
+        "updated": "2026-02-02T07:00:00Z",
+        "note": [
+          "Data från punktprevalensmätning av vårdrelaterade infektioner och antibiotikaanvändning på särskilt boende för äldre (HALT). Statistiken visar val av antibiotika vid behandling av hud- och mjukdelsinfektion, totalt samt per kön. Antibiotika som inkluderas är all terapeutisk antibiotika för hud- och mjukdelar där angiven diagnos är infekterade akuta sår, infekterade svårläkta sår, postoperativa sår, erysipelas, annan diagnos alternativt att ingen diagnos finns angiven. Statistiken presenteras som andelen penicillin V plus flukloxacillin som förskrivits av totalt antal preparat. Data visas som antal och i andelar med konfidensintervall. Om det totala antalet svarande är färre är 25, eller om utfallet på en fråga har färre än tre svar, visas inte data. Observera att kommunernas deltagande i punktprevalensmätningen sker frivilligt. Det medför att antalet vårdtagare, antalet kommuner och antalet och mixen av enhetstyper varierar mellan åren. Mätningen baseras på journalgranskning som utförs lokalt av personal på särskilt boende.",
+          "Målgruppen för denna redovisning är i första hand medicinskt ansvarig sjuksköterskor inom kommunal hälso-och sjukvård, verksamhetschefer eller personal på särskilt boende, personer som arbetar lokalt eller regionalt med kvalitetsutveckling, patientsäkerhet, strama, vårdhygien och smittskydd."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "2": "Andel penicillin V/flukloxacillin"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "2": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2015": "2015"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "description": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Enhet"
+            ],
+            "matrix": "l_abfvhud",
+            "subject-code": "HALT",
+            "subject-area": "Resultat nationellt"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent)."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2015-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent). efter Enhet, Kön och År",
+        "source": "Senior alert",
+        "updated": "2026-02-02T07:00:00Z",
+        "note": [
+          "Data från punktprevalensmätning av vårdrelaterade infektioner och antibiotikaanvändning på särskilt boende för äldre (HALT). Statistiken visar val av antibiotika vid behandling av hud- och mjukdelsinfektion, totalt samt per kön. Antibiotika som inkluderas är all terapeutisk antibiotika för hud- och mjukdelar där angiven diagnos är infekterade akuta sår, infekterade svårläkta sår, postoperativa sår, erysipelas, annan diagnos alternativt att ingen diagnos finns angiven. Statistiken presenteras som andelen penicillin V plus flukloxacillin som förskrivits av totalt antal preparat. Data visas som antal och i andelar med konfidensintervall. Om det totala antalet svarande är färre är 25, eller om utfallet på en fråga har färre än tre svar, visas inte data. Observera att kommunernas deltagande i punktprevalensmätningen sker frivilligt. Det medför att antalet vårdtagare, antalet kommuner och antalet och mixen av enhetstyper varierar mellan åren. Mätningen baseras på journalgranskning som utförs lokalt av personal på särskilt boende.",
+          "Målgruppen för denna redovisning är i första hand medicinskt ansvarig sjuksköterskor inom kommunal hälso-och sjukvård, verksamhetschefer eller personal på särskilt boende, personer som arbetar lokalt eller regionalt med kvalitetsutveckling, patientsäkerhet, strama, vårdhygien och smittskydd."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "2": "Andel penicillin V/flukloxacillin"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kön": {
+            "label": "Kön",
+            "category": {
+              "label": {
+                "1+2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "description": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Kön",
+              "År"
+            ],
+            "stub": [
+              "Enhet"
+            ],
+            "matrix": "l_abfvhud",
+            "subject-code": "HALT",
+            "subject-area": "Resultat nationellt"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Antibiotika hud- och mjukdelsinfektion,andel penicillin V/flukloxacillin, totalt, per kön. Antal, andel (procent)."
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 1
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2015-2025"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "1",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1+2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

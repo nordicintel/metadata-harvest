@@ -1,0 +1,541 @@
+{
+  "key": "energi/EN0102_15.px/en",
+  "identifier": "EN0102_15.px",
+  "language": "en",
+  "updated": "2025-06-10",
+  "retrieved_at": "2026-10-17T07:01:36.118982+00:00",
+  "responses": {
+    "metadata": {
+      "title": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+      "variables": [
+        {
+          "code": "Uppvärmningssätt",
+          "text": "Heating system",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "valueTexts": [
+            "All",
+            "Only electricity (d)",
+            "Only electricity (w)",
+            "Bio fuel and electricity (d)",
+            "Bio fuel and electricity (w)",
+            "Only bio fuel",
+            "Only geothermal",
+            "Geothermal in combination",
+            "Only district heating",
+            "District heating in combination",
+            "Only oil and in combination",
+            "Gas only and in combination",
+            "Other"
+          ]
+        },
+        {
+          "code": "Bränsleslag",
+          "text": "Type of fuel",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Firewood 1000m3",
+            "Wood chips 1000m3",
+            "Pellets 1000 ton",
+            "All GWh"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_15.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Bostader_och_lokaler",
+          "name": "Dwellings and non-residential premises"
+        },
+        {
+          "id": "Smahus",
+          "name": "Energy statistics for One and two dwelling buildings"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0102_15.px",
+      "id": "EN0102_15.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_15.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Bostader_och_lokaler",
+              "name": "Dwellings and non-residential premises"
+            },
+            {
+              "id": "Smahus",
+              "name": "Energy statistics for One and two dwelling buildings"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Bostader_och_lokaler/Smahus",
+          "published": "2025-06-10",
+          "score": 1.0,
+          "title": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_15.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-06-10",
+      "score": 1.0,
+      "title": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_15.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system by Heating system and Type of fuel",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "Fire wood <1m3 is included, Fire wood in piled measure. Wood chips/wood shavings in loose weight.",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Bränsleslag"
+          ]
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "note": [
+              "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+            ],
+            "category": {
+              "label": {
+                "0": "All",
+                "1": "Only electricity (d)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsleslag": {
+            "label": "Type of fuel",
+            "category": {
+              "label": {
+                "0": "Firewood 1000m3",
+                "1": "Wood chips 1000m3"
+              },
+              "unit": {
+                "0": {
+                  "base": "1000m3",
+                  "decimals": 0
+                },
+                "1": {
+                  "base": "1000m3",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024",
+                "1": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+            "description": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsleslag"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0102_15",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Uppvärmningssätt",
+                  "Bränsleslag"
+                ],
+                "categories": {
+                  "Uppvärmningssätt": [
+                    "0",
+                    "1"
+                  ],
+                  "Bränsleslag": [
+                    "0",
+                    "1"
+                  ]
+                },
+                "status": {
+                  "3": "_"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system by Heating system and Type of fuel",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "Fire wood <1m3 is included, Fire wood in piled measure. Wood chips/wood shavings in loose weight.",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Bränsleslag"
+          ]
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "note": [
+              "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+            ],
+            "category": {
+              "label": {
+                "2": "Only electricity (w)",
+                "3": "Bio fuel and electricity (d)",
+                "4": "Bio fuel and electricity (w)",
+                "5": "Only bio fuel",
+                "6": "Only geothermal",
+                "7": "Geothermal in combination",
+                "8": "Only district heating",
+                "9": "District heating in combination",
+                "10": "Only oil and in combination",
+                "11": "Gas only and in combination",
+                "12": "Other"
+              },
+              "note": {
+                "7": [
+                  "The most common combination with geothermal/sea heat pump is tile stove/fire place/pellet stove/wood stove"
+                ]
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsleslag": {
+            "label": "Type of fuel",
+            "category": {
+              "label": {
+                "0": "Firewood 1000m3"
+              },
+              "unit": {
+                "0": {
+                  "base": "1000m3",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "0": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+            "description": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsleslag"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0102_15",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Uppvärmningssätt",
+                  "Bränsleslag"
+                ],
+                "categories": {
+                  "Uppvärmningssätt": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12"
+                  ],
+                  "Bränsleslag": [
+                    "0"
+                  ]
+                },
+                "status": {
+                  "4": "_",
+                  "6": "_",
+                  "9": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system by Heating system and Type of fuel",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-06-10T07:00:00Z",
+        "note": [
+          "Fire wood <1m3 is included, Fire wood in piled measure. Wood chips/wood shavings in loose weight.",
+          "<A HREF='https://www.energimyndigheten.se/statistik/officiell-energistatistik/tillforsel-och-anvandning/energistatistik-for-smahus/?currentTab=3' >Documentaion of the statistics</A>"
+        ],
+        "role": {
+          "metric": [
+            "Bränsleslag"
+          ]
+        },
+        "dimension": {
+          "Uppvärmningssätt": {
+            "label": "Heating system",
+            "note": [
+              "Year 2022 the method was slightly modified. If the respondent had given wooden stove use, but no wood fuel use, the wood use was set to 1-5m3, earlier years the amount had been set to <1m3. \r\n That lead to that some buildings that earlier had been categorised 'Only electrical heat' 2022 was categorised as 'Biofuel and electricity', (since wood use more than 1 m3 is counted as bio fuel)."
+            ],
+            "category": {
+              "label": {
+                "0": "All"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Bränsleslag": {
+            "label": "Type of fuel",
+            "category": {
+              "label": {
+                "2": "Pellets 1000 ton",
+                "3": "All GWh"
+              },
+              "unit": {
+                "2": {
+                  "base": "1000 ton",
+                  "decimals": 0
+                },
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "refperiod": {
+                "2": "2024",
+                "3": "2024"
+              },
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+            "description": "One and two dwelling building: Total use of firewood/wood chips/pellets for heating and hot water in one- and two-dwelling buildings heated exclusively or partly with firewood/wood chips/pellets, by existing type of heating system",
+            "descriptiondefault": true,
+            "heading": [
+              "Bränsleslag"
+            ],
+            "stub": [
+              "Uppvärmningssätt"
+            ],
+            "matrix": "EN0102_15",
+            "subject-code": "ENE",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM,  statistik@energimyndigheten.se, +46 16 5442000"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Bränsleslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12"
+              ]
+            }
+          },
+          {
+            "code": "Bränsleslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Uppvärmningssätt",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Bränsleslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

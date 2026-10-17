@@ -1,0 +1,675 @@
+{
+  "key": "linkoping/sondik62.px/sv",
+  "identifier": "sondik62.px",
+  "language": "sv",
+  "updated": "2024-11-21",
+  "retrieved_at": "2026-10-17T08:00:27.082275+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2020",
+            "2021",
+            "2022"
+          ],
+          "valueTexts": [
+            "2020",
+            "2021",
+            "2022"
+          ]
+        },
+        {
+          "code": "ansvarsområde",
+          "text": "ansvarsområde",
+          "values": [
+            "805010",
+            "805020",
+            "805030",
+            "805040",
+            "805999",
+            "0580"
+          ],
+          "valueTexts": [
+            "Norr",
+            "Väster",
+            "Söder",
+            "Öster",
+            "Ej geografiskt",
+            "Hela kommunen"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Antal",
+            "Procent"
+          ],
+          "valueTexts": [
+            "Antal",
+            "Procent"
+          ]
+        },
+        {
+          "code": "hushållstyp",
+          "text": "hushållstyp",
+          "values": [
+            "Sambo",
+            "Ensam",
+            "Övr",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Sammanboende",
+            "Ensamstående",
+            "Övriga hushåll",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "inkomstbasbeloppsnivå",
+          "text": "inkomstbasbeloppsnivå",
+          "values": [
+            "0-2",
+            "2-5",
+            "5-8",
+            "8-11",
+            "11-14",
+            "14-w",
+            "Tot"
+          ],
+          "valueTexts": [
+            "0-2 inkomstbasbelopp",
+            "2-5 inkomstbasbelopp",
+            "5-8 inkomstbasbelopp",
+            "8-11 inkomstbasbelopp",
+            "11-14 inkomstbasbelopp",
+            "14-w inkomstbasbelopp",
+            "Totalt"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/SuregSoc/Inkomster/sondik62.px",
+      "category_path": [
+        {
+          "id": "Inkomster",
+          "name": "Inkomster"
+        }
+      ],
+      "database_id": "SuregSoc",
+      "dataset_code": "sondik62.px",
+      "id": "sondik62.px",
+      "language": "sv",
+      "path": "/Inkomster",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/SuregSoc/Inkomster/sondik62.px",
+          "category_path": [
+            {
+              "id": "Inkomster",
+              "name": "Inkomster"
+            }
+          ],
+          "database_id": "SuregSoc",
+          "path": "/Inkomster",
+          "published": "2024-11-21",
+          "score": 1.0,
+          "title": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/SuregSoc/SuregSoc__Inkomster/sondik62.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2024-11-21",
+      "score": 1.0,
+      "title": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/SuregSoc/SuregSoc__Inkomster/sondik62.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.              ",
+        "updated": "2026-10-17T10:00:26.5128824+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021"
+              }
+            }
+          },
+          "ansvarsområde": {
+            "label": "ansvarsområde",
+            "category": {
+              "label": {
+                "805010": "Norr",
+                "805020": "Väster"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal",
+                "Procent": "Procent"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende",
+                "Ensam": "Ensamstående"
+              }
+            }
+          },
+          "inkomstbasbeloppsnivå": {
+            "label": "inkomstbasbeloppsnivå",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp",
+                "2-5": "2-5 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.              ",
+        "updated": "2026-10-17T10:00:26.637879+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2022": "2022"
+              }
+            }
+          },
+          "ansvarsområde": {
+            "label": "ansvarsområde",
+            "category": {
+              "label": {
+                "805010": "Norr"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende"
+              }
+            }
+          },
+          "inkomstbasbeloppsnivå": {
+            "label": "inkomstbasbeloppsnivå",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.              ",
+        "updated": "2026-10-17T10:00:26.7628823+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            }
+          },
+          "ansvarsområde": {
+            "label": "ansvarsområde",
+            "category": {
+              "label": {
+                "805030": "Söder",
+                "805040": "Öster",
+                "805999": "Ej geografiskt",
+                "0580": "Hela kommunen"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende"
+              }
+            }
+          },
+          "inkomstbasbeloppsnivå": {
+            "label": "inkomstbasbeloppsnivå",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.              ",
+        "updated": "2026-10-17T10:00:26.8878951+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            }
+          },
+          "ansvarsområde": {
+            "label": "ansvarsområde",
+            "category": {
+              "label": {
+                "805010": "Norr"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Övr": "Övriga hushåll",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "inkomstbasbeloppsnivå": {
+            "label": "inkomstbasbeloppsnivå",
+            "category": {
+              "label": {
+                "0-2": "0-2 inkomstbasbelopp"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Disponibel inkomst efter tid, ansvarsområde, tabelluppgift, hushållstyp och inkomstbasbeloppsnivå",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.              ",
+        "updated": "2026-10-17T10:00:27.0128849+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            }
+          },
+          "ansvarsområde": {
+            "label": "ansvarsområde",
+            "category": {
+              "label": {
+                "805010": "Norr"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "hushållstyp": {
+            "label": "hushållstyp",
+            "category": {
+              "label": {
+                "Sambo": "Sammanboende"
+              }
+            }
+          },
+          "inkomstbasbeloppsnivå": {
+            "label": "inkomstbasbeloppsnivå",
+            "category": {
+              "label": {
+                "5-8": "5-8 inkomstbasbelopp",
+                "8-11": "8-11 inkomstbasbelopp",
+                "11-14": "11-14 inkomstbasbelopp",
+                "14-w": "14-w inkomstbasbelopp",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021"
+              ]
+            }
+          },
+          {
+            "code": "ansvarsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "805010",
+                "805020"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal",
+                "Procent"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo",
+                "Ensam"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2",
+                "2-5"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2022"
+              ]
+            }
+          },
+          {
+            "code": "ansvarsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "805010"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
+              ]
+            }
+          },
+          {
+            "code": "ansvarsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "805030",
+                "805040",
+                "805999",
+                "0580"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
+              ]
+            }
+          },
+          {
+            "code": "ansvarsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "805010"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Övr",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
+              ]
+            }
+          },
+          {
+            "code": "ansvarsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "805010"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "hushållstyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Sambo"
+              ]
+            }
+          },
+          {
+            "code": "inkomstbasbeloppsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "5-8",
+                "8-11",
+                "11-14",
+                "14-w",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

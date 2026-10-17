@@ -1,0 +1,588 @@
+{
+  "key": "energi/EN0202_4.px/en",
+  "identifier": "EN0202_4.px",
+  "language": "en",
+  "updated": "2025-11-15",
+  "retrieved_at": "2026-10-17T07:15:39.482513+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Biofuels consumption by category from 2005, TWh",
+      "variables": [
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19"
+          ],
+          "valueTexts": [
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        },
+        {
+          "code": "Energivara",
+          "text": "Energy commodity",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "valueTexts": [
+            "Densified wood fuels",
+            "Undensified wood fuels",
+            "Black liquor",
+            "Other solid biofuels",
+            "Bioethanol",
+            "Biodiesel",
+            "Biooils",
+            "Other bioliquids",
+            "Biogas",
+            "Municipal waste -bio",
+            "Total"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Arlig_energibalans/Total_anvandning_av_energivaror/EN0202_4.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Arlig_energibalans",
+          "name": "Annual energy balance"
+        },
+        {
+          "id": "Total_anvandning_av_energivaror",
+          "name": "Total consumption of energy commodities"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0202_4.px",
+      "id": "EN0202_4.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Arlig_energibalans/Total_anvandning_av_energivaror",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Arlig_energibalans/Total_anvandning_av_energivaror/EN0202_4.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Arlig_energibalans",
+              "name": "Annual energy balance"
+            },
+            {
+              "id": "Total_anvandning_av_energivaror",
+              "name": "Total consumption of energy commodities"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Arlig_energibalans/Total_anvandning_av_energivaror",
+          "published": "2025-11-15",
+          "score": 1.0,
+          "title": "Biofuels consumption by category from 2005, TWh",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Arlig_energibalans__Total_anvandning_av_energivaror/EN0202_4.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2025-11-15",
+      "score": 1.0,
+      "title": "Biofuels consumption by category from 2005, TWh",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Arlig_energibalans__Total_anvandning_av_energivaror/EN0202_4.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Biofuels consumption by category from 2005, TWh by Year and Energy commodity",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-15T08:00:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005",
+                "1": "2006"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Energivara": {
+            "label": "Energy commodity",
+            "category": {
+              "label": {
+                "0": "Densified wood fuels",
+                "1": "Undensified wood fuels"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 3,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Biofuels consumption by category from 2005, TWh",
+            "description": "Biofuels consumption by category from 2005, TWh",
+            "descriptiondefault": true,
+            "heading": [],
+            "stub": [
+              "År",
+              "Energivara"
+            ],
+            "matrix": "EN0202_4",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46(0)16-544 20 00, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biofuels consumption by category from 2005, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 10
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Biofuels consumption by category from 2005, TWh by Year and Energy commodity",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-15T08:00:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2007",
+                "3": "2008",
+                "4": "2009",
+                "5": "2010",
+                "6": "2011",
+                "7": "2012",
+                "8": "2013",
+                "9": "2014",
+                "10": "2015",
+                "11": "2016",
+                "12": "2017",
+                "13": "2018",
+                "14": "2019",
+                "15": "2020",
+                "16": "2021",
+                "17": "2022",
+                "18": "2023",
+                "19": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Energivara": {
+            "label": "Energy commodity",
+            "category": {
+              "label": {
+                "0": "Densified wood fuels"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 3,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Biofuels consumption by category from 2005, TWh",
+            "description": "Biofuels consumption by category from 2005, TWh",
+            "descriptiondefault": true,
+            "heading": [],
+            "stub": [
+              "År",
+              "Energivara"
+            ],
+            "matrix": "EN0202_4",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46(0)16-544 20 00, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biofuels consumption by category from 2005, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 10
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Biofuels consumption by category from 2005, TWh by Year and Energy commodity",
+        "source": "Swedish Energy Agency",
+        "updated": "2025-11-15T08:00:00Z",
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2005"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Energivara": {
+            "label": "Energy commodity",
+            "category": {
+              "label": {
+                "2": "Black liquor",
+                "3": "Other solid biofuels",
+                "4": "Bioethanol",
+                "5": "Biodiesel",
+                "6": "Biooils",
+                "7": "Other bioliquids",
+                "8": "Biogas",
+                "9": "Municipal waste -bio",
+                "10": "Total"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 3,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Biofuels consumption by category from 2005, TWh",
+            "description": "Biofuels consumption by category from 2005, TWh",
+            "descriptiondefault": true,
+            "heading": [],
+            "stub": [
+              "År",
+              "Energivara"
+            ],
+            "matrix": "EN0202_4",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phone: +46(0)16-544 20 00, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "ContentsCode",
+                  "År",
+                  "Energivara"
+                ],
+                "categories": {
+                  "ContentsCode": [
+                    "EliminatedValue"
+                  ],
+                  "År": [
+                    "0"
+                  ],
+                  "Energivara": [
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10"
+                  ]
+                },
+                "status": {
+                  "5": ".."
+                }
+              }
+            ],
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Biofuels consumption by category from 2005, TWh"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "TWh",
+                      "decimals": 10
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Energivara",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19"
+              ]
+            }
+          },
+          {
+            "code": "Energivara",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Energivara",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

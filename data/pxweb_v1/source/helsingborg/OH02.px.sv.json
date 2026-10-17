@@ -1,0 +1,691 @@
+{
+  "key": "helsingborg/OH02.px/sv",
+  "identifier": "OH02.px",
+  "language": "sv",
+  "updated": "2026-05-21",
+  "retrieved_at": "2026-10-17T07:01:06.202267+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+      "variables": [
+        {
+          "code": "årtal",
+          "text": "årtal",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "valueTexts": [
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        },
+        {
+          "code": "område",
+          "text": "område",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "valueTexts": [
+            "Nordvästra staden",
+            "Norra staden",
+            "Nordöstra staden",
+            "Centrum Norr",
+            "Centrum Söder",
+            "Östra staden",
+            "Sydöstra staden",
+            "Södra staden",
+            "Norra landsbygden",
+            "Södra landsbygden",
+            "Övriga",
+            "Helsingborg"
+          ]
+        },
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Man",
+            "Kvinna",
+            "Samtliga"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Oh%C3%A4lsotal/OH02.px",
+      "category_path": [
+        {
+          "id": "Ohälsotal",
+          "name": "Ohälsotal"
+        }
+      ],
+      "database_id": "Helsingborgs stads statistikdatabas",
+      "dataset_code": "OH02.px",
+      "id": "OH02.px",
+      "language": "sv",
+      "path": "/Ohälsotal",
+      "paths": [
+        {
+          "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Oh%C3%A4lsotal/OH02.px",
+          "category_path": [
+            {
+              "id": "Ohälsotal",
+              "name": "Ohälsotal"
+            }
+          ],
+          "database_id": "Helsingborgs stads statistikdatabas",
+          "path": "/Ohälsotal",
+          "published": "2026-05-21",
+          "score": 1.0,
+          "title": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+          "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Oh%C3%A4lsotal/OH02.px/"
+        }
+      ],
+      "provider_code": "helsingborg",
+      "published": "2026-05-21",
+      "score": 1.0,
+      "title": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+      "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Oh%C3%A4lsotal/OH02.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+        "source": "SCB, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2026-05-21T06:00:00Z",
+        "note": [
+          "Skillnad i antal dagar som arbetsgivaren betalar sjuklön medför att alla år inte är jämförbara. Se information.",
+          "Ohälsotalet är summan av utbetalda dagar med sjukpenning, arbetsskadesjukpenning, rehabiliteringspenning, sjukersättning och aktivitetsersättning ( före 2003 förtidspension och sjukbidrag) från socialförsäkringen dividerat med antal personer i åldern 20-64 år. \r\n \r\nObservera att ohälsotalet INTE innehåller dagar med sjuklön från arbetsgivare till anställda de 14 (år 2003-2004: 21) första dagarna av sjukdomsperioden. "
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "0": "2010",
+                "1": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "0": "Nordvästra staden",
+                "1": "Norra staden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Man",
+                "1": "Kvinna"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "OH02",
+            "subject-code": "ohäls"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042 - 10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Ohälsotal för befolkningen 20-65 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "dagar/person 20-65 år",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+        "source": "SCB, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2026-05-21T06:00:00Z",
+        "note": [
+          "Skillnad i antal dagar som arbetsgivaren betalar sjuklön medför att alla år inte är jämförbara. Se information.",
+          "Ohälsotalet är summan av utbetalda dagar med sjukpenning, arbetsskadesjukpenning, rehabiliteringspenning, sjukersättning och aktivitetsersättning ( före 2003 förtidspension och sjukbidrag) från socialförsäkringen dividerat med antal personer i åldern 20-64 år. \r\n \r\nObservera att ohälsotalet INTE innehåller dagar med sjuklön från arbetsgivare till anställda de 14 (år 2003-2004: 21) första dagarna av sjukdomsperioden. "
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "2": "2012",
+                "3": "2013",
+                "4": "2014",
+                "5": "2015",
+                "6": "2016",
+                "7": "2017",
+                "8": "2018",
+                "9": "2019",
+                "10": "2020",
+                "11": "2021",
+                "12": "2022",
+                "13": "2023",
+                "14": "2024",
+                "15": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "0": "Nordvästra staden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Man"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "OH02",
+            "subject-code": "ohäls"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042 - 10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Ohälsotal för befolkningen 20-65 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "dagar/person 20-65 år",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+        "source": "SCB, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2026-05-21T06:00:00Z",
+        "note": [
+          "Skillnad i antal dagar som arbetsgivaren betalar sjuklön medför att alla år inte är jämförbara. Se information.",
+          "Ohälsotalet är summan av utbetalda dagar med sjukpenning, arbetsskadesjukpenning, rehabiliteringspenning, sjukersättning och aktivitetsersättning ( före 2003 förtidspension och sjukbidrag) från socialförsäkringen dividerat med antal personer i åldern 20-64 år. \r\n \r\nObservera att ohälsotalet INTE innehåller dagar med sjuklön från arbetsgivare till anställda de 14 (år 2003-2004: 21) första dagarna av sjukdomsperioden. "
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "0": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "2": "Nordöstra staden",
+                "3": "Centrum Norr",
+                "4": "Centrum Söder",
+                "5": "Östra staden",
+                "6": "Sydöstra staden",
+                "7": "Södra staden",
+                "8": "Norra landsbygden",
+                "9": "Södra landsbygden",
+                "10": "Övriga",
+                "11": "Helsingborg"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Man"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "OH02",
+            "subject-code": "ohäls"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042 - 10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Ohälsotal för befolkningen 20-65 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "dagar/person 20-65 år",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Ohälsotal för befolkningen 20-65 år efter årtal, område och kön",
+        "source": "SCB, uttag genom Helsingborgs stads statistikdatabas",
+        "updated": "2026-05-21T06:00:00Z",
+        "note": [
+          "Skillnad i antal dagar som arbetsgivaren betalar sjuklön medför att alla år inte är jämförbara. Se information.",
+          "Ohälsotalet är summan av utbetalda dagar med sjukpenning, arbetsskadesjukpenning, rehabiliteringspenning, sjukersättning och aktivitetsersättning ( före 2003 förtidspension och sjukbidrag) från socialförsäkringen dividerat med antal personer i åldern 20-64 år. \r\n \r\nObservera att ohälsotalet INTE innehåller dagar med sjuklön från arbetsgivare till anställda de 14 (år 2003-2004: 21) första dagarna av sjukdomsperioden. "
+        ],
+        "dimension": {
+          "årtal": {
+            "label": "årtal",
+            "category": {
+              "label": {
+                "0": "2010"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "område": {
+            "label": "område",
+            "category": {
+              "label": {
+                "0": "Nordvästra staden"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "2": "Samtliga"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "OH02",
+            "subject-code": "ohäls"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042 - 10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Ohälsotal för befolkningen 20-65 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "dagar/person 20-65 år",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "årtal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "område",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,563 @@
+{
+  "key": "helsingborg/AM11.px/sv",
+  "identifier": "AM11.px",
+  "language": "sv",
+  "updated": "2026-10-16",
+  "retrieved_at": "2026-10-17T06:58:32.540677+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Arbetsförmedlingens månatliga platsuppgifter efter År, Månad och Kategori",
+      "variables": [
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "valueTexts": [
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ]
+        },
+        {
+          "code": "Månad",
+          "text": "Månad",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "valueTexts": [
+            "Januari",
+            "Februari",
+            "Mars",
+            "April",
+            "Maj",
+            "Juni",
+            "Juli",
+            "Augusti",
+            "September",
+            "Oktober",
+            "November",
+            "December"
+          ]
+        },
+        {
+          "code": "Kategori",
+          "text": "Kategori",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Nya lediga jobb",
+            "Alla lediga jobb"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Arbetsmarknad/AM11.px",
+      "category_path": [
+        {
+          "id": "Arbetsmarknad",
+          "name": "Arbetsmarknad"
+        }
+      ],
+      "database_id": "Helsingborgs stads statistikdatabas",
+      "dataset_code": "AM11.px",
+      "id": "AM11.px",
+      "language": "sv",
+      "path": "/Arbetsmarknad",
+      "paths": [
+        {
+          "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Arbetsmarknad/AM11.px",
+          "category_path": [
+            {
+              "id": "Arbetsmarknad",
+              "name": "Arbetsmarknad"
+            }
+          ],
+          "database_id": "Helsingborgs stads statistikdatabas",
+          "path": "/Arbetsmarknad",
+          "published": "2026-10-16",
+          "score": 1.0,
+          "title": "Arbetsförmedlingens månatliga platsuppgifter efter År, Månad och Kategori",
+          "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Arbetsmarknad/AM11.px/"
+        }
+      ],
+      "provider_code": "helsingborg",
+      "published": "2026-10-16",
+      "score": 1.0,
+      "title": "Arbetsförmedlingens månatliga platsuppgifter efter År, Månad och Kategori",
+      "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Arbetsmarknad/AM11.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Arbetsförmedlingens månatliga platsuppgifter efter År, Månad och Kategori",
+        "source": "Arbetsförmedlingen, uttag via Helsingborgs stads statistikdatabas",
+        "updated": "2026-10-16T06:00:00Z",
+        "note": [
+          "Nya lediga jobb som arbetsgivaren anmäler till Arbetsförmedlingen under månaden. \r\n \r\nAlla lediga jobb: Jobb som är lediga och som fortfarande går att söka vid månadens slut. \r\n"
+        ],
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2011",
+                "1": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Januari",
+                "1": "Februari"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kategori": {
+            "label": "Kategori",
+            "category": {
+              "label": {
+                "0": "Nya lediga jobb",
+                "1": "Alla lediga jobb"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "AM11",
+            "subject-code": "AM"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042-10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Arbetsförmedlingens månatliga platsuppgifter"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Arbetsförmedlingens månatliga platsuppgifter efter År, Månad och Kategori",
+        "source": "Arbetsförmedlingen, uttag via Helsingborgs stads statistikdatabas",
+        "updated": "2026-10-16T06:00:00Z",
+        "note": [
+          "Nya lediga jobb som arbetsgivaren anmäler till Arbetsförmedlingen under månaden. \r\n \r\nAlla lediga jobb: Jobb som är lediga och som fortfarande går att söka vid månadens slut. \r\n"
+        ],
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2013",
+                "3": "2014",
+                "4": "2015",
+                "5": "2016",
+                "6": "2017",
+                "7": "2018",
+                "8": "2019",
+                "9": "2020",
+                "10": "2021",
+                "11": "2022",
+                "12": "2023",
+                "13": "2024",
+                "14": "2025",
+                "15": "2026"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Januari"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kategori": {
+            "label": "Kategori",
+            "category": {
+              "label": {
+                "0": "Nya lediga jobb"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "AM11",
+            "subject-code": "AM"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042-10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Arbetsförmedlingens månatliga platsuppgifter"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Arbetsförmedlingens månatliga platsuppgifter efter År, Månad och Kategori",
+        "source": "Arbetsförmedlingen, uttag via Helsingborgs stads statistikdatabas",
+        "updated": "2026-10-16T06:00:00Z",
+        "note": [
+          "Nya lediga jobb som arbetsgivaren anmäler till Arbetsförmedlingen under månaden. \r\n \r\nAlla lediga jobb: Jobb som är lediga och som fortfarande går att söka vid månadens slut. \r\n"
+        ],
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "2": "Mars",
+                "3": "April",
+                "4": "Maj",
+                "5": "Juni",
+                "6": "Juli",
+                "7": "Augusti",
+                "8": "September",
+                "9": "Oktober",
+                "10": "November",
+                "11": "December"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kategori": {
+            "label": "Kategori",
+            "category": {
+              "label": {
+                "0": "Nya lediga jobb"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "AM11",
+            "subject-code": "AM"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042-10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Arbetsförmedlingens månatliga platsuppgifter"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          },
+          {
+            "code": "Kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

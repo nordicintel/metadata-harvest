@@ -1,0 +1,586 @@
+{
+  "key": "energi/EN0118_5.px/en",
+  "identifier": "EN0118_5.px",
+  "language": "en",
+  "updated": "2026-09-15",
+  "retrieved_at": "2026-10-17T07:10:05.815892+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+      "variables": [
+        {
+          "code": "Trafikslag",
+          "text": "Transport mode",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "Railway, -passenger transport",
+            "Railway, -goods transport",
+            "Tramway. -passenger transport",
+            "Subway, -passenger transport"
+          ]
+        },
+        {
+          "code": "Energivara",
+          "text": "Energy product",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Electricity, GWh",
+            "Diesel, m3"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "Year",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25"
+          ],
+          "valueTexts": [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Transportsektorns_energianvandning/EN0118_5.px",
+      "category_path": [
+        {
+          "id": "Officiell_energistatistik",
+          "name": "Official Energy statistics"
+        },
+        {
+          "id": "Transportsektorns_energianvandning",
+          "name": "Energy use in the transport sector"
+        }
+      ],
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "dataset_code": "EN0118_5.px",
+      "id": "EN0118_5.px",
+      "language": "en",
+      "path": "/Officiell_energistatistik/Transportsektorns_energianvandning",
+      "paths": [
+        {
+          "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Transportsektorns_energianvandning/EN0118_5.px",
+          "category_path": [
+            {
+              "id": "Officiell_energistatistik",
+              "name": "Official Energy statistics"
+            },
+            {
+              "id": "Transportsektorns_energianvandning",
+              "name": "Energy use in the transport sector"
+            }
+          ],
+          "database_id": "Energimyndighetens_statistikdatabas",
+          "path": "/Officiell_energistatistik/Transportsektorns_energianvandning",
+          "published": "2026-09-15",
+          "score": 1.0,
+          "title": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+          "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Transportsektorns_energianvandning/EN0118_5.px/"
+        }
+      ],
+      "provider_code": "energi",
+      "published": "2026-09-15",
+      "score": 1.0,
+      "title": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+      "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Transportsektorns_energianvandning/EN0118_5.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 100,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Energy use for traffic in rail transit, per type and energy product, 2000- by Transport mode, Energy product and Year",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-09-15T06:00:00Z",
+        "note": [
+          "Legend\r\n0 : Less than 0.5\r\n-  : Zero\r\n.. : Data not avaliable"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Trafikslag"
+          ]
+        },
+        "dimension": {
+          "Trafikslag": {
+            "label": "Transport mode",
+            "category": {
+              "label": {
+                "0": "Railway, -passenger transport",
+                "1": "Railway, -goods transport"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 0
+                },
+                "1": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Energivara": {
+            "label": "Energy product",
+            "category": {
+              "label": {
+                "0": "Electricity, GWh",
+                "1": "Diesel, m3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2000",
+                "1": "2001"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+            "description": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Trafikslag",
+              "Energivara"
+            ],
+            "matrix": "EN0118_5",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM, Tel: +46-16 544 2000, E-mail: Statistik@energimyndigheten.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Energy use for traffic in rail transit, per type and energy product, 2000- by Transport mode, Energy product and Year",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-09-15T06:00:00Z",
+        "note": [
+          "Legend\r\n0 : Less than 0.5\r\n-  : Zero\r\n.. : Data not avaliable"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Trafikslag"
+          ]
+        },
+        "dimension": {
+          "Trafikslag": {
+            "label": "Transport mode",
+            "category": {
+              "label": {
+                "2": "Tramway. -passenger transport",
+                "3": "Subway, -passenger transport"
+              },
+              "unit": {
+                "2": {
+                  "decimals": 0
+                },
+                "3": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Energivara": {
+            "label": "Energy product",
+            "category": {
+              "label": {
+                "0": "Electricity, GWh"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2000"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+            "description": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Trafikslag",
+              "Energivara"
+            ],
+            "matrix": "EN0118_5",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM, Tel: +46-16 544 2000, E-mail: Statistik@energimyndigheten.se"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Energy use for traffic in rail transit, per type and energy product, 2000- by Transport mode, Energy product and Year",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-09-15T06:00:00Z",
+        "note": [
+          "Legend\r\n0 : Less than 0.5\r\n-  : Zero\r\n.. : Data not avaliable"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Trafikslag"
+          ]
+        },
+        "dimension": {
+          "Trafikslag": {
+            "label": "Transport mode",
+            "category": {
+              "label": {
+                "0": "Railway, -passenger transport"
+              },
+              "unit": {
+                "0": {
+                  "decimals": 0
+                }
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Energivara": {
+            "label": "Energy product",
+            "category": {
+              "label": {
+                "0": "Electricity, GWh"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "2": "2002",
+                "3": "2003",
+                "4": "2004",
+                "5": "2005",
+                "6": "2006",
+                "7": "2007",
+                "8": "2008",
+                "9": "2009",
+                "10": "2010",
+                "11": "2011",
+                "12": "2012",
+                "13": "2013",
+                "14": "2014",
+                "15": "2015",
+                "16": "2016",
+                "17": "2017",
+                "18": "2018",
+                "19": "2019",
+                "20": "2020",
+                "21": "2021",
+                "22": "2022",
+                "23": "2023",
+                "24": "2024",
+                "25": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+            "description": "Energy use for traffic in rail transit, per type and energy product, 2000-",
+            "descriptiondefault": true,
+            "heading": [
+              "År"
+            ],
+            "stub": [
+              "Trafikslag",
+              "Energivara"
+            ],
+            "matrix": "EN0118_5",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik EM, Tel: +46-16 544 2000, E-mail: Statistik@energimyndigheten.se"
+            }
+          ]
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Trafikslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Energivara",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Trafikslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "Energivara",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Trafikslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Energivara",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

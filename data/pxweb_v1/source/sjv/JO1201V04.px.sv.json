@@ -1,0 +1,468 @@
+{
+  "key": "sjv/JO1201V04.px/sv",
+  "identifier": "JO1201V04.px",
+  "language": "sv",
+  "updated": "2026-06-23",
+  "retrieved_at": "2026-10-17T07:12:12.377260+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Antal företag och sysselsättning efter inriktning efter Inriktning, Variabel och År",
+      "variables": [
+        {
+          "code": "Inriktning",
+          "text": "Inriktning",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Fisk",
+            "Blötdjur",
+            "Andra organismer",
+            "Rom, yngel, larver, småfisk, stirr eller smolt",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "Variabel",
+          "text": "Variabel",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Antal företag",
+            "Antal sysselsatta",
+            "Arbetad tid (timmar)"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Vattenbruk/JO1201V04.px",
+      "category_path": [
+        {
+          "id": "Vattenbruk",
+          "name": "Vattenbruk"
+        }
+      ],
+      "database_id": "Jordbruksverkets statistikdatabas",
+      "dataset_code": "JO1201V04.px",
+      "id": "JO1201V04.px",
+      "language": "sv",
+      "path": "/Vattenbruk",
+      "paths": [
+        {
+          "api_url": "https://statistik.sjv.se/PXWeb/api/v1/sv/Jordbruksverkets%20statistikdatabas/Vattenbruk/JO1201V04.px",
+          "category_path": [
+            {
+              "id": "Vattenbruk",
+              "name": "Vattenbruk"
+            }
+          ],
+          "database_id": "Jordbruksverkets statistikdatabas",
+          "path": "/Vattenbruk",
+          "published": "2026-06-23",
+          "score": 1.0,
+          "title": "Antal företag och sysselsättning efter inriktning. År 2020-2024",
+          "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Vattenbruk/JO1201V04.px/"
+        }
+      ],
+      "provider_code": "sjv",
+      "published": "2026-06-23",
+      "score": 1.0,
+      "title": "Antal företag och sysselsättning efter inriktning. År 2020-2024",
+      "web_url": "https://statistik.sjv.se/PXWeb/pxweb/sv/Jordbruksverkets%20statistikdatabas/Jordbruksverkets%20statistikdatabas__Vattenbruk/JO1201V04.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Antal företag och sysselsättning efter inriktning efter Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Fisk",
+                "1": "Blötdjur"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag",
+                "1": "Antal sysselsatta"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                },
+                "1": {
+                  "base": "Antal",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020",
+                "1": "2021"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Antal företag och sysselsättning efter inriktning efter Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "2": "Andra organismer",
+                "3": "Rom, yngel, larver, småfisk, stirr eller smolt",
+                "4": "Totalt"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Antal företag och sysselsättning efter inriktning efter Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Fisk"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "2": "Arbetad tid (timmar)"
+              },
+              "unit": {
+                "2": {
+                  "base": "Antal timmar",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2020"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          }
+        }
+      },
+      {
+        "label": "Antal företag och sysselsättning efter inriktning efter Inriktning, Variabel och År",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Inriktning": {
+            "label": "Inriktning",
+            "category": {
+              "label": {
+                "0": "Fisk"
+              }
+            }
+          },
+          "Variabel": {
+            "label": "Variabel",
+            "category": {
+              "label": {
+                "0": "Antal företag"
+              },
+              "unit": {
+                "0": {
+                  "base": "Antal",
+                  "decimals": -1
+                }
+              }
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2022",
+                "3": "2023",
+                "4": "2024"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Variabel"
+          ]
+        },
+        "extension": {
+          "px": {
+            "infofile": "KD JO1201-tga",
+            "decimals": 0
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Inriktning",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

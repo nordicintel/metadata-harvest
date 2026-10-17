@@ -1,0 +1,601 @@
+{
+  "key": "fohm/RegSoandel.px/sv",
+  "identifier": "RegSoandel.px",
+  "language": "sv",
+  "updated": "2026-03-16",
+  "retrieved_at": "2026-10-17T07:22:22.892930+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Socioekonomisk områdestyp, RegSO efter år. Antal, andel (procent).",
+      "variables": [
+        {
+          "code": "Områdestyp",
+          "text": "Områdestyp",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "valueTexts": [
+            "Områdestyp 1",
+            "Områdestyp 2",
+            "Områdestyp 3",
+            "Områdestyp 4",
+            "Områdestyp 5"
+          ]
+        },
+        {
+          "code": "Enhet",
+          "text": "Enhet",
+          "values": [
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Antal",
+            "Andel"
+          ]
+        },
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "valueTexts": [
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "time": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/Z_ovrigdata/Ekonomi/RegSoandel.px",
+      "category_path": [
+        {
+          "id": "Z_ovrigdata",
+          "name": "Övriga data"
+        },
+        {
+          "id": "Ekonomi",
+          "name": "Ekonomi"
+        }
+      ],
+      "database_id": "A_Folkhalsodata",
+      "dataset_code": "RegSoandel.px",
+      "id": "RegSoandel.px",
+      "language": "sv",
+      "path": "/Z_ovrigdata/Ekonomi",
+      "paths": [
+        {
+          "api_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/api/v1/sv/A_Folkhalsodata/Z_ovrigdata/Ekonomi/RegSoandel.px",
+          "category_path": [
+            {
+              "id": "Z_ovrigdata",
+              "name": "Övriga data"
+            },
+            {
+              "id": "Ekonomi",
+              "name": "Ekonomi"
+            }
+          ],
+          "database_id": "A_Folkhalsodata",
+          "path": "/Z_ovrigdata/Ekonomi",
+          "published": "2026-03-16",
+          "score": 1.0,
+          "title": "Socioekonomisk områdestyp, RegSO efter år. Antal, andel (procent).",
+          "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__Z_ovrigdata__Ekonomi/RegSoandel.px/"
+        }
+      ],
+      "provider_code": "fohm",
+      "published": "2026-03-16",
+      "score": 1.0,
+      "title": "Socioekonomisk områdestyp, RegSO efter år. Antal, andel (procent).",
+      "web_url": "https://fohm-app.folkhalsomyndigheten.se/Folkhalsodata/pxweb/sv/A_Folkhalsodata/A_Folkhalsodata__Z_ovrigdata__Ekonomi/RegSoandel.px/"
+    },
+    "config": {
+      "maxValues": 10000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Socioekonomisk områdestyp baserat på RegSO (3363) efter Områdestyp, Enhet och År",
+        "source": "SCB",
+        "updated": "2026-03-16T07:00:00Z",
+        "note": [
+          "Socioekonomisk områdestyp baserat på RegSO. Andelen RegSO i respektive områdestyp beräknas på 2023 års totala antal för alla årgångar, det vill säga 3363 RegSO-områden. 2011 fanns 3360, 2012 och 2013 var antalet 3362.",
+          "Områdestyperna används för att ge en indikation på olika socioekonomiska förutsättningar i varje regionalt statistikområde (RegSO).\r\nFöljande fem områdestyper används:\r\nOmrådestyp 1 - Områden med stora socioekonomiska utmaningar\r\nOmrådestyp 2 - Områden med socioekonomiska utmaningar\r\nOmrådestyp 3 - Socioekonomiskt blandade områden\r\nOmrådestyp 4 - Områden med goda socioekonomiska förutsättningar\r\nOmrådestyp 5 - Områden med mycket goda socioekonomiska förutsättningar"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Områdestyp": {
+            "label": "Områdestyp",
+            "category": {
+              "label": {
+                "1": "Områdestyp 1",
+                "2": "Områdestyp 2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "1": "Antal",
+                "2": "Andel"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011",
+                "2012": "2012"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Socioekonomisk områdestyp baserat på RegSO (3363)",
+            "description": "Socioekonomisk områdestyp, RegSO efter år. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "År"
+            ],
+            "stub": [
+              "Områdestyp"
+            ],
+            "matrix": "RegSOandel",
+            "subject-code": "mo0",
+            "subject-area": "Ekonomi"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Socioekonomisk områdestyp baserat på RegSO (3363)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Socioekonomisk områdestyp baserat på RegSO (3363) efter Områdestyp, Enhet och År",
+        "source": "SCB",
+        "updated": "2026-03-16T07:00:00Z",
+        "note": [
+          "Socioekonomisk områdestyp baserat på RegSO. Andelen RegSO i respektive områdestyp beräknas på 2023 års totala antal för alla årgångar, det vill säga 3363 RegSO-områden. 2011 fanns 3360, 2012 och 2013 var antalet 3362.",
+          "Områdestyperna används för att ge en indikation på olika socioekonomiska förutsättningar i varje regionalt statistikområde (RegSO).\r\nFöljande fem områdestyper används:\r\nOmrådestyp 1 - Områden med stora socioekonomiska utmaningar\r\nOmrådestyp 2 - Områden med socioekonomiska utmaningar\r\nOmrådestyp 3 - Socioekonomiskt blandade områden\r\nOmrådestyp 4 - Områden med goda socioekonomiska förutsättningar\r\nOmrådestyp 5 - Områden med mycket goda socioekonomiska förutsättningar"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Områdestyp": {
+            "label": "Områdestyp",
+            "category": {
+              "label": {
+                "3": "Områdestyp 3",
+                "4": "Områdestyp 4",
+                "5": "Områdestyp 5"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "1": "Antal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2011": "2011"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Socioekonomisk områdestyp baserat på RegSO (3363)",
+            "description": "Socioekonomisk områdestyp, RegSO efter år. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "År"
+            ],
+            "stub": [
+              "Områdestyp"
+            ],
+            "matrix": "RegSOandel",
+            "subject-code": "mo0",
+            "subject-area": "Ekonomi"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Socioekonomisk områdestyp baserat på RegSO (3363)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Socioekonomisk områdestyp baserat på RegSO (3363) efter Områdestyp, Enhet och År",
+        "source": "SCB",
+        "updated": "2026-03-16T07:00:00Z",
+        "note": [
+          "Socioekonomisk områdestyp baserat på RegSO. Andelen RegSO i respektive områdestyp beräknas på 2023 års totala antal för alla årgångar, det vill säga 3363 RegSO-områden. 2011 fanns 3360, 2012 och 2013 var antalet 3362.",
+          "Områdestyperna används för att ge en indikation på olika socioekonomiska förutsättningar i varje regionalt statistikområde (RegSO).\r\nFöljande fem områdestyper används:\r\nOmrådestyp 1 - Områden med stora socioekonomiska utmaningar\r\nOmrådestyp 2 - Områden med socioekonomiska utmaningar\r\nOmrådestyp 3 - Socioekonomiskt blandade områden\r\nOmrådestyp 4 - Områden med goda socioekonomiska förutsättningar\r\nOmrådestyp 5 - Områden med mycket goda socioekonomiska förutsättningar"
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Områdestyp": {
+            "label": "Områdestyp",
+            "category": {
+              "label": {
+                "1": "Områdestyp 1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Enhet": {
+            "label": "Enhet",
+            "category": {
+              "label": {
+                "1": "Antal"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Socioekonomisk områdestyp baserat på RegSO (3363)",
+            "description": "Socioekonomisk områdestyp, RegSO efter år. Antal, andel (procent).",
+            "descriptiondefault": true,
+            "heading": [
+              "Enhet",
+              "År"
+            ],
+            "stub": [
+              "Områdestyp"
+            ],
+            "matrix": "RegSOandel",
+            "subject-code": "mo0",
+            "subject-area": "Ekonomi"
+          },
+          "contact": [
+            {
+              "raw": "folkhalsodata@folkhalsomyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Socioekonomisk områdestyp baserat på RegSO (3363)"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal, andel",
+                      "decimals": 13
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true,
+                  "refperiod": {
+                    "EliminatedValue": "2011-2023"
+                  }
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "Områdestyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011",
+                "2012"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Områdestyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2011"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Områdestyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

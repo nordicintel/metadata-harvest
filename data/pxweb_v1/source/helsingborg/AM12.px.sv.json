@@ -1,0 +1,541 @@
+{
+  "key": "helsingborg/AM12.px/sv",
+  "identifier": "AM12.px",
+  "language": "sv",
+  "updated": "2026-10-16",
+  "retrieved_at": "2026-10-17T06:58:38.249921+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Arbetsförmedlingens månatliga sökandeuppgifter efter År, Månad och Kategori",
+      "variables": [
+        {
+          "code": "År",
+          "text": "År",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "valueTexts": [
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ]
+        },
+        {
+          "code": "Månad",
+          "text": "Månad",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "valueTexts": [
+            "Januari",
+            "Februari",
+            "Mars",
+            "April",
+            "Maj",
+            "Juni",
+            "Juli",
+            "Augusti",
+            "September",
+            "Oktober",
+            "November",
+            "December"
+          ]
+        },
+        {
+          "code": "Kategori",
+          "text": "Kategori",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal nyinskrivna sökande",
+            "Antal sökande som fått arbete"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Arbetsmarknad/AM12.px",
+      "category_path": [
+        {
+          "id": "Arbetsmarknad",
+          "name": "Arbetsmarknad"
+        }
+      ],
+      "database_id": "Helsingborgs stads statistikdatabas",
+      "dataset_code": "AM12.px",
+      "id": "AM12.px",
+      "language": "sv",
+      "path": "/Arbetsmarknad",
+      "paths": [
+        {
+          "api_url": "https://statistik.helsingborg.se/PxWeb/api/v1/sv/Helsingborgs%20stads%20statistikdatabas/Arbetsmarknad/AM12.px",
+          "category_path": [
+            {
+              "id": "Arbetsmarknad",
+              "name": "Arbetsmarknad"
+            }
+          ],
+          "database_id": "Helsingborgs stads statistikdatabas",
+          "path": "/Arbetsmarknad",
+          "published": "2026-10-16",
+          "score": 1.0,
+          "title": "Arbetsförmedlingens månatliga sökandeuppgifter efter År, Månad och Kategori",
+          "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Arbetsmarknad/AM12.px/"
+        }
+      ],
+      "provider_code": "helsingborg",
+      "published": "2026-10-16",
+      "score": 1.0,
+      "title": "Arbetsförmedlingens månatliga sökandeuppgifter efter År, Månad och Kategori",
+      "web_url": "https://statistik.helsingborg.se/PxWeb/pxweb/sv/Helsingborgs%20stads%20statistikdatabas/Helsingborgs%20stads%20statistikdatabas__Arbetsmarknad/AM12.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Arbetsförmedlingens månatliga sökandeuppgifter efter År, Månad och Kategori",
+        "source": "Arbetsförmedlingen, uttag via Helsingborgs stads statistikdatabas",
+        "updated": "2026-10-16T06:00:00Z",
+        "note": [
+          "Nyinskrivna sökande: Personer som har blivit öppet arbetslösa ",
+          "Sökande som fått arbete: Personer som har fått anställning eller som har flyttats till en sökandekategori med stöd, bidrag, deltid eller timanställning\r\n"
+        ],
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2018",
+                "1": "2019"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Januari",
+                "1": "Februari"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kategori": {
+            "label": "Kategori",
+            "category": {
+              "label": {
+                "0": "Antal nyinskrivna sökande",
+                "1": "Antal sökande som fått arbete"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "AM12",
+            "subject-code": "AM"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042-10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Arbetsförmedlingens månatliga sökandeuppgifter"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Arbetsförmedlingens månatliga sökandeuppgifter efter År, Månad och Kategori",
+        "source": "Arbetsförmedlingen, uttag via Helsingborgs stads statistikdatabas",
+        "updated": "2026-10-16T06:00:00Z",
+        "note": [
+          "Nyinskrivna sökande: Personer som har blivit öppet arbetslösa ",
+          "Sökande som fått arbete: Personer som har fått anställning eller som har flyttats till en sökandekategori med stöd, bidrag, deltid eller timanställning\r\n"
+        ],
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "2": "2020",
+                "3": "2021",
+                "4": "2022",
+                "5": "2023",
+                "6": "2024",
+                "7": "2025",
+                "8": "2026"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "0": "Januari"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kategori": {
+            "label": "Kategori",
+            "category": {
+              "label": {
+                "0": "Antal nyinskrivna sökande"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "AM12",
+            "subject-code": "AM"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042-10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Arbetsförmedlingens månatliga sökandeuppgifter"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Arbetsförmedlingens månatliga sökandeuppgifter efter År, Månad och Kategori",
+        "source": "Arbetsförmedlingen, uttag via Helsingborgs stads statistikdatabas",
+        "updated": "2026-10-16T06:00:00Z",
+        "note": [
+          "Nyinskrivna sökande: Personer som har blivit öppet arbetslösa ",
+          "Sökande som fått arbete: Personer som har fått anställning eller som har flyttats till en sökandekategori med stöd, bidrag, deltid eller timanställning\r\n"
+        ],
+        "dimension": {
+          "År": {
+            "label": "År",
+            "category": {
+              "label": {
+                "0": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Månad": {
+            "label": "Månad",
+            "category": {
+              "label": {
+                "2": "Mars",
+                "3": "April",
+                "4": "Maj",
+                "5": "Juni",
+                "6": "Juli",
+                "7": "Augusti",
+                "8": "September",
+                "9": "Oktober",
+                "10": "November",
+                "11": "December"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Kategori": {
+            "label": "Kategori",
+            "category": {
+              "label": {
+                "0": "Antal nyinskrivna sökande"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true
+          },
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "AM12",
+            "subject-code": "AM"
+          },
+          "contact": [
+            {
+              "raw": "Henrik Persson, henrik.persson@helsingborg.se, 042-10 58 59"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Arbetsförmedlingens månatliga sökandeuppgifter"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "antal",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Månad",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          },
+          {
+            "code": "Kategori",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}

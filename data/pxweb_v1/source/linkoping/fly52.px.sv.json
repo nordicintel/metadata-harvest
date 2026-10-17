@@ -1,0 +1,704 @@
+{
+  "key": "linkoping/fly52.px/sv",
+  "identifier": "fly52.px",
+  "language": "sv",
+  "updated": "2026-09-10",
+  "retrieved_at": "2026-10-17T07:31:18.439437+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet. ",
+      "variables": [
+        {
+          "code": "tid",
+          "text": "tid",
+          "values": [
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "valueTexts": [
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        },
+        {
+          "code": "hustyp",
+          "text": "hustyp",
+          "values": [
+            "Flerbo",
+            "Specialbostad",
+            "Tot"
+          ],
+          "valueTexts": [
+            "Flerbostadshus",
+            "Specialbostäder",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "lägenhetsstorlek",
+          "text": "lägenhetsstorlek",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "US",
+            "Tot"
+          ],
+          "valueTexts": [
+            "1 rum",
+            "2 rum",
+            "3 rum",
+            "4 rum",
+            "5 rum",
+            "6 rum eller fler",
+            "Uppgift saknas",
+            "Totalt"
+          ],
+          "elimination": true
+        },
+        {
+          "code": "tabelluppgift",
+          "text": "tabelluppgift",
+          "values": [
+            "Antal",
+            "Procent"
+          ],
+          "valueTexts": [
+            "Antal",
+            "Procent"
+          ]
+        },
+        {
+          "code": "tid i nuvarande fastighet",
+          "text": "tid i nuvarande fastighet",
+          "values": [
+            "0",
+            "1-2",
+            "2-3",
+            "3-5",
+            "5-10",
+            "10-w",
+            "Tot"
+          ],
+          "valueTexts": [
+            "< 1 år",
+            "1-2 år",
+            "2-3 år",
+            "3-5 år",
+            "5-10 år",
+            "> 10 år",
+            "Totalt"
+          ],
+          "elimination": true
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Befolkningsforandringar/fly52.px",
+      "category_path": [
+        {
+          "id": "Befolkningsforandringar",
+          "name": "Befolkningsförändringar"
+        }
+      ],
+      "database_id": "Linkoping",
+      "dataset_code": "fly52.px",
+      "id": "fly52.px",
+      "language": "sv",
+      "path": "/Befolkningsforandringar",
+      "paths": [
+        {
+          "api_url": "https://statistik.linkoping.se/PXWeb/api/v1/sv/Linkoping/Befolkningsforandringar/fly52.px",
+          "category_path": [
+            {
+              "id": "Befolkningsforandringar",
+              "name": "Befolkningsförändringar"
+            }
+          ],
+          "database_id": "Linkoping",
+          "path": "/Befolkningsforandringar",
+          "published": "2026-09-10",
+          "score": 1.0,
+          "title": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet.",
+          "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Befolkningsforandringar/fly52.px/"
+        }
+      ],
+      "provider_code": "linkoping",
+      "published": "2026-09-10",
+      "score": 1.0,
+      "title": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet.",
+      "web_url": "https://statistik.linkoping.se/PXWeb/pxweb/sv/Linkoping/Linkoping__Befolkningsforandringar/fly52.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 1000,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:17.8650627+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017",
+                "2018": "2018"
+              }
+            }
+          },
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Flerbo": "Flerbostadshus",
+                "Specialbostad": "Specialbostäder"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum",
+                "2": "2 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal",
+                "Procent": "Procent"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år",
+                "1-2": "1-2 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:18.0056763+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
+              }
+            }
+          },
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Flerbo": "Flerbostadshus"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:18.1150717+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017"
+              }
+            }
+          },
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:18.2400568+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017"
+              }
+            }
+          },
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Flerbo": "Flerbostadshus"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "3": "3 rum",
+                "4": "4 rum",
+                "5": "5 rum",
+                "6": "6 rum eller fler",
+                "US": "Uppgift saknas",
+                "Tot": "Totalt"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "0": "< 1 år"
+              }
+            }
+          }
+        },
+        "role": {}
+      },
+      {
+        "label": "Kvarboende i flerbostadshus efter tid, hustyp, lägenhetsstorlek, tabelluppgift och tid i nuvarande fastighet",
+        "source": "SCB (Östgötadatabasen).  Sammanställning: Statistikgruppen, Analys & Utredning, Linköpings kommun.           ",
+        "updated": "2026-10-17T09:31:18.3650562+02:00",
+        "dimension": {
+          "tid": {
+            "label": "tid",
+            "category": {
+              "label": {
+                "2017": "2017"
+              }
+            }
+          },
+          "hustyp": {
+            "label": "hustyp",
+            "category": {
+              "label": {
+                "Flerbo": "Flerbostadshus"
+              }
+            }
+          },
+          "lägenhetsstorlek": {
+            "label": "lägenhetsstorlek",
+            "category": {
+              "label": {
+                "1": "1 rum"
+              }
+            }
+          },
+          "tabelluppgift": {
+            "label": "tabelluppgift",
+            "category": {
+              "label": {
+                "Antal": "Antal"
+              }
+            }
+          },
+          "tid i nuvarande fastighet": {
+            "label": "tid i nuvarande fastighet",
+            "category": {
+              "label": {
+                "2-3": "2-3 år",
+                "3-5": "3-5 år",
+                "5-10": "5-10 år",
+                "10-w": "> 10 år",
+                "Tot": "Totalt"
+              }
+            }
+          }
+        },
+        "role": {}
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017",
+                "2018"
+              ]
+            }
+          },
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Flerbo",
+                "Specialbostad"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal",
+                "Procent"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1-2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Flerbo"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Flerbo"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "US",
+                "Tot"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "tid",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2017"
+              ]
+            }
+          },
+          {
+            "code": "hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Flerbo"
+              ]
+            }
+          },
+          {
+            "code": "lägenhetsstorlek",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "tabelluppgift",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "tid i nuvarande fastighet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2-3",
+                "3-5",
+                "5-10",
+                "10-w",
+                "Tot"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}
