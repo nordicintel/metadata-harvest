@@ -1,0 +1,1316 @@
+{
+  "key": "norrkoping/UTB02.px/sv",
+  "identifier": "UTB02.px",
+  "language": "sv",
+  "updated": "2023-11-20",
+  "retrieved_at": "2026-10-18T07:19:43.044715+00:00",
+  "responses": {
+    "metadata": {
+      "title": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+      "variables": [
+        {
+          "code": "kön",
+          "text": "kön",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Kvinnor",
+            "Män",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "åldersgrupp",
+          "text": "åldersgrupp",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "valueTexts": [
+            "16 år - 24 år",
+            "25 år - 34 år",
+            "35 år - 44 år",
+            "45 år - 54 år",
+            "55 år - 64 år",
+            "65 år - 74 år",
+            "Totalt 16-74 år"
+          ]
+        },
+        {
+          "code": "utbildningsnivå",
+          "text": "utbildningsnivå",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "valueTexts": [
+            "Förgymnasial",
+            "Gymnasial",
+            "Eftergymnasial",
+            "Uppgift saknas",
+            "Totalt"
+          ]
+        },
+        {
+          "code": "enhet",
+          "text": "enhet",
+          "values": [
+            "0",
+            "1"
+          ],
+          "valueTexts": [
+            "Antal personer",
+            "Andel personer (%)"
+          ]
+        },
+        {
+          "code": "år",
+          "text": "år",
+          "values": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "valueTexts": [
+            "2017",
+            "2018",
+            "2019",
+            "2020"
+          ],
+          "time": true
+        },
+        {
+          "code": "födelseland",
+          "text": "födelseland",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Född i Sverige",
+            "Född utomlands",
+            "Totalt"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "api_url": "https://statistik.norrkoping.se/PxWeb/api/v1/sv/Utbildningsniv%C3%A5/UTB02.px",
+      "category_path": [],
+      "database_id": "Utbildningsnivå",
+      "dataset_code": "UTB02.px",
+      "id": "UTB02.px",
+      "language": "sv",
+      "path": "/",
+      "paths": [
+        {
+          "api_url": "https://statistik.norrkoping.se/PxWeb/api/v1/sv/Utbildningsniv%C3%A5/UTB02.px",
+          "category_path": [],
+          "database_id": "Utbildningsnivå",
+          "path": "/",
+          "published": "2023-11-20",
+          "score": 1.0,
+          "title": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+          "web_url": "https://statistik.norrkoping.se/PxWeb/pxweb/sv/Utbildningsniv%C3%A5/-/UTB02.px/"
+        }
+      ],
+      "provider_code": "norrkoping",
+      "published": "2023-11-20",
+      "score": 1.0,
+      "title": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+      "web_url": "https://statistik.norrkoping.se/PxWeb/pxweb/sv/Utbildningsniv%C3%A5/-/UTB02.px/"
+    },
+    "config": {
+      "maxValues": 1000,
+      "maxCells": 100000,
+      "maxCalls": 10,
+      "timeWindow": 10,
+      "CORS": true
+    }
+  },
+  "derived": {
+    "samples": [
+      {
+        "label": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Avser den folkbokförda befolkningen den 31 december respektive år."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Kvinnor",
+                "1": "Män"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "åldersgrupp": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "0": "16 år - 24 år",
+                "1": "25 år - 34 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "0": "Förgymnasial",
+                "1": "Gymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "...innebär att uppgiften inte kan redovisas på grund av för få personer."
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer",
+                "1": "Andel personer (%)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017",
+                "1": "2018"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Född i Sverige",
+                "1": "Född utomlands"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildningsnivå",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 16-74 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Avser den folkbokförda befolkningen den 31 december respektive år."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "åldersgrupp": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "0": "16 år - 24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "...innebär att uppgiften inte kan redovisas på grund av för få personer."
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Född i Sverige"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildningsnivå",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 16-74 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Avser den folkbokförda befolkningen den 31 december respektive år."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "åldersgrupp": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "2": "35 år - 44 år",
+                "3": "45 år - 54 år",
+                "4": "55 år - 64 år",
+                "5": "65 år - 74 år",
+                "6": "Totalt 16-74 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "...innebär att uppgiften inte kan redovisas på grund av för få personer."
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Född i Sverige"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildningsnivå",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 16-74 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Avser den folkbokförda befolkningen den 31 december respektive år."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "åldersgrupp": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "0": "16 år - 24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "2": "Eftergymnasial",
+                "3": "Uppgift saknas",
+                "4": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "...innebär att uppgiften inte kan redovisas på grund av för få personer."
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Född i Sverige"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildningsnivå",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 16-74 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Avser den folkbokförda befolkningen den 31 december respektive år."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "åldersgrupp": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "0": "16 år - 24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "...innebär att uppgiften inte kan redovisas på grund av för få personer."
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2": "2019",
+                "3": "2020"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "0": "Född i Sverige"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildningsnivå",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 16-74 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Befolkningen 16-74 år efter kön, åldersgrupp, utbildningsnivå, enhet, år och födelseland",
+        "source": "SCB",
+        "updated": "9999-12-31T22:59:59Z",
+        "note": [
+          "Avser den folkbokförda befolkningen den 31 december respektive år."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "kön": {
+            "label": "kön",
+            "category": {
+              "label": {
+                "0": "Kvinnor"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "åldersgrupp": {
+            "label": "åldersgrupp",
+            "category": {
+              "label": {
+                "0": "16 år - 24 år"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "utbildningsnivå": {
+            "label": "utbildningsnivå",
+            "category": {
+              "label": {
+                "0": "Förgymnasial"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "enhet": {
+            "label": "enhet",
+            "note": [
+              "...innebär att uppgiften inte kan redovisas på grund av för få personer."
+            ],
+            "category": {
+              "label": {
+                "0": "Antal personer"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "0": "2017"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "födelseland": {
+            "label": "födelseland",
+            "category": {
+              "label": {
+                "2": "Totalt"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "matrix": "Utbildningsnivå",
+            "subject-code": "UTB"
+          },
+          "contact": [
+            {
+              "raw": "planeringochstatistik@norrkoping.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Befolkningen 16-74 år"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal personer och andel (%) av hela befolkningen",
+                      "decimals": 15
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "queries": [
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "åldersgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "åldersgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "åldersgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "åldersgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "åldersgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "kön",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "åldersgrupp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "utbildningsnivå",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "enhet",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "födelseland",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    ]
+  }
+}
