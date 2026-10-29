@@ -2,8 +2,8 @@
   "key": "konjbar/Barboaq.px/en",
   "identifier": "Barboaq.px",
   "language": "en",
-  "updated": "2026-07-24",
-  "retrieved_at": "2026-10-17T06:59:17.197435+00:00",
+  "updated": "2026-10-14",
+  "retrieved_at": "2026-10-29T09:57:49.337181+00:00",
   "responses": {
     "metadata": {
       "title": "Construction by Bransch (SNI 2007), Fråga, Serie and Period",
@@ -29,10 +29,12 @@
           "text": "Fråga",
           "values": [
             "205",
-            "302"
+            "302",
+            "303"
           ],
           "valueTexts": [
             "Construction market in 1 year",
+            "Expected inflation within the next 12 months, old method",
             "Expected inflation within the next 12 months"
           ]
         },
@@ -273,7 +275,8 @@
             "2025Q4",
             "2026Q1",
             "2026Q2",
-            "2026Q3"
+            "2026Q3",
+            "2026Q4"
           ],
           "valueTexts": [
             "1974Q2",
@@ -485,7 +488,8 @@
             "2025Q4",
             "2026Q1",
             "2026Q2",
-            "2026Q3"
+            "2026Q3",
+            "2026Q4"
           ],
           "time": true
         }
@@ -515,14 +519,14 @@
           ],
           "database_id": "KonjBar",
           "path": "/ftgkvartal",
-          "published": "2026-07-24",
+          "published": "2026-10-14",
           "score": 1.0,
           "title": "Construction. Quarterly",
           "web_url": "https://statistik.konj.se/PxWeb/pxweb/en/KonjBar/KonjBar__ftgkvartal/Barboaq.px/"
         }
       ],
       "provider_code": "konjbar",
-      "published": "2026-07-24",
+      "published": "2026-10-14",
       "score": 1.0,
       "title": "Construction. Quarterly",
       "web_url": "https://statistik.konj.se/PxWeb/pxweb/en/KonjBar/KonjBar__ftgkvartal/Barboaq.px/"
@@ -556,7 +560,7 @@
             "category": {
               "label": {
                 "205": "Construction market in 1 year",
-                "302": "Expected inflation within the next 12 months"
+                "302": "Expected inflation within the next 12 months, old method"
               }
             }
           },
@@ -713,6 +717,84 @@
                 "status": {
                   "0": "..",
                   "1": ".."
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "label": "Construction by Bransch (SNI 2007), Fråga, Serie and Period",
+        "source": "National Institute of Economic Research",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Bransch (SNI 2007)": {
+            "label": "Bransch (SNI 2007)",
+            "category": {
+              "label": {
+                "BBYG": "Construction (NACE 41-43)"
+              }
+            }
+          },
+          "Fråga": {
+            "label": "Fråga",
+            "category": {
+              "label": {
+                "303": "Expected inflation within the next 12 months"
+              }
+            }
+          },
+          "Serie": {
+            "label": "Serie",
+            "category": {
+              "label": {
+                "O": "Net balance: Not seasonally adjusted"
+              }
+            }
+          },
+          "Period": {
+            "label": "Period",
+            "category": {
+              "label": {
+                "1974Q2": "1974Q2"
+              }
+            }
+          }
+        },
+        "role": {
+          "time": [
+            "Period"
+          ]
+        },
+        "extension": {
+          "px": {
+            "decimals": 0
+          },
+          "metadata_harvest": {
+            "sample_status": [
+              {
+                "id": [
+                  "Bransch (SNI 2007)",
+                  "Fråga",
+                  "Serie",
+                  "Period"
+                ],
+                "categories": {
+                  "Bransch (SNI 2007)": [
+                    "BBYG"
+                  ],
+                  "Fråga": [
+                    "303"
+                  ],
+                  "Serie": [
+                    "O"
+                  ],
+                  "Period": [
+                    "1974Q2"
+                  ]
+                },
+                "status": {
+                  "0": ".."
                 }
               }
             ]
@@ -1052,7 +1134,8 @@
                 "2025Q4": "2025Q4",
                 "2026Q1": "2026Q1",
                 "2026Q2": "2026Q2",
-                "2026Q3": "2026Q3"
+                "2026Q3": "2026Q3",
+                "2026Q4": "2026Q4"
               }
             }
           }
@@ -1293,7 +1376,8 @@
                     "2025Q4",
                     "2026Q1",
                     "2026Q2",
-                    "2026Q3"
+                    "2026Q3",
+                    "2026Q4"
                   ]
                 },
                 "status": {
@@ -1456,6 +1540,49 @@
               "filter": "item",
               "values": [
                 "205"
+              ]
+            }
+          },
+          {
+            "code": "Serie",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "O"
+              ]
+            }
+          },
+          {
+            "code": "Period",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1974Q2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Bransch (SNI 2007)",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "BBYG"
+              ]
+            }
+          },
+          {
+            "code": "Fråga",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "303"
               ]
             }
           },
@@ -1771,7 +1898,8 @@
                 "2025Q4",
                 "2026Q1",
                 "2026Q2",
-                "2026Q3"
+                "2026Q3",
+                "2026Q4"
               ]
             }
           }
