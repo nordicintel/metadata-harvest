@@ -1,0 +1,252 @@
+{
+  "key": "kronofogdenentryscapenet/85c35206-b3e6-4696-961f-6a4a7c5e288d/sv",
+  "identifier": "85c35206-b3e6-4696-961f-6a4a7c5e288d",
+  "language": "sv",
+  "updated": "2026-01-12T09:18:48.476Z",
+  "retrieved_at": "2026-11-01T11:56:05.492714+00:00",
+  "responses": {
+    "discovery": {
+      "provider_code": "kronofogdenentryscapenet",
+      "dataset_code": "85c35206-b3e6-4696-961f-6a4a7c5e288d",
+      "language": "sv",
+      "base_url": "https://kronofogden.entryscape.net",
+      "table_url": "https://kronofogden.entryscape.net/rowstore/dataset/85c35206-b3e6-4696-961f-6a4a7c5e288d",
+      "title": "Skuldsaneringsbeslut hos Kronofogden",
+      "published": "2026-01-12T09:18:48.476Z",
+      "paths": [
+        {
+          "distribution": "https://kronofogden.entryscape.net/store/2/resource/253",
+          "dataset": "https://kronofogden.entryscape.net/store/2/resource/205"
+        }
+      ],
+      "catalogue": {
+        "dataset_title": {
+          "sv": "Skuldsaneringsbeslut hos Kronofogden"
+        },
+        "dataset_description": {
+          "sv": "Informationsmängden innehåller beslut om bifall, avslag, avvisning, avskrivning inom skuldsanering. Redovisas på riksnivå och år från 2007. Redovisas på riksnivå, år och kön från 2012."
+        },
+        "distribution_title": {
+          "sv": "API"
+        },
+        "source_distribution": "https://kronofogden.entryscape.net/store/2/resource/243",
+        "distribution_modified": "2026-01-12T09:18:48.476Z",
+        "dataset_modified": null,
+        "dataset_issued": null,
+        "publisher": "https://kronofogden.entryscape.net/store/2/resource/1",
+        "themes": [
+          "http://publications.europa.eu/resource/authority/data-theme/GOVE",
+          "http://publications.europa.eu/resource/authority/data-theme/SOCI",
+          "http://publications.europa.eu/resource/authority/data-theme/ECON"
+        ]
+      }
+    }
+  },
+  "derived": {
+    "document": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Skuldsaneringsbeslut hos Kronofogden",
+      "updated": "2026-01-12T09:18:48.476Z",
+      "source": "kronofogdenentryscapenet",
+      "id": [
+        "kön",
+        "beslutstyp",
+        "år",
+        "measure"
+      ],
+      "size": [
+        3,
+        4,
+        19,
+        1
+      ],
+      "dimension": {
+        "kön": {
+          "label": "kön",
+          "category": {
+            "index": {
+              "-": 0,
+              "Kvinna": 1,
+              "Man": 2
+            },
+            "label": {
+              "-": "-",
+              "Kvinna": "Kvinna",
+              "Man": "Man"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "kön",
+              "role": "dimension",
+              "reason": "name",
+              "time": false
+            }
+          }
+        },
+        "beslutstyp": {
+          "label": "beslutstyp",
+          "category": {
+            "index": {
+              "Avskrivning": 0,
+              "Avslag": 1,
+              "Avvisning": 2,
+              "Beslut om skuldsanering": 3
+            },
+            "label": {
+              "Avskrivning": "Avskrivning",
+              "Avslag": "Avslag",
+              "Avvisning": "Avvisning",
+              "Beslut om skuldsanering": "Beslut om skuldsanering"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "beslutstyp",
+              "role": "dimension",
+              "reason": "text values",
+              "time": false
+            }
+          }
+        },
+        "år": {
+          "label": "år",
+          "category": {
+            "index": {
+              "2007": 0,
+              "2008": 1,
+              "2009": 2,
+              "2010": 3,
+              "2011": 4,
+              "2012": 5,
+              "2013": 6,
+              "2014": 7,
+              "2015": 8,
+              "2016": 9,
+              "2017": 10,
+              "2018": 11,
+              "2019": 12,
+              "2020": 13,
+              "2021": 14,
+              "2022": 15,
+              "2023": 16,
+              "2024": 17,
+              "2025": 18
+            },
+            "label": {
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "år",
+              "role": "dimension",
+              "reason": "name",
+              "time": true
+            }
+          }
+        },
+        "measure": {
+          "label": "measure",
+          "category": {
+            "index": {
+              "antal beslut": 0
+            },
+            "label": {
+              "antal beslut": "antal beslut"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "columns": {
+                "antal beslut": "antal beslut"
+              },
+              "reasons": {
+                "antal beslut": "numeric values"
+              }
+            }
+          }
+        }
+      },
+      "value": [],
+      "extension": {
+        "metadata_harvest": {
+          "provider_code": "kronofogdenentryscapenet",
+          "dataset_code": "85c35206-b3e6-4696-961f-6a4a7c5e288d",
+          "language": "sv",
+          "base_url": "https://kronofogden.entryscape.net",
+          "table_url": "https://kronofogden.entryscape.net/rowstore/dataset/85c35206-b3e6-4696-961f-6a4a7c5e288d",
+          "title": "Skuldsaneringsbeslut hos Kronofogden",
+          "published": "2026-01-12T09:18:48.476Z",
+          "paths": [
+            {
+              "distribution": "https://kronofogden.entryscape.net/store/2/resource/253",
+              "dataset": "https://kronofogden.entryscape.net/store/2/resource/205"
+            }
+          ],
+          "catalogue": {
+            "dataset_title": {
+              "sv": "Skuldsaneringsbeslut hos Kronofogden"
+            },
+            "dataset_description": {
+              "sv": "Informationsmängden innehåller beslut om bifall, avslag, avvisning, avskrivning inom skuldsanering. Redovisas på riksnivå och år från 2007. Redovisas på riksnivå, år och kön från 2012."
+            },
+            "distribution_title": {
+              "sv": "API"
+            },
+            "source_distribution": "https://kronofogden.entryscape.net/store/2/resource/243",
+            "distribution_modified": "2026-01-12T09:18:48.476Z",
+            "dataset_modified": null,
+            "dataset_issued": null,
+            "publisher": "https://kronofogden.entryscape.net/store/2/resource/1",
+            "themes": [
+              "http://publications.europa.eu/resource/authority/data-theme/GOVE",
+              "http://publications.europa.eu/resource/authority/data-theme/SOCI",
+              "http://publications.europa.eu/resource/authority/data-theme/ECON"
+            ]
+          }
+        },
+        "rowstore": {
+          "rowcount": 132,
+          "columns": [
+            "kön",
+            "beslutstyp",
+            "antal beslut",
+            "år"
+          ],
+          "strategy": "single_page",
+          "requests": 1,
+          "full_scan_requests": 1,
+          "dimension_key_unique_in_sample": true
+        }
+      },
+      "role": {
+        "metric": [
+          "measure"
+        ],
+        "time": [
+          "år"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "key": "cataloggoteborgse/d119d07d-551e-4023-b502-ef05fa6afff8/sv",
+  "identifier": "d119d07d-551e-4023-b502-ef05fa6afff8",
+  "language": "sv",
+  "updated": "2026-10-14T10:28:17.524Z",
+  "retrieved_at": "2026-11-01T11:56:05.492714+00:00",
+  "responses": {
+    "discovery": {
+      "provider_code": "cataloggoteborgse",
+      "dataset_code": "d119d07d-551e-4023-b502-ef05fa6afff8",
+      "language": "sv",
+      "base_url": "https://catalog.goteborg.se",
+      "table_url": "https://catalog.goteborg.se/rowstore/dataset/d119d07d-551e-4023-b502-ef05fa6afff8",
+      "title": "Luftkvalitet, API",
+      "published": "2026-10-14T10:28:17.524Z",
+      "paths": [
+        {
+          "distribution": "https://catalog.goteborg.se/store/6/resource/134109",
+          "dataset": "https://catalog.goteborg.se/store/6/resource/690"
+        }
+      ],
+      "catalogue": {
+        "dataset_title": {
+          "sv": "Luftkvalitet, API",
+          "en": "AIR Quality, API"
+        },
+        "dataset_description": {
+          "en": "Hourly data of AIR Quality in Gothenburg",
+          "sv": "Timdata av luftkvalitet i Göteborg"
+        },
+        "distribution_title": {},
+        "source_distribution": "https://catalog.goteborg.se/store/6/resource/134107",
+        "distribution_modified": "2026-10-14T10:28:17.524Z",
+        "dataset_modified": null,
+        "dataset_issued": null,
+        "publisher": "https://catalog.goteborg.se/store/6/resource/1",
+        "themes": [
+          "http://publications.europa.eu/resource/authority/data-theme/ENVI",
+          "http://publications.europa.eu/resource/authority/data-theme/HEAL",
+          "http://publications.europa.eu/resource/authority/data-theme/REGI",
+          "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+        ]
+      }
+    }
+  },
+  "derived": {
+    "document": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Luftkvalitet, API",
+      "updated": "2026-10-14T10:28:17.524Z",
+      "source": "cataloggoteborgse",
+      "id": [
+        "date",
+        "time",
+        "measure"
+      ],
+      "size": [
+        1,
+        1,
+        2
+      ],
+      "dimension": {
+        "date": {
+          "label": "date",
+          "category": {
+            "index": {
+              "2026-10-05": 0
+            },
+            "label": {
+              "2026-10-05": "2026-10-05"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "date",
+              "role": "dimension",
+              "reason": "name",
+              "time": true
+            }
+          }
+        },
+        "time": {
+          "label": "time",
+          "category": {
+            "index": {
+              "08:00+01:00": 0
+            },
+            "label": {
+              "08:00+01:00": "08:00+01:00"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "time",
+              "role": "dimension",
+              "reason": "name",
+              "time": true
+            }
+          }
+        },
+        "measure": {
+          "label": "measure",
+          "category": {
+            "index": {
+              "femman_rh": 0,
+              "femman_temp": 1
+            },
+            "label": {
+              "femman_rh": "femman_rh",
+              "femman_temp": "femman_temp"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "columns": {
+                "femman_rh": "femman_rh",
+                "femman_temp": "femman_temp"
+              },
+              "reasons": {
+                "femman_rh": "numeric values",
+                "femman_temp": "numeric values"
+              }
+            }
+          }
+        }
+      },
+      "value": [],
+      "extension": {
+        "metadata_harvest": {
+          "provider_code": "cataloggoteborgse",
+          "dataset_code": "d119d07d-551e-4023-b502-ef05fa6afff8",
+          "language": "sv",
+          "base_url": "https://catalog.goteborg.se",
+          "table_url": "https://catalog.goteborg.se/rowstore/dataset/d119d07d-551e-4023-b502-ef05fa6afff8",
+          "title": "Luftkvalitet, API",
+          "published": "2026-10-14T10:28:17.524Z",
+          "paths": [
+            {
+              "distribution": "https://catalog.goteborg.se/store/6/resource/134109",
+              "dataset": "https://catalog.goteborg.se/store/6/resource/690"
+            }
+          ],
+          "catalogue": {
+            "dataset_title": {
+              "sv": "Luftkvalitet, API",
+              "en": "AIR Quality, API"
+            },
+            "dataset_description": {
+              "en": "Hourly data of AIR Quality in Gothenburg",
+              "sv": "Timdata av luftkvalitet i Göteborg"
+            },
+            "distribution_title": {},
+            "source_distribution": "https://catalog.goteborg.se/store/6/resource/134107",
+            "distribution_modified": "2026-10-14T10:28:17.524Z",
+            "dataset_modified": null,
+            "dataset_issued": null,
+            "publisher": "https://catalog.goteborg.se/store/6/resource/1",
+            "themes": [
+              "http://publications.europa.eu/resource/authority/data-theme/ENVI",
+              "http://publications.europa.eu/resource/authority/data-theme/HEAL",
+              "http://publications.europa.eu/resource/authority/data-theme/REGI",
+              "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+            ]
+          }
+        },
+        "rowstore": {
+          "rowcount": 1,
+          "columns": [
+            "date",
+            "femman_rh",
+            "femman_temp",
+            "time"
+          ],
+          "strategy": "single_page",
+          "requests": 1,
+          "full_scan_requests": 1,
+          "dimension_key_unique_in_sample": true
+        }
+      },
+      "role": {
+        "metric": [
+          "measure"
+        ],
+        "time": [
+          "date",
+          "time"
+        ]
+      }
+    }
+  }
+}

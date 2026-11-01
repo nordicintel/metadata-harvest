@@ -1,0 +1,376 @@
+{
+  "key": "catalogiafse/373ec603-029d-41f4-bac7-a83c17bc3bbe/sv",
+  "identifier": "373ec603-029d-41f4-bac7-a83c17bc3bbe",
+  "language": "sv",
+  "updated": "2026-03-25T11:46:40.105Z",
+  "retrieved_at": "2026-11-01T11:56:05.492714+00:00",
+  "responses": {
+    "discovery": {
+      "provider_code": "catalogiafse",
+      "dataset_code": "373ec603-029d-41f4-bac7-a83c17bc3bbe",
+      "language": "sv",
+      "base_url": "https://catalog.iaf.se",
+      "table_url": "https://catalog.iaf.se/rowstore/dataset/373ec603-029d-41f4-bac7-a83c17bc3bbe",
+      "title": "Antal personer som har fått arbetslöshetsersättning - per arbetslöshetskassa, ersättningsform och år",
+      "published": "2026-03-25T11:46:40.105Z",
+      "paths": [
+        {
+          "distribution": "https://catalog.iaf.se/store/1/resource/363",
+          "dataset": "https://catalog.iaf.se/store/1/resource/271"
+        }
+      ],
+      "catalogue": {
+        "dataset_title": {
+          "en": "Number of persons who received unemployment benefits - by unemployment insurance fund, type of benefit and year",
+          "sv": "Antal personer som har fått arbetslöshetsersättning - per arbetslöshetskassa, ersättningsform och år"
+        },
+        "dataset_description": {
+          "en": "Total number of persons who received unemployment benefits, by year of payment, unemployment insurance fund and benefit type (income-based or basic benefit)",
+          "sv": "Totalt antal personer som fått arbetslöshetsersättning, per utbetalningsår, arbetslöshetskassa och ersättningsform (inkomstrelaterad ersättning eller grundbelopp)"
+        },
+        "distribution_title": {
+          "sv": "Antal personer som har fått arbetslöshetsersättning - arbetslöshetskassa och inkomstrelaterad ersättning eller grundbelopp"
+        },
+        "source_distribution": "https://catalog.iaf.se/store/1/resource/273",
+        "distribution_modified": "2026-03-25T11:46:40.105Z",
+        "dataset_modified": null,
+        "dataset_issued": "2022-10-14",
+        "publisher": "https://catalog.iaf.se/store/1/resource/1",
+        "themes": [
+          "http://publications.europa.eu/resource/authority/data-theme/SOCI",
+          "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+        ]
+      }
+    }
+  },
+  "derived": {
+    "document": {
+      "version": "2.0",
+      "class": "dataset",
+      "label": "Antal personer som har fått arbetslöshetsersättning - per arbetslöshetskassa, ersättningsform och år",
+      "updated": "2026-03-25T11:46:40.105Z",
+      "source": "catalogiafse",
+      "id": [
+        "benefits",
+        "fund",
+        "year",
+        "fund_id",
+        "measure"
+      ],
+      "size": [
+        2,
+        24,
+        27,
+        24,
+        1
+      ],
+      "dimension": {
+        "benefits": {
+          "label": "benefits",
+          "category": {
+            "index": {
+              "basic benefits": 0,
+              "income-based benefits": 1
+            },
+            "label": {
+              "basic benefits": "basic benefits",
+              "income-based benefits": "income-based benefits"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "benefits",
+              "role": "dimension",
+              "reason": "text values",
+              "time": false
+            }
+          }
+        },
+        "fund": {
+          "label": "fund",
+          "category": {
+            "index": {
+              "Akademikernas": 0,
+              "Alfa": 1,
+              "Byggnadsarbetarnas": 2,
+              "Elektrikernas": 3,
+              "Fastighets": 4,
+              "Finans- och Försäkringsbranschens": 5,
+              "GS": 6,
+              "Handels": 7,
+              "Hotell- och restauranganställdas": 8,
+              "IF Metalls": 9,
+              "Journalisternas": 10,
+              "Kommunalarbetarnas": 11,
+              "Ledarnas": 12,
+              "Livsmedelsarbetarnas": 13,
+              "Lärarnas": 14,
+              "Pappersindustriarbetarnas": 15,
+              "STs": 16,
+              "Sekos": 17,
+              "Småföretagarnas": 18,
+              "Sveriges arbetares": 19,
+              "Säljarnas": 20,
+              "Transportarbetarnas": 21,
+              "Unionens": 22,
+              "Vision": 23
+            },
+            "label": {
+              "Akademikernas": "Akademikernas",
+              "Alfa": "Alfa",
+              "Byggnadsarbetarnas": "Byggnadsarbetarnas",
+              "Elektrikernas": "Elektrikernas",
+              "Fastighets": "Fastighets",
+              "Finans- och Försäkringsbranschens": "Finans- och Försäkringsbranschens",
+              "GS": "GS",
+              "Handels": "Handels",
+              "Hotell- och restauranganställdas": "Hotell- och restauranganställdas",
+              "IF Metalls": "IF Metalls",
+              "Journalisternas": "Journalisternas",
+              "Kommunalarbetarnas": "Kommunalarbetarnas",
+              "Ledarnas": "Ledarnas",
+              "Livsmedelsarbetarnas": "Livsmedelsarbetarnas",
+              "Lärarnas": "Lärarnas",
+              "Pappersindustriarbetarnas": "Pappersindustriarbetarnas",
+              "STs": "STs",
+              "Sekos": "Sekos",
+              "Småföretagarnas": "Småföretagarnas",
+              "Sveriges arbetares": "Sveriges arbetares",
+              "Säljarnas": "Säljarnas",
+              "Transportarbetarnas": "Transportarbetarnas",
+              "Unionens": "Unionens",
+              "Vision": "Vision"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "fund",
+              "role": "dimension",
+              "reason": "text values",
+              "time": false
+            }
+          }
+        },
+        "year": {
+          "label": "year",
+          "category": {
+            "index": {
+              "1999": 0,
+              "2000": 1,
+              "2001": 2,
+              "2002": 3,
+              "2003": 4,
+              "2004": 5,
+              "2005": 6,
+              "2006": 7,
+              "2007": 8,
+              "2008": 9,
+              "2009": 10,
+              "2010": 11,
+              "2011": 12,
+              "2012": 13,
+              "2013": 14,
+              "2014": 15,
+              "2015": 16,
+              "2016": 17,
+              "2017": 18,
+              "2018": 19,
+              "2019": 20,
+              "2020": 21,
+              "2021": 22,
+              "2022": 23,
+              "2023": 24,
+              "2024": 25,
+              "2025": 26
+            },
+            "label": {
+              "1999": "1999",
+              "2000": "2000",
+              "2001": "2001",
+              "2002": "2002",
+              "2003": "2003",
+              "2004": "2004",
+              "2005": "2005",
+              "2006": "2006",
+              "2007": "2007",
+              "2008": "2008",
+              "2009": "2009",
+              "2010": "2010",
+              "2011": "2011",
+              "2012": "2012",
+              "2013": "2013",
+              "2014": "2014",
+              "2015": "2015",
+              "2016": "2016",
+              "2017": "2017",
+              "2018": "2018",
+              "2019": "2019",
+              "2020": "2020",
+              "2021": "2021",
+              "2022": "2022",
+              "2023": "2023",
+              "2024": "2024",
+              "2025": "2025"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "year",
+              "role": "dimension",
+              "reason": "name",
+              "time": true
+            }
+          }
+        },
+        "fund_id": {
+          "label": "fund_id",
+          "category": {
+            "index": {
+              "04": 0,
+              "06": 1,
+              "10": 2,
+              "14": 3,
+              "19": 4,
+              "22": 5,
+              "23": 6,
+              "26": 7,
+              "27": 8,
+              "36": 9,
+              "41": 10,
+              "44": 11,
+              "47": 12,
+              "51": 13,
+              "52": 14,
+              "53": 15,
+              "55": 16,
+              "56": 17,
+              "62": 18,
+              "65": 19,
+              "67": 20,
+              "68": 21,
+              "69": 22,
+              "70": 23
+            },
+            "label": {
+              "04": "04",
+              "06": "06",
+              "10": "10",
+              "14": "14",
+              "19": "19",
+              "22": "22",
+              "23": "23",
+              "26": "26",
+              "27": "27",
+              "36": "36",
+              "41": "41",
+              "44": "44",
+              "47": "47",
+              "51": "51",
+              "52": "52",
+              "53": "53",
+              "55": "55",
+              "56": "56",
+              "62": "62",
+              "65": "65",
+              "67": "67",
+              "68": "68",
+              "69": "69",
+              "70": "70"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "column": "fund_id",
+              "role": "dimension",
+              "reason": "name",
+              "time": false
+            }
+          }
+        },
+        "measure": {
+          "label": "measure",
+          "category": {
+            "index": {
+              "persons": 0
+            },
+            "label": {
+              "persons": "persons"
+            }
+          },
+          "extension": {
+            "rowstore": {
+              "columns": {
+                "persons": "persons"
+              },
+              "reasons": {
+                "persons": "numeric values"
+              }
+            }
+          }
+        }
+      },
+      "value": [],
+      "extension": {
+        "metadata_harvest": {
+          "provider_code": "catalogiafse",
+          "dataset_code": "373ec603-029d-41f4-bac7-a83c17bc3bbe",
+          "language": "sv",
+          "base_url": "https://catalog.iaf.se",
+          "table_url": "https://catalog.iaf.se/rowstore/dataset/373ec603-029d-41f4-bac7-a83c17bc3bbe",
+          "title": "Antal personer som har fått arbetslöshetsersättning - per arbetslöshetskassa, ersättningsform och år",
+          "published": "2026-03-25T11:46:40.105Z",
+          "paths": [
+            {
+              "distribution": "https://catalog.iaf.se/store/1/resource/363",
+              "dataset": "https://catalog.iaf.se/store/1/resource/271"
+            }
+          ],
+          "catalogue": {
+            "dataset_title": {
+              "en": "Number of persons who received unemployment benefits - by unemployment insurance fund, type of benefit and year",
+              "sv": "Antal personer som har fått arbetslöshetsersättning - per arbetslöshetskassa, ersättningsform och år"
+            },
+            "dataset_description": {
+              "en": "Total number of persons who received unemployment benefits, by year of payment, unemployment insurance fund and benefit type (income-based or basic benefit)",
+              "sv": "Totalt antal personer som fått arbetslöshetsersättning, per utbetalningsår, arbetslöshetskassa och ersättningsform (inkomstrelaterad ersättning eller grundbelopp)"
+            },
+            "distribution_title": {
+              "sv": "Antal personer som har fått arbetslöshetsersättning - arbetslöshetskassa och inkomstrelaterad ersättning eller grundbelopp"
+            },
+            "source_distribution": "https://catalog.iaf.se/store/1/resource/273",
+            "distribution_modified": "2026-03-25T11:46:40.105Z",
+            "dataset_modified": null,
+            "dataset_issued": "2022-10-14",
+            "publisher": "https://catalog.iaf.se/store/1/resource/1",
+            "themes": [
+              "http://publications.europa.eu/resource/authority/data-theme/SOCI",
+              "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+            ]
+          }
+        },
+        "rowstore": {
+          "rowcount": 1296,
+          "columns": [
+            "benefits",
+            "persons",
+            "fund",
+            "year",
+            "fund_id"
+          ],
+          "strategy": "source_files",
+          "requests": 3,
+          "full_scan_requests": 3,
+          "dimension_key_unique_in_sample": true
+        }
+      },
+      "role": {
+        "metric": [
+          "measure"
+        ],
+        "time": [
+          "year"
+        ]
+      }
+    }
+  }
+}
