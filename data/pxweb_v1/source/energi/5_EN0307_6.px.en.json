@@ -3,13 +3,13 @@
   "identifier": "5_EN0307_6.px",
   "language": "en",
   "updated": "2026-09-03",
-  "retrieved_at": "2026-10-17T06:58:48.602519+00:00",
+  "retrieved_at": "2026-11-01T10:28:54.149984+00:00",
   "responses": {
     "metadata": {
-      "title": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser by Quarter, Assortiment and User",
+      "title": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices by Quarter, Region, Assortiment and User",
       "variables": [
         {
-          "code": "Period",
+          "code": "Kvartal",
           "text": "Quarter",
           "values": [
             "0",
@@ -17,39 +17,30 @@
             "2",
             "3",
             "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17"
+            "5"
           ],
           "valueTexts": [
-            "2025:1 (region 1)",
-            "2025:1 (region 2)",
-            "2025:1 (region 3)",
-            "2025:2 (region 1)",
-            "2025:2 (region 2)",
-            "2025:2 (region 3)",
-            "2025:3 (region 1)",
-            "2025:3 (region 2)",
-            "2025:3 (region 3)",
-            "2025:4 (region 1)",
-            "2025:4 (region 2)",
-            "2025:4 (region 3)",
-            "2026:1 (region 1)",
-            "2026:1 (region 2)",
-            "2026:1 (region 3)",
-            "2026:2 (region 1)",
-            "2026:2 (region 2)",
-            "2026:2 (region 3)"
+            "2025:1",
+            "2025:2",
+            "2025:3",
+            "2025:4",
+            "2026:1",
+            "2026:2"
+          ],
+          "time": true
+        },
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Region 1",
+            "Region 2",
+            "Region 3"
           ]
         },
         {
@@ -126,14 +117,14 @@
           "path": "/Officiell_energistatistik/Tradbransle_och_torvpriser",
           "published": "2026-09-03",
           "score": 1.0,
-          "title": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025, kronor/MWh fritt förbrukare, löpande priser",
+          "title": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
           "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/5_EN0307_6.px/"
         }
       ],
       "provider_code": "energi",
       "published": "2026-09-03",
       "score": 1.0,
-      "title": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025, kronor/MWh fritt förbrukare, löpande priser",
+      "title": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
       "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/5_EN0307_6.px/"
     },
     "config": {
@@ -147,22 +138,38 @@
   "derived": {
     "samples": [
       {
-        "label": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser by Quarter, Assortiment and User",
+        "label": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices by Quarter, Region, Assortiment and User",
         "source": "Sweden Energy Agency",
         "updated": "2026-09-03T07:00:00Z",
         "note": [
           "Region 1 (Norra delen av Sverige): Inkluderade län är Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Mellan Sverige): Län som ingår är Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (Södra delen av Sverige): Län som ingår är Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
         ],
         "role": {
+          "time": [
+            "Kvartal"
+          ],
           "metric": []
         },
         "dimension": {
-          "Period": {
+          "Kvartal": {
             "label": "Quarter",
             "category": {
               "label": {
-                "0": "2025:1 (region 1)",
-                "1": "2025:1 (region 2)"
+                "0": "2025:1",
+                "1": "2025:2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Region 1",
+                "1": "Region 2"
               }
             },
             "extension": {
@@ -203,15 +210,16 @@
             "official-statistics": true,
             "aggregallowed": true,
             "language": "sv",
-            "contents": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser",
-            "description": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025, kronor/MWh fritt förbrukare, löpande priser",
+            "contents": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
+            "description": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
             "descriptiondefault": false,
             "heading": [
               "Sortiment",
               "Användare"
             ],
             "stub": [
-              "Period"
+              "Kvartal",
+              "Region"
             ],
             "matrix": "EN0307_6",
             "subject-code": "EN",
@@ -219,7 +227,7 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
           ],
           "metadata_harvest": {
@@ -231,7 +239,7 @@
                     "EliminatedValue": 0
                   },
                   "label": {
-                    "EliminatedValue": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser"
+                    "EliminatedValue": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices"
                   },
                   "unit": {
                     "EliminatedValue": {
@@ -254,36 +262,39 @@
         }
       },
       {
-        "label": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser by Quarter, Assortiment and User",
+        "label": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices by Quarter, Region, Assortiment and User",
         "source": "Sweden Energy Agency",
         "updated": "2026-09-03T07:00:00Z",
         "note": [
           "Region 1 (Norra delen av Sverige): Inkluderade län är Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Mellan Sverige): Län som ingår är Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (Södra delen av Sverige): Län som ingår är Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
         ],
         "role": {
+          "time": [
+            "Kvartal"
+          ],
           "metric": []
         },
         "dimension": {
-          "Period": {
+          "Kvartal": {
             "label": "Quarter",
             "category": {
               "label": {
-                "2": "2025:1 (region 3)",
-                "3": "2025:2 (region 1)",
-                "4": "2025:2 (region 2)",
-                "5": "2025:2 (region 3)",
-                "6": "2025:3 (region 1)",
-                "7": "2025:3 (region 2)",
-                "8": "2025:3 (region 3)",
-                "9": "2025:4 (region 1)",
-                "10": "2025:4 (region 2)",
-                "11": "2025:4 (region 3)",
-                "12": "2026:1 (region 1)",
-                "13": "2026:1 (region 2)",
-                "14": "2026:1 (region 3)",
-                "15": "2026:2 (region 1)",
-                "16": "2026:2 (region 2)",
-                "17": "2026:2 (region 3)"
+                "2": "2025:3",
+                "3": "2025:4",
+                "4": "2026:1",
+                "5": "2026:2"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Region 1"
               }
             },
             "extension": {
@@ -322,15 +333,16 @@
             "official-statistics": true,
             "aggregallowed": true,
             "language": "sv",
-            "contents": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser",
-            "description": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025, kronor/MWh fritt förbrukare, löpande priser",
+            "contents": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
+            "description": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
             "descriptiondefault": false,
             "heading": [
               "Sortiment",
               "Användare"
             ],
             "stub": [
-              "Period"
+              "Kvartal",
+              "Region"
             ],
             "matrix": "EN0307_6",
             "subject-code": "EN",
@@ -338,7 +350,7 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
           ],
           "metadata_harvest": {
@@ -350,7 +362,7 @@
                     "EliminatedValue": 0
                   },
                   "label": {
-                    "EliminatedValue": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser"
+                    "EliminatedValue": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices"
                   },
                   "unit": {
                     "EliminatedValue": {
@@ -373,21 +385,156 @@
         }
       },
       {
-        "label": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser by Quarter, Assortiment and User",
+        "label": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices by Quarter, Region, Assortiment and User",
         "source": "Sweden Energy Agency",
         "updated": "2026-09-03T07:00:00Z",
         "note": [
           "Region 1 (Norra delen av Sverige): Inkluderade län är Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Mellan Sverige): Län som ingår är Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (Södra delen av Sverige): Län som ingår är Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
         ],
         "role": {
+          "time": [
+            "Kvartal"
+          ],
           "metric": []
         },
         "dimension": {
-          "Period": {
+          "Kvartal": {
             "label": "Quarter",
             "category": {
               "label": {
-                "0": "2025:1 (region 1)"
+                "0": "2025:1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "2": "Region 3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Assortiment",
+            "category": {
+              "label": {
+                "0": "Refined"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "User",
+            "category": {
+              "label": {
+                "0": "District heating"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
+            "description": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
+            "descriptiondefault": false,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "Kvartal",
+              "Region"
+            ],
+            "matrix": "EN0307_6",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "SEK/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices by Quarter, Region, Assortiment and User",
+        "source": "Sweden Energy Agency",
+        "updated": "2026-09-03T07:00:00Z",
+        "note": [
+          "Region 1 (Norra delen av Sverige): Inkluderade län är Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Mellan Sverige): Län som ingår är Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (Södra delen av Sverige): Län som ingår är Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
+        ],
+        "role": {
+          "time": [
+            "Kvartal"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "Kvartal": {
+            "label": "Quarter",
+            "category": {
+              "label": {
+                "0": "2025:1"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Region 1"
               }
             },
             "extension": {
@@ -432,15 +579,16 @@
             "official-statistics": true,
             "aggregallowed": true,
             "language": "sv",
-            "contents": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser",
-            "description": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025, kronor/MWh fritt förbrukare, löpande priser",
+            "contents": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
+            "description": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices",
             "descriptiondefault": false,
             "heading": [
               "Sortiment",
               "Användare"
             ],
             "stub": [
-              "Period"
+              "Kvartal",
+              "Region"
             ],
             "matrix": "EN0307_6",
             "subject-code": "EN",
@@ -448,7 +596,7 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
           ],
           "metadata_harvest": {
@@ -460,7 +608,7 @@
                     "EliminatedValue": 0
                   },
                   "label": {
-                    "EliminatedValue": "Trädbränsle-, torv- och avfallpriser, per region exklusive skatt, från och med 2025 kronor/MWh fritt förbrukare, löpande priser"
+                    "EliminatedValue": "Wood fuel, peat and waste prices, per quarter and region excluding tax, from 2025, SEK/MWh free to consumer, current prices"
                   },
                   "unit": {
                     "EliminatedValue": {
@@ -487,7 +635,17 @@
       {
         "query": [
           {
-            "code": "Period",
+            "code": "Kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Region",
             "selection": {
               "filter": "item",
               "values": [
@@ -524,26 +682,23 @@
       {
         "query": [
           {
-            "code": "Period",
+            "code": "Kvartal",
             "selection": {
               "filter": "item",
               "values": [
                 "2",
                 "3",
                 "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
-                "17"
+                "5"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
               ]
             }
           },
@@ -573,7 +728,59 @@
       {
         "query": [
           {
-            "code": "Period",
+            "code": "Kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Kvartal",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
             "selection": {
               "filter": "item",
               "values": [

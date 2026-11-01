@@ -3,10 +3,10 @@
   "identifier": "6_EN0307_3.px",
   "language": "en",
   "updated": "2025-03-05",
-  "retrieved_at": "2026-10-17T06:58:55.522408+00:00",
+  "retrieved_at": "2026-11-01T10:29:02.009350+00:00",
   "responses": {
     "metadata": {
-      "title": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Assortiment and User",
+      "title": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Region, Assortiment and User",
       "variables": [
         {
           "code": "År",
@@ -14,24 +14,27 @@
           "values": [
             "0",
             "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8"
+            "2"
           ],
           "valueTexts": [
-            "2023   (region 1)",
-            "2023   (region 2)",
-            "2023   (region 3)",
-            "2024   (region 1)",
-            "2024   (region 2)",
-            "2024   (region 3)",
-            "2025   (region 1)",
-            "2025   (region 2)",
-            "2025   (region 3)"
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "time": true
+        },
+        {
+          "code": "Region",
+          "text": "Region",
+          "values": [
+            "0",
+            "1",
+            "2"
+          ],
+          "valueTexts": [
+            "Region 1",
+            "Region 2",
+            "Region 3"
           ]
         },
         {
@@ -129,12 +132,15 @@
   "derived": {
     "samples": [
       {
-        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Assortiment and User",
+        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Region, Assortiment and User",
         "updated": "2025-03-05T07:00:00Z",
         "note": [
           "Region 1 (North part of Sweden): Counties included are Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Middle part of Sweden): Counties included are Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (South part of Sweden): Counties included are Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
         ],
         "role": {
+          "time": [
+            "År"
+          ],
           "metric": []
         },
         "dimension": {
@@ -142,8 +148,21 @@
             "label": "Year",
             "category": {
               "label": {
-                "0": "2023   (region 1)",
-                "1": "2023   (region 2)"
+                "0": "2023",
+                "1": "2024"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Region 1",
+                "1": "Region 2"
               }
             },
             "extension": {
@@ -192,12 +211,18 @@
               "Användare"
             ],
             "stub": [
-              "År"
+              "År",
+              "Region"
             ],
             "matrix": "EN0307_6",
             "subject-code": "EN",
             "subject-area": "Energy"
           },
+          "contact": [
+            {
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
           "metadata_harvest": {
             "auxiliary_dimensions": {
               "ContentsCode": {
@@ -230,12 +255,15 @@
         }
       },
       {
-        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Assortiment and User",
+        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Region, Assortiment and User",
         "updated": "2025-03-05T07:00:00Z",
         "note": [
           "Region 1 (North part of Sweden): Counties included are Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Middle part of Sweden): Counties included are Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (South part of Sweden): Counties included are Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
         ],
         "role": {
+          "time": [
+            "År"
+          ],
           "metric": []
         },
         "dimension": {
@@ -243,13 +271,19 @@
             "label": "Year",
             "category": {
               "label": {
-                "2": "2023   (region 3)",
-                "3": "2024   (region 1)",
-                "4": "2024   (region 2)",
-                "5": "2024   (region 3)",
-                "6": "2025   (region 1)",
-                "7": "2025   (region 2)",
-                "8": "2025   (region 3)"
+                "2": "2025"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Region 1"
               }
             },
             "extension": {
@@ -296,12 +330,18 @@
               "Användare"
             ],
             "stub": [
-              "År"
+              "År",
+              "Region"
             ],
             "matrix": "EN0307_6",
             "subject-code": "EN",
             "subject-area": "Energy"
           },
+          "contact": [
+            {
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
           "metadata_harvest": {
             "auxiliary_dimensions": {
               "ContentsCode": {
@@ -334,12 +374,15 @@
         }
       },
       {
-        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Assortiment and User",
+        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Region, Assortiment and User",
         "updated": "2025-03-05T07:00:00Z",
         "note": [
           "Region 1 (North part of Sweden): Counties included are Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Middle part of Sweden): Counties included are Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (South part of Sweden): Counties included are Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
         ],
         "role": {
+          "time": [
+            "År"
+          ],
           "metric": []
         },
         "dimension": {
@@ -347,7 +390,138 @@
             "label": "Year",
             "category": {
               "label": {
-                "0": "2023   (region 1)"
+                "0": "2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "2": "Region 3"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Sortiment": {
+            "label": "Assortiment",
+            "category": {
+              "label": {
+                "0": "Refined"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Användare": {
+            "label": "User",
+            "category": {
+              "label": {
+                "0": "District heating"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "px": {
+            "decimals": 0,
+            "official-statistics": true,
+            "aggregallowed": true,
+            "language": "sv",
+            "contents": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices",
+            "description": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices",
+            "descriptiondefault": false,
+            "heading": [
+              "Sortiment",
+              "Användare"
+            ],
+            "stub": [
+              "År",
+              "Region"
+            ],
+            "matrix": "EN0307_6",
+            "subject-code": "EN",
+            "subject-area": "Energy"
+          },
+          "contact": [
+            {
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Kr/MWh",
+                      "decimals": 0
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            },
+            "auxiliary_roles": {
+              "metric": [
+                "ContentsCode"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Wood fuel, peat and waste prices, per year and region excluding tax, from 2023, SEK/MWh free to consumer, current prices by Year, Region, Assortiment and User",
+        "updated": "2025-03-05T07:00:00Z",
+        "note": [
+          "Region 1 (North part of Sweden): Counties included are Västernorrland, Jämtland, Västerbotten, Norrbotten. Region 2 (Middle part of Sweden): Counties included are Stockholm, Uppsala, Södermanland, Östergötland, Värmland, Örebro, Västmanland, Dalarna, Gävleborg. Region 3 (South part of Sweden): Counties included are Jönköping, Kronoberg, Kalmar, Gotland, Blekinge, Skåne, Halland, Västra Götaland. Med (...) innebär det att uppgiften är inte tillgänglig, för osäker för att uppges eller borttagen av sekretess skäl."
+        ],
+        "role": {
+          "time": [
+            "År"
+          ],
+          "metric": []
+        },
+        "dimension": {
+          "År": {
+            "label": "Year",
+            "category": {
+              "label": {
+                "0": "2023"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "Region": {
+            "label": "Region",
+            "category": {
+              "label": {
+                "0": "Region 1"
               }
             },
             "extension": {
@@ -400,12 +574,18 @@
               "Användare"
             ],
             "stub": [
-              "År"
+              "År",
+              "Region"
             ],
             "matrix": "EN0307_6",
             "subject-code": "EN",
             "subject-area": "Energy"
           },
+          "contact": [
+            {
+              "raw": "Statistik, Phgone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
+            }
+          ],
           "metadata_harvest": {
             "auxiliary_dimensions": {
               "ContentsCode": {
@@ -452,6 +632,16 @@
             }
           },
           {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          },
+          {
             "code": "Sortiment",
             "selection": {
               "filter": "item",
@@ -483,13 +673,16 @@
             "selection": {
               "filter": "item",
               "values": [
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8"
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
               ]
             }
           },
@@ -520,6 +713,58 @@
         "query": [
           {
             "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Användare",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0"
+              ]
+            }
+          },
+          {
+            "code": "Region",
             "selection": {
               "filter": "item",
               "values": [
