@@ -3,7 +3,7 @@
   "identifier": "MHEv1TraXReg.px",
   "language": "sv",
   "updated": "2024-03-31",
-  "retrieved_at": "2026-10-17T07:10:02.020759+00:00",
+  "retrieved_at": "2026-11-08T10:30:22.385106+00:00",
   "responses": {
     "metadata": {
       "title": "Transportsätt vanligtvis till och från arbete, skola eller andra aktiviteter, vuxna efter region, kön och år. Andel (procent).",
@@ -84,6 +84,9 @@
           "code": "Färdsätt",
           "text": "Färdsätt",
           "values": [
+            "6",
+            "7",
+            "8",
             "1",
             "2",
             "3",
@@ -91,6 +94,9 @@
             "5"
           ],
           "valueTexts": [
+            "Endast aktiv transport (går/cyklar)",
+            "Endast passiv transport (bil/mc)",
+            "Blandade transportsätt eller kollektivtrafik",
             "Går",
             "Cykel, sparkcykel eller liknande",
             "Bil, mc eller liknande",
@@ -214,7 +220,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -253,8 +260,8 @@
             "label": "Färdsätt",
             "category": {
               "label": {
-                "1": "Går",
-                "2": "Cykel, sparkcykel eller liknande"
+                "6": "Endast aktiv transport (går/cyklar)",
+                "7": "Endast passiv transport (bil/mc)"
               }
             },
             "extension": {
@@ -303,6 +310,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -355,8 +365,8 @@
                     "2"
                   ],
                   "Färdsätt": [
-                    "1",
-                    "2"
+                    "6",
+                    "7"
                   ],
                   "Mått": [
                     "1",
@@ -477,7 +487,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -536,7 +547,7 @@
             "label": "Färdsätt",
             "category": {
               "label": {
-                "1": "Går"
+                "6": "Endast aktiv transport (går/cyklar)"
               }
             },
             "extension": {
@@ -582,6 +593,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -654,7 +668,7 @@
                     "1"
                   ],
                   "Färdsätt": [
-                    "1"
+                    "6"
                   ],
                   "Mått": [
                     "1"
@@ -731,7 +745,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -768,7 +783,7 @@
             "label": "Färdsätt",
             "category": {
               "label": {
-                "1": "Går"
+                "6": "Endast aktiv transport (går/cyklar)"
               }
             },
             "extension": {
@@ -814,6 +829,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -864,7 +882,7 @@
                     "3"
                   ],
                   "Färdsätt": [
-                    "1"
+                    "6"
                   ],
                   "Mått": [
                     "1"
@@ -919,7 +937,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -956,6 +975,9 @@
             "label": "Färdsätt",
             "category": {
               "label": {
+                "8": "Blandade transportsätt eller kollektivtrafik",
+                "1": "Går",
+                "2": "Cykel, sparkcykel eller liknande",
                 "3": "Bil, mc eller liknande",
                 "4": "Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)",
                 "5": "Annat färdmedel"
@@ -1004,6 +1026,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -1054,6 +1079,9 @@
                     "1"
                   ],
                   "Färdsätt": [
+                    "8",
+                    "1",
+                    "2",
                     "3",
                     "4",
                     "5"
@@ -1071,7 +1099,10 @@
                 "status": {
                   "0": "..",
                   "1": "..",
-                  "2": ".."
+                  "2": "..",
+                  "3": "..",
+                  "4": "..",
+                  "5": ".."
                 }
               }
             ],
@@ -1113,7 +1144,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -1150,7 +1182,7 @@
             "label": "Färdsätt",
             "category": {
               "label": {
-                "1": "Går"
+                "6": "Endast aktiv transport (går/cyklar)"
               }
             },
             "extension": {
@@ -1197,6 +1229,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -1247,7 +1282,7 @@
                     "1"
                   ],
                   "Färdsätt": [
-                    "1"
+                    "6"
                   ],
                   "Mått": [
                     "3",
@@ -1304,7 +1339,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -1341,7 +1377,7 @@
             "label": "Färdsätt",
             "category": {
               "label": {
-                "1": "Går"
+                "6": "Endast aktiv transport (går/cyklar)"
               }
             },
             "extension": {
@@ -1387,6 +1423,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -1437,7 +1476,7 @@
                     "1"
                   ],
                   "Färdsätt": [
-                    "1"
+                    "6"
                   ],
                   "Mått": [
                     "1"
@@ -1492,7 +1531,8 @@
         "source": "Folkhälsomyndigheten",
         "updated": "2024-03-31T06:00:00Z",
         "note": [
-          "Redovisningen bygger på frågor i Miljöhälsoenkäten:  Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel.  Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
+          "Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt.",
+          "Redovisningen bygger på frågor i Miljöhälsoenkäten: Hur tar du dig vanligtvis till och från arbete, skola eller andra aktiviteter? Går/Cykel, sparkcykel eller liknande/Bil, mc eller liknande/Kollektivtrafik (buss, tunnelbana, lokaltåg, etc.)/Annat färdmedel. Frågan är en flervalsfråga där man kan kryssa i olika färdsätt man använder, vilket innebär att summan blir högre än 100% om man väljer de enskilda färdsätten. För att särskilja aktiv- och passivtransport har det tagits fram kombinationer där de som enbart uppgivit går eller/och cyklar klassas som aktiv transport, de som enbart uppgivit att de åker bil/mc klassas som passiv transport och de som kryssat i flera olika färdmedel eller kollektivtrafik räknas som blandade transportsätt. Kommungrupp baseras på SKR:s kommungruppsindelning 2023. Miljöhälsoenkäten är en urvalsundersökning bland befolkningen 18-84 år.\r\n"
         ],
         "role": {
           "time": [
@@ -1529,7 +1569,7 @@
             "label": "Färdsätt",
             "category": {
               "label": {
-                "1": "Går"
+                "6": "Endast aktiv transport (går/cyklar)"
               }
             },
             "extension": {
@@ -1576,6 +1616,9 @@
           }
         },
         "extension": {
+          "noteMandatory": {
+            "0": true
+          },
           "px": {
             "decimals": 0,
             "official-statistics": false,
@@ -1626,7 +1669,7 @@
                     "1"
                   ],
                   "Färdsätt": [
-                    "1"
+                    "6"
                   ],
                   "Mått": [
                     "1"
@@ -1706,8 +1749,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "1",
-                "2"
+                "6",
+                "7"
               ]
             }
           },
@@ -1793,7 +1836,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "1"
+                "6"
               ]
             }
           },
@@ -1854,7 +1897,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "1"
+                "6"
               ]
             }
           },
@@ -1915,6 +1958,9 @@
             "selection": {
               "filter": "item",
               "values": [
+                "8",
+                "1",
+                "2",
                 "3",
                 "4",
                 "5"
@@ -1978,7 +2024,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "1"
+                "6"
               ]
             }
           },
@@ -2040,7 +2086,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "1"
+                "6"
               ]
             }
           },
@@ -2101,7 +2147,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "1"
+                "6"
               ]
             }
           },
