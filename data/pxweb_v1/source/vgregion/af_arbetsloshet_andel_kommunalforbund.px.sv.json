@@ -2,11 +2,11 @@
   "key": "vgregion/af_arbetsloshet_andel_kommunalforbund.px/sv",
   "identifier": "af_arbetsloshet_andel_kommunalforbund.px",
   "language": "sv",
-  "updated": "2026-11-03",
-  "retrieved_at": "2026-11-03T10:52:04.521999+00:00",
+  "updated": "2026-11-09",
+  "retrieved_at": "2026-11-11T10:49:17.406458+00:00",
   "responses": {
     "metadata": {
-      "title": "Andel inskrivna arbetslösa (%) av registerbaserad arbetskraft efter kommunalförbund, grupp, kön och månad 2008M01-2026M09",
+      "title": "Andel inskrivna arbetslösa (%) av registerbaserad arbetskraft efter kommunalförbund, grupp, kön och tid",
       "variables": [
         {
           "code": "region",
@@ -44,7 +44,7 @@
           "valueTexts": [
             "Samtliga",
             "Unga 18-24 år",
-            "Äldre 55 år och äldre",
+            "Äldre 55 år och äldre (50 år och äldre från 2026M06)",
             "Inrikes födda",
             "Utrikes födda",
             "Förgymnasial utbildning",
@@ -69,8 +69,8 @@
           "elimination": true
         },
         {
-          "code": "månad",
-          "text": "månad",
+          "code": "tid",
+          "text": "tid",
           "values": [
             "2008M01",
             "2008M02",
@@ -553,16 +553,16 @@
           ],
           "database_id": "Arbetsmarknad och Näringsliv",
           "path": "/Arbetsmarknad",
-          "published": "2026-11-03",
+          "published": "2026-11-09",
           "score": 1.0,
-          "title": "Andel inskrivna arbetslösa (%) av registerbaserad arbetskraft efter kommunalförbund, grupp, kön och månad 2008M01-2026M09",
+          "title": "Andel inskrivna arbetslösa (%) av registerbaserad arbetskraft efter kommunalförbund, grupp, kön och tid",
           "web_url": "https://pxweb2022.vgregion.se/Pxwebb/pxweb/sv/Arbetsmarknad%20och%20N%C3%A4ringsliv/Arbetsmarknad%20och%20N%C3%A4ringsliv__Arbetsmarknad/af_arbetsloshet_andel_kommunalforbund.px/"
         }
       ],
       "provider_code": "vgregion",
-      "published": "2026-11-03",
+      "published": "2026-11-09",
       "score": 1.0,
-      "title": "Andel inskrivna arbetslösa (%) av registerbaserad arbetskraft efter kommunalförbund, grupp, kön och månad 2008M01-2026M09",
+      "title": "Andel inskrivna arbetslösa (%) av registerbaserad arbetskraft efter kommunalförbund, grupp, kön och tid",
       "web_url": "https://pxweb2022.vgregion.se/Pxwebb/pxweb/sv/Arbetsmarknad%20och%20N%C3%A4ringsliv/Arbetsmarknad%20och%20N%C3%A4ringsliv__Arbetsmarknad/af_arbetsloshet_andel_kommunalforbund.px/"
     },
     "config": {
@@ -576,7 +576,7 @@
   "derived": {
     "samples": [
       {
-        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och månad",
+        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och tid",
         "source": "Arbetsförmedlingen, bearbetning VGR",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
@@ -616,11 +616,11 @@
               }
             }
           },
-          "månad": {
+          "tid": {
             "extension": {
               "show": "value"
             },
-            "label": "månad",
+            "label": "tid",
             "category": {
               "label": {
                 "2008M01": "2008M01",
@@ -631,7 +631,7 @@
         },
         "role": {
           "time": [
-            "månad"
+            "tid"
           ]
         },
         "extension": {
@@ -641,7 +641,7 @@
         }
       },
       {
-        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och månad",
+        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och tid",
         "source": "Arbetsförmedlingen, bearbetning VGR",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
@@ -681,11 +681,11 @@
               }
             }
           },
-          "månad": {
+          "tid": {
             "extension": {
               "show": "value"
             },
-            "label": "månad",
+            "label": "tid",
             "category": {
               "label": {
                 "2008M01": "2008M01"
@@ -695,7 +695,7 @@
         },
         "role": {
           "time": [
-            "månad"
+            "tid"
           ]
         },
         "extension": {
@@ -705,7 +705,7 @@
         }
       },
       {
-        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och månad",
+        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och tid",
         "source": "Arbetsförmedlingen, bearbetning VGR",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
@@ -727,7 +727,7 @@
             "label": "grupp",
             "category": {
               "label": {
-                "ALDRE": "Äldre 55 år och äldre",
+                "ALDRE": "Äldre 55 år och äldre (50 år och äldre från 2026M06)",
                 "INR": "Inrikes födda",
                 "UTR": "Utrikes födda",
                 "FG": "Förgymnasial utbildning",
@@ -747,11 +747,11 @@
               }
             }
           },
-          "månad": {
+          "tid": {
             "extension": {
               "show": "value"
             },
-            "label": "månad",
+            "label": "tid",
             "category": {
               "label": {
                 "2008M01": "2008M01"
@@ -761,7 +761,7 @@
         },
         "role": {
           "time": [
-            "månad"
+            "tid"
           ]
         },
         "extension": {
@@ -775,7 +775,7 @@
                   "region",
                   "grupp",
                   "kön",
-                  "månad"
+                  "tid"
                 ],
                 "categories": {
                   "region": [
@@ -792,7 +792,7 @@
                   "kön": [
                     "1+2"
                   ],
-                  "månad": [
+                  "tid": [
                     "2008M01"
                   ]
                 },
@@ -807,7 +807,7 @@
         }
       },
       {
-        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och månad",
+        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och tid",
         "source": "Arbetsförmedlingen, bearbetning VGR",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
@@ -844,11 +844,11 @@
               }
             }
           },
-          "månad": {
+          "tid": {
             "extension": {
               "show": "value"
             },
-            "label": "månad",
+            "label": "tid",
             "category": {
               "label": {
                 "2008M01": "2008M01"
@@ -858,7 +858,7 @@
         },
         "role": {
           "time": [
-            "månad"
+            "tid"
           ]
         },
         "extension": {
@@ -868,7 +868,7 @@
         }
       },
       {
-        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och månad",
+        "label": "Andel inskrivna arbetslösa av registerbaserad arbetskraft efter region, grupp, kön och tid",
         "source": "Arbetsförmedlingen, bearbetning VGR",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
@@ -905,11 +905,11 @@
               }
             }
           },
-          "månad": {
+          "tid": {
             "extension": {
               "show": "value"
             },
-            "label": "månad",
+            "label": "tid",
             "category": {
               "label": {
                 "2008M03": "2008M03",
@@ -1141,7 +1141,7 @@
         },
         "role": {
           "time": [
-            "månad"
+            "tid"
           ]
         },
         "extension": {
@@ -1185,7 +1185,7 @@
             }
           },
           {
-            "code": "månad",
+            "code": "tid",
             "selection": {
               "filter": "item",
               "values": [
@@ -1232,7 +1232,7 @@
             }
           },
           {
-            "code": "månad",
+            "code": "tid",
             "selection": {
               "filter": "item",
               "values": [
@@ -1280,7 +1280,7 @@
             }
           },
           {
-            "code": "månad",
+            "code": "tid",
             "selection": {
               "filter": "item",
               "values": [
@@ -1323,7 +1323,7 @@
             }
           },
           {
-            "code": "månad",
+            "code": "tid",
             "selection": {
               "filter": "item",
               "values": [
@@ -1366,7 +1366,7 @@
             }
           },
           {
-            "code": "månad",
+            "code": "tid",
             "selection": {
               "filter": "item",
               "values": [
