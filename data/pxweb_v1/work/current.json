@@ -1,0 +1,987 @@
+{
+  "run_id": "20261112T105818.922300Z",
+  "layout": 2,
+  "stage": "metadata",
+  "full": false,
+  "deferred_failures": [
+    {
+      "provider_code": "energi",
+      "dataset_code": "EN0102_4.px",
+      "language": "en",
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_4.px",
+      "error": "RuntimeError: PXWeb metadata generation failed during POST category coverage for https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_4.px: HTTP 400: Bad Request"
+    },
+    {
+      "provider_code": "energi",
+      "dataset_code": "EN0102_4.px",
+      "language": "sv",
+      "api_url": "https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_4.px",
+      "error": "RuntimeError: PXWeb metadata generation failed during POST category coverage for https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas/Officiell_energistatistik/Bostader_och_lokaler/Smahus/EN0102_4.px: HTTP 400: Bad Request"
+    }
+  ],
+  "wave": 1,
+  "started_at": "2026-11-12T10:59:15.146783+00:00",
+  "refresh_report": "refresh.json",
+  "counts": {
+    "reused": 6899,
+    "removed": 5,
+    "deferred": 616
+  },
+  "refresh_errors": [
+    {
+      "provider_code": "mi",
+      "language": "sv",
+      "database_id": "Konjunkturlönestatistik",
+      "stage": "navigation",
+      "message": "RuntimeError: HTTP 404: https://www.mi.se/PXWeb/pxweb/sv/Konjunkturl%C3%B6nestatistik/"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "enrichment",
+      "message": "APIRequestContext.get: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca\nCall log:\n  - → GET https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas?filter=*&query=*\n    - user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n    - cookie: ASP.NET_SessionId=vvliuacm1tojabccb0gidoul\n"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND2A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__2._Andelen_energi_fran_fornybara_energikallor/EN_IND2A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__3._Utslappsintensitet_och_fornybar_andel_for_elproduktion_per_elomrade/EN_IND3.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND6A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__6._Energiintensitet/EN_IND6A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND9A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__9._Energi_och_elintensitet_i_industrin/EN_IND9A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND17A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__17._Energikostnadernas_andel_i_industrin/EN_IND17A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND20B.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__20._Elavtal_och_leverantorsbyten/EN_IND20B.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0102_10.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_10.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0102_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0121.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Industrins_energianvandning/EN0121.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0123_1.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Natanslutna_solcellsanlaggningar/EN0123_1.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0116_2.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Skogsbrukets_energianvandning/EN0116_2.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0116_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Skogsbrukets_energianvandning/EN0116_3.px/?px_autoopen=true",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "7_EN0307_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/7_EN0307_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_1.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_1.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_2.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_2.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_3.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_5.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_5.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_1a.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_1a.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_1b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_1b.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_2.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_2.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_3.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_6a.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_6a.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_6b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_6b.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_7.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_7.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_8a.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_8a.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_8b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_8b.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2025_Vinter/EN_Prognos_3.px/?px_autoopen=true",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "sv",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_6b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2025_Vinter/EN_Prognos_6b.px/?px_autoopen=true",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "enrichment",
+      "message": "APIRequestContext.get: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca\nCall log:\n  - → GET https://pxexternal.energimyndigheten.se/api/v1/en/Energimyndighetens_statistikdatabas?filter=*&query=*\n    - user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n    - cookie: ASP.NET_SessionId=ynoai4tdlfommjdgqlqhlqiy\n"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND2A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__2._Andelen_energi_fran_fornybara_energikallor/EN_IND2A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__3._Utslappsintensitet_och_fornybar_andel_for_elproduktion_per_elomrade/EN_IND3.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND6A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__6._Energiintensitet/EN_IND6A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND9A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__9._Energi_och_elintensitet_i_industrin/EN_IND9A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND17A.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__17._Energikostnadernas_andel_i_industrin/EN_IND17A.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_IND20B.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Energiindikatorer__Tidigare_Indikatorer__2025__20._Elavtal_och_leverantorsbyten/EN_IND20B.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_1a.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_1a.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_1b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_1b.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_2.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_2.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_3.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_6a.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_6a.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_6b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_6b.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_7.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_7.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_8a.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_8a.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_8b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2024_Sommar/EN_Prognos_8b.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2025_Vinter/EN_Prognos_3.px/?px_autoopen=true",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN_Prognos_6b.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Prognoser__Aldre_prognoser__2025_Vinter/EN_Prognos_6b.px/?px_autoopen=true",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0102_10.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_10.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0102_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Bostader_och_lokaler__Smahus/EN0102_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0116_2.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Skogsbrukets_energianvandning/EN0116_2.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0116_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Skogsbrukets_energianvandning/EN0116_3.px/?px_autoopen=true",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0123_1.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Natanslutna_solcellsanlaggningar/EN0123_1.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_1.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_1.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_2.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_2.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_3.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_3.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "EN0105_5.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Vindkraftsstatistik/EN0105_5.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "energi",
+      "language": "en",
+      "database_id": "Energimyndighetens_statistikdatabas",
+      "stage": "extraction",
+      "id": "7_EN0307_4.px",
+      "url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Tradbransle_och_torvpriser/7_EN0307_4.px/",
+      "message": "Unparseable table date: ''"
+    },
+    {
+      "provider_code": "mcf",
+      "language": "sv",
+      "database_id": "PxData",
+      "stage": "job",
+      "message": "Provider job did not deliver this scope"
+    },
+    {
+      "provider_code": "mcf",
+      "language": "en",
+      "database_id": "PxData",
+      "stage": "job",
+      "message": "Provider job did not deliver this scope"
+    },
+    {
+      "provider_code": "skog",
+      "language": "sv",
+      "database_id": "Skogsstyrelsens statistikdatabas",
+      "stage": "job",
+      "message": "Provider job did not deliver this scope"
+    },
+    {
+      "provider_code": "skog",
+      "language": "en",
+      "database_id": "Skogsstyrelsens statistikdatabas",
+      "stage": "job",
+      "message": "Provider job did not deliver this scope"
+    }
+  ],
+  "tasks": [
+    {
+      "filename": "fohm__DinkInk.px__sv__23a98a5c9452f4bf.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "fohm__PCRtest.px__sv__833d23808f4c5422.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__PCRtestVAr.px__sv__1416c8369e01be29.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__Test100VAr.px__sv__300910d8d9c4d449.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__TottestVAr.px__sv__402667dee6fee38d.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__atcMan.px__sv__4a4c5e5a55e17488.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__atcSasong.px__sv__4870bd621b8a89de.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__atcTVSasong.px__sv__62e53046cc6dce82.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__pcvAld.px__sv__aa34466dd6fcc7de.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__pcvuviMan.px__sv__75157fbca049d992.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "fohm__urvalTVman.px__sv__7b15828b50e6d5ea.json",
+      "provider_code": "fohm",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "karlstad__1A-losa_o_progr_18-65_NYKO42_241031-261031.px__sv__442ca07e6660dff5.json",
+      "provider_code": "karlstad",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "karlstad__1aOmradesfakta_2026_utan%20in-utrikes%20syss.px__sv__b1522a289ddb2ed0.json",
+      "provider_code": "karlstad",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "karlstad__1bOmradesfakta_2025ny.px__sv__83a63fa1cef2530b.json",
+      "provider_code": "karlstad",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "karlstad__31Socekindex_NYKO42_2020-2023_20-64.px__sv__e082fe4e3303f55c.json",
+      "provider_code": "karlstad",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "karlstad__32Socekindex_inkl_del_NYKO42_2024_20-65.px__sv__17430f5170534fd4.json",
+      "provider_code": "karlstad",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__FPB_ANIM.Px__sv__d38e933cea6c5f2d.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_DOKU.Px__sv__f52bf025d1030284.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_KOMM.Px__sv__9c8823e2d1c09786.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_LAN.Px__sv__13ddffcc26501036.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_MNTH.Px__sv__c15fac20d29292aa.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_PREM.Px__sv__398fd2a852a18151.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_PROD.Px__sv__bd6f29160485b944.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_STDL.Px__sv__2a3909e9d59e1729.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_TOPP.Px__sv__ff45a3158d65b382.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__FPB_VISN.Px__sv__8ce59955b7cf0c8a.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "kulturanalys__OUK_KU.px__sv__7ac02a88c7922c75.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_KU_kpi.px__sv__b8d29fc78dd7218a.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_Off.px__sv__aa9eecfe2aaedcf5.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_Off_kpi.px__sv__b6201d89e3d81ba2.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_RU.px__sv__02eb14a74af7ddff.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_RU_kpi.px__sv__8d2fb4f7cb13a64a.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_SU.px__sv__bc13b9a5e4147294.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "kulturanalys__OUK_SU_kpi.px__sv__9cabfcd4a46997e4.json",
+      "provider_code": "kulturanalys",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "linkoping__geoutbe05.px__sv__b1d2fb798dd175f4.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "linkoping__geoutbe12.px__sv__b63e8c2a78f0032e.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "linkoping__geoutbe35.px__sv__b2da420fbdc9842c.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "linkoping__geoutbe42.px__sv__080ff7e96c7cbf53.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "linkoping__geoutbe50.px__sv__58c44352292d1cc1.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "linkoping__geoutfo01.px__sv__c7ca013f6a939371.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "linkoping__val19.px__sv__9baf9f7314e81e6b.json",
+      "provider_code": "linkoping",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "sjv__JO0604A9.px__sv__a66aeabde1f4fe8a.json",
+      "provider_code": "sjv",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "sjv__JO1002L3.px__sv__56fad5f7d0cb3797.json",
+      "provider_code": "sjv",
+      "status": "pending",
+      "kind": "created"
+    },
+    {
+      "filename": "tillvaxtanalys__11_konkurser_manad_lan.px__sv__af6395398850df53.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__12_konkurser_manad_tot_bransch.px__sv__0bd9804e360e74cb.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__13_anstallda_manad_kom_bransch_juridisk_form_popAH.px__sv__69c0b5c8f30d3b99.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__14_konkurser_manad_kom_bransch_juridisk_form_storleksklass_popAH.__sv__7445781f6cf60f37.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_aktiva_nyetablerade_nedlagda_foretag_lan_bra__sv__7262b7b248a9529b.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_aktiva_nyetablerade_nedlagda_foretag_lan_sto__sv__5b381d4f5603b407.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_aktiva_nyetablerade_nedlagda_foretag_tot_bra__sv__6cea5e5d6bbd6e80.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_aktiva_nyetablerade_nedlagda_foretag_tot_bra__sv__56dba38409d3ab53.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_overlevande_foretag_lan_bransch.px__sv__bb5f7b32e99b9324.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_overlevande_foretag_lan_storleksklass.px__sv__0c20668d9e5c89c6.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_overlevande_foretag_tot_bransch_storleksklas__sv__20fa6a7f5091e45e.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_snabbvaxande_foretag_bransch.px__sv__b031c5e624d3e0b1.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "tillvaxtanalys__foretagens_demografi_snabbvaxande_foretag_lan_bransch.px__sv__23e08b52058f6112.json",
+      "provider_code": "tillvaxtanalys",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "vasteras__Delomrprog_grupper26.px__sv__3060744bd723ca9f.json",
+      "provider_code": "vasteras",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "vgregion__af_arbetslosa_antal_kommun.px__sv__66f0105cc9eac911.json",
+      "provider_code": "vgregion",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "vgregion__af_arbetslosa_svag_konkurrensformaga_kommun.px__sv__1134e98e5e17300d.json",
+      "provider_code": "vgregion",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "vgregion__af_arbetslosa_tid_utan_arbete_kommun.px__sv__a678a017495d7b0e.json",
+      "provider_code": "vgregion",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "vgregion__af_arbetsloshet_andel_kommun.px__sv__1c980d173b1df3eb.json",
+      "provider_code": "vgregion",
+      "status": "pending",
+      "kind": "updated"
+    },
+    {
+      "filename": "vgregion__af_arbetsloshet_andel_kommunalforbund.px__sv__4eca7f698718d3e8.json",
+      "provider_code": "vgregion",
+      "status": "pending",
+      "kind": "updated"
+    }
+  ],
+  "no_progress_waves": 0
+}
