@@ -3,7 +3,7 @@
   "identifier": "1Ant_hush_m_bil_biltathet_NYKO42_2020-2025.px",
   "language": "sv",
   "updated": "2026-05-22",
-  "retrieved_at": "2026-10-17T06:58:27.240326+00:00",
+  "retrieved_at": "2026-11-15T10:53:21.026859+00:00",
   "responses": {
     "metadata": {
       "title": "* Hushåll med/utan bil, antal bilar totalt och per tusen invånare i Karlstads delområden (NYKO42) och kommunen totalt. Antal/andel. År 2020-2025.",
@@ -103,6 +103,28 @@
           ]
         },
         {
+          "code": "variabel",
+          "text": "variabel",
+          "values": [
+            "Antal hushåll utan bil",
+            "Antal hushåll med bil",
+            "sa",
+            "Antal hushåll med fler än en bil",
+            "Andel",
+            "antal bilar",
+            "Antal"
+          ],
+          "valueTexts": [
+            "Antal hushåll utan bil",
+            "Antal hushåll med bil",
+            "Summa antal hushåll (med eller utan bil)",
+            "Antal hushåll med fler än en bil",
+            "Andel hushåll med bil",
+            "Antal bilar i området",
+            "Antal bilar per 1 000 invånare (31/12)"
+          ]
+        },
+        {
           "code": "år",
           "text": "år",
           "values": [
@@ -122,26 +144,6 @@
             "2025"
           ],
           "time": true
-        },
-        {
-          "code": "variabel",
-          "text": "variabel",
-          "values": [
-            "Antal hushåll utan bil",
-            "Antal hushåll med bil",
-            "Antal hushåll med fler än en bil",
-            "Andel",
-            "antal bilar",
-            "Antal"
-          ],
-          "valueTexts": [
-            "Antal hushåll utan bil",
-            "Antal hushåll med bil",
-            "Antal hushåll med fler än en bil",
-            "Andel hushåll med bil",
-            "Antal bilar i området",
-            "Antal bilar per 1 000 invånare (31/12)"
-          ]
         }
       ]
     },
@@ -192,11 +194,13 @@
   "derived": {
     "samples": [
       {
-        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, år och variabel",
+        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, variabel och år",
         "source": "Statistikmyndigheten SCB",
         "updated": "2026-05-22T07:00:00Z",
         "note": [
-          "Fordonsslag: Personbilar enligt fordonsregistret som registrerats på fysiska personer 1) enligt registret över totalbefolkningen (RTB) samt personbilar registrerade på personliga företag. Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.\r\nNär det gäller antal bilar per 1 000 invånare räknas här både bilar och invånare den 31 december medan Trafikanalys räknar antalet personbilar den 31 december och delar den summan med antalet invånare den 1 november samma år.",
+          "Fordonsslag: Personbilar i trafik enligt fordonsregistret och som registrerats på fysiska personer enligt registret över totalbefolkningen (ej juridiska = företag). ",
+          "Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.",
+          "När det gäller totalt antal bilar samt antal bilar per 1 000 invånare räknas både bilar och invånare den 31 december för varje delområde medan för kommunsiffrorna används Trafikanalys' siffror som räknar antalet personbilar den 31 december och antalet invånare den 1 november samma år.",
           "Från och med 2020 har stadsdelsindelningen i Karlstad förändrats och i statistiksammanhang har de nu 66 stadsdelarna tillsammans med kommunens mindre tätorter och landsbygdsområden blivit fördelade inom 42 områden (NYKO42). Förutom dessa finns det en kategori med 'Övriga' som inte särredovisas i tabellen, men som ingår i totalen för Karlstads kommun."
         ],
         "role": {
@@ -218,19 +222,6 @@
               "show": "value"
             }
           },
-          "år": {
-            "label": "år",
-            "category": {
-              "label": {
-                "2020": "2020",
-                "2021": "2021"
-              }
-            },
-            "extension": {
-              "elimination": false,
-              "show": "value"
-            }
-          },
           "variabel": {
             "label": "variabel",
             "category": {
@@ -243,12 +234,27 @@
               "elimination": false,
               "show": "value"
             }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2020": "2020",
+                "2021": "2021"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
           }
         },
         "extension": {
           "noteMandatory": {
             "0": true,
-            "1": true
+            "1": true,
+            "2": true,
+            "3": true
           },
           "px": {
             "tableid": "BILPAK Biltabell 2HH eller BIL07HH, BIL09",
@@ -292,11 +298,13 @@
         }
       },
       {
-        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, år och variabel",
+        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, variabel och år",
         "source": "Statistikmyndigheten SCB",
         "updated": "2026-05-22T07:00:00Z",
         "note": [
-          "Fordonsslag: Personbilar enligt fordonsregistret som registrerats på fysiska personer 1) enligt registret över totalbefolkningen (RTB) samt personbilar registrerade på personliga företag. Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.\r\nNär det gäller antal bilar per 1 000 invånare räknas här både bilar och invånare den 31 december medan Trafikanalys räknar antalet personbilar den 31 december och delar den summan med antalet invånare den 1 november samma år.",
+          "Fordonsslag: Personbilar i trafik enligt fordonsregistret och som registrerats på fysiska personer enligt registret över totalbefolkningen (ej juridiska = företag). ",
+          "Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.",
+          "När det gäller totalt antal bilar samt antal bilar per 1 000 invånare räknas både bilar och invånare den 31 december för varje delområde medan för kommunsiffrorna används Trafikanalys' siffror som räknar antalet personbilar den 31 december och antalet invånare den 1 november samma år.",
           "Från och med 2020 har stadsdelsindelningen i Karlstad förändrats och i statistiksammanhang har de nu 66 stadsdelarna tillsammans med kommunens mindre tätorter och landsbygdsområden blivit fördelade inom 42 områden (NYKO42). Förutom dessa finns det en kategori med 'Övriga' som inte särredovisas i tabellen, men som ingår i totalen för Karlstads kommun."
         ],
         "role": {
@@ -357,18 +365,6 @@
               "show": "value"
             }
           },
-          "år": {
-            "label": "år",
-            "category": {
-              "label": {
-                "2020": "2020"
-              }
-            },
-            "extension": {
-              "elimination": false,
-              "show": "value"
-            }
-          },
           "variabel": {
             "label": "variabel",
             "category": {
@@ -380,12 +376,26 @@
               "elimination": false,
               "show": "value"
             }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
           }
         },
         "extension": {
           "noteMandatory": {
             "0": true,
-            "1": true
+            "1": true,
+            "2": true,
+            "3": true
           },
           "px": {
             "tableid": "BILPAK Biltabell 2HH eller BIL07HH, BIL09",
@@ -429,11 +439,13 @@
         }
       },
       {
-        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, år och variabel",
+        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, variabel och år",
         "source": "Statistikmyndigheten SCB",
         "updated": "2026-05-22T07:00:00Z",
         "note": [
-          "Fordonsslag: Personbilar enligt fordonsregistret som registrerats på fysiska personer 1) enligt registret över totalbefolkningen (RTB) samt personbilar registrerade på personliga företag. Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.\r\nNär det gäller antal bilar per 1 000 invånare räknas här både bilar och invånare den 31 december medan Trafikanalys räknar antalet personbilar den 31 december och delar den summan med antalet invånare den 1 november samma år.",
+          "Fordonsslag: Personbilar i trafik enligt fordonsregistret och som registrerats på fysiska personer enligt registret över totalbefolkningen (ej juridiska = företag). ",
+          "Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.",
+          "När det gäller totalt antal bilar samt antal bilar per 1 000 invånare räknas både bilar och invånare den 31 december för varje delområde medan för kommunsiffrorna används Trafikanalys' siffror som räknar antalet personbilar den 31 december och antalet invånare den 1 november samma år.",
           "Från och med 2020 har stadsdelsindelningen i Karlstad förändrats och i statistiksammanhang har de nu 66 stadsdelarna tillsammans med kommunens mindre tätorter och landsbygdsområden blivit fördelade inom 42 områden (NYKO42). Förutom dessa finns det en kategori med 'Övriga' som inte särredovisas i tabellen, men som ingår i totalen för Karlstads kommun."
         ],
         "role": {
@@ -447,6 +459,123 @@
             "category": {
               "label": {
                 "Alster-Bråtebäcken": "Alster-Bråtebäcken"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "variabel": {
+            "label": "variabel",
+            "category": {
+              "label": {
+                "sa": "Summa antal hushåll (med eller utan bil)",
+                "Antal hushåll med fler än en bil": "Antal hushåll med fler än en bil",
+                "Andel": "Andel hushåll med bil",
+                "antal bilar": "Antal bilar i området",
+                "Antal": "Antal bilar per 1 000 invånare (31/12)"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "år": {
+            "label": "år",
+            "category": {
+              "label": {
+                "2020": "2020"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          }
+        },
+        "extension": {
+          "noteMandatory": {
+            "0": true,
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "px": {
+            "tableid": "BILPAK Biltabell 2HH eller BIL07HH, BIL09",
+            "decimals": 0,
+            "official-statistics": false,
+            "aggregallowed": true,
+            "language": "sv",
+            "description": "* Hushåll med/utan bil, antal bilar totalt och per tusen invånare i Karlstads delområden (NYKO42) och kommunen totalt. Antal/andel. År 2020-2025.",
+            "matrix": "BILPAK Biltabell 2HH",
+            "subject-code": "BIL"
+          },
+          "contact": [
+            {
+              "raw": "karlstadskommun@karlstad.se"
+            }
+          ],
+          "metadata_harvest": {
+            "auxiliary_dimensions": {
+              "ContentsCode": {
+                "label": "EliminatedContents",
+                "category": {
+                  "index": {
+                    "EliminatedValue": 0
+                  },
+                  "label": {
+                    "EliminatedValue": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd"
+                  },
+                  "unit": {
+                    "EliminatedValue": {
+                      "base": "Antal/andel hushåll, antal per 1000 inv",
+                      "decimals": 12
+                    }
+                  }
+                },
+                "extension": {
+                  "elimination": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, variabel och år",
+        "source": "Statistikmyndigheten SCB",
+        "updated": "2026-05-22T07:00:00Z",
+        "note": [
+          "Fordonsslag: Personbilar i trafik enligt fordonsregistret och som registrerats på fysiska personer enligt registret över totalbefolkningen (ej juridiska = företag). ",
+          "Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.",
+          "När det gäller totalt antal bilar samt antal bilar per 1 000 invånare räknas både bilar och invånare den 31 december för varje delområde medan för kommunsiffrorna används Trafikanalys' siffror som räknar antalet personbilar den 31 december och antalet invånare den 1 november samma år.",
+          "Från och med 2020 har stadsdelsindelningen i Karlstad förändrats och i statistiksammanhang har de nu 66 stadsdelarna tillsammans med kommunens mindre tätorter och landsbygdsområden blivit fördelade inom 42 områden (NYKO42). Förutom dessa finns det en kategori med 'Övriga' som inte särredovisas i tabellen, men som ingår i totalen för Karlstads kommun."
+        ],
+        "role": {
+          "time": [
+            "år"
+          ]
+        },
+        "dimension": {
+          "delområde": {
+            "label": "delområde",
+            "category": {
+              "label": {
+                "Alster-Bråtebäcken": "Alster-Bråtebäcken"
+              }
+            },
+            "extension": {
+              "elimination": false,
+              "show": "value"
+            }
+          },
+          "variabel": {
+            "label": "variabel",
+            "category": {
+              "label": {
+                "Antal hushåll utan bil": "Antal hushåll utan bil"
               }
             },
             "extension": {
@@ -468,24 +597,14 @@
               "elimination": false,
               "show": "value"
             }
-          },
-          "variabel": {
-            "label": "variabel",
-            "category": {
-              "label": {
-                "Antal hushåll utan bil": "Antal hushåll utan bil"
-              }
-            },
-            "extension": {
-              "elimination": false,
-              "show": "value"
-            }
           }
         },
         "extension": {
           "noteMandatory": {
             "0": true,
-            "1": true
+            "1": true,
+            "2": true,
+            "3": true
           },
           "px": {
             "tableid": "BILPAK Biltabell 2HH eller BIL07HH, BIL09",
@@ -503,132 +622,6 @@
             }
           ],
           "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "Antal/andel hushåll, antal per 1000 inv",
-                      "decimals": 12
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            }
-          }
-        }
-      },
-      {
-        "label": "Personbilar enligt fordonsregistret efter delområde, år och bilbestånd efter delområde, år och variabel",
-        "source": "Statistikmyndigheten SCB",
-        "updated": "2026-05-22T07:00:00Z",
-        "note": [
-          "Fordonsslag: Personbilar enligt fordonsregistret som registrerats på fysiska personer 1) enligt registret över totalbefolkningen (RTB) samt personbilar registrerade på personliga företag. Hushåll består av samtliga personer som är folkbokförda i samma lägenhet/bostad.\r\nNär det gäller antal bilar per 1 000 invånare räknas här både bilar och invånare den 31 december medan Trafikanalys räknar antalet personbilar den 31 december och delar den summan med antalet invånare den 1 november samma år.",
-          "Från och med 2020 har stadsdelsindelningen i Karlstad förändrats och i statistiksammanhang har de nu 66 stadsdelarna tillsammans med kommunens mindre tätorter och landsbygdsområden blivit fördelade inom 42 områden (NYKO42). Förutom dessa finns det en kategori med 'Övriga' som inte särredovisas i tabellen, men som ingår i totalen för Karlstads kommun."
-        ],
-        "role": {
-          "time": [
-            "år"
-          ]
-        },
-        "dimension": {
-          "delområde": {
-            "label": "delområde",
-            "category": {
-              "label": {
-                "Alster-Bråtebäcken": "Alster-Bråtebäcken"
-              }
-            },
-            "extension": {
-              "elimination": false,
-              "show": "value"
-            }
-          },
-          "år": {
-            "label": "år",
-            "category": {
-              "label": {
-                "2020": "2020"
-              }
-            },
-            "extension": {
-              "elimination": false,
-              "show": "value"
-            }
-          },
-          "variabel": {
-            "label": "variabel",
-            "category": {
-              "label": {
-                "Antal hushåll med fler än en bil": "Antal hushåll med fler än en bil",
-                "Andel": "Andel hushåll med bil",
-                "antal bilar": "Antal bilar i området",
-                "Antal": "Antal bilar per 1 000 invånare (31/12)"
-              }
-            },
-            "extension": {
-              "elimination": false,
-              "show": "value"
-            }
-          }
-        },
-        "extension": {
-          "noteMandatory": {
-            "0": true,
-            "1": true
-          },
-          "px": {
-            "tableid": "BILPAK Biltabell 2HH eller BIL07HH, BIL09",
-            "decimals": 0,
-            "official-statistics": false,
-            "aggregallowed": true,
-            "language": "sv",
-            "description": "* Hushåll med/utan bil, antal bilar totalt och per tusen invånare i Karlstads delområden (NYKO42) och kommunen totalt. Antal/andel. År 2020-2025.",
-            "matrix": "BILPAK Biltabell 2HH",
-            "subject-code": "BIL"
-          },
-          "contact": [
-            {
-              "raw": "karlstadskommun@karlstad.se"
-            }
-          ],
-          "metadata_harvest": {
-            "sample_status": [
-              {
-                "id": [
-                  "delområde",
-                  "år",
-                  "variabel"
-                ],
-                "categories": {
-                  "delområde": [
-                    "Alster-Bråtebäcken"
-                  ],
-                  "år": [
-                    "2020"
-                  ],
-                  "variabel": [
-                    "Antal hushåll med fler än en bil",
-                    "Andel",
-                    "antal bilar",
-                    "Antal"
-                  ]
-                },
-                "status": {
-                  "2": ".."
-                }
-              }
-            ],
             "auxiliary_dimensions": {
               "ContentsCode": {
                 "label": "EliminatedContents",
@@ -669,22 +662,22 @@
             }
           },
           {
-            "code": "år",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2020",
-                "2021"
-              ]
-            }
-          },
-          {
             "code": "variabel",
             "selection": {
               "filter": "item",
               "values": [
                 "Antal hushåll utan bil",
                 "Antal hushåll med bil"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020",
+                "2021"
               ]
             }
           }
@@ -745,20 +738,20 @@
             }
           },
           {
-            "code": "år",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2020"
-              ]
-            }
-          },
-          {
             "code": "variabel",
             "selection": {
               "filter": "item",
               "values": [
                 "Antal hushåll utan bil"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
               ]
             }
           }
@@ -775,6 +768,53 @@
               "filter": "item",
               "values": [
                 "Alster-Bråtebäcken"
+              ]
+            }
+          },
+          {
+            "code": "variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "sa",
+                "Antal hushåll med fler än en bil",
+                "Andel",
+                "antal bilar",
+                "Antal"
+              ]
+            }
+          },
+          {
+            "code": "år",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2020"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "delområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Alster-Bråtebäcken"
+              ]
+            }
+          },
+          {
+            "code": "variabel",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Antal hushåll utan bil"
               ]
             }
           },
@@ -787,52 +827,6 @@
                 "2023",
                 "2024",
                 "2025"
-              ]
-            }
-          },
-          {
-            "code": "variabel",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "Antal hushåll utan bil"
-              ]
-            }
-          }
-        ],
-        "response": {
-          "format": "json-stat2"
-        }
-      },
-      {
-        "query": [
-          {
-            "code": "delområde",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "Alster-Bråtebäcken"
-              ]
-            }
-          },
-          {
-            "code": "år",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2020"
-              ]
-            }
-          },
-          {
-            "code": "variabel",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "Antal hushåll med fler än en bil",
-                "Andel",
-                "antal bilar",
-                "Antal"
               ]
             }
           }
