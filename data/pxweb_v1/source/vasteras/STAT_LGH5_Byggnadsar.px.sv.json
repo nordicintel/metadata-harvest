@@ -2,25 +2,15 @@
   "key": "vasteras/STAT_LGH5_Byggnadsar.px/sv",
   "identifier": "STAT_LGH5_Byggnadsar.px",
   "language": "sv",
-  "updated": "2026-08-19",
-  "retrieved_at": "2026-11-15T11:01:22.279039+00:00",
+  "updated": "2026-11-18",
+  "retrieved_at": "2026-11-18T11:42:00.159447+00:00",
   "responses": {
     "metadata": {
-      "title": "Bostäder by år, bostadsområde, Ålder and Boende",
+      "title": "Antal Bostäder by Bostadsområde, Byggnadsår and Hustyp",
       "variables": [
         {
-          "code": "år",
-          "text": "år",
-          "values": [
-            "2025"
-          ],
-          "valueTexts": [
-            "2025"
-          ]
-        },
-        {
-          "code": "bostadsområde",
-          "text": "bostadsområde",
+          "code": "Bostadsområde",
+          "text": "Bostadsområde",
           "values": [
             "1980",
             "198001",
@@ -131,31 +121,49 @@
           ]
         },
         {
-          "code": "Ålder",
-          "text": "Ålder",
+          "code": "Byggnadsår",
+          "text": "Byggnadsår",
           "values": [
-            "65 - 79 år",
-            "80 - år"
+            "- 1931",
+            "1931-1940",
+            "1941-1950",
+            "1951-1960",
+            "1961-1970",
+            "1971-1980",
+            "1981-1990",
+            "1991-2000",
+            "2001-2010",
+            "2011-2020",
+            "2021-"
           ],
           "valueTexts": [
-            "65 - 79 år",
-            "80 - år"
+            "- 1931",
+            "1931-1940",
+            "1941-1950",
+            "1951-1960",
+            "1961-1970",
+            "1971-1980",
+            "1981-1990",
+            "1991-2000",
+            "2001-2010",
+            "2011-2020",
+            "2021-"
           ]
         },
         {
-          "code": "Boende",
-          "text": "Boende",
+          "code": "Hustyp",
+          "text": "Hustyp",
           "values": [
             "Småhus",
-            "Hyresrätt",
-            "Bostadsrätt",
-            "Specialbostäder"
+            "Flerbostadshus",
+            "Specialbostäder",
+            "Totalt"
           ],
           "valueTexts": [
             "Småhus",
-            "Hyresrätt",
-            "Bostadsrätt",
-            "Specialbostäder"
+            "Flerbostadshus",
+            "Specialbostäder",
+            "Totalt"
           ]
         }
       ]
@@ -174,17 +182,17 @@
           "category_path": [],
           "database_id": "Bostäder och byggande",
           "path": "/",
-          "published": "2026-08-19",
+          "published": "2026-11-18",
           "score": 1.0,
           "title": "Antal bostäder efter bostadsområde (N2), hustyp och byggnadsår",
-          "web_url": "https://statistik.vasteras.se/pxweb/sv/Bost%C3%A4der%20och%20byggande/-/STAT_LGH5_Byggnadsar.px/?rxid=20f1c574-5523-4d01-bbf6-3ba0438af46b"
+          "web_url": "https://statistik.vasteras.se/pxweb/sv/Bost%C3%A4der%20och%20byggande/-/STAT_LGH5_Byggnadsar.px/?rxid=706d7ea1-1a55-4d42-a51f-ee4b3e2c63b9"
         }
       ],
       "provider_code": "vasteras",
-      "published": "2026-08-19",
+      "published": "2026-11-18",
       "score": 1.0,
       "title": "Antal bostäder efter bostadsområde (N2), hustyp och byggnadsår",
-      "web_url": "https://statistik.vasteras.se/pxweb/sv/Bost%C3%A4der%20och%20byggande/-/STAT_LGH5_Byggnadsar.px/?rxid=20f1c574-5523-4d01-bbf6-3ba0438af46b"
+      "web_url": "https://statistik.vasteras.se/pxweb/sv/Bost%C3%A4der%20och%20byggande/-/STAT_LGH5_Byggnadsar.px/?rxid=706d7ea1-1a55-4d42-a51f-ee4b3e2c63b9"
     },
     "config": {
       "maxValues": 10000,
@@ -196,20 +204,12 @@
   "derived": {
     "samples": [
       {
-        "label": "Bostäder by år, bostadsområde, Ålder and Boende",
-        "source": "Källa: SCB (OSDB). Sammanställning av Statistik och analysenheten, Västerås stad",
+        "label": "Antal Bostäder by Bostadsområde, Byggnadsår and Hustyp",
+        "source": "Källa: SCB (MONA) Sammanställning av Statistik och analysenheten, Västerås stad",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
-          "år": {
-            "label": "år",
-            "category": {
-              "label": {
-                "2025": "2025"
-              }
-            }
-          },
-          "bostadsområde": {
-            "label": "bostadsområde",
+          "Bostadsområde": {
+            "label": "Bostadsområde",
             "category": {
               "label": {
                 "1980": "Västerås",
@@ -217,41 +217,33 @@
               }
             }
           },
-          "Ålder": {
-            "label": "Ålder",
+          "Byggnadsår": {
+            "label": "Byggnadsår",
             "category": {
               "label": {
-                "65 - 79 år": "65 - 79 år",
-                "80 - år": "80 - år"
+                "- 1931": "- 1931",
+                "1931-1940": "1931-1940"
               }
             }
           },
-          "Boende": {
-            "label": "Boende",
+          "Hustyp": {
+            "label": "Hustyp",
             "category": {
               "label": {
                 "Småhus": "Småhus",
-                "Hyresrätt": "Hyresrätt"
+                "Flerbostadshus": "Flerbostadshus"
               }
             }
           }
         }
       },
       {
-        "label": "Bostäder by år, bostadsområde, Ålder and Boende",
-        "source": "Källa: SCB (OSDB). Sammanställning av Statistik och analysenheten, Västerås stad",
+        "label": "Antal Bostäder by Bostadsområde, Byggnadsår and Hustyp",
+        "source": "Källa: SCB (MONA) Sammanställning av Statistik och analysenheten, Västerås stad",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
-          "år": {
-            "label": "år",
-            "category": {
-              "label": {
-                "2025": "2025"
-              }
-            }
-          },
-          "bostadsområde": {
-            "label": "bostadsområde",
+          "Bostadsområde": {
+            "label": "Bostadsområde",
             "category": {
               "label": {
                 "198002": "02 DJÄKNEBERGET STALLHAGEN",
@@ -307,16 +299,16 @@
               }
             }
           },
-          "Ålder": {
-            "label": "Ålder",
+          "Byggnadsår": {
+            "label": "Byggnadsår",
             "category": {
               "label": {
-                "65 - 79 år": "65 - 79 år"
+                "- 1931": "- 1931"
               }
             }
           },
-          "Boende": {
-            "label": "Boende",
+          "Hustyp": {
+            "label": "Hustyp",
             "category": {
               "label": {
                 "Småhus": "Småhus"
@@ -329,16 +321,12 @@
             "sample_status": [
               {
                 "id": [
-                  "år",
-                  "bostadsområde",
-                  "Ålder",
-                  "Boende"
+                  "Bostadsområde",
+                  "Byggnadsår",
+                  "Hustyp"
                 ],
                 "categories": {
-                  "år": [
-                    "2025"
-                  ],
-                  "bostadsområde": [
+                  "Bostadsområde": [
                     "198002",
                     "198003",
                     "198004",
@@ -390,18 +378,23 @@
                     "198075",
                     "198076"
                   ],
-                  "Ålder": [
-                    "65 - 79 år"
+                  "Byggnadsår": [
+                    "- 1931"
                   ],
-                  "Boende": [
+                  "Hustyp": [
                     "Småhus"
                   ]
                 },
                 "status": {
                   "3": "-",
-                  "12": "..",
+                  "10": "-",
+                  "16": "-",
                   "18": "-",
-                  "30": "-"
+                  "23": "-",
+                  "28": "-",
+                  "29": "-",
+                  "30": "-",
+                  "32": "-"
                 }
               }
             ]
@@ -409,40 +402,71 @@
         }
       },
       {
-        "label": "Bostäder by år, bostadsområde, Ålder and Boende",
-        "source": "Källa: SCB (OSDB). Sammanställning av Statistik och analysenheten, Västerås stad",
+        "label": "Antal Bostäder by Bostadsområde, Byggnadsår and Hustyp",
+        "source": "Källa: SCB (MONA) Sammanställning av Statistik och analysenheten, Västerås stad",
         "updated": "9999-12-31T22:59:59Z",
         "dimension": {
-          "år": {
-            "label": "år",
-            "category": {
-              "label": {
-                "2025": "2025"
-              }
-            }
-          },
-          "bostadsområde": {
-            "label": "bostadsområde",
+          "Bostadsområde": {
+            "label": "Bostadsområde",
             "category": {
               "label": {
                 "1980": "Västerås"
               }
             }
           },
-          "Ålder": {
-            "label": "Ålder",
+          "Byggnadsår": {
+            "label": "Byggnadsår",
             "category": {
               "label": {
-                "65 - 79 år": "65 - 79 år"
+                "1941-1950": "1941-1950",
+                "1951-1960": "1951-1960",
+                "1961-1970": "1961-1970",
+                "1971-1980": "1971-1980",
+                "1981-1990": "1981-1990",
+                "1991-2000": "1991-2000",
+                "2001-2010": "2001-2010",
+                "2011-2020": "2011-2020",
+                "2021-": "2021-"
               }
             }
           },
-          "Boende": {
-            "label": "Boende",
+          "Hustyp": {
+            "label": "Hustyp",
             "category": {
               "label": {
-                "Bostadsrätt": "Bostadsrätt",
-                "Specialbostäder": "Specialbostäder"
+                "Småhus": "Småhus"
+              }
+            }
+          }
+        }
+      },
+      {
+        "label": "Antal Bostäder by Bostadsområde, Byggnadsår and Hustyp",
+        "source": "Källa: SCB (MONA) Sammanställning av Statistik och analysenheten, Västerås stad",
+        "updated": "9999-12-31T22:59:59Z",
+        "dimension": {
+          "Bostadsområde": {
+            "label": "Bostadsområde",
+            "category": {
+              "label": {
+                "1980": "Västerås"
+              }
+            }
+          },
+          "Byggnadsår": {
+            "label": "Byggnadsår",
+            "category": {
+              "label": {
+                "- 1931": "- 1931"
+              }
+            }
+          },
+          "Hustyp": {
+            "label": "Hustyp",
+            "category": {
+              "label": {
+                "Specialbostäder": "Specialbostäder",
+                "Totalt": "Totalt"
               }
             }
           }
@@ -453,16 +477,7 @@
       {
         "query": [
           {
-            "code": "år",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2025"
-              ]
-            }
-          },
-          {
-            "code": "bostadsområde",
+            "code": "Bostadsområde",
             "selection": {
               "filter": "item",
               "values": [
@@ -472,22 +487,22 @@
             }
           },
           {
-            "code": "Ålder",
+            "code": "Byggnadsår",
             "selection": {
               "filter": "item",
               "values": [
-                "65 - 79 år",
-                "80 - år"
+                "- 1931",
+                "1931-1940"
               ]
             }
           },
           {
-            "code": "Boende",
+            "code": "Hustyp",
             "selection": {
               "filter": "item",
               "values": [
                 "Småhus",
-                "Hyresrätt"
+                "Flerbostadshus"
               ]
             }
           }
@@ -499,16 +514,7 @@
       {
         "query": [
           {
-            "code": "år",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2025"
-              ]
-            }
-          },
-          {
-            "code": "bostadsområde",
+            "code": "Bostadsområde",
             "selection": {
               "filter": "item",
               "values": [
@@ -566,16 +572,16 @@
             }
           },
           {
-            "code": "Ålder",
+            "code": "Byggnadsår",
             "selection": {
               "filter": "item",
               "values": [
-                "65 - 79 år"
+                "- 1931"
               ]
             }
           },
           {
-            "code": "Boende",
+            "code": "Hustyp",
             "selection": {
               "filter": "item",
               "values": [
@@ -591,16 +597,7 @@
       {
         "query": [
           {
-            "code": "år",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2025"
-              ]
-            }
-          },
-          {
-            "code": "bostadsområde",
+            "code": "Bostadsområde",
             "selection": {
               "filter": "item",
               "values": [
@@ -609,21 +606,63 @@
             }
           },
           {
-            "code": "Ålder",
+            "code": "Byggnadsår",
             "selection": {
               "filter": "item",
               "values": [
-                "65 - 79 år"
+                "1941-1950",
+                "1951-1960",
+                "1961-1970",
+                "1971-1980",
+                "1981-1990",
+                "1991-2000",
+                "2001-2010",
+                "2011-2020",
+                "2021-"
               ]
             }
           },
           {
-            "code": "Boende",
+            "code": "Hustyp",
             "selection": {
               "filter": "item",
               "values": [
-                "Bostadsrätt",
-                "Specialbostäder"
+                "Småhus"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "Bostadsområde",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1980"
+              ]
+            }
+          },
+          {
+            "code": "Byggnadsår",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "- 1931"
+              ]
+            }
+          },
+          {
+            "code": "Hustyp",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "Specialbostäder",
+                "Totalt"
               ]
             }
           }
