@@ -2,11 +2,11 @@
   "key": "energi/EN0122_3.px/en",
   "identifier": "EN0122_3.px",
   "language": "en",
-  "updated": "2025-12-17",
-  "retrieved_at": "2026-10-17T07:11:31.727888+00:00",
+  "updated": "2026-11-19",
+  "retrieved_at": "2026-11-20T11:39:57.235119+00:00",
   "responses": {
     "metadata": {
-      "title": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution by Year and Assortiment",
+      "title": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013- by Year and Assortiment",
       "variables": [
         {
           "code": "År",
@@ -23,7 +23,8 @@
             "8",
             "9",
             "10",
-            "11"
+            "11",
+            "12"
           ],
           "valueTexts": [
             "2013",
@@ -37,20 +38,22 @@
             "2021",
             "2022",
             "2023",
-            "2024"
-          ]
+            "2024",
+            "2025"
+          ],
+          "time": true
         },
         {
           "code": "Sortiment",
           "text": "Assortiment",
           "values": [
-            "0",
             "1",
             "2",
             "3",
             "4",
             "5",
-            "6"
+            "6",
+            "7"
           ],
           "valueTexts": [
             "Round wood chips",
@@ -96,14 +99,14 @@
           ],
           "database_id": "Energimyndighetens_statistikdatabas",
           "path": "/Officiell_energistatistik/Produktion_import_export_av_oforadlade_tradbranslen",
-          "published": "2025-12-17",
+          "published": "2026-11-19",
           "score": 1.0,
           "title": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
           "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Produktion_import_export_av_oforadlade_tradbranslen/EN0122_3.px/"
         }
       ],
       "provider_code": "energi",
-      "published": "2025-12-17",
+      "published": "2026-11-19",
       "score": 1.0,
       "title": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
       "web_url": "https://pxexternal.energimyndigheten.se/pxweb/en/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Produktion_import_export_av_oforadlade_tradbranslen/EN0122_3.px/"
@@ -119,11 +122,16 @@
   "derived": {
     "samples": [
       {
-        "label": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution by Year and Assortiment",
-        "source": "Sweden energy agency",
-        "updated": "2025-12-17T08:00:00Z",
+        "label": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013- by Year and Assortiment",
+        "source": "Energimyndigheten",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
-          "metric": []
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Sortiment"
+          ]
         },
         "dimension": {
           "År": {
@@ -143,8 +151,18 @@
             "label": "Assortiment",
             "category": {
               "label": {
-                "0": "Round wood chips",
-                "1": "Branches and tops chips"
+                "1": "Round wood chips",
+                "2": "Branches and tops chips"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "2": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -155,11 +173,12 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_3",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
             "language": "sv",
-            "contents": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution",
+            "contents": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
             "description": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
             "descriptiondefault": false,
             "heading": [
@@ -168,52 +187,28 @@
             "stub": [
               "År"
             ],
-            "matrix": "EN0122",
+            "matrix": "EN0122_3",
             "subject-code": "EN",
             "subject-area": "Energy"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistics, Phone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
-        "label": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution by Year and Assortiment",
-        "source": "Sweden energy agency",
-        "updated": "2025-12-17T08:00:00Z",
+        "label": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013- by Year and Assortiment",
+        "source": "Energimyndigheten",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
-          "metric": []
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Sortiment"
+          ]
         },
         "dimension": {
           "År": {
@@ -229,7 +224,8 @@
                 "8": "2021",
                 "9": "2022",
                 "10": "2023",
-                "11": "2024"
+                "11": "2024",
+                "12": "2025"
               }
             },
             "extension": {
@@ -241,7 +237,13 @@
             "label": "Assortiment",
             "category": {
               "label": {
-                "0": "Round wood chips"
+                "1": "Round wood chips"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -252,11 +254,12 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_3",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
             "language": "sv",
-            "contents": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution",
+            "contents": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
             "description": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
             "descriptiondefault": false,
             "heading": [
@@ -265,52 +268,28 @@
             "stub": [
               "År"
             ],
-            "matrix": "EN0122",
+            "matrix": "EN0122_3",
             "subject-code": "EN",
             "subject-area": "Energy"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistics, Phone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
-        "label": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution by Year and Assortiment",
-        "source": "Sweden energy agency",
-        "updated": "2025-12-17T08:00:00Z",
+        "label": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013- by Year and Assortiment",
+        "source": "Energimyndigheten",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
-          "metric": []
+          "time": [
+            "År"
+          ],
+          "metric": [
+            "Sortiment"
+          ]
         },
         "dimension": {
           "År": {
@@ -329,11 +308,33 @@
             "label": "Assortiment",
             "category": {
               "label": {
-                "2": "Whole trees chips",
-                "3": "Stumps chips",
-                "4": "Residues from parks and gardens",
-                "5": "Fire wood",
-                "6": "Total"
+                "3": "Whole trees chips",
+                "4": "Stumps chips",
+                "5": "Residues from parks and gardens",
+                "6": "Fire wood",
+                "7": "Total"
+              },
+              "unit": {
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "4": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "5": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "6": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "7": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -344,11 +345,12 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_3",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
             "language": "sv",
-            "contents": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution",
+            "contents": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
             "description": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution, GWh, 2013-",
             "descriptiondefault": false,
             "heading": [
@@ -357,44 +359,15 @@
             "stub": [
               "År"
             ],
-            "matrix": "EN0122",
+            "matrix": "EN0122_3",
             "subject-code": "EN",
             "subject-area": "Energy"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistics, Phone: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Production of disintegrated unprocessed primary forest fuels of domestic origin with distribution"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       }
     ],
@@ -416,8 +389,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
-                "1"
+                "1",
+                "2"
               ]
             }
           }
@@ -442,7 +415,8 @@
                 "8",
                 "9",
                 "10",
-                "11"
+                "11",
+                "12"
               ]
             }
           },
@@ -451,7 +425,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "1"
               ]
             }
           }
@@ -476,11 +450,11 @@
             "selection": {
               "filter": "item",
               "values": [
-                "2",
                 "3",
                 "4",
                 "5",
-                "6"
+                "6",
+                "7"
               ]
             }
           }

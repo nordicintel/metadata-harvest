@@ -2,8 +2,8 @@
   "key": "energi/EN0122_2.px/sv",
   "identifier": "EN0122_2.px",
   "language": "sv",
-  "updated": "2024-12-03",
-  "retrieved_at": "2026-10-17T07:11:28.047752+00:00",
+  "updated": "2026-11-19",
+  "retrieved_at": "2026-11-20T11:39:53.524001+00:00",
   "responses": {
     "metadata": {
       "title": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-",
@@ -12,18 +12,19 @@
           "code": "År",
           "text": "År",
           "values": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11"
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
           ],
           "valueTexts": [
             "2013",
@@ -37,7 +38,8 @@
             "2021",
             "2022",
             "2023",
-            "2024"
+            "2024",
+            "2025"
           ],
           "time": true
         },
@@ -45,7 +47,6 @@
           "code": "Sortiment",
           "text": "Sortiment",
           "values": [
-            "0",
             "1",
             "2",
             "3",
@@ -53,7 +54,8 @@
             "5",
             "6",
             "7",
-            "8"
+            "8",
+            "9"
           ],
           "valueTexts": [
             "Kross och flis av rundved (Stamvedsflis)",
@@ -71,12 +73,12 @@
           "code": "Råvarans ursprung",
           "text": "Råvarans ursprung",
           "values": [
-            "0",
             "1",
             "2",
             "3",
             "4",
-            "5"
+            "5",
+            "6"
           ],
           "valueTexts": [
             "Götaland",
@@ -121,14 +123,14 @@
           ],
           "database_id": "Energimyndighetens_statistikdatabas",
           "path": "/Officiell_energistatistik/Produktion_import_export_av_oforadlade_tradbranslen",
-          "published": "2024-12-03",
+          "published": "2026-11-19",
           "score": 1.0,
           "title": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-",
           "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Produktion_import_export_av_oforadlade_tradbranslen/EN0122_2.px/"
         }
       ],
       "provider_code": "energi",
-      "published": "2024-12-03",
+      "published": "2026-11-19",
       "score": 1.0,
       "title": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-",
       "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Produktion_import_export_av_oforadlade_tradbranslen/EN0122_2.px/"
@@ -146,20 +148,22 @@
       {
         "label": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013- efter År, Sortiment och Råvarans ursprung",
         "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "0": "2013",
-                "1": "2014"
+                "2013": "2013",
+                "2014": "2014"
               }
             },
             "extension": {
@@ -171,8 +175,8 @@
             "label": "Sortiment",
             "category": {
               "label": {
-                "0": "Kross och flis av rundved (Stamvedsflis)",
-                "1": "Kross och flis av grenar och toppar (Grotflis)"
+                "1": "Kross och flis av rundved (Stamvedsflis)",
+                "2": "Kross och flis av grenar och toppar (Grotflis)"
               }
             },
             "extension": {
@@ -184,8 +188,18 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "0": "Götaland",
-                "1": "Svealand"
+                "1": "Götaland",
+                "2": "Svealand"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "2": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -196,6 +210,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_2",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -216,65 +231,39 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "statistik, Telefon +46 (0) 16 5442000, Email statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 11
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
         "label": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013- efter År, Sortiment och Råvarans ursprung",
         "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "updated": "2026-11-19T07:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "2": "2015",
-                "3": "2016",
-                "4": "2017",
-                "5": "2018",
-                "6": "2019",
-                "7": "2020",
-                "8": "2021",
-                "9": "2022",
-                "10": "2023",
-                "11": "2024"
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
               }
             },
             "extension": {
@@ -286,7 +275,7 @@
             "label": "Sortiment",
             "category": {
               "label": {
-                "0": "Kross och flis av rundved (Stamvedsflis)"
+                "1": "Kross och flis av rundved (Stamvedsflis)"
               }
             },
             "extension": {
@@ -298,7 +287,13 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "0": "Götaland"
+                "1": "Götaland"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -309,6 +304,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_2",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -329,56 +325,29 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "statistik, Telefon +46 (0) 16 5442000, Email statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 11
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
         "label": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013- efter År, Sortiment och Råvarans ursprung",
         "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "updated": "2026-11-19T07:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "0": "2013"
+                "2013": "2013"
               }
             },
             "extension": {
@@ -390,13 +359,13 @@
             "label": "Sortiment",
             "category": {
               "label": {
-                "2": "Kross och flis av hela träd (Träddelsflis)",
-                "3": "Kross och flis av stubbar (Stubbflis)",
-                "4": "Brännved",
-                "5": "Kross och flis av park- och trädgårdsrester",
-                "6": "Bark och reducerflis (Riven och oriven bark)",
-                "7": "Sågspån och hyvelspån",
-                "8": "Kross och flis av andra biprodukter från industri (Torrflis)"
+                "3": "Kross och flis av hela träd (Träddelsflis)",
+                "4": "Kross och flis av stubbar (Stubbflis)",
+                "5": "Brännved",
+                "6": "Kross och flis av park- och trädgårdsrester",
+                "7": "Bark och reducerflis (Riven och oriven bark)",
+                "8": "Sågspån och hyvelspån",
+                "9": "Kross och flis av andra biprodukter från industri (Torrflis)"
               }
             },
             "extension": {
@@ -408,7 +377,13 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "0": "Götaland"
+                "1": "Götaland"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -419,6 +394,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_2",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -439,36 +415,32 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "statistik, Telefon +46 (0) 16 5442000, Email statistik@energimyndigheten.se"
             }
           ],
           "metadata_harvest": {
             "sample_status": [
               {
                 "id": [
-                  "ContentsCode",
                   "År",
                   "Sortiment",
                   "Råvarans ursprung"
                 ],
                 "categories": {
-                  "ContentsCode": [
-                    "EliminatedValue"
-                  ],
                   "År": [
-                    "0"
+                    "2013"
                   ],
                   "Sortiment": [
-                    "2",
                     "3",
                     "4",
                     "5",
                     "6",
                     "7",
-                    "8"
+                    "8",
+                    "9"
                   ],
                   "Råvarans ursprung": [
-                    "0"
+                    "1"
                   ]
                 },
                 "status": {
@@ -478,53 +450,28 @@
                   "6": ".."
                 }
               }
-            ],
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 11
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
+            ]
           }
         }
       },
       {
         "label": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013- efter År, Sortiment och Råvarans ursprung",
         "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "0": "2013"
+                "2013": "2013"
               }
             },
             "extension": {
@@ -536,7 +483,7 @@
             "label": "Sortiment",
             "category": {
               "label": {
-                "0": "Kross och flis av rundved (Stamvedsflis)"
+                "1": "Kross och flis av rundved (Stamvedsflis)"
               }
             },
             "extension": {
@@ -548,10 +495,28 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "2": "Norrland",
-                "3": "Okänd landsdel",
-                "4": "Importerad råvara",
-                "5": "Totalt"
+                "3": "Norrland",
+                "4": "Okänd landsdel",
+                "5": "Importerad råvara",
+                "6": "Totalt"
+              },
+              "unit": {
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "4": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "5": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "6": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -562,6 +527,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_2",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -582,38 +548,9 @@
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "statistik, Telefon +46 (0) 16 5442000, Email statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade skogsbränslen fördelade på sortiment och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 11
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       }
     ],
@@ -625,8 +562,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
-                "1"
+                "2013",
+                "2014"
               ]
             }
           },
@@ -635,7 +572,52 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "code": "Råvarans ursprung",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1",
+                "2"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
                 "1"
               ]
             }
@@ -645,7 +627,6 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
                 "1"
               ]
             }
@@ -662,25 +643,22 @@
             "selection": {
               "filter": "item",
               "values": [
-                "2",
+                "2013"
+              ]
+            }
+          },
+          {
+            "code": "Sortiment",
+            "selection": {
+              "filter": "item",
+              "values": [
                 "3",
                 "4",
                 "5",
                 "6",
                 "7",
                 "8",
-                "9",
-                "10",
-                "11"
-              ]
-            }
-          },
-          {
-            "code": "Sortiment",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
+                "9"
               ]
             }
           },
@@ -689,7 +667,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "1"
               ]
             }
           }
@@ -705,7 +683,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "2013"
               ]
             }
           },
@@ -714,59 +692,19 @@
             "selection": {
               "filter": "item",
               "values": [
-                "2",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Råvarans ursprung",
+            "selection": {
+              "filter": "item",
+              "values": [
                 "3",
                 "4",
                 "5",
-                "6",
-                "7",
-                "8"
-              ]
-            }
-          },
-          {
-            "code": "Råvarans ursprung",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
-              ]
-            }
-          }
-        ],
-        "response": {
-          "format": "json-stat2"
-        }
-      },
-      {
-        "query": [
-          {
-            "code": "År",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
-              ]
-            }
-          },
-          {
-            "code": "Sortiment",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
-              ]
-            }
-          },
-          {
-            "code": "Råvarans ursprung",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2",
-                "3",
-                "4",
-                "5"
+                "6"
               ]
             }
           }

@@ -2,8 +2,8 @@
   "key": "energi/EN0122_1.px/sv",
   "identifier": "EN0122_1.px",
   "language": "sv",
-  "updated": "2024-12-03",
-  "retrieved_at": "2026-10-17T07:11:20.777546+00:00",
+  "updated": "2026-11-19",
+  "retrieved_at": "2026-11-20T11:39:45.958820+00:00",
   "responses": {
     "metadata": {
       "title": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-",
@@ -12,18 +12,19 @@
           "code": "År",
           "text": "År",
           "values": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11"
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
           ],
           "valueTexts": [
             "2013",
@@ -37,7 +38,8 @@
             "2021",
             "2022",
             "2023",
-            "2024"
+            "2024",
+            "2025"
           ],
           "time": true
         },
@@ -45,10 +47,10 @@
           "code": "Bränsleslag",
           "text": "Bränsleslag",
           "values": [
-            "0",
-            "1",
             "2",
-            "3"
+            "3",
+            "4",
+            "1"
           ],
           "valueTexts": [
             "Skogsbränsle",
@@ -61,9 +63,9 @@
           "code": "Råvarans ursprung",
           "text": "Råvarans ursprung",
           "values": [
-            "0",
-            "1",
-            "2"
+            "3",
+            "2",
+            "1"
           ],
           "valueTexts": [
             "Inhemsk råvara",
@@ -105,14 +107,14 @@
           ],
           "database_id": "Energimyndighetens_statistikdatabas",
           "path": "/Officiell_energistatistik/Produktion_import_export_av_oforadlade_tradbranslen",
-          "published": "2024-12-03",
+          "published": "2026-11-19",
           "score": 1.0,
           "title": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-",
           "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Produktion_import_export_av_oforadlade_tradbranslen/EN0122_1.px/"
         }
       ],
       "provider_code": "energi",
-      "published": "2024-12-03",
+      "published": "2026-11-19",
       "score": 1.0,
       "title": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-",
       "web_url": "https://pxexternal.energimyndigheten.se/pxweb/sv/Energimyndighetens_statistikdatabas/Energimyndighetens_statistikdatabas__Officiell_energistatistik__Produktion_import_export_av_oforadlade_tradbranslen/EN0122_1.px/"
@@ -129,21 +131,23 @@
     "samples": [
       {
         "label": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013- efter År, Bränsleslag och Råvarans ursprung",
-        "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "0": "2013",
-                "1": "2014"
+                "2013": "2013",
+                "2014": "2014"
               }
             },
             "extension": {
@@ -155,8 +159,8 @@
             "label": "Bränsleslag",
             "category": {
               "label": {
-                "0": "Skogsbränsle",
-                "1": "Energiskogsbränsle"
+                "2": "Skogsbränsle",
+                "3": "Energiskogsbränsle"
               }
             },
             "extension": {
@@ -168,8 +172,18 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "0": "Inhemsk råvara",
-                "1": "Importerad råvara"
+                "3": "Inhemsk råvara",
+                "2": "Importerad råvara"
+              },
+              "unit": {
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "2": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -180,6 +194,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_1",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -195,70 +210,44 @@
               "Bränsleslag"
             ],
             "matrix": "EN0122_1",
-            "subject-code": "ENE",
+            "subject-code": "EN",
             "subject-area": "Energi"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Telefon: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
         "label": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013- efter År, Bränsleslag och Råvarans ursprung",
-        "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "2": "2015",
-                "3": "2016",
-                "4": "2017",
-                "5": "2018",
-                "6": "2019",
-                "7": "2020",
-                "8": "2021",
-                "9": "2022",
-                "10": "2023",
-                "11": "2024"
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
               }
             },
             "extension": {
@@ -270,7 +259,7 @@
             "label": "Bränsleslag",
             "category": {
               "label": {
-                "0": "Skogsbränsle"
+                "2": "Skogsbränsle"
               }
             },
             "extension": {
@@ -282,7 +271,13 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "0": "Inhemsk råvara"
+                "3": "Inhemsk råvara"
+              },
+              "unit": {
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -293,6 +288,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_1",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -308,61 +304,34 @@
               "Bränsleslag"
             ],
             "matrix": "EN0122_1",
-            "subject-code": "ENE",
+            "subject-code": "EN",
             "subject-area": "Energi"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Telefon: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
         "label": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013- efter År, Bränsleslag och Råvarans ursprung",
-        "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "0": "2013"
+                "2013": "2013"
               }
             },
             "extension": {
@@ -374,8 +343,8 @@
             "label": "Bränsleslag",
             "category": {
               "label": {
-                "2": "Återvunnet trädbränsle",
-                "3": "Totalt"
+                "4": "Återvunnet trädbränsle",
+                "1": "Totalt"
               }
             },
             "extension": {
@@ -387,7 +356,13 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "0": "Inhemsk råvara"
+                "3": "Inhemsk råvara"
+              },
+              "unit": {
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -398,6 +373,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_1",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -413,36 +389,32 @@
               "Bränsleslag"
             ],
             "matrix": "EN0122_1",
-            "subject-code": "ENE",
+            "subject-code": "EN",
             "subject-area": "Energi"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Telefon: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
           ],
           "metadata_harvest": {
             "sample_status": [
               {
                 "id": [
-                  "ContentsCode",
                   "År",
                   "Bränsleslag",
                   "Råvarans ursprung"
                 ],
                 "categories": {
-                  "ContentsCode": [
-                    "EliminatedValue"
-                  ],
                   "År": [
-                    "0"
+                    "2013"
                   ],
                   "Bränsleslag": [
-                    "2",
-                    "3"
+                    "4",
+                    "1"
                   ],
                   "Råvarans ursprung": [
-                    "0"
+                    "3"
                   ]
                 },
                 "status": {
@@ -450,53 +422,28 @@
                   "1": ".."
                 }
               }
-            ],
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
+            ]
           }
         }
       },
       {
         "label": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013- efter År, Bränsleslag och Råvarans ursprung",
-        "source": "Energimyndigheten",
-        "updated": "2024-12-03T08:00:00Z",
+        "source": "Statens Energimyndighet",
+        "updated": "2026-11-19T08:00:00Z",
         "role": {
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Råvarans ursprung"
+          ]
         },
         "dimension": {
           "År": {
             "label": "År",
             "category": {
               "label": {
-                "0": "2013"
+                "2013": "2013"
               }
             },
             "extension": {
@@ -508,7 +455,7 @@
             "label": "Bränsleslag",
             "category": {
               "label": {
-                "0": "Skogsbränsle"
+                "2": "Skogsbränsle"
               }
             },
             "extension": {
@@ -520,7 +467,13 @@
             "label": "Råvarans ursprung",
             "category": {
               "label": {
-                "2": "Totalt"
+                "1": "Totalt"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -531,6 +484,7 @@
         },
         "extension": {
           "px": {
+            "tableid": "EN0122_1",
             "decimals": 0,
             "official-statistics": true,
             "aggregallowed": true,
@@ -546,43 +500,14 @@
               "Bränsleslag"
             ],
             "matrix": "EN0122_1",
-            "subject-code": "ENE",
+            "subject-code": "EN",
             "subject-area": "Energi"
           },
           "contact": [
             {
-              "raw": "Johan Vinterbäck, Phone: +46(0)16-5442073, E-mail: johan.vinterback@energimyndigheten.se"
+              "raw": "Statistik, Telefon: +46(0)16-5442000, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Produktion av sönderdelade oförädlade trädbränslen fördelade på bränslekategori och råvarans ursprung, GWh, 2013-"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 2
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       }
     ],
@@ -594,87 +519,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
-                "1"
-              ]
-            }
-          },
-          {
-            "code": "Bränsleslag",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0",
-                "1"
-              ]
-            }
-          },
-          {
-            "code": "Råvarans ursprung",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0",
-                "1"
-              ]
-            }
-          }
-        ],
-        "response": {
-          "format": "json-stat2"
-        }
-      },
-      {
-        "query": [
-          {
-            "code": "År",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11"
-              ]
-            }
-          },
-          {
-            "code": "Bränsleslag",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
-              ]
-            }
-          },
-          {
-            "code": "Råvarans ursprung",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
-              ]
-            }
-          }
-        ],
-        "response": {
-          "format": "json-stat2"
-        }
-      },
-      {
-        "query": [
-          {
-            "code": "År",
-            "selection": {
-              "filter": "item",
-              "values": [
-                "0"
+                "2013",
+                "2014"
               ]
             }
           },
@@ -693,7 +539,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "3",
+                "2"
               ]
             }
           }
@@ -709,7 +556,17 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
               ]
             }
           },
@@ -718,7 +575,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "2"
               ]
             }
           },
@@ -727,7 +584,76 @@
             "selection": {
               "filter": "item",
               "values": [
+                "3"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          },
+          {
+            "code": "Bränsleslag",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "4",
+                "1"
+              ]
+            }
+          },
+          {
+            "code": "Råvarans ursprung",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "3"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      },
+      {
+        "query": [
+          {
+            "code": "År",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "2013"
+              ]
+            }
+          },
+          {
+            "code": "Bränsleslag",
+            "selection": {
+              "filter": "item",
+              "values": [
                 "2"
+              ]
+            }
+          },
+          {
+            "code": "Råvarans ursprung",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "1"
               ]
             }
           }
