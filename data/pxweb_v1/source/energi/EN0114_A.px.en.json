@@ -3,7 +3,7 @@
   "identifier": "EN0114_A.px",
   "language": "en",
   "updated": "2026-11-18",
-  "retrieved_at": "2026-11-18T11:41:54.254902+00:00",
+  "retrieved_at": "2026-11-23T12:35:04.858364+00:00",
   "responses": {
     "metadata": {
       "title": "Energy use in construction sector, GWh",
@@ -12,7 +12,6 @@
           "code": "Energivara",
           "text": "Energy commodity",
           "values": [
-            "0",
             "1",
             "2",
             "3",
@@ -55,7 +54,8 @@
             "40",
             "41",
             "42",
-            "43"
+            "43",
+            "44"
           ],
           "valueTexts": [
             "Total",
@@ -108,27 +108,27 @@
           "code": "År",
           "text": "Year",
           "values": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20"
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
           ],
           "valueTexts": [
             "2005",
@@ -219,15 +219,27 @@
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Energivara"
+          ]
         },
         "dimension": {
           "Energivara": {
             "label": "Energy commodity",
             "category": {
               "label": {
-                "0": "Total",
-                "1": "1. Biofuels"
+                "1": "Total",
+                "2": "1. Biofuels"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "2": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -239,8 +251,8 @@
             "label": "Year",
             "category": {
               "label": {
-                "0": "2005",
-                "1": "2006"
+                "2005": "2005",
+                "2006": "2006"
               }
             },
             "extension": {
@@ -273,36 +285,7 @@
             {
               "raw": "Statistik, Phone: +46(0)16-544 20 00, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Energy use in construction sector, GWh"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 0
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       },
       {
@@ -313,55 +296,227 @@
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Energivara"
+          ]
         },
         "dimension": {
           "Energivara": {
             "label": "Energy commodity",
             "category": {
               "label": {
-                "2": "1.1 Solid biofuels",
-                "3": "1.1.1 Wood fuels",
-                "4": "1.1.1.1 Unprocessed wood fuels",
-                "5": "1.1.1.2 Processed wood fuels",
-                "6": "1.1.2 Black liquor",
-                "7": "1.1.3 Other solid biofuels",
-                "8": "1.2 Bioliquids",
-                "9": "1.2.1 Bioethanol",
-                "10": "1.2.2 Biodiesel",
-                "11": "1.2.2.1 FAME",
-                "12": "1.2.2.2 HVO",
-                "13": "1.2.3 Biooils",
-                "14": "1.2.3.1 Pine oil pitch",
-                "15": "1.2.3.2 Vegetable and animal oils",
-                "16": "1.2.4 Other bioliquids",
-                "17": "1.3 Biogas",
-                "18": "1.4 Municipal waste -bio",
-                "19": "2. Hard coal and brown coal",
-                "20": "3. Coke oven coke",
-                "21": "4. Crude oil and refinery feedstocks",
-                "22": "5. Petroleum products",
-                "23": "5.1 LPG and refinery gas",
-                "24": "5.2 Motor gasoline",
-                "25": "5.3 Light distillates (excl. motor gasoline)",
-                "26": "5.4 Gas/Diesel oil and light heating oil",
-                "27": "5.4.1 Gas/Diesel oil",
-                "28": "5.4.2 Light heating oil",
-                "29": "5.5 Heavy heating oil",
-                "30": "5.6 Other petroleum products",
-                "31": "6. Natural gas and gaswork gas",
-                "32": "6.1 Natural gas",
-                "33": "6.2 Gaswork gas",
-                "34": "7. Blast-furnace gas, coke-oven gas and oxygen steel-furnace gas",
-                "35": "8. Other fuels",
-                "36": "9. Nuclear fuel",
-                "37": "10. Heat",
-                "38": "10.1 Primary heat",
-                "39": "10.2 Derived heat",
-                "40": "11. Primary hydro power",
-                "41": "12. Primary wind power",
-                "42": "13. Primary solar power",
-                "43": "14. Electricity"
+                "3": "1.1 Solid biofuels",
+                "4": "1.1.1 Wood fuels",
+                "5": "1.1.1.1 Unprocessed wood fuels",
+                "6": "1.1.1.2 Processed wood fuels",
+                "7": "1.1.2 Black liquor",
+                "8": "1.1.3 Other solid biofuels",
+                "9": "1.2 Bioliquids",
+                "10": "1.2.1 Bioethanol",
+                "11": "1.2.2 Biodiesel",
+                "12": "1.2.2.1 FAME",
+                "13": "1.2.2.2 HVO",
+                "14": "1.2.3 Biooils",
+                "15": "1.2.3.1 Pine oil pitch",
+                "16": "1.2.3.2 Vegetable and animal oils",
+                "17": "1.2.4 Other bioliquids",
+                "18": "1.3 Biogas",
+                "19": "1.4 Municipal waste -bio",
+                "20": "2. Hard coal and brown coal",
+                "21": "3. Coke oven coke",
+                "22": "4. Crude oil and refinery feedstocks",
+                "23": "5. Petroleum products",
+                "24": "5.1 LPG and refinery gas",
+                "25": "5.2 Motor gasoline",
+                "26": "5.3 Light distillates (excl. motor gasoline)",
+                "27": "5.4 Gas/Diesel oil and light heating oil",
+                "28": "5.4.1 Gas/Diesel oil",
+                "29": "5.4.2 Light heating oil",
+                "30": "5.5 Heavy heating oil",
+                "31": "5.6 Other petroleum products",
+                "32": "6. Natural gas and gaswork gas",
+                "33": "6.1 Natural gas",
+                "34": "6.2 Gaswork gas",
+                "35": "7. Blast-furnace gas, coke-oven gas and oxygen steel-furnace gas",
+                "36": "8. Other fuels",
+                "37": "9. Nuclear fuel",
+                "38": "10. Heat",
+                "39": "10.1 Primary heat",
+                "40": "10.2 Derived heat",
+                "41": "11. Primary hydro power",
+                "42": "12. Primary wind power",
+                "43": "13. Primary solar power",
+                "44": "14. Electricity"
+              },
+              "unit": {
+                "3": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "4": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "5": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "6": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "7": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "8": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "9": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "10": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "11": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "12": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "13": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "14": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "15": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "16": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "17": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "18": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "19": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "20": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "21": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "22": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "23": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "24": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "25": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "26": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "27": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "28": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "29": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "30": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "31": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "32": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "33": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "34": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "35": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "36": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "37": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "38": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "39": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "40": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "41": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "42": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "43": {
+                  "base": "GWh",
+                  "decimals": 0
+                },
+                "44": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -373,7 +528,7 @@
             "label": "Year",
             "category": {
               "label": {
-                "0": "2005"
+                "2005": "2005"
               }
             },
             "extension": {
@@ -411,16 +566,11 @@
             "sample_status": [
               {
                 "id": [
-                  "ContentsCode",
                   "Energivara",
                   "År"
                 ],
                 "categories": {
-                  "ContentsCode": [
-                    "EliminatedValue"
-                  ],
                   "Energivara": [
-                    "2",
                     "3",
                     "4",
                     "5",
@@ -461,10 +611,11 @@
                     "40",
                     "41",
                     "42",
-                    "43"
+                    "43",
+                    "44"
                   ],
                   "År": [
-                    "0"
+                    "2005"
                   ]
                 },
                 "status": {
@@ -494,34 +645,7 @@
                   "40": ".."
                 }
               }
-            ],
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Energy use in construction sector, GWh"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 0
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
+            ]
           }
         }
       },
@@ -533,14 +657,22 @@
           "time": [
             "År"
           ],
-          "metric": []
+          "metric": [
+            "Energivara"
+          ]
         },
         "dimension": {
           "Energivara": {
             "label": "Energy commodity",
             "category": {
               "label": {
-                "0": "Total"
+                "1": "Total"
+              },
+              "unit": {
+                "1": {
+                  "base": "GWh",
+                  "decimals": 0
+                }
               }
             },
             "extension": {
@@ -552,25 +684,25 @@
             "label": "Year",
             "category": {
               "label": {
-                "2": "2007",
-                "3": "2008",
-                "4": "2009",
-                "5": "2010",
-                "6": "2011",
-                "7": "2012",
-                "8": "2013",
-                "9": "2014",
-                "10": "2015",
-                "11": "2016",
-                "12": "2017",
-                "13": "2018",
-                "14": "2019",
-                "15": "2020",
-                "16": "2021",
-                "17": "2022",
-                "18": "2023",
-                "19": "2024",
-                "20": "2025"
+                "2007": "2007",
+                "2008": "2008",
+                "2009": "2009",
+                "2010": "2010",
+                "2011": "2011",
+                "2012": "2012",
+                "2013": "2013",
+                "2014": "2014",
+                "2015": "2015",
+                "2016": "2016",
+                "2017": "2017",
+                "2018": "2018",
+                "2019": "2019",
+                "2020": "2020",
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025"
               }
             },
             "extension": {
@@ -603,36 +735,7 @@
             {
               "raw": "Statistik, Phone: +46(0)16-544 20 00, E-mail: statistik@energimyndigheten.se"
             }
-          ],
-          "metadata_harvest": {
-            "auxiliary_dimensions": {
-              "ContentsCode": {
-                "label": "EliminatedContents",
-                "category": {
-                  "index": {
-                    "EliminatedValue": 0
-                  },
-                  "label": {
-                    "EliminatedValue": "Energy use in construction sector, GWh"
-                  },
-                  "unit": {
-                    "EliminatedValue": {
-                      "base": "GWh",
-                      "decimals": 0
-                    }
-                  }
-                },
-                "extension": {
-                  "elimination": true
-                }
-              }
-            },
-            "auxiliary_roles": {
-              "metric": [
-                "ContentsCode"
-              ]
-            }
-          }
+          ]
         }
       }
     ],
@@ -644,8 +747,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
-                "1"
+                "1",
+                "2"
               ]
             }
           },
@@ -654,8 +757,8 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0",
-                "1"
+                "2005",
+                "2006"
               ]
             }
           }
@@ -671,7 +774,6 @@
             "selection": {
               "filter": "item",
               "values": [
-                "2",
                 "3",
                 "4",
                 "5",
@@ -712,7 +814,8 @@
                 "40",
                 "41",
                 "42",
-                "43"
+                "43",
+                "44"
               ]
             }
           },
@@ -721,7 +824,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "2005"
               ]
             }
           }
@@ -737,7 +840,7 @@
             "selection": {
               "filter": "item",
               "values": [
-                "0"
+                "1"
               ]
             }
           },
@@ -746,25 +849,25 @@
             "selection": {
               "filter": "item",
               "values": [
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
-                "17",
-                "18",
-                "19",
-                "20"
+                "2007",
+                "2008",
+                "2009",
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025"
               ]
             }
           }
