@@ -1,0 +1,54 @@
+{
+  "key": "forsakringskassan/uhs-mottagare-belopp/UHSArAlder/sv",
+  "identifier": "uhs-mottagare-belopp/UHSArAlder",
+  "language": "sv",
+  "updated": null,
+  "retrieved_at": "2026-11-24T14:49:27.633107+00:00",
+  "responses": {
+    "listing": {
+      "report": "uhs-mottagare-belopp",
+      "area": "bf",
+      "group": "uhs"
+    },
+    "probe": [
+      {
+        "dimensions": {
+          "ar": "2025",
+          "kon_kod": "ALL",
+          "row_nr": "1",
+          "perspektiv": "Barn",
+          "fus": "ALL",
+          "aldersklass": "ALL"
+        },
+        "observations": {
+          "Antal": {
+            "rojd": false,
+            "value": 191551.0
+          },
+          "Belopp": {
+            "rojd": false,
+            "value": 3919395.0
+          },
+          "Median": {
+            "rojd": false,
+            "value": 21876.0
+          }
+        }
+      }
+    ]
+  },
+  "derived": {
+    "table": {
+      "key": "alder",
+      "label": "Ålder",
+      "name": "UHSArAlder",
+      "dimensions": [
+        "perspektiv",
+        "ar",
+        "fus",
+        "kon_kod",
+        "aldersklass"
+      ]
+    }
+  }
+}
