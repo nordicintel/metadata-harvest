@@ -240,7 +240,7 @@ def build(
                 groups.setdefault(_group(name), []).append(name)
             stage.fields["collections"] = len(source_names)
             stage.fields["groups"] = len(groups)
-        portal_path = data / "data_eu/oppnadata.jsonl.gz"
+        portal_path = data / "data_eu/state.json"
         if not portal_path.exists():
             logger.warning(
                 "no portal snapshot at %s; content enrichment is not configured",

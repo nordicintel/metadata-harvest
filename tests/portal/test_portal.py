@@ -38,14 +38,15 @@ def test_import_is_atomic_and_rejects_partial_or_wrong_catalog(tmp_path):
     source = tmp_path / "input.jsonl"
     target = tmp_path / "accepted"
     source.write_text(json.dumps(record()) + "\n", encoding="utf-8")
-    import_snapshot(source, target)
-    previous = (target / "oppnadata.jsonl.gz").read_bytes()
+    report = import_snapshot(source, target)
+    part = target / report["parts"][0]
+    previous = part.read_bytes()
     source.write_text(
         json.dumps({**record(), "catalog": {"id": "other"}}) + "\n", encoding="utf-8"
     )
     with pytest.raises(ValueError):
         import_snapshot(source, target)
-    assert (target / "oppnadata.jsonl.gz").read_bytes() == previous
+    assert part.read_bytes() == previous
 
 
 def test_match_is_scoped_and_ambiguous_identifiers_do_not_merge():
@@ -286,3 +287,37 @@ def test_distinct_dataset_page_fragments_do_not_match():
     portal = record("different")
     portal["landing_page"] = ["https://example.org/table-pages#B"]
     assert PortalIndex([portal]).match(dataset).status == "unmatched"
+
+
+def test_snapshot_parts_migrate_verify_and_shrink(tmp_path, monkeypatch):
+    import gzip
+    import hashlib
+
+    from apps.portal import snapshot
+
+    monkeypatch.setattr(snapshot, "PART_TARGET_BYTES", 1)
+    target = tmp_path / "accepted"
+    target.mkdir()
+    source = tmp_path / "incoming.jsonl"
+    rows = [record("a"), record("b")]
+    source.write_text("".join(json.dumps(row) + "\n" for row in rows))
+    legacy = gzip.compress(source.read_bytes())
+    (target / snapshot.LEGACY_FILE).write_bytes(legacy)
+    (target / "state.json").write_text(
+        json.dumps({"count": 2, "sha256": hashlib.sha256(legacy).hexdigest()})
+    )
+    assert list(snapshot.accepted_records(target)) == rows
+    report = snapshot.import_snapshot(source, target, expected_count=2)
+    assert len(report["parts"]) == 2
+    assert list(snapshot.accepted_records(target)) == rows
+    assert snapshot.import_snapshot(source, target, expected_count=2) == report
+    assert not (target / snapshot.LEGACY_FILE).exists()
+    source.write_text(json.dumps(rows[0]) + "\n")
+    with pytest.raises(ValueError, match="Incomplete"):
+        snapshot.import_snapshot(source, target, expected_count=2)
+    assert list(snapshot.accepted_records(target)) == rows
+    snapshot.import_snapshot(source, target, expected_count=1)
+    assert not (target / report["parts"][1]).exists()
+    (target / report["parts"][0]).write_bytes(b"corrupt")
+    with pytest.raises(ValueError, match="checksum"):
+        next(snapshot.accepted_records(target))

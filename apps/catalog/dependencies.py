@@ -39,7 +39,10 @@ def dependencies(data: Path, *, config_dir: Path = CONFIG) -> dict:
     ):
         path = Path(config_dir) / name
         result["config:" + name] = _hash(path) if path.exists() else None
-    for name in ("oppnadata.jsonl.gz", "state.json"):
+    for name in [
+        "state.json",
+        *(p.name for p in sorted((data / "data_eu").glob("oppnadata*.jsonl.gz"))),
+    ]:
         path = data / "data_eu" / name
         result["portal:" + name] = _hash(path) if path.exists() else None
     for directory in ("model", "catalog", "publication"):
