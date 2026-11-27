@@ -8,7 +8,7 @@ downloads a snapshot or promotes production output.
 
 ## Portal input
 
-The accepted snapshot is `data/data_eu/oppnadata.jsonl.gz`, with a hash/count manifest.
+The accepted snapshot lives in `data/data_eu/`. Its `state.json` lists the gzip JSONL parts in order and records their combined checksum and record count. Older snapshots use `oppnadata.jsonl.gz`.
 `apps.portal.snapshot` accepts complete `oppnadata` snapshots only. Failed pagination,
 invalid scope, malformed records or duplicate identities retain the previous snapshot.
 
