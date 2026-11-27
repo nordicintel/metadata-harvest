@@ -135,7 +135,17 @@ class CheckReporter:
             encoding="utf-8",
         )
         # Never launch a long worker until its telemetry can actually be read back.
-        observed = self.api(self.path)
+        # GitHub can briefly return 404 immediately after creating a check run.
+        for delay in (1, 2, 4, 8):
+            try:
+                observed = self.api(self.path)
+                break
+            except OSError as error:
+                if not str(error).endswith("(HTTP 404)"):
+                    raise
+                time.sleep(delay)
+        else:
+            observed = self.api(self.path)
         if observed.get("external_id") != self.external_id:
             raise RuntimeError("Progress check identity could not be verified")
         print(f"Live progress: {self.path}", flush=True)
